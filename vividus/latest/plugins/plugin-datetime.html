@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Page Not Found :: Vividus - all in one test automation tool</title>
+    <title>Plugin Date Time :: Vividus - all in one test automation tool</title>
     <meta name="generator" content="Antora 2.3.3">
-    <link rel="stylesheet" href="/_/css/site.css">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
   </head>
-  <body class="status-404">
+  <body class="article">
 <header class="header" role="banner">
   <nav class="navbar">
     <div class="navbar-brand">
@@ -87,16 +87,55 @@
 </header>
 
 <div class="body">
-<div class="nav-container">
+<div class="nav-container" data-component="vividus" data-version="latest">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-explore is-active" data-panel="explore">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Vividus</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is Vividus</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Plugin Date Time</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Vividus</span>
+    <span class="version">latest</span>
+  </div>
   <ul class="components">
-    <li class="component">
+    <li class="component is-current">
       <span class="title">Vividus</span>
       <ul class="versions">
-        <li class="version is-latest">
-          <a href="/vividus/latest/index.html">latest</a>
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
         </li>
       </ul>
     </li>
@@ -108,19 +147,136 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="/vividus/latest/index.html" class="home-link"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Vividus</a></li>
+    <li>Plugins</li>
+    <li><a href="plugin-datetime.html">Plugin Date Time</a></li>
+  </ul>
 </nav>
-</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/docs/docs/modules/plugins/pages/plugin-datetime.adoc">Edit this Page</a></div>
+  </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Page Not Found</h1>
+<h1 class="page">Plugin Date Time</h1>
+<div class="sect1">
+<h2 id="_general_info"><a class="anchor" href="#_general_info"></a>General Info</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The page you&#8217;re looking for does not exist. It may have been moved.</p>
+<p>Plugin provides functionality to generate, modify or validate the date.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="title">Add dependency to your tests</div>
+<div class="content">
+implementation(group: 'org.vividus', name: 'vividus-plugin-visual', version: 0.2.0)
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_required"><a class="anchor" href="#_required"></a>Required</h3>
 <div class="paragraph">
-<p>If you arrived on this page by clicking on a link, please notify the owner of the site that the link is broken.
-If you typed the URL of this page manually, please double check that you entered the address correctly.</p>
+<p>There are now required properties for the plugin.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional"><a class="anchor" href="#_optional"></a>Optional</h3>
+<div class="paragraph">
+<p><code>location.zone-id</code> - Difens time zone which will be used. Default is set to a system default timezone.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_then_the_date_date_is_comparisonrule_current_for_seconds_seconds"><a class="anchor" href="#_then_the_date_date_is_comparisonrule_current_for_seconds_seconds"></a>Then the date '$date' is $comparisonRule current for $seconds seconds</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_info"><a class="anchor" href="#_info"></a>Info</h3>
+<div class="paragraph">
+<p>Validates the difference between current date and the date under test in seconds.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$date</code> - the date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+</li>
+<li>
+<p><code>$seconds</code> - the quantity of seconds between current and the date.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h3>
+<div class="exampleblock">
+<div class="title">Step usage example</div>
+<div class="content">
+Then the date '2020-06-16T15:25:29.516580Z' is less than current for 10 seconds
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_then_the_date_date_in_the_format_format_is_comparisonrule_current_for_seconds_seconds"><a class="anchor" href="#_then_the_date_date_in_the_format_format_is_comparisonrule_current_for_seconds_seconds"></a>Then the date '$date' in the format '$format' is $comparisonRule current for $seconds seconds</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_info_2"><a class="anchor" href="#_info_2"></a>Info</h3>
+<div class="paragraph">
+<p>Validates the difference between current date and the date under test in seconds using custom date format.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$date</code> - the date in the to validate</p>
+</li>
+<li>
+<p><code>$foramt</code> - the date <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html">format</a></p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+</li>
+<li>
+<p><code>$seconds</code> - the quantity of seconds between current and the date</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage_2"><a class="anchor" href="#_usage_2"></a>Usage</h3>
+<div class="exampleblock">
+<div class="title">Step usage example</div>
+<div class="content">
+Then the date '20200616' in the format 'YYYYMMdd' is &lt; current for 1 seconds
+</div>
+</div>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -133,7 +289,7 @@ If you typed the URL of this page manually, please double check that you entered
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="/_/js/site.js"></script>
-<script async src="/_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
