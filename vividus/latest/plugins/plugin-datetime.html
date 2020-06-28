@@ -102,7 +102,8 @@
          </div>
       </div>
    </nav>
-</header><div class="body">
+</header>
+<div class="body">
 <div class="nav-container" data-component="vividus" data-version="latest">
   <aside class="nav">
     <div class="panels">
@@ -216,7 +217,7 @@
     <li><a href="plugin-datetime.html">Date Time</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/docs/docs/modules/plugins/pages/plugin-datetime.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-datetime.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -324,10 +325,10 @@ Then the date '2020-06-16T15:25:29.516580Z' is less than current for 10 seconds<
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$date</code> - the date in the to validate</p>
+<p><code>$date</code> - the date to validate</p>
 </li>
 <li>
-<p><code>$foramt</code> - the date in <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html">date-time format</a></p>
+<p><code>$format</code> - the date in <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html">date-time format</a></p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
@@ -390,9 +391,9 @@ Then the date '2020-06-25T00:19:58.890007Z' in the format 'uuuu-MM-dd'T'HH:mm:ss
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
 <col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
@@ -493,61 +494,61 @@ Then the date '2020-06-25T00:19:58.890007Z' in the format 'uuuu-MM-dd'T'HH:mm:ss
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Expression</th>
-<th class="tableblock halign-left valign-top">Result</th>
+<th class="tableblock halign-right valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862-05:00, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862-0500, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Throw exception</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Throw exception</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42+0000</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42+0000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ssZ)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42-05:00</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42-05:00</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSSZ, -05:00)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T04:00:42.862-05:00, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSSZ, GMT)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T09:00:42.862+0000</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862+0000</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSSZ, America/New_York)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(<strong>2017:01:13T09:00:42.862Z</strong>, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Throws exception</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Throws exception</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, <strong>BBByyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS</strong>)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Throws exception</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Throws exception</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd&#8217;T&#8217;HH:mm:ss.SSS, <strong>ABCD</strong>)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Throws exception</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Throws exception</p></td>
 </tr>
 </tbody>
 </table>
@@ -598,7 +599,7 @@ Mind that, since parameters of expression comma-separated, meaningful comma as p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a>*<em>Usage</em>;</h4>
+<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 75%;">
@@ -665,21 +666,21 @@ Mind that, since parameters of expression comma-separated, meaningful comma as p
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Expression</th>
-<th class="tableblock halign-left valign-top">Result</th>
+<th class="tableblock halign-right valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{shiftDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, -P1Y)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2018-03-19 01:40:00</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2018-03-19 01:40:00</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{shiftDate(Wed\, 10 Apr 2019 07:20:43 GMT, EEE\, dd MMM yyyy HH:mm:ss zzz, P1MT2H)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fri, 10 May 2019 09:20:43 GMT</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Fri, 10 May 2019 09:20:43 GMT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{shiftDate("Wed\, 10 Apr\, 2019\, 07:20:43 GMT", "EEE\, dd MMM\, yyyy\, HH:mm:ss zzz", P1MT2H)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Fri, 10 May, 2019, 09:20:43 GMT"</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">"Fri, 10 May, 2019, 09:20:43 GMT"</p></td>
 </tr>
 </tbody>
 </table>
@@ -730,21 +731,21 @@ Mind that, since parameters of expression comma-separated, meaningful comma as p
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Expression</th>
-<th class="tableblock halign-left valign-top">Result</th>
+<th class="tableblock halign-right valign-top">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 2019-03-19 03:40, yyyy-MM-dd HH:mm)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT0S</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT0S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{diffDate("Wed 10 Apr\, 2019\, 13:20:43 GMT", "EEE dd MMM\, yyyy\, HH:mm:ss zzz", "Wed 10 Apr\, 2019\, 09:20:43 America/New_York", "EEE dd MMM\, yyyy\, HH:mm:ss zzz")}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT0S</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT0S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 3020-03-19 03:39:20, yyyy-MM-dd HH:mm:ss)}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT8774591H59M20S</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT8774591H59M20S</p></td>
 </tr>
 </tbody>
 </table>
