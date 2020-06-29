@@ -1,0 +1,20 @@
+site:
+  title: Vividus - all in one test automation tool
+  url: https://docs.vividus.dev/
+  start_page: vividus::index.adoc
+content:
+  sources:
+  - url: ../vividus
+    branches: HEAD
+    start_path: docs
+    tags: [docs-*]
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+
+output: 
+  clean: true
+  dir: ./public

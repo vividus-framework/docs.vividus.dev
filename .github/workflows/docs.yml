@@ -1,0 +1,28 @@
+name: Vividus Documentation Deployment
+
+on:
+  repository_dispatch:
+    types: [deploy]
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.18.1
+    - run: npm i -g @antora/cli @antora/site-generator-default
+    - run: antora ./antora-playbook.yml
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        cname: docs.vividus.dev

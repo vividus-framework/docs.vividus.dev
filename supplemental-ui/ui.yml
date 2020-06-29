@@ -1,0 +1,10 @@
+static_files:
+- site.webmanifest
+- apple-touch-icon.png
+- favicon-32x32.png
+- favicon-16x16.png
+- android-chrome-192x192.png
+- android-chrome-384x384.png
+- browserconfig.xml
+- mslite-150-150.png
+- favicon.ico
