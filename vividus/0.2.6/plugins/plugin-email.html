@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Plugin Web App :: Vividus - all in one test automation tool</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.6-SNAPSHOT/plugins/plugin-web-app.html">
+    <title>Plugin Email :: Vividus - all in one test automation tool</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.6/plugins/plugin-email.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -104,7 +104,7 @@
    </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="vividus" data-version="0.2.6-SNAPSHOT">
+<div class="nav-container" data-component="vividus" data-version="0.2.6">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -146,7 +146,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-electron.html">Electron*</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="plugin-email.html">Email</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -176,7 +176,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-web-app.html">WEB App*</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -208,14 +208,14 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Vividus</span>
-    <span class="version">0.2.6-SNAPSHOT</span>
+    <span class="version">0.2.6</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <span class="title">Vividus</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">0.2.6-SNAPSHOT</a>
+          <a href="../index.html">0.2.6</a>
         </li>
         <li class="version">
           <a href="../../0.2.5/index.html">0.2.5</a>
@@ -238,27 +238,27 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-web-app.html">WEB App*</a></li>
+    <li><a href="plugin-email.html">Email</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">0.2.6-SNAPSHOT</button>
+  <button class="version-menu-toggle" title="Show other versions of page">0.2.6</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-web-app.html">0.2.6-SNAPSHOT</a>
-    <a class="version" href="../../0.2.5/plugins/plugin-web-app.html">0.2.5</a>
-    <a class="version" href="../../0.2.4/plugins/plugin-web-app.html">0.2.4</a>
+    <a class="version is-current" href="plugin-email.html">0.2.6</a>
+    <a class="version" href="../../0.2.5/plugins/plugin-email.html">0.2.5</a>
+    <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-web-app.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-email.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Plugin Web App</h1>
+<h1 class="page">Plugin Email</h1>
 <div class="sect1">
 <h2 id="_general_info"><a class="anchor" href="#_general_info"></a>General Info</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides functionality to interact with Web applications.</p>
+<p>The plugin provides functionality to interact with email servers over <a href="https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol">IMAPS protocol</a>.</p>
 </div>
 </div>
 </div>
@@ -268,7 +268,7 @@
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.2.4')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-email', version: '&lt;vividusVersion&gt;')</code></pre>
 </div>
 </div>
 </div>
@@ -278,14 +278,48 @@
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_required"><a class="anchor" href="#_required"></a>Required</h3>
-<div class="paragraph">
-<p>There are no required properties for the plugin.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>email.server.&lt;server-key&gt;.username</code> - defines email server username</p>
+</li>
+<li>
+<p><code>email.server.&lt;server-key&gt;.password</code> - defines email server password</p>
+</li>
+<li>
+<p><code>email.server.&lt;server-key&gt;.properties.host</code> - defines email server host, e.g. <code>imap.gmail.com</code></p>
+</li>
+<li>
+<p><code>email.server.&lt;server-key&gt;.properties.port</code> - defines email server port, e.g. <code>993</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_optional"><a class="anchor" href="#_optional"></a>Optional</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>email.imap.wait.duration</code> - defines message polling duration from the email server, default value is <code>PT30S</code></p>
+</li>
+<li>
+<p><code>email.imap.wait.retry-times</code> - defines a number of retries will be performed during polling duration, default value is <code>5</code></p>
+</li>
+<li>
+<p><code>email.imap.folder</code> - defines folder name to work with, default value is <code>Inbox</code></p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p>@proxy - Some steps requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.</p>
+<p>Polling timeout that can be calculated by <code>email.imap.wait.duration / email.imap.wait.retry-times</code> must be not less than <code>5</code> seconds.</p>
+</div>
+<div class="paragraph">
+<p>For IMAP configuration details see <a href="https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html#properties">IMAP Properties</a>.
+To use IMAP properties the <code>email.imap.</code> prefix must be replaced with <code>email.server.&lt;server-key&gt;.</code> e.g. <code>email.imap.timeout</code> will become <code>email.server.&lt;server-key&gt;.timeout</code>.
+The <code>&lt;server-key&gt;</code> is a logical name defining single server configuration and referred in steps.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#_configuration_example">Configuration example</a></p>
 </div>
 </div>
 </div>
@@ -294,51 +328,18 @@
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_clear_proxy_log"><a class="anchor" href="#_clear_proxy_log"></a>Clear proxy log</h3>
+<h3 id="_fetch_message_from_an_email_server"><a class="anchor" href="#_fetch_message_from_an_email_server"></a>Fetch message from an email server</h3>
 <div class="sect3">
 <h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Clears the proxy log</p>
+<p>Fetches an email message from a server filtered by user-defined filters. If the message is found its text content parts are saved into indexed variables prefixed <code>variableName</code> parameter and part index, e.g. if the message contains two text parts, the first part will be saved under <code>variableName[0]</code> and the second under <code>variableName[1]</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 2. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I clear proxy log
-Given I am on a page with the URL 'http:/httpbin.org/get'
-When I clear proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `0`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_check_if_the_number_of_requests_with_given_url_pattern_exist"><a class="anchor" href="#_check_if_the_number_of_requests_with_given_url_pattern_exist"></a>Check if the number of requests with given URL-pattern exist</h3>
-<div class="sect3">
-<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If URLs are the same, there were calls with given URL-pattern, otherwise - weren&#8217;t.
-If there weren&#8217;t any calls matching requirements, HAR file with all calls will be attached to report.
-If response contains status code 302 - corresponding request will be filtered out.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP $httpMethod requests with URL pattern `$urlPattern` is $comparisonRule `$number`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I fetch email message from `$serverKey` server filtered by $filters and save message content to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
@@ -347,180 +348,141 @@ If response contains status code 302 - corresponding request will be filtered ou
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
+<p><code>$serverKey</code> - server <code>configuration</code> to identify a server to fetch a message from</p>
 </li>
 <li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
+<p><code>$filters</code> - <a href="#_message_filters">Message filters</a></p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">Variable Scopes</a></p>
 </li>
 <li>
-<p><code>$number</code> - The number to compare with</p>
+<p><code>$variableName</code> - name to prefix text content references</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 3. ProxyStepsTests.story</div>
+<div class="title">Example 2. Sample.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I clear proxy log
-Given I am on a page with the URL 'http:/httpbin.org/get'
-When I clear proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `0`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Fetch email message
+When I fetch email message from `gmail` server filtered by
+|parameter     |rule            |value                                       |
+|SUBJECT       |EQUAL_TO        |Registration code                           |
+|SENT_DATE     |GREATER_THAN    |1970-01-01T00:00:00.000Z                    |
+|RECEIVED_DATE |LESS_THAN       |2020-06-14T11:47:11.521Z                    |
+|FROM          |IS_EQUAL_TO     |service &lt;regservice@company.com&gt;            |
+|CC_RECIPIENTS |CONTAINS        |admin                                       |
+|BCC_RECIPIENTS|DOES_NOT_CONTAIN|gmail.com                                   |
+|TO_RECIPIENTS |EQUAL_TO        |me &lt;me@company.com&gt;, boss &lt;boss@company.com&gt;|
+|REPLY_TO      |MATCHES         |(?i)[0-9]@.*                                |
+ and save message content to SCENARIO variable `textContent`
+Then `textContent[1]` matches `.*Registration code.*`</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendix"><a class="anchor" href="#_appendix"></a>Appendix</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_message_filters"><a class="anchor" href="#_message_filters"></a>Message filters</h3>
+<div class="sect3">
+<h4 id="_parameter"><a class="anchor" href="#_parameter"></a><strong><em>parameter</em></strong></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SUBJECT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subject text</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SENT_DATE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date in <a href="#_iso_8061">ISO 8061</a> format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RECEIVED_DATE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date in <a href="#_iso_8061">ISO 8061</a> format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FROM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_address">Address</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CC_RECIPIENTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_address">Address</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BCC_RECIPIENTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_address">Address</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_RECIPIENTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_address">Address</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REPLY_TO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_address">Address</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_rule"><a class="anchor" href="#_rule"></a><strong><em>rule</em></strong></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../parameters/comparison-rule.html" class="page">Comparison Rules</a> are allowed to be used with any kind of <a href="#_parameter"><strong><em>parameter</em></strong></a></p>
+</li>
+<li>
+<p><a href="../parameters/string-comparison-rule.html" class="page">String Comparison Rules</a> are allowed to be used with any kind of <a href="#_parameter"><strong><em>parameter</em></strong></a> besides <code>SENT_DATE</code> and <code>RECEIVED_DATE</code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"></a>Saves the query string into the variable with specified name and scopes.</h3>
-<div class="sect3">
-<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<h3 id="_iso_8061"><a class="anchor" href="#_iso_8061"></a>ISO 8061</h3>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
-If there weren&#8217;t any calls or more than one matching requirements, HAR file with all
-calls will be attached to report.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 4. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`
-Given I am on a page with the URL 'http://httpbin.org/forms/post'
-When I click on element located `By.xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save URL query to SCENARIO variable `query`
-Then `${query}` is equal to `{}`</code></pre>
-</div>
-</div>
+<p>Date argument must be presented in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format e.g. <code>1970-01-01T00:00:00.000Z</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"></a>Saves the request data into the variable with specified name and scopes.</h3>
-<div class="sect3">
-<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
+<h3 id="_address"><a class="anchor" href="#_address"></a>Address</h3>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
-If there weren&#8217;t any calls or more than one matching requirements, HAR file with all calls will be attached to report.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 5. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`
-Given I am on a page with the URL 'http://httpbin.org/forms/post'
-When I click on element located `By.xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save request data to SCENARIO variable `requestData`
-Then `${requestData.query}` is equal to `{}`
-Then `${requestData.requestBodyParameters}` is equal to `{delivery=, custtel=, comments=, custemail=, custname=}`
-Then `${requestData.requestBody}` is not equal to `null`
-Then `${requestData.responseStatus}` is equal to `200`</code></pre>
-</div>
-</div>
+<p>Address argument is a comma-separated text that holds one or more email addresses e.g. <code>Billie Jean &lt;<a href="mailto:bjean@gmail.com">bjean@gmail.com</a>&gt;, Big Boss &lt;<a href="mailto:boss@company.com">boss@company.com</a>&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"><a class="anchor" href="#_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"></a>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</h3>
-<div class="sect3">
-<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
+<h3 id="_configuration_example"><a class="anchor" href="#_configuration_example"></a>Configuration example</h3>
 <div class="listingblock">
+<div class="title">Example 3. email.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - The string value of URL-pattern to filter by</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 6. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log
-Given I am on a page with the URL 'http://httpbin.org/get'
-When I wait until HTTP GET request with URL pattern `http://httpbin.org/get` exists in proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `1`</code></pre>
-</div>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># email server
+email.server.gmail.username=bob
+email.server.gmail.password=2kj34ndd
+email.server.gmail.properties.host=imap.gmail.com
+email.server.gmail.properties.port=993
+email.server.gmail.properties.starttls.required=true
+email.server.gmail.properties.usesocketchannels=true
+
+# client
+email.imap.wait.duration=PT15S
+email.imap.wait.retry-times=3
+email.imap.folder=Inbox</code></pre>
 </div>
 </div>
 </div>
