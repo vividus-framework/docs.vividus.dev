@@ -352,6 +352,107 @@ Then server `vividus-test-site.herokuapp.com` supports secure protocols that con
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_expressions"><a class="anchor" href="#_expressions"></a>Expressions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_uri_encoding"><a class="anchor" href="#_uri_encoding"></a>URI Encoding</h3>
+<div class="paragraph">
+<p><code>${encodeUriXyz(..)}</code> is a family of expressions that encode specific URI components (e.g. path, query)
+by percent encoding illegal characters, which includes non-US-ASCII characters, and also characters that
+are otherwise illegal within the given URI component type, as defined in
+<a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 60%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Syntax</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriUserInfo($userInfo)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI user info</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriHost($host)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPath($path)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI path</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPathSegment($segment)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI path segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQuery($query)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI query</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQueryParameter($queryParameter)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI query parameter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriFragment($fragment)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI fragment</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriUserInfo(<a href="mailto:user@vividus.dev">user@vividus.dev</a>:pass)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user%40vividus.dev:pass</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriHost(vividus.бел)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vividus.%D0%B1%D0%B5%D0%BB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPath(/path/with spaces/)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/path/with%20spaces/</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPathSegment(path/segment)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path%2Fsegment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQuery(a&amp;b=c d)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a&amp;b=c%20d</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQueryParameter(a&amp;b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a%26b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriFragment(frag ment)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">frag%20ment</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
