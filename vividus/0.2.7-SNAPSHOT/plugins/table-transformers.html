@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Table Transformers :: Vividus - all in one test automation tool</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/plugins/table-transformers.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script src="https://buttons.github.io/buttons.js"></script>
+
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">Vividus // Docs</a>
+         </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>Vividus</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>Vividus Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>Vividus Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.herokuapp.com/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="0.2.7-SNAPSHOT">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Vividus</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is Vividus</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-csv.html">CSV*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational DB*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-excel.html">Excel*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-html.html">HTML*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-ssh.html">SSH*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">WEB App*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-xml.html">XML*</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/variable-scope.html">Variable Scope</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Vividus</span>
+    <span class="version">0.2.7-SNAPSHOT</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Vividus</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">0.2.7-SNAPSHOT</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.6/index.html">0.2.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.5/index.html">0.2.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.4/index.html">0.2.4</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Vividus</a></li>
+    <li><a href="table-transformers.html">Table Transformers</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.2.7-SNAPSHOT</button>
+  <div class="version-menu">
+    <a class="version is-current" href="table-transformers.html">0.2.7-SNAPSHOT</a>
+    <a class="version is-missing" href="../../0.2.6/index.html">0.2.6</a>
+    <a class="version is-missing" href="../../0.2.5/index.html">0.2.5</a>
+    <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/table-transformers.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Table Transformers</h1>
+<div class="sect1">
+<h2 id="_general_info"><a class="anchor" href="#_general_info"></a>General Info</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are 3 default jbehave transformers: FROM_LANDSCAPE, FORMATTING, REPLACING and vividus specific transformers: SORTING, ITERATING, GENERATE_FROM_CSV, GENERATE_FROM_JSON, MERGING, FROM_SITEMAP, FROM_HEADLESS_CRAWLING, FROM_EXCEL. Chain of transformers can be defined. In this case the transformers are applied sequentially from top to bottom.</p>
+</div>
+<div class="sect2">
+<h3 id="_from_landscape"><a class="anchor" href="#_from_landscape"></a>FROM_LANDSCAPE</h3>
+<div class="paragraph">
+<p><code>FROM_LANDSCAPE</code> table transformer is designed to transform the table from a landscape form.</p>
+</div>
+<div class="sect3">
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_LANDSCAPE}
+|key|value1|value2|value3|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_formatting"><a class="anchor" href="#_formatting"></a>FORMATTING</h3>
+<div class="paragraph">
+<p><code>FORMATTING</code> table transformer is designed to format the table according to the max width of each column. And also this transformer removes the commented lines.</p>
+</div>
+<div class="sect3">
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FORMATTING}
+|key|
+|value|
+|-- |value|
+|longValue|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replacing"><a class="anchor" href="#_replacing"></a>REPLACING</h3>
+<div class="paragraph">
+<p><code>REPLACING</code> table transformer is designed to replace all substrings inside table values with replacement according to the given parameters.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>replacing</code> - the sequence of char values inside table values to be replaced</p>
+</li>
+<li>
+<p><code>replacement</code> - the replacement sequence of char values</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=REPLACING, replacing=k, replacement=l}
+|key  |
+|vakue|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sorting"><a class="anchor" href="#_sorting"></a>SORTING</h3>
+<div class="paragraph">
+<p><code>SORTING</code> table transformer is designed to sort the table by columns.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>byColumns</code> - column names in order of priority for sorting through '|'</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=SORTING, byColumns=key|key1}
+|key   |key1  |
+|value3|value4|
+|value1|value2|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_iterating"><a class="anchor" href="#_iterating"></a>ITERATING</h3>
+<div class="paragraph">
+<p><code>ITERATING</code> table transformer is designed to generate simple one-column table with key 'iterator' and values 0,1,2&#8230;&#8203; till the given parameter.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>limit</code> - column names in order of priority for sorting through '|'</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=ITERATING, limit=5}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filtering"><a class="anchor" href="#_filtering"></a>FILTERING</h3>
+<div class="paragraph">
+<p>FILTERING table transformer is designed to filter the table by different rules.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>byMaxColumns</code> - limiting amount of columns</p>
+</li>
+<li>
+<p><code>byMaxRows</code> - limiting amount of rows</p>
+</li>
+<li>
+<p><code>byColumnNames</code> - columns to remain in result table</p>
+</li>
+<li>
+<p><code>byRowIndexes</code> - indexes of rows to use in resulting table</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
+|key1  |key2  |key3  |
+|value1|value2|value3|
+|value4|value5|value6|</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
+|key1  |key2  |key3  |
+|value1|value2|value3|
+|value4|value5|value6|
+|value7|value8|value9|</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please, note: <code>byMaxColumns</code> and <code>byColumnNames</code> are competing properties and only one can be specified. The same for properties <code>byMaxRows</code> and <code>byRowIndexes</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_csv"><a class="anchor" href="#_from_csv"></a>FROM_CSV</h3>
+<div class="paragraph">
+<p><code>FROM_CSV</code> table transformer is designed to generate example table from CSV.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>csvPath</code> - relative path to csv file</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_CSV, csvPath=/story/example.csv}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_merging"><a class="anchor" href="#_merging"></a>MERGING</h3>
+<div class="paragraph">
+<p><code>MERGING</code> table transformer is designed to merge tables.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>mergeMode</code> - <em>rows</em> or <em>columns</em></p>
+</li>
+<li>
+<p><code>tables</code> - paths to examples tables or transformers to merge</p>
+</li>
+<li>
+<p><code>fillerValue</code> - value to fill new cells when merge tables with different number of rows (in column mode) or columns (in rows mode)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{
+ transformer=MERGING,
+ mergeMode=rows,
+ fillerValue=null,
+ tables=
+ \{
+   transformer=MERGING\,
+   mergeMode=columns\,
+   tables=
+        \\{
+           transformer=FROM_EXCEL\\,
+           path=TestTemplate.xlsx\\,
+           sheet=Data\\,
+           addresses=E6\\,
+           column=text1
+        \\}
+        \;
+        \\{
+           transformer=FROM_EXCEL\\,
+           path=TestTemplate.xlsx\\,
+           sheet=Data\\,
+           addresses=E7\\,
+           column=text2
+        \\}
+ \}
+ ;
+ \{
+   transformer=FROM_EXCEL\,
+   path=TestTemplate.xlsx\,
+   sheet=Data\,
+   addresses=E8\,
+   column=text1
+ \}
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Starting from version 0.2.0 it&#8217;s possible to merge table with body with other tables in files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
+|column1|
+|value1 |</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please, note:
+* to merge tables with different number of rows or columns use <code>fillerValue</code> parameter to fill new cells
+* to merge tables in rows mode they must have the same numbers of columns + the same headers(keys)
+* to merge tables in columns mode they must have the same number of rows + unique headers(keys)
+* number of unique tables paths must be more than 1
+* when using transformers in <code>tables</code> parameter it is necessary to escape brackets, commas and semicolon in them: for unary nested- "", for double - "\" etc.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_joining"><a class="anchor" href="#_joining"></a>JOINING</h3>
+<div class="paragraph">
+<p><code>JOINING</code> table transformer is designed to join values from rows/columns of the table.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>joinMode</code> - <em>rows</em> or <em>columns</em></p>
+</li>
+<li>
+<p><code>joinedColumn</code> - [<em>columns</em> mode only] name of new column with joined values</p>
+</li>
+<li>
+<p><code>columnsToJoin</code> - [<em>columns</em> mode only] colon-separated list of the columns to join</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in default columns mode
+Then `&lt;joinedColumn&gt;` is equal to `A B`
+Examples:
+{transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn}
+|column1|column2|
+|A      |B      |
+
+Scenario: Verify JOINING transformer in configured columns mode
+Then `&lt;joinedColumn&gt;` is equal to `B D`
+Examples:
+{transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn, columnsToJoin=column2;column4}
+|column1|column2|column3|column4|
+|A      |B      |C      |D      |
+
+Scenario: Verify JOINING transformer in default rows mode
+Then `&lt;column1&gt;` is equal to `A B`
+Then `&lt;column2&gt;` is equal to `C D`
+Examples:
+{transformer=JOINING, joinMode=rows}
+|column1|column2|
+|A      |C      |
+|B      |D      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=MERGING, mergeMode=columns, tables=
+\{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
+\{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=B4:B5\, column=header2\, joinValues=true\}}
+{transformer=JOINING, joinMode=columns, joinedColumn=header}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exmaples:
+{transformer=JOINING, joinMode=columns, joinedColumn=header}
+/test1.table</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please, note: <code>JOINING</code> transformer will be last when joining columns/rows of table which created using another transformer.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_sitemap"><a class="anchor" href="#_from_sitemap"></a>FROM_SITEMAP</h3>
+<div class="paragraph">
+<p><code>FROM_SITEMAP</code> table transformer is designed to generate example table from SITEMAP.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>siteMapRelativeUrl</code> - relative url of sitemap.xml</p>
+</li>
+<li>
+<p><code>ignoreErrors</code> - ability to ignore errors (<em>true</em> or <em>false</em>)</p>
+</li>
+<li>
+<p><code>column</code> - column name in generated example table</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_properties"><a class="anchor" href="#_properties"></a><strong><em>Properties</em></strong></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bdd.transformer.sitemap.ignore-errors</code> - (<em>true</em> of <em>false</em>) - ability to ignore errors (<em>false</em> by default)</p>
+</li>
+<li>
+<p><code>bdd.transformer.sitemap.filter-redirects</code> - (<em>true</em> of <em>false</em>) - if <code>true</code> then urls that has redirect to the one that has already been included the table are excluded from the table (<em>false</em> by default)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_10"><a class="anchor" href="#_usage_10"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, column=entered_site}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_headless_crawling"><a class="anchor" href="#_from_headless_crawling"></a>FROM_HEADLESS_CRAWLING</h3>
+<div class="paragraph">
+<p><code>FROM_HEADLESS_CRAWLING</code> table transformer is designed to generate example table after work of CRAWLER.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>column</code> - column name in generated example table</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_properties_2"><a class="anchor" href="#_properties_2"></a><strong><em>Properties</em></strong></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bdd.transformer.headless.filter-redirects</code> - (<em>true</em> of <em>false</em>) - ability to filter redirects (<em>false</em> by default)</p>
+</li>
+<li>
+<p><code>bdd.transformer.headless.seed-relative-urls</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_11"><a class="anchor" href="#_usage_11"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_HEADLESS_CRAWLING, column=polls_page}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_excel"><a class="anchor" href="#_from_excel"></a>FROM_EXCEL</h3>
+<div class="paragraph">
+<p><code>FROM_EXCEL</code> table transformer is designed to generate example table from EXCEL.</p>
+</div>
+<div class="sect3">
+<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>path</code> - path to excel spreadsheet</p>
+</li>
+<li>
+<p><code>sheet</code> - sheet name from excel spreadsheet</p>
+</li>
+<li>
+<p><code>column</code> - column name in generated example table</p>
+</li>
+<li>
+<p><code>joinValues</code> - <em>true</em> - if return as string (<em>false</em> by default)</p>
+</li>
+<li>
+<p><code>range</code> - cells range to extract data, can not be used in parallel with addresses</p>
+</li>
+<li>
+<p><code>increment</code> - increment from start of range to extract data (<em>1</em> by default)</p>
+</li>
+<li>
+<p><code>addresses</code> - cell address to extract data, can not be used in parallel with range</p>
+</li>
+<li>
+<p><code>lineBreakReplacement</code> - value for line break change (empty string by default)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_12"><a class="anchor" href="#_usage_12"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_EXCEL, path=/TestTemplate.xlsx, sheet=RepeatingData, range=A2:A7, lineBreakReplacement= , increment=2, column=test}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Examples:
+{transformer=FROM_EXCEL, path=/TestTemplate.xlsx, sheet=RepeatingData, addresses=A2;B4;A7, column=test, joinValues=true}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2020 Vividus team and individual contributors to <a href="https://vividus.dev">Vividus</a>. Vividus is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
