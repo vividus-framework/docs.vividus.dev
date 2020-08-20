@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Table Transformers :: Vividus - all in one test automation tool</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/plugins/table-transformers.html">
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/tests-development/table-transformers.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -119,8 +119,17 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tests development</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+    <a class="nav-link" href="tests-configuration.html">Tests configuration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="table-transformers.html">Table transformers</a>
   </li>
 </ul>
   </li>
@@ -129,58 +138,58 @@
     <span class="nav-text">Plugins</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-applitools.html">Applitools*</a>
+    <a class="nav-link" href="../plugins/plugin-applitools.html">Applitools*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
+    <a class="nav-link" href="../plugins/plugin-aws-s3.html">AWS S3*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-csv.html">CSV*</a>
+    <a class="nav-link" href="../plugins/plugin-csv.html">CSV*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-datetime.html">Date Time</a>
+    <a class="nav-link" href="../plugins/plugin-datetime.html">Date Time</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-db.html">Relational DB*</a>
+    <a class="nav-link" href="../plugins/plugin-db.html">Relational DB*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+    <a class="nav-link" href="../plugins/plugin-electron.html">Electron*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-email.html">Email</a>
+    <a class="nav-link" href="../plugins/plugin-email.html">Email</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-excel.html">Excel*</a>
+    <a class="nav-link" href="../plugins/plugin-excel.html">Excel*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-html.html">HTML*</a>
+    <a class="nav-link" href="../plugins/plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mobile-app.html">Mobile App</a>
+    <a class="nav-link" href="../plugins/plugin-mobile-app.html">Mobile App</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
+    <a class="nav-link" href="../plugins/plugin-mongodb.html">MongoDB*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
+    <a class="nav-link" href="../plugins/plugin-parquet.html">Parquet*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+    <a class="nav-link" href="../plugins/plugin-rest-api.html">REST API</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-ssh.html">SSH*</a>
+    <a class="nav-link" href="../plugins/plugin-ssh.html">SSH*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
+    <a class="nav-link" href="../plugins/plugin-visual.html">Visual Testing*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
+    <a class="nav-link" href="../plugins/plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">WEB App*</a>
+    <a class="nav-link" href="../plugins/plugin-web-app.html">WEB App*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-xml.html">XML*</a>
+    <a class="nav-link" href="../plugins/plugin-xml.html">XML*</a>
   </li>
 </ul>
   </li>
@@ -240,7 +249,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Vividus</a></li>
-    <li><a href="table-transformers.html">Table Transformers</a></li>
+    <li>Tests development</li>
+    <li><a href="table-transformers.html">Table transformers</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -252,7 +262,7 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/table-transformers.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/tests-development/pages/table-transformers.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
