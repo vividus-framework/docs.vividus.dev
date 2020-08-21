@@ -186,7 +186,7 @@
     <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">WEB App*</a>
+    <a class="nav-link" href="plugin-web-app.html">WEB App</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-xml.html">XML*</a>
@@ -250,7 +250,7 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-web-app.html">WEB App*</a></li>
+    <li><a href="plugin-web-app.html">WEB App</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -533,6 +533,77 @@ Then `${requestData.responseStatus}` is equal to `200`</code></pre>
 Given I am on a page with the URL 'http://httpbin.org/get'
 When I wait until HTTP GET request with URL pattern `http://httpbin.org/get` exists in proxy log
 Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `1`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a>Dynamic variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dynamic variables is variables available out of the box using standard approach <code>${variable-name}</code> Usually the data provided by dynamic variables calculated at runtime.</p>
+</div>
+<div class="sect2">
+<h3 id="_context_element_rectangle"><a class="anchor" href="#_context_element_rectangle"></a>Context element rectangle</h3>
+<div class="paragraph">
+<p>Provides possibility to access context element coordinates, width and height.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Variable uses contextual approach. So it is necessary to switch context to a target element.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_variable_name"><a class="anchor" href="#_variable_name"></a><strong>Variable name</strong></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">context-height</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">provided context element height</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">context-width</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">provided context element width</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">context-x-coordinate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">provided context element absolute X coordinate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">context-y-coordinate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">provided context element absolute Y coordinate</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_usage_example"><a class="anchor" href="#_usage_example"></a><strong>Usage example</strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `tagName(img)`
+Then `${context-height}` is &gt; `0`
+Then `${context-width}` is &gt; `0`
+Then `${context-x-coordinate}` is &gt; `0`
+Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 </div>
