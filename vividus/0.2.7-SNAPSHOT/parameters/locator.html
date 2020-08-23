@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Variable scope :: Vividus - all in one test automation tool</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/parameters/variable-scope.html">
+    <title>Comparison rule :: Vividus - all in one test automation tool</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/parameters/locator.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -203,13 +203,13 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="collection-comparison-rule.html">Collection Comparison Rule</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="locator.html">Locator</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="string-comparison-rule.html">String Comparison Rule</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="variable-scope.html">Variable Scope</a>
   </li>
 </ul>
@@ -253,82 +253,298 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Parameter types</li>
-    <li><a href="variable-scope.html">Variable Scope</a></li>
+    <li><a href="locator.html">Locator</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">0.2.7-SNAPSHOT</button>
   <div class="version-menu">
-    <a class="version is-current" href="variable-scope.html">0.2.7-SNAPSHOT</a>
-    <a class="version" href="../../0.2.6/parameters/variable-scope.html">0.2.6</a>
-    <a class="version" href="../../0.2.5/parameters/variable-scope.html">0.2.5</a>
-    <a class="version" href="../../0.2.4/parameters/variable-scope.html">0.2.4</a>
+    <a class="version is-current" href="locator.html">0.2.7-SNAPSHOT</a>
+    <a class="version is-missing" href="../../0.2.6/index.html">0.2.6</a>
+    <a class="version is-missing" href="../../0.2.5/index.html">0.2.5</a>
+    <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/parameters/pages/variable-scope.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/parameters/pages/locator.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Variable scope</h1>
+<h1 class="page">Comparison rule</h1>
 <div class="sect1">
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Defines scope of a variable</p>
+<p>Describes elements locator. Should match regular expression: <code>(?:By\\.)?([a-zA-Z]+)\\((.+?)\\):?([a-zA-Z]*)?</code></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_possible_scopes"><a class="anchor" href="#_possible_scopes"></a>Possible scopes</h2>
+<h2 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By. prefix is an optional.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>locatorType</code> - <strong>[mandatory]</strong> type of the locator</p>
+</li>
+<li>
+<p><code>locatorValue</code> - <strong>[mandatory]</strong> value of the locator</p>
+</li>
+<li>
+<p><code>visibility</code> - <strong>[optional]</strong> visibility of element (visible by default)</p>
+</li>
+<li>
+<p><code>filterType</code> - <strong>[optional]</strong> type of the filter</p>
+</li>
+<li>
+<p><code>filterValue</code> - <strong>[required if filter type defined]</strong> value of the filter</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_locator_types"><a class="anchor" href="#_locator_types"></a>Locator types</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 83.3334%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Locator type</th>
 <th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">step</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The scope is used within nested steps and the variables are invalidated after the nested steps are executed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text of the link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText(Google)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>scenario</strong> scope is available in the rest of the scenario after it&#8217;s declared. The <strong>scenario</strong> scoped variables are invalidated once the scenario is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl(/faq)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">story</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>story</strong> scope is available in the rest of the story after it&#8217;s declared. The <strong>story</strong> scoped variables are invalidated once the story is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of a <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart(faq)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">next_batches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>next_batches</strong> scope is available in the next batches. The <strong>next_batches</strong> scoped variable is not available in batch it&#8217;s declared within.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case sensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText(Description)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">global</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Such variables are declared only in <code>*.properties</code> files with <code>bdd.variables.global.</code> prefix and available in all stories. Attempt to save the globally scoped variables in stories leads to an exception.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseInsensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case insensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseInsensitiveText(description)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath to an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cssSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS selector to an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cssSelector(.menu-item)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of an element tagName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[@src='&lt;value&gt;&gt;']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrc(/images/kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrcPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[contains(@src,'&lt;value&gt;&gt;')]']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrcPart(kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buttonName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elements of type button or input with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buttonName(submit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input or textarea with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName(editor)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkboxName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input element with @type="checkbox" and text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkboxName(allow)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id attribute of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(submitForm)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">className</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS class name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">className(bold)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any attribute or text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName(OK)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_notes"><a class="anchor" href="#_notes"></a>Notes</h2>
+<h2 id="_visibility_types"><a class="anchor" href="#_visibility_types"></a>Visibility types</h2>
 <div class="sectionbody">
-<div id="TIP" class="ulist">
-<ul>
-<li>
-<p>Scope names are case insensitive</p>
-</li>
-<li>
-<p>The <strong>story</strong> scoped variables declared inside given stories are available in the parent story</p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Visibility type</th>
+<th class="tableblock halign-left valign-top">Usage example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default visibility option. Only visible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):i</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only invisible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either visible and invisible elements will be found</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_filters"><a class="anchor" href="#_filters"></a>Filters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Filter are applied after elements search via locator. Elements not matching filter condition will be sorted out without additional notice.</p>
+</div>
+<div class="sect2">
+<h3 id="_filter_types"><a class="anchor" href="#_filter_types"></a>Filter types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Filter type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="state.html" class="page">State</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element text should match case sensitively</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.caseSensitiveText(text)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">classAttributePart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class attribute should contain part</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.classAttributePart(clazz)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrl(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrlPart(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tooltip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">title attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.tooltip(title)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrcPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src attribute should contain vvalue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.imageSrcPart(part)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">textPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text of an element should contain value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.textPart(part)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">placeholder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder attribute should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.placeholder(placeholder-value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validationIconSource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS property background-image should match</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.validationIconSource(src)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should match expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldText(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldTextPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should contain expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldTextPart(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dropDownText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any of select options should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.dropDownText(value)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

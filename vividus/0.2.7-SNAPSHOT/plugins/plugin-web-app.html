@@ -204,6 +204,9 @@
     <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/locator.html">Locator</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -537,6 +540,66 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
+<div class="sect3">
+<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you describer number condition as equal to 5 in case if there are 10 elements by this locator and only 5 of them in the desired state. You will get two failed assertions.
+The first one about number condition violation. The second one about state check failure.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$state</code> - <a href="../parameters/state.html" class="page">State</a></p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison rule</a></p>
+</li>
+<li>
+<p><code>$quantity</code> - expected number of elements</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 7. VerifyState.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
+Given I am on a page with the URL '${vividus-test-site-url}'
+Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -603,7 +666,8 @@ Variable uses contextual approach. So it is necessary to switch context to a tar
 Then `${context-height}` is &gt; `0`
 Then `${context-width}` is &gt; `0`
 Then `${context-x-coordinate}` is &gt; `0`
-Then `${context-y-coordinate}` is &gt; `0`</code></pre>
+Then `${context-y-coordinate}` is &gt; `0`
+____</code></pre>
 </div>
 </div>
 </div>
