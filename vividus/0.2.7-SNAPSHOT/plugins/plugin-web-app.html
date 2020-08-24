@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Plugin Web App :: Vividus - all in one test automation tool</title>
+    <title>Web Application Plugin :: Vividus - all in one test automation tool</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/plugins/plugin-web-app.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -116,9 +116,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../index.html">What is Vividus</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -126,10 +123,10 @@
     <span class="nav-text">Tests development</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests configuration</a>
+    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests Configuration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/table-transformers.html">Table transformers</a>
+    <a class="nav-link" href="../tests-development/table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -144,10 +141,10 @@
     <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-csv.html">CSV*</a>
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-datetime.html">Date Time</a>
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-db.html">Relational DB*</a>
@@ -159,13 +156,13 @@
     <a class="nav-link" href="plugin-email.html">Email</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-excel.html">Excel*</a>
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mobile-app.html">Mobile App</a>
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
@@ -183,10 +180,10 @@
     <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">WEB App</a>
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-xml.html">XML*</a>
@@ -253,7 +250,7 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-web-app.html">WEB App</a></li>
+    <li><a href="plugin-web-app.html">Web Application</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -269,9 +266,8 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Plugin Web App</h1>
-<div class="sect1">
-<h2 id="_general_info"><a class="anchor" href="#_general_info"></a>General Info</h2>
+<h1 class="page">Web Application Plugin</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>The plugin provides functionality to interact with Web applications.</p>
@@ -284,7 +280,7 @@
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.2.4')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.2.7-SNAPSHOT')</code></pre>
 </div>
 </div>
 </div>
@@ -666,8 +662,7 @@ Variable uses contextual approach. So it is necessary to switch context to a tar
 Then `${context-height}` is &gt; `0`
 Then `${context-width}` is &gt; `0`
 Then `${context-x-coordinate}` is &gt; `0`
-Then `${context-y-coordinate}` is &gt; `0`
-____</code></pre>
+Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 </div>

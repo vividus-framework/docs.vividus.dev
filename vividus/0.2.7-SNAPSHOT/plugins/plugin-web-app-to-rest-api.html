@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: Vividus - all in one test automation tool</title>
+    <title>Web Application &amp; REST API Integration Plugin :: Vividus - all in one test automation tool</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/plugins/plugin-web-app-to-rest-api.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -116,9 +116,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../index.html">What is Vividus</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -126,10 +123,10 @@
     <span class="nav-text">Tests development</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests configuration</a>
+    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests Configuration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/table-transformers.html">Table transformers</a>
+    <a class="nav-link" href="../tests-development/table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -144,10 +141,10 @@
     <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-csv.html">CSV*</a>
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-datetime.html">Date Time</a>
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-db.html">Relational DB*</a>
@@ -159,13 +156,13 @@
     <a class="nav-link" href="plugin-email.html">Email</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-excel.html">Excel*</a>
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mobile-app.html">Mobile App</a>
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
@@ -183,10 +180,10 @@
     <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">WEB App</a>
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-xml.html">XML*</a>
@@ -253,7 +250,7 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a></li>
+    <li><a href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -269,8 +266,160 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Web Application &amp; REST API Integration Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the integration between web application testing functionality and REST API features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app-to-rest-api', version: '0.2.7-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a>Table Transformers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_sitemap"><a class="anchor" href="#_from_sitemap"></a>FROM_SITEMAP</h3>
+<div class="paragraph">
+<p><code>FROM_SITEMAP</code> transformer generates table based on the website sitemap.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>siteMapRelativeUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relative URL of <code>sitemap.xml</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignoreErrors</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ignore sitemap parsing errors (<em>true</em> or <em>false</em>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the column name in the generated table</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.transformer.sitemap.ignore-errors</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> / <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ignore sitemap parsing errors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.transformer.sitemap.filter-redirects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> / <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines whether urls that has redirect to the one that has already been included in the table are excluded from the table</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 2. Usage example</div>
+<div class="content">
+<pre>Examples:
+{transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, column=page-url}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_headless_crawling"><a class="anchor" href="#_from_headless_crawling"></a>FROM_HEADLESS_CRAWLING</h3>
+<div class="paragraph">
+<p><code>FROM_HEADLESS_CRAWLING</code> transformer generates table based on the results of headless crawling.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the column name in the generated table</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.transformer.headless.seed-relative-urls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of values</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list of relative URLs, a seed URL is a URL that is fetched by the crawler to extract new URLs in it and follow them for crawling</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.transformer.headless.filter-redirects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> / <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines whether urls that has redirect to the one that has already been included in the table are excluded from the table</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 3. Usage example</div>
+<div class="content">
+<pre>Examples:
+{transformer=FROM_HEADLESS_CRAWLING, column=page-url}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

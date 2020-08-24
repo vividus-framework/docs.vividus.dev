@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: Vividus - all in one test automation tool</title>
+    <title>Excel Plugin :: Vividus - all in one test automation tool</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.7-SNAPSHOT/plugins/plugin-excel.html">
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -116,9 +116,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../index.html">What is Vividus</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../release-notes.html">What&#8217;s new in Vividus</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -126,10 +123,10 @@
     <span class="nav-text">Tests development</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests configuration</a>
+    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests Configuration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-development/table-transformers.html">Table transformers</a>
+    <a class="nav-link" href="../tests-development/table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -144,10 +141,10 @@
     <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-csv.html">CSV*</a>
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-datetime.html">Date Time</a>
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-db.html">Relational DB*</a>
@@ -159,13 +156,13 @@
     <a class="nav-link" href="plugin-email.html">Email</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-excel.html">Excel*</a>
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mobile-app.html">Mobile App</a>
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
@@ -183,10 +180,10 @@
     <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app-to-rest-api.html">WEB UI to REST API*</a>
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">WEB App</a>
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-xml.html">XML*</a>
@@ -253,7 +250,7 @@
   <ul>
     <li><a href="../index.html">Vividus</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-excel.html">Excel*</a></li>
+    <li><a href="plugin-excel.html">Excel</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -269,8 +266,118 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Excel Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the ability to work with Excel documents.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-excel', version: '0.2.7-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a>Table Transformers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_excel"><a class="anchor" href="#_from_excel"></a>FROM_EXCEL</h3>
+<div class="paragraph">
+<p><code>FROM_EXCEL</code> transformer generates table from the given Excel file.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the resulting column name in the generated table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the relative path to the Excel file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sheet</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the sheet name from the excel file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>range</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the range of cells from the specified excel sheet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>addresses</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the comma-separated collection of the cell addresses from the specified excel sheet</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>increment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the increment used to traverse the specified <code>range</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joinValues</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines whether cell values should be joined</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lineBreakReplacement</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value to substitute line breaks in cell values</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>range</code> and <code>addresses</code> are competing parameters and only one can be specified in the transformer declaration at the same time.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Usage example</div>
+<div class="content">
+<pre>Examples:
+{transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, range=A2:A7, lineBreakReplacement= , increment=2, column=test}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Usage example</div>
+<div class="content">
+<pre>Examples:
+{transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, addresses=A2;B4;A7, column=test, joinValues=true}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
