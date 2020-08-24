@@ -2,6 +2,8 @@ site:
   title: Vividus - all in one test automation tool
   url: https://docs.vividus.dev/
   start_page: vividus::index.adoc
+  robots: allow
+
 content:
   sources:
   - url: https://github.com/vividus-framework/vividus
