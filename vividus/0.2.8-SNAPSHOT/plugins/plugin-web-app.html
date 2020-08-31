@@ -391,9 +391,129 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 <div class="sect2">
-<h3 id="_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"></a>Saves the query string into the variable with specified name and scopes.</h3>
+<h3 id="_execute_sequence_of_actions"><a class="anchor" href="#_execute_sequence_of_actions"></a>Execute sequence of actions</h3>
 <div class="sect3">
 <h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Executes the sequence of web actions</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions: $actions</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$actions</code> - table of actions to execute</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_possible_actions"><a class="anchor" href="#_possible_actions"></a>Possible actions</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 55.5555%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Argument</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search attribute or empty value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkUrl(<a href="http://httpbin.org" class="bare">http://httpbin.org</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK_AND_HOLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search attribute or empty value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkText(Click me)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_BY_OFFSET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(10, 15) where <strong>x</strong> is 10 and <strong>y</strong> is 15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RELEASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search attribute or empty value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.tagName(div)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENTER_TEXT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minsk City</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search attribute or empty value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.caseSensitiveText(Done)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRESS_KEYS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BACK_SPACE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_TO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.id(username)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 4. ActionSteps.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type          |argument                                |
+|DOUBLE_CLICK  |By.fieldText(Hello World)               |
+|DOUBLE_CLICK  |                                        |
+|CLICK_AND_HOLD|By.xpath(//signature-pad-control/canvas)|
+|CLICK_AND_HOLD|                                        |
+|MOVE_BY_OFFSET|(-300, 0)                               |
+|RELEASE       |By.xpath(//signature-pad-control/canvas)|
+|RELEASE       |                                        |
+|ENTER_TEXT    |Text                                    |
+|CLICK         |By.placeholder(Enter your password)     |
+|CLICK         |                                        |
+|PRESS_KEYS    |BACK_SPACE                              |
+|KEY_DOWN      |CONTROL,SHIFT                           |
+|KEY_UP        |CONTROL,SHIFT                           |
+|MOVE_TO       |By.id(name)                             |</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"></a>Saves the query string into the variable with specified name and scopes.</h3>
+<div class="sect3">
+<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
 Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
@@ -403,62 +523,10 @@ calls will be attached to report.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 4. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`
-Given I am on a page with the URL 'http://httpbin.org/forms/post'
-When I click on element located `By.xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save URL query to SCENARIO variable `query`
-Then `${query}` is equal to `{}`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"></a>Saves the request data into the variable with specified name and scopes.</h3>
-<div class="sect3">
-<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
-If there weren&#8217;t any calls or more than one matching requirements, HAR file with all calls will be attached to report.</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
@@ -486,6 +554,58 @@ If there weren&#8217;t any calls or more than one matching requirements, HAR fil
 <div class="listingblock">
 <div class="title">Example 5. ProxyStepsTests.story</div>
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`
+Given I am on a page with the URL 'http://httpbin.org/forms/post'
+When I click on element located `By.xpath(//button)`
+When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save URL query to SCENARIO variable `query`
+Then `${query}` is equal to `{}`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"></a>Saves the request data into the variable with specified name and scopes.</h3>
+<div class="sect3">
+<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
+Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
+If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
+If there weren&#8217;t any calls or more than one matching requirements, HAR file with all calls will be attached to report.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$httpMethod</code> - HTTP method to filter by</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+</li>
+<li>
+<p><code>$variableName</code> - A variable name</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 6. ProxyStepsTests.story</div>
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`
 Given I am on a page with the URL 'http://httpbin.org/forms/post'
 When I click on element located `By.xpath(//button)`
@@ -501,13 +621,13 @@ Then `${requestData.responseStatus}` is equal to `200`</code></pre>
 <div class="sect2">
 <h3 id="_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"><a class="anchor" href="#_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"></a>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</h3>
 <div class="sect3">
-<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log</code></pre>
@@ -515,7 +635,7 @@ Then `${requestData.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -528,9 +648,9 @@ Then `${requestData.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 6. ProxyStepsTests.story</div>
+<div class="title">Example 7. ProxyStepsTests.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log
 Given I am on a page with the URL 'http://httpbin.org/get'
@@ -543,7 +663,7 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 <div class="sect2">
 <h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
 <div class="sect3">
-<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
 </div>
@@ -562,7 +682,7 @@ The first one about number condition violation. The second one about state check
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_7"><a class="anchor" href="#_wording_7"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
@@ -570,7 +690,7 @@ The first one about number condition violation. The second one about state check
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -589,9 +709,9 @@ The first one about number condition violation. The second one about state check
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 7. VerifyState.story</div>
+<div class="title">Example 8. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
