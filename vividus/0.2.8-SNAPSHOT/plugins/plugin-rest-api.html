@@ -365,6 +365,61 @@ Then server `vividus-test-site.herokuapp.com` supports secure protocols that con
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_wait_for_json_element_to_be_returned_in_http_response"><a class="anchor" href="#_wait_for_json_element_to_be_returned_in_http_response"></a>Wait for JSON element to be returned in HTTP response</h3>
+<div class="sect3">
+<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Execute the provided sub-steps until the HTTP response body contains an element by the specified JSON path or until the maximum number of retries is reached. The maximum duration of the step execution is not limited. The actions of the step:
+. execute sub-steps
+. wait for the polling interval
+. if the required JSON element exists or the maximum number of retries is reached, then execution stops, otherwise the step actions are repeated</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$jsonPath` with `$pollingInterval` polling interval retrying $retryTimes times$stepsToExecute</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>jsonPath</code> - the JSON path of the element to find</p>
+</li>
+<li>
+<p><code>pollingInterval</code> - the duration to wait between retries</p>
+</li>
+<li>
+<p><code>retryTimes</code> - the maximum number of the retries</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - the sub-steps to execute at each iteration</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 3. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for presence of element by JSON path $.data.testData
+When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
+|step                                  |
+|When I set request headers:           |
+|{headerSeparator=!,valueSeparator=!}  |
+|!name          !value                !|
+|!Authorization !${accessToken}       !|
+|When I issue a HTTP GET request for a resource with the URL '${requestUrl}'|</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
