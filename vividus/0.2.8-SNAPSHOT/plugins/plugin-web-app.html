@@ -201,9 +201,6 @@
     <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/locator.html">Locator</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -286,6 +283,276 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.2.8-SNAPSHOT')</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_locator"><a class="anchor" href="#_locator"></a>Locator</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_description"><a class="anchor" href="#_description"></a>Description</h3>
+<div class="paragraph">
+<p>Describes elements locator. Should match regular expression: <code>(?:By\\.)?([a-zA-Z]+)\\((.+?)\\):?([a-zA-Z]*)?</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre>By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By. prefix is optional.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>locatorType</code> - <strong>[mandatory]</strong> type of the locator</p>
+</li>
+<li>
+<p><code>locatorValue</code> - <strong>[mandatory]</strong> value of the locator</p>
+</li>
+<li>
+<p><code>visibility</code> - <strong>[optional]</strong> visibility of element (visible by default)</p>
+</li>
+<li>
+<p><code>filterType</code> - <strong>[optional]</strong> type of the filter</p>
+</li>
+<li>
+<p><code>filterValue</code> - <strong>[required if filter type defined]</strong> value of the filter</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types"><a class="anchor" href="#_types"></a>Types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Locator type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text of the link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText(Google)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl(/faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of a <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart(faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case sensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText(Description)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseInsensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case insensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseInsensitiveText(description)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/XPath">Xpath to locate an element</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cssSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS selector to an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cssSelector(.menu-item)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of an element tagName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[@src='&lt;value&gt;&gt;']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrc(/images/kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrcPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[contains(@src,'&lt;value&gt;&gt;')]']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrcPart(kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buttonName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elements of type button or input with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buttonName(submit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input or textarea with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName(editor)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkboxName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input element with @type="checkbox" and text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkboxName(allow)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id attribute of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(submitForm)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">className</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS class name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">className(bold)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any attribute or text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName(OK)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_visibility_types"><a class="anchor" href="#_visibility_types"></a>Visibility types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Visibility type</th>
+<th class="tableblock halign-left valign-top">Usage example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default visibility option. Only visible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):i</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only invisible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either visible and invisible elements will be found</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_filter_types"><a class="anchor" href="#_filter_types"></a>Filter types</h3>
+<div class="paragraph">
+<p>Filter are applied after elements search via locator. Elements not matching filter condition will be sorted out without additional notice.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Filter type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="page">State</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element text should match case sensitively</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.caseSensitiveText(text)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">classAttributePart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class attribute should contain part</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.classAttributePart(clazz)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrl(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrlPart(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tooltip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">title attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.tooltip(title)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageSrcPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src attribute should contain value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.imageSrcPart(part)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">textPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text of an element should contain value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.textPart(part)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">placeholder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder attribute should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.placeholder(placeholder-value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validationIconSource</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS property background-image should match</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.validationIconSource(src)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should match expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldText(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldTextPart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should contain expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldTextPart(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dropDownText</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any of select options should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.dropDownText(value)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -661,31 +928,18 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
+<h3 id="_verify_elements_number"><a class="anchor" href="#_verify_elements_number"></a>Verify elements number</h3>
 <div class="sect3">
 <h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-If you describer number condition as equal to 5 in case if there are 10 elements by this locator and only 5 of them in the desired state. You will get two failed assertions.
-The first one about number condition violation. The second one about state check failure.
-</td>
-</tr>
-</table>
+<p>Verifies if the number of elements located by locator matches desired number</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_wording_7"><a class="anchor" href="#_wording_7"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
 </div>
 </div>
 </div>
@@ -694,10 +948,7 @@ The first one about number condition violation. The second one about state check
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$state</code> - <a href="../parameters/state.html" class="page">State</a></p>
-</li>
-<li>
-<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison rule</a></p>
@@ -711,7 +962,66 @@ The first one about number condition violation. The second one about state check
 <div class="sect3">
 <h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 8. VerifyState.story</div>
+<div class="title">Example 8. VerifyNumber.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
+Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
+<div class="sect3">
+<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you describe number condition as equal to 5 in case if there are 10 elements by this locator and only 5 of them in the desired state. You will get two failed assertions.
+The first one about number condition violation. The second one about state check failure.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_8"><a class="anchor" href="#_wording_8"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$state</code> - <a href="../parameters/state.html" class="page">State</a></p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison rule</a></p>
+</li>
+<li>
+<p><code>$quantity</code> - expected number of elements</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 9. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -723,13 +1033,13 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect2">
 <h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
 <div class="sect3">
-<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and has expected list of options</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_8"><a class="anchor" href="#_wording_8"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_9"><a class="anchor" href="#_wording_9"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` contains options: $option</code></pre>
@@ -737,11 +1047,11 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$options</code> - examples table describing expected options</p>
@@ -750,9 +1060,9 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 9. Dropdown.story</div>
+<div class="title">Example 10. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
@@ -778,13 +1088,13 @@ Item - is an option. State - true/false describes if option selected
 <div class="sect2">
 <h3 id="_dropdown_verify_first_selected_option"><a class="anchor" href="#_dropdown_verify_first_selected_option"></a>Dropdown: verify first selected option</h3>
 <div class="sect3">
-<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and first selected option.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_9"><a class="anchor" href="#_wording_9"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_10"><a class="anchor" href="#_wording_10"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` exists and selected option is `$option`</code></pre>
@@ -792,11 +1102,11 @@ Item - is an option. State - true/false describes if option selected
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$option</code> - first selected option</p>
@@ -805,9 +1115,9 @@ Item - is an option. State - true/false describes if option selected
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_10"><a class="anchor" href="#_usage_10"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 10. Dropdown.story</div>
+<div class="title">Example 11. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
 </div>
@@ -817,7 +1127,7 @@ Item - is an option. State - true/false describes if option selected
 <div class="sect2">
 <h3 id="_dropdown_add_text_to_a_mutli_select"><a class="anchor" href="#_dropdown_add_text_to_a_mutli_select"></a>Dropdown: add text to a mutli-select</h3>
 <div class="sect3">
-<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_11"><a class="anchor" href="#_info_11"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Selects option in multi-select dropdown</p>
 </div>
@@ -835,7 +1145,7 @@ Step will fail if target dropdown is not multi-select
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_10"><a class="anchor" href="#_wording_10"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_11"><a class="anchor" href="#_wording_11"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$option` to selection in dropdown located `$locator`</code></pre>
@@ -843,22 +1153,22 @@ Step will fail if target dropdown is not multi-select
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><code>$option</code> - option to select</p>
 </li>
 <li>
-<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_10"><a class="anchor" href="#_usage_10"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_11"><a class="anchor" href="#_usage_11"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 11. Dropdown.story</div>
+<div class="title">Example 12. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
 </div>
@@ -868,7 +1178,7 @@ Step will fail if target dropdown is not multi-select
 <div class="sect2">
 <h3 id="_dropdown_select_option"><a class="anchor" href="#_dropdown_select_option"></a>Dropdown: select option</h3>
 <div class="sect3">
-<h4 id="_info_11"><a class="anchor" href="#_info_11"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_12"><a class="anchor" href="#_info_12"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Selects option in dropdown</p>
 </div>
@@ -886,7 +1196,7 @@ Does not support multi-selection
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_11"><a class="anchor" href="#_wording_11"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_12"><a class="anchor" href="#_wording_12"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located `$locator``</code></pre>
@@ -894,22 +1204,22 @@ Does not support multi-selection
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><code>$option</code> - option to select</p>
 </li>
 <li>
-<p><code>$locator</code> - <a href="../parameters/locator.html" class="page">Locator</a></p>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_11"><a class="anchor" href="#_usage_11"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_12"><a class="anchor" href="#_usage_12"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 12. Dropdown.story</div>
+<div class="title">Example 13. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
 </div>
