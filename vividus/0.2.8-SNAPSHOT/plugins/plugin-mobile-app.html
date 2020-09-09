@@ -489,6 +489,9 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <p>The profile can be enabled by adding <code>browserstack/mobile_app</code> to <code>configuration.profiles</code> property</p>
 </li>
 <li>
+<p>The profile must be used together with either <code>mobile_app/ios</code> or <code>mobile_app/android</code> profiles</p>
+</li>
+<li>
 <p>BrowserStack specific properties must be prepended with <code>selenium.grid.capabilities.bstack\:options.</code> prefix, meaning given a property <code>projectName</code> with a value <code>My Project</code> the resulting property will be <code>selenium.grid.capabilities.bstack\:options.projectName=My Project</code></p>
 </li>
 <li>
@@ -519,6 +522,9 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <ul>
 <li>
 <p>The profile can be enabled by adding <code>saucelabs/mobile_app</code> to <code>configuration.profiles</code> property</p>
+</li>
+<li>
+<p>The profile must be used together with either <code>mobile_app/ios</code> or <code>mobile_app/android</code> profiles</p>
 </li>
 <li>
 <p>See <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/">Platform Configurator</a> to setup configuration</p>
