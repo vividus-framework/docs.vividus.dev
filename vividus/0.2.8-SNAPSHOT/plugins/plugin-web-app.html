@@ -559,14 +559,55 @@ By. prefix is optional.
 <div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_required"><a class="anchor" href="#_required"></a>Required</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web-application.session-scope</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>story</code></p>
+</div>
 <div class="paragraph">
-<p>There are no required properties for the plugin.</p>
+<p><code>scenario</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>story</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the test lifecycle of the browser:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>the browser opens at the first step requiring browser interaction</p>
+</li>
+<li>
+<p>the browser closes after <code>story</code> or <code>scenario</code> depending on the property value</p>
+</li>
+<li>
+<p>each scenario-level examples table iteration is treated as a separate <code>scenario</code></p>
+</li>
+</ul>
 </div>
+<div class="paragraph">
+<p>An empty property value will lead to the error: "Application session scope is not set".</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
-<h3 id="_optional"><a class="anchor" href="#_optional"></a>Optional</h3>
+<h3 id="_meta_tags"><a class="anchor" href="#_meta_tags"></a>Meta Tags</h3>
 <div class="paragraph">
 <p>@proxy - Some steps requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.</p>
 </div>
