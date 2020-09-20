@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>REST API Plugin :: Vividus - all in one test automation tool</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.8-SNAPSHOT/plugins/plugin-rest-api.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -413,6 +413,50 @@ When I wait for presence of element by `$.data.testData` with `PT5S` polling int
 |!name          !value                !|
 |!Authorization !${accessToken}       !|
 |When I issue a HTTP GET request for a resource with the URL '${requestUrl}'|</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_headers_to_http_request"><a class="anchor" href="#_adding_headers_to_http_request"></a>Adding headers to HTTP request</h3>
+<div class="sect3">
+<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Adds headers to HTTP request. See <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">standard request fields</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request header with name `$name` and value `$value`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>name</code> - header name</p>
+</li>
+<li>
+<p><code>value</code> - header value</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 4. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify possibility to add request header with name Accept-Language and value en-ru
+When I add request headers:
+|name           |value |
+|Accept-Language|en-ru |
+When I send HTTP GET to the relative URL '/get?name=Content'
+Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"en-ru"'</code></pre>
 </div>
 </div>
 </div>
