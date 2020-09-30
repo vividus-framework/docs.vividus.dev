@@ -288,7 +288,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Create and update <a href="https://docs.getxray.app/display/XRAY/Test#Test-ManualTests">manual test</a> cases</p>
+<p>Create and update <a href="https://docs.getxray.app/display/XRAY/Test#Test-ManualTests">manual</a> and <a href="https://docs.getxray.app/display/XRAY/Test#Test-AutomatedTests">cucumber</a> test cases</p>
 </li>
 <li>
 <p>Set Jira labels for test cases</p>
@@ -358,33 +358,84 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jira_fields_mapping_properties"><a class="anchor" href="#_jira_fields_mapping_properties"></a>Jira Fields Mapping Properties</h2>
+<h2 id="_jira_fields_mapping"><a class="anchor" href="#_jira_fields_mapping"></a>Jira Fields Mapping</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Xray is a Jira plugin that uses custom Jira fields for it&#8217;s data, one of the ways to find out custom field names for particular field used by Xray on Jira UI (if access to Jira configuration is prohibited) is to request description of some issue like <a href="https://jira.example.com/rest/api/latest/issue/DUMMY-1" class="bare">https://jira.example.com/rest/api/latest/issue/DUMMY-1</a>.</p>
 </div>
+<div class="sect2">
+<h3 id="_manual_test_case_properties"><a class="anchor" href="#_manual_test_case_properties"></a>Manual Test Case Properties</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/manual.png" alt="Manual test case view">
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">Index</th>
 <th class="tableblock halign-left valign-top">Property</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_manual_test_case_view">1</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>jira.fields-mapping.test-case-type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Key of a field containing test case type</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_manual_test_case_view">2</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>jira.fields-mapping.manual-steps</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Key of a field containing collection of manual steps</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_cucumber_test_case_properties"><a class="anchor" href="#_cucumber_test_case_properties"></a>Cucumber Test Case Properties</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cucumber.png" alt="Cucumber test case view">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Index</th>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_cucumber_test_case_view">1</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jira.fields-mapping.test-case-type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key of a field containing test case type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_cucumber_test_case_view">2</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jira.fields-mapping.cucumber-scenario-type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key of a field containing type of cucumer scenario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_cucumber_test_case_view">3</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jira.fields-mapping.cucumber-scenario</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Key of a field containing body of cucumber scenario</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -513,10 +564,62 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_cucumber_test_cases"><a class="anchor" href="#_cucumber_test_cases"></a>Cucumber Test Cases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Any scenario that doesn&#8217;t correspons to the <a href="#_rules_2">manual test case rules</a> is considered as cucumber test case</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Cucumber.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
+Meta: @testCaseID TEST-231
+      @requirementId STORY-783
+      @xray.labels link
+      @xray.components web
+
+Given I am on a page with the URL '${vividus-test-site-url}/links.html'
+When I wait until the page has the title 'Links'
+Then number of elements found by `&lt;locator&gt;` is equal to `1`
+Examples:
+|locator                        |
+|By.linkUrl(#ElementId)         |
+|By.linkUrlPart(Element)        |
+|By.linkText(Link to an element)|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. CucumberWithManualPart.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
+Meta: @testCaseID TEST-566
+      @requirementId STORY-983
+      @xray.labels link
+      @xray.components web
+
+!-- Step: Open main app page
+!-- Step: Wait for page with title is loaded
+!-- Step: Verify number of links
+!-- Data: * link url is '#ElementId'
+!-- * link url part is 'Element'
+!-- * link text is 'Link to an element'
+!-- Result: The number of links for all locators is equal to 1
+
+Given I am on a page with the URL '${vividus-test-site-url}/links.html'
+When I wait until the page has the title 'Links'
+Then number of elements found by `&lt;locator&gt;` is equal to `1`
+Examples:
+|locator                        |
+|By.linkUrl(#ElementId)         |
+|By.linkUrlPart(Element)        |
+|By.linkText(Link to an element)|</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_manual_test_cases"><a class="anchor" href="#_manual_test_cases"></a>Manual Test Cases</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_rules"><a class="anchor" href="#_rules"></a>Rules</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -533,10 +636,8 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_example"><a class="anchor" href="#_example"></a>Example</h3>
 <div class="listingblock">
+<div class="title">Example 3. Manual.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseID TEST-435
@@ -557,7 +658,6 @@ Meta: @testCaseID TEST-435
 !-- Go through all the steps and confirm the payment method.
 !-- Result: Then you should get an error message mentioning that there are no more items in the stock.
 !-- - Then payment method was not made</code></pre>
-</div>
 </div>
 </div>
 </div>
