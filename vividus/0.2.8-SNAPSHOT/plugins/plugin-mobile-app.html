@@ -174,6 +174,9 @@
     <a class="nav-link" href="plugin-rest-api.html">REST API</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-ssh.html">SSH*</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -412,7 +415,7 @@ By. prefix is optional.
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>See <a href="#ROOT:tests-configuration.adoc" class="page unresolved">Selenium Grid</a> properties to configure remote grid</p>
+<p>See <a href="../tests-development/tests-configuration.html#_selenium_grid" class="page">Selenium Grid</a> properties to configure remote grid</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -575,41 +578,6 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_saucelabs"><a class="anchor" href="#_saucelabs"></a>SauceLabs</h3>
-<div class="sect3">
-<h4 id="_info_2"><a class="anchor" href="#_info_2"></a>Info</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>The profile can be enabled by adding <code>saucelabs/mobile_app</code> to <code>configuration.profiles</code> property</p>
-</li>
-<li>
-<p>The profile must be used together with either <code>mobile_app/ios</code> or <code>mobile_app/android</code> profiles</p>
-</li>
-<li>
-<p>See <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/">Platform Configurator</a> to setup configuration</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_required_properties_2"><a class="anchor" href="#_required_properties_2"></a>Required properties</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>selenium.grid.device-name</code> - defines device name</p>
-</li>
-<li>
-<p><code>selenium.grid.appium-version</code> - defines appium version</p>
-</li>
-<li>
-<p><code>selenium.grid.platform-version</code> - defines platform version</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -618,7 +586,7 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <div class="sect2">
 <h3 id="_start_mobile_application"><a class="anchor" href="#_start_mobile_application"></a>Start mobile application</h3>
 <div class="sect3">
-<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user</p>
 </div>
@@ -645,7 +613,7 @@ Given I start mobile application</code></pre>
 <div class="sect2">
 <h3 id="_start_mobile_application_with_capabilities"><a class="anchor" href="#_start_mobile_application_with_capabilities"></a>Start mobile application with capabilities</h3>
 <div class="sect3">
-<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user, additionally step takes list of capabilities as an argument that override previously defined capabilities</p>
 </div>
@@ -685,7 +653,7 @@ Given I start mobile application with capabilities:
 <div class="sect2">
 <h3 id="_tap_on_element_with_duration"><a class="anchor" href="#_tap_on_element_with_duration"></a>Tap on element with duration</h3>
 <div class="sect3">
-<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Taps on the element located by the locator with the specified duration.</p>
 </div>
@@ -731,7 +699,7 @@ When I tap on element located `accessibilityId(menu-toggler)` with duration `PT0
 <div class="sect2">
 <h3 id="_tap_on_element"><a class="anchor" href="#_tap_on_element"></a>Tap on element</h3>
 <div class="sect3">
-<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Taps on the element located by the locator.</p>
 </div>
@@ -773,7 +741,7 @@ When I tap on element located `accessibilityId(menu-toggler)`</code></pre>
 <div class="sect2">
 <h3 id="_type_text"><a class="anchor" href="#_type_text"></a>Type text</h3>
 <div class="sect3">
-<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Types the text into the element located by the locator.</p>
 </div>
@@ -830,7 +798,7 @@ When I type `Bob` in field located `accessibilityId(username)`</code></pre>
 <div class="sect2">
 <h3 id="_verify_elements_number"><a class="anchor" href="#_verify_elements_number"></a>Verify elements number</h3>
 <div class="sect3">
-<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches desired number</p>
 </div>
@@ -873,7 +841,7 @@ Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 <div class="sect2">
 <h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
 <div class="sect3">
-<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
 </div>
@@ -933,7 +901,7 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect2">
 <h3 id="_wait_for_element_appearance"><a class="anchor" href="#_wait_for_element_appearance"></a>Wait for element appearance</h3>
 <div class="sect3">
-<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Waits for appearance of an element by the locator</p>
 </div>
@@ -970,7 +938,7 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="sect2">
 <h3 id="_wait_for_element_disappearance"><a class="anchor" href="#_wait_for_element_disappearance"></a>Wait for element disappearance</h3>
 <div class="sect3">
-<h4 id="_info_11"><a class="anchor" href="#_info_11"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Waits for disappearance of an element by the locator</p>
 </div>
