@@ -445,7 +445,7 @@ When I wait for presence of element by `$.data.testData` with `PT5S` polling int
 <h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request header with name `$name` and value `$value`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:$headers</code></pre>
 </div>
 </div>
 </div>
@@ -454,10 +454,7 @@ When I wait for presence of element by `$.data.testData` with `PT5S` polling int
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>name</code> - header name</p>
-</li>
-<li>
-<p><code>value</code> - header value</p>
+<p><code>headers</code> - ExamplesTable representing list of headers with columns <code>name</code> and <code>value</code> specifying HTTP header</p>
 </li>
 </ol>
 </div>
