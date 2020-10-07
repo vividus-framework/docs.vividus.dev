@@ -298,10 +298,9 @@
 <p><code>FROM_LANDSCAPE</code> transformer is designed to transform the table from a landscape form.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Usage example</div>
+<div class="title">Example 1. Usage of FROM_LANDSCAPE transformer</div>
 <div class="content">
-<pre>Examples:
-{transformer=FROM_LANDSCAPE}
+<pre>{transformer=FROM_LANDSCAPE}
 |header 1|value 11| ... | value m1|
 ...
 |header n|value 1n| .... |value mn|</pre>
@@ -316,10 +315,9 @@
 <p><code>FORMATTING</code> transformer formats the table according to the max width of each column. Also this transformer removes the commented lines.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Usage example</div>
+<div class="title">Example 2. Usage of FORMATTING transformer</div>
 <div class="content">
-<pre>Examples:
-{transformer=FORMATTING}
+<pre>{transformer=FORMATTING}
 |key|
 |value|
 |-- |value|
@@ -357,10 +355,9 @@
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 3. Usage example</div>
+<div class="title">Example 3. Usage of REPLACING transformer</div>
 <div class="content">
-<pre>Examples:
-{transformer=REPLACING, replacing=k, replacement=l}
+<pre>{transformer=REPLACING, replacing=k, replacement=l}
 |key  |
 |vakue|</pre>
 </div>
@@ -393,10 +390,9 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 4. Usage example</div>
+<div class="title">Example 4. Usage of SORTING transformer</div>
 <div class="content">
-<pre>Examples:
-{transformer=SORTING, byColumns=key|key1}
+<pre>{transformer=SORTING, byColumns=key|key1}
 |key   |key1  |
 |value3|value4|
 |value1|value2|</pre>
@@ -429,10 +425,9 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 5. Usage example</div>
+<div class="title">Example 5. Usage of ITERATING transformer</div>
 <div class="content">
-<pre>Examples:
-{transformer=ITERATING, limit=5}</pre>
+<pre>{transformer=ITERATING, limit=5}</pre>
 </div>
 </div>
 </div>
@@ -486,20 +481,18 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Usage example</div>
+<div class="title">Example 6. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
 <div class="content">
-<pre>Examples:
-{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
+<pre>{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
 |key1  |key2  |key3  |
 |value1|value2|value3|
 |value4|value5|value6|</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Usage example</div>
+<div class="title">Example 7. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
 <div class="content">
-<pre>Examples:
-{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
+<pre>{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
 |key1  |key2  |key3  |
 |value1|value2|value3|
 |value4|value5|value6|
@@ -571,31 +564,27 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Usage example</div>
+<div class="title">Example 8. Usage of MERGING transformer with 'rows' merge mode</div>
 <div class="content">
-<pre>Examples:
-{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+<pre>{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Usage example</div>
+<div class="title">Example 9. Usage of MERGING transformer with 'columns' merge mode</div>
 <div class="content">
-<pre>Examples:
-{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
+<pre>{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Usage example</div>
+<div class="title">Example 10. Usage of MERGING transformer with nested tables</div>
 <div class="content">
-<pre>Examples:
-{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
+<pre>{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Usage example</div>
+<div class="title">Example 11. Usage of nested MERGING transformers</div>
 <div class="content">
-<pre>Examples:
-{
+<pre>{
  transformer=MERGING,
  mergeMode=rows,
  fillerValue=null,
@@ -632,10 +621,9 @@ the columns.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Usage example</div>
+<div class="title">Example 12. Usage of MERGING transformer with table body</div>
 <div class="content">
-<pre>Examples:
-{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
+<pre>{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
 |column1|
 |value1 |</pre>
 </div>
@@ -687,23 +675,31 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Usage examples</div>
+<div class="title">Example 13. Usage of JOINING transformer with 'columns' join mode</div>
 <div class="content">
 <pre>Scenario: Verify JOINING transformer in default columns mode
 Then `&lt;joinedColumn&gt;` is equal to `A B`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn}
 |column1|column2|
-|A      |B      |
-
-Scenario: Verify JOINING transformer in configured columns mode
+|A      |B      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Usage of JOINING transformer with 'columns' join mode and definition of columns to join</div>
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in configured columns mode
 Then `&lt;joinedColumn&gt;` is equal to `B D`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn, columnsToJoin=column2;column4}
 |column1|column2|column3|column4|
-|A      |B      |C      |D      |
-
-Scenario: Verify JOINING transformer in default rows mode
+|A      |B      |C      |D      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Usage of JOINING transformer with 'rows' join mode</div>
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in default rows mode
 Then `&lt;column1&gt;` is equal to `A B`
 Then `&lt;column2&gt;` is equal to `C D`
 Examples:
@@ -714,10 +710,9 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Usage example</div>
+<div class="title">Example 16. Usage of JOINING transformer in the chain of transformers</div>
 <div class="content">
-<pre>Examples:
-{transformer=MERGING, mergeMode=columns, tables=
+<pre>{transformer=MERGING, mergeMode=columns, tables=
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=B4:B5\, column=header2\, joinValues=true\}
 }
@@ -725,10 +720,9 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Usage example</div>
+<div class="title">Example 17. Usage of JOINING transformer with table body containing path to table file</div>
 <div class="content">
-<pre>Examples:
-{transformer=JOINING, joinMode=columns, joinedColumn=header}
+<pre>{transformer=JOINING, joinMode=columns, joinedColumn=header}
 /test1.table</pre>
 </div>
 </div>
