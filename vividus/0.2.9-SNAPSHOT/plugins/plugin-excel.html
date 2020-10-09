@@ -327,7 +327,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the resulting column name in the generated table</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the resulting column name in the generated table. If it&#8217;s missing in properties then the first row is used for the column headings.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
@@ -390,6 +390,13 @@
 <div class="content">
 <pre>Examples:
 {transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, addresses=A2;B4;A7, column=test, joinValues=true}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Usage FROM_EXCEL transformer with full-table range</div>
+<div class="content">
+<pre>Examples:
+{transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, range=A2:B4}</pre>
 </div>
 </div>
 </div>
