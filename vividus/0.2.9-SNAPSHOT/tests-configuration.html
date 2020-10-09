@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>CSV Plugin :: Vividus - all in one test automation tool</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.9-SNAPSHOT/plugins/plugin-csv.html">
+    <title>Tests Configuration :: Vividus - all in one test automation tool</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.9-SNAPSHOT/tests-configuration.html">
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
-<link rel="manifest" href="../../../site.webmanifest">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+<link rel="manifest" href="../../site.webmanifest">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
@@ -109,15 +109,15 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">Vividus</a></h3>
+    <h3 class="title"><a href="index.html">Vividus</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../index.html">What is Vividus</a>
+    <a class="nav-link" href="index.html">What is Vividus</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="tests-configuration.html">Configuration</a>
   </li>
 </ul>
   </li>
@@ -126,10 +126,10 @@
     <span class="nav-text">Commons</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+    <a class="nav-link" href="commons/vividus-steps.html">Steps</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+    <a class="nav-link" href="commons/table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -138,61 +138,61 @@
     <span class="nav-text">Plugins</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-applitools.html">Applitools*</a>
+    <a class="nav-link" href="plugins/plugin-applitools.html">Applitools*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-csv.html">CSV</a>
+    <a class="nav-link" href="plugins/plugin-aws-s3.html">AWS S3*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+    <a class="nav-link" href="plugins/plugin-csv.html">CSV</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-db.html">Relational DB*</a>
+    <a class="nav-link" href="plugins/plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+    <a class="nav-link" href="plugins/plugin-db.html">Relational DB*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-email.html">Email</a>
+    <a class="nav-link" href="plugins/plugin-electron.html">Electron*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-excel.html">Excel</a>
+    <a class="nav-link" href="plugins/plugin-email.html">Email</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-html.html">HTML*</a>
+    <a class="nav-link" href="plugins/plugin-excel.html">Excel</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+    <a class="nav-link" href="plugins/plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
+    <a class="nav-link" href="plugins/plugin-mobile-app.html">Mobile Application</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
+    <a class="nav-link" href="plugins/plugin-mongodb.html">MongoDB*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+    <a class="nav-link" href="plugins/plugin-parquet.html">Parquet*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+    <a class="nav-link" href="plugins/plugin-rest-api.html">REST API</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+    <a class="nav-link" href="plugins/plugin-sauce-labs.html">Sauce Labs</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
+    <a class="nav-link" href="plugins/plugin-ssh.html">SSH</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+    <a class="nav-link" href="plugins/plugin-visual.html">Visual Testing*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+    <a class="nav-link" href="plugins/plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="plugin-xml.html">XML*</a>
+    <a class="nav-link" href="plugins/plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugins/plugin-xml.html">XML*</a>
   </li>
 </ul>
   </li>
@@ -201,16 +201,16 @@
     <span class="nav-text">Parameter types</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+    <a class="nav-link" href="parameters/comparison-rule.html">Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+    <a class="nav-link" href="parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+    <a class="nav-link" href="parameters/string-comparison-rule.html">String Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/variable-scope.html">Variable Scope</a>
+    <a class="nav-link" href="parameters/variable-scope.html">Variable Scope</a>
   </li>
 </ul>
   </li>
@@ -219,7 +219,7 @@
     <span class="nav-text">Integrations</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+    <a class="nav-link" href="integrations/xray-exporter.html">Xray Exporter</a>
   </li>
 </ul>
   </li>
@@ -236,22 +236,22 @@
       <span class="title">Vividus</span>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">0.2.9-SNAPSHOT</a>
+          <a href="index.html">0.2.9-SNAPSHOT</a>
         </li>
         <li class="version">
-          <a href="../../0.2.8/index.html">0.2.8</a>
+          <a href="../0.2.8/index.html">0.2.8</a>
         </li>
         <li class="version">
-          <a href="../../0.2.7/index.html">0.2.7</a>
+          <a href="../0.2.7/index.html">0.2.7</a>
         </li>
         <li class="version">
-          <a href="../../0.2.6/index.html">0.2.6</a>
+          <a href="../0.2.6/index.html">0.2.6</a>
         </li>
         <li class="version">
-          <a href="../../0.2.5/index.html">0.2.5</a>
+          <a href="../0.2.5/index.html">0.2.5</a>
         </li>
         <li class="version">
-          <a href="../../0.2.4/index.html">0.2.4</a>
+          <a href="../0.2.4/index.html">0.2.4</a>
         </li>
       </ul>
     </li>
@@ -263,80 +263,175 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../index.html">Vividus</a></li>
-    <li>Plugins</li>
-    <li><a href="plugin-csv.html">CSV</a></li>
+    <li><a href="index.html">Vividus</a></li>
+    <li><a href="tests-configuration.html">Configuration</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">0.2.9-SNAPSHOT</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-csv.html">0.2.9-SNAPSHOT</a>
-    <a class="version" href="../../0.2.8/plugins/plugin-csv.html">0.2.8</a>
-    <a class="version" href="../../0.2.7/plugins/plugin-csv.html">0.2.7</a>
-    <a class="version" href="../../0.2.6/plugins/plugin-csv.html">0.2.6</a>
-    <a class="version" href="../../0.2.5/plugins/plugin-csv.html">0.2.5</a>
-    <a class="version" href="../../0.2.4/plugins/plugin-csv.html">0.2.4</a>
+    <a class="version is-current" href="tests-configuration.html">0.2.9-SNAPSHOT</a>
+    <a class="version is-missing" href="../0.2.8/index.html">0.2.8</a>
+    <a class="version is-missing" href="../0.2.7/index.html">0.2.7</a>
+    <a class="version" href="../0.2.6/tests-configuration.html">0.2.6</a>
+    <a class="version is-missing" href="../0.2.5/index.html">0.2.5</a>
+    <a class="version is-missing" href="../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-csv.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/ROOT/pages/tests-configuration.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">CSV Plugin</h1>
-<div id="preamble">
+<h1 class="page">Tests Configuration</h1>
+<div class="sect1">
+<h2 id="_selenium_grid"><a class="anchor" href="#_selenium_grid"></a>Selenium Grid</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>selenium.grid.username</code> - defines remote grid username</p>
+</li>
+<li>
+<p><code>selenium.grid.password</code> - defines remote grid password</p>
+</li>
+<li>
+<p><code>selenium.grid.host</code> - defines remote grid hostname</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_issues"><a class="anchor" href="#_known_issues"></a>Known Issues</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides the ability to work with CSV files.</p>
+<p>Known issues mechanism allows to distinguish failures from known issues presented in the system under test.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+JSON file should contain a valid JSON. If JSON is not valid known issues will be ignored and warning about invalid file will be printed.
+</td>
+</tr>
+</table>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">Example 1. build.gradle</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-csv', version: '0.2.9-SNAPSHOT')</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a>Table Transformers</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_from_csv"><a class="anchor" href="#_from_csv"></a>FROM_CSV</h3>
-<div class="paragraph">
-<p><code>FROM_CSV</code> transformer generates table from the given CSV file.</p>
-</div>
+<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Default value</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>csvPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">relative path to the CSV file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.fileName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">known-issues.json</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the location of the known issues file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.detect-potentially-known-issues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines are potentially known issues detected</p></td>
 </tr>
 </tbody>
 </table>
-<div class="listingblock">
-<div class="title">Example 2. Usage example</div>
-<div class="content">
-<pre>Examples:
-{transformer=FROM_CSV, csvPath=/story/example.csv}</pre>
 </div>
+<div class="sect2">
+<h3 id="_known_issues_file"><a class="anchor" href="#_known_issues_file"></a>Known Issues file</h3>
+<div class="paragraph">
+<p>The file represents a collection of JSON elements describing known issues.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. known-issues.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> {
+    "VVD-1": { <i class="conum" data-value="1"></i><b>(1)</b>
+        "type": "Internal",<i class="conum" data-value="2"></i><b>(2)</b>
+        "assertionPattern": "Expected: a value equal to 200, Actual: \\[404\\]" <i class="conum" data-value="3"></i><b>(3)</b>
+        "storyPattern": "Validate the Math", <i class="conum" data-value="4"></i><b>(4)</b>
+        "scenarioPattern": "Validate equality", <i class="conum" data-value="5"></i><b>(5)</b>
+        "stepPattern": "Then `1` is = `2`.+", <i class="conum" data-value="6"></i><b>(6)</b>
+        "variablePatterns": { <i class="conum" data-value="7"></i><b>(7)</b>
+            "var":  "value-.*"
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>[Mandatory] <strong>Identifier</strong> (This could be an ID of the issue in your bug tracking system)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>[Mandatory] <strong>Issue type.</strong> One of: INTERNAL (application issue), EXTERNAL (3rd party issue), AUTOMATION (test automation issue)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>[Mandatory] <strong>Assertion pattern</strong> describes which failed assertions should be considered as known</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Story pattern to match failed story name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Scenario pattern to match failed scenario name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Step pattern to match failed step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Variable patterns. Patterns to match variables.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Use <strong>\\</strong> for escaping of special characters in regular expressions
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>To consider failed assertion known or potentially-known <strong>assertionPattern</strong> should match assertion failure, if defined <strong>variablePatterns</strong> should match also.</p>
+</li>
+<li>
+<p>If <strong>assertionPattern</strong>/<strong>variablePatterns</strong> matched and you have <strong>story/scenario/step/Pattern</strong> defined, to consider issue known all of them should match.</p>
+</li>
+<li>
+<p>If <strong>assertionPattern</strong>/<strong>variablePatterns</strong> matched and you have <strong>story/scenario/step/Pattern</strong> defined, when at least one not matched issue is considered potentially known.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -351,11 +446,11 @@
 <footer class="footer" style="padding: 0.25rem">
   <p>Copyright (C) 2019-2020 Vividus team and individual contributors to <a href="https://vividus.dev">Vividus</a>. Vividus is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
-<script src="../../../_/js/vendor/highlight.min.js"></script>
-<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
-<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script src="../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../_/js/vendor/gradle.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="../../../_/js/site.js"></script>
-<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>

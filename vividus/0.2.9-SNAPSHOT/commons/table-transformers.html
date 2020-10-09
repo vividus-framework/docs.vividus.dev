@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Tests Configuration :: Vividus - all in one test automation tool</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.9-SNAPSHOT/tests-development/tests-configuration.html">
+    <title>Table Transformers :: Vividus - all in one test automation tool</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.2.9-SNAPSHOT/commons/table-transformers.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -116,16 +116,19 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../index.html">What is Vividus</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Tests development</span>
+    <span class="nav-text">Commons</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="tests-configuration.html">Tests Configuration</a>
-  </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="table-transformers.html">Table Transformers</a>
   </li>
 </ul>
@@ -264,145 +267,210 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Vividus</a></li>
-    <li>Tests development</li>
-    <li><a href="tests-configuration.html">Tests Configuration</a></li>
+    <li>Commons</li>
+    <li><a href="table-transformers.html">Table Transformers</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">0.2.9-SNAPSHOT</button>
   <div class="version-menu">
-    <a class="version is-current" href="tests-configuration.html">0.2.9-SNAPSHOT</a>
-    <a class="version" href="../../0.2.8/tests-development/tests-configuration.html">0.2.8</a>
-    <a class="version" href="../../0.2.7/tests-development/tests-configuration.html">0.2.7</a>
+    <a class="version is-current" href="table-transformers.html">0.2.9-SNAPSHOT</a>
+    <a class="version is-missing" href="../../0.2.8/index.html">0.2.8</a>
+    <a class="version is-missing" href="../../0.2.7/index.html">0.2.7</a>
     <a class="version is-missing" href="../../0.2.6/index.html">0.2.6</a>
     <a class="version is-missing" href="../../0.2.5/index.html">0.2.5</a>
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/tests-development/pages/tests-configuration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/commons/pages/table-transformers.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Tests Configuration</h1>
-<div class="sect1">
-<h2 id="_selenium_grid"><a class="anchor" href="#_selenium_grid"></a>Selenium Grid</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><code>selenium.grid.username</code> - defines remote grid username</p>
-</li>
-<li>
-<p><code>selenium.grid.password</code> - defines remote grid password</p>
-</li>
-<li>
-<p><code>selenium.grid.host</code> - defines remote grid hostname</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_known_issues"><a class="anchor" href="#_known_issues"></a>Known Issues</h2>
+<h1 class="page">Table Transformers</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Known issues mechanism allows to distinguish failures from known issues presented in the system under test.</p>
+<p>Vividus provides a set of pre-registered table transformers. Also Vividus plugins may register own table transformers (they are documented in the corresponding plugins sections). It&#8217;s allowed to define a chain of transformers, in this case the transformers are applied sequentially from top to bottom.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-JSON file should contain a valid JSON. If JSON is not valid known issues will be ignored and warning about invalid file will be printed.
-</td>
-</tr>
-</table>
 </div>
-<div class="sect2">
-<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
+</div>
+<div class="sect1">
+<h2 id="_from_landscape"><a class="anchor" href="#_from_landscape"></a>FROM_LANDSCAPE</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>FROM_LANDSCAPE</code> transformer is designed to transform the table from a landscape form.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Usage of FROM_LANDSCAPE transformer</div>
+<div class="content">
+<pre>{transformer=FROM_LANDSCAPE}
+|header 1|value 11| ... | value m1|
+...
+|header n|value 1n| .... |value mn|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_formatting"><a class="anchor" href="#_formatting"></a>FORMATTING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>FORMATTING</code> transformer formats the table according to the max width of each column. Also this transformer removes the commented lines.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Usage of FORMATTING transformer</div>
+<div class="content">
+<pre>{transformer=FORMATTING}
+|key|
+|value|
+|-- |value|
+|longValue|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_replacing"><a class="anchor" href="#_replacing"></a>REPLACING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>REPLACING</code> transformer replaces all substrings inside table values with replacement according to the given parameters.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 40%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Parameter</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.fileName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issues.json</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the location of the known issues file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>replacing</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the sequence of chars to be replaced in the table cells</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.detect-potentially-known-issues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines are potentially known issues detected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>replacement</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the replacing sequence of chars</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect2">
-<h3 id="_known_issues_file"><a class="anchor" href="#_known_issues_file"></a>Known Issues file</h3>
-<div class="paragraph">
-<p>The file represents a collection of JSON elements describing known issues.</p>
-</div>
 <div class="listingblock">
-<div class="title">Example 1. known-issues.json</div>
+<div class="title">Example 3. Usage of REPLACING transformer</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> {
-    "VVD-1": { <i class="conum" data-value="1"></i><b>(1)</b>
-        "type": "Internal",<i class="conum" data-value="2"></i><b>(2)</b>
-        "assertionPattern": "Expected: a value equal to 200, Actual: \\[404\\]" <i class="conum" data-value="3"></i><b>(3)</b>
-        "storyPattern": "Validate the Math", <i class="conum" data-value="4"></i><b>(4)</b>
-        "scenarioPattern": "Validate equality", <i class="conum" data-value="5"></i><b>(5)</b>
-        "stepPattern": "Then `1` is = `2`.+", <i class="conum" data-value="6"></i><b>(6)</b>
-        "variablePatterns": { <i class="conum" data-value="7"></i><b>(7)</b>
-            "var":  "value-.*"
-        }
-    }
-}</code></pre>
+<pre>{transformer=REPLACING, replacing=k, replacement=l}
+|key  |
+|vakue|</pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sorting"><a class="anchor" href="#_sorting"></a>SORTING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>SORTING</code> transformer is designed to sort the table rows by the values in
+the columns.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>[Mandatory] <strong>Identifier</strong> (This could be an ID of the issue in your bug tracking system)</td>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>[Mandatory] <strong>Issue type.</strong> One of: INTERNAL (application issue), EXTERNAL (3rd party issue), AUTOMATION (test automation issue)</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byColumns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">column names ordered according to the priority of applying sorting (the column names are joined using <code>|</code>)</p></td>
 </tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>[Mandatory] <strong>Assertion pattern</strong> describes which failed assertions should be considered as known</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Story pattern to match failed story name</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Scenario pattern to match failed scenario name</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Step pattern to match failed step.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Variable patterns. Patterns to match variables.</td>
-</tr>
+</tbody>
 </table>
+<div class="listingblock">
+<div class="title">Example 4. Usage of SORTING transformer</div>
+<div class="content">
+<pre>{transformer=SORTING, byColumns=key|key1}
+|key   |key1  |
+|value3|value4|
+|value1|value2|</pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iterating"><a class="anchor" href="#_iterating"></a>ITERATING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>ITERATING</code> transformer generates simple one-column table with header <code>iterator</code> and numbers as values: 0, 1, 2&#8230;&#8203; .</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">threshold value, so values are generated from 0 to (<code>limit</code> - 1)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 5. Usage of ITERATING transformer</div>
+<div class="content">
+<pre>{transformer=ITERATING, limit=5}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_filtering"><a class="anchor" href="#_filtering"></a>FILTERING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>FILTERING</code> transformer filters the table using the specified parameters.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byMaxColumns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the maximum number of columns to keep in the resulting table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byMaxRows</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the maximum number of rows to keep in the resulting table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byColumnNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the names of the columns to keep in the resulting table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byRowIndexes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the indexes of the rows to keep in the resulting table</p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -410,26 +478,255 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Use <strong>\\</strong> for escaping of special characters in regular expressions
+<code>byMaxColumns</code> and <code>byColumnNames</code> are competing properties and only one can be specified at the same time. The same restriction is applied to the properties <code>byMaxRows</code> and <code>byRowIndexes</code>.
 </td>
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="title">Example 6. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
+<div class="content">
+<pre>{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
+|key1  |key2  |key3  |
+|value1|value2|value3|
+|value4|value5|value6|</pre>
 </div>
-<div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
+<div class="content">
+<pre>{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
+|key1  |key2  |key3  |
+|value1|value2|value3|
+|value4|value5|value6|
+|value7|value8|value9|</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_merging"><a class="anchor" href="#_merging"></a>MERGING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>MERGING</code> transformer merges several tables into one.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mergeMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>rows</em> or <em>columns</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tables</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">paths to examples tables or transformers to merge</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fillerValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value to fill new cells while merging tables with different number of rows (in <code>columns</code> mode) or columns (in <code>rows</code> mode)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>To consider failed assertion known or potentially-known <strong>assertionPattern</strong> should match assertion failure, if defined <strong>variablePatterns</strong> should match also.</p>
+<p>to merge tables with different number of rows or columns use <code>fillerValue</code> parameter to fill new cells</p>
 </li>
 <li>
-<p>If <strong>assertionPattern</strong>/<strong>variablePatterns</strong> matched and you have <strong>story/scenario/step/Pattern</strong> defined, to consider issue known all of them should match.</p>
+<p>to merge tables in rows mode they must have the same numbers of columns + the same headers(keys)</p>
 </li>
 <li>
-<p>If <strong>assertionPattern</strong>/<strong>variablePatterns</strong> matched and you have <strong>story/scenario/step/Pattern</strong> defined, when at least one not matched issue is considered potentially known.</p>
+<p>to merge tables in columns mode they must have the same number of rows + unique headers(keys)</p>
+</li>
+<li>
+<p>number of unique tables paths must be more than 1</p>
+</li>
+<li>
+<p>when using transformers in <code>tables</code> parameter it is necessary to escape brackets, commas and semicolon in them: for unary nested- "", for double - "\" etc.</p>
 </li>
 </ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Usage of MERGING transformer with 'rows' merge mode</div>
+<div class="content">
+<pre>{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Usage of MERGING transformer with 'columns' merge mode</div>
+<div class="content">
+<pre>{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Usage of MERGING transformer with nested tables</div>
+<div class="content">
+<pre>{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Usage of nested MERGING transformers</div>
+<div class="content">
+<pre>{
+ transformer=MERGING,
+ mergeMode=rows,
+ fillerValue=null,
+ tables=
+ \{
+   transformer=MERGING\,
+   mergeMode=columns\,
+   tables=
+        \\{
+           transformer=FROM_EXCEL\\,
+           path=TestTemplate.xlsx\\,
+           sheet=Data\\,
+           addresses=E6\\,
+           column=text1
+        \\}
+        \;
+        \\{
+           transformer=FROM_EXCEL\\,
+           path=TestTemplate.xlsx\\,
+           sheet=Data\\,
+           addresses=E7\\,
+           column=text2
+        \\}
+ \}
+ ;
+ \{
+   transformer=FROM_EXCEL\,
+   path=TestTemplate.xlsx\,
+   sheet=Data\,
+   addresses=E8\,
+   column=text1
+ \}
+}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Usage of MERGING transformer with table body</div>
+<div class="content">
+<pre>{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
+|column1|
+|value1 |</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_joining"><a class="anchor" href="#_joining"></a>JOINING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>JOINING</code> transformer joins values from rows/columns of the table.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joinMode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>rows</em> or <em>columns</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>joinedColumn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[<em>columns</em> mode only] name of the new column with joined values</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>columnsToJoin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[<em>columns</em> mode only] colon-separated list of the columns to join</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>JOINING</code> transformer should be the last while joining columns/rows of the table which created using another transformer.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Usage of JOINING transformer with 'columns' join mode</div>
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in default columns mode
+Then `&lt;joinedColumn&gt;` is equal to `A B`
+Examples:
+{transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn}
+|column1|column2|
+|A      |B      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Usage of JOINING transformer with 'columns' join mode and definition of columns to join</div>
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in configured columns mode
+Then `&lt;joinedColumn&gt;` is equal to `B D`
+Examples:
+{transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn, columnsToJoin=column2;column4}
+|column1|column2|column3|column4|
+|A      |B      |C      |D      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Usage of JOINING transformer with 'rows' join mode</div>
+<div class="content">
+<pre>Scenario: Verify JOINING transformer in default rows mode
+Then `&lt;column1&gt;` is equal to `A B`
+Then `&lt;column2&gt;` is equal to `C D`
+Examples:
+{transformer=JOINING, joinMode=rows}
+|column1|column2|
+|A      |C      |
+|B      |D      |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Usage of JOINING transformer in the chain of transformers</div>
+<div class="content">
+<pre>{transformer=MERGING, mergeMode=columns, tables=
+  \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
+  \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=B4:B5\, column=header2\, joinValues=true\}
+}
+{transformer=JOINING, joinMode=columns, joinedColumn=header}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Usage of JOINING transformer with table body containing path to table file</div>
+<div class="content">
+<pre>{transformer=JOINING, joinMode=columns, joinedColumn=header}
+/test1.table</pre>
 </div>
 </div>
 </div>
