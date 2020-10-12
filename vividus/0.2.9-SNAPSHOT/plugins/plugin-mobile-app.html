@@ -357,13 +357,15 @@ By. prefix is optional.
 <h3 id="_types"><a class="anchor" href="#_types"></a>Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3335%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Locator type</th>
+<th class="tableblock halign-left valign-top">Platform</th>
 <th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-left valign-top">Examples</th>
 </tr>
@@ -371,13 +373,21 @@ By. prefix is optional.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">XPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search the app XML source using xpath (not recommended, has <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">performance issues</a>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//android.widget.TextView[@text='Home']) or By.xpath(//XCUIElementTypeStaticText[@value='Home'])</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Accessibility ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">Accessibility ID</a> selector strategy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">accessibilityId(menu-toggler) or By.accessibilityId(menu-toggler)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iOS Class Chain</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iOS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://github.com/facebookarchive/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules">Class Chain Queries</a> for more details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iosClassChain(**/XCUIElementTypeCell[$name BEGINSWITH "A"$]) or By.iosClassChain(**/XCUIElementTypeCell[$name BEGINSWITH "B"$])</p></td>
 </tr>
 </tbody>
 </table>
