@@ -413,6 +413,33 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase for the private key</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following properties are not applicable for SFTP</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.channel-type</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>exec</code>
+<code>shell</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exec</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>In common *nix OpenSSH server:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>shell</code> channel executes a login shell (as if you login with SSH terminal client).</p>
+</li>
+<li>
+<p>The <code>exec</code> command takes a command as an "argument" and executes it in an isolated environment &ndash; still via user&#8217;s default shell, but not as a "login" shell, what may cause significant differences in the command execution.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With <a href="https://stackoverflow.com/a/56713547/2067574">less common SSH servers</a>, the difference can be even more significant. Some servers may even not support one of the channels. It is also quite common that they seemingly support both, but one of them (typically the <code>exec</code>) is completely broken.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
