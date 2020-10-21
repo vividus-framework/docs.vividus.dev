@@ -1459,15 +1459,55 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
+<h3 id="_element_exists_for_duration"><a class="anchor" href="#_element_exists_for_duration"></a>Element exists for duration</h3>
 <div class="sect3">
 <h4 id="_info_17"><a class="anchor" href="#_info_17"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Verifies that an element located by locator exists for given duration</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_17"><a class="anchor" href="#_wording_17"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `$locator` exists for `$duration` duration</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$duration</code> - duration in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_17"><a class="anchor" href="#_usage_17"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 18. ElementExistence.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
+Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
+<div class="sect3">
+<h4 id="_info_18"><a class="anchor" href="#_info_18"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and has expected list of options</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_17"><a class="anchor" href="#_wording_17"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_18"><a class="anchor" href="#_wording_18"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` contains options: $option</code></pre>
@@ -1475,7 +1515,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1488,9 +1528,9 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_17"><a class="anchor" href="#_usage_17"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_18"><a class="anchor" href="#_usage_18"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 18. Dropdown.story</div>
+<div class="title">Example 19. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
@@ -1516,13 +1556,13 @@ Item - is an option. State - true/false describes if option selected
 <div class="sect2">
 <h3 id="_dropdown_verify_first_selected_option"><a class="anchor" href="#_dropdown_verify_first_selected_option"></a>Dropdown: verify first selected option</h3>
 <div class="sect3">
-<h4 id="_info_18"><a class="anchor" href="#_info_18"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_19"><a class="anchor" href="#_info_19"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and first selected option.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_18"><a class="anchor" href="#_wording_18"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_19"><a class="anchor" href="#_wording_19"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` exists and selected option is `$option`</code></pre>
@@ -1530,7 +1570,7 @@ Item - is an option. State - true/false describes if option selected
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1543,9 +1583,9 @@ Item - is an option. State - true/false describes if option selected
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_18"><a class="anchor" href="#_usage_18"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_19"><a class="anchor" href="#_usage_19"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 19. Dropdown.story</div>
+<div class="title">Example 20. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
 </div>
@@ -1555,7 +1595,7 @@ Item - is an option. State - true/false describes if option selected
 <div class="sect2">
 <h3 id="_dropdown_add_text_to_a_mutli_select"><a class="anchor" href="#_dropdown_add_text_to_a_mutli_select"></a>Dropdown: add text to a mutli-select</h3>
 <div class="sect3">
-<h4 id="_info_19"><a class="anchor" href="#_info_19"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_20"><a class="anchor" href="#_info_20"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Selects option in multi-select dropdown</p>
 </div>
@@ -1573,61 +1613,10 @@ Step will fail if target dropdown is not multi-select
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_19"><a class="anchor" href="#_wording_19"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$option` to selection in dropdown located `$locator`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$option</code> - option to select</p>
-</li>
-<li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_19"><a class="anchor" href="#_usage_19"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 20. Dropdown.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_dropdown_select_option"><a class="anchor" href="#_dropdown_select_option"></a>Dropdown: select option</h3>
-<div class="sect3">
-<h4 id="_info_20"><a class="anchor" href="#_info_20"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Selects option in dropdown</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Does not support multi-selection
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_wording_20"><a class="anchor" href="#_wording_20"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located `$locator``</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$option` to selection in dropdown located `$locator`</code></pre>
 </div>
 </div>
 </div>
@@ -1648,6 +1637,57 @@ Does not support multi-selection
 <h4 id="_usage_20"><a class="anchor" href="#_usage_20"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
 <div class="title">Example 21. Dropdown.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dropdown_select_option"><a class="anchor" href="#_dropdown_select_option"></a>Dropdown: select option</h3>
+<div class="sect3">
+<h4 id="_info_21"><a class="anchor" href="#_info_21"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Selects option in dropdown</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Does not support multi-selection
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_21"><a class="anchor" href="#_wording_21"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located `$locator``</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$option</code> - option to select</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_21"><a class="anchor" href="#_usage_21"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 22. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
 </div>
@@ -1728,13 +1768,13 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <div class="sect2">
 <h3 id="_adds_headers_to_proxy_request"><a class="anchor" href="#_adds_headers_to_proxy_request"></a>Adds headers to proxy request</h3>
 <div class="sect3">
-<h4 id="_info_21"><a class="anchor" href="#_info_21"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_22"><a class="anchor" href="#_info_22"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Add headers to proxy request that will be used while sending request with given urlPattern</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_21"><a class="anchor" href="#_wording_21"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_22"><a class="anchor" href="#_wording_22"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which $comparisonRule `$urlPattern`:$headers</code></pre>
@@ -1742,7 +1782,7 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1758,9 +1798,9 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_21"><a class="anchor" href="#_usage_21"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_22"><a class="anchor" href="#_usage_22"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 22. ProxyStepsTests.story</div>
+<div class="title">Example 23. ProxyStepsTests.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I add headers to proxied requests with URL pattern which $comparisonRule `$urlPattern`:$headers
 When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
