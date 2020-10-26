@@ -656,7 +656,7 @@ By. prefix is optional.
 <div class="sect2">
 <h3 id="_meta_tags"><a class="anchor" href="#_meta_tags"></a>Meta Tags</h3>
 <div class="paragraph">
-<p>@proxy - Some steps requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.</p>
+<p><code>@proxy</code> - some steps require proxy to be turned on: it can be done by setting the corresponding properties or by switching on this meta tag at story level.</p>
 </div>
 </div>
 </div>
@@ -665,111 +665,21 @@ By. prefix is optional.
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_clear_proxy_log"><a class="anchor" href="#_clear_proxy_log"></a>Clear proxy log</h3>
-<div class="sect3">
-<h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Clears the proxy log</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 2. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I clear proxy log
-Given I am on a page with the URL 'http:/httpbin.org/get'
-When I clear proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `0`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_check_if_the_number_of_requests_with_given_url_pattern_exist"><a class="anchor" href="#_check_if_the_number_of_requests_with_given_url_pattern_exist"></a>Check if the number of requests with given URL-pattern exist</h3>
-<div class="sect3">
-<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If URLs are the same, there were calls with given URL-pattern, otherwise - weren&#8217;t.
-If there weren&#8217;t any calls matching requirements, HAR file with all calls will be attached to report.
-If response contains status code 302 - corresponding request will be filtered out.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP $httpMethod requests with URL pattern `$urlPattern` is $comparisonRule `$number`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
-</li>
-<li>
-<p><code>$number</code> - The number to compare with</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 3. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I clear proxy log
-Given I am on a page with the URL 'http:/httpbin.org/get'
-When I clear proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `0`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_execute_sequence_of_actions"><a class="anchor" href="#_execute_sequence_of_actions"></a>Execute sequence of actions</h3>
-<div class="sect3">
-<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Executes the sequence of web actions</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions: $actions</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>$actions</code> - table of actions to execute</p>
 </li>
-</ol>
-</div>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="_possible_actions"><a class="anchor" href="#_possible_actions"></a>Possible actions</h4>
@@ -839,11 +749,8 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect3">
-<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 4. ActionSteps.story</div>
+<div class="title">Example 2. ActionSteps.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type          |argument                                |
@@ -866,216 +773,15 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_the_request_url"><a class="anchor" href="#_save_the_request_url"></a>Save the request URL</h3>
-<div class="sect3">
-<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.</p>
-</div>
-<div class="paragraph">
-<p>Saves the captured request URL into scoped variable.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 5. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL to $scopes variable `$variableName`
-Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL to SCENARIO variable `URL`
-Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_query_string_into_the_variable_with_specified_name_and_scopes"></a>Saves the query string into the variable with specified name and scopes.</h3>
-<div class="sect3">
-<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
-If there weren&#8217;t any calls or more than one matching requirements, HAR file with all
-calls will be attached to report.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 6. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`
-Given I am on a page with the URL 'http://httpbin.org/forms/post'
-When I click on element located `By.xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save URL query to SCENARIO variable `query`
-Then `${query}` is equal to `{}`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"><a class="anchor" href="#_saves_the_request_data_into_the_variable_with_specified_name_and_scopes"></a>Saves the request data into the variable with specified name and scopes.</h3>
-<div class="sect3">
-<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done via setting properties or switching on @proxy metatag.
-Step gets proxies log, extract from contained requests URLs and match them with URL-pattern
-If there is one entry, it saves the query string from request as Map of keys and values into the variable with specified name and scopes.
-If there weren&#8217;t any calls or more than one matching requirements, HAR file with all calls will be attached to report.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - A variable name</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 7. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I capture HTTP $httpMethod request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`
-Given I am on a page with the URL 'http://httpbin.org/forms/post'
-When I click on element located `By.xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbin.org/post` and save request data to SCENARIO variable `requestData`
-Then `${requestData.query}` is equal to `{}`
-Then `${requestData.requestBodyParameters}` is equal to `{delivery=, custtel=, comments=, custemail=, custname=}`
-Then `${requestData.requestBody}` is not equal to `null`
-Then `${requestData.responseStatus}` is equal to `200`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"><a class="anchor" href="#_waits_for_appearance_of_http_request_matched_httpmethod_and_urlpattern_in_proxy_log"></a>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</h3>
-<div class="sect3">
-<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Waits for appearance of HTTP request matched httpMethod and urlPattern in proxy log</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_7"><a class="anchor" href="#_wording_7"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$httpMethod</code> - HTTP method to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - The string value of URL-pattern to filter by</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 8. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I wait until HTTP $httpMethod request with URL pattern `$urlPattern` exists in proxy log
-Given I am on a page with the URL 'http://httpbin.org/get'
-When I wait until HTTP GET request with URL pattern `http://httpbin.org/get` exists in proxy log
-Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQUAL TO `1`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_verify_elements_number"><a class="anchor" href="#_verify_elements_number"></a>Verify elements number</h3>
 <div class="sect3">
-<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches desired number</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_8"><a class="anchor" href="#_wording_8"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
@@ -1083,7 +789,7 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1099,9 +805,9 @@ Then number of HTTP GET requests with URL pattern `http://httpbin.org/get` is EQ
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 9. VerifyNumber.story</div>
+<div class="title">Example 3. VerifyNumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
 Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
@@ -1112,7 +818,7 @@ Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 <div class="sect2">
 <h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
 <div class="sect3">
-<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
 </div>
@@ -1143,7 +849,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_9"><a class="anchor" href="#_wording_9"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
@@ -1151,7 +857,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1170,9 +876,9 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 10. VerifyState.story</div>
+<div class="title">Example 4. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -1184,13 +890,13 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect2">
 <h3 id="_wait_for_element_appearance"><a class="anchor" href="#_wait_for_element_appearance"></a>Wait for element appearance</h3>
 <div class="sect3">
-<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Waits for appearance of an element by the locator</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_10"><a class="anchor" href="#_wording_10"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` appears</code></pre>
@@ -1198,7 +904,7 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1208,9 +914,9 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_10"><a class="anchor" href="#_usage_10"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 11. Wait.story</div>
+<div class="title">Example 5. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
 When I wait until element located `name(welcome-image)` appears</code></pre>
@@ -1221,13 +927,13 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="sect2">
 <h3 id="_wait_for_element_disappearance"><a class="anchor" href="#_wait_for_element_disappearance"></a>Wait for element disappearance</h3>
 <div class="sect3">
-<h4 id="_info_11"><a class="anchor" href="#_info_11"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Waits for disappearance of an element by the locator</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_11"><a class="anchor" href="#_wording_11"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` disappears</code></pre>
@@ -1235,7 +941,7 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1245,9 +951,9 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_11"><a class="anchor" href="#_usage_11"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 12. Wait.story</div>
+<div class="title">Example 6. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
 When I wait until element located `name(welcome-image)` disappears</code></pre>
@@ -1258,7 +964,7 @@ When I wait until element located `name(welcome-image)` disappears</code></pre>
 <div class="sect2">
 <h3 id="_save_text_of_context_element"><a class="anchor" href="#_save_text_of_context_element"></a>Save text of context element</h3>
 <div class="sect3">
-<h4 id="_info_12"><a class="anchor" href="#_info_12"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Saves text of a context element into a variable</p>
 </div>
@@ -1276,7 +982,7 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_12"><a class="anchor" href="#_wording_12"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of context element to $scopes variable `$variableName`</code></pre>
@@ -1284,7 +990,7 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1297,9 +1003,9 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_12"><a class="anchor" href="#_usage_12"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 13. SaveText.story</div>
+<div class="title">Example 7. SaveText.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
 When I change context to element located `By.id(username)`
@@ -1311,7 +1017,7 @@ When I save text of context element to SCENARIO variable `username`</code></pre>
 <div class="sect2">
 <h3 id="_save_attribute_value_of_context_element"><a class="anchor" href="#_save_attribute_value_of_context_element"></a>Save attribute value of context element</h3>
 <div class="sect3">
-<h4 id="_info_13"><a class="anchor" href="#_info_13"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Saves attribute value of a context element into a variable</p>
 </div>
@@ -1329,7 +1035,7 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_13"><a class="anchor" href="#_wording_13"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of context element to $scopes variable `$variableName`</code></pre>
@@ -1337,7 +1043,7 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1353,9 +1059,9 @@ Step will throw an error if the context element is not set
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_13"><a class="anchor" href="#_usage_13"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 14. SaveAttributeValue.story</div>
+<div class="title">Example 8. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
 When I change context to element located `By.id(username)`
@@ -1367,13 +1073,13 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <div class="sect2">
 <h3 id="_save_attribute_value_of_element"><a class="anchor" href="#_save_attribute_value_of_element"></a>Save attribute value of element</h3>
 <div class="sect3">
-<h4 id="_info_14"><a class="anchor" href="#_info_14"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Saves attribute value of an element located by locator into a variable</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_14"><a class="anchor" href="#_wording_14"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_7"><a class="anchor" href="#_wording_7"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element located `$locator` to $scopes variable `$variableName`</code></pre>
@@ -1381,7 +1087,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1400,9 +1106,9 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_14"><a class="anchor" href="#_usage_14"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 15. SaveAttributeValue.story</div>
+<div class="title">Example 9. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
 When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
@@ -1413,13 +1119,13 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <div class="sect2">
 <h3 id="_change_context"><a class="anchor" href="#_change_context"></a>Change context</h3>
 <div class="sect3">
-<h4 id="_info_15"><a class="anchor" href="#_info_15"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Changes the context to an element located by locator for limiting area of subsequent UI interactions</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_15"><a class="anchor" href="#_wording_15"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_8"><a class="anchor" href="#_wording_8"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator`</code></pre>
@@ -1427,7 +1133,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1437,9 +1143,9 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_15"><a class="anchor" href="#_usage_15"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 16. ChangeContext.story</div>
+<div class="title">Example 10. ChangeContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Change context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -1452,13 +1158,13 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="sect2">
 <h3 id="_reset_context"><a class="anchor" href="#_reset_context"></a>Reset context</h3>
 <div class="sect3">
-<h4 id="_info_16"><a class="anchor" href="#_info_16"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Resets the context</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_16"><a class="anchor" href="#_wording_16"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_9"><a class="anchor" href="#_wording_9"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset context</code></pre>
@@ -1466,9 +1172,9 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_16"><a class="anchor" href="#_usage_16"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 17. ResetContext.story</div>
+<div class="title">Example 11. ResetContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -1483,13 +1189,13 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="sect2">
 <h3 id="_element_exists_for_duration"><a class="anchor" href="#_element_exists_for_duration"></a>Element exists for duration</h3>
 <div class="sect3">
-<h4 id="_info_17"><a class="anchor" href="#_info_17"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies that an element located by locator exists for given duration</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_17"><a class="anchor" href="#_wording_17"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_10"><a class="anchor" href="#_wording_10"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `$locator` exists for `$duration` duration</code></pre>
@@ -1497,7 +1203,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_15"><a class="anchor" href="#_parameters_15"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1510,9 +1216,9 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_17"><a class="anchor" href="#_usage_17"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_10"><a class="anchor" href="#_usage_10"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 18. ElementExistence.story</div>
+<div class="title">Example 12. ElementExistence.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
 Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
@@ -1522,37 +1228,26 @@ Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
-<div class="sect3">
-<h4 id="_info_18"><a class="anchor" href="#_info_18"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and has expected list of options</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording_18"><a class="anchor" href="#_wording_18"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` contains options: $option</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_16"><a class="anchor" href="#_parameters_16"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$options</code> - examples table describing expected options</p>
 </li>
-</ol>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_usage_18"><a class="anchor" href="#_usage_18"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 19. Dropdown.story</div>
+<div class="title">Example 13. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
@@ -1574,50 +1269,35 @@ Item - is an option. State - true/false describes if option selected
 </table>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_dropdown_verify_first_selected_option"><a class="anchor" href="#_dropdown_verify_first_selected_option"></a>Dropdown: verify first selected option</h3>
-<div class="sect3">
-<h4 id="_info_19"><a class="anchor" href="#_info_19"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and first selected option.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording_19"><a class="anchor" href="#_wording_19"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` exists and selected option is `$option`</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_17"><a class="anchor" href="#_parameters_17"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$option</code> - first selected option</p>
 </li>
-</ol>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_usage_19"><a class="anchor" href="#_usage_19"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 20. Dropdown.story</div>
+<div class="title">Example 14. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_dropdown_add_text_to_a_mutli_select"><a class="anchor" href="#_dropdown_add_text_to_a_mutli_select"></a>Dropdown: add text to a mutli-select</h3>
-<div class="sect3">
-<h4 id="_info_20"><a class="anchor" href="#_info_20"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Selects option in multi-select dropdown</p>
 </div>
@@ -1633,42 +1313,30 @@ Step will fail if target dropdown is not multi-select
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording_20"><a class="anchor" href="#_wording_20"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$option` to selection in dropdown located `$locator`</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>$option</code> - option to select</p>
 </li>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
-</ol>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_usage_20"><a class="anchor" href="#_usage_20"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 21. Dropdown.story</div>
+<div class="title">Example 15. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_dropdown_select_option"><a class="anchor" href="#_dropdown_select_option"></a>Dropdown: select option</h3>
-<div class="sect3">
-<h4 id="_info_21"><a class="anchor" href="#_info_21"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Selects option in dropdown</p>
 </div>
@@ -1684,35 +1352,351 @@ Does not support multi-selection
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording_21"><a class="anchor" href="#_wording_21"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located `$locator``</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_19"><a class="anchor" href="#_parameters_19"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
 <p><code>$option</code> - option to select</p>
 </li>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
-</ol>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_usage_21"><a class="anchor" href="#_usage_21"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 22. Dropdown.story</div>
+<div class="title">Example 16. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_check_the_number_of_http_requests"><a class="anchor" href="#_proxy_check_the_number_of_http_requests"></a>Proxy - Check the number of HTTP requests</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages satisfies the desired condition</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP $httpMethods requests with URL pattern `$urlPattern` is $comparisonRule `$number`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the comma-separated HTTP methods to filter by</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+</li>
+<li>
+<p><code>$number</code> - The number to compare with</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_save_the_http_request_url"><a class="anchor" href="#_proxy_save_the_http_request_url"></a>Proxy - Save the HTTP request URL</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages is equal to 1</p>
+</li>
+<li>
+<p>save the HTTP request URL to the specified variable</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save URL to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+</li>
+<li>
+<p><code>$variableName</code> - the variable name</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Save the URL of the matching HTTP request to the variable</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
+Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_save_the_http_request_url_query"><a class="anchor" href="#_proxy_save_the_http_request_url_query"></a>Proxy - Save the HTTP request URL query</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages is equal to 1</p>
+</li>
+<li>
+<p>save the HTTP request URL query to the specified variable</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save URL query to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+</li>
+<li>
+<p><code>$variableName</code> - the variable name</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 19. Save the URL query of the matching HTTP request to the variable</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/forms/post'
+When I click on element located `By.xpath(//button)`
+When I capture HTTP POST request with URL pattern `http://httpbin\.org/post` and save URL query to scenario variable `query`
+Then `${query}` is equal to `{}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_save_the_http_message_data"><a class="anchor" href="#_proxy_save_the_http_message_data"></a>Proxy - Save the HTTP message data</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages is equal to 1</p>
+</li>
+<li>
+<p>save the HTTP message data to the specified variable</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save request data to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+</li>
+<li>
+<p><code>$variableName</code> - the variable name</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. Save the data from the matching HTTP message to the variable</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/forms/post'
+When I click on element located `By.xpath(//button)`
+When I capture GET or HTTP POST request with URL pattern `http://httpbin\.org/post` and save request data to scenario variable `data`
+Then `${data.query}` is equal to `{}`
+Then `${data.requestBodyParameters}` is equal to `{delivery=, custtel=, comments=, custemail=, custname=}`
+Then `${data.requestBody}` is not equal to `null`
+Then `${data.responseStatus}` is equal to `200`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_wait_for_the_http_request"><a class="anchor" href="#_proxy_wait_for_the_http_request"></a>Proxy - Wait for the HTTP request</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+Waits for the HTTP requests matching the provided HTTP methods and URL regular expression.
+If no HTTP request is sent and wait timeout is reached, then the step will fail.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` exists in proxy log</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 21. Wait for the HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/get'
+When I wait until HTTP GET or POST request with URL pattern `http://httpbin\.org/get` exists in proxy log
+Then number of HTTP GET or POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_add_headers_to_the_http_request"><a class="anchor" href="#_proxy_add_headers_to_the_http_request"></a>Proxy - Add headers to the HTTP request</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+Add headers to the proxied HTTP request satisfying the desired condition</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which $comparisonRule `$url`:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - the input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 22. Add headers to the proxied HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
+|name     |value     |
+|testName1|testValue1|
+|testName2|testValue2|
+Given I am on a page with the URL 'http://httpbin.org/headers'
+When I change context to element located `xpath(//pre)`
+When I set the text found in search context to the 'SCENARIO' variable 'response'
+Then a JSON element from '${response}' by the JSON path '$.headers' is equal to '
+{
+    "Testname1": "testValue1",
+    "Testname2": "testValue2"
+}
+'ignoring extra fields</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_clear"><a class="anchor" href="#_proxy_clear"></a>Proxy - Clear</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The step clears the HTTP requests and responses recorded by the proxy</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 23. Clear the data recorded by the proxy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http:/httpbin.org/get'
+When I clear proxy log
+Then number of HTTP GET requests with URL pattern `http://httpbin\.org/get` is equal to `0`</code></pre>
 </div>
 </div>
 </div>
@@ -1783,61 +1767,6 @@ Then `${context-height}` is &gt; `0`
 Then `${context-width}` is &gt; `0`
 Then `${context-x-coordinate}` is &gt; `0`
 Then `${context-y-coordinate}` is &gt; `0`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adds_headers_to_proxy_request"><a class="anchor" href="#_adds_headers_to_proxy_request"></a>Adds headers to proxy request</h3>
-<div class="sect3">
-<h4 id="_info_22"><a class="anchor" href="#_info_22"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Add headers to proxy request that will be used while sending request with given urlPattern</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_22"><a class="anchor" href="#_wording_22"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which $comparisonRule `$urlPattern`:$headers</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_20"><a class="anchor" href="#_parameters_20"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison Rule</a></p>
-</li>
-<li>
-<p><code>$urlPattern</code> - The string value of URL-pattern to filter by</p>
-</li>
-<li>
-<p><code>$headers</code> - ExamplesTable representing list of headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_22"><a class="anchor" href="#_usage_22"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 23. ProxyStepsTests.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify step When I add headers to proxied requests with URL pattern which $comparisonRule `$urlPattern`:$headers
-When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
-|name     |value     |
-|testName1|testValue1|
-|testName2|testValue2|
-Given I am on a page with the URL 'http://httpbin.org/headers'
-When I change context to element located `xpath(//pre)`
-When I set the text found in search context to the 'SCENARIO' variable 'response'
-Then a JSON element from '${response}' by the JSON path '$.headers' is equal to '
-{
-    "Testname1": "testValue1",
-    "Testname2": "testValue2"
-}
-'IGNORING_EXTRA</code></pre>
 </div>
 </div>
 </div>
