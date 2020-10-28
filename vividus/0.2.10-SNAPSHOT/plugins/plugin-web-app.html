@@ -1242,6 +1242,49 @@ Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_navigate_back"><a class="anchor" href="#_navigate_back"></a>Navigate back</h3>
+<div class="literalblock">
+<div class="content">
+<pre>==== *_Info_*</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Navigates back to the previous view</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>==== *_Wording_*</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[source,gherkin]
+----
+When I navigate back
+----</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>==== *_Usage_*</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.Navigate back
+[source,gherkin]
+----
+Scenario: Navigate back
+Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
+When I navigate back
+Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`
+----</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and has expected list of options</p>
