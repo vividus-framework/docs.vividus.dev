@@ -1562,6 +1562,48 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_verify_elements_order"><a class="anchor" href="#_verify_elements_order"></a>Verify elements order</h3>
+<div class="sect3">
+<h4 id="_info_20"><a class="anchor" href="#_info_20"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Gets a collection of elements by locator and checks that they are sorted by their text in the specified order. The collection should have more than 1 element with not empty text, otherwise the step fails.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_20"><a class="anchor" href="#_wording_20"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then elements located `$locator` are sorted by text in $sortingOrder order</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_18"><a class="anchor" href="#_parameters_18"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$sortingOrder</code> - either <a href="https://www.computerhope.com/jargon/a/ascendin.htm">ASCENDING</a> or <a href="https://www.computerhope.com/jargon/d/descorde.htm">DESCENDING</a> order</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_20"><a class="anchor" href="#_usage_20"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 21. OrderVerification.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Check items are sorted
+Given I am on a page with the URL 'https://grocery.by'
+When I click on element located `By.id(a-z)`
+Then elements located `By.xpath(//span[@id='item-to-purchase'])` are sorted by text in ascending order</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
