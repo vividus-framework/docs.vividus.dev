@@ -367,25 +367,32 @@ By. prefix is optional.
 <h3 id="_filter_types"><a class="anchor" href="#_filter_types"></a>Filter Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3335%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-left valign-top">Examples</th>
-<th class="tableblock halign-left valign-top">index</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">index</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get an element by the specified index from a collection of elements found by a locator. Indexes start from 1.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(div)&#8594;filter.index(2)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">textPart</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their text parts.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(h3)&#8594;filter.textPart(Welcome)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their exact text.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(android.widget.EditText)&#8594;filter.text(Welcome)</p></td>
 </tr>
 </tbody>
 </table>
