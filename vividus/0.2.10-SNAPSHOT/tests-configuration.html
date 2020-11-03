@@ -381,7 +381,9 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
         "stepPattern": "Then `1` is = `2`.+", <i class="conum" data-value="6"></i><b>(6)</b>
         "variablePatterns": { <i class="conum" data-value="7"></i><b>(7)</b>
             "var":  "value-.*"
-        }
+        },
+        "failScenarioFast": true, <i class="conum" data-value="8"></i><b>(8)</b>
+        "failStoryFast": true <i class="conum" data-value="9"></i><b>(9)</b>
     }
 }</code></pre>
 </div>
@@ -415,6 +417,14 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>Variable patterns. Patterns to match variables.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Skip the rest of scenario in case of failure identified as this known issue</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Skip the rest of story in case of failure identified as this known issue</td>
 </tr>
 </table>
 </div>
