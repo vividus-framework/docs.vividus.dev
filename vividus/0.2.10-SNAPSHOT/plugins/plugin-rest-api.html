@@ -349,150 +349,6 @@ To be implemented
 </div>
 </div>
 <div class="sect1">
-<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_verify_secure_protocols_supported_by_server"><a class="anchor" href="#_verify_secure_protocols_supported_by_server"></a>Verify secure protocols supported by server</h3>
-<div class="sect3">
-<h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Checks that a server defined by the <code>hostname</code> supports secure protocols listed in the <code>protocols</code> parameter.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `$hostname` supports secure protocols that $rule `$protocols`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$hostname</code> - server hostname.</p>
-</li>
-<li>
-<p><code>$rule</code> - <a href="../parameters/collection-comparison-rule.html" class="page">Collection Comparison Rule</a></p>
-</li>
-<li>
-<p><code>$protocols</code> - secure protocols that are expected to match specified <code>$rule</code></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 2. Sample.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify that the server supports TLSv1.3 and TLSv1.2 protocols
-Then server `vividus-test-site.herokuapp.com` supports secure protocols that contain `TLSv1.3,TLSv1.2`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_wait_for_json_element_to_be_returned_in_http_response"><a class="anchor" href="#_wait_for_json_element_to_be_returned_in_http_response"></a>Wait for JSON element to be returned in HTTP response</h3>
-<div class="sect3">
-<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Execute the provided sub-steps until the HTTP response body contains an element by the specified JSON path or until the maximum number of retries is reached. The maximum duration of the step execution is not limited. The actions of the step:
-. execute sub-steps
-. wait for the polling interval
-. if the required JSON element exists or the maximum number of retries is reached, then execution stops, otherwise the step actions are repeated</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$jsonPath` with `$pollingInterval` polling interval retrying $retryTimes times$stepsToExecute</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>jsonPath</code> - the JSON path of the element to find</p>
-</li>
-<li>
-<p><code>pollingInterval</code> - the duration to wait between retries</p>
-</li>
-<li>
-<p><code>retryTimes</code> - the maximum number of the retries</p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - the sub-steps to execute at each iteration</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 3. Sample.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for presence of element by JSON path $.data.testData
-When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
-|step                                  |
-|When I set request headers:           |
-|{headerSeparator=!,valueSeparator=!}  |
-|!name          !value                !|
-|!Authorization !${accessToken}       !|
-|When I issue a HTTP GET request for a resource with the URL '${requestUrl}'|</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_adding_headers_to_http_request"><a class="anchor" href="#_adding_headers_to_http_request"></a>Adding headers to HTTP request</h3>
-<div class="sect3">
-<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Adds headers to HTTP request. See <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">standard request fields</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:$headers</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>headers</code> - ExamplesTable representing list of headers with columns <code>name</code> and <code>value</code> specifying HTTP header</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 4. Sample.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify possibility to add request header with name Accept-Language and value en-ru
-When I add request headers:
-|name           |value |
-|Accept-Language|en-ru |
-When I send HTTP GET to the relative URL '/get?name=Content'
-Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"en-ru"'</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_expressions"><a class="anchor" href="#_expressions"></a>Expressions</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -589,6 +445,165 @@ are otherwise illegal within the given URI component type, as defined in
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_init_multipart_http_request"><a class="anchor" href="#_init_multipart_http_request"></a>Init multipart HTTP request</h3>
+<div class="paragraph">
+<p>Sets <a href="https://tools.ietf.org/html/rfc7578">multipart</a> request entity that will be used while executing HTTP requests.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given multipart request:$requestParts</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>requestParts</code> - <code>ExamplesTable</code> representing the list of the request parts with the following columns:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>type</code> - one of request part types: <code>STRING</code>, <code>FILE</code>, <code>BINARY</code></p>
+</li>
+<li>
+<p><code>name</code> - the request part name</p>
+</li>
+<li>
+<p><code>value</code> - the path to the resource with the content for <code>FILE</code> part type and the actual content for <code>STRING</code> and <code>BINARY</code> part types</p>
+</li>
+<li>
+<p><code>contentType</code> - <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">the content type</a></p>
+</li>
+<li>
+<p><code>fileName</code> - the name of the file contained in this request part. The parameter is not allowed for <code>STRING</code> part type, but it&#8217;s required for <code>BINARY</code> one and optional for <code>FILE</code> part type</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Init HTTP request consisting of 4 different parts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given multipart request:
+|type  |name      |value         |contentType|fileName       |
+|file  |file-key  |/data/file.txt|           |anotherName.txt|
+|file  |file-key2 |/data/file.txt|text/plain |               |
+|string|string-key|string1       |text/plain |               |
+|binary|binary-key|raw           |text/plain |raw.txt        |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_http_headers_to_the_request"><a class="anchor" href="#_add_http_headers_to_the_request"></a>Add HTTP headers to the request</h3>
+<div class="paragraph">
+<p>Adds <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">HTTP headers</a> to the HTTP request.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>headers</code> - <code>ExamplesTable</code> representing the list of the headers with columns <code>name</code> and <code>value</code> specifying HTTP header</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Add request header with name Accept-Language and value en-ru</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:
+|name           |value |
+|Accept-Language|en-ru |
+When I send HTTP GET to the relative URL '/get?name=Content'
+Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"en-ru"'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_json_element_in_the_http_response"><a class="anchor" href="#_wait_for_json_element_in_the_http_response"></a>Wait for JSON element in the HTTP response</h3>
+<div class="paragraph">
+<p>Executes the provided sub-steps until the HTTP response body contains an element by the specified JSON path or the maximum number of retries is reached. The maximum duration of the step execution is not limited. The actions of the step:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>execute sub-steps</p>
+</li>
+<li>
+<p>wait the polling interval</p>
+</li>
+<li>
+<p>if the required JSON element exists or the maximum number of retries is reached, then the execution stops, otherwise the step actions are repeated</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$jsonPath` with `$pollingInterval` polling interval retrying $retryTimes times$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>jsonPath</code> - the JSON path of the element to find</p>
+</li>
+<li>
+<p><code>pollingInterval</code> - the duration to wait between retries</p>
+</li>
+<li>
+<p><code>retryTimes</code> - the maximum number of the retries</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - the sub-steps to execute at each iteration</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Wait for presence of element by JSON path $.data.testData</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
+|step                                  |
+|When I set request headers:           |
+|{headerSeparator=!,valueSeparator=!}  |
+|!name          !value                !|
+|!Authorization !${accessToken}       !|
+|When I issue a HTTP GET request for a resource with the URL '${requestUrl}'|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_secure_protocols_supported_by_server"><a class="anchor" href="#_validate_secure_protocols_supported_by_server"></a>Validate secure protocols supported by server</h3>
+<div class="paragraph">
+<p>Checks that a server defined by the <code>hostname</code> supports secure protocols listed in the <code>protocols</code> parameter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `$hostname` supports secure protocols that $rule `$protocols`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$hostname</code> - the server hostname</p>
+</li>
+<li>
+<p><code>$rule</code> - <a href="../parameters/collection-comparison-rule.html" class="page">the collection comparison rule</a></p>
+</li>
+<li>
+<p><code>$protocols</code> - the secure protocols that are expected to match specified <code>$rule</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `vividus-test-site.herokuapp.com` supports secure protocols that contain `TLSv1.2,TLSv1.3`</code></pre>
+</div>
 </div>
 </div>
 </div>
