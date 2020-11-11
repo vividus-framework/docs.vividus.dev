@@ -1695,15 +1695,67 @@ When I change Appium session settings:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_elements_number_2"><a class="anchor" href="#_verify_elements_number_2"></a>Verify elements number</h3>
+<h3 id="_select_date_in_date_picker"><a class="anchor" href="#_select_date_in_date_picker"></a>Select date in date picker</h3>
 <div class="sect3">
 <h4 id="_info_23"><a class="anchor" href="#_info_23"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Selects a next or previous picker wheel value in date picker</p>
+</div>
+<div class="ulist WARNING">
+<ul class="WARNING">
+<li>
+<p>Only <code>iOS</code> platform is supported</p>
+</li>
+<li>
+<p>Target element must be of type <code>XCUIElementTypePickerWheel</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_23"><a class="anchor" href="#_wording_23"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select $direction value with `$offset` offset in picker wheel located `$locator`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$direction</code> - next value to select, either <code>NEXT</code> or <code>PREVIOUS</code></p>
+</li>
+<li>
+<p><code>$offset</code> - offset for pick from a middle of a wheel, see <a href="https://appium.io/docs/en/writing-running-appium/ios/ios-xctest-mobile-gestures/index.html#mobile-selectpickerwheelvalue">Select Picker Wheel Value</a></p>
+</li>
+<li>
+<p><code>$locator</code> - locator to locate <code>XCUIElementTypePickerWheel</code> element</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_23"><a class="anchor" href="#_usage_23"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 24. Select next item in the picker wheel</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select next value with `0.1` offset in picker wheel located `xpath(//XCUIElementTypePickerWheel)-&gt;filter.index(3)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verify_elements_number_2"><a class="anchor" href="#_verify_elements_number_2"></a>Verify elements number</h3>
+<div class="sect3">
+<h4 id="_info_24"><a class="anchor" href="#_info_24"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches desired number</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_23"><a class="anchor" href="#_wording_23"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_24"><a class="anchor" href="#_wording_24"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
@@ -1711,7 +1763,7 @@ When I change Appium session settings:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_21"><a class="anchor" href="#_parameters_21"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_22"><a class="anchor" href="#_parameters_22"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1727,9 +1779,9 @@ When I change Appium session settings:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_23"><a class="anchor" href="#_usage_23"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_24"><a class="anchor" href="#_usage_24"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 24. VerifyNumber.story</div>
+<div class="title">Example 25. VerifyNumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
 Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
@@ -1740,7 +1792,7 @@ Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 <div class="sect2">
 <h3 id="_verify_elements_state_2"><a class="anchor" href="#_verify_elements_state_2"></a>Verify elements state</h3>
 <div class="sect3">
-<h4 id="_info_24"><a class="anchor" href="#_info_24"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_25"><a class="anchor" href="#_info_25"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
 </div>
@@ -1771,7 +1823,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_24"><a class="anchor" href="#_wording_24"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_25"><a class="anchor" href="#_wording_25"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
@@ -1779,7 +1831,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_22"><a class="anchor" href="#_parameters_22"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_23"><a class="anchor" href="#_parameters_23"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1798,9 +1850,9 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_24"><a class="anchor" href="#_usage_24"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_25"><a class="anchor" href="#_usage_25"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 25. VerifyState.story</div>
+<div class="title">Example 26. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -1812,53 +1864,16 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect2">
 <h3 id="_wait_for_element_appearance_2"><a class="anchor" href="#_wait_for_element_appearance_2"></a>Wait for element appearance</h3>
 <div class="sect3">
-<h4 id="_info_25"><a class="anchor" href="#_info_25"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Waits for appearance of an element by the locator</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_25"><a class="anchor" href="#_wording_25"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` appears</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_23"><a class="anchor" href="#_parameters_23"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_25"><a class="anchor" href="#_usage_25"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 26. Wait.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
-When I wait until element located `name(welcome-image)` appears</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_wait_for_element_disappearance_2"><a class="anchor" href="#_wait_for_element_disappearance_2"></a>Wait for element disappearance</h3>
-<div class="sect3">
 <h4 id="_info_26"><a class="anchor" href="#_info_26"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Waits for disappearance of an element by the locator</p>
+<p>Waits for appearance of an element by the locator</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_wording_26"><a class="anchor" href="#_wording_26"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` disappears</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` appears</code></pre>
 </div>
 </div>
 </div>
@@ -1877,6 +1892,43 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="listingblock">
 <div class="title">Example 27. Wait.story</div>
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
+When I wait until element located `name(welcome-image)` appears</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_disappearance_2"><a class="anchor" href="#_wait_for_element_disappearance_2"></a>Wait for element disappearance</h3>
+<div class="sect3">
+<h4 id="_info_27"><a class="anchor" href="#_info_27"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Waits for disappearance of an element by the locator</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_27"><a class="anchor" href="#_wording_27"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` disappears</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_25"><a class="anchor" href="#_parameters_25"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_27"><a class="anchor" href="#_usage_27"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 28. Wait.story</div>
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
 When I wait until element located `name(welcome-image)` disappears</code></pre>
 </div>
@@ -1886,62 +1938,9 @@ When I wait until element located `name(welcome-image)` disappears</code></pre>
 <div class="sect2">
 <h3 id="_save_text_of_context_element_2"><a class="anchor" href="#_save_text_of_context_element_2"></a>Save text of context element</h3>
 <div class="sect3">
-<h4 id="_info_27"><a class="anchor" href="#_info_27"></a><strong><em>Info</em></strong></h4>
-<div class="paragraph">
-<p>Saves text of a context element into a variable</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Step will throw an error if the context element is not set
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wording_27"><a class="anchor" href="#_wording_27"></a><strong><em>Wording</em></strong></h4>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of context element to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_25"><a class="anchor" href="#_parameters_25"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - name of a variable</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_27"><a class="anchor" href="#_usage_27"></a><strong><em>Usage</em></strong></h4>
-<div class="listingblock">
-<div class="title">Example 28. SaveText.story</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
-When I change context to element located `By.id(username)`
-When I save text of context element to SCENARIO variable `username`</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_save_attribute_value_of_context_element_2"><a class="anchor" href="#_save_attribute_value_of_context_element_2"></a>Save attribute value of context element</h3>
-<div class="sect3">
 <h4 id="_info_28"><a class="anchor" href="#_info_28"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Saves attribute value of a context element into a variable</p>
+<p>Saves text of a context element into a variable</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1960,7 +1959,7 @@ Step will throw an error if the context element is not set
 <h4 id="_wording_28"><a class="anchor" href="#_wording_28"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of context element to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of context element to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
@@ -1968,9 +1967,6 @@ Step will throw an error if the context element is not set
 <h4 id="_parameters_26"><a class="anchor" href="#_parameters_26"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p><code>$attributeName</code> - name of an element&#8217;s attribute</p>
-</li>
 <li>
 <p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
 </li>
@@ -1983,28 +1979,40 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_28"><a class="anchor" href="#_usage_28"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 29. SaveAttributeValue.story</div>
+<div class="title">Example 29. SaveText.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
 When I change context to element located `By.id(username)`
-When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
+When I save text of context element to SCENARIO variable `username`</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_attribute_value_of_element_2"><a class="anchor" href="#_save_attribute_value_of_element_2"></a>Save attribute value of element</h3>
+<h3 id="_save_attribute_value_of_context_element_2"><a class="anchor" href="#_save_attribute_value_of_context_element_2"></a>Save attribute value of context element</h3>
 <div class="sect3">
 <h4 id="_info_29"><a class="anchor" href="#_info_29"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Saves attribute value of an element located by locator into a variable</p>
+<p>Saves attribute value of a context element into a variable</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Step will throw an error if the context element is not set
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_wording_29"><a class="anchor" href="#_wording_29"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element located `$locator` to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of context element to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
@@ -2014,9 +2022,6 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <ol class="arabic">
 <li>
 <p><code>$attributeName</code> - name of an element&#8217;s attribute</p>
-</li>
-<li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
@@ -2032,25 +2037,26 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <div class="listingblock">
 <div class="title">Example 30. SaveAttributeValue.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
-When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
+When I change context to element located `By.id(username)`
+When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_number_of_elements_2"><a class="anchor" href="#_save_number_of_elements_2"></a>Save number of elements</h3>
+<h3 id="_save_attribute_value_of_element_2"><a class="anchor" href="#_save_attribute_value_of_element_2"></a>Save attribute value of element</h3>
 <div class="sect3">
 <h4 id="_info_30"><a class="anchor" href="#_info_30"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
-<p>Saves number of elements located by locator into a variable</p>
+<p>Saves attribute value of an element located by locator into a variable</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_wording_30"><a class="anchor" href="#_wording_30"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `$locator` to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element located `$locator` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
@@ -2058,6 +2064,9 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <h4 id="_parameters_28"><a class="anchor" href="#_parameters_28"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p><code>$attributeName</code> - name of an element&#8217;s attribute</p>
+</li>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
@@ -2073,7 +2082,50 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <div class="sect3">
 <h4 id="_usage_30"><a class="anchor" href="#_usage_30"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 31. SaveNumberOfElements.story</div>
+<div class="title">Example 31. SaveAttributeValue.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
+When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_number_of_elements_2"><a class="anchor" href="#_save_number_of_elements_2"></a>Save number of elements</h3>
+<div class="sect3">
+<h4 id="_info_31"><a class="anchor" href="#_info_31"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Saves number of elements located by locator into a variable</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_31"><a class="anchor" href="#_wording_31"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_29"><a class="anchor" href="#_parameters_29"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+</li>
+<li>
+<p><code>$variableName</code> - name of a variable</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_31"><a class="anchor" href="#_usage_31"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 32. SaveNumberOfElements.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save number of elements
 When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
@@ -2085,13 +2137,13 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="sect2">
 <h3 id="_change_context_2"><a class="anchor" href="#_change_context_2"></a>Change context</h3>
 <div class="sect3">
-<h4 id="_info_31"><a class="anchor" href="#_info_31"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_32"><a class="anchor" href="#_info_32"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Changes the context to an element located by locator for limiting area of subsequent UI interactions</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_31"><a class="anchor" href="#_wording_31"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_32"><a class="anchor" href="#_wording_32"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator`</code></pre>
@@ -2099,7 +2151,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_29"><a class="anchor" href="#_parameters_29"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_30"><a class="anchor" href="#_parameters_30"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2109,9 +2161,9 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_31"><a class="anchor" href="#_usage_31"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_32"><a class="anchor" href="#_usage_32"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 32. ChangeContext.story</div>
+<div class="title">Example 33. ChangeContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Change context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2124,13 +2176,13 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="sect2">
 <h3 id="_reset_context_2"><a class="anchor" href="#_reset_context_2"></a>Reset context</h3>
 <div class="sect3">
-<h4 id="_info_32"><a class="anchor" href="#_info_32"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_33"><a class="anchor" href="#_info_33"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Resets the context</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_32"><a class="anchor" href="#_wording_32"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_33"><a class="anchor" href="#_wording_33"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset context</code></pre>
@@ -2138,9 +2190,9 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_32"><a class="anchor" href="#_usage_32"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_33"><a class="anchor" href="#_usage_33"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 33. ResetContext.story</div>
+<div class="title">Example 34. ResetContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2155,13 +2207,13 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="sect2">
 <h3 id="_element_exists_for_duration_2"><a class="anchor" href="#_element_exists_for_duration_2"></a>Element exists for duration</h3>
 <div class="sect3">
-<h4 id="_info_33"><a class="anchor" href="#_info_33"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_34"><a class="anchor" href="#_info_34"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Verifies that an element located by locator exists for given duration</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_33"><a class="anchor" href="#_wording_33"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_34"><a class="anchor" href="#_wording_34"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `$locator` exists for `$duration` duration</code></pre>
@@ -2169,7 +2221,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_30"><a class="anchor" href="#_parameters_30"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_31"><a class="anchor" href="#_parameters_31"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2182,9 +2234,9 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_33"><a class="anchor" href="#_usage_33"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_34"><a class="anchor" href="#_usage_34"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 34. ElementExistence.story</div>
+<div class="title">Example 35. ElementExistence.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
 Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
@@ -2238,13 +2290,13 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`
 <div class="sect2">
 <h3 id="_verify_elements_order_2"><a class="anchor" href="#_verify_elements_order_2"></a>Verify elements order</h3>
 <div class="sect3">
-<h4 id="_info_34"><a class="anchor" href="#_info_34"></a><strong><em>Info</em></strong></h4>
+<h4 id="_info_35"><a class="anchor" href="#_info_35"></a><strong><em>Info</em></strong></h4>
 <div class="paragraph">
 <p>Gets a collection of elements by locator and checks that they are sorted by their text in the specified order. The collection should have more than 1 element with not empty text, otherwise the step fails.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wording_34"><a class="anchor" href="#_wording_34"></a><strong><em>Wording</em></strong></h4>
+<h4 id="_wording_35"><a class="anchor" href="#_wording_35"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then elements located `$locator` are sorted by text in $sortingOrder order</code></pre>
@@ -2252,7 +2304,7 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_31"><a class="anchor" href="#_parameters_31"></a><strong><em>Parameters</em></strong></h4>
+<h4 id="_parameters_32"><a class="anchor" href="#_parameters_32"></a><strong><em>Parameters</em></strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2265,9 +2317,9 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_34"><a class="anchor" href="#_usage_34"></a><strong><em>Usage</em></strong></h4>
+<h4 id="_usage_35"><a class="anchor" href="#_usage_35"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 35. OrderVerification.story</div>
+<div class="title">Example 36. OrderVerification.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Check items are sorted
 Given I am on a page with the URL 'https://grocery.by'
