@@ -338,18 +338,57 @@
 <div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
-<div class="admonitionblock warning">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To be implemented
+The properties marked with <strong>bold</strong> are mandatory.
 </td>
 </tr>
 </table>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Configuration of HTTP retries on service unavailability</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.max-retries</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of allowed retries if the server responds with a HTTP code from the retry code set defined below</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.status-codes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set of integers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The set of HTTP status codes to be retried. If it&#8217;s empty, no retries will be performed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.retry-interval</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1S</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The retry interval between subsequent requests</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
