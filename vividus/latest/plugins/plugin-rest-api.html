@@ -429,7 +429,7 @@ This expression allows to remove wrapping double quotes and use the value as is.
 <div class="title">Example 2. Extracting ID from JSON data and using it in HTTP GET</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save a JSON element from '${response}' by JSON path '$.id' to story variable 'id'
-When I send HTTP GET to the relative URL 'rest/${#{removeWrappingDoubleQuotes(${id})}}'</code></pre>
+When I send HTTP GET to the relative URL 'rest/#{removeWrappingDoubleQuotes(${id})}'</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
