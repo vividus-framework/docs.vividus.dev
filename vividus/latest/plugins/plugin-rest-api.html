@@ -407,6 +407,92 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </table>
 </div>
 <div class="sect2">
+<h3 id="_removewrappingdoublequotes"><a class="anchor" href="#_removewrappingdoublequotes"></a><code>removeWrappingDoubleQuotes</code></h3>
+<div class="paragraph">
+<p>When REST API providing the data in JSON format is used it may be required to extract some values from JSON messages.
+String values are usually wrapped into double quotes, but sometimes only the value without quotes is needed.
+This expression allows to remove wrapping double quotes and use the value as is.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{removeWrappingDoubleQuotes(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to remove wrapping double quotes</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Extracting ID from JSON data and using it in HTTP GET</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save a JSON element from '${response}' by JSON path '$.id' to story variable 'id'
+When I send HTTP GET to the relative URL 'rest/${#{removeWrappingDoubleQuotes(${id})}}'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Examples of the expressions removing wrapping double quotes</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("value")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes(value)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes()}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes(""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("value)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"value</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes(v"alu"e)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>v"alu"e</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("va"lu"e")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>va"lu"e</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("va"lu"e)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"va"lu"e</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes("va"lue)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"va"lue</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{removeWrappingDoubleQuotes(va"lue")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>va"lue"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_encodeurixyz"><a class="anchor" href="#_encodeurixyz"></a><code>encodeUriXyz</code></h3>
 <div class="paragraph">
 <p><code>#{encodeUriXyz(..)}</code> is a family of expressions that encode specific URI components (e.g. path, query)
@@ -457,7 +543,7 @@ are otherwise illegal within the given URI component type, as defined in
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Examples of the expressions encoding URI parts</caption>
+<caption class="title">Table 2. Examples of the expressions encoding URI parts</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -538,7 +624,7 @@ are otherwise illegal within the given URI component type, as defined in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Init HTTP request consisting of 4 different parts</div>
+<div class="title">Example 3. Init HTTP request consisting of 4 different parts</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given multipart request:
 |type  |name      |value         |contentType|fileName       |
@@ -567,7 +653,7 @@ are otherwise illegal within the given URI component type, as defined in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Add request header with name Accept-Language and value en-ru</div>
+<div class="title">Example 4. Add request header with name Accept-Language and value en-ru</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:
 |name           |value |
@@ -617,7 +703,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Wait for presence of element by JSON path $.data.testData</div>
+<div class="title">Example 5. Wait for presence of element by JSON path $.data.testData</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
 |step                                  |
@@ -653,7 +739,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
+<div class="title">Example 6. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `vividus-test-site.herokuapp.com` supports secure protocols that contain `TLSv1.2,TLSv1.3`</code></pre>
 </div>
