@@ -362,6 +362,39 @@
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_upload_data"><a class="anchor" href="#_upload_data"></a>Upload data</h3>
+<div class="paragraph">
+<p>Upload the specified data to Amazon S3 under the specified bucket and key name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload data `$data` with key `$objectKey` and content type `$contentType` to S3 bucket `$bucketName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$data</code> - the data to be uploaded</p>
+</li>
+<li>
+<p><code>$objectKey</code> - the key under which to store the specified data</p>
+</li>
+<li>
+<p><code>$contentType</code> - the MIME type of data</p>
+</li>
+<li>
+<p><code>$bucketName</code> - the name of an existing bucket</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Upload data to Amazon S3</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload data `{"my":"json"}` with key `folder/name.json` and content type `application/json` to S3 bucket `testBucket`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_download_s3_object"><a class="anchor" href="#_download_s3_object"></a>Download S3 object</h3>
 <div class="paragraph">
 <p>Retrieve the object by key from the provided S3 bucket and save its content to a variable. The specified bucket and object key must exist, or an error will result.</p>
@@ -388,7 +421,7 @@
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Download S3 object</div>
+<div class="title">Example 3. Download S3 object</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I fetch object with key `/path/file.json` from S3 bucket `some-bucket-name` and save result to scenario variable `my-json-var`</code></pre>
 </div>
