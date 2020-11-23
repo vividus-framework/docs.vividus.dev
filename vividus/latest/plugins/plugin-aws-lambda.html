@@ -336,10 +336,10 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In system environment variables: <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>.</p>
+<p>Environment variables: <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>.</p>
 </li>
 <li>
-<p>In the properties: <code>system.aws.accessKeyId</code> and <code>system.aws.secretKey</code>.</p>
+<p>The properties: <code>system.aws.accessKeyId</code> and <code>system.aws.secretKey</code>.</p>
 </li>
 <li>
 <p>Web Identity Token credentials from the environment or container.</p>
@@ -353,10 +353,41 @@
 <li>
 <p>In the <em>instance profile credentials</em>, which exist within the instance metadata associated with the IAM role for the EC2 instance. This step is available only when running your application on an Amazon EC2 instance, but provides the greatest ease of use and best security when working with Amazon EC2 instances.</p>
 </li>
+<li>
+<p>If the plugin still hasn’t found credentials by this point, client creation fails with an exception.</p>
+</li>
 </ol>
 </div>
 <div class="paragraph">
 <p>See the official <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default">"Working with AWS Credentials"</a> guide to get more details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_region_selection"><a class="anchor" href="#_region_selection"></a>Region Selection</h3>
+<div class="paragraph">
+<p>The plugin will search for credentials using <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-region-selection.html#default-region-provider-chain">the default region provider chain</a> in the following order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Environment variable: <code>AWS_REGION</code>.</p>
+</li>
+<li>
+<p>The property: <code>system.aws.region</code>.</p>
+</li>
+<li>
+<p>AWS shared configuration file (usually located at <code>~/.aws/config</code>).</p>
+</li>
+<li>
+<p>Use the Amazon EC2 instance metadata service to determine the region of the currently running Amazon EC2 instance.</p>
+</li>
+<li>
+<p>If the plugin still hasn’t found a region by this point, client creation fails with an exception.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See the official <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-region-selection.html">"AWS Region Selection"</a> guide to get more details.</p>
 </div>
 </div>
 </div>
