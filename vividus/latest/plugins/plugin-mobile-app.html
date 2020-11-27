@@ -1790,6 +1790,57 @@ When I change Appium session settings:
 </div>
 </div>
 <div class="sect2">
+<h3 id="_switch_to_web_view"><a class="anchor" href="#_switch_to_web_view"></a>Switch to web view</h3>
+<div class="paragraph">
+<p>Switches context to a web view by the index, it starts from 1.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to web view with index `$index`</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$index</code> - index of a web view</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. Switch to web view</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `0`
+When I switch to web view with index `1`
+Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_switch_to_native_context"><a class="anchor" href="#_switch_to_native_context"></a>Switch to native context</h3>
+<div class="paragraph">
+<p>Switches context to a mobile native context.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to native context</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 28. Switch to native context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
+When I switch to native context
+Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_verify_elements_number_2"><a class="anchor" href="#_verify_elements_number_2"></a>Verify elements number</h3>
 <div class="sect3">
 <h4 id="_info_26"><a class="anchor" href="#_info_26"></a><strong><em>Info</em></strong></h4>
@@ -1824,7 +1875,7 @@ When I change Appium session settings:
 <div class="sect3">
 <h4 id="_usage_26"><a class="anchor" href="#_usage_26"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 27. VerifyNumber.story</div>
+<div class="title">Example 29. VerifyNumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
 Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
@@ -1895,7 +1946,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 <div class="sect3">
 <h4 id="_usage_27"><a class="anchor" href="#_usage_27"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 28. VerifyState.story</div>
+<div class="title">Example 30. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -1933,7 +1984,7 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_28"><a class="anchor" href="#_usage_28"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 29. Wait.story</div>
+<div class="title">Example 31. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
 When I wait until element located `name(welcome-image)` appears</code></pre>
@@ -1970,7 +2021,7 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="sect3">
 <h4 id="_usage_29"><a class="anchor" href="#_usage_29"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 30. Wait.story</div>
+<div class="title">Example 32. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
 When I wait until element located `name(welcome-image)` disappears</code></pre>
@@ -2022,7 +2073,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_30"><a class="anchor" href="#_usage_30"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 31. SaveText.story</div>
+<div class="title">Example 33. SaveText.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
 When I change context to element located `By.id(username)`
@@ -2078,7 +2129,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_31"><a class="anchor" href="#_usage_31"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 32. SaveAttributeValue.story</div>
+<div class="title">Example 34. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
 When I change context to element located `By.id(username)`
@@ -2125,7 +2176,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <div class="sect3">
 <h4 id="_usage_32"><a class="anchor" href="#_usage_32"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 33. SaveAttributeValue.story</div>
+<div class="title">Example 35. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
 When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
@@ -2168,7 +2219,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <div class="sect3">
 <h4 id="_usage_33"><a class="anchor" href="#_usage_33"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 34. SaveNumberOfElements.story</div>
+<div class="title">Example 36. SaveNumberOfElements.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save number of elements
 When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
@@ -2206,7 +2257,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_34"><a class="anchor" href="#_usage_34"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 35. ChangeContext.story</div>
+<div class="title">Example 37. ChangeContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Change context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2235,7 +2286,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="sect3">
 <h4 id="_usage_35"><a class="anchor" href="#_usage_35"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 36. ResetContext.story</div>
+<div class="title">Example 38. ResetContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2279,7 +2330,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_36"><a class="anchor" href="#_usage_36"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 37. ElementExistence.story</div>
+<div class="title">Example 39. ElementExistence.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
 Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
@@ -2306,7 +2357,7 @@ Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
 <div class="sect3">
 <h4 id="_usage_37"><a class="anchor" href="#_usage_37"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 38. Navigate back</div>
+<div class="title">Example 40. Navigate back</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Navigate back
 Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
@@ -2348,7 +2399,7 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`</cod
 <div class="sect3">
 <h4 id="_usage_38"><a class="anchor" href="#_usage_38"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 39. OrderVerification.story</div>
+<div class="title">Example 41. OrderVerification.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Check items are sorted
 Given I am on a page with the URL 'https://grocery.by'
