@@ -1870,6 +1870,105 @@ Then number of HTTP GET requests with URL pattern `http://httpbin\.org/get` is e
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_proxy_mock_response_with_content"><a class="anchor" href="#_proxy_mock_response_with_content"></a>Proxy - Mock response with content</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+Mocks HTTP response with a provided content</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+No actual request will be executed. Short-circuited response will be returned.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - the input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - response status code</p>
+</li>
+<li>
+<p><code>$content</code> - content to send within a response</p>
+</li>
+<li>
+<p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. Hijack a page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
+|name        |value    |
+|Content-Type|text/html|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_mock_response_without_content"><a class="anchor" href="#_proxy_mock_response_without_content"></a>Proxy - Mock response without content</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+Mocks HTTP response</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+No actual request will be executed. Short-circuited response will be returned.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode` and headers:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - the input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - response status code</p>
+</li>
+<li>
+<p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 28. 404 page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
+|name          |value|
+|Content-Length|0    |</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
