@@ -1851,7 +1851,7 @@ Then a JSON element from '${response}' by the JSON path '$.headers' is equal to 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_proxy_clear"><a class="anchor" href="#_proxy_clear"></a>Proxy - Clear</h3>
+<h3 id="_proxy_clear_log"><a class="anchor" href="#_proxy_clear_log"></a>Proxy - Clear Log</h3>
 <div class="paragraph">
 <p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
 The step clears the HTTP requests and responses recorded by the proxy</p>
@@ -1867,6 +1867,29 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http:/httpbin.org/get'
 When I clear proxy log
 Then number of HTTP GET requests with URL pattern `http://httpbin\.org/get` is equal to `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_clear_mocks"><a class="anchor" href="#_proxy_clear_mocks"></a>Proxy - Clear Mocks</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on: it can be done by setting the corresponding properties or by switching on @proxy meta tag at story level.
+The step clears previously created mocks</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy mocks</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. Clear the proxy mocks</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadResource(page.html)}` and headers:
+|name        |value    |
+|Content-Type|text/html|
+When I clear proxy mocks
+Given I am on a page with the URL '${vividus-test-site-url}/frames.html'
+Then number of elements found by `id(sw)` is = `0`</code></pre>
 </div>
 </div>
 </div>
@@ -1913,7 +1936,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Hijack a page</div>
+<div class="title">Example 28. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -1961,7 +1984,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. 404 page</div>
+<div class="title">Example 29. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
