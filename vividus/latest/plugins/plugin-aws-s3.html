@@ -483,6 +483,36 @@
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_set_s3_object_acl"><a class="anchor" href="#_set_s3_object_acl"></a>Set S3 object ACL</h3>
+<div class="paragraph">
+<p>Set <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">the canned access control list (ACL)</a> for the specified object in Amazon S3. Each bucket and object in Amazon S3 has an ACL that defines its access control policy. When a request is made, Amazon S3 authenticates the request using its standard authentication procedure and then checks the ACL to verify the sender was granted access to the bucket or object. If the sender is approved, the request proceeds. Otherwise, Amazon S3 returns an error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set ACL `$cannedAcl` for object with key `$objectKey` from S3 bucket `$bucketName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cannedAcl</code> - The new pre-configured canned ACL for the specified object. (See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">the official documentation</a> for a complete list of the available ACLs)</p>
+</li>
+<li>
+<p><code>$objectKey</code> - The key of the object within the specified bucket whose ACL is being set.</p>
+</li>
+<li>
+<p><code>$bucketName</code> - The name of the bucket containing the object whose ACL is being set</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Set public READ permission</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set ACL `public-read` for object with key `/path/file.json` from S3 bucket `some-bucket-name`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
