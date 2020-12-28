@@ -342,6 +342,99 @@
 <article class="doc">
 <h1 class="page">Tests Configuration</h1>
 <div class="sect1">
+<h2 id="_configuration_properties"><a class="anchor" href="#_configuration_properties"></a><code>configuration.properties</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Vividus configuration includes the following parts: profiles, environments and suite.</p>
+</div>
+<div class="sect2">
+<h3 id="_suite"><a class="anchor" href="#_suite"></a>Suite</h3>
+<div class="paragraph">
+<p>The suite is defined by the property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.suite</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Vividus suite consists of the unlimited number of batches. In its turn the batch consists of any number of stories represented by the files with <code>*.story</code> extension. The batches are run sequentially, while the stories in the batch are run in parallel.</p>
+</div>
+<div class="paragraph">
+<p>The following properties are used to configure batches (Vividus doesn&#8217;t provide any default batch configuration out of the box). <code>batch-number</code> is one-based batch index.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>bdd.story-loader.batch-&lt;batch-number&gt;.resource-location</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The test project path to the folder with story-files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.story-loader.batch-&lt;batch-number&gt;.resource-include-patterns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated set of <a href="https://ant.apache.org/manual/dirtasks.html#patterns">ant-patterns</a> to match the stories to be included in the batch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.story-loader.batch-&lt;batch-number&gt;.resource-exclude-patterns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated set of <a href="https://ant.apache.org/manual/dirtasks.html#patterns">ant-patterns</a> to match the stories to be excluded from the batch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.batch-&lt;batch-number&gt;.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the batch to display in the report</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.batch-&lt;batch-number&gt;.threads</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of parallel threads used to run stories</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.batch-&lt;batch-number&gt;.meta-filters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suite meta-filter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The meta-filter used to filter the batch stories and scenarios</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.batch-&lt;batch-number&gt;.ignore-failure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>false</code> and any failure is occurred during the batch execution, the subsequent batches are not executed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.batch-&lt;batch-number&gt;.story-execution-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT3H</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The max duration of the single story in the batch.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_selenium_grid"><a class="anchor" href="#_selenium_grid"></a>Selenium Grid</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -394,13 +487,13 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.fileName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issues.json</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>known-issue-provider.fileName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>known-issues.json</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines the location of the known issues file</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">known-issue-provider.detect-potentially-known-issues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>known-issue-provider.detect-potentially-known-issues</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines are potentially known issues detected</p></td>
 </tr>
 </tbody>
