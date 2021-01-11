@@ -187,7 +187,7 @@
     <a class="nav-link" href="plugin-html.html">HTML*</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#plugin-lambda-test.adoc">LambdaTest</a>
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-kafka.html">Kafka</a>
@@ -444,9 +444,6 @@ Links to SauceLabs test runs can be found in Allure report
 <div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>See <a href="#tests-development:tests-configuration.adoc#_selenium_grid" class="page unresolved">Selenium Grid</a> properties to configure generic options.</p>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -475,6 +472,24 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selenium.grid.host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hostname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines remote grid host to be used to create a new session</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selenium.grid.username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines remote grid username to be used to create a new session</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selenium.grid.password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines password to be used to create a new session</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>saucelabs.data-center</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
