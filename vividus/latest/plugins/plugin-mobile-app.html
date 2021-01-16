@@ -755,6 +755,29 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <div class="paragraph">
 <p>Gets the text of the system clipboard of simulator or real device</p>
 </div>
+<div class="sect3">
+<h4 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.wda-bundle-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The property is for iOS real devices only and it specifies the WebDriverAgent bundle ID used to <a href="http://appium.io/docs/en/commands/device/clipboard/get-clipboard/#description">get clipboard text</a>. The property value may vary depending on test cloud providers and can be found in the XCode logs.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">${clipboard-text}</code></pre>
@@ -764,6 +787,7 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <div class="title">Example 2. Verify clipboard content</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${clipboard-text}` is equal to `uarlouski@gmail.com`</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1093,7 +1117,7 @@ When I clear field located `accessibilityId(username)`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h4>
+<h4 id="_properties_3"><a class="anchor" href="#_properties_3"></a>Properties</h4>
 <div class="ulist">
 <ul>
 <li>
