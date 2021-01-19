@@ -370,7 +370,7 @@
 <div class="sect2">
 <h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
 <div class="paragraph">
-<p>The plugin will search for credentials using <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default">the default credential provider chain</a> in the following order:</p>
+<p>The plugin attempts to find AWS credentials by using <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default">the default credential provider chain</a>. The provider chain looks for credentials using the provided below options one by one starting from the top. If credentials are found at some point, the search stops and further options are not evaluated.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -404,7 +404,7 @@
 <div class="sect2">
 <h3 id="_region_selection"><a class="anchor" href="#_region_selection"></a>Region Selection</h3>
 <div class="paragraph">
-<p>The plugin will search for credentials using <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-region-selection.html#default-region-provider-chain">the default region provider chain</a> in the following order:</p>
+<p>The plugin attempts to find AWS region by using <a href="https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-region-selection.html#default-region-provider-chain">the default region provider chain</a>. The provider chain looks for a region using the provided below options one by one starting from the top. If region is found at some point, the search stops and further options are not evaluated.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
