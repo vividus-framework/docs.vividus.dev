@@ -614,6 +614,33 @@ When I fetch object with key `${s3-keys[0]}` from S3 bucket `some-bucket-name` a
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_delete_s3_object"><a class="anchor" href="#_delete_s3_object"></a>Delete S3 object</h3>
+<div class="paragraph">
+<p>Delete the specified object in the specified bucket. Once deleted, the object can only be restored if versioning was enabled when the object was deleted. If attempting to delete an object that does not exist, Amazon S3 returns a success message instead of an error message.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete object with key `$objectKey` from S3 bucket `$bucketName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$objectKey</code> - The key of the object to delete.</p>
+</li>
+<li>
+<p><code>$bucketName</code> - The name of the Amazon S3 bucket containing the object to delete.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Delete S3 object</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete object with key `/path/file.json` from S3 bucket `some-bucket-name`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
