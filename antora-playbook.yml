@@ -1,5 +1,5 @@
 site:
-  title: Vividus - all in one test automation tool
+  title: VIVIDUS
   url: https://docs.vividus.dev/
   start_page: vividus::index.adoc
   robots: allow
@@ -17,6 +17,6 @@ ui:
     snapshot: true
   supplemental_files: ./supplemental-ui
 
-output: 
+output:
   clean: true
   dir: ./public
