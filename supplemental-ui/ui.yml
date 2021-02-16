@@ -8,3 +8,4 @@ static_files:
 - browserconfig.xml
 - mslite-150-150.png
 - favicon.ico
+- index.php
