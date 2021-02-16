@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>MongoDB Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-mongodb.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -196,7 +196,7 @@
     <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
@@ -320,7 +320,7 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-mongodb.html">MongoDB*</a></li>
+    <li><a href="plugin-mongodb.html">MongoDB</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -348,8 +348,216 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">MongoDB Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides a functionality to interact with <a href="https://www.mongodb.com/">MongoDB</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-mongodb', version: '0.3.1-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s allowed to configure an unlimited number of MongoDB connections via the mechanism of the dynamic properties. The properties prefix example is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">mongodb.connection.my-mongodb-instance=mongodb+srv://username:password@mock-zzw4a.mongodb.net/test?retryWrites=true&amp;w=majority</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>my-mongodb-instance</code> is a key used to refer a MongoDB connection in the steps. The key is defined by users, must be unique and can&#8217;t contain dots.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_execute_database_command"><a class="anchor" href="#_execute_database_command"></a>Execute database command</h3>
+<div class="paragraph">
+<p>Executes a mongo database command against a mongo database and saves the command result to a variable</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.mongodb.com/manual/reference/command/">Database commands</a></p>
+</li>
+<li>
+<p>For the <code>find</code> command the number of documents returned from the database is limited by the <code>batchSize</code> property that defaults to 101, so if you expect a dataset larger than the default value then adjust the <code>batchSize</code> property according to the number of expected documents</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `$command` against `$dbName` database on `$instanceKey` MongoDB instance and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$command</code> - The database command to execute</p>
+</li>
+<li>
+<p><code>$dbName</code> - The database name</p>
+</li>
+<li>
+<p><code>$instanceKey</code> - The key of a particular connection under <code>mongodb.connection.</code> prefix</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store results in JSON format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Find employees who are older than 20 years</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `
+{
+    find: "employees",
+    filter: { age: { $gte: 20 } },
+    sort: { age: 1 },
+    projection: { age: 1, name: 1, _id: 0 },
+    batchSize: 500
+}
+` against `users` database on `my-mongodb-instance` MongoDB instance and save result to SCENARIO variable `find`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_chained_commands"><a class="anchor" href="#_execute_chained_commands"></a>Execute chained commands</h3>
+<div class="paragraph">
+<p>Executes an assembled sequence of predefined commands against a mongo database and saves the result to a variable</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Commands</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3335%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selects documents in a collection, takes JSON as an argument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ age: { $gte: 20 }, city: "minsk" }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">intermediate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">determine which fields to include in the returned documents, takes JSON as an argument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ age: 1, city: 1, name: 0 }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">count</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">terminal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">counts the number of documents in a collection, takes no arguments</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">collect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">terminal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">collects previously found documents into JSON format, takes no arguments</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Command sequence must start with a <code>source</code> command followed by any number of <code>intermediate</code> commands and end with a <code>terminal</code> command</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands $commands in `$collectionName` collection against `$dbName` database on `$instanceKey` MongoDB instance and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$commands</code> - The sequence of commands to execute</p>
+</li>
+<li>
+<p><code>$collectionName</code> - The collection name to retrieve documents from</p>
+</li>
+<li>
+<p><code>$dbName</code> - The database name</p>
+</li>
+<li>
+<p><code>$instanceKey</code> - Key of a particular connection under <code>mongodb.connection.</code> prefix</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store results in JSON format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Find employees who are older than 20 years</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands
+|command   |argument                   |
+|find      |{ age: { $gte: 20 } }      |
+|projection|{ age: 1, name: 1, _id: 0 }|
+|count     |                           |
+ in `employees` collection against `users` database on `my-mongodb-instance` MongoDB instance and save result to SCENARIO variable `find`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
