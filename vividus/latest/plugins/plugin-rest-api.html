@@ -1113,6 +1113,55 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_validate_http_resources"><a class="anchor" href="#_validate_http_resources"></a><strong>Validate HTTP resources</strong></h3>
+<div class="paragraph">
+<p>Validates the defined HTTP resources</p>
+</div>
+<div class="paragraph">
+<p>Actions performed by step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>executes <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HTTP HEAD</a> request against the passed URL</p>
+</li>
+<li>
+<p>if the status code is <code>200</code> then the check is considered as <code>passed</code></p>
+</li>
+<li>
+<p>if the status code falls under any of <code>404</code>, <code>405</code>, <code>501</code>, <code>503</code> then the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">HTTP GET</a> request will be sent</p>
+</li>
+<li>
+<p>if the GET status code is <code>200</code> then check is considered as <code>passed</code>, otherwise <code>failed</code></p>
+</li>
+<li>
+<p>if the target URL had beed already checked then the check is considered as <code>skipped</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:$resources</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>resources</code> - The URLs of HTTP resources to validate</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Verify HTTP resources</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
+|url                                                    |
+|https://saucelabs.com                                  |
+|https://vividus-test-site.herokuapp.com/img/vividus.png|</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
