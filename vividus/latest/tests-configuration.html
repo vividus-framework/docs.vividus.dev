@@ -853,6 +853,47 @@ Then `1` is = `1`</pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_story_prioritization"><a class="anchor" href="#_story_prioritization"></a>Story Prioritization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to start stories in particular order it is possible to assign the stories a numeric priority, the stories with the higher priority start first.</p>
+</div>
+<div class="paragraph">
+<p>To enable the feature create a file <code>spring.xml</code> in the <code>src/main/resources</code> directory and add the following XML data into that file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="false"&gt;
+
+    &lt;bean class="org.vividus.bdd.priority.MetaBasedStoryExecutionPriority" factory-method="byNumericMetaValue"&gt;
+        &lt;constructor-arg index="0" value="story_priority" /&gt;
+    &lt;/bean&gt;
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>story_priority</code> value that corresponds to a meta name in stories can be changed to arbitrary value without spaces.</p>
+</div>
+<div class="paragraph">
+<p>Taking <code>story_priority</code> as an example the priority meta should be placed at the story level as the following example shows:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Prioritized.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta: @story_priority 15
+
+Scenario: Time consuming test
+When I perform highly time consuming task</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
