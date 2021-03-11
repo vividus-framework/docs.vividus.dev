@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>Visual Testing Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-visual.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -368,8 +368,492 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Visual Testing Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin for visual testing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-visual', version: '0.3.3-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.ignored-elements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-web-app.html#_locator" class="page">locators</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated list of locators of elements to ignore element areas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.ignored-areas</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-web-app.html#_locator" class="page">locators</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated list of locators of elements to ignore page areas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.baselines-folder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>./baseline</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to folder for saving baselines (root folder is <code>src/main/resources</code>).
+For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/main/resources/baselines</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.indexer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to append scenario based index to a baseline name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.override-baselines</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used for overriding existing ones or creating not existing baselines during compare action</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.acceptable-diff-percentage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">percentage numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add ability to configure sensitivity for visual checks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.debug-directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to folder for saving debug screenshots. For example, <code>web.visual.baselines-folder=C:/temp/debug</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_use"><a class="anchor" href="#_how_to_use"></a>How to use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Plugin has two monumental actions: <code>ESTABLISH</code> and <code>COMPARE_AGAINST</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_establish"><a class="anchor" href="#_establish"></a><code>ESTABLISH</code></h3>
+<div class="paragraph">
+<p>Action creates baseline image.</p>
+</div>
+<div class="paragraph">
+<p>Steps to establish baseline:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run step <code>When I ESTABLISH baseline with `name`</code></p>
+</li>
+<li>
+<p>Open report</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/report_establish.png" alt="Allure report with visual check on establish">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Save image using <code>contextual mouse click</code> &#8594; Save as into folder for baselines</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/establish_baseline.png" alt="Baseline view">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/save_baseline.png" alt="Saving baseline">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_against"><a class="anchor" href="#_compare_against"></a><code>COMPARE_AGAINST</code></h3>
+<div class="paragraph">
+<p>Compares actual appearance of the page or element against baseline. Make sure you have baseline.</p>
+</div>
+<div class="paragraph">
+<p>Steps to compare baseline:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run step <code>When I COMPARE_AGAINST baseline with `name`</code></p>
+</li>
+<li>
+<p>Open report</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/report_compare.png" alt="Allure report with visual check on compare">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Review comparison results</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/comparison_result.png" alt="Comparison result view">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you need to accept the new baseline:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>a) Switch to checkpoint view</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/checkpoint.png" alt="Checkpoint view">
+</div>
+</div>
+<div class="paragraph">
+<p>b) Contextual click on the checkpoint image &#8594; save as to baseline folder</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visual_testing_with_custom_shooting_strategies"><a class="anchor" href="#_visual_testing_with_custom_shooting_strategies"></a>Visual testing with custom shooting strategies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to support screenshot taking configuration per-project/per-step basis framework provides following approach.</p>
+</div>
+<div class="sect2">
+<h3 id="_property_based_configuration"><a class="anchor" href="#_property_based_configuration"></a>Property based configuration</h3>
+<div class="paragraph">
+<p>Property based configuration could be specified using <code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
+where:
+<code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;
+<code>PROPERTY_NAME</code> - name of the property you want specify.</p>
+</div>
+<div class="sect3">
+<h4 id="_available_properties_all_of_there_not_mandatory"><a class="anchor" href="#_available_properties_all_of_there_not_mandatory"></a>Available properties (all of there not mandatory):</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web header to cut (could be useful if your site has sticky header)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web footer to cut (could be useful if your site has sticky footer)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native header to cut</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native footer to cut</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.coords-provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WEB_DRIVER</code> <code>CEILING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds margins to coordinates, default one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scroll-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">time in millis</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for scrolling during performing visual check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scrollable-element</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locator of element for performing scroll action during visual check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.screenshot-shooting-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code> <code>VIEWPORT_PASTING</code> <code>DEVICE_DEPENDENT</code> <code>PHONE_ANDROID_PORTRAIT</code> <code>PHONE_ANDROID_LANDSCAPE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>VIEWPORT_PASTING</code> by default)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.shooting-strategy=YOUR_STRATEGY_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">After configuration necessary properties use this one to enable your custom strategy</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Please see the image to get a clue about difference between native/web footer/header to cut.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/example.png" alt="Difference between native/web footer/header image">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_based_configuration"><a class="anchor" href="#_step_based_configuration"></a>Step based configuration</h3>
+<div class="paragraph">
+<p>To use custom configuration per step, two new steps were implemented.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with `$baselineName` using screenshot configuration:$screenshotConfiguration</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with `$baselineName` ignoring:$ignoringElement using screenshot configuration:$screenshotConfiguration</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_examples_of_usage_property_based_configuration"><a class="anchor" href="#_examples_of_usage_property_based_configuration"></a><strong>Examples of usage property based configuration:</strong></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">selenium.screenshot.strategy.bombaysapphire.web-header-to-cut=80
+selenium.screenshot.strategy.bombaysapphire.web-footer-to-cut=0
+selenium.screenshot.strategy.bombaysapphire.scrollable-element=By.cssSelector(.page__inner)
+selenium.screenshot.strategy.bombaysapphire.scroll-timeout=PT1S
+selenium.screenshot.strategy.bombaysapphire.screenshot-shooting-strategy=SIMPLE
+selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_examples_of_usage_step_based_configuration"><a class="anchor" href="#_examples_of_usage_step_based_configuration"></a><strong>Examples of usage step based configuration:</strong></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
+|scrollableElement                    |webHeaderToCut|webFooterToCut|scrollTimeout|screenshotShootingStrategy|
+|By.xpath(//div[@class="page__inner"])|80            |0             |PT1S         |SIMPLE                    |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_run_simple_visual_test"><a class="anchor" href="#_run_simple_visual_test"></a>Run simple visual test</h3>
+<div class="sect3">
+<h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Step establishes baseline or compares against existing one</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with `$name`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+</li>
+<li>
+<p><code>name</code> - name of baseline</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 2. Perform simple visual check on compare</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with `test`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_visual_test_with_specified_configuration"><a class="anchor" href="#_run_visual_test_with_specified_configuration"></a>Run visual test with specified configuration</h3>
+<div class="sect3">
+<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Step establishes baseline or compares against existing one with using specified configuration</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with `$name` using screenshot configuration:$screenshotConfiguration</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+</li>
+<li>
+<p><code>name</code> - name of baseline</p>
+</li>
+<li>
+<p><code>screenshotConfiguration</code> - configuration to make screenshot</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 3. Perform visual check on establish with specified configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with `test` using screenshot configuration:
+|scrollableElement  |webFooterToCut|webHeaderToCut|coordsProvider|
+|By.xpath(.//header)|100           |100           |CEILING       |</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_visual_test_with_ignoring_option"><a class="anchor" href="#_run_visual_test_with_ignoring_option"></a>Run visual test with ignoring option</h3>
+<div class="sect3">
+<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Step establishes baseline or compares against existing one with using ignoring option</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with `$name` ignoring:$ignoredElements</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+</li>
+<li>
+<p><code>name</code> - name of baseline</p>
+</li>
+<li>
+<p><code>ignoredElements</code> - examples table of strategies (<code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code>) and locators or acceptable diff percentage to ignore</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 4. Perform visual check on compare with ignoring options</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with `test` ignoring:
+|ELEMENT            |AREA                  |ACCEPTABLE_DIFF_PERCENTAGE|
+|By.xpath(.//header)|By.cssSelector(footer)|5                         |</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_visual_test_with_ignoring_option_and_specified_configuration"><a class="anchor" href="#_run_visual_test_with_ignoring_option_and_specified_configuration"></a>Run visual test with ignoring option and specified configuration</h3>
+<div class="sect3">
+<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Step establishes baseline or compares against existing one with using ignoring option and specified configuration</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with `$name` ignoring:$ignoredElements using screenshot configuration:$screenshotConfiguration</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+</li>
+<li>
+<p><code>name</code> - name of baseline</p>
+</li>
+<li>
+<p><code>ignoredElements</code> - examples table of strategies (<code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code>) and locators or acceptable diff percentage to ignore</p>
+</li>
+<li>
+<p><code>screenshotConfiguration</code> - configuration to make screenshot</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 5. Perform visual check on establish with ignoring options and specified configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with `test` ignoring:
+|ELEMENT            |AREA                  |ACCEPTABLE_DIFF_PERCENTAGE|
+|By.xpath(.//header)|By.cssSelector(footer)|5                         |
+using screenshot configuration:
+|scrollableElement  |webFooterToCut|webHeaderToCut|coordsProvider|
+|By.xpath(.//header)|100           |100           |CEILING       |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
