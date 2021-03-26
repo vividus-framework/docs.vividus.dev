@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>JSON Plugin :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-json.html">
+    <title>Azure Event Grid Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-azure-event-grid.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -166,7 +166,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="azure.html">Azure</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -352,13 +352,15 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li><a href="plugin-json.html">JSON Plugin</a></li>
+    <li>Plugins</li>
+    <li><a href="azure.html">Azure</a></li>
+    <li><a href="plugin-azure-event-grid.html">Event Grid</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-json.html">latest</a>
+    <a class="version is-current" href="plugin-azure-event-grid.html">latest</a>
     <a class="version is-missing" href="../../0.3.2/index.html">0.3.2</a>
     <a class="version is-missing" href="../../0.3.1/index.html">0.3.1</a>
     <a class="version is-missing" href="../../0.3.0/index.html">0.3.0</a>
@@ -375,18 +377,18 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-json.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-azure-event-grid.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">JSON Plugin</h1>
+<h1 class="page">Azure Event Grid Plugin</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides different actions to interact with JSON.</p>
+<p>The plugin provides functionality to interact with <a href="https://azure.microsoft.com/en-us/services/event-grid/">Event Grid</a></p>
 </div>
 </div>
 </div>
@@ -396,7 +398,49 @@
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-json', version: '0.3.3-SNAPSHOT')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-azure-event-grid', version: '0.3.3-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_topics_configuration"><a class="anchor" href="#_topics_configuration"></a>Topics configuration</h3>
+<div class="paragraph">
+<p>Topics are configured with a set of properties with the following format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">azure.event-grid.{topic-name}.{property-name}=property value</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>topic-name</code> - The name of the topic which will be used as a step parameter</p>
+</li>
+<li>
+<p><code>property-name</code> - The name of the topic property. One of:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>key</code> - The topic access key</p>
+</li>
+<li>
+<p><code>event-schema</code> - The kind of <a href="https://docs.microsoft.com/en-us/azure/event-grid/event-schema">schema</a> (GRID, CLOUD or CUSTOM)</p>
+</li>
+<li>
+<p><code>endpoint</code> - The topic endpoint</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -405,35 +449,40 @@
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_patch_json"><a class="anchor" href="#_patch_json"></a>Patch JSON</h3>
+<h3 id="_publish_event"><a class="anchor" href="#_publish_event"></a>Publish event</h3>
+<div class="paragraph">
+<p>Publishes an event to a topic</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `$sourceJson` using `$jsonPatch` and save result to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event to `$topicName` topic with payload:$payload</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$sourceJson</code> - JSON data to be patched.</p>
+<p><code>$topicName</code> - The name of the topic, will be used to find required properties values</p>
 </li>
 <li>
-<p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://tools.ietf.org/html/rfc6902#page-6">RFC-6902</a></p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a></p>
-</li>
-<li>
-<p><code>$variableName</code> - The variable name</p>
+<p><code>$payload</code> - The JSON payload to send to a topic</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 2. Patch JSON data</div>
+<div class="title">Example 2. Send an event</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"c"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJSON`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event to `create-user` topic with payload:
+{
+  "id": "1807",
+  "eventType": "RegisterVehicle",
+  "subject": "myapp/vehicles/motorcycles",
+  "eventTime": "2017-08-10T21:03:07+00:00",
+  "data": {
+    "make": "Ducati",
+    "model": "Monster"
+  },
+  "dataVersion": "1.0"
+}</code></pre>
 </div>
 </div>
 </div>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>JSON Plugin :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-json.html">
+    <title>Azure Storage Queue Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-azure-storage-queue.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -172,7 +172,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
   </li>
 </ul>
@@ -352,13 +352,15 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li><a href="plugin-json.html">JSON Plugin</a></li>
+    <li>Plugins</li>
+    <li><a href="azure.html">Azure</a></li>
+    <li><a href="plugin-azure-storage-queue.html">Storage Queue</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-json.html">latest</a>
+    <a class="version is-current" href="plugin-azure-storage-queue.html">latest</a>
     <a class="version is-missing" href="../../0.3.2/index.html">0.3.2</a>
     <a class="version is-missing" href="../../0.3.1/index.html">0.3.1</a>
     <a class="version is-missing" href="../../0.3.0/index.html">0.3.0</a>
@@ -375,18 +377,18 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-json.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-azure-storage-queue.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">JSON Plugin</h1>
+<h1 class="page">Azure Storage Queue Plugin</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides different actions to interact with JSON.</p>
+<p>The plugin provides functionality to interact with <a href="https://azure.microsoft.com/en-us/services/storage/queues/">Storage Queue</a></p>
 </div>
 </div>
 </div>
@@ -396,7 +398,49 @@
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-json', version: '0.3.3-SNAPSHOT')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-azure-storage-queue', version: '0.3.3-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_queues_configuration"><a class="anchor" href="#_queues_configuration"></a>Queues configuration</h3>
+<div class="paragraph">
+<p>Queues are configured with a set of properties with the following format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">azure.storage.queue.{queue-name}.{property-name}=property value</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>queue-name</code> - The name of the queue which will be used as a step parameter</p>
+</li>
+<li>
+<p><code>property-name</code> - The name of the queue property. One of:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>name</code> - The name of the queue</p>
+</li>
+<li>
+<p><code>sas-token</code> - The <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview">SAS token</a></p>
+</li>
+<li>
+<p><code>queue</code> - The queue endpoint</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -405,35 +449,108 @@
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_patch_json"><a class="anchor" href="#_patch_json"></a>Patch JSON</h3>
+<h3 id="_peek_messages"><a class="anchor" href="#_peek_messages"></a>Peek messages</h3>
+<div class="paragraph">
+<p>Peeks messages from the queue</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `$sourceJson` using `$jsonPatch` and save result to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I peek up to `$count` messages from queue `$queueName` and save result to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$sourceJson</code> - JSON data to be patched.</p>
+<p><code>$count</code> - The nember of messages to peek</p>
 </li>
 <li>
-<p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://tools.ietf.org/html/rfc6902#page-6">RFC-6902</a></p>
+<p><code>$queueName</code> - The name of the queue</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
-<p><code>$variableName</code> - The variable name</p>
+<p><code>$variableName</code> - The variable name to store results in JSON format. If the variable name is <code>my-var</code>, the following variables will be created:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${my-var[0].messageId}</code> - The message id</p>
+</li>
+<li>
+<p><code>${my-var[0].insertionTime}</code> - The message insertion time</p>
+</li>
+<li>
+<p><code>${my-var[0].expirationTime}</code> - The message expiration time</p>
+</li>
+<li>
+<p><code>${my-var[0].messageText}</code> - The message text</p>
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Peek the messages</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I peek up to `5` messages from queue `users` and save result to scenario variable `messages`
+Then `{"name" : "azure"}` is equal to `${messages[0].messageText}`</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<h3 id="_send_message"><a class="anchor" href="#_send_message"></a>Send message</h3>
+<div class="paragraph">
+<p>Sends message to the queue</p>
+</div>
 <div class="listingblock">
-<div class="title">Example 2. Patch JSON data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"c"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJSON`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message `$message` to queue `$queueName` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$message</code> - The message to send</p>
+</li>
+<li>
+<p><code>$queueName</code> - The name of the queue</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store results in JSON format. If the variable name is <code>my-var</code>, the following variables will be created:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${my-var.messageId}</code> - The message id</p>
+</li>
+<li>
+<p><code>${my-var.insertionTime}</code> - The message insertion time</p>
+</li>
+<li>
+<p><code>${my-var.expirationTime}</code> - The message expiration time</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Send the messages</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message `{
+  "id": "1807",
+  "eventType": "CreateUser",
+  "subject": "myapp/vehicles/motorcycles",
+  "eventTime": "2021-03-22T12:44:07+00:00",
+  "data": {
+    "make": "lada",
+    "model": "xray"
+  },
+  "dataVersion": "1.0"
+}` to queue `users` and save result to scenario variable `result`</code></pre>
 </div>
 </div>
 </div>
