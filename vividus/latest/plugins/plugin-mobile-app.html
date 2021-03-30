@@ -2053,6 +2053,36 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_press_keys"><a class="anchor" href="#_press_keys"></a>Press keys</h3>
+<div class="paragraph">
+<p>Presses a sequence of <a href="https://github.com/appium/appium-xcuitest-driver#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press keys:$keys</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$keys</code> - The keys to press</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Enter password</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press keys:
+|key|
+|P  |
+|a  |
+|s  |
+|1  |
+|$  |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_verify_elements_number_2"><a class="anchor" href="#_verify_elements_number_2"></a>Verify elements number</h3>
 <div class="sect3">
 <h4 id="_info_26"><a class="anchor" href="#_info_26"></a><strong><em>Info</em></strong></h4>
@@ -2087,7 +2117,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 <div class="sect3">
 <h4 id="_usage_26"><a class="anchor" href="#_usage_26"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 31. VerifyNumber.story</div>
+<div class="title">Example 32. VerifyNumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
 Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
@@ -2158,7 +2188,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 <div class="sect3">
 <h4 id="_usage_27"><a class="anchor" href="#_usage_27"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 32. VerifyState.story</div>
+<div class="title">Example 33. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -2196,7 +2226,7 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_28"><a class="anchor" href="#_usage_28"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 33. Wait.story</div>
+<div class="title">Example 34. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
 When I wait until element located `name(welcome-image)` appears</code></pre>
@@ -2233,7 +2263,7 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="sect3">
 <h4 id="_usage_29"><a class="anchor" href="#_usage_29"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 34. Wait.story</div>
+<div class="title">Example 35. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
 When I wait until element located `name(welcome-image)` disappears</code></pre>
@@ -2285,7 +2315,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_30"><a class="anchor" href="#_usage_30"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 35. SaveText.story</div>
+<div class="title">Example 36. SaveText.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
 When I change context to element located `By.id(username)`
@@ -2341,7 +2371,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_31"><a class="anchor" href="#_usage_31"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 36. SaveAttributeValue.story</div>
+<div class="title">Example 37. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
 When I change context to element located `By.id(username)`
@@ -2388,7 +2418,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <div class="sect3">
 <h4 id="_usage_32"><a class="anchor" href="#_usage_32"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 37. SaveAttributeValue.story</div>
+<div class="title">Example 38. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
 When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
@@ -2431,7 +2461,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <div class="sect3">
 <h4 id="_usage_33"><a class="anchor" href="#_usage_33"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 38. SaveNumberOfElements.story</div>
+<div class="title">Example 39. SaveNumberOfElements.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save number of elements
 When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
@@ -2469,7 +2499,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_34"><a class="anchor" href="#_usage_34"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 39. ChangeContext.story</div>
+<div class="title">Example 40. ChangeContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Change context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2498,7 +2528,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="sect3">
 <h4 id="_usage_35"><a class="anchor" href="#_usage_35"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 40. ResetContext.story</div>
+<div class="title">Example 41. ResetContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2542,7 +2572,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_36"><a class="anchor" href="#_usage_36"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 41. ElementExistence.story</div>
+<div class="title">Example 42. ElementExistence.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
 Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
@@ -2569,7 +2599,7 @@ Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
 <div class="sect3">
 <h4 id="_usage_37"><a class="anchor" href="#_usage_37"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 42. Navigate back</div>
+<div class="title">Example 43. Navigate back</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Navigate back
 Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
@@ -2647,7 +2677,7 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`</cod
 <div class="sect3">
 <h4 id="_usage_38"><a class="anchor" href="#_usage_38"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 43. OrderVerification.story</div>
+<div class="title">Example 44. OrderVerification.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Check items are sorted
 Given I am on a page with the URL 'https://grocery.by'
