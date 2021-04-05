@@ -1751,10 +1751,10 @@ Does not support multi-selection
 <div class="ulist">
 <ul>
 <li>
-<p><code>$httpMethods</code> - the comma-separated HTTP methods to filter by</p>
+<p><code>$httpMethods</code> - The comma-separated HTTP methods to filter by</p>
 </li>
 <li>
-<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+<p><code>$urlPattern</code> - The regular expression to match HTTP request URL</p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
@@ -2028,7 +2028,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 <p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
 </li>
 <li>
-<p><code>$url</code> - the input value of URL to filter by</p>
+<p><code>$url</code> - The input value of URL to filter by</p>
 </li>
 <li>
 <p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
@@ -2098,6 +2098,60 @@ Then number of elements found by `id(sw)` is = `0`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_proxy_mock_response_by_methods_with_content"><a class="anchor" href="#_proxy_mock_response_by_methods_with_content"></a>Proxy - Mock response by methods with content</h3>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+Mocks HTTP response by methods with a provided content</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+No actual request will be executed. Short-circuited response will be returned.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP $httpMethods responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
+</li>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - The input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - The response status code</p>
+</li>
+<li>
+<p><code>$content</code> - The content to send within a response</p>
+</li>
+<li>
+<p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Hijack a page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
+|name        |value           |
+|Content-Type|application/json|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_proxy_mock_response_with_content"><a class="anchor" href="#_proxy_mock_response_with_content"></a>Proxy - Mock response with content</h3>
 <div class="paragraph">
 <p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
@@ -2126,13 +2180,13 @@ No actual request will be executed. Short-circuited response will be returned.
 <p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
 </li>
 <li>
-<p><code>$url</code> - the input value of URL to filter by</p>
+<p><code>$url</code> - The input value of URL to filter by</p>
 </li>
 <li>
-<p><code>$code</code> - response status code</p>
+<p><code>$code</code> - The response status code</p>
 </li>
 <li>
-<p><code>$content</code> - content to send within a response</p>
+<p><code>$content</code> - The content to send within a response</p>
 </li>
 <li>
 <p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
@@ -2140,7 +2194,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Hijack a page</div>
+<div class="title">Example 31. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -2177,10 +2231,10 @@ No actual request will be executed. Short-circuited response will be returned.
 <p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
 </li>
 <li>
-<p><code>$url</code> - the input value of URL to filter by</p>
+<p><code>$url</code> - The input value of URL to filter by</p>
 </li>
 <li>
-<p><code>$code</code> - response status code</p>
+<p><code>$code</code> - The response status code</p>
 </li>
 <li>
 <p><code>$headers</code> - ExamplesTable representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
@@ -2188,7 +2242,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. 404 page</div>
+<div class="title">Example 32. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
