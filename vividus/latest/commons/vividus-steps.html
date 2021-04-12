@@ -423,9 +423,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Syntax:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps at most $max times while variable `$variableName` is $comparisonRule `$expectedValue`:$stepsToExecute</code></pre>
@@ -458,8 +455,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
 <div class="title">Example 1. Click button 5 times</div>
 <div class="content">
@@ -471,7 +466,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 |!step!                                                                                                                 |
 |!When I set the text found in search context to the 'scenario' variable 'var'!                                         |
 Then `${var}` is = `3`</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -491,9 +485,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Syntax:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -530,8 +521,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
 <div class="title">Example 2. Click button 5 times with 1 second delay</div>
 <div class="content">
@@ -543,7 +532,6 @@ If the maximum number of iterations is reached no failure or exception will occu
 |!step!                                                                                                                 |
 |!When I set the text found in search context to the 'scenario' variable 'var'!                                         |
 Then `${var}` is = `3`</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -564,9 +552,6 @@ The step is for debugging purpose only
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Syntax:</p>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$period` for debug</code></pre>
@@ -579,14 +564,59 @@ The step is for debugging purpose only
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
 <div class="title">Example 3. Wait 30 seconds for debug</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for debug
-When I wait `PT30S` for debug</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_initialize_variable_using_template"><a class="anchor" href="#_initialize_variable_using_template"></a>Initialize variable using template</h3>
+<div class="paragraph">
+<p>Initializes a variable with a result of the processed <a href="https://freemarker.apache.org/docs/dgui_template_overallstructure.html">Freemarker template</a></p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s allowed to use <code>global</code>, <code>next batches</code>, <code>scenario</code> and <code>story</code> variables within templates by referring them using the variable reference notation. Note that the parameters passed to the step take precedence over the variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize the $scopes variable `$variableName` using template `$templatePath` with parameters:$templateParameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store a result.</p>
+</li>
+<li>
+<p><code>$templatePath</code> - The relative to <code>src/main/resources</code> path to a template.</p>
+</li>
+<li>
+<p><code>$templateParameters</code> - The template parameters.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Personal info template at templates/person.ftl</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "name": "${name[0]}",
+  "race": "${race[0]}",
+  "age": ${age}
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Generate JSON from the personal info template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `age` with value `4510`
+Given I initialize the scenario variable `personalInfo` using template `templates/person.ftl` with parameters:
+|name     |race  |
+|Dagoth Ur|Dunmer|</code></pre>
 </div>
 </div>
 </div>
