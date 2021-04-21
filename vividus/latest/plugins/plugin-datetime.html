@@ -866,91 +866,96 @@ Since parameters of the expression comma-separated, meaningful commas (like, par
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_dates_comparison"><a class="anchor" href="#_dates_comparison"></a>Dates comparison</h3>
-<div class="sect3">
-<h4 id="_info"><a class="anchor" href="#_info"></a><strong><em>Info</em></strong></h4>
+<h3 id="_compare_date_and_current_instant"><a class="anchor" href="#_compare_date_and_current_instant"></a>Compare date and current instant</h3>
 <div class="paragraph">
-<p>Validates the difference between the current date and the date under test in seconds.</p>
+<p>Validates the difference between the current instant and the provided date in seconds.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date' is $comparisonRule current for $seconds seconds</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p><code>$date</code> - the date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+<p><code>$date</code> - The date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$seconds</code> - the quantity of seconds between current and the date.</p>
+<p><code>$seconds</code> - The amount of seconds between the current instant and the provided date.</p>
 </li>
-</ol>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 2. Sample.story</div>
+<div class="title">Example 2. Validate the date is less than current for 10 seconds</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate the date is less than current for 10 seconds
-Then the date '2020-06-16T15:25:29.516580Z' is less than current for 10 seconds</code></pre>
-</div>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2020-06-16T15:25:29.516580Z' is less than current for 10 seconds</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dates_comparison_with_custom_date_format"><a class="anchor" href="#_dates_comparison_with_custom_date_format"></a>Dates comparison with custom date format</h3>
-<div class="sect3">
-<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
+<h3 id="_compare_two_dates"><a class="anchor" href="#_compare_two_dates"></a>Compare two dates</h3>
 <div class="paragraph">
-<p>Validates the difference between the current date and the date under test in seconds using custom date format.</p>
+<p>Compares two dates according to the given comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date1' is $comparisonRule the date '$date2'</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$date1</code> - The first date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$date2</code> - The second date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Compare dates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2021-04-20T01:02:03.004Z' is greater than the date '2021-04-20T01:02:03.003Z'
+Then the date '2021-04-19' is less than the date '2021-04-20'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_date_with_custom_format_and_current_instant"><a class="anchor" href="#_compare_date_with_custom_format_and_current_instant"></a>Compare date with custom format and current instant</h3>
+<div class="paragraph">
+<p>Validates the difference between the current instant and the provided date in seconds using the custom date format.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date' in the format '$format' is $comparisonRule current for $seconds seconds</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$date</code> - The date to validate.</p>
+</li>
+<li>
+<p><code>$format</code> - <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a>.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$seconds</code> - The amount of seconds between the current instant and the provided date.</p>
+</li>
+</ul>
 </div>
-<div class="sect3">
-<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$date</code> - the date to validate</p>
-</li>
-<li>
-<p><code>$format</code> - the date in <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
-</li>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
-</li>
-<li>
-<p><code>$seconds</code> - the quantity of seconds between current and the date</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 3. Sample.story</div>
+<div class="title">Example 4. Validate the date is greater than current for 10 seconds</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate the date is greater than current for 10 seconds
-Then the date '2020-06-25T00:19:58.890007Z' in the format 'uuuu-MM-dd'T'HH:mm:ss.nnnX' is &gt; current for 10 seconds</code></pre>
-</div>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2020-06-25T00:19:58.890007Z' in the format 'uuuu-MM-dd'T'HH:mm:ss.nnnX' is &gt; current for 10 seconds</code></pre>
 </div>
 </div>
 </div>
