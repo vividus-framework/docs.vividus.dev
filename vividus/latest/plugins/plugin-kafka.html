@@ -423,87 +423,36 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h2>
+<h2 id="_deprecations"><a class="anchor" href="#_deprecations"></a>Deprecations</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The properties marked with <strong>bold</strong> are mandatory.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 10%;">
-<col style="width: 30%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.producer.bootstrap.servers</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;host&gt;:&lt;port&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma-separated list of host and port pairs that are the addresses of the Kafka brokers in a "bootstrap" Kafka cluster that a Kafka client connects to initially to bootstrap itself.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>All other optional <a href="https://kafka.apache.org/documentation/#producerconfigs">producer configs</a> can be set by prefixing regular Kafka properties with <code>kafka.producer.</code>.</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
-<div class="sect3">
-<h4 id="_send_the_data"><a class="anchor" href="#_send_the_data"></a><strong>Send the data</strong></h4>
 <div class="paragraph">
-<p>Sends the data to the provided topic with no key or partition.</p>
+<p>The following list of steps is deprecated and will be removed in the future releases:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `$data` to Kafka topic `$topic`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$data</code> - the data to send</p>
-</li>
-<li>
-<p><code>$topic</code> - the topic name</p>
-</li>
-</ul>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `$data` to Kafka topic `$topic`
+When I start consuming messages from Kafka topics `$topics`
+When I wait with `$timeout` timeout until count of consumed Kafka messages is $comparisonRule `$expectedCount`
+When I stop consuming messages from Kafka
+When I $queueOperation consumed Kafka messages to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
-<div class="listingblock">
-<div class="title">Example 2. Send the data to the Kafka topic</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `my-data` to Kafka topic `my-topic`</code></pre>
+<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
+<div class="paragraph">
+<p>The generic (without producer and consumer keys) properties with <code>kafka.producer.</code> and <code>kafka.consumer.</code> prefixes are deprecated and will be removed in the future releases.</p>
 </div>
+<div class="paragraph">
+<p>The documentation for the deprecated steps and properties can be found in <a href="../../0.3.4/plugins/plugin-kafka.html" class="page">Plugin Kafka 0.3.4</a></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_consumer"><a class="anchor" href="#_consumer"></a>Consumer</h2>
+<h2 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
@@ -536,13 +485,97 @@ The properties marked with <strong>bold</strong> are mandatory.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.consumer.bootstrap.servers</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.producer.&lt;producer-key&gt;.bootstrap.servers</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;host&gt;:&lt;port&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma-separated list of host and port pairs that are the addresses of the Kafka brokers in a "bootstrap" Kafka cluster that a Kafka client connects to initially to bootstrap itself.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>All other optional <a href="https://kafka.apache.org/documentation/#producerconfigs">producer configs</a> can be set by prefixing regular Kafka properties with <code>kafka.producer.&lt;producer-key&gt;</code>.
+Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration which should be used as steps parameter.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_send_the_data"><a class="anchor" href="#_send_the_data"></a><strong>Send the data</strong></h4>
+<div class="paragraph">
+<p>Sends the data to the provided topic with no key or partition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `$data` to `$producerKey` Kafka topic `$topic`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$producerKey</code> - the key of Kafka producer configuration</p>
+</li>
+<li>
+<p><code>$data</code> - the data to send</p>
+</li>
+<li>
+<p><code>$topic</code> - the topic name</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<div class="listingblock">
+<div class="title">Example 2. Send the data to the Kafka topic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `my-data` to `dev` Kafka topic `my-topic`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consumer"><a class="anchor" href="#_consumer"></a>Consumer</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_properties_3"><a class="anchor" href="#_properties_3"></a>Properties</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.consumer.&lt;consumer-key&gt;.bootstrap.servers</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;host&gt;:&lt;port&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A comma-separated list of host and port pairs that are the addresses of the Kafka brokers in a "bootstrap" Kafka cluster that a Kafka client connects to initially to bootstrap itself.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.consumer.group.id</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>kafka.consumer.&lt;consumer-key&gt;.group.id</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;any-string&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A unique string that identifies the consumer group this consumer belongs to.</p></td>
@@ -550,11 +583,12 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tbody>
 </table>
 <div class="paragraph">
-<p>All other optional <a href="https://kafka.apache.org/documentation/#consumerconfigs">consumer configs</a> can be set by prefixing regular Kafka properties with <code>kafka.consumer.</code>.</p>
+<p>All other optional <a href="https://kafka.apache.org/documentation/#consumerconfigs">consumer configs</a> can be set by prefixing regular Kafka properties with <code>kafka.consumer.&lt;consumer-key&gt;.</code>.
+Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration which should be used as steps parameter.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<h3 id="_steps_3"><a class="anchor" href="#_steps_3"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_start_the_consumer"><a class="anchor" href="#_start_the_consumer"></a><strong>Start the consumer</strong></h4>
 <div class="paragraph">
@@ -562,11 +596,14 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from Kafka topics `$topics`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `$consumerKey` Kafka topics `$topics`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
+</li>
 <li>
 <p><code>$topics</code> - the comma-separated set of topics to listen</p>
 </li>
@@ -580,13 +617,16 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $queueOperation consumed Kafka messages to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $queueOperation consumed `$consumerKey` Kafka messages to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>$queueOperation</code> -  <code>DRAIN</code> - saves the messages consumed since the last drain or from the consumption start and moves the consumer cursor to the position after the last consumed message, <code>PEEK</code> - saves the messages consumed since the last drain or from the consumption start and doesn&#8217;t change the consumer cursor position</p>
+</li>
+<li>
+<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">the comma-separated set of the variables scopes</a>.</p>
@@ -604,13 +644,16 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `$timeout` timeout until count of consumed Kafka messages is $comparisonRule `$expectedCount`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `$timeout` timeout until count of consumed `$consumerKey` Kafka messages is $comparisonRule `$expectedCount`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>$timeout</code> - the maximum time to wait for the messages in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+<li>
+<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">the comparison rule</a></p>
@@ -628,8 +671,15 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming messages from Kafka</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming messages from `$consumerKey` Kafka</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -638,10 +688,10 @@ The properties marked with <strong>bold</strong> are mandatory.
 <div class="listingblock">
 <div class="title">Example 3. Consume messages from the Kafka topic</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from Kafka topics `my-topic-1, my-topic-2`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `dev` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of messages to Kafka
-When I wait with `PT30S` timeout until count of consumed Kafka messages is greater than `1`
-When I stop consuming messages from Kafka
+When I wait with `PT30S` timeout until count of consumed `dev` Kafka messages is greater than `1`
+When I stop consuming messages from `dev` Kafka
 When I drain consumed Kafka messages to scenario variable `consumed-messages`
 Then `${consumed-messages[0]}` is equal to `some-expected-message`</code></pre>
 </div>
@@ -649,27 +699,24 @@ Then `${consumed-messages[0]}` is equal to `some-expected-message`</code></pre>
 <div class="listingblock">
 <div class="title">Example 4. Drain messages while listener is rinning</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from Kafka topics `my-topic-1, my-topic-2`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of messages to Kafka
-When I drain consumed Kafka messages to scenario variable `messages-after-action-X`
+When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-X`
 !-- Perform more actions triggering the publishing of messages to Kafka
-When I drain consumed Kafka messages to scenario variable `messages-after-action-Y`
-When I stop consuming messages from Kafka</code></pre>
+When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-Y`
+When I stop consuming messages from `prod` Kafka</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 5. Peek messages while listener is rinning</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from Kafka topics `my-topic-1, my-topic-2`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of messages to Kafka
-When I drain consumed Kafka messages to scenario variable `messages-after-action-X`
+When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-X`
 !-- Perform more actions triggering the publishing of messages to Kafka
-When I peek consumed Kafka messages to scenario variable `messages-after-action-Y`
-When I stop consuming messages from Kafka</code></pre>
+When I peek consumed `prod` Kafka messages to scenario variable `messages-after-action-Y`
+When I stop consuming messages from `prod` Kafka</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>agn1a1vanovna</p>
 </div>
 </div>
 </div>
