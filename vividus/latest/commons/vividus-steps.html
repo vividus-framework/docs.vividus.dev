@@ -585,7 +585,7 @@ The step is for debugging purpose only
 <p>Initializes a variable with a result of the processed <a href="https://freemarker.apache.org/docs/dgui_template_overallstructure.html">Freemarker template</a></p>
 </div>
 <div class="paragraph">
-<p>The <code>global</code>, <code>next batches</code>, <code>scenario</code> and <code>story</code> variables can be used within templates by referring them using the variable reference notation. Note that the parameters passed to the step take precedence over the variables.</p>
+<p>Set the <code>template-processor.resolve-bdd-variables</code> property to <code>true</code> value to be able to use <code>global</code>, <code>next batches</code>, <code>scenario</code> and <code>story</code> variables within templates. The variables can be referred using the variable reference notation. Note that the parameters passed to the step take precedence over the variables.</p>
 </div>
 <div class="paragraph">
 <p>The vividus expressions can be used within templates by using <code>${execVividusExpression('expression name', args)}</code> syntax. It&#8217;s also allowed to use nested expressions by using the following syntax <code>${execVividusExpression('expression name', arg1, execVividusExpression('expression name', args))}</code>.</p>
