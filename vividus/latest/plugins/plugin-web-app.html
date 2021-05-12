@@ -127,6 +127,9 @@
     <span class="nav-text">Commons</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../commons/expressions.html">Expressions</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -275,9 +278,6 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../parameters/variable-scope.html">Variable Scope</a>
   </li>
 </ul>
   </li>
@@ -1203,7 +1203,7 @@ Step will throw an error if the context element is not set
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1259,7 +1259,7 @@ Step will throw an error if the context element is not set
 <p><code>$attributeName</code> - name of an element&#8217;s attribute</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1306,7 +1306,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1349,7 +1349,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1836,7 +1836,7 @@ Does not support multi-selection
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to save the URL.</p>
@@ -1899,7 +1899,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to save the URL query. The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.</p>
@@ -1959,7 +1959,7 @@ The actions preformed by the step:</p>
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store results. If the variable name is <code>my-var</code>, the following variables will be created:</p>

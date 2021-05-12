@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Variable scope :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/parameters/variable-scope.html">
+    <title>Variables :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/commons/variables.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -126,14 +126,17 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Commons</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="variables.html">Variables</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+    <a class="nav-link" href="expressions.html">Expressions</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+    <a class="nav-link" href="vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -268,16 +271,13 @@
     <span class="nav-text">Parameter types</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="comparison-rule.html">Comparison Rule</a>
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="collection-comparison-rule.html">Collection Comparison Rule</a>
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="string-comparison-rule.html">String Comparison Rule</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="variable-scope.html">Variable Scope</a>
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
   </li>
 </ul>
   </li>
@@ -379,57 +379,81 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li>Parameter types</li>
-    <li><a href="variable-scope.html">Variable Scope</a></li>
+    <li>Commons</li>
+    <li><a href="variables.html">Variables</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="variable-scope.html">latest</a>
-    <a class="version" href="../../0.3.6/parameters/variable-scope.html">0.3.6</a>
-    <a class="version" href="../../0.3.5/parameters/variable-scope.html">0.3.5</a>
-    <a class="version" href="../../0.3.4/parameters/variable-scope.html">0.3.4</a>
-    <a class="version" href="../../0.3.3/parameters/variable-scope.html">0.3.3</a>
-    <a class="version" href="../../0.3.2/parameters/variable-scope.html">0.3.2</a>
-    <a class="version" href="../../0.3.1/parameters/variable-scope.html">0.3.1</a>
-    <a class="version" href="../../0.3.0/parameters/variable-scope.html">0.3.0</a>
-    <a class="version" href="../../0.2.14/parameters/variable-scope.html">0.2.14</a>
-    <a class="version" href="../../0.2.13/parameters/variable-scope.html">0.2.13</a>
-    <a class="version" href="../../0.2.12/parameters/variable-scope.html">0.2.12</a>
-    <a class="version" href="../../0.2.11/parameters/variable-scope.html">0.2.11</a>
-    <a class="version" href="../../0.2.10/parameters/variable-scope.html">0.2.10</a>
-    <a class="version" href="../../0.2.9/parameters/variable-scope.html">0.2.9</a>
-    <a class="version" href="../../0.2.8/parameters/variable-scope.html">0.2.8</a>
-    <a class="version" href="../../0.2.7/parameters/variable-scope.html">0.2.7</a>
-    <a class="version" href="../../0.2.6/parameters/variable-scope.html">0.2.6</a>
-    <a class="version" href="../../0.2.5/parameters/variable-scope.html">0.2.5</a>
-    <a class="version" href="../../0.2.4/parameters/variable-scope.html">0.2.4</a>
+    <a class="version is-current" href="variables.html">latest</a>
+    <a class="version is-missing" href="../../0.3.6/index.html">0.3.6</a>
+    <a class="version is-missing" href="../../0.3.5/index.html">0.3.5</a>
+    <a class="version is-missing" href="../../0.3.4/index.html">0.3.4</a>
+    <a class="version is-missing" href="../../0.3.3/index.html">0.3.3</a>
+    <a class="version is-missing" href="../../0.3.2/index.html">0.3.2</a>
+    <a class="version is-missing" href="../../0.3.1/index.html">0.3.1</a>
+    <a class="version is-missing" href="../../0.3.0/index.html">0.3.0</a>
+    <a class="version is-missing" href="../../0.2.14/index.html">0.2.14</a>
+    <a class="version is-missing" href="../../0.2.13/index.html">0.2.13</a>
+    <a class="version is-missing" href="../../0.2.12/index.html">0.2.12</a>
+    <a class="version is-missing" href="../../0.2.11/index.html">0.2.11</a>
+    <a class="version is-missing" href="../../0.2.10/index.html">0.2.10</a>
+    <a class="version is-missing" href="../../0.2.9/index.html">0.2.9</a>
+    <a class="version is-missing" href="../../0.2.8/index.html">0.2.8</a>
+    <a class="version is-missing" href="../../0.2.7/index.html">0.2.7</a>
+    <a class="version is-missing" href="../../0.2.6/index.html">0.2.6</a>
+    <a class="version is-missing" href="../../0.2.5/index.html">0.2.5</a>
+    <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/parameters/pages/variable-scope.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/commons/pages/variables.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Variable scope</h1>
-<div class="sect1">
-<h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
+<h1 class="page">Variables</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Defines scope of a variable</p>
+<p>Variables are names used to hold one or more values. Instead of repeating these
+values in multiple places in tests, the variable holds the results of
+a calculation, step execution, expression evaluation, or other value.</p>
+</div>
+<div class="paragraph">
+<p>VIVIDUS provides the following syntax to access variable value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${variableName}</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_possible_scopes"><a class="anchor" href="#_possible_scopes"></a>Possible scopes</h2>
+<h2 id="_scopes"><a class="anchor" href="#_scopes"></a>Scopes</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Variables can have one of the following scopes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The scopes names are case-insensitive
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 83.3334%;">
+<col style="width: 14.2857%;">
+<col style="width: 85.7143%;">
 </colgroup>
 <thead>
 <tr>
@@ -444,36 +468,50 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>scenario</strong> scope is available in the rest of the scenario after it&#8217;s declared. The <strong>scenario</strong> scoped variables are invalidated once the scenario is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>scenario</strong> scope is available in the rest of the scenario after its declaration. The <strong>scenario</strong>-scoped variables are invalidated once the scenario is completed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">story</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>story</strong> scope is available in the rest of the story after it&#8217;s declared. The <strong>story</strong> scoped variables are invalidated once the story is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>story</strong> scope is available in the rest of the story after its declaration. The <strong>story</strong>-scoped variables declared inside given stories are available in the parent story. The variables are invalidated once the story is completed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">next_batches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>next_batches</strong> scope is available in the next batches. The <strong>next_batches</strong> scoped variable is not available in batch it&#8217;s declared within.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>next_batches</strong> scope is available in the next batches. The <strong>next_batches</strong>-scoped variable is not available in batch it&#8217;s declared within.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">global</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Such variables are declared only in <code>*.properties</code> files with <code>bdd.variables.global.</code> prefix and available in all stories. Attempt to save the globally scoped variables in stories leads to an exception.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Such variables are declared only via properties with <code>bdd.variables.global.</code> prefix and available throughout the entire execution. An attempt to create the globally scoped variables during test execution leads to an error.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Declaring global variable <code>login-endpoint</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.login-endpoint=https://my-auth-server.com/api/login</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Using global variable <code>login-endpoint</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:
+{
+    "username":"user",
+    "password":"pass"
+}
+When I set request headers:
+|name        |value           |
+|Content-Type|application/json|
+When I issue a HTTP POST request for a resource with the URL '${login-endpoint}'
+Then the response code is equal to '200'</code></pre>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_notes"><a class="anchor" href="#_notes"></a>Notes</h2>
-<div class="sectionbody">
-<div id="TIP" class="ulist">
-<ul>
-<li>
-<p>Scope names are case insensitive</p>
-</li>
-<li>
-<p>The <strong>story</strong> scoped variables declared inside given stories are available in the parent story</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>If variable with the specified name is not found in any of VIVIDUS scopes,
+search for OS environment variable will be performed. If no OS environment
+variable is available, the variable placeholder will be kept as is:
+<code>${variableName}</code></p>
 </div>
 </div>
 </div>
