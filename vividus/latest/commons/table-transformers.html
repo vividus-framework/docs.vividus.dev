@@ -859,6 +859,73 @@ Examples:
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_cartesian_product"><a class="anchor" href="#_cartesian_product"></a>CARTESIAN_PRODUCT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>CARTESIAN_PRODUCT</code> transformer creates a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a> from several tables.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tables</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">paths to examples tables or transformers to create a cartesian product</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>headers of input tables must be different</p>
+</li>
+<li>
+<p>number of input tables must be more than 1</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Usage of CARTESIAN_PRODUCT transformer</div>
+<div class="content">
+<pre>{transformer=CARTESIAN_PRODUCT, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 19. Usage of CARTESIAN_PRODUCT transformer with table body</div>
+<div class="content">
+<pre>{transformer=CARTESIAN_PRODUCT, tables=/data/some-table.table}
+|column1|
+|value1 |</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
+<div class="content">
+<pre>{transformer=CARTESIAN_PRODUCT, tables=\{transformer=REPEATING\, times=100\};\{transformer=FROM_CSV\, csvPath=/data/csv.csv\}}</pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
