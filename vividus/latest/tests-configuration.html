@@ -959,39 +959,41 @@ When I perform highly time consuming task</code></pre>
 <h2 id="_exit_codes"><a class="anchor" href="#_exit_codes"></a>Exit codes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Tests execution returns following exit codes.</p>
+<p>The tests execution returns one of the following exit codes.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 50%;">
-<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 80%;">
+<col style="width: 10%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pipeline Status</p></td>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Status</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed tests</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Green</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GREEN</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed and tests with known issues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Amber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AMBER</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains any tests except passed and with known issues or doesn&#8217;t contain tests at all</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Red</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RED</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Test report isn&#8217;t generated</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Red</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RED</code></p></td>
 </tr>
 </tbody>
 </table>
