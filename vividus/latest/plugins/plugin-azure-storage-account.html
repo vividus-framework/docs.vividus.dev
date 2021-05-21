@@ -579,9 +579,15 @@ in this case the authentication configuration is not requied.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Upload the blob</div>
+<div class="title">Example 4. Upload the text blob</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload blob with name `raw/test.json` and data `{"test":"data"}` to container `vividus` of storage account `testaccount`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Upload the binary blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload blob with name `folder/image.jpg` and data `#{loadBinaryResource(/data/image.jpg)}` to container `vividus` of storage account `testaccount`</code></pre>
 </div>
 </div>
 </div>
@@ -609,7 +615,7 @@ in this case the authentication configuration is not requied.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Delete the blob</div>
+<div class="title">Example 6. Delete the blob</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete blob with name `raw/test.json` from container `vividus` of storage account `testaccount`</code></pre>
 </div>
@@ -648,7 +654,7 @@ in this case the authentication configuration is not requied.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Find blobs</div>
+<div class="title">Example 7. Find blobs</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find all blobs with name which contains `json` in container `vividus` of storage account `testaccount` and save result to scenario variable `blobsCollection`</code></pre>
 </div>
