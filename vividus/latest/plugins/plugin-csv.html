@@ -471,6 +471,18 @@
 <div class="sect1">
 <h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a>Table Transformers</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The table transformers properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_from_csv"><a class="anchor" href="#_from_csv"></a>FROM_CSV</h3>
 <div class="paragraph">
@@ -489,16 +501,28 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>csvPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">relative path to the CSV file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>csvPath</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The relative path of the CSV file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delimiterChar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The char used for value separation, must not be a line break character</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>If <code>delimiterChar</code> is not set, then the corresponding property will be used during parsing.</p>
+</div>
 <div class="listingblock">
-<div class="title">Example 2. Usage example</div>
+<div class="title">Example 2. The transformer based on the default configuration</div>
 <div class="content">
-<pre>Examples:
-{transformer=FROM_CSV, csvPath=/story/example.csv}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, csvPath=/data/example.csv}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. The transformer with custom inlined configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, csvPath=/data/another-example.csv, delimiterChar=;}</code></pre>
 </div>
 </div>
 </div>
