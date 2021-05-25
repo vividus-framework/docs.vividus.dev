@@ -539,7 +539,7 @@ When I fetch email message from `gmail` server filtered by
 |TO_RECIPIENTS |EQUAL_TO        |me &lt;me@company.com&gt;, boss &lt;boss@company.com&gt;|
 |REPLY_TO      |MATCHES         |(?i)[0-9]@.*                                |
  and save message content to SCENARIO variable `textContent`
-Then `textContent[1]` matches `.*Registration code.*`</code></pre>
+Then `${textContent[1]}` matches `.*Registration code.*`</code></pre>
 </div>
 </div>
 </div>
