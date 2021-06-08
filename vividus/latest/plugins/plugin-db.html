@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>Relational Database Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-db.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -199,7 +199,7 @@
     <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-db.html">Relational DB*</a>
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-electron.html">Electron*</a>
@@ -395,7 +395,7 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-db.html">Relational DB*</a></li>
+    <li><a href="plugin-db.html">Relational Database</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -429,8 +429,88 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Relational Database Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides capabilities to work with relational databases via
+<a href="https://en.wikipedia.org/wiki/Java_Database_Connectivity">JDBC</a> and contains
+a set of the steps for comparison of data tables.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-db', version: '0.3.7-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_data_comparison"><a class="anchor" href="#_data_comparison"></a>Data Comparison</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 36.3636%;">
+<col style="width: 18.1818%;">
+<col style="width: 9.0909%;">
+<col style="width: 36.3637%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.duplicate-keys-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>NOOP</code></p>
+</div>
+<div class="paragraph">
+<p><code>DISTINCT</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NOOP</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The strategy defining how records with duplicate keys should be handled:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NOOP</code> - the records with duplicate keys are compared in the order they are returned by the query or presented in the expected data</p>
+</li>
+<li>
+<p><code>DISTINCT</code> - only 1 top record from left and right sides are compared, other records with duplicate keys are ignored</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.diff-limit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The max number of records in the comparison result output</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>db.query-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT30M</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum time to wait for DB query completion</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
