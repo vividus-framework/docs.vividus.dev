@@ -497,20 +497,20 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.max-retries</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of allowed retries if the server responds with a HTTP code from the retry code set defined below</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.status-codes</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty&gt;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">set of integers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The set of HTTP status codes to be retried. If it&#8217;s empty, no retries will be performed</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.retry-interval</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> duration</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1S</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The retry interval between subsequent requests</p></td>
 </tr>
 </tbody>
