@@ -597,30 +597,23 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_authorization"><a class="anchor" href="#_authorization"></a>Authorization</h2>
+<h2 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code id="noop-link">noop</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used if Jira endpoint is hidden behind SSO and the only way to access the endpoint is to use custom authorization flows or cookies</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code id="caching-credentials-link">caching-credentials</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authorize in Jira using client username and password</p></td>
-</tr>
-</tbody>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>if the authentication through basic schema is available on your JIRA instance use <code>jira.username</code> and <code>jira.password</code> properties, both properties must be set</p>
+</li>
+<li>
+<p>in case of two-factor authentication or any other complex authentication process it&#8217;s possible to set session cookies into request headers like the following example shows (<code>jira.username</code> and <code>jira.password</code> properties must be empty in this case)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.http.header.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -644,32 +637,21 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jira.username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required for <code>caching-credentials</code> auth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira username used to export test cases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA username used to export test cases</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jira.password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Required for <code>caching-credentials</code> auth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira password used to export test cases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA password used to export test cases</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">jira.endpoint</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/URL">URL</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira URL e.g. <code><a href="https://jira.example.com/" class="bare">https://jira.example.com/</a></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira.http.context-type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="#caching-credentials-link">caching-credentials</a></p>
-</div>
-<div class="paragraph">
-<p><a href="#noop-link">noop</a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">defined Jira <a href="#_authorization">Authorization</a> mechanism, default value is <a href="#caching-credentials-link">caching-credentials</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA URL e.g. <code><a href="https://jira.example.com/" class="bare">https://jira.example.com/</a></code></p></td>
 </tr>
 </tbody>
 </table>
