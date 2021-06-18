@@ -505,6 +505,12 @@ For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/ma
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add ability to configure sensitivity for visual checks</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.required-diff-percentage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">percentage numbers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>70</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines required difference baseline vs checkpoint to consider them inequal</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.debug-directory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -518,7 +524,7 @@ For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/ma
 <h2 id="_how_to_use"><a class="anchor" href="#_how_to_use"></a>How to use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Plugin has two monumental actions: <code>ESTABLISH</code> and <code>COMPARE_AGAINST</code>.</p>
+<p>Plugin has following actions: `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
 </div>
 <div class="sect2">
 <h3 id="_establish"><a class="anchor" href="#_establish"></a><code>ESTABLISH</code></h3>
@@ -613,6 +619,12 @@ For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/ma
 </div>
 <div class="paragraph">
 <p>b) Contextual click on the checkpoint image &#8594; save as to baseline folder</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_inequality_against"><a class="anchor" href="#_check_inequality_against"></a><code>CHECK_INEQUALITY_AGAINST</code></h3>
+<div class="paragraph">
+<p>Work the same way as <a href="#_compare_against"><code>COMPARE_AGAINST</code></a> except it checks if actual appearance differs from the baseline.</p>
 </div>
 </div>
 </div>
@@ -766,7 +778,7 @@ selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
 </li>
 <li>
 <p><code>name</code> - name of baseline</p>
@@ -802,7 +814,7 @@ selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
 </li>
 <li>
 <p><code>name</code> - name of baseline</p>
@@ -843,13 +855,13 @@ selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
 </li>
 <li>
 <p><code>name</code> - name of baseline</p>
 </li>
 <li>
-<p><code>ignoredElements</code> - examples table of strategies (<code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code>) and locators or acceptable diff percentage to ignore</p>
+<p><code>checkSettings</code> - examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCANTAGE</code></p>
 </li>
 </ul>
 </div>
@@ -884,13 +896,13 @@ selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - <code>ESTABLISH</code>, <code>COMPARE_AGAINST</code></p>
+<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
 </li>
 <li>
 <p><code>name</code> - name of baseline</p>
 </li>
 <li>
-<p><code>ignoredElements</code> - examples table of strategies (<code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code>) and locators or acceptable diff percentage to ignore</p>
+<p><code>checkSettings</code> - examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCANTAGE</code></p>
 </li>
 <li>
 <p><code>screenshotConfiguration</code> - configuration to make screenshot</p>
