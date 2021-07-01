@@ -1106,6 +1106,52 @@ Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitalizefirstwor
 <h2 id="_script_evaluation"><a class="anchor" href="#_script_evaluation"></a>Script evaluation</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_eval"><a class="anchor" href="#_eval"></a><code>eval</code></h3>
+<div class="paragraph">
+<p>Evaluates <a href="https://commons.apache.org/proper/commons-jexl/">JEXL</a> script and converts result to a string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{eval(<strong>$script</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$script</code></strong> - valid <a href="https://commons.apache.org/proper/commons-jexl/reference/syntax.html">JEXL</a> script to be evaluated</p>
+</li>
+</ul>
+</div>
+<div class="ulist TIP">
+<ul class="TIP">
+<li>
+<p>Any Vividus variable is accessible in the JEXL script by its name</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Evaluate JEXL script</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify eval expression
+Then `#{&lt;expression&gt;}` is = `&lt;expected&gt;`
+Examples:
+|expected          |expression                                                        |
+|null              |eval(null)                                                        |
+|28                |eval(16 + 2 * 6)                                                  |
+|10                |eval(math:abs(-10))                                               |
+|here              |eval(stringUtils:substringAfterLast('namescpaces are %here', '%'))|
+|108               |eval((16 + 2) * 6)                                                |
+|-6                |eval(100 / 5 - 16 * 2 + 6)                                        |
+|true              |eval(`string\n1` == `string\n1`)                                  |
+|false             |eval(`string\n1` == `string1`)                                    |
+|I Am FINE         |eval(wordUtils:capitalize('i am FINE'))                           |
+|i am fINE         |eval(wordUtils:uncapitalize('I Am FINE'))                         |
+|tHE DOG HAS A bone|eval(wordUtils:swapCase('The dog has a BONE'))                    |
+|FRD               |eval(wordUtils:initials('Fus Ro Dah'))                            |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_evalgroovy"><a class="anchor" href="#_evalgroovy"></a><code>evalGroovy</code></h3>
 <div class="paragraph">
 <p>Evaluates groovy script and converts result to a string.</p>
@@ -1144,7 +1190,7 @@ Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitalizefirstwor
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Evaluate Groovy script</div>
+<div class="title">Example 5. Evaluate Groovy script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize Scenario variable `listOfMaps` with values:
 |key|
