@@ -974,6 +974,28 @@ When I perform highly time consuming task</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_examplestable"><a class="anchor" href="#_examplestable"></a>ExamplesTable</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_mapping_values_to_null_s"><a class="anchor" href="#_mapping_values_to_null_s"></a>Mapping values to <code>null</code>-s</h3>
+<div class="paragraph">
+<p>By default all empty values in <code>ExamplesTable</code> are treated as empty strings. However
+it might be required to map certain values to <code>null</code>-s. It can be done at the step
+implementation level or by applying the generic approach at the table level:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{nullPlaceholder=NULL}
+|header |
+|value 1|
+|NULL   |
+|value 3|</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_exit_codes"><a class="anchor" href="#_exit_codes"></a>Exit codes</h2>
 <div class="sectionbody">
 <div class="paragraph">
