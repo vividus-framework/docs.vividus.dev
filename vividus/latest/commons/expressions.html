@@ -592,6 +592,18 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="sect2">
 <h3 id="_capitalize"><a class="anchor" href="#_capitalize"></a><code>capitalize</code></h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_capitilizeFirstWord">[_capitilizeFirstWord]</a> instead
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Capitalizes an input string, changing the first character to title case. No other characters are changed.</p>
 </div>
@@ -628,7 +640,130 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </table>
 </div>
 <div class="sect2">
+<h3 id="_capitalizefirstword"><a class="anchor" href="#_capitalizefirstword"></a><code>capitalizeFirstWord</code></h3>
+<div class="paragraph">
+<p>Capitalizes an input string, changing the first character to title case. No other characters are changed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{capitalizeFirstWord(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be capitalized</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Examples of the expressions capitalizing strings</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{capitalizeFirstWord(aBc)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ABc</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_capitalizewords"><a class="anchor" href="#_capitalizewords"></a><code>capitalizeWords</code></h3>
+<div class="paragraph">
+<p>Capitalizes all the whitespace separated words in the input string. Only the first character of each word is changed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{capitalizeWords(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be capitalized</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Examples of the expressions capitalizing words in the string</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{capitalizeWords(aBc dEf)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ABc DEf</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_capitalizewordsfully"><a class="anchor" href="#_capitalizewordsfully"></a><code>capitalizeWordsFully</code></h3>
+<div class="paragraph">
+<p>Converts all the whitespace separated words in a String into capitalized words, that is each word is made up of a titlecase character and then a series of lowercase characters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{capitalizeWordsFully(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be capitalized</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Examples of the expressions capitalizing strings</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{capitalizeWordsFully(aBc dEf)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Abc Def</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_uncapitalize"><a class="anchor" href="#_uncapitalize"></a><code>uncapitalize</code></h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitilizeFirstWord">[_uncapitilizeFirstWord]</a> instead
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Uncapitalizes an input string, changing the first character to lower case. No other characters are changed.</p>
 </div>
@@ -645,7 +780,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Examples of the expressions uncapitalizing strings</caption>
+<caption class="title">Table 8. Examples of the expressions uncapitalizing strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -660,6 +795,80 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{uncapitalize(ABc)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>aBc</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_uncapitalizefirstword"><a class="anchor" href="#_uncapitalizefirstword"></a><code>uncapitalizeFirstWord</code></h3>
+<div class="paragraph">
+<p>Uncapitalizes an input string, changing the first character to title case. No other characters are changed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{uncapitalizeFirstWord(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be capitalized</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. Examples of the expressions capitalizing strings</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{uncapitalizeFirstWord(ABc)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aBc</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_uncapitalizewords"><a class="anchor" href="#_uncapitalizewords"></a><code>uncapitalizeWords</code></h3>
+<div class="paragraph">
+<p>Uncapitalizes all the whitespace separated words in the input string. Only the first character of each word is changed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{uncapitalizeWords(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be capitalized</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. Examples of the expressions capitalizing words in the string</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{uncapitalizeWords(ABc DEf)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aBc eEf</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -682,7 +891,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. Examples of the expressions trimming strings</caption>
+<caption class="title">Table 11. Examples of the expressions trimming strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -719,7 +928,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Examples of the expressions encoding to Base64</caption>
+<caption class="title">Table 12. Examples of the expressions encoding to Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -756,7 +965,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Examples of the expressions decoding Base64</caption>
+<caption class="title">Table 13. Examples of the expressions decoding Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -793,7 +1002,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. Examples of the expressions compressing and encoding to Base64 GZip</caption>
+<caption class="title">Table 14. Examples of the expressions compressing and encoding to Base64 GZip</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
