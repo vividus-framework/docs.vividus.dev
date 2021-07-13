@@ -641,6 +641,7 @@ The step is for debugging purpose only
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "id": ${execVividusExpression('randomInt', 1, 10)},
+  "postalCode": ${execVividusExpression('generate', "Number.digits '6'")},
   "hash": "${execVividusExpression('encodeToBase64', execVividusExpression('randomInt', 100, 1000))}",
   "name": "${name[0]}",
   "race": "${race[0]}",
