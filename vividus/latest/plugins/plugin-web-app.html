@@ -1682,6 +1682,84 @@ Then elements located `By.xpath(//span[@id='item-to-purchase'])` are sorted by t
 </div>
 </div>
 <div class="sect2">
+<h3 id="_take_a_screenshot"><a class="anchor" href="#_take_a_screenshot"></a>Take a screenshot</h3>
+<div class="sect3">
+<h4 id="_info_14"><a class="anchor" href="#_info_14"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Takes a screenshot and saves it to the default folder defined by the property <code>ui.screenshots.directory</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The full path to the screenshot is posted to the logs and the report.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_14"><a class="anchor" href="#_wording_14"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_take_a_screenshot_and_save_it_to_the_folder"><a class="anchor" href="#_take_a_screenshot_and_save_it_to_the_folder"></a>Take a screenshot and save it to the folder</h3>
+<div class="sect3">
+<h4 id="_info_15"><a class="anchor" href="#_info_15"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Takes a screenshot and saves it to the default folder defined by user</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Full path to a screenshot will be posted to logs and allure
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_15"><a class="anchor" href="#_wording_15"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `$path`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$path</code> - an absolute or relative path to the folder to save taken screenshot</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_14"><a class="anchor" href="#_usage_14"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 20. Take a screenshot to a path</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Take a screenshot to a path
+When I take screenshot to path `${screenshot-directory}/#{generate(Ancient.god)}.png`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_dropdown_verify_available_options"><a class="anchor" href="#_dropdown_verify_available_options"></a>Dropdown: verify available options.</h3>
 <div class="paragraph">
 <p>Verifies if dropdown located by locator exists and has expected list of options</p>
@@ -1702,7 +1780,7 @@ Then elements located `By.xpath(//span[@id='item-to-purchase'])` are sorted by t
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Dropdown.story</div>
+<div class="title">Example 21. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
@@ -1745,7 +1823,7 @@ Item - is an option. State - true/false describes if option selected
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Dropdown.story</div>
+<div class="title">Example 22. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
 </div>
@@ -1784,7 +1862,7 @@ Step will fail if target dropdown is not multi-select
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Dropdown.story</div>
+<div class="title">Example 23. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
 </div>
@@ -1823,7 +1901,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Dropdown.story</div>
+<div class="title">Example 24. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
 </div>
@@ -1878,7 +1956,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 25. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -1939,7 +2017,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 26. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2002,7 +2080,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 27. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2081,7 +2159,7 @@ The actions preformed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Validate the data from the matching HTTP message</div>
+<div class="title">Example 28. Validate the data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/forms/post'
 When I click on element located `By.xpath(//button)`
@@ -2116,7 +2194,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Wait for the HTTP request</div>
+<div class="title">Example 29. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/get'
 When I wait until HTTP GET or POST request with URL pattern `http://httpbin\.org/get` exists in proxy log
@@ -2149,7 +2227,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Add headers to the proxied HTTP request</div>
+<div class="title">Example 30. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
 |name     |value     |
@@ -2179,7 +2257,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Clear the data recorded by the proxy</div>
+<div class="title">Example 31. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http:/httpbin.org/get'
 When I clear proxy log
@@ -2199,7 +2277,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Clear the proxy mocks</div>
+<div class="title">Example 32. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -2256,7 +2334,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Hijack a page</div>
+<div class="title">Example 33. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -2307,7 +2385,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Hijack a page</div>
+<div class="title">Example 34. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -2355,7 +2433,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. 404 page</div>
+<div class="title">Example 35. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
