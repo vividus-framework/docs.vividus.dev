@@ -520,6 +520,24 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1S</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The retry interval between subsequent requests</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username, presence of this property requires the <code>http.auth.password</code> to be also set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password, presence of this property requires the <code>http.auth.username</code> to be also set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.preemptive-auth-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If enabled the HTTP client will send the basic authentication data even before the service gives an unauthorized response (401), useful when the service doesn&#8217;t support unauthorized response (401) or to reduce the overhead of making the connection</p></td>
+</tr>
 </tbody>
 </table>
 </div>
