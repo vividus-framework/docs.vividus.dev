@@ -443,48 +443,77 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Vividus provides a set of pre-registered table transformers. Also Vividus plugins may register own table transformers (they are documented in the corresponding plugins sections). It&#8217;s allowed to define a chain of transformers, in this case the transformers are applied sequentially from top to bottom.</p>
+<p>VIVIDUS provides a set of pre-registered table transformers. Also plugins may register own table transformers (they are documented in the corresponding plugins articles). It&#8217;s allowed to define a chain of transformers, in this case the transformers are applied sequentially from top to bottom.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_from_landscape"><a class="anchor" href="#_from_landscape"></a>FROM_LANDSCAPE</h2>
+<h2 id="_escape_special_characters"><a class="anchor" href="#_escape_special_characters"></a>Escape special characters</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The special characters <code>,</code> <code>{</code> <code>}</code> must be escaped in the transformer properties using character <code>\</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Escaping special characters in transformer properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER, countries=\{Australia\,Canada\}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above the transformer will have a single property with name <code>countries</code> and value <code>{Australia,Canada}</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_global_variables"><a class="anchor" href="#_using_global_variables"></a>Using global variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VIVIDUS global variables can be used in transformer properties (pay attention to escaping of variables placeholders)</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Usage of global variable <code>${locale}</code> in transformer property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ONE_MORE_MY_TRANSFORMER, tables=/$\{locale\}/table1.table;/$\{locale\}/table2.table}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_transformers"><a class="anchor" href="#_available_transformers"></a>Available transformers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_landscape"><a class="anchor" href="#_from_landscape"></a>FROM_LANDSCAPE</h3>
 <div class="paragraph">
 <p><code>FROM_LANDSCAPE</code> transformer is designed to transform the table from a landscape form.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Usage of FROM_LANDSCAPE transformer</div>
+<div class="title">Example 3. Usage of FROM_LANDSCAPE transformer</div>
 <div class="content">
-<pre>{transformer=FROM_LANDSCAPE}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_LANDSCAPE}
 |header 1|value 11| ... | value m1|
 ...
-|header n|value 1n| .... |value mn|</pre>
+|header n|value 1n| .... |value mn|</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_formatting"><a class="anchor" href="#_formatting"></a>FORMATTING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_formatting"><a class="anchor" href="#_formatting"></a>FORMATTING</h3>
 <div class="paragraph">
 <p><code>FORMATTING</code> transformer formats the table according to the max width of each column. Also this transformer removes the commented lines.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Usage of FORMATTING transformer</div>
+<div class="title">Example 4. Usage of FORMATTING transformer</div>
 <div class="content">
-<pre>{transformer=FORMATTING}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FORMATTING}
 |key|
 |value|
 |-- |value|
-|longValue|</pre>
+|longValue|</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_replacing"><a class="anchor" href="#_replacing"></a>REPLACING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_replacing"><a class="anchor" href="#_replacing"></a>REPLACING</h3>
 <div class="paragraph">
 <p><code>REPLACING</code> transformer replaces all substrings inside table values with replacement according to the given parameters.</p>
 </div>
@@ -511,18 +540,16 @@
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 3. Usage of REPLACING transformer</div>
+<div class="title">Example 5. Usage of REPLACING transformer</div>
 <div class="content">
-<pre>{transformer=REPLACING, replacing=k, replacement=l}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=REPLACING, replacing=k, replacement=l}
 |key  |
-|vakue|</pre>
+|vakue|</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_sorting"><a class="anchor" href="#_sorting"></a>SORTING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sorting"><a class="anchor" href="#_sorting"></a>SORTING</h3>
 <div class="paragraph">
 <p><code>SORTING</code> transformer is designed to sort the table rows by the values in
 the columns.</p>
@@ -546,19 +573,17 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 4. Usage of SORTING transformer</div>
+<div class="title">Example 6. Usage of SORTING transformer</div>
 <div class="content">
-<pre>{transformer=SORTING, byColumns=key|key1}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key|key1}
 |key   |key1  |
 |value3|value4|
-|value1|value2|</pre>
+|value1|value2|</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_iterating"><a class="anchor" href="#_iterating"></a>ITERATING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_iterating"><a class="anchor" href="#_iterating"></a>ITERATING</h3>
 <div class="paragraph">
 <p><code>ITERATING</code> transformer generates simple one-column table with header <code>iterator</code> and numbers as values: 0, 1, 2&#8230;&#8203; .</p>
 </div>
@@ -581,16 +606,14 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 5. Usage of ITERATING transformer</div>
+<div class="title">Example 7. Usage of ITERATING transformer</div>
 <div class="content">
-<pre>{transformer=ITERATING, limit=5}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ITERATING, limit=5}</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_filtering"><a class="anchor" href="#_filtering"></a>FILTERING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_filtering"><a class="anchor" href="#_filtering"></a>FILTERING</h3>
 <div class="paragraph">
 <p><code>FILTERING</code> transformer filters the table using the specified parameters.</p>
 </div>
@@ -637,29 +660,27 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
+<div class="title">Example 8. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
 <div class="content">
-<pre>{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
 |key1  |key2  |key3  |
 |value1|value2|value3|
-|value4|value5|value6|</pre>
+|value4|value5|value6|</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
+<div class="title">Example 9. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
 <div class="content">
-<pre>{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
 |key1  |key2  |key3  |
 |value1|value2|value3|
 |value4|value5|value6|
-|value7|value8|value9|</pre>
+|value7|value8|value9|</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_merging"><a class="anchor" href="#_merging"></a>MERGING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_merging"><a class="anchor" href="#_merging"></a>MERGING</h3>
 <div class="paragraph">
 <p><code>MERGING</code> transformer merges several tables into one.</p>
 </div>
@@ -723,27 +744,27 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Usage of MERGING transformer with 'rows' merge mode</div>
+<div class="title">Example 10. Usage of MERGING transformer with 'rows' merge mode</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Usage of MERGING transformer with 'columns' merge mode</div>
+<div class="title">Example 11. Usage of MERGING transformer with 'columns' merge mode</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Usage of MERGING transformer with nested tables</div>
+<div class="title">Example 12. Usage of MERGING transformer with nested tables</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Usage of nested MERGING transformers</div>
+<div class="title">Example 13. Usage of nested MERGING transformers</div>
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
  transformer=MERGING,
  mergeMode=rows,
  fillerValue=null,
@@ -776,22 +797,20 @@ the columns.</p>
    addresses=E8\,
    column=text1
  \}
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Usage of MERGING transformer with table body</div>
+<div class="title">Example 14. Usage of MERGING transformer with table body</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
 |column1|
-|value1 |</pre>
+|value1 |</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_joining"><a class="anchor" href="#_joining"></a>JOINING</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_joining"><a class="anchor" href="#_joining"></a>JOINING</h3>
 <div class="paragraph">
 <p><code>JOINING</code> transformer joins values from rows/columns of the table.</p>
 </div>
@@ -834,62 +853,60 @@ the columns.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Usage of JOINING transformer with 'columns' join mode</div>
+<div class="title">Example 15. Usage of JOINING transformer with <code>columns</code> join mode</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in default columns mode
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default columns mode
 Then `&lt;joinedColumn&gt;` is equal to `A B`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn}
 |column1|column2|
-|A      |B      |</pre>
+|A      |B      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Usage of JOINING transformer with 'columns' join mode and definition of columns to join</div>
+<div class="title">Example 16. Usage of JOINING transformer with <code>columns</code> join mode and definition of columns to join</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in configured columns mode
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in configured columns mode
 Then `&lt;joinedColumn&gt;` is equal to `B D`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn, columnsToJoin=column2;column4}
 |column1|column2|column3|column4|
-|A      |B      |C      |D      |</pre>
+|A      |B      |C      |D      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Usage of JOINING transformer with 'rows' join mode</div>
+<div class="title">Example 17. Usage of JOINING transformer with <code>rows</code> join mode</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in default rows mode
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default rows mode
 Then `&lt;column1&gt;` is equal to `A B`
 Then `&lt;column2&gt;` is equal to `C D`
 Examples:
 {transformer=JOINING, joinMode=rows}
 |column1|column2|
 |A      |C      |
-|B      |D      |</pre>
+|B      |D      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Usage of JOINING transformer in the chain of transformers</div>
+<div class="title">Example 18. Usage of JOINING transformer in the chain of transformers</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=B4:B5\, column=header2\, joinValues=true\}
 }
-{transformer=JOINING, joinMode=columns, joinedColumn=header}</pre>
+{transformer=JOINING, joinMode=columns, joinedColumn=header}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Usage of JOINING transformer with table body containing path to table file</div>
+<div class="title">Example 19. Usage of JOINING transformer with table body containing path to table file</div>
 <div class="content">
-<pre>{transformer=JOINING, joinMode=columns, joinedColumn=header}
-/test1.table</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=JOINING, joinMode=columns, joinedColumn=header}
+/test1.table</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_cartesian_product"><a class="anchor" href="#_cartesian_product"></a>CARTESIAN_PRODUCT</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cartesian_product"><a class="anchor" href="#_cartesian_product"></a>CARTESIAN_PRODUCT</h3>
 <div class="paragraph">
 <p><code>CARTESIAN_PRODUCT</code> transformer creates a <a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a> from several tables.</p>
 </div>
@@ -936,23 +953,24 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Usage of CARTESIAN_PRODUCT transformer</div>
+<div class="title">Example 20. Usage of CARTESIAN_PRODUCT transformer</div>
 <div class="content">
-<pre>{transformer=CARTESIAN_PRODUCT, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Usage of CARTESIAN_PRODUCT transformer with table body</div>
+<div class="title">Example 21. Usage of CARTESIAN_PRODUCT transformer with table body</div>
 <div class="content">
-<pre>{transformer=CARTESIAN_PRODUCT, tables=/data/some-table.table}
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=/data/some-table.table}
 |column1|
-|value1 |</pre>
+|value1 |</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
+<div class="title">Example 22. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
 <div class="content">
-<pre>{transformer=CARTESIAN_PRODUCT, tables=\{transformer=REPEATING\, times=100\};\{transformer=FROM_CSV\, csvPath=/data/csv.csv\}}</pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=\{transformer=REPEATING\, times=100\};\{transformer=FROM_CSV\, csvPath=/data/csv.csv\}}</code></pre>
+</div>
 </div>
 </div>
 </div>
