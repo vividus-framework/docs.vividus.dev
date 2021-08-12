@@ -460,7 +460,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<h2 id="_common_configuration"><a class="anchor" href="#_common_configuration"></a>Common configuration</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
@@ -471,10 +471,15 @@
 <p>See the official <a href="https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity#environment-variables">"Azure identity"</a> guide to get more details on what types of authentication could be used.</p>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_blob_storage"><a class="anchor" href="#_blob_storage"></a>Blob storage</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
 <div class="paragraph">
-<p>The storage accounts endpoints are configured with the following property format:</p>
+<p>The blob storages endpoints are configured with the following property format:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -487,23 +492,20 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>key</code> - The logical key used to refer storage account in the steps.</p>
+<p><code>key</code> - The logical key used to refer the blob storage in the steps.</p>
 </li>
 <li>
-<p><code>endpoint</code> - The blob service URL, e.g. <code><a href="https://storageaccount.blob.core.windows.net/" class="bare">https://storageaccount.blob.core.windows.net/</a></code>.
+<p><code>endpoint</code> - The blob service URL, e.g. <code><a href="https://mystorage.blob.core.windows.net/" class="bare">https://mystorage.blob.core.windows.net/</a></code>.
 It&#8217;s allowed to use blob service <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview">SAS</a> URL here,
 in this case the authentication configuration is not required.</p>
 </li>
 </ol>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_download_the_blob"><a class="anchor" href="#_download_the_blob"></a>Download the blob</h3>
+<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_download_the_blob"><a class="anchor" href="#_download_the_blob"></a>Download the blob</h4>
 <div class="paragraph">
 <p>Downloads the entire blob from the container and saves its content as a text to a variable.</p>
 </div>
@@ -538,8 +540,8 @@ in this case the authentication configuration is not required.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_download_the_blob_to_a_temporary_file"><a class="anchor" href="#_download_the_blob_to_a_temporary_file"></a>Download the blob to a temporary file</h3>
+<div class="sect3">
+<h4 id="_download_the_blob_to_a_temporary_file"><a class="anchor" href="#_download_the_blob_to_a_temporary_file"></a>Download the blob to a temporary file</h4>
 <div class="paragraph">
 <p>Downloads the entire blob from the container into a temporary file with the specified name and saves the full path to the specified variable.</p>
 </div>
@@ -577,8 +579,8 @@ in this case the authentication configuration is not required.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_retrieve_the_blob_properties"><a class="anchor" href="#_retrieve_the_blob_properties"></a>Retrieve the blob properties</h3>
+<div class="sect3">
+<h4 id="_retrieve_the_blob_properties"><a class="anchor" href="#_retrieve_the_blob_properties"></a>Retrieve the blob properties</h4>
 <div class="paragraph">
 <p>Retrieves the blob properties (all user-defined metadata, standard HTTP
 properties, and system properties for the blob) and saves them as JSON to a
@@ -586,7 +588,7 @@ variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When("I retrieve properties of blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey` and save them to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve properties of blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey` and save them to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -615,8 +617,8 @@ variable.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_upload_the_blob"><a class="anchor" href="#_upload_the_blob"></a>Upload the blob</h3>
+<div class="sect3">
+<h4 id="_upload_the_blob"><a class="anchor" href="#_upload_the_blob"></a>Upload the blob</h4>
 <div class="paragraph">
 <p>Uploads the blob to the container.</p>
 </div>
@@ -654,8 +656,8 @@ variable.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_delete_the_blob"><a class="anchor" href="#_delete_the_blob"></a>Delete the blob</h3>
+<div class="sect3">
+<h4 id="_delete_the_blob"><a class="anchor" href="#_delete_the_blob"></a>Delete the blob</h4>
 <div class="paragraph">
 <p>Deletes the specified blob from the container.</p>
 </div>
@@ -684,8 +686,8 @@ variable.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_find_blobs"><a class="anchor" href="#_find_blobs"></a>Find blobs</h3>
+<div class="sect3">
+<h4 id="_find_blobs"><a class="anchor" href="#_find_blobs"></a>Find blobs</h4>
 <div class="paragraph">
 <p>Finds the blobs with names matching the specified comparison rule.</p>
 </div>
@@ -720,6 +722,97 @@ variable.</p>
 <div class="title">Example 8. Find blobs</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find all blobs with name which contains `json` in container `vividus` of storage account `testaccount` and save result to scenario variable `blobsCollection`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storage_account_management"><a class="anchor" href="#_storage_account_management"></a>Storage account management</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="_azure_environment_selection"><a class="anchor" href="#_azure_environment_selection"></a>Azure environment selection</h4>
+<div class="paragraph">
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud">Azure environment</a>
+could be selected via a property: <code>azure.storage-account.environment</code>.
+The default value is <code>AZURE</code>.</p>
+</div>
+<div class="paragraph">
+<p>The allowed values are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AZURE</code></p>
+</li>
+<li>
+<p><code>AZURE_CHINA</code></p>
+</li>
+<li>
+<p><code>AZURE_GERMANY</code></p>
+</li>
+<li>
+<p><code>AZURE_US_GOVERNMENT</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azure_subscription_selection"><a class="anchor" href="#_azure_subscription_selection"></a>Azure subscription selection</h4>
+<div class="paragraph">
+<p>Azure subscription must be configured via <code>AZURE_SUBSCRIPTION_ID</code> environment variable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_collect_storage_accounts_info"><a class="anchor" href="#_collect_storage_accounts_info"></a>Collect storage accounts info</h4>
+<div class="paragraph">
+<p>Collects storage accounts info in the specified resource group and saves it as
+JSON to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect storage accounts in resource group `$resourceGroupName` and save them as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group to list the storage accounts from.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the info about storage accounts as JSON.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The client should have permission to run action <code>Microsoft.Storage/storageAccounts/read</code>
+over scope <code>/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Storage</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Collect storage accounts info</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect storage accounts in resource group `TEST-SA` and save them as JSON to scenario variable `storage-accounts`</code></pre>
+</div>
 </div>
 </div>
 </div>
