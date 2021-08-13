@@ -478,50 +478,50 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.ignored-elements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.ignored-elements</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-web-app.html#_locator" class="page">locators</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated list of locators of elements to ignore element areas</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.ignored-areas</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.ignored-areas</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="plugin-web-app.html#_locator" class="page">locators</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The comma-separated list of locators of elements to ignore page areas</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.baselines-folder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.baselines-folder</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>./baseline</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to folder for saving baselines (root folder is <code>src/main/resources</code>).
 For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/main/resources/baselines</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.indexer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.indexer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used to append scenario based index to a baseline name</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.override-baselines</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.override-baselines</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> <code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used for overriding existing ones or creating not existing baselines during compare action</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.acceptable-diff-percentage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.acceptable-diff-percentage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">percentage numbers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add ability to configure sensitivity for visual checks</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.visual.required-diff-percentage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.required-diff-percentage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">percentage numbers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>70</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines required difference baseline vs checkpoint to consider them inequal</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.debug-directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.screenshot.debug-directory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to folder for saving debug screenshots. For example, <code>web.visual.baselines-folder=C:/temp/debug</code></p></td>
@@ -646,15 +646,15 @@ For example, <code>web.visual.baselines-folder=C:/Workspace/vividus-tests/src/ma
 <p>In order to support screenshot taking configuration per-project/per-step basis framework provides following approach.</p>
 </div>
 <div class="sect2">
-<h3 id="_property_based_configuration"><a class="anchor" href="#_property_based_configuration"></a>Property based configuration</h3>
+<h3 id="_web_applications"><a class="anchor" href="#_web_applications"></a>Web Applications</h3>
 <div class="paragraph">
-<p>Property based configuration could be specified using <code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
+<p>Property based configuration could be specified using <code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
 where:
 <code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;
 <code>PROPERTY_NAME</code> - name of the property you want specify.</p>
 </div>
 <div class="sect3">
-<h4 id="_available_properties_all_of_there_not_mandatory"><a class="anchor" href="#_available_properties_all_of_there_not_mandatory"></a>Available properties (all of there not mandatory):</h4>
+<h4 id="_properties_based_configuration"><a class="anchor" href="#_properties_based_configuration"></a>Properties based configuration:</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -670,64 +670,55 @@ where:
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Web header to cut (could be useful if your site has sticky header)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-footer-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Web footer to cut (could be useful if your site has sticky footer)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-header-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Native header to cut</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Native footer to cut</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.coords-provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.coords-provider</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>WEB_DRIVER</code> <code>CEILING</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adds margins to coordinates, default one</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scroll-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scroll-timeout</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">time in millis</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for scrolling during performing visual check</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scrollable-element</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scrollable-element</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locator</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Locator of element for performing scroll action during visual check</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.screenshot-shooting-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code> <code>VIEWPORT_PASTING</code> <code>DEVICE_DEPENDENT</code> <code>PHONE_ANDROID_PORTRAIT</code> <code>PHONE_ANDROID_LANDSCAPE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>VIEWPORT_PASTING</code> by default)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.screenshot.shooting-strategy=YOUR_STRATEGY_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy=YOUR_STRATEGY_NAME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">After configuration necessary properties use this one to enable your custom strategy</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Please see the image to get a clue about difference between native/web footer/header to cut.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/example.png" alt="Difference between native/web footer/header image">
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_step_based_configuration"><a class="anchor" href="#_step_based_configuration"></a>Step based configuration</h3>
+<div class="sect3">
+<h4 id="_step_based_configuration"><a class="anchor" href="#_step_based_configuration"></a>Step based configuration</h4>
 <div class="paragraph">
 <p>To use custom configuration per step, two new steps were implemented.</p>
 </div>
@@ -741,16 +732,17 @@ where:
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with `$baselineName` ignoring:$ignoringElement using screenshot configuration:$screenshotConfiguration</code></pre>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="_examples_of_usage_property_based_configuration"><a class="anchor" href="#_examples_of_usage_property_based_configuration"></a><strong>Examples of usage property based configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">selenium.screenshot.strategy.bombaysapphire.web-header-to-cut=80
-selenium.screenshot.strategy.bombaysapphire.web-footer-to-cut=0
-selenium.screenshot.strategy.bombaysapphire.scrollable-element=By.cssSelector(.page__inner)
-selenium.screenshot.strategy.bombaysapphire.scroll-timeout=PT1S
-selenium.screenshot.strategy.bombaysapphire.screenshot-shooting-strategy=SIMPLE
-selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">web.screenshot.strategy.bombaysapphire.web-header-to-cut=80
+web.screenshot.strategy.bombaysapphire.web-footer-to-cut=0
+web.screenshot.strategy.bombaysapphire.scrollable-element=By.cssSelector(.page__inner)
+web.screenshot.strategy.bombaysapphire.scroll-timeout=PT1S
+web.screenshot.strategy.bombaysapphire.shooting-strategy=SIMPLE
+web.screenshot.strategy=bombaysapphire</code></pre>
 </div>
 </div>
 </div>
@@ -759,8 +751,79 @@ selenium.screenshot.shooting-strategy=bombaysapphire</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
-|scrollableElement                    |webHeaderToCut|webFooterToCut|scrollTimeout|screenshotShootingStrategy|
-|By.xpath(//div[@class="page__inner"])|80            |0             |PT1S         |SIMPLE                    |</code></pre>
+|scrollableElement                    |webHeaderToCut|webFooterToCut|scrollTimeout|shootingStrategy|
+|By.xpath(//div[@class="page__inner"])|80            |0             |PT1S         |SIMPLE          |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please see the image to get a clue about difference between native/web footer/header to cut.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/example.png" alt="Difference between native/web footer/header image">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mobile_native_applications"><a class="anchor" href="#_mobile_native_applications"></a>Mobile Native Applications</h3>
+<div class="paragraph">
+<p>Property based configuration could be specified using <code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
+where:
+<code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;
+<code>PROPERTY_NAME</code> - name of the property you want specify.</p>
+</div>
+<div class="sect3">
+<h4 id="_properties_based_configuration_2"><a class="anchor" href="#_properties_based_configuration_2"></a>Properties based configuration:</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native footer to cut</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>SIMPLE</code> by default)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy=YOUR_STRATEGY_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">After configuration necessary properties use this one to enable your custom strategy</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_examples_of_usage_property_based_configuration_2"><a class="anchor" href="#_examples_of_usage_property_based_configuration_2"></a><strong>Examples of usage property based configuration:</strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">mobile.screenshot.strategy.bombaysapphire.native-footer-to-cut=100
+mobile.screenshot.strategy.bombaysapphire.shooting-strategy=SIMPLE
+mobile.screenshot.strategy=bombaysapphire</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_examples_of_usage_step_based_configuration_2"><a class="anchor" href="#_examples_of_usage_step_based_configuration_2"></a><strong>Examples of usage step based configuration:</strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
+|nativeFooterToCut|shootingStrategy|
+|51               |SIMPLE          |</code></pre>
 </div>
 </div>
 </div>
