@@ -475,11 +475,13 @@
 <h3 id="_azure_environment_selection"><a class="anchor" href="#_azure_environment_selection"></a>Azure environment selection</h3>
 <div class="paragraph">
 <p><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud">Azure environment</a>
-could be selected via a property: <code>azure.functions.environment</code>.
-The default value is <code>AZURE</code>.</p>
+could be optionally specified using either global property <code>azure.environment</code>
+(sets the environment for all Azure plugins) or plugin-specific property
+<code>azure.functions.environment</code>. The plugin-specific property takes
+precedence over the global one. The default value is <code>AZURE</code>.</p>
 </div>
 <div class="paragraph">
-<p>The allowed values are:</p>
+<p>The supported environments are only:</p>
 </div>
 <div class="ulist">
 <ul>

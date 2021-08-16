@@ -460,7 +460,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<h2 id="_interaction_with_topics"><a class="anchor" href="#_interaction_with_topics"></a>Interaction with topics</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_topics_configuration"><a class="anchor" href="#_topics_configuration"></a>Topics configuration</h3>
@@ -499,13 +499,10 @@
 </ol>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_publish_event"><a class="anchor" href="#_publish_event"></a>Publish event</h3>
+<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_publish_event"><a class="anchor" href="#_publish_event"></a>Publish event</h4>
 <div class="paragraph">
 <p>Publishes an event to a topic</p>
 </div>
@@ -539,6 +536,108 @@
   },
   "dataVersion": "1.0"
 }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_topic_management"><a class="anchor" href="#_topic_management"></a>Topic management</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h4>
+<div class="paragraph">
+<p>The authentication process relies on the configuration of the environment variables.</p>
+</div>
+<div class="paragraph">
+<p>See the official <a href="https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity#environment-variables">"Azure identity"</a> guide to get more details on what types of authentication could be used.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azure_environment_selection"><a class="anchor" href="#_azure_environment_selection"></a>Azure environment selection</h4>
+<div class="paragraph">
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud">Azure environment</a>
+could be optionally specified using either global property <code>azure.environment</code>
+(sets the environment for all Azure plugins) or plugin-specific property
+<code>azure.event-grid.environment</code>. The plugin-specific property takes
+precedence over the global one. The default value is <code>AZURE</code>.</p>
+</div>
+<div class="paragraph">
+<p>The supported environments are only:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AZURE</code></p>
+</li>
+<li>
+<p><code>AZURE_CHINA</code></p>
+</li>
+<li>
+<p><code>AZURE_GERMANY</code></p>
+</li>
+<li>
+<p><code>AZURE_US_GOVERNMENT</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azure_subscription_selection"><a class="anchor" href="#_azure_subscription_selection"></a>Azure subscription selection</h4>
+<div class="paragraph">
+<p>Azure subscription must be configured via <code>AZURE_SUBSCRIPTION_ID</code> environment variable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_collect_system_topics_info"><a class="anchor" href="#_collect_system_topics_info"></a>Collect system topics info</h4>
+<div class="paragraph">
+<p>Collects system topics info in the specified resource group and saves it as
+JSON to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect system topics in resource group `$resourceGroupName` and save them as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group to list the system topics from.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the info about system topics as JSON.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The client should have permission to run action <code>Microsoft.EventGrid/systemTopics/read</code>
+over scope <code>/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.EventGrid</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Collect system topics info</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect system topics in resource group `TEST-SA` and save them as JSON to scenario variable `system-topics`</code></pre>
+</div>
 </div>
 </div>
 </div>
