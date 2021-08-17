@@ -1252,7 +1252,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
     }
   ]
 }
-` by `$.accounts.*` and for each element docs
+` by `$.accounts.*` and for each element do
 |step                                                                                 |
 |Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
 </div>
