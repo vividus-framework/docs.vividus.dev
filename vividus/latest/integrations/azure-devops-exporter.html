@@ -460,23 +460,38 @@
 <div class="sect1">
 <h2 id="_azure_devops_export_properties"><a class="anchor" href="#_azure_devops_export_properties"></a>Azure DevOps Export Properties</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0001%;">
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.json-results-directory</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>azure-devops-exporter.json-results-directory</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Path to directory with test execution JSON results.</p>
 </div>
@@ -488,19 +503,28 @@
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.organization</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>azure-devops-exporter.organization</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the Azure DevOps organization.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.project</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID or project name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>azure-devops-exporter.project</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID or project name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.area</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The area of the product with which a test case is associated</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>azure-devops-exporter.area</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The area of the product which a test case is associated with.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.section-mapping.steps</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AUTOMATED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AUTOMATED</code> or <code>MANUAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The scenario part to export into <code>Steps</code> section of <code>Test Case</code> work item, the remaining scenario part is exported into <code>Summary</code> section.</p></td>
 </tr>
 </tbody>
 </table>
