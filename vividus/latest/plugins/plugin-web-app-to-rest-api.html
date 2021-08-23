@@ -459,6 +459,73 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_validate_resources"><a class="anchor" href="#_validate_resources"></a>Validate resources</h3>
+<div class="paragraph">
+<p>Validates resources on web pages</p>
+</div>
+<div class="paragraph">
+<p>Resource validation logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the <code>pages</code> row contains relative URL then it gets resolved against URL in <code>web-application.main-page-url</code> property, i.e. if the main page URL is <code><a href="https://elderscrolls.bethesda.net/" class="bare">https://elderscrolls.bethesda.net/</a></code> and relative URL is <code>/skyrim10</code> the resulting URL will be <code><a href="https://elderscrolls.bethesda.net/skyrim10" class="bare">https://elderscrolls.bethesda.net/skyrim10</a></code></p>
+</li>
+<li>
+<p>Collect elements by the CSS selector from each page</p>
+</li>
+<li>
+<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails</p>
+</li>
+<li>
+<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
+</li>
+<li>
+<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
+</li>
+<li>
+<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` are valid on:$pages</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$cssSelector</code> - The <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a></p>
+</li>
+<li>
+<p><code>$pages</code> - The pages to validate resources on</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate resources</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector a are valid on:
+|pages                        |
+|https://vividus.org/         |
+|/test-automation-made-awesome|</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a>Table Transformers</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -532,7 +599,7 @@
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Usage example</div>
+<div class="title">Example 3. Usage example</div>
 <div class="content">
 <pre>Examples:
 {transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, column=page-url}</pre>
@@ -603,7 +670,7 @@
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Usage example</div>
+<div class="title">Example 4. Usage example</div>
 <div class="content">
 <pre>Examples:
 {transformer=FROM_HEADLESS_CRAWLING, column=page-url}</pre>
