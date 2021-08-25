@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Variables :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/commons/variables.html">
+    <title>Jenkins pipeline using browser proxy in Docker container :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/guides/pipeline-with-proxy.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -126,17 +126,17 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Commons</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="variables.html">Variables</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="expressions.html">Expressions</a>
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="vividus-steps.html">Steps</a>
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="table-transformers.html">Table Transformers</a>
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
   </li>
 </ul>
   </li>
@@ -311,7 +311,7 @@
     <span class="nav-text">Data Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+    <a class="nav-link" href="execute-sql-against-csv.html">Execute SQL against CSV</a>
   </li>
 </ul>
   </li>
@@ -319,8 +319,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">CI Integration</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
   </li>
 </ul>
   </li>
@@ -412,15 +412,16 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li>Commons</li>
-    <li><a href="variables.html">Variables</a></li>
+    <li>User Guides</li>
+    <li>CI Integration</li>
+    <li><a href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="variables.html">latest</a>
-    <a class="version" href="../../0.3.7/commons/variables.html">0.3.7</a>
+    <a class="version is-current" href="pipeline-with-proxy.html">latest</a>
+    <a class="version is-missing" href="../../0.3.7/index.html">0.3.7</a>
     <a class="version is-missing" href="../../0.3.6/index.html">0.3.6</a>
     <a class="version is-missing" href="../../0.3.5/index.html">0.3.5</a>
     <a class="version is-missing" href="../../0.3.4/index.html">0.3.4</a>
@@ -441,36 +442,139 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/commons/pages/variables.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/guides/pages/pipeline-with-proxy.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Variables</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Variables are names used to hold one or more values. Instead of repeating these
-values in multiple places in tests, the variable holds the results of
-a calculation, step execution, expression evaluation, or other value.</p>
-</div>
-<div class="paragraph">
-<p>VIVIDUS provides the following syntax to access variable value:</p>
-</div>
+<h1 class="page">Jenkins pipeline using browser proxy in Docker container</h1>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${variableName}</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def vividusNetwork = 'vividus-grid'<i class="conum" data-value="1"></i><b>(1)</b>
+def vividusHub = 'vividus-hub'<i class="conum" data-value="2"></i><b>(2)</b>
+def vividusBrowser = 'vividus-browser'<i class="conum" data-value="3"></i><b>(3)</b>
+def vividusProxyHost = 'vividus-proxy-host'<i class="conum" data-value="4"></i><b>(4)</b>
+def seleniumVersion = '3.141.59-20210804'<i class="conum" data-value="5"></i><b>(5)</b>
+def overridings = """
+                        proxy.host=${vividusProxyHost}<i class="conum" data-value="4"></i><b>(4)</b>
+                        proxy.connectable-host=${vividusProxyHost}<i class="conum" data-value="4"></i><b>(4)</b>
+                        selenium.grid.enabled=true
+                        selenium.grid.url=http://${vividusHub}:4444/wd/hub<i class="conum" data-value="2"></i><b>(2)</b>
+                        selenium.grid.capabilities.platformName=LINUX
+                  """
+def projectName = 'vividus-test-project'<i class="conum" data-value="6"></i><b>(6)</b>
+def scmCredentialId = 'vividus'<i class="conum" data-value="7"></i><b>(7)</b>
+def gitUrl = 'git@github.com:vividus/vividus-test-project.git'<i class="conum" data-value="8"></i><b>(8)</b>
+
+pipeline {
+  agent {
+    label 'docker'
+  }
+
+  stages {
+    stage('Start Selenium Grid') {
+        steps {
+           sh "docker network create ${vividusNetwork}"<i class="conum" data-value="1"></i><b>(1)</b>
+           sh "docker run -d --net ${vividusNetwork} --name ${vividusHub} selenium/hub:${seleniumVersion}"<i class="conum" data-value="2"></i><b>(2)</b>
+           sh "docker run -d --net ${vividusNetwork} -e HUB_HOST=${vividusHub} -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 --shm-size=2g --name ${vividusBrowser} selenium/node-chrome:${seleniumVersion}"<i class="conum" data-value="3"></i><b>(3)</b><i class="conum" data-value="5"></i><b>(5)</b>
+        }
+    }
+
+    stage('Load Source') {
+        steps {
+            checkout([$class: 'GitSCM',
+                branches: [[name: 'master']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [
+                    [$class: 'RelativeTargetDirectory', relativeTargetDir: projectName],<i class="conum" data-value="6"></i><b>(6)</b>
+                    [$class: 'SubmoduleOption',
+                    disableSubmodules: false,
+                    parentCredentials: true,
+                    recursiveSubmodules: true,
+                    reference: '',
+                    trackingSubmodules: false]
+                ],
+                submoduleCfg: [],
+                userRemoteConfigs: [[credentialsId: scmCredentialId, url: gitUrl]]])<i class="conum" data-value="7"></i><b>(7)</b> <i class="conum" data-value="8"></i><b>(8)</b>
+        }
+    }
+
+    stage('Run Tests Using Docker') {
+        steps {
+                sh "docker ps -a"
+                withDockerContainer(image: 'openjdk:16.0.2-oraclelinux8', args: "--net ${vividusNetwork} --name ${vividusProxyHost}") {<i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="4"></i><b>(4)</b>
+                dir(projectName) {<i class="conum" data-value="6"></i><b>(6)</b>
+                    sh """
+                        echo -e "${overridings}" &gt; overriding.properties
+                        mv -f overriding.properties src/main/resources/overriding.properties
+                        ./gradlew runStories
+                        echo \${EXIT_CODE} &gt; output/exit_code.txt
+                     """
+                    archiveArtifacts 'output/reports/**'
+                    sh 'exit $(cat output/exit_code.txt)'
+                }
+            }
+        }
+    }
+  }
+
+  post {
+        always {
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: "${projectName}/output/reports/allure",<i class="conum" data-value="6"></i><b>(6)</b>
+                reportFiles: 'index.html',
+                reportName: 'Allure Report',
+                reportTitles: ''
+            ])
+            cleanWs()
+            sh "docker rm -vf ${vividusBrowser} || true"
+            sh "docker rm -vf ${vividusHub} || true"
+            sh "docker network rm ${vividusNetwork} || true"
+        }
+    }
+}</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scopes"><a class="anchor" href="#_scopes"></a>Scopes</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Variables can have one of the following scopes.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>vividusNetwork</strong> - name of docker network</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>vividusHub</strong> - name of docker hub; this variable value is part of parameter for property <code><strong>selenium.grid.url</strong></code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>vividusBrowser</strong> - name of docker container with browser</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong>vividusProxyHost</strong> - parameter, which is passed as name of docker container in <code><strong>dockerFingerprintRun</strong></code> for run tests; need to assign this variable as value for <code><strong>proxy.host</strong></code> and <code><strong>proxy.connectable-host</strong></code> properties</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><strong>seleniumVersion</strong> - <a href="https://github.com/seleniumhq/docker-selenium/releases">grid version</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><strong>projectName</strong> - test project name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><strong>scmCredentialId</strong> - <a href="https://www.jenkins.io/doc/book/using/using-credentials/">credentials for interacting with test repository</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>gitUrl</strong> - git url to test project</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -479,75 +583,10 @@ a calculation, step execution, expression evaluation, or other value.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The scopes names are case-insensitive
+For more information about pipeline syntax and jenkins directives read <a href="https://www.jenkins.io/doc/book/pipeline/syntax/">jenkins documentation</a>.
 </td>
 </tr>
 </table>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 14.2857%;">
-<col style="width: 85.7143%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">step</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The scope is used within nested steps and the variables are invalidated after the nested steps are executed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>scenario</strong> scope is available in the rest of the scenario after its declaration. The <strong>scenario</strong>-scoped variables are invalidated once the scenario is completed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">story</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>story</strong> scope is available in the rest of the story after its declaration. The <strong>story</strong>-scoped variables declared inside given stories are available in the parent story. The variables are invalidated once the story is completed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">next_batches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>next_batches</strong> scope is available in the next batches. The <strong>next_batches</strong>-scoped variable is not available in batch it&#8217;s declared within.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">global</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Such variables are declared only via properties with <code>bdd.variables.global.</code> prefix and available throughout the entire execution. An attempt to create the globally scoped variables during test execution leads to an error.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example 1. Declaring global variable <code>login-endpoint</code></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.login-endpoint=https://my-auth-server.com/api/login</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 2. Using global variable <code>login-endpoint</code></div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:
-{
-    "username":"user",
-    "password":"pass"
-}
-When I set request headers:
-|name        |value           |
-|Content-Type|application/json|
-When I issue a HTTP POST request for a resource with the URL '${login-endpoint}'
-Then the response code is equal to '200'</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>If variable with the specified name is not found in any of VIVIDUS scopes,
-search for OS environment variable will be performed. If no OS environment
-variable is available, the variable placeholder will be kept as is:
-<code>${variableName}</code></p>
-</div>
-</div>
 </div>
 </article>
   </div>
