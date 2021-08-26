@@ -2208,6 +2208,33 @@ expected domain. The actions performed by the step:</p>
 </div>
 </div>
 <div class="sect3">
+<h4 id="_remove_cookie_without_apply"><a class="anchor" href="#_remove_cookie_without_apply"></a>Remove cookie without apply</h4>
+<div class="paragraph">
+<p>Removes the certain cookie from the current domain, but does not apply the
+changes in cookies. The current page must be refreshed or the navigation must
+be performed to apply the cookie changes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `$cookieName` from current domain without applying changes</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to remove.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 32. Remove the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain without applying changes
+When I refresh the page</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_remove_all_cookies"><a class="anchor" href="#_remove_all_cookies"></a>Remove all cookies</h4>
 <div class="paragraph">
 <p>Removes all cookies from the current domain. The actions performed by the step:</p>
@@ -2225,6 +2252,19 @@ expected domain. The actions performed by the step:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_all_cookies_without_apply"><a class="anchor" href="#_remove_all_cookies_without_apply"></a>Remove all cookies without apply</h4>
+<div class="paragraph">
+<p>Removes all cookies from the current domain, but does not apply the changes in
+cookies. The current page must be refreshed or the navigation must be performed
+to apply the cookie changes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain without applying changes</code></pre>
 </div>
 </div>
 </div>
@@ -2280,7 +2320,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 33. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -2341,7 +2381,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 34. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2404,7 +2444,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 35. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2483,7 +2523,7 @@ The actions preformed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Validate the data from the matching HTTP message</div>
+<div class="title">Example 36. Validate the data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/forms/post'
 When I click on element located `By.xpath(//button)`
@@ -2518,7 +2558,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Wait for the HTTP request</div>
+<div class="title">Example 37. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/get'
 When I wait until HTTP GET or POST request with URL pattern `http://httpbin\.org/get` exists in proxy log
@@ -2551,7 +2591,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Add headers to the proxied HTTP request</div>
+<div class="title">Example 38. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
 |name     |value     |
@@ -2581,7 +2621,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Clear the data recorded by the proxy</div>
+<div class="title">Example 39. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http:/httpbin.org/get'
 When I clear proxy log
@@ -2601,7 +2641,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Clear the proxy mocks</div>
+<div class="title">Example 40. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -2658,7 +2698,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Hijack a page</div>
+<div class="title">Example 41. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -2709,7 +2749,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Hijack a page</div>
+<div class="title">Example 42. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -2757,7 +2797,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. 404 page</div>
+<div class="title">Example 43. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
