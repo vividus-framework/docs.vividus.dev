@@ -2000,6 +2000,236 @@ Does not support multi-selection
 </div>
 </div>
 <div class="sect2">
+<h3 id="_cookie_steps"><a class="anchor" href="#_cookie_steps"></a>Cookie Steps</h3>
+<div class="sect3">
+<h4 id="_validate_cookie_presence"><a class="anchor" href="#_validate_cookie_presence"></a>Validate cookie presence</h4>
+<div class="paragraph">
+<p>Validates whether the certain cookie is set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is set</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 26. Check the session cookie is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_cookie_absence"><a class="anchor" href="#_validate_cookie_absence"></a>Validate cookie absence</h4>
+<div class="paragraph">
+<p>Validates whether the certain cookie is not set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is not set</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check absence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. Check the session cookie is not present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is not set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_cookies"><a class="anchor" href="#_set_cookies"></a>Set cookies</h4>
+<div class="paragraph">
+<p>Adds the cookies provided in the input ExamplesTable. It&#8217;s allowed to add the
+cookies for the current domain only: make sure the web browser is opened at the
+expected domain. The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>add the cookies;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> - The parameters of the cookies to set as ExamplesTable:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the name of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the value of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the path of the cookie to set</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 28. Set the cookie for the current domain</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
+|cookieName   |cookieValue |path |
+|cookieAgreed |2           |/    |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie_value"><a class="anchor" href="#_get_cookie_value"></a>Get cookie value</h4>
+<div class="paragraph">
+<p>Finds the cookie by the name and saves its value to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `$cookieName` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save the value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 29. Get the value of the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie"><a class="anchor" href="#_get_cookie"></a>Get cookie</h4>
+<div class="paragraph">
+<p>Finds the cookie by the name and saves all its parameters as JSON to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `$cookieName` as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Get the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_cookie"><a class="anchor" href="#_remove_cookie"></a>Remove cookie</h4>
+<div class="paragraph">
+<p>Removes the certain cookie from the current domain. The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>remove the certain cookie the from current domain;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `$cookieName` from current domain</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to remove.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Remove the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_all_cookies"><a class="anchor" href="#_remove_all_cookies"></a>Remove all cookies</h4>
+<div class="paragraph">
+<p>Removes all cookies from the current domain. The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>remove all cookies from the current domain;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_proxy_steps"><a class="anchor" href="#_proxy_steps"></a>Proxy Steps</h3>
 <div class="sect3">
 <h4 id="_check_the_number_of_http_requests"><a class="anchor" href="#_check_the_number_of_http_requests"></a>Check the number of HTTP requests</h4>
@@ -2050,7 +2280,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 32. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -2111,7 +2341,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 33. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2174,7 +2404,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 34. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2253,7 +2483,7 @@ The actions preformed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Validate the data from the matching HTTP message</div>
+<div class="title">Example 35. Validate the data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/forms/post'
 When I click on element located `By.xpath(//button)`
@@ -2288,7 +2518,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Wait for the HTTP request</div>
+<div class="title">Example 36. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://httpbin.org/get'
 When I wait until HTTP GET or POST request with URL pattern `http://httpbin\.org/get` exists in proxy log
@@ -2321,7 +2551,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Add headers to the proxied HTTP request</div>
+<div class="title">Example 37. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `http://httpbin.org/headers`:
 |name     |value     |
@@ -2351,7 +2581,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Clear the data recorded by the proxy</div>
+<div class="title">Example 38. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http:/httpbin.org/get'
 When I clear proxy log
@@ -2371,7 +2601,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Clear the proxy mocks</div>
+<div class="title">Example 39. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -2428,7 +2658,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Hijack a page</div>
+<div class="title">Example 40. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -2479,7 +2709,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Hijack a page</div>
+<div class="title">Example 41. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -2527,7 +2757,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. 404 page</div>
+<div class="title">Example 42. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
