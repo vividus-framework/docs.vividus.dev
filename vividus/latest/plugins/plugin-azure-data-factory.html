@@ -521,13 +521,64 @@ precedence over the global one. The default value is <code>AZURE</code>.</p>
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_run_pipeline"><a class="anchor" href="#_run_pipeline"></a>Run Pipeline</h3>
+<h3 id="_run_pipeline_with_expected_status"><a class="anchor" href="#_run_pipeline_with_expected_status"></a>Run Pipeline with expected status</h3>
 <div class="paragraph">
-<p>Creates a run of a pipeline in Data Factory, waits for its completion or until the timeout is reached and validates the run status is <code>Succeeded</code>.</p>
+<p>Creates a run of a pipeline in Data Factory, waits for its completion or until
+the timeout is reached and validates the run status is equal to the expected one.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I run pipeline `$pipelineName` in DataFactory `$factoryName` from resource group `$resourceGroupName` with wait timeout `$waitTimeout`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I run pipeline `$pipelineName` in Data Factory `$factoryName` from resource group `$resourceGroupName` with wait timeout `$waitTimeout` and expect run status to be equal to `$expectedPipelineRunStatus`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$pipelineName</code> - The name of the pipeline to run.</p>
+</li>
+<li>
+<p><code>$factoryName</code> - The name of the factory.</p>
+</li>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group of the factory.</p>
+</li>
+<li>
+<p><code>$waitTimeout</code> - The maximum duration of time to wait for the pipeline completion in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$expectedPipelineRunStatus</code> - The expected pipeline run status, e.g. <code>Succeeded</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Run pipeline</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I run pipeline `vividus-pipeline` in Data Factory `vividus-data-factory` from resource group `vividus-resource-group-ingestion` with wait timeout `PT30S` and expect run status to be equal to `Succeeded`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_pipeline"><a class="anchor" href="#_run_pipeline"></a>Run Pipeline</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This step is deprecated and will be removed in VIVIDUS 0.4.0. The replacement is
+<a href="#_run_pipeline_with_expected_status">the step accepting an expected status as input parameter</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Creates a run of a pipeline in Data Factory, waits for its completion or until
+the timeout is reached and validates the run status is <code>Succeeded</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I run pipeline `$pipelineName` in Data Factory `$factoryName` from resource group `$resourceGroupName` with wait timeout `$waitTimeout`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -547,7 +598,7 @@ precedence over the global one. The default value is <code>AZURE</code>.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Run pipeline</div>
+<div class="title">Example 3. Run pipeline</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I run pipeline `vividus-pipeline` in Data Factory `vividus-data-factory` from resource group `vividus-resource-group-ingestion` with wait timeout `PT30S`</code></pre>
 </div>
