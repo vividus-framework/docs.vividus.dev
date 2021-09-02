@@ -1,0 +1,10 @@
+<script src="{{uiRootPath}}/js/site.js"></script>
+{{#if (eq env.DOCSEARCH_ENGINE 'lunr')}}
+<script src="{{uiRootPath}}/js/vendor/lunr.js"></script>
+<script src="{{uiRootPath}}/js/vendor/search.js" id="search-script" data-base-path="{{or siteRootPath (or site.url siteRootUrl)}}" data-page-path="{{@root.page.url}}"></script>
+<script async src="{{uiRootPath}}/../search-index.js"></script>
+{{/if}}
+<script src="{{uiRootPath}}/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="{{uiRootPath}}/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="{{uiRootPath}}/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
