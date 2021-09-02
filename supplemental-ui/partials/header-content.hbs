@@ -4,6 +4,11 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
+         {{#if env.DOCSEARCH_ENABLED}}
+           <div class="navbar-item">
+             <input id="search-input" type="text" placeholder="Search docs">
+           </div>
+         {{/if}}
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
          <span></span>
