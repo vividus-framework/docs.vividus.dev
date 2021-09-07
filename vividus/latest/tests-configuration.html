@@ -786,6 +786,29 @@ meta filters based on the tags: <code>@skip</code>, <code>@layout</code>, <code>
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: (group == 'Login' &amp;&amp; !skip)</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h4>
+<div class="paragraph">
+<p>Since meta filters properties are based on Groovy, meta tags names support
+<a href="https://groovy-lang.org/syntax.html#_normal_identifiers">only normal Groovy identifiers</a>
+by default. If it&#8217;s required to use arbitrary characters in meta tags names
+(e.g.follow kebab-case notation which actively relies on the hyphen char), then
+<a href="https://groovy-lang.org/syntax.html#_quoted_identifiers">quoted identifiers</a> or
+subscript operator must be used in the properties.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Execute stoies and scenarios not marked with '@test-stand' tag (quoted identifiers approach)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this.'test-stand'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Execute stoies and scenarios not marked with '@test-stand' tag (subscript operator approach)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this['test-stand']</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_1d_tags_key"><a class="anchor" href="#_1d_tags_key"></a>1D tags (@key)</h3>
@@ -869,13 +892,13 @@ meta filters based on the tags: <code>@skip</code>, <code>@layout</code>, <code>
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. environment.properties</div>
+<div class="title">Example 8. environment.properties</div>
 <div class="content">
 <pre>system.allure.link.issue.pattern=https://vividus.dev/issues/{}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Test.story</div>
+<div class="title">Example 9. Test.story</div>
 <div class="content">
 <pre>Meta:
     @issueId VVD-1
@@ -934,7 +957,7 @@ Then `1` is = `1`</pre>
 <p>It is possible to have multiple endpoints. To achieve this user should define system suffix for the properties and meta tags.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. environment.properties</div>
+<div class="title">Example 10. environment.properties</div>
 <div class="content">
 <pre># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
@@ -943,7 +966,7 @@ system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Test.story</div>
+<div class="title">Example 11. Test.story</div>
 <div class="content">
 <pre>Meta:
     @issueId VVD-1
@@ -971,7 +994,7 @@ Then `1` is = `1`</pre>
 <p>To enable the feature create a file <code>spring.xml</code> in the <code>src/main/resources</code> directory and add the following XML data into that file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Configuration</div>
+<div class="title">Example 12. Configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -992,7 +1015,7 @@ Then `1` is = `1`</pre>
 <p>Taking <code>story_priority</code> as an example the priority meta should be placed at the story level as the following example shows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Prioritized.story</div>
+<div class="title">Example 13. Prioritized.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta: @story_priority 15
 
