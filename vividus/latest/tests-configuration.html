@@ -346,6 +346,9 @@
           <a href="index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../0.3.8/index.html">0.3.8</a>
+        </li>
+        <li class="version">
           <a href="../0.3.7/index.html">0.3.7</a>
         </li>
         <li class="version">
@@ -423,6 +426,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
     <a class="version is-current" href="tests-configuration.html">latest</a>
+    <a class="version" href="../0.3.8/tests-configuration.html">0.3.8</a>
     <a class="version" href="../0.3.7/tests-configuration.html">0.3.7</a>
     <a class="version" href="../0.3.6/tests-configuration.html">0.3.6</a>
     <a class="version" href="../0.3.5/tests-configuration.html">0.3.5</a>
@@ -763,19 +767,24 @@ Then the page title is equal to 'Google'</code></pre>
 <div class="sect2">
 <h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
 <div class="paragraph">
-<p>The prorerty <code>bdd.all-meta-filters</code> is used to override values of the default meta filters based on the tags: <code>@skip</code>, <code>@layout</code>, <code>@browserWindowSize</code> and etc.</p>
-</div>
-<div class="paragraph">
-<p>The property <code>bdd.meta-filters</code> relies on groovy synax can be used to filters tests to be executed.</p>
+<p>The property <code>bdd.meta-filters</code> is used to filter tests to be executed and
+relies on Groovy syntax.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
+<div class="title">Example 4. Execute stoies and scenarios marked with '@group Login' tag and matching default filters</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.meta-filters=groovy: (group == 'Login' &amp;&amp; !skip)</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.meta-filters=group == 'Login'</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following meta tags are available out of the box.</p>
+<p>The prorerty <code>bdd.all-meta-filters</code> is used to override values of the default
+meta filters based on the tags: <code>@skip</code>, <code>@layout</code>, <code>@browserWindowSize</code> etc.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: (group == 'Login' &amp;&amp; !skip)</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -860,13 +869,13 @@ Then the page title is equal to 'Google'</code></pre>
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. environment.properties</div>
+<div class="title">Example 6. environment.properties</div>
 <div class="content">
 <pre>system.allure.link.issue.pattern=https://vividus.dev/issues/{}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Test.story</div>
+<div class="title">Example 7. Test.story</div>
 <div class="content">
 <pre>Meta:
     @issueId VVD-1
@@ -925,7 +934,7 @@ Then `1` is = `1`</pre>
 <p>It is possible to have multiple endpoints. To achieve this user should define system suffix for the properties and meta tags.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. environment.properties</div>
+<div class="title">Example 8. environment.properties</div>
 <div class="content">
 <pre># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
@@ -934,7 +943,7 @@ system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Test.story</div>
+<div class="title">Example 9. Test.story</div>
 <div class="content">
 <pre>Meta:
     @issueId VVD-1
@@ -962,7 +971,7 @@ Then `1` is = `1`</pre>
 <p>To enable the feature create a file <code>spring.xml</code> in the <code>src/main/resources</code> directory and add the following XML data into that file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Configuration</div>
+<div class="title">Example 10. Configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -983,7 +992,7 @@ Then `1` is = `1`</pre>
 <p>Taking <code>story_priority</code> as an example the priority meta should be placed at the story level as the following example shows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Prioritized.story</div>
+<div class="title">Example 11. Prioritized.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta: @story_priority 15
 
