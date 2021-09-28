@@ -2341,6 +2341,42 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_long_press_key"><a class="anchor" href="#_long_press_key"></a>Long press key</h3>
+<div class="paragraph">
+<p>Performs long press of the <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android key</a></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Only Android supported
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I long press $key key</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$key</code> - The key to press</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 35. Go to home</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I long press Home key</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_press_keys"><a class="anchor" href="#_press_keys"></a>Press keys</h3>
 <div class="paragraph">
 <p>Presses a sequence of <a href="https://github.com/appium/appium-xcuitest-driver#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a></p>
@@ -2358,7 +2394,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Enter password</div>
+<div class="title">Example 36. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press keys:
 |key|
@@ -2400,7 +2436,7 @@ All the characters will be treated as is and passed sequentially. To send specia
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Enter password</div>
+<div class="title">Example 37. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type text `pas1$`</code></pre>
 </div>
@@ -2441,7 +2477,7 @@ All the characters will be treated as is and passed sequentially. To send specia
 <div class="sect3">
 <h4 id="_usage_28"><a class="anchor" href="#_usage_28"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 37. VerifyNumber.story</div>
+<div class="title">Example 38. VerifyNumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
 Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
@@ -2512,7 +2548,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 <div class="sect3">
 <h4 id="_usage_29"><a class="anchor" href="#_usage_29"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 38. VerifyState.story</div>
+<div class="title">Example 39. VerifyState.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
 Given I am on a page with the URL '${vividus-test-site-url}'
@@ -2550,7 +2586,7 @@ Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_30"><a class="anchor" href="#_usage_30"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 39. Wait.story</div>
+<div class="title">Example 40. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
 When I wait until element located `name(welcome-image)` appears</code></pre>
@@ -2587,7 +2623,7 @@ When I wait until element located `name(welcome-image)` appears</code></pre>
 <div class="sect3">
 <h4 id="_usage_31"><a class="anchor" href="#_usage_31"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 40. Wait.story</div>
+<div class="title">Example 41. Wait.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
 When I wait until element located `name(welcome-image)` disappears</code></pre>
@@ -2639,7 +2675,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_32"><a class="anchor" href="#_usage_32"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 41. SaveText.story</div>
+<div class="title">Example 42. SaveText.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save text of context element
 When I change context to element located `By.id(username)`
@@ -2695,7 +2731,7 @@ Step will throw an error if the context element is not set
 <div class="sect3">
 <h4 id="_usage_33"><a class="anchor" href="#_usage_33"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 42. SaveAttributeValue.story</div>
+<div class="title">Example 43. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of context element
 When I change context to element located `By.id(username)`
@@ -2742,7 +2778,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <div class="sect3">
 <h4 id="_usage_34"><a class="anchor" href="#_usage_34"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 43. SaveAttributeValue.story</div>
+<div class="title">Example 44. SaveAttributeValue.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save attribute value of element
 When I save `innerText` attribute value of element located `By.id(username)` to SCENARIO variable `username`</code></pre>
@@ -2785,7 +2821,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <div class="sect3">
 <h4 id="_usage_35"><a class="anchor" href="#_usage_35"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 44. SaveNumberOfElements.story</div>
+<div class="title">Example 45. SaveNumberOfElements.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Save number of elements
 When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
@@ -2823,7 +2859,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_36"><a class="anchor" href="#_usage_36"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 45. ChangeContext.story</div>
+<div class="title">Example 46. ChangeContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Change context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2852,7 +2888,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="sect3">
 <h4 id="_usage_37"><a class="anchor" href="#_usage_37"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 46. ResetContext.story</div>
+<div class="title">Example 47. ResetContext.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`
@@ -2896,7 +2932,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="sect3">
 <h4 id="_usage_38"><a class="anchor" href="#_usage_38"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 47. ElementExistence.story</div>
+<div class="title">Example 48. ElementExistence.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Element should exists for 5 second
 Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
@@ -2923,7 +2959,7 @@ Then element located 'id(banner)' exists for 'PT5S' duration</code></pre>
 <div class="sect3">
 <h4 id="_usage_39"><a class="anchor" href="#_usage_39"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 48. Navigate back</div>
+<div class="title">Example 49. Navigate back</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Navigate back
 Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
@@ -3001,7 +3037,7 @@ Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `0`</cod
 <div class="sect3">
 <h4 id="_usage_40"><a class="anchor" href="#_usage_40"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 49. OrderVerification.story</div>
+<div class="title">Example 50. OrderVerification.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Check items are sorted
 Given I am on a page with the URL 'https://grocery.by'
@@ -3081,7 +3117,7 @@ Full path to a screenshot will be posted to logs and allure
 <div class="sect3">
 <h4 id="_usage_41"><a class="anchor" href="#_usage_41"></a><strong><em>Usage</em></strong></h4>
 <div class="listingblock">
-<div class="title">Example 50. Take a screenshot to a path</div>
+<div class="title">Example 51. Take a screenshot to a path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Take a screenshot to a path
 When I take screenshot to path `${screenshot-directory}/#{generate(Ancient.god)}.png`</code></pre>
