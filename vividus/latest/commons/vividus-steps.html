@@ -719,6 +719,75 @@ including a line terminator.</p>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_create_a_file"><a class="anchor" href="#_create_a_file"></a>Create a file</h3>
+<div class="paragraph">
+<p>Saves the provided content to a file with the specified pathname.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create a file with the pathname `$pathname` and the content `$fileContent`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$pathname</code> - The fully qualified file name including parent folders and extension (e.g. <code>temp/some_file.txt</code>).</p>
+</li>
+<li>
+<p><code>$fileContent</code> - The content to be saved to the creating file.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_temporary_file"><a class="anchor" href="#_create_a_temporary_file"></a>Create a temporary file</h3>
+<div class="paragraph">
+<p>Creates a temporary file with the provided content and puts its path to a variable with the specified name.
+The created file will be removed upon test run completion.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name '$name' and content '$content' and put path to '$scopes' variable with name '$pathVariable'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$name</code> - The logical name of the creating temporary file. For example, when <code>$name</code> is equal to <code>my-file.txt</code>, then <code>my-file</code> will be used as a prefix in the temporary file name and <code>.txt</code> - as a suffix.</p>
+</li>
+<li>
+<p><code>$content</code> - The content to be saved to the creating temporary file.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$pathVariable</code> - The name of the variable to store the full path of the created temporary file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want to use the created temporary file in further batches of the test suite as an input data, you should use <a href="https://datatracker.ietf.org/doc/html/rfc8089#appendix-A">URL with <code>file</code> protocol</a></p>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Batch 1 - Create a temporary local file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name '.table' and content '
+|column|
+|value |
+' and put path to 'NEXT_BATCHES' variable with name 'examples-table-temporary-file'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Batch 2 - Use the temporary file as <code>ExamplesTable</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `&lt;column&gt;` is equal to `value`
+Examples:
+file:///${examples-table-temporary-file}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
