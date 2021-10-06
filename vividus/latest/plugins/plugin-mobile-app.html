@@ -859,6 +859,21 @@ selenium.grid.automation-name=XCUITest</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_tvos"><a class="anchor" href="#_tvos"></a>tvOS</h3>
+<div class="paragraph">
+<p>The profile can be enabled by adding <code>mobile_app/tvos</code> to <code>configuration.profiles</code> property</p>
+</div>
+<div class="paragraph">
+<p>Default profile configuration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=tvOS
+selenium.grid.automation-name=XCUITest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_android"><a class="anchor" href="#_android"></a>Android</h3>
 <div class="paragraph">
 <p>The profile can be enabled by adding <code>mobile_app/android</code> to <code>configuration.profiles</code> property</p>
@@ -870,6 +885,23 @@ selenium.grid.automation-name=XCUITest</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Android
 selenium.grid.automation-name=UIAutomator2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_local"><a class="anchor" href="#_local"></a>Local</h3>
+<div class="paragraph">
+<p>The profile simplifies execution of tests against the local Appium server. It could be used in conjunction with: <code>mobile_app/android</code>, <code>mobile_app/ios</code>, <code>mobile_app/tvos</code>
+The profile can be enabled by adding <code>mobile_app/local</code> to <code>configuration.profiles</code> property</p>
+</div>
+<div class="paragraph">
+<p>Default profile configuration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.url=http://127.0.0.1:4723/wd/hub
+selenium.grid.platformName=${selenium.grid.platform-name}
+selenium.grid.automationName=${selenium.grid.automation-name}</code></pre>
 </div>
 </div>
 </div>
