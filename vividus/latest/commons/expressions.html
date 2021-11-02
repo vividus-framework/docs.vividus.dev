@@ -122,6 +122,9 @@
     <a class="nav-link" href="../index.html">What is VIVIDUS</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../tests-configuration.html">Configuration</a>
   </li>
 </ul>
@@ -1073,17 +1076,17 @@ Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitalizefirstwor
 <div class="sect2">
 <h3 id="_loadresource"><a class="anchor" href="#_loadresource"></a><code>loadResource</code></h3>
 <div class="paragraph">
-<p>Loads the resource found at the provided path and replaces the expression with the content of the resource.</p>
+<p>Loads the resource by its name and replaces the expression with the content of the resource.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{loadResource(<strong>$pathToResource</strong>)}</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{loadResource(<strong>$resourceName</strong>)}</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$pathToResource</code></strong> - the path to the resource to load. It must be relative to the project, meaning <code>src/main/resources</code> is left out of it. Therefore, if the file is located at <code>my-tests/src/main/resources/data/body.txt</code>, then it&#8217;s required to put only relative resource part: <code>/data/body.txt</code></p>
+<p><strong><code>$resourceName</code></strong> - the name of the <a href="../glossary.html#_resource" class="page">resource</a> to load</p>
 </li>
 </ul>
 </div>
@@ -1097,17 +1100,17 @@ Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitalizefirstwor
 <div class="sect2">
 <h3 id="_loadbinaryresource"><a class="anchor" href="#_loadbinaryresource"></a><code>loadBinaryResource</code></h3>
 <div class="paragraph">
-<p>Loads the resource found at the provided path as bytes. Could be useful for the steps that accepting raw binary data.</p>
+<p>Loads the resource by its name as bytes. It could be useful for the steps that accepting raw binary data.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{loadBinaryResource(<strong>$pathToResource</strong>)}</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{loadBinaryResource(<strong>$resourceName</strong>)}</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$pathToResource</code></strong> - the path to the resource to load. It must be relative to the project, meaning <code>src/main/resources</code> is left out of it. Therefore, if the file is located at <code>my-tests/src/main/resources/data/body.txt</code>, then it&#8217;s required to put only relative resource part: <code>/data/body.txt</code></p>
+<p><strong><code>$resourceName</code></strong> - the name of the <a href="../glossary.html#_resource" class="page">resource</a> to load</p>
 </li>
 </ul>
 </div>
@@ -1123,17 +1126,17 @@ Deprecated, will be removed in VIVIDUS 0.4.0 use <a href="#_uncapitalizefirstwor
 <div class="sect2">
 <h3 id="_resourcetobase64"><a class="anchor" href="#_resourcetobase64"></a><code>resourceToBase64</code></h3>
 <div class="paragraph">
-<p>Finds the resource at the provided path and replaces the expression with the content of the resource in Base64 format.</p>
+<p>Finds the resource by its name and replaces the expression with the content of the resource in Base64 format.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{resourceToBase64(<strong>$pathToResource</strong>)}</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{resourceToBase64(<strong>$resourceName</strong>)}</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$pathToResource</code></strong> - the path to the resource to load. It must be relative to the project, meaning <code>src/main/resources</code> is left out of it. Therefore, if the file is located at <code>my-tests/src/main/resources/data/body.txt</code>, then it&#8217;s required to put only relative resource part: <code>/data/body.txt</code></p>
+<p><strong><code>$resourceName</code></strong> - the name of the <a href="../glossary.html#_resource" class="page">resource</a> to load</p>
 </li>
 </ul>
 </div>

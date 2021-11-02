@@ -122,6 +122,9 @@
     <a class="nav-link" href="../index.html">What is VIVIDUS</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../tests-configuration.html">Configuration</a>
   </li>
 </ul>
@@ -783,7 +786,7 @@ are otherwise illegal within the given URI component type, as defined in
 <h2 id="_http_steps"><a class="anchor" href="#_http_steps"></a>HTTP Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_init_multipart_http_request"><a class="anchor" href="#_init_multipart_http_request"></a><strong>Init multipart HTTP request</strong></h3>
+<h3 id="_prepare_multipart_http_request"><a class="anchor" href="#_prepare_multipart_http_request"></a>Prepare multipart HTTP request</h3>
 <div class="paragraph">
 <p>Sets <a href="https://tools.ietf.org/html/rfc7578">multipart</a> request entity that will be used while executing HTTP requests.</p>
 </div>
@@ -793,41 +796,54 @@ are otherwise illegal within the given URI component type, as defined in
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>requestParts</code> - <code>ExamplesTable</code> representing the list of the request parts with the following columns:</p>
+<p>where <code>requestParts</code> is <code>ExamplesTable</code> representing the list of the request parts with the following columns:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>type</code> - one of request part types: <code>STRING</code>, <code>FILE</code>, <code>BINARY</code></p>
+<p><code>type</code> - One of request part types: <code>STRING</code>, <code>FILE</code>, <code>BINARY</code>.</p>
 </li>
 <li>
-<p><code>name</code> - the request part name</p>
+<p><code>name</code> - The request part name.</p>
 </li>
 <li>
-<p><code>value</code> - the path to the resource with the content for <code>FILE</code> part type and the actual content for <code>STRING</code> and <code>BINARY</code> part types</p>
+<p><code>value</code> -</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For <code>FILE</code> part type - the <a href="../glossary.html#_resource" class="page">resource name</a> or the file path.</p>
 </li>
 <li>
-<p><code>contentType</code> - <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">the content type</a></p>
+<p>For <code>STRING</code> or <code>BINARY</code> part type - the actual content.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><code>fileName</code> - the name of the file contained in this request part. The parameter is not allowed for <code>STRING</code> part type, but it&#8217;s required for <code>BINARY</code> one and optional for <code>FILE</code> part type</p>
+<p><code>contentType</code> - The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">content type</a>.</p>
+</li>
+<li>
+<p><code>fileName</code> - The name of the file contained in this request part. The
+parameter is not allowed for <code>STRING</code> part type, but it&#8217;s required for <code>BINARY</code> one and optional for <code>FILE</code> part type.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="title">Example 3. Init HTTP request consisting of 4 different parts</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given multipart request:
-|type  |name      |value         |contentType|fileName       |
-|file  |file-key  |/data/file.txt|           |anotherName.txt|
-|file  |file-key2 |/data/file.txt|text/plain |               |
-|string|string-key|string1       |text/plain |               |
-|binary|binary-key|raw           |text/plain |raw.txt        |</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `temp-file-content` with value `Your first and last stop for No-Code Test Automation!`
+When I create temporary file with name `abc.txt` and content `${temp-file-content}` and put path to scenario variable `temp-file-path`
+Given multipart request:
+|type  |name      |value            |contentType|fileName       |
+|file  |file-key  |/data/file.txt   |           |anotherName.txt|
+|file  |file-key2 |${temp-file-path}|text/plain |               |
+|string|string-key|string1          |text/plain |               |
+|binary|binary-key|raw              |text/plain |raw.txt        |</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_http_headers_to_the_request"><a class="anchor" href="#_add_http_headers_to_the_request"></a><strong>Add HTTP headers to the request</strong></h3>
+<h3 id="_add_http_headers_to_the_request"><a class="anchor" href="#_add_http_headers_to_the_request"></a>Add HTTP headers to the request</h3>
 <div class="paragraph">
 <p>Adds <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">HTTP headers</a> to the HTTP request.</p>
 </div>
@@ -855,7 +871,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wait_for_json_element_in_the_http_response"><a class="anchor" href="#_wait_for_json_element_in_the_http_response"></a><strong>Wait for JSON element in the HTTP response</strong></h3>
+<h3 id="_wait_for_json_element_in_the_http_response"><a class="anchor" href="#_wait_for_json_element_in_the_http_response"></a>Wait for JSON element in the HTTP response</h3>
 <div class="paragraph">
 <p>Executes the provided sub-steps until the HTTP response body contains an element by the specified JSON path or the maximum number of retries is reached. The maximum duration of the step execution is not limited. The actions of the step:</p>
 </div>
@@ -907,7 +923,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate_secure_protocols_supported_by_server"><a class="anchor" href="#_validate_secure_protocols_supported_by_server"></a><strong>Validate secure protocols supported by server</strong></h3>
+<h3 id="_validate_secure_protocols_supported_by_server"><a class="anchor" href="#_validate_secure_protocols_supported_by_server"></a>Validate secure protocols supported by server</h3>
 <div class="paragraph">
 <p>Checks that a server defined by the <code>hostname</code> supports secure protocols listed in the <code>protocols</code> parameter.</p>
 </div>
@@ -942,7 +958,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 <h2 id="_json_steps"><a class="anchor" href="#_json_steps"></a>JSON Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_verify_context_contains_data"><a class="anchor" href="#_verify_context_contains_data"></a><strong>Verify context contains data</strong></h3>
+<h3 id="_verify_context_contains_data"><a class="anchor" href="#_verify_context_contains_data"></a>Verify context contains data</h3>
 <div class="paragraph">
 <p>Checks if the JSON context contains an expected data by a JSON path</p>
 </div>
@@ -978,7 +994,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_json_contains_data"><a class="anchor" href="#_verify_json_contains_data"></a><strong>Verify JSON contains data</strong></h3>
+<h3 id="_verify_json_contains_data"><a class="anchor" href="#_verify_json_contains_data"></a>Verify JSON contains data</h3>
 <div class="paragraph">
 <p>Checks if a JSON contains an expected data by a JSON path</p>
 </div>
@@ -1016,7 +1032,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_number_of_elements_in_context"><a class="anchor" href="#_verify_number_of_elements_in_context"></a><strong>Verify number of elements in context</strong></h3>
+<h3 id="_verify_number_of_elements_in_context"><a class="anchor" href="#_verify_number_of_elements_in_context"></a>Verify number of elements in context</h3>
 <div class="paragraph">
 <p>Verifies that the number of elements found in the JSON context by a JSON path matches an expected number according to specified comparison rule</p>
 </div>
@@ -1046,7 +1062,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_verify_number_of_elements_in_json"><a class="anchor" href="#_verify_number_of_elements_in_json"></a><strong>Verify number of elements in JSON</strong></h3>
+<h3 id="_verify_number_of_elements_in_json"><a class="anchor" href="#_verify_number_of_elements_in_json"></a>Verify number of elements in JSON</h3>
 <div class="paragraph">
 <p>Verifies that the number of elements found in JSON data by a JSON path matches an expected number according to specified comparison rule</p>
 </div>
@@ -1088,7 +1104,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_element_from_context"><a class="anchor" href="#_save_element_from_context"></a><strong>Save element from context</strong></h3>
+<h3 id="_save_element_from_context"><a class="anchor" href="#_save_element_from_context"></a>Save element from context</h3>
 <div class="paragraph">
 <p>Saves value extracted from the JSON context into a variable with specified name</p>
 </div>
@@ -1118,7 +1134,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_element_from_json"><a class="anchor" href="#_save_element_from_json"></a><strong>Save element from JSON</strong></h3>
+<h3 id="_save_element_from_json"><a class="anchor" href="#_save_element_from_json"></a>Save element from JSON</h3>
 <div class="paragraph">
 <p>Saves value extracted from a JSON data into a variable with specified name</p>
 </div>
@@ -1156,7 +1172,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_number_of_elements_in_context"><a class="anchor" href="#_save_number_of_elements_in_context"></a><strong>Save number of elements in context</strong></h3>
+<h3 id="_save_number_of_elements_in_context"><a class="anchor" href="#_save_number_of_elements_in_context"></a>Save number of elements in context</h3>
 <div class="paragraph">
 <p>Saves number of elements found in the JSON context by JSON path into a variable</p>
 </div>
@@ -1186,7 +1202,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_number_of_elements_from_json"><a class="anchor" href="#_save_number_of_elements_from_json"></a><strong>Save number of elements from JSON</strong></h3>
+<h3 id="_save_number_of_elements_from_json"><a class="anchor" href="#_save_number_of_elements_from_json"></a>Save number of elements from JSON</h3>
 <div class="paragraph">
 <p>Saves number of elements found in the JSON by JSON path into a variable</p>
 </div>
@@ -1219,7 +1235,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_perform_steps_on_elements_in_json"><a class="anchor" href="#_perform_steps_on_elements_in_json"></a><strong>Perform steps on elements in JSON</strong></h3>
+<h3 id="_perform_steps_on_elements_in_json"><a class="anchor" href="#_perform_steps_on_elements_in_json"></a>Perform steps on elements in JSON</h3>
 <div class="paragraph">
 <p>Performs steps against all elements found by JSON path in JSON data</p>
 </div>
@@ -1296,7 +1312,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate_http_resources"><a class="anchor" href="#_validate_http_resources"></a><strong>Validate HTTP resources</strong></h3>
+<h3 id="_validate_http_resources"><a class="anchor" href="#_validate_http_resources"></a>Validate HTTP resources</h3>
 <div class="paragraph">
 <p>Validates the defined HTTP resources</p>
 </div>
