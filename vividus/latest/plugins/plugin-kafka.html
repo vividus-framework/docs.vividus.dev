@@ -522,39 +522,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deprecations"><a class="anchor" href="#_deprecations"></a>Deprecations</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
-<div class="paragraph">
-<p>The following list of steps is deprecated and will be removed in the future releases:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `$data` to Kafka topic `$topic`
-When I start consuming messages from Kafka topics `$topics`
-When I wait with `$timeout` timeout until count of consumed Kafka messages is $comparisonRule `$expectedCount`
-When I stop consuming messages from Kafka
-When I $queueOperation consumed Kafka messages to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
-<div class="paragraph">
-<p>The generic (without producer and consumer keys) properties with <code>kafka.producer.</code> and <code>kafka.consumer.</code> prefixes are deprecated and will be removed in the future releases.</p>
-</div>
-<div class="paragraph">
-<p>The documentation for the deprecated steps and properties can be found in <a href="../../0.3.4/plugins/plugin-kafka.html" class="page">Plugin Kafka 0.3.4</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
+<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -597,7 +568,7 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 </div>
 </div>
 <div class="sect2">
-<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_send_the_data"><a class="anchor" href="#_send_the_data"></a><strong>Send the data</strong></h4>
 <div class="paragraph">
@@ -638,7 +609,7 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <h2 id="_consumer"><a class="anchor" href="#_consumer"></a>Consumer</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_properties_3"><a class="anchor" href="#_properties_3"></a>Properties</h3>
+<h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -687,7 +658,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 </div>
 <div class="sect2">
-<h3 id="_steps_3"><a class="anchor" href="#_steps_3"></a>Steps</h3>
+<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_start_the_consumer"><a class="anchor" href="#_start_the_consumer"></a><strong>Start the consumer</strong></h4>
 <div class="paragraph">
