@@ -996,6 +996,91 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 <div class="sect1">
+<h2 id="_hash_calculations"><a class="anchor" href="#_hash_calculations"></a>Hash calculations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_calculatehash"><a class="anchor" href="#_calculatehash"></a><code>calculateHash</code></h3>
+<div class="paragraph">
+<p>Calculates the hash using the specified hashing algorithm</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{calculateHash($algorithm, $input)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$algorithm</code></strong> - hash algorithm (can use <a href="https://datatracker.ietf.org/doc/rfc1319">MD2</a>, <a href="https://datatracker.ietf.org/doc/rfc1321">MD5</a>, <a href="https://datatracker.ietf.org/doc/rfc3174">SHA-1</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-256</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-384</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-512</a>)</p>
+</li>
+<li>
+<p><strong><code>$input</code></strong> - any string to calculate hash</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. Example of hash calculating for string using MD5</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{calculateHash(MD5, vividus)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0a05ba6064ae7e5d6ee9818f85b666ad</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_calculatefilehash"><a class="anchor" href="#_calculatefilehash"></a><code>calculateFileHash</code></h3>
+<div class="paragraph">
+<p>Calculates the <a href="../glossary.html#_resource" class="page">resource</a> or file hash using the specified hashing algorithm</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{calculateFileHash($algorithm, $resourceNameOrFilePath)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$algorithm</code></strong> - hash algorithm (can use <a href="https://datatracker.ietf.org/doc/rfc1319">MD2</a>, <a href="https://datatracker.ietf.org/doc/rfc1321">MD5</a>, <a href="https://datatracker.ietf.org/doc/rfc3174">SHA-1</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-256</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-384</a>, <a href="https://datatracker.ietf.org/doc/rfc6234">SHA-512</a>)</p>
+</li>
+<li>
+<p><strong><code>$resourceNameOrFilePath</code></strong> - the <a href="../glossary.html#_resource" class="page">resource name</a> or the file path</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. Example of hash calculating for file using SHA-1</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{calculateFileHash(SHA-1, data/file.txt)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0a05ba6064ae7e5d6ee9818f85b666ad</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
 <div class="sectionbody">
 <div class="sect2">
