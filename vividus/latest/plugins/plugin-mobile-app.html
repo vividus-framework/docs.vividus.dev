@@ -2294,6 +2294,131 @@ The full path to a screenshot will be posted to logs and allure
 </div>
 </div>
 <div class="sect2">
+<h3 id="_scan_barcode"><a class="anchor" href="#_scan_barcode"></a>Scan barcode</h3>
+<div class="paragraph">
+<p>Scan a barcode and save its value to the variable with the specified name. Only the first founded barcode will be scanned.</p>
+</div>
+<div class="paragraph">
+<p>Supported Code Formats</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">1D product</th>
+<th class="tableblock halign-left valign-top">1D industrial</th>
+<th class="tableblock halign-left valign-top">2D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>UPC-A</p>
+</li>
+<li>
+<p>UPC-E</p>
+</li>
+<li>
+<p>EAN-8</p>
+</li>
+<li>
+<p>EAN-13</p>
+</li>
+<li>
+<p>UPC/EAN Extension 2/5</p>
+</li>
+<li>
+<p>RSS-14</p>
+</li>
+<li>
+<p>RSS-Expanded</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Code 39</p>
+</li>
+<li>
+<p>Code 93</p>
+</li>
+<li>
+<p>Code 128</p>
+</li>
+<li>
+<p>Codabar</p>
+</li>
+<li>
+<p>ITF</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>QR Code</p>
+</li>
+<li>
+<p>Data Matrix</p>
+</li>
+<li>
+<p>Aztec</p>
+</li>
+<li>
+<p>PDF 417</p>
+</li>
+<li>
+<p>MaxiCode</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Actions performed at this step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Takes a viewport screenshot</p>
+</li>
+<li>
+<p>Scans a barcode from the screenshot and save its value to the variable</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 39. Scan a barcode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to scenario variable `qrCodeLink`
+Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_perform_steps_while_elements_exist"><a class="anchor" href="#_perform_steps_while_elements_exist"></a>Perform steps while elements exist</h3>
 <div class="paragraph">
 <p>Executes the steps while the found elements exist.</p>
@@ -2343,7 +2468,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Disable menus</div>
+<div class="title">Example 40. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                         |
