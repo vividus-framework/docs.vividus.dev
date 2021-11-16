@@ -659,6 +659,102 @@ the timeout is reached and validates the run status is <code>Succeeded</code>.</
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_collect_pipeline_runs"><a class="anchor" href="#_collect_pipeline_runs"></a>Collect pipeline runs</h3>
+<div class="paragraph">
+<p>Collects pipeline runs in Data factory based on input filter conditions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect runs of pipeline `$pipelineName` filtered by:$filters in Data Factory `$factoryName` from resource group `$resourceGroupName` and save them as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$pipelineName</code> - The name of the pipeline to find runs.</p>
+</li>
+<li>
+<p><code>$filters</code> - The ExamplesTable with filters to be applied to the pipeline runs to limit the resulting set.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. The supported filter types</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Alias</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LAST_UPDATED_AFTER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>last updated after</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time at or after which the run event was updated in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LAST_UPDATED_BEFORE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>last updated before</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time at or before which the run event was updated in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The filters can be combined in any order and in any composition.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. The combination of filters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|filterType         |filterValue              |
+|last updated after |2021-11-15T00:00:00+03:00|
+|last updated before|2021-11-15T00:00:00+03:00|</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>$factoryName</code> - The name of the factory.</p>
+</li>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group of the factory.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the pipeline runs in JSON format.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The client should have permission to run action <code>Microsoft.DataFactory/factories/pipelineruns/read</code>
+over scope <code>/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.DataFactory</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Find pipeline runs from the last day</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect runs of pipeline `vividus-pipeline` filtered by:
+|filterType          |filterValue                                      |
+|LAST_UPDATED_AFTER  |#{generateDate(-P1D, yyyy-MM-dd'T'HH:mm:ssXXX)} |
+|LAST_UPDATED_BEFORE |#{generateDate(P, yyyy-MM-dd'T'HH:mm:ssXXX)}    |
+in Data Factory `vividus-data-factory` from resource group `vividus-resource-group-ingestion` and save them as JSON to scenario variable `pipeline-runs`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
