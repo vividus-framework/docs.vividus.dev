@@ -560,14 +560,12 @@ pipeline {
                 sh "docker ps -a"
                 withDockerContainer(image: 'openjdk:16.0.2-oraclelinux8', args: "--net ${vividusNetwork} --name ${vividusProxyHost}") {<i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="4"></i><b>(4)</b>
                 dir(projectName) {<i class="conum" data-value="6"></i><b>(6)</b>
-                    sh """
+                    sh """ <i class="conum" data-value="9"></i><b>(9)</b>
                         echo -e "${overridings}" &gt; overriding.properties
                         mv -f overriding.properties src/main/resources/overriding.properties
                         ./gradlew runStories
-                        echo \${EXIT_CODE} &gt; output/exit_code.txt
                      """
                     archiveArtifacts 'output/reports/**'
-                    sh 'exit $(cat output/exit_code.txt)'
                 }
             }
         }
@@ -627,6 +625,10 @@ pipeline {
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
 <td><strong>gitUrl</strong> - git url to test project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>The tests are executed via gradle. The exit code of the command will be <code>0</code> - if all the tests are passed, <code>1</code> - if there is any error during tasks execution, or any of the tests not in passed status.</td>
 </tr>
 </table>
 </div>
