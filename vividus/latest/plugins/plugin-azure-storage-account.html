@@ -789,6 +789,96 @@ variable.</p>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_find_blobs_by_filter"><a class="anchor" href="#_find_blobs_by_filter"></a>Find blobs by filter</h4>
+<div class="paragraph">
+<p>Finds blobs with names filtered by the specified rules in the container.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At least one rule is required.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I filter blobs by:$filter in container `$containerName` of storage account `$storageAccountKey` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filter</code> - <code>ExamplesTable</code> with filter rules to apply on blob names.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. The supported filter rules</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Filter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNamePrefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix which blob names should start with.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path/to/data/</code> (equal to <code>/path/to/data</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>resultsLimit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of blob names to return.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNameFilterRule</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../parameters/string-comparison-rule.html" class="page">The blob name comparison rule</a>.
+It should be specified along with <code>blobNameFilterValue</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MATCHES</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNameFilterValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The full or partial blob name to be matched.
+It should be specified along with <code>blobNameFilterRule</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.*</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the list of found blob names.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Find blobs by filter</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I filter blobs by:
+|blobNameFilterRule|blobNameFilterValue|blobNamePrefix                       |resultsLimit |
+|matches           |.*_test            |images_for_testing_05.10.2021/images/|10           |
+in container `vividus` of storage account `testaccount` and save result to story variable `imagePathList`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -875,7 +965,7 @@ over scope <code>/subscriptions/{subscription ID}/resourceGroups/{resource group
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Collect storage accounts info</div>
+<div class="title">Example 10. Collect storage accounts info</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect storage accounts in resource group `TEST-SA` and save them as JSON to scenario variable `storage-accounts`</code></pre>
 </div>
