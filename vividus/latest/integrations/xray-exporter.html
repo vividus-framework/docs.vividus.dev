@@ -530,6 +530,69 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_jira_configuration"><a class="anchor" href="#_jira_configuration"></a>JIRA Configuration</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The exporter requires configuration of JIRA instance to work with.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To configure connector to JIRA instance use <code>jira.</code> prefix followed by arbitrary sequence of alphanumerical
+characters that determine unique JIRA instance key and followed by <code>project-key-regex</code>, <code>endpoint</code> and optional
+list of HTTP properties from <a href="../tests-configuration.html#_general" class="page">general</a>, <a href="../tests-configuration.html#_authentication" class="page">authentication</a> or <a href="../tests-configuration.html#_ssl_handshake" class="page">SSL handshake</a> properties.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. jira.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">jira.vividus.project-key-regex=(VIVIDUS|VSCODE|REACTAPP) <i class="conum" data-value="1"></i><b>(1)</b>
+jira.vividus.endpoint=https://vividusframework.atlassian.net/ <i class="conum" data-value="2"></i><b>(2)</b>
+jira.vividus.http.auth.username=admin <i class="conum" data-value="3"></i><b>(3)</b>
+jira.vividus.http.auth.password=5401a7d27b291c5d <i class="conum" data-value="3"></i><b>(3)</b>
+jira.vividus.http.socket-timeout=10000 <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties pointed by descriptions marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>The regular expression to match JIRA project keys.</strong></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>The JIRA Endpoint.</strong></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <a href="../tests-configuration.html#_general" class="page">general</a>, <a href="../tests-configuration.html#_authentication" class="page">authentication</a> or <a href="../tests-configuration.html#_ssl_handshake" class="page">SSL handshake</a> properties.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In the example above the <code>vividus</code> is a key that can be used to refer this JIRA instance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_xray_export_properties"><a class="anchor" href="#_xray_export_properties"></a>Xray Export Properties</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
@@ -546,6 +609,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.jira-instance-key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The key of the configured JIRA instance, in case of missing value it will be evaluated automatically based on issue keys being exported</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.json-results-directory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
@@ -675,59 +743,24 @@
 <div class="ulist">
 <ul>
 <li>
-<p>if the authentication through basic schema is available on your JIRA instance use <code>jira.username</code> and <code>jira.password</code> properties, both properties must be set</p>
-</li>
-<li>
-<p>in case of two-factor authentication or any other complex authentication process it&#8217;s possible to set session cookies into request headers like the following example shows (<code>jira.username</code> and <code>jira.password</code> properties must be empty in this case)</p>
+<p>If the authentication through basic schema is available on your JIRA instance use <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties, both properties must be set.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.http.header.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.auth.username=admin
+jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In case of two-factor authentication or any other complex authentication process it&#8217;s possible to set session cookies into request headers like the following example shows (<code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties must be empty in this case).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
 </div>
 </div>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_jira_properties"><a class="anchor" href="#_jira_properties"></a>Jira properties</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0002%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira.username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA username used to export test cases</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira.password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA password used to export test cases</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira.endpoint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/URL">URL</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JIRA URL e.g. <code><a href="https://jira.example.com/" class="bare">https://jira.example.com/</a></code></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -783,7 +816,7 @@
 <p>Any scenario that doesn&#8217;t correspons to the <a href="#_rules_2">manual test case rules</a> is considered as cucumber test case</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Cucumber.story</div>
+<div class="title">Example 2. Cucumber.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-231
@@ -802,7 +835,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. CucumberWithManualPart.story</div>
+<div class="title">Example 3. CucumberWithManualPart.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-566
@@ -850,7 +883,7 @@ Examples:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Manual.story</div>
+<div class="title">Example 4. Manual.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseId TEST-435
