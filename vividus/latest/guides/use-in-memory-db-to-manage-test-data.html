@@ -524,21 +524,52 @@ implementation(group: 'com.h2database', name: 'h2', version: '2.0.202')</code></
 </div>
 </li>
 <li>
-<p>Configure connection to the H2 database</p>
+<p>Configure connection to the H2 database and initialization</p>
 <div class="paragraph">
-<p>The details on executing SQL statements on connection
-<a href="https://h2database.com/html/features.html#execute_sql_on_connection">could be found in the official H2 guide</a>.</p>
+<p>DDL/DQL scripts could be run using either <code>INIT</code> property of the connection string or the step executing SQL queries.</p>
 </div>
 <div class="paragraph">
-<p>You could execute SQL on connection via the INIT property in two ways:</p>
+<p>Whichever method of database initialization is chosen, <code>RUNSCRIPT</code> statement with the path to SQL files could be used. Here you can specify absolute path to file or use the 'classpath:/' prefix - files will be searched from 'src/main/resources' folder relatively.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The details on executing SQL statements on connection
+<a href="https://h2database.com/html/features.html#execute_sql_on_connection">could be found in the official H2 guide</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>2.1 Configure using <code>INIT</code> property</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>using RUNSCRIPT commands with the path to SQL files.
-Here you can specify absolute path to file
-or use the 'classpath:/' prefix - files will be searched from 'src/main/resources' folder relatively.</p>
+<p>using <code>INIT</code> property data loaded into the database once and can no longer be change.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
+<div class="title">Example 1. Configure connection and initialization of the database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
+db.connection.testh2db.url=jdbc:h2:mem:test;\
+  INIT=create schema if not exists test\\;\
+  SET SCHEMA test\\;\
+  DROP TABLE IF EXISTS test.students\\;\
+  CREATE TABLE test.students (firstname VARCHAR(50) NOT NULL, lastname VARCHAR(50) NOT NULL)\\;\
+  INSERT INTO students (firstname, lastname) VALUES ('Maria', 'Miller')\\;
+db.connection.testh2db.username=
+db.connection.testh2db.password=</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Configure connection and initialization of the database with <code>RUNSCRIPT</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
 db.connection.testh2db.url=jdbc:h2:mem:test;\
@@ -550,34 +581,84 @@ db.connection.testh2db.username=
 db.connection.testh2db.password=</code></pre>
 </div>
 </div>
-</li>
+<div class="paragraph">
+<p>2.2 Configure using test step</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p>using SQL queries.</p>
+<p>if you use database initialization in the step, you only need to specify the connection parameters in the properties file and execute DDL script in the test.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
+<div class="title">Example 3. Configure connection to database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
 db.connection.testh2db.url=jdbc:h2:mem:test;\
-  INIT=create schema if not exists test\\;\
-  SET SCHEMA test\\;\
-  DROP TABLE IF EXISTS students\\;\
-  CREATE TABLE students (firstname VARCHAR(50) NOT NULL, lastname VARCHAR(50) NOT NULL)\\;\
-  INSERT INTO students (firstname, lastname) VALUES ('Maria', 'Miller')\\;
+  DB_CLOSE_DELAY=-1;
 db.connection.testh2db.username=
 db.connection.testh2db.password=</code></pre>
 </div>
 </div>
-</li>
-</ul>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you are using database initialization in the step, do not forget to set the property <a href="http://www.h2database.com/html/features.html#in_memory_databases"><code>DB_CLOSE_DELAY</code></a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Initialization of the database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+  CREATE SCHEMA IF NOT EXISTS test;
+  SET SCHEMA test;
+  CREATE TABLE test.students (firstname VARCHAR(50) NOT NULL, lastname VARCHAR(50) NOT NULL);
+  INSERT INTO students (firstname, lastname) VALUES ('Maria', 'Miller');
+` against `testh2db`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Initialization of the database with <code>RUNSCRIPT</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+  CREATE SCHEMA IF NOT EXISTS test;
+  SET SCHEMA test;
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file1.sql';
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file2.sql'
+` against `testh2db`</code></pre>
+</div>
 </div>
 </li>
 <li>
-<p>Use the configured connection to execute SQL</p>
+<p>Use the configured connection and the initialized database to execute SQL</p>
 <div class="listingblock">
-<div class="title">Example 1. Execute SQL against H2 database</div>
+<div class="title">Example 6. Execute SQL script against H2 database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
 SELECT * FROM students
 ` against `testh2db` and save result to scenario variable `h2-records`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Execute DML script against H2 database initialized in the step with the schema <code>test</code> and check result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+INSERT INTO test.students (firstname, lastname) VALUES ('Alex', 'Magnus');
+` against `testh2db`
+When I execute SQL query `
+UPDATE test.students SET firstname='Mary' WHERE lastname='Miller';
+` against `testh2db`
+When I execute SQL query `
+SELECT * FROM test.students
+` against `testh2db` and save result to scenario variable `h2-records`
+Then `${h2-records}` is equal to `[{firstname=Mary, lastname=Miller}, {firstname=Alex, lastname=Magnus}]`</code></pre>
 </div>
 </div>
 </li>
