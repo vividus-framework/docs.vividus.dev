@@ -839,11 +839,46 @@ web.screenshot.strategy=bombaysapphire</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_mobile_native_applications"><a class="anchor" href="#_mobile_native_applications"></a>Mobile Native Applications</h3>
+<div class="sect3">
+<h4 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.downscale</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Downscale checkpoint image according to a device <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio">DPR</a> value</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Please see the image to get a clue about difference between original and downscaled images.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/original_and_downscaled_checkpoints.png" alt="Difference between original and dpr downscaled image">
+</div>
+</div>
 <div class="paragraph">
 <p>Property based configuration could be specified using <code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
 where:
 <code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;
 <code>PROPERTY_NAME</code> - name of the property you want specify.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_properties_based_configuration_2"><a class="anchor" href="#_properties_based_configuration_2"></a>Properties based configuration:</h4>
