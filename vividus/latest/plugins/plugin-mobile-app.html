@@ -1852,6 +1852,61 @@ Then number of elements found by `accessibilityId(slide 2)` is equal to `1`</cod
 </div>
 </div>
 <div class="sect2">
+<h3 id="_recording_ios_performance_metrics"><a class="anchor" href="#_recording_ios_performance_metrics"></a>Recording iOS Performance metrics</h3>
+<div class="paragraph">
+<p>Records performance metrics of iOS application. It is based on the Instruments utility distributed by Xcode which provides a number of built-in analyses and measurements.
+See <a href="https://appiumpro.com/editions/12-capturing-performance-data-for-native-ios-apps">Capturing Performance Data for Native iOS Apps</a> and <a href="https://developer.apple.com/videos/play/wwdc2019/411/">Getting Started with Instruments</a> for more information.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Appium server should be started with the <strong>--relaxed-security</strong> flag. This is because Instruments can gather data from the system as a whole, not just the AUT. (It&#8217;s thus a security risk to expose potentially sensitive system information to Appium sessions running from a remote client).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Archive with results contains *.trace file which could be opened by XCode. There is possibility to parse this file using XCode&#8217;s utility <a href="https://keith.github.io/xcode-man-pages/xctrace.1.html">xctrace</a> and use generated data in tests
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start recording `$instrument` metrics
+When I stop recording `$instrument` metrics and save results to file `$path`</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$instrument</code> - The instrument of Xcode Instruments utility. Some useful instruments: Time Profiler, Leaks, File Activity, etc.</p>
+</li>
+<li>
+<p><code>$path</code> - The path to the file to save an archive with collected data.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 26. Perform profiling during application usage</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start recording `Time Profiler` metrics
+!-- set of actions to measure performance
+When I stop recording `Time Profiler` metrics and save results to file `${outputDirectory}/time_profiler.zip`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_verify_elements_number"><a class="anchor" href="#_verify_elements_number"></a>Verify elements number</h3>
 <div class="paragraph">
 <p>Verifies if the number of elements located by locator matches the desired number.</p>
@@ -1875,7 +1930,7 @@ Then number of elements found by `accessibilityId(slide 2)` is equal to `1`</cod
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Verify the number of elements</div>
+<div class="title">Example 27. Verify the number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 </div>
@@ -1934,7 +1989,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Verify the number of elements in the state</div>
+<div class="title">Example 28. Verify the number of elements in the state</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
@@ -1958,7 +2013,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Wait for element appearance</div>
+<div class="title">Example 29. Wait for element appearance</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `name(welcome-image)` appears</code></pre>
 </div>
@@ -1982,7 +2037,7 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Wait for element disappearance</div>
+<div class="title">Example 30. Wait for element disappearance</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `name(welcome-image)` disappears</code></pre>
 </div>
@@ -2021,7 +2076,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Save the text of the context element</div>
+<div class="title">Example 31. Save the text of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.id(username)`
 When I save text of context element to SCENARIO variable `username`</code></pre>
@@ -2064,7 +2119,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Save the attribute value of the context element</div>
+<div class="title">Example 32. Save the attribute value of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
@@ -2130,7 +2185,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Save number of elements</div>
+<div class="title">Example 33. Save number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
 Then `${numberOfLinks}` is equal to `1`</code></pre>
@@ -2155,7 +2210,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Change context</div>
+<div class="title">Example 34. Change context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
 When I change context to element located `By.xpath(//body)`
@@ -2174,7 +2229,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Reset context</div>
+<div class="title">Example 35. Reset context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
 When I change context to element located `By.xpath(//body)`
@@ -2205,7 +2260,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Element should exists for 5 second</div>
+<div class="title">Example 36. Element should exists for 5 second</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `id(banner)` exists for `PT5S` duration</code></pre>
 </div>
@@ -2222,7 +2277,7 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Navigate back</div>
+<div class="title">Example 37. Navigate back</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
 When I navigate back
@@ -2289,7 +2344,7 @@ element with not empty text, otherwise the step fails.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 37. Check items are sorted</div>
+<div class="title">Example 38. Check items are sorted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://grocery.by'
 When I click on element located `By.id(a-z)`
@@ -2338,7 +2393,7 @@ The full path to a screenshot will be posted to logs and allure
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Take a screenshot to a path</div>
+<div class="title">Example 39. Take a screenshot to a path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `${screenshot-directory}/#{generate(Ancient.god)}.png`</code></pre>
 </div>
@@ -2462,7 +2517,7 @@ The full path to a screenshot will be posted to logs and allure
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Scan a barcode</div>
+<div class="title">Example 40. Scan a barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to scenario variable `qrCodeLink`
 Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
@@ -2519,7 +2574,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Disable menus</div>
+<div class="title">Example 41. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                         |
@@ -2578,7 +2633,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 42. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -2687,7 +2742,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 43. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2695,7 +2750,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 44. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2705,7 +2760,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Validate the request data from the matching HTTP message</div>
+<div class="title">Example 45. Validate the request data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -2716,7 +2771,7 @@ Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Validate the response data from the matching HTTP message</div>
+<div class="title">Example 46. Validate the response data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -2748,7 +2803,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Wait for the HTTP request</div>
+<div class="title">Example 47. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
@@ -2781,7 +2836,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Add headers to the proxied HTTP request</div>
+<div class="title">Example 48. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
@@ -2809,7 +2864,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Clear the data recorded by the proxy</div>
+<div class="title">Example 49. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I clear proxy log
@@ -2829,7 +2884,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Clear the proxy mocks</div>
+<div class="title">Example 50. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -2886,7 +2941,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Hijack a page</div>
+<div class="title">Example 51. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -2937,7 +2992,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Hijack a page</div>
+<div class="title">Example 52. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -2985,7 +3040,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. 404 page</div>
+<div class="title">Example 53. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
