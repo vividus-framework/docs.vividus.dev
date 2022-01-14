@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>How to execute SQL against CSV resources :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/guides/execute-sql-against-csv.html">
+    <title>How to use in-memory database to manage test data :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/use-in-memory-db-to-manage-test-data.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -344,7 +344,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Data Testing</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="execute-sql-against-csv.html">Execute SQL against CSV</a>
   </li>
 </ul>
@@ -353,7 +353,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Test Data Management</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
   </li>
 </ul>
@@ -366,6 +366,15 @@
     <a class="nav-link" href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
   </li>
 </ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../developer-guides/custom-plugins.html">Custom Plugins</a>
   </li>
 </ul>
   </li>
@@ -471,20 +480,20 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>User Guides</li>
-    <li>Data Testing</li>
-    <li><a href="execute-sql-against-csv.html">Execute SQL against CSV</a></li>
+    <li>Test Data Management</li>
+    <li><a href="use-in-memory-db-to-manage-test-data.html">Use in-memory database</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="execute-sql-against-csv.html">latest</a>
-    <a class="version" href="../../0.3.12/guides/execute-sql-against-csv.html">0.3.12</a>
-    <a class="version" href="../../0.3.11/guides/execute-sql-against-csv.html">0.3.11</a>
-    <a class="version" href="../../0.3.10/guides/execute-sql-against-csv.html">0.3.10</a>
-    <a class="version" href="../../0.3.9/guides/execute-sql-against-csv.html">0.3.9</a>
-    <a class="version" href="../../0.3.8/guides/execute-sql-against-csv.html">0.3.8</a>
-    <a class="version" href="../../0.3.7/guides/execute-sql-against-csv.html">0.3.7</a>
+    <a class="version is-current" href="use-in-memory-db-to-manage-test-data.html">latest</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+    <a class="version is-missing" href="../../0.3.11/index.html">0.3.11</a>
+    <a class="version is-missing" href="../../0.3.10/index.html">0.3.10</a>
+    <a class="version is-missing" href="../../0.3.9/index.html">0.3.9</a>
+    <a class="version is-missing" href="../../0.3.8/index.html">0.3.8</a>
+    <a class="version is-missing" href="../../0.3.7/index.html">0.3.7</a>
     <a class="version is-missing" href="../../0.3.6/index.html">0.3.6</a>
     <a class="version is-missing" href="../../0.3.5/index.html">0.3.5</a>
     <a class="version is-missing" href="../../0.3.4/index.html">0.3.4</a>
@@ -505,72 +514,170 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/guides/pages/execute-sql-against-csv.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/user-guides/pages/use-in-memory-db-to-manage-test-data.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">How to execute SQL against CSV resources</h1>
+<h1 class="page">How to use in-memory database to manage test data</h1>
 <div class="paragraph">
 <p>Assuming there is a project containing VIVIDUS-based tests
 (e.g. <a href="https://github.com/vividus-framework/vividus-starter">VIVIDUS Starter</a>)
-and the goal is to execute SQL queries against CSV resources to get the various
-subsets of the data.</p>
+and the goal is to manage test data in the in-memory database (e.g.
+<a href="https://h2database.com/html/features.html#feature_list">H2 database</a>).
+The database is deployed on tests start, accessible from tests and shutdown on
+tests end. The test data can be created from SQL files located in the project.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the required dependencies (CSV and DB plugins, CSV driver) to the project <code>build.gradle</code></p>
+<p>Add the required dependencies (DB plugin, H2 database) to the project <code>build.gradle</code></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-csv', version: '0.4.0-SNAPSHOT')
-implementation(group: 'org.vividus', name: 'vividus-plugin-db', version: '0.4.0-SNAPSHOT')
-implementation(group: 'net.sourceforge.csvjdbc', name: 'csvjdbc', version: '1.0.38')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-db', version: '0.4.0-SNAPSHOT')
+implementation(group: 'com.h2database', name: 'h2', version: '2.0.206')</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Configure connection to the CSV resources</p>
+<p>Configure connection to the H2 database and initialization</p>
+<div class="paragraph">
+<p>DDL/DQL scripts could be run using either <code>INIT</code> property of the connection string or the step executing SQL queries.</p>
+</div>
+<div class="paragraph">
+<p>Whichever method of database initialization is chosen, <code>RUNSCRIPT</code> statement with the path to SQL files could be used. Here you can specify absolute path to file or use the 'classpath:/' prefix - files will be searched from 'src/main/resources' folder relatively.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The details on executing SQL statements on connection
+<a href="https://h2database.com/html/features.html#execute_sql_on_connection">could be found in the official H2 guide</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>2.1 Configure using <code>INIT</code> property</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>using <code>INIT</code> property data loaded into the database once and can no longer be change.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
+<div class="title">Example 1. Configure connection and initialization of the database</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data.driver-class-name=org.relique.jdbc.csv.CsvDriver
-db.connection.csv-data.url=jdbc:relique:csv:classpath:path/to/csv/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
+db.connection.testh2db.url=jdbc:h2:mem:test;\
+  INIT=create schema if not exists test\\;\
+  SET SCHEMA test\\;\
+  DROP TABLE IF EXISTS test.students\\;\
+  CREATE TABLE test.students (firstname VARCHAR(50) NOT NULL, lastname VARCHAR(50) NOT NULL)\\;\
+  INSERT INTO students (firstname, lastname) VALUES ('Maria', 'Miller')\\;
+db.connection.testh2db.username=
+db.connection.testh2db.password=</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Configure connection and initialization of the database with <code>RUNSCRIPT</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
+db.connection.testh2db.url=jdbc:h2:mem:test;\
+  INIT=create schema if not exists test\\;\
+  SET SCHEMA test\\;\
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file1.sql'\\;\
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file2.sql'
+db.connection.testh2db.username=
+db.connection.testh2db.password=</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>driver-class-name</code> should be the same for all CSV connections. <code>url</code>
-includes the mandatory path to CSV resources and may also contain
-<a href="https://github.com/simoc/csvjdbc/blob/master/docs/doc.md#driver-properties">a set of options configuring CSV parsing</a>, e.g.:</p>
+<p>2.2 Configure using test step</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data-2.driver-class-name=org.relique.jdbc.csv.CsvDriver
-db.connection.csv-data-2.url=jdbc:relique:csv:classpath:another/path?separator=;&amp;quoteStyle=C</code></pre>
-</div>
-</div>
-</li>
+<div class="ulist">
+<ul>
 <li>
-<p>Use the configured connection to execute SQL</p>
+<p>if you use database initialization in the step, you only need to specify the connection parameters in the properties file and execute DDL script in the test.</p>
+</li>
+</ul>
+</div>
 <div class="listingblock">
-<div class="title">Example 1. Execute SQL against CSV</div>
+<div class="title">Example 3. Configure connection to database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
+db.connection.testh2db.url=jdbc:h2:mem:test;\
+  DB_CLOSE_DELAY=-1;
+db.connection.testh2db.username=
+db.connection.testh2db.password=</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you are using database initialization in the step, do not forget to set the property <a href="http://www.h2database.com/html/features.html#in_memory_databases"><code>DB_CLOSE_DELAY</code></a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Initialization of the database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
-SELECT * FROM capitals
-` against `csv-data` and save result to scenario variable `csv-records`
-Then `${csv-records}` matching rows using `country` from `csv-data` is equal to data from:
-|country |capital |population |
-|Belarus |Minsk   |1975000    |</code></pre>
+  CREATE SCHEMA IF NOT EXISTS test;
+  SET SCHEMA test;
+  CREATE TABLE test.students (firstname VARCHAR(50) NOT NULL, lastname VARCHAR(50) NOT NULL);
+  INSERT INTO students (firstname, lastname) VALUES ('Maria', 'Miller');
+` against `testh2db`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>where <code>capitals</code> is the name of CSV resource (the full resource path is
-<code>path/to/csv/data/capitals.csv</code>).</p>
+<div class="listingblock">
+<div class="title">Example 5. Initialization of the database with <code>RUNSCRIPT</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+  CREATE SCHEMA IF NOT EXISTS test;
+  SET SCHEMA test;
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file1.sql';
+  RUNSCRIPT FROM 'classpath:/path/to/sql/file2.sql'
+` against `testh2db`</code></pre>
 </div>
-<div class="paragraph">
-<p>The complete guide on SQL syntax and supported functions can be found in
-<a href="https://github.com/simoc/csvjdbc/blob/master/docs/doc.md#features">CSV Driver documentation</a>.</p>
+</div>
+</li>
+<li>
+<p>Use the configured connection and the initialized database to execute SQL</p>
+<div class="listingblock">
+<div class="title">Example 6. Execute SQL script against H2 database</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+SELECT * FROM students
+` against `testh2db` and save result to scenario variable `h2-records`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Execute DML script against H2 database initialized in the step with the schema <code>test</code> and check result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+INSERT INTO test.students (firstname, lastname) VALUES ('Alex', 'Magnus');
+` against `testh2db`
+When I execute SQL query `
+UPDATE test.students SET firstname='Mary' WHERE lastname='Miller';
+` against `testh2db`
+When I execute SQL query `
+SELECT * FROM test.students
+` against `testh2db` and save result to scenario variable `h2-records`
+Then `${h2-records}` is equal to `[{firstname=Mary, lastname=Miller}, {firstname=Alex, lastname=Magnus}]`</code></pre>
+</div>
 </div>
 </li>
 </ol>
@@ -584,7 +691,7 @@ Then `${csv-records}` matching rows using `country` from `csv-data` is equal to 
 </footer>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/guides/execute-sql-against-csv.html"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/user-guides/use-in-memory-db-to-manage-test-data.html"></script>
 <script async src="../../../_/../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>

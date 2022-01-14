@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Jenkins pipeline using browser proxy in Docker container :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/guides/pipeline-with-proxy.html">
+    <title>Cutsom Plugins :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/developer-guides/custom-plugins.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -345,7 +345,7 @@
     <span class="nav-text">Data Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="execute-sql-against-csv.html">Execute SQL against CSV</a>
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
   </li>
 </ul>
   </li>
@@ -354,7 +354,7 @@
     <span class="nav-text">Test Data Management</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
   </li>
 </ul>
   </li>
@@ -362,10 +362,19 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">CI Integration</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
   </li>
 </ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="custom-plugins.html">Custom Plugins</a>
   </li>
 </ul>
   </li>
@@ -470,20 +479,19 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li>User Guides</li>
-    <li>CI Integration</li>
-    <li><a href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a></li>
+    <li>Developer Guides</li>
+    <li><a href="custom-plugins.html">Custom Plugins</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="pipeline-with-proxy.html">latest</a>
-    <a class="version" href="../../0.3.12/guides/pipeline-with-proxy.html">0.3.12</a>
-    <a class="version" href="../../0.3.11/guides/pipeline-with-proxy.html">0.3.11</a>
-    <a class="version" href="../../0.3.10/guides/pipeline-with-proxy.html">0.3.10</a>
-    <a class="version" href="../../0.3.9/guides/pipeline-with-proxy.html">0.3.9</a>
-    <a class="version" href="../../0.3.8/guides/pipeline-with-proxy.html">0.3.8</a>
+    <a class="version is-current" href="custom-plugins.html">latest</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+    <a class="version is-missing" href="../../0.3.11/index.html">0.3.11</a>
+    <a class="version is-missing" href="../../0.3.10/index.html">0.3.10</a>
+    <a class="version is-missing" href="../../0.3.9/index.html">0.3.9</a>
+    <a class="version is-missing" href="../../0.3.8/index.html">0.3.8</a>
     <a class="version is-missing" href="../../0.3.7/index.html">0.3.7</a>
     <a class="version is-missing" href="../../0.3.6/index.html">0.3.6</a>
     <a class="version is-missing" href="../../0.3.5/index.html">0.3.5</a>
@@ -505,153 +513,106 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/guides/pages/pipeline-with-proxy.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/developer-guides/pages/custom-plugins.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Jenkins pipeline using browser proxy in Docker container</h1>
+<h1 class="page">Cutsom Plugins</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>VIVIDUS functionality can be extended with custom business logic. It could be
+done either in separate modules included then as dependencies, or in Gradle
+sub-projects belonging to the root test project, or in the test project directly.
+VIVIDUS defines API-s and conventions that must be followed while implementing
+custom extensions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a>Dynamic variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to create and register own dynamic variable the following steps should
+be done.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new class that implements
+<a href="https://github.com/vividus-framework/vividus/blob/master/vividus-engine/src/main/java/org/vividus/variable/DynamicVariable.java"><code>org.vividus.variable.DynamicVariable</code></a>:</p>
 <div class="listingblock">
+<div class="title">Example 1. /src/main/java/com/mycompany/variable/MyDynamicVariable.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def vividusNetwork = 'vividus-grid'<i class="conum" data-value="1"></i><b>(1)</b>
-def vividusHub = 'vividus-hub'<i class="conum" data-value="2"></i><b>(2)</b>
-def vividusBrowser = 'vividus-browser'<i class="conum" data-value="3"></i><b>(3)</b>
-def vividusProxyHost = 'vividus-proxy-host'<i class="conum" data-value="4"></i><b>(4)</b>
-def seleniumVersion = '3.141.59-20210804'<i class="conum" data-value="5"></i><b>(5)</b>
-def overridings = """
-                        proxy.host=${vividusProxyHost}<i class="conum" data-value="4"></i><b>(4)</b>
-                        proxy.connectable-host=${vividusProxyHost}<i class="conum" data-value="4"></i><b>(4)</b>
-                        selenium.grid.enabled=true
-                        selenium.grid.url=http://${vividusHub}:4444/wd/hub<i class="conum" data-value="2"></i><b>(2)</b>
-                        selenium.grid.capabilities.platformName=LINUX
-                  """
-def projectName = 'vividus-test-project'<i class="conum" data-value="6"></i><b>(6)</b>
-def scmCredentialId = 'vividus'<i class="conum" data-value="7"></i><b>(7)</b>
-def gitUrl = 'git@github.com:vividus/vividus-test-project.git'<i class="conum" data-value="8"></i><b>(8)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycompany.variable;
 
-pipeline {
-  agent {
-    label 'docker'
-  }
+import org.vividus.variable.DynamicVariable;
+import org.vividus.variable.DynamicVariableCalculationResult;
 
-  stages {
-    stage('Start Selenium Grid') {
-        steps {
-           sh "docker network create ${vividusNetwork}"<i class="conum" data-value="1"></i><b>(1)</b>
-           sh "docker run -d --net ${vividusNetwork} --name ${vividusHub} selenium/hub:${seleniumVersion}"<i class="conum" data-value="2"></i><b>(2)</b>
-           sh "docker run -d --net ${vividusNetwork} -e HUB_HOST=${vividusHub} -e SCREEN_WIDTH=1920 -e SCREEN_HEIGHT=1080 --shm-size=2g --name ${vividusBrowser} selenium/node-chrome:${seleniumVersion}"<i class="conum" data-value="3"></i><b>(3)</b><i class="conum" data-value="5"></i><b>(5)</b>
+public class MyDynamicVariable implements DynamicVariable
+{
+    @Override
+    public DynamicVariableCalculationResult calculateValue()
+    {
+        try
+        {
+            String value = ...; // Variable value calcualtion
+            return DynamicVariableCalculationResult.withValue(value);
         }
-    }
-
-    stage('Load Source') {
-        steps {
-            checkout([$class: 'GitSCM',
-                branches: [[name: 'master']],
-                doGenerateSubmoduleConfigurations: false,
-                extensions: [
-                    [$class: 'RelativeTargetDirectory', relativeTargetDir: projectName],<i class="conum" data-value="6"></i><b>(6)</b>
-                    [$class: 'SubmoduleOption',
-                    disableSubmodules: false,
-                    parentCredentials: true,
-                    recursiveSubmodules: true,
-                    reference: '',
-                    trackingSubmodules: false]
-                ],
-                submoduleCfg: [],
-                userRemoteConfigs: [[credentialsId: scmCredentialId, url: gitUrl]]])<i class="conum" data-value="7"></i><b>(7)</b> <i class="conum" data-value="8"></i><b>(8)</b>
-        }
-    }
-
-    stage('Run Tests Using Docker') {
-        steps {
-                sh "docker ps -a"
-                withDockerContainer(image: 'openjdk:16.0.2-oraclelinux8', args: "--net ${vividusNetwork} --name ${vividusProxyHost}") {<i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="4"></i><b>(4)</b>
-                dir(projectName) {<i class="conum" data-value="6"></i><b>(6)</b>
-                    sh """ <i class="conum" data-value="9"></i><b>(9)</b>
-                        echo -e "${overridings}" &gt; overriding.properties
-                        mv -f overriding.properties src/main/resources/overriding.properties
-                        ./gradlew runStories
-                     """
-                    archiveArtifacts 'output/reports/**'
-                }
-            }
-        }
-    }
-  }
-
-  post {
-        always {
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: "${projectName}/output/reports/allure",<i class="conum" data-value="6"></i><b>(6)</b>
-                reportFiles: 'index.html',
-                reportName: 'Allure Report',
-                reportTitles: ''
-            ])
-            cleanWs()
-            sh "docker rm -vf ${vividusBrowser} || true"
-            sh "docker rm -vf ${vividusHub} || true"
-            sh "docker network rm ${vividusNetwork} || true"
+        catch (MyException e)
+        {
+            return DynamicVariableCalculationResult.withError(e.getMessage());
         }
     }
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><strong>vividusNetwork</strong> - name of docker network</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><strong>vividusHub</strong> - name of docker hub; this variable value is part of parameter for property <code><strong>selenium.grid.url</strong></code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><strong>vividusBrowser</strong> - name of docker container with browser</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><strong>vividusProxyHost</strong> - parameter, which is passed as name of docker container in <code><strong>dockerFingerprintRun</strong></code> for run tests; need to assign this variable as value for <code><strong>proxy.host</strong></code> and <code><strong>proxy.connectable-host</strong></code> properties</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><strong>seleniumVersion</strong> - <a href="https://github.com/seleniumhq/docker-selenium/releases">grid version</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><strong>projectName</strong> - test project name</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td><strong>scmCredentialId</strong> - <a href="https://www.jenkins.io/doc/book/using/using-credentials/">credentials for interacting with test repository</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><strong>gitUrl</strong> - git url to test project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>The tests are executed via gradle. The exit code of the command will be <code>0</code> - if all the tests are passed, <code>1</code> - if there is any error during tasks execution, or any of the tests not in passed status.</td>
-</tr>
-</table>
+</li>
+<li>
+<p>Register Spring bean where <code>id</code> is the name of the dynamic variable which will
+be used to refer it in tests:</p>
+<div class="listingblock">
+<div class="title">Example 2. /src/main/resources/spring.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;bean id="my-dynamic-varibale" class="com.mycompany.variable.MyDynamicVariable"/&gt;
+
+&lt;/beans&gt;</code></pre>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For more information about pipeline syntax and jenkins directives read <a href="https://www.jenkins.io/doc/book/pipeline/syntax/">jenkins documentation</a>.
-</td>
-</tr>
-</table>
+</div>
+</li>
+<li>
+<p>Use new variable in tests:</p>
+<div class="listingblock">
+<div class="title">Example 3. /src/main/resources/story/MyStory.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
+Then `${my-dynamic-varibale}` is equal to `my app specific value`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Keep in mind the alias for the dynamic variable with name in lower camel
+case will be available out of the box:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. /src/main/resources/story/MyStory.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
+Then `${myDynamicVaribale}` is equal to `my app specific value`</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </article>
   </div>
@@ -662,7 +623,7 @@ For more information about pipeline syntax and jenkins directives read <a href="
 </footer>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/guides/pipeline-with-proxy.html"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/developer-guides/custom-plugins.html"></script>
 <script async src="../../../_/../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>

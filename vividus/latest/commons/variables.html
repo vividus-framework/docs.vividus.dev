@@ -345,7 +345,7 @@
     <span class="nav-text">Data Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
   </li>
 </ul>
   </li>
@@ -354,7 +354,7 @@
     <span class="nav-text">Test Data Management</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
   </li>
 </ul>
   </li>
@@ -363,9 +363,18 @@
     <span class="nav-text">CI Integration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
   </li>
 </ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../developer-guides/custom-plugins.html">Custom Plugins</a>
   </li>
 </ul>
   </li>
@@ -515,9 +524,9 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Variables are names used to hold one or more values. Instead of repeating these
-values in multiple places in tests, the variable holds the results of
-a calculation, step execution, expression evaluation, or other value.</p>
+<p>Variables are names used to store one or more values. Instead of repeating these
+values in multiple places in tests, the variable will keep the results of
+a calculation, step execution, expression evaluation, or any other user-defined data.</p>
 </div>
 <div class="paragraph">
 <p>VIVIDUS provides the following syntax to access variable value:</p>
@@ -527,13 +536,75 @@ a calculation, step execution, expression evaluation, or other value.</p>
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${variableName}</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>There are 2 types of variables:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>regaular - such variables are initialized and controlled by users;</p>
+</li>
+<li>
+<p>dynamic - these variables are available out of the box and provided by VIVIDUS
+core and plugins, the values of such variables are calculated at the runtime
+(i.e. the same variables in different parts of tests may result in different values).</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Dynamic variables support both lower camel case (e.g. <code>${dynamicVariableName}</code>)
+and lower hyphen case (e.g. <code>${dynamic-variable-name}</code>) name formats.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resolution"><a class="anchor" href="#_resolution"></a>Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Whenever the variable placeholder is found in tests, VIVIDUS attempts to resolve
+it using the chain having the following order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>regular variables,</p>
+</li>
+<li>
+<p>default value if it&#8217;s specified in the variable placeholder,</p>
+</li>
+<li>
+<p>system properties,</p>
+</li>
+<li>
+<p>OS environment variables,</p>
+</li>
+<li>
+<p>dynamic variables (keep in mind, if dynamic variable is available, but couldn&#8217;t
+be resolved due to errors or conditions mismatch, the error message will be
+logged and variable will be kept unresolved).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the end of chain is reached and the variable is not resolved, the variable
+placeholder will be kept as is: <code>${variableName}</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_scopes"><a class="anchor" href="#_scopes"></a>Scopes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Variables can have one of the following scopes.</p>
+<p>Regular variables can have one of the following scopes.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -542,7 +613,7 @@ a calculation, step execution, expression evaluation, or other value.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The scopes names are case-insensitive
+The scopes names are case-insensitive.
 </td>
 </tr>
 </table>
@@ -637,12 +708,6 @@ Then the response code is equal to '200'</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>If variable with the specified name is not found in any of VIVIDUS scopes,
-search for OS environment variable will be performed. If no OS environment
-variable is available, the variable placeholder will be kept as is:
-<code>${variableName}</code></p>
-</div>
 </div>
 </div>
 </article>
