@@ -3165,6 +3165,107 @@ No actual request will be executed. Short-circuited response will be returned.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_change_network_connection"><a class="anchor" href="#_change_network_connection"></a>Change network connection</h3>
+<div class="paragraph">
+<p>Turns ON/OFF network connection.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+To be able to use this step in the cloud testing platform, review the documentation related to simulating the mobile network conditions on the selected platform.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn $toggle `$connectionName` network connection</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$toggle</code> - The modes of the toggle: <code>ON</code> or <code>OFF</code>.</p>
+</li>
+<li>
+<p><code>$connectionName</code> - The name of the network connect to toggle.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Connection name</th>
+<th class="tableblock halign-left valign-top">Supported platforms</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WIFI</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android emulators, Android and iOS real devices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wi-Fi connection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MOBILE_DATA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android emulators, Android and iOS real devices</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mobile Data connection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AIRPLANE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android real devices, Android emulators</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Airplane Mode</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WIFI_AND_MOBILE_DATA</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android real devices, Android emulators</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mobile Data and Wi-Fi connections</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For iOS real devices: to return to the application you must use the step:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I activate application with bundle identifier `$bundleId`.</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 60. Turn OFF Wi-Fi for Android</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 61. Turn OFF Wi-Fi for iOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection
+When I activate application with bundle identifier `my-aplication-bundle-id`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
