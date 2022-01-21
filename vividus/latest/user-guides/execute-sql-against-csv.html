@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>How to execute SQL against CSV resources :: VIVIDUS</title>
+    <title>How to execute SQL against CSV :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/execute-sql-against-csv.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -521,21 +521,35 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">How to execute SQL against CSV resources</h1>
+<h1 class="page">How to execute SQL against CSV</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Assuming there is a project containing VIVIDUS-based tests
 (e.g. <a href="https://github.com/vividus-framework/vividus-starter">VIVIDUS Starter</a>)
 and the goal is to execute SQL queries against CSV resources to get the various
 subsets of the data.</p>
 </div>
+<div class="paragraph">
+<p>As a prerequisite add the required DB plugin dependency to the project <code>build.gradle</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-db', version: '0.4.0-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_execute_sql_against_csv_resource"><a class="anchor" href="#_execute_sql_against_csv_resource"></a>Execute SQL against CSV resource</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the required dependencies (CSV and DB plugins, CSV driver) to the project <code>build.gradle</code></p>
+<p>Add the CSV and CSV driver dependencies to the project <code>build.gradle</code></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-csv', version: '0.4.0-SNAPSHOT')
-implementation(group: 'org.vividus', name: 'vividus-plugin-db', version: '0.4.0-SNAPSHOT')
 implementation(group: 'net.sourceforge.csvjdbc', name: 'csvjdbc', version: '1.0.38')</code></pre>
 </div>
 </div>
@@ -583,6 +597,76 @@ Then `${csv-records}` matching rows using `country` from `csv-data` is equal to 
 </div>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_execute_sql_against_in_memory_csv"><a class="anchor" href="#_execute_sql_against_in_memory_csv"></a>Execute SQL against in-memory CSV</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure connection to in-memory database as described <a href="use-in-memory-db-to-manage-test-data.html" class="page">here</a></p>
+</li>
+<li>
+<p>Populate database with CSV dataset</p>
+<div class="listingblock">
+<div class="title">Example 2. Create table with data from CSV</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">!-- For demonstration purposes we hardcode the CSV file content, you can use variables and expressions as a sources of CSV instead.
+When I create temporary file with name `egg-miners` and content `
+id,name,race
+1,Miner Gor,Redguard
+2,Daynila Valas,Dark Elf
+3,Miner Juillen,Breton
+` and put path to SCENARIO variable `egg-miners-csv-path`
+
+!-- Create table from the CSV contained in previously created temporary file
+When I execute SQL query `
+CREATE TABLE egg_miners AS SELECT * FROM CSVREAD('${egg-miners-csv-path}');
+` against `in-memory-db-key`</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>See <a href="http://www.h2database.com/html/functions.html#csvread">CSVREAD</a> function description for more details.</p>
+</li>
+<li>
+<p>All columns read from CSV are of type VARCHAR.</p>
+</li>
+<li>
+<p>Use the <a href="http://www.h2database.com/html/grammar.html#cast_specification">CAST</a> function to adjust the column types (if applicable).</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Use the created table to execute SQL against</p>
+<div class="listingblock">
+<div class="title">Example 3. Execute SQL against table created from CSV</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+SELECT * FROM egg_miners WHERE race = 'Dark Elf';
+` against `in-memory-db-key` and save result to scenario variable `egg-miners-records`
+Then `${egg-miners-records}` is equal to `[{id=1, name=Daynila Valas, race=Dark Elf}]`</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </article>
   </div>
