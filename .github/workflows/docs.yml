@@ -1,9 +1,7 @@
 name: Vividus Documentation Deployment
 
 on:
-  repository_dispatch:
-    types: [deploy]
-  push:
+  pull_request:
     branches:
     - master
 
@@ -18,21 +16,16 @@ jobs:
       with:
         node-version: 12.18.1
     - run: npm i -g @antora/cli antora-site-generator-lunr
+    - run: npm install -g gitlab:antora/xref-validator
     - run: DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr DOCSEARCH_INDEX_VERSION=latest NODE_PATH="$(npm -g root)" antora --generator antora-site-generator-lunr ./antora-playbook.yml
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: ${{ secrets.COMMITTER_NAME }}
-        user_email: ${{ secrets.COMMITTER_EMAIL }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
-        cname: docs.vividus.dev
-
-    - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "docs-vividus-dev"
-        heroku_email: "bitearray@gmail.com"
-        appdir: "public"
+    - name: Antora links check
+      shell: bash
+      run: |
+        errors=$(antora --generator @antora/xref-validator antora-playbook-local.yml | grep "\"refname\":\"master\"");
+        if [[ -z "$errors" || "" == "$errors" ]]; then
+          echo "No errors found";
+        else
+          echo "$errors";
+          exit 1;
+        fi
