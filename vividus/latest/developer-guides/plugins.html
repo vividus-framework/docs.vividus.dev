@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cutsom Plugins :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/developer-guides/custom-plugins.html">
+    <title>Plugins :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/developer-guides/plugins.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -373,8 +373,17 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Developer Guides</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="custom-plugins.html">Custom Plugins</a>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="plugins.html">Plugins</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -483,14 +492,15 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Developer Guides</li>
-    <li><a href="custom-plugins.html">Custom Plugins</a></li>
+    <li><a href="extension-points.html">Extension points</a></li>
+    <li><a href="plugins.html">Plugins</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="custom-plugins.html">latest</a>
-    <a class="version" href="../../0.4.0/developer-guides/custom-plugins.html">0.4.0</a>
+    <a class="version is-current" href="plugins.html">latest</a>
+    <a class="version is-missing" href="../../0.4.0/index.html">0.4.0</a>
     <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
     <a class="version is-missing" href="../../0.3.11/index.html">0.3.11</a>
     <a class="version is-missing" href="../../0.3.10/index.html">0.3.10</a>
@@ -517,22 +527,39 @@
     <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/developer-guides/pages/custom-plugins.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/developer-guides/pages/plugins.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Cutsom Plugins</h1>
+<h1 class="page">Plugins</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>VIVIDUS functionality can be extended with custom business logic. It could be
-done either in separate modules included then as dependencies, or in Gradle
-sub-projects belonging to the root test project, or in the test project directly.
-VIVIDUS defines API-s and conventions that must be followed while implementing
-custom extensions.</p>
+<p>Plugins are extensible and flexible mechanism for development. New plugin can be developed by
+3rd party team and integrated.</p>
+</div>
+<div class="paragraph">
+<p>The plugin configuration should be placed at the <code>/src/main/resources/spring.xml</code> path relatively
+to the project root.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. /src/main/resources/spring.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true"&gt;
+
+    &lt;!-- plugin bean definitions --&gt;
+
+&lt;/beans&gt;</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -549,7 +576,7 @@ be done.</p>
 <p>Create a new class that implements
 <a href="https://github.com/vividus-framework/vividus/blob/master/vividus-engine/src/main/java/org/vividus/variable/DynamicVariable.java"><code>org.vividus.variable.DynamicVariable</code></a>:</p>
 <div class="listingblock">
-<div class="title">Example 1. /src/main/java/com/mycompany/variable/MyDynamicVariable.java</div>
+<div class="title">Example 2. /src/main/java/com/mycompany/variable/MyDynamicVariable.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycompany.variable;
 
@@ -579,7 +606,7 @@ public class MyDynamicVariable implements DynamicVariable
 <p>Register Spring bean where <code>id</code> is the name of the dynamic variable which will
 be used to refer it in tests:</p>
 <div class="listingblock">
-<div class="title">Example 2. /src/main/resources/spring.xml</div>
+<div class="title">Example 3. /src/main/resources/spring.xml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans
@@ -596,7 +623,7 @@ be used to refer it in tests:</p>
 <li>
 <p>Use new variable in tests:</p>
 <div class="listingblock">
-<div class="title">Example 3. /src/main/resources/story/MyStory.story</div>
+<div class="title">Example 4. /src/main/resources/story/MyStory.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
 Then `${my-dynamic-varibale}` is equal to `my app specific value`</code></pre>
@@ -607,7 +634,7 @@ Then `${my-dynamic-varibale}` is equal to `my app specific value`</code></pre>
 case will be available out of the box:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. /src/main/resources/story/MyStory.story</div>
+<div class="title">Example 5. /src/main/resources/story/MyStory.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
 Then `${myDynamicVaribale}` is equal to `my app specific value`</code></pre>
@@ -627,7 +654,7 @@ Then `${myDynamicVaribale}` is equal to `my app specific value`</code></pre>
 </footer>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/developer-guides/custom-plugins.html"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/developer-guides/plugins.html"></script>
 <script async src="../../../_/../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
