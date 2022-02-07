@@ -2953,6 +2953,47 @@ No actual request will be executed. Short-circuited response will be returned.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_window_steps"><a class="anchor" href="#_window_steps"></a>Window Steps</h3>
+<div class="sect3">
+<h4 id="_resize_the_current_browser_window"><a class="anchor" href="#_resize_the_current_browser_window"></a>Resize the current browser window</h4>
+<div class="paragraph">
+<p>Changes the current browser window size to the specified one.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The specified browser window size should be smaller than the current screen resolution.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change window size to `$targetSize`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$targetSize</code> - The desired browser window size in pixels, e.g. <code>800x600</code>,
+where the first measure is window width, the last one is window height.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 49. Resize the browser window</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+When I change window size to `640x320`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
