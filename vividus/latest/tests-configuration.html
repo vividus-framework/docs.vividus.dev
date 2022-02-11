@@ -1206,8 +1206,6 @@ implementation level or by applying the generic approach at the table level:</p>
 <div class="paragraph">
 <p>Here one could find description of general HTTP properties applied across all the HTTP interactions in VIVIDUS.</p>
 </div>
-<div class="sect2">
-<h3 id="_general"><a class="anchor" href="#_general"></a>General</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 37.5%;">
@@ -1224,6 +1222,9 @@ implementation level or by applying the generic approach at the table level:</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>General</em></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.circular-redirects-allowed</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
@@ -1266,27 +1267,15 @@ implementation level or by applying the generic approach at the table level:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>default</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <a href="https://hc.apache.org/httpcomponents-client-4.5.x/current/tutorial/html/statemgmt.html#d5e515">cookie specification</a> to be used for HTTP state management</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Authentication</em></p></td>
 </tr>
-</thead>
-<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acceptable values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
@@ -1305,27 +1294,9 @@ implementation level or by applying the generic approach at the table level:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If enabled the HTTP client will send the basic authentication data even before the service gives an unauthorized response (401), useful when the service doesn&#8217;t support unauthorized response (401) or to reduce the overhead of making the connection</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_ssl_handshake"><a class="anchor" href="#_ssl_handshake"></a>SSL handshake</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>SSL handshake</em></p></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.ssl.check-certificate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
@@ -1338,27 +1309,9 @@ implementation level or by applying the generic approach at the table level:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify if the domain name in the SSL certificate matches the domain name in URL where the request is sent to</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_two_way_ssl_authentication"><a class="anchor" href="#_two_way_ssl_authentication"></a>Two-Way SSL authentication</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Two-Way SSL authentication</em></p></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.key-store.type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.oracle.com/en/java/javase/11/docs/specs/security/standard-names.html#keystore-types">KeyStore types</a></p></td>
@@ -1383,54 +1336,18 @@ implementation level or by applying the generic approach at the table level:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The password for the private key</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_dns_resolver"><a class="anchor" href="#_dns_resolver"></a>DNS resolver</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>DNS resolver</em></p></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.local-dns-storage.</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>key-value mapping</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The property prefix used to override the OS DNS lookup by specifying hostname to IP address mappings e.g. <code>http.local-dns-storage.coursera.org=52.84.197.20</code></p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_service_unavailability_retry_handler"><a class="anchor" href="#_service_unavailability_retry_handler"></a>Service unavailability retry handler</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Service unavailability retry handler</em></p></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.service-unavailable-retry.max-retries</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
@@ -1449,27 +1366,9 @@ implementation level or by applying the generic approach at the table level:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1S</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The retry interval between subsequent requests</p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_idempotent_retry_handler"><a class="anchor" href="#_idempotent_retry_handler"></a>Idempotent retry handler</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Idempotent retry handler</em></p></td>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.idempotent-methods-sending-request-body</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">set of integers</p></td>
@@ -1478,7 +1377,6 @@ implementation level or by applying the generic approach at the table level:</p>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 <div class="sect1">
