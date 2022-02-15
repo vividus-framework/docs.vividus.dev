@@ -3014,6 +3014,124 @@ When I change window size to `640x320`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_video_steps"><a class="anchor" href="#_video_steps"></a>Video steps</h3>
+<div class="paragraph">
+<p>Steps allow to interact with <a href="https://www.w3schools.com/html/html5_video.asp">video</a> elements.</p>
+</div>
+<div class="sect3">
+<h4 id="_play_video"><a class="anchor" href="#_play_video"></a>Play Video</h4>
+<div class="paragraph">
+<p>Starts video playback.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I play video in video player located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pause_video"><a class="anchor" href="#_pause_video"></a>Pause Video</h4>
+<div class="paragraph">
+<p>Pauses video playback.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I pause video in video player located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rewind_video"><a class="anchor" href="#_rewind_video"></a>Rewind Video</h4>
+<div class="paragraph">
+<p>Rewinds video to the desired mark in seconds.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I rewind time to `$number` seconds in video player located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$number</code> - time mark in seconds</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_info"><a class="anchor" href="#_get_info"></a>Get info</h4>
+<div class="paragraph">
+<p>Saves video player info: <strong>duration</strong>, <strong>currentTime</strong>, <strong>src</strong>, <strong>networkState</strong>.
+For more information about the properties see <a href="https://www.w3schools.com/tags/ref_av_dom.asp">HTML Audio/Video Properties</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save info from video player located `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the info. If the variable name is <strong>info</strong>, the following variables will be created:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${info.src}</code>- The the current source of the audio/video element</p>
+</li>
+<li>
+<p><code>${info.duration}</code> - The length of the current audio/video (in seconds)</p>
+</li>
+<li>
+<p><code>${info.currentTime}</code> - The current playback position in the audio/video(in seconds)</p>
+</li>
+<li>
+<p><code>${info.networkState}</code> - The the current network state of the audio/video. For more information see: <a href="https://www.w3schools.com/tags/av_prop_networkstate.asp">Network State</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 50. Video player verifications</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.youtube.com/watch?v=pYqyVpCV-3c'
+When I pause video in video player located `cssSelector(video)`
+When I rewind time to `777` seconds in video player located `cssSelector(video)`
+When I play video in video player located `cssSelector(video)`
+When I save info from video player located `cssSelector(video)` to SCENARIO variable `info`
+Then `${info.currentTime}` is &gt; `0`
+Then `${info.duration}` is &gt; `1000`
+Then `${info.networkState}` is = `2`
+Then `${info.src}` matches `.+youtube.+`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
