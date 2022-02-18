@@ -1576,6 +1576,68 @@ This value must be kept secret and must not be committed to version control syst
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_steps_aliases"><a class="anchor" href="#_steps_aliases"></a>Steps aliases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VIVIDUS allows to define set of aliases for steps in JSON format and then use them in stories.</p>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_steps_aliases"><a class="anchor" href="#_how_to_use_steps_aliases"></a>How to use steps aliases</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select a step you want to create alias for, as an example let&#8217;s take the following step:</p>
+<div class="listingblock">
+<div class="title">Example 17. VIVIDUS step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located `$locator`</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new JSON file (for example, <code>aliases/aliases.json</code>) and put the following content with one or more aliases:</p>
+<div class="listingblock">
+<div class="title">Example 18. aliases/aliases.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "name": "When I hover mouse over element located `$locator`",
+        "aliases":
+        [
+            {
+                "name": "When I place mouse pointer over web element located by `$locator`"
+            },
+            {
+                "name": "When I hover mouse pointer over web element located `$locator`"
+            }
+        ]
+    }
+]</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Point the alias configuration property to an exact location or location pattern with the JSON files containing ailases:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">engine.alias-paths=aliases/aliases.json</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the defned alias in place of actual step in your story</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I place mouse pointer over web element located by `id(loginButton)`</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
