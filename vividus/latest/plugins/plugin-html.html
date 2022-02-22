@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>HTML Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-html.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -545,8 +545,227 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">HTML Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the ability to work with HTML documents: data extraction and validation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-html', version: '0.4.3-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_locators"><a class="anchor" href="#_locators"></a>Locators</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>HTML locators should be used in order to interact with HTML document elements. The following locators are supported:
+- <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a>
+- <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_validate_elements"><a class="anchor" href="#_validate_elements"></a>Validate elements</h3>
+<div class="paragraph">
+<p>Validates the number of elements found by the locator matches the specified rules.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by $locatorType `$locator` in HTML `$html` is $comparisonRule `$number`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+</li>
+<li>
+<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+</li>
+<li>
+<p><code>$html</code> - The HTML document to validate.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$quantity</code> -  The expected number of elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate starfield release date</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://bethesda.net/en/game/starfield'
+Then number of elements found by XPath `//h3[contains(., '111122')]` in HTML `${response}` is = `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_element_text"><a class="anchor" href="#_validate_element_text"></a>Validate element text</h3>
+<div class="paragraph">
+<p>Validates whether the element found by the locator contains the expected text.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element found by $locatorType `$locator` in HTML `$html` contains text `$expectedText`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+</li>
+<li>
+<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+</li>
+<li>
+<p><code>$html</code> - The HTML document to validate.</p>
+</li>
+<li>
+<p><code>$expectedText</code> - The expected element text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Validate starfield release date</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://bethesda.net/en/game/starfield'
+Then element found by XPath `//h3` in HTML `${response}` contains text `111122`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_attribute_value"><a class="anchor" href="#_save_attribute_value"></a>Save attribute value</h3>
+<div class="paragraph">
+<p>Saves the attribute value into the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element found by $locatorType `$locator` in HTML `$html` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$attributeName</code> - The name of the attribute.</p>
+</li>
+<li>
+<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+</li>
+<li>
+<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+</li>
+<li>
+<p><code>$html</code> - The HTML document to find element.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the attribute value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Validate paragraph title</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the story variable `html` with value
+`
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;script&gt;//&lt;![CDATA[Here comes the data//]]&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a Heading&lt;/h1&gt;
+    &lt;p title="paragraph"&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+`
+When I save `title` attribute value of element found by CSS selector `p` in HTML `${html}` to scenario variable `title`
+Then `${title}` is = `paragraph`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_datatext_of_element"><a class="anchor" href="#_save_datatext_of_element"></a>Save data/text of element</h3>
+<div class="paragraph">
+<p>Saves the data or the text of element. Where the <strong>data</strong> is characters between the start-tag and end-tag of the element and the <strong>text</strong> is the textual content of the element  without any inner element.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $dataType of element found by $locatorType `$locator` in HTML `$html` to $scopes variable `variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$dataType</code> - Either <code>data</code> or <code>text</code></p>
+</li>
+<li>
+<p><code>$html</code> - The HTML document to find element.</p>
+</li>
+<li>
+<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+</li>
+<li>
+<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the data or text.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Validate data/text</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the story variable `html` with value
+`
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;script&gt;//&lt;![CDATA[Here comes the data//]]&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a Heading&lt;/h1&gt;
+    &lt;p title="paragraph"&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+`
+When I save data of element found by &lt;locatorType&gt; `&lt;script&gt;` in HTML `${html}` to scenario variable `data`
+When I save text of element found by &lt;locatorType&gt; `&lt;script&gt;` in HTML `${html}` to scenario variable `text`
+Then `${data}` is equal to `//&lt;![CDATA[Here comes the data//]]&gt;`
+Then `${text}` is equal to `This is a Heading`
+Examples:
+|locatorType |script  |header|
+|CSS selector|script  |h1    |
+|XPath       |//script|//h1  |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
