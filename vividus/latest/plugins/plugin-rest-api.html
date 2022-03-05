@@ -1071,6 +1071,41 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_wait_for_expected_http_status_code_in_response"><a class="anchor" href="#_wait_for_expected_http_status_code_in_response"></a>Wait for expected HTTP status code in response</h3>
+<div class="paragraph">
+<p>Waits for the specified number of times until HTTP response code is equal to the expected one. In case if the expected code is not returned after all retries, the assertion error will be recorded.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for response code $responseCode for $duration duration retrying $retryTimes times$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$responseCode</code> - The expected HTTP status code.</p>
+</li>
+<li>
+<p><code>$duration</code> - The time duration to wait in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$retryTimes</code> - The number of times the request will be retried: <code>duration/retryTimes = timeout</code> is a polling timeout between requests.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The steps to execute at each wait iteration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Wait until HTTP GET request returns status code 200</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for response code `200` for `PT10S` duration retrying 3 times
+|step                                                        |
+|When I send HTTP GET to the relative URL '/delayed-resource'|</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1100,7 +1135,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Check JSON context contains JSON object by JSON path</div>
+<div class="title">Example 11. Check JSON context contains JSON object by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element by JSON path `$.accountList[0]` is equal to `
 {
@@ -1139,7 +1174,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Check JSON contains string value by JSON path</div>
+<div class="title">Example 12. Check JSON contains string value by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
 {
@@ -1174,7 +1209,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 13. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements by JSON path `$.accountList` is equal to 2</code></pre>
 </div>
@@ -1207,7 +1242,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 14. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
 [
@@ -1246,7 +1281,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Save accountId element from JSON context</div>
+<div class="title">Example 15. Save accountId element from JSON context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from context by JSON path `$.accountId` to SCENARIO variable `account-id`</code></pre>
 </div>
@@ -1279,7 +1314,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Save accountId element from JSON</div>
+<div class="title">Example 16. Save accountId element from JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from `
 {
@@ -1314,7 +1349,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Save number of id elements</div>
+<div class="title">Example 17. Save number of id elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set number of elements found by JSON path `$..id` to scenario variable `idsCount`</code></pre>
 </div>
@@ -1347,7 +1382,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Save number of elements from the JSON</div>
+<div class="title">Example 18. Save number of elements from the JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
 </div>
@@ -1405,7 +1440,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Verify each account id is a number</div>
+<div class="title">Example 19. Verify each account id is a number</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
 {
@@ -1470,7 +1505,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Verify HTTP resources</div>
+<div class="title">Example 20. Verify HTTP resources</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
 |url                                                    |
