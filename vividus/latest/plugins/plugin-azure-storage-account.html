@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Azure Storage Account Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-azure-storage-account.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../../_/css/additional.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -635,7 +636,7 @@ JSON to a variable. For more information, see the
 <p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the blob service properties.</p>
@@ -671,7 +672,7 @@ JSON to a variable. For more information, see the
 <p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the blob content.</p>
@@ -710,7 +711,7 @@ JSON to a variable. For more information, see the
 <p><code>$baseFileName</code> - The base file name used to generate the prefix and the suffix for the creating temporary file.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the path to the temporary file with the blob content.</p>
@@ -748,7 +749,7 @@ variable.</p>
 <p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the blob properties.</p>
@@ -844,7 +845,7 @@ variable.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">The blob name comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The blob name comparison rule</a>.</p>
 </li>
 <li>
 <p><code>$blobNameToMatch</code> - The full or partial blob name to be matched.</p>
@@ -856,7 +857,7 @@ variable.</p>
 <p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the list of found blob names.</p>
@@ -923,7 +924,7 @@ At least one rule is required.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNameFilterRule</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../parameters/string-comparison-rule.html" class="page">The blob name comparison rule</a>.
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../parameters/string-comparison-rule.html" class="xref page">The blob name comparison rule</a>.
 It should be specified along with <code>blobNameFilterValue</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>MATCHES</code></p></td>
 </tr>
@@ -943,7 +944,7 @@ It should be specified along with <code>blobNameFilterRule</code>.</p></td>
 <p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the list of found blob names.</p>
@@ -1024,7 +1025,7 @@ JSON to a variable. For more information, see the
 <p><code>$resourceGroupName</code> - The name of the resource group to list the storage accounts from.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the info about storage accounts as JSON.</p>
@@ -1075,7 +1076,7 @@ and saves them as JSON to a variable. For more information, see the
 <p><code>$resourceGroupName</code> - The name of the resource group within the user&#8217;s subscription to retrieve the storage account from. The name is case-insensitive.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store the blob service properties as JSON.</p>
@@ -1100,9 +1101,9 @@ and saves them as JSON to a variable. For more information, see the
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/plugins/plugin-azure-storage-account.html"></script>
-<script async src="../../../_/../search-index.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>

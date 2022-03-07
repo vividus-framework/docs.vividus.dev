@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Tests Configuration :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/tests-configuration.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../_/css/additional.css">
-<link rel="stylesheet" href="../../_/css/search.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -565,7 +566,7 @@
 <div class="listingblock">
 <div class="title">Example 1. configuration.properties</div>
 <div class="content">
-<pre>configuration.suites=testSuite,anotherDir/anotherTestSuite</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configuration.suites=testSuite,anotherDir/anotherTestSuite</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -981,7 +982,7 @@ subscript operator must be used in the properties.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-This meta tag is deprecated and will be removed in VIVIDUS 0.5.0. The replacement is the <a href="plugins/plugin-web-app.html#_resize_the_current_browser_window" class="page">step resizing browser window</a>.
+This meta tag is deprecated and will be removed in VIVIDUS 0.5.0. The replacement is the <a href="plugins/plugin-web-app.html#_resize_the_current_browser_window" class="xref page">step resizing browser window</a>.
 </td>
 </tr>
 </table>
@@ -1018,17 +1019,17 @@ This meta tag is deprecated and will be removed in VIVIDUS 0.5.0. The replacemen
 <div class="listingblock">
 <div class="title">Example 8. environment.properties</div>
 <div class="content">
-<pre>system.allure.link.issue.pattern=https://vividus.dev/issues/{}</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 9. Test.story</div>
 <div class="content">
-<pre>Meta:
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Meta:
     @issueId VVD-1
 
 Scenario: Should check variables equals
-Then `1` is = `1`</pre>
+Then `1` is = `1`</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1083,21 +1084,21 @@ Then `1` is = `1`</pre>
 <div class="listingblock">
 <div class="title">Example 10. environment.properties</div>
 <div class="content">
-<pre># Default property
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
 # Additional property with .dev suffix, that used to create links annotated with @isssueId.dev
-system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</pre>
+system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 11. Test.story</div>
 <div class="content">
-<pre>Meta:
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Meta:
     @issueId VVD-1
     @issueId.dev DEV-1
 
 Scenario: Should check variables equal
-Then `1` is = `1`</pre>
+Then `1` is = `1`</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1335,7 +1336,7 @@ implementation level or by applying the generic approach at the table level:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.key-store.path</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="glossary.html#_resource" class="page">Resource</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="glossary.html#_resource" class="xref page">Resource</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="https://docs.oracle.com/en/java/javase/11/security/terms-and-definitions.html#GUID-C7BB21C7-E19E-4DE4-8494-CB43F957C329__GUID-D7CAC72A-2714-4C9B-88E2-7F317DE94CEE">key store</a> to load</p></td>
 </tr>
@@ -1653,9 +1654,9 @@ This value must be kept secret and must not be committed to version control syst
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../_/js/site.js"></script>
-<script src="../../_/js/vendor/lunr.js"></script>
-<script src="../../_/js/vendor/search.js" id="search-script" data-base-path="../.." data-page-path="/vividus/0.4.3/tests-configuration.html"></script>
-<script async src="../../_/../search-index.js"></script>
+  <script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
 <script src="../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../_/js/vendor/gradle.min.js"></script>

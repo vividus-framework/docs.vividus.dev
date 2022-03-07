@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Mobile Application Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-mobile-app.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../../_/css/additional.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -569,7 +570,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -1037,7 +1038,7 @@ selenium.grid.automationName=${selenium.grid.automation-name}</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a><a href="../commons/variables.html" class="page">Dynamic variables</a></h2>
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a><a href="../commons/variables.html" class="xref page">Dynamic variables</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_get_clipboard_text"><a class="anchor" href="#_get_clipboard_text"></a>Get clipboard text</h3>
@@ -1425,7 +1426,7 @@ Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">The web view name comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The web view name comparison rule</a>.</p>
 </li>
 <li>
 <p><code>$value</code> - The value to find the target web view.</p>
@@ -2074,7 +2075,7 @@ When I stop recording `Time Profiler` metrics and save results to file `${output
 <p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
 </li>
 <li>
 <p><code>$quantity</code> - The expected number of the elements.</p>
@@ -2127,13 +2128,13 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 <div class="ulist">
 <ul>
 <li>
-<p><code>$state</code> - <a href="../parameters/state.html" class="page">State</a></p>
+<p><code>$state</code> - <a href="../parameters/state.html" class="xref page">State</a></p>
 </li>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
 </li>
 <li>
 <p><code>$quantity</code> - The expected number of elements.</p>
@@ -2220,7 +2221,7 @@ Step will throw an error if the context element is not set.
 <div class="ulist">
 <ul>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the text.</p>
@@ -2263,7 +2264,7 @@ Step will throw an error if the context element is not set.
 <p><code>$attributeName</code> - The name of an element attribute.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the attribute value.</p>
@@ -2297,7 +2298,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the attribute value.</p>
@@ -2329,7 +2330,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the number of elements.</p>
@@ -2661,7 +2662,7 @@ The full path to a screenshot will be posted to logs and allure
 <div class="ulist">
 <ul>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
@@ -2709,7 +2710,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">The comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
 </li>
 <li>
 <p><code>$number</code> - The number of elements to find.</p>
@@ -2777,7 +2778,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison Rule</a></p>
 </li>
 <li>
 <p><code>$number</code> - The number to compare with</p>
@@ -2886,7 +2887,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </div>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to save the HTTP message part.</p>
@@ -2977,7 +2978,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - The input value of URL to filter by</p>
@@ -3076,7 +3077,7 @@ No actual request will be executed. Short-circuited response will be returned.
 <p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
 </li>
 <li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - The input value of URL to filter by</p>
@@ -3127,7 +3128,7 @@ No actual request will be executed. Short-circuited response will be returned.
 <div class="ulist">
 <ul>
 <li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - The input value of URL to filter by</p>
@@ -3178,7 +3179,7 @@ No actual request will be executed. Short-circuited response will be returned.
 <div class="ulist">
 <ul>
 <li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - The input value of URL to filter by</p>
@@ -3312,9 +3313,9 @@ When I activate application with bundle identifier `my-aplication-bundle-id`</co
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/0.4.2/plugins/plugin-mobile-app.html"></script>
-<script async src="../../../_/../search-index.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>

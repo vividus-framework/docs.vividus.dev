@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>JSON Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-json.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../../_/css/additional.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -620,7 +621,7 @@ specified name and scope.</p>
 <p><code>$jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON element value.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
@@ -656,7 +657,7 @@ specified name and scope.</p>
 <p><code>$jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON element value.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
@@ -693,10 +694,10 @@ the comparison rule by the specified JSON path.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>for <code>string</code> - <a href="../parameters/string-comparison-rule.html" class="page">string comparison rules</a> are applicable,</p>
+<p>for <code>string</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rules</a> are applicable,</p>
 </li>
 <li>
-<p>for <code>number</code> - <a href="../parameters/comparison-rule.html" class="page">regular comparison rules</a> are applicable,</p>
+<p>for <code>number</code> - <a href="../parameters/comparison-rule.html" class="xref page">regular comparison rules</a> are applicable,</p>
 </li>
 <li>
 <p>for <code>boolean</code> and <code>null</code>-s - only single rule <code>IS_EQUAL_TO</code> (readable form: <code>is equal to</code>) is allowed</p>
@@ -744,10 +745,10 @@ the comparison rule by the specified JSON path.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>for <code>string</code> - <a href="../parameters/string-comparison-rule.html" class="page">string comparison rules</a> are applicable,</p>
+<p>for <code>string</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rules</a> are applicable,</p>
 </li>
 <li>
-<p>for <code>number</code> - <a href="../parameters/comparison-rule.html" class="page">regular comparison rules</a> are applicable,</p>
+<p>for <code>number</code> - <a href="../parameters/comparison-rule.html" class="xref page">regular comparison rules</a> are applicable,</p>
 </li>
 <li>
 <p>for <code>boolean</code> and <code>null</code>-s - only single rule <code>IS_EQUAL_TO</code> (readable form: <code>is equal to</code>) is allowed</p>
@@ -790,7 +791,7 @@ Then JSON element value from `${response}` by JSON path `$.store.book[3].price` 
 <p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC-6902</a></p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The name of the variable to save the patched JSON.</p>
@@ -815,9 +816,9 @@ Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/latest/plugins/plugin-json.html"></script>
-<script async src="../../../_/../search-index.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>

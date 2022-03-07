@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Web Application Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-web-app.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../../_/css/additional.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -440,7 +441,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -628,7 +629,7 @@ By. prefix is optional.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">state</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="page">State</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="xref page">State</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
 </tr>
 <tr>
@@ -940,17 +941,17 @@ When I stop page loading</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRESS_KEYS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html" class="xref unresolved">Keys</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BACK_SPACE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEY_DOWN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html" class="xref unresolved">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEY_UP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Release <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release <a href="#https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html" class="xref unresolved">Keys</a> SHIFT, ALT or CONTROL simultaneously</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
 </tr>
 <tr>
@@ -1007,7 +1008,7 @@ When I stop page loading</code></pre>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison rule</a></p>
 </li>
 <li>
 <p><code>$quantity</code> - expected number of elements</p>
@@ -1072,13 +1073,13 @@ In case when locator&#8217;s visibility and checked state are equal (For an exam
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$state</code> - <a href="../parameters/state.html" class="page">State</a></p>
+<p><code>$state</code> - <a href="../parameters/state.html" class="xref page">State</a></p>
 </li>
 <li>
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison rule</a></p>
 </li>
 <li>
 <p><code>$quantity</code> - expected number of elements</p>
@@ -1205,7 +1206,7 @@ Step will throw an error if the context element is not set
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a></p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1261,7 +1262,7 @@ Step will throw an error if the context element is not set
 <p><code>$attributeName</code> - name of an element&#8217;s attribute</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a></p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1308,7 +1309,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a></p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1351,7 +1352,7 @@ When I save `innerText` attribute value of element located `By.id(username)` to 
 <p><code>$locator</code> - <a href="#_locator">Locator</a></p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a></p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a></p>
 </li>
 <li>
 <p><code>$variableName</code> - name of a variable</p>
@@ -1777,7 +1778,7 @@ Does not support multi-selection
 <p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="page">Comparison Rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison Rule</a></p>
 </li>
 <li>
 <p><code>$number</code> - The number to compare with</p>
@@ -1838,7 +1839,7 @@ Does not support multi-selection
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to save the URL.</p>
@@ -1901,7 +1902,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to save the URL query. The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.</p>
@@ -1961,7 +1962,7 @@ The actions preformed by the step:</p>
 <p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="page">The set of variable&#8217;s scope</a>.</p>
+<p><code>$scopes</code> - <a href="../parameters/variable-scope.html" class="xref page">The set of variable&#8217;s scope</a>.</p>
 </li>
 <li>
 <p><code>$variableName</code> - The variable name to store results. If the variable name is <code>my-var</code>, the following variables will be created:</p>
@@ -2045,7 +2046,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - the input value of URL to filter by</p>
@@ -2143,7 +2144,7 @@ No actual request will be executed. Short-circuited response will be returned.
 <div class="ulist">
 <ul>
 <li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - the input value of URL to filter by</p>
@@ -2194,7 +2195,7 @@ No actual request will be executed. Short-circuited response will be returned.
 <div class="ulist">
 <ul>
 <li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="page">String comparison rule</a></p>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
 </li>
 <li>
 <p><code>$url</code> - the input value of URL to filter by</p>
@@ -2297,9 +2298,9 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/0.3.1/plugins/plugin-web-app.html"></script>
-<script async src="../../../_/../search-index.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>

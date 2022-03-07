@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Table Transformers :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/commons/table-transformers.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
@@ -15,7 +15,6 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://buttons.github.io/buttons.js"></script>
 <link rel="stylesheet" href="../../../_/css/additional.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
   <body class="article">
@@ -25,8 +24,10 @@
          <div class="navbar-item">
             <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
          </div>
-           <div class="navbar-item">
-             <input id="search-input" type="text" placeholder="Search docs">
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
            </div>
          <button class="navbar-burger" data-target="topbar-nav">
          <span></span>
@@ -433,10 +434,10 @@
 <div class="listingblock">
 <div class="title">Example 1. Usage of FROM_LANDSCAPE transformer</div>
 <div class="content">
-<pre>{transformer=FROM_LANDSCAPE}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=FROM_LANDSCAPE}
 |header 1|value 11| ... | value m1|
 ...
-|header n|value 1n| .... |value mn|</pre>
+|header n|value 1n| .... |value mn|</code></pre>
 </div>
 </div>
 </div>
@@ -450,11 +451,11 @@
 <div class="listingblock">
 <div class="title">Example 2. Usage of FORMATTING transformer</div>
 <div class="content">
-<pre>{transformer=FORMATTING}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=FORMATTING}
 |key|
 |value|
 |-- |value|
-|longValue|</pre>
+|longValue|</code></pre>
 </div>
 </div>
 </div>
@@ -490,9 +491,9 @@
 <div class="listingblock">
 <div class="title">Example 3. Usage of REPLACING transformer</div>
 <div class="content">
-<pre>{transformer=REPLACING, replacing=k, replacement=l}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=REPLACING, replacing=k, replacement=l}
 |key  |
-|vakue|</pre>
+|vakue|</code></pre>
 </div>
 </div>
 </div>
@@ -525,10 +526,10 @@ the columns.</p>
 <div class="listingblock">
 <div class="title">Example 4. Usage of SORTING transformer</div>
 <div class="content">
-<pre>{transformer=SORTING, byColumns=key|key1}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=SORTING, byColumns=key|key1}
 |key   |key1  |
 |value3|value4|
-|value1|value2|</pre>
+|value1|value2|</code></pre>
 </div>
 </div>
 </div>
@@ -560,7 +561,7 @@ the columns.</p>
 <div class="listingblock">
 <div class="title">Example 5. Usage of ITERATING transformer</div>
 <div class="content">
-<pre>{transformer=ITERATING, limit=5}</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=ITERATING, limit=5}</code></pre>
 </div>
 </div>
 </div>
@@ -616,20 +617,20 @@ the columns.</p>
 <div class="listingblock">
 <div class="title">Example 6. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
 <div class="content">
-<pre>{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
 |key1  |key2  |key3  |
 |value1|value2|value3|
-|value4|value5|value6|</pre>
+|value4|value5|value6|</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 7. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
 <div class="content">
-<pre>{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
 |key1  |key2  |key3  |
 |value1|value2|value3|
 |value4|value5|value6|
-|value7|value8|value9|</pre>
+|value7|value8|value9|</code></pre>
 </div>
 </div>
 </div>
@@ -699,25 +700,25 @@ the columns.</p>
 <div class="listingblock">
 <div class="title">Example 8. Usage of MERGING transformer with 'rows' merge mode</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 9. Usage of MERGING transformer with 'columns' merge mode</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 10. Usage of MERGING transformer with nested tables</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 11. Usage of nested MERGING transformers</div>
 <div class="content">
-<pre>{
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{
  transformer=MERGING,
  mergeMode=rows,
  fillerValue=null,
@@ -750,15 +751,15 @@ the columns.</p>
    addresses=E8\,
    column=text1
  \}
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 12. Usage of MERGING transformer with table body</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
 |column1|
-|value1 |</pre>
+|value1 |</code></pre>
 </div>
 </div>
 </div>
@@ -810,53 +811,53 @@ the columns.</p>
 <div class="listingblock">
 <div class="title">Example 13. Usage of JOINING transformer with 'columns' join mode</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in default columns mode
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Scenario: Verify JOINING transformer in default columns mode
 Then `&lt;joinedColumn&gt;` is equal to `A B`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn}
 |column1|column2|
-|A      |B      |</pre>
+|A      |B      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 14. Usage of JOINING transformer with 'columns' join mode and definition of columns to join</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in configured columns mode
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Scenario: Verify JOINING transformer in configured columns mode
 Then `&lt;joinedColumn&gt;` is equal to `B D`
 Examples:
 {transformer=JOINING, joinMode=columns, joinedColumn=joinedColumn, columnsToJoin=column2;column4}
 |column1|column2|column3|column4|
-|A      |B      |C      |D      |</pre>
+|A      |B      |C      |D      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 15. Usage of JOINING transformer with 'rows' join mode</div>
 <div class="content">
-<pre>Scenario: Verify JOINING transformer in default rows mode
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Scenario: Verify JOINING transformer in default rows mode
 Then `&lt;column1&gt;` is equal to `A B`
 Then `&lt;column2&gt;` is equal to `C D`
 Examples:
 {transformer=JOINING, joinMode=rows}
 |column1|column2|
 |A      |C      |
-|B      |D      |</pre>
+|B      |D      |</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 16. Usage of JOINING transformer in the chain of transformers</div>
 <div class="content">
-<pre>{transformer=MERGING, mergeMode=columns, tables=
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=MERGING, mergeMode=columns, tables=
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=B4:B5\, column=header2\, joinValues=true\}
 }
-{transformer=JOINING, joinMode=columns, joinedColumn=header}</pre>
+{transformer=JOINING, joinMode=columns, joinedColumn=header}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 17. Usage of JOINING transformer with table body containing path to table file</div>
 <div class="content">
-<pre>{transformer=JOINING, joinMode=columns, joinedColumn=header}
-/test1.table</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{transformer=JOINING, joinMode=columns, joinedColumn=header}
+/test1.table</code></pre>
 </div>
 </div>
 </div>
@@ -869,9 +870,9 @@ Examples:
   <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script src="../../../_/js/site.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/vividus/0.3.1/commons/table-transformers.html"></script>
-<script async src="../../../_/../search-index.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script src="../../../_/js/vendor/highlight.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
 <script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
