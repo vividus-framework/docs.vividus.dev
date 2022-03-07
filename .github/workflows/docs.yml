@@ -11,14 +11,12 @@ jobs:
   build:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install node
       uses: actions/setup-node@v3
-      with:
-        node-version: 12.18.1
-    - run: npm i -g @antora/cli antora-site-generator-lunr
-    - run: DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr DOCSEARCH_INDEX_VERSION=latest NODE_PATH="$(npm -g root)" antora --generator antora-site-generator-lunr ./antora-playbook.yml
+    - run: npm i -g @antora/cli @antora/site-generator @antora/lunr-extension
+    - run: antora ./antora-playbook.yml
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
