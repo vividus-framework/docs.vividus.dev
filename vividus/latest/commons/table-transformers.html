@@ -613,12 +613,43 @@
 </div>
 </div>
 <div class="sect2">
+<h3 id="_resolving_expressions_eagerly"><a class="anchor" href="#_resolving_expressions_eagerly"></a>RESOLVING_EXPRESSIONS_EAGERLY</h3>
+<div class="paragraph">
+<p><code>RESOLVING_EXPRESSIONS_EAGERLY</code> transformer processes expressions which are used inside <code>ExamplesTable</code> eagerly, i.e. at the table loading stage.
+If expressions generating random data are used in the table with <code>RESOLVING_EXPRESSIONS_EAGERLY</code> transfomer, the random data will be generated once
+and each placeholder will be replaced with this value.  While in regular flow placeholders are replaced with the expression and data is generated
+at step execution stage, in other words the same placeholders will be replaced by different randomly generated datasets.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Usage of RESOLVING_EXPRESSIONS_EAGERLY transformer</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=RESOLVING_EXPRESSIONS_EAGERLY}
+|firstName                     |lastName                     |
+|#{generate(Address.firstName)}|#{generate(Address.lastName)}|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resolving_self_references_eagerly"><a class="anchor" href="#_resolving_self_references_eagerly"></a>RESOLVING_SELF_REFERENCES_EAGERLY</h3>
+<div class="paragraph">
+<p><code>RESOLVING_SELF_REFERENCES_EAGERLY</code> transformer enables eagerly resolution of references to one column from another column within single <code>ExamplesTable</code> ("eagerly" means at the table loading stage). Circular references will result in error.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Usage of RESOLVING_SELF_REFERENCES_EAGERLY transformer</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=RESOLVING_SELF_REFERENCES_EAGERLY}
+|column1|column2        |column3             |
+|A      |foo&lt;column3&gt;bar|before&lt;column1&gt;after|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_formatting"><a class="anchor" href="#_formatting"></a>FORMATTING</h3>
 <div class="paragraph">
 <p><code>FORMATTING</code> transformer formats the table according to the max width of each column. Also this transformer removes the commented lines.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Usage of FORMATTING transformer</div>
+<div class="title">Example 6. Usage of FORMATTING transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FORMATTING}
 |key|
@@ -656,7 +687,7 @@
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 5. Usage of REPLACING transformer</div>
+<div class="title">Example 7. Usage of REPLACING transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=REPLACING, replacing=k, replacement=l}
 |key  |
@@ -689,7 +720,7 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 6. Usage of SORTING transformer</div>
+<div class="title">Example 8. Usage of SORTING transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key|key1}
 |key   |key1  |
@@ -722,7 +753,7 @@ the columns.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 7. Usage of ITERATING transformer</div>
+<div class="title">Example 9. Usage of ITERATING transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ITERATING, limit=5}</code></pre>
 </div>
@@ -792,7 +823,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
+<div class="title">Example 10. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
 |key1  |key2  |key3  |
@@ -801,7 +832,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
+<div class="title">Example 11. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
 |key1  |key2  |key3  |
@@ -811,7 +842,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Usage of FILTERING transformer with filtering by column names and the number of random rows to keep</div>
+<div class="title">Example 12. Usage of FILTERING transformer with filtering by column names and the number of random rows to keep</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byColumnNames=key2;key3, byRandomRows=2}
 |key1  |key2  |key3  |
@@ -886,25 +917,25 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Usage of MERGING transformer with 'rows' merge mode</div>
+<div class="title">Example 13. Usage of MERGING transformer with 'rows' merge mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Usage of MERGING transformer with 'columns' merge mode</div>
+<div class="title">Example 14. Usage of MERGING transformer with 'columns' merge mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Usage of MERGING transformer with nested tables</div>
+<div class="title">Example 15. Usage of MERGING transformer with nested tables</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Usage of nested MERGING transformers</div>
+<div class="title">Example 16. Usage of nested MERGING transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
  transformer=MERGING,
@@ -943,7 +974,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Usage of MERGING transformer with table body</div>
+<div class="title">Example 17. Usage of MERGING transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
 |column1|
@@ -995,7 +1026,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Usage of JOINING transformer with <code>columns</code> join mode</div>
+<div class="title">Example 18. Usage of JOINING transformer with <code>columns</code> join mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default columns mode
 Then `&lt;joinedColumn&gt;` is equal to `A B`
@@ -1006,7 +1037,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Usage of JOINING transformer with <code>columns</code> join mode and definition of columns to join</div>
+<div class="title">Example 19. Usage of JOINING transformer with <code>columns</code> join mode and definition of columns to join</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in configured columns mode
 Then `&lt;joinedColumn&gt;` is equal to `B D`
@@ -1017,7 +1048,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Usage of JOINING transformer with <code>rows</code> join mode</div>
+<div class="title">Example 20. Usage of JOINING transformer with <code>rows</code> join mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default rows mode
 Then `&lt;column1&gt;` is equal to `A B`
@@ -1030,7 +1061,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Usage of JOINING transformer in the chain of transformers</div>
+<div class="title">Example 21. Usage of JOINING transformer in the chain of transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
@@ -1040,7 +1071,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Usage of JOINING transformer with table body containing path to table file</div>
+<div class="title">Example 22. Usage of JOINING transformer with table body containing path to table file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=JOINING, joinMode=columns, joinedColumn=header}
 /test1.table</code></pre>
@@ -1095,13 +1126,13 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Usage of CARTESIAN_PRODUCT transformer</div>
+<div class="title">Example 23. Usage of CARTESIAN_PRODUCT transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Usage of CARTESIAN_PRODUCT transformer with table body</div>
+<div class="title">Example 24. Usage of CARTESIAN_PRODUCT transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=/data/some-table.table}
 |column1|
@@ -1109,7 +1140,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
+<div class="title">Example 25. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=\{transformer=REPEATING\, times=100\};\{transformer=FROM_CSV\, csvPath=/data/csv.csv\}}</code></pre>
 </div>
