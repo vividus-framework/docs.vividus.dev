@@ -742,6 +742,12 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used to provide set of custom <a href="https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy+Command-Line+Quick+Reference+Guide">Sauce Connect command line arguments</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.sauce-connect.skip-host-glob-patterns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma (,) separated list of host <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_PAC_file#shexpmatch">glob patterns</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This property comes into effect only if proxy is used, otherwise its value is ignored. The property specifies the list of glob patterns for hosts that are connected-to directly, others are connected through the proxy. By default the list inicludes <code><strong>.miso.saucelabs.com</code>, <code></strong>.api.testobject.com</code>, <code>*.saucelabs.com</code>, <code>saucelabs.com</code> host patterns to avoid sending of status information by SauceConnect to SauceLabs REST API throughout the lifetime of a tunnel via proxy used by tests.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
