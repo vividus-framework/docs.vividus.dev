@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mobile Application Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.4.5/plugins/plugin-mobile-app.html">
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.herokuapp.com/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="0.2.8">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Vividus</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is Vividus</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Tests development</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tests-development/tests-configuration.html">Tests Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tests-development/table-transformers.html">Table Transformers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-aws-s3.html">AWS S3*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational DB*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-html.html">HTML*</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-ssh.html">SSH*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-xml.html">XML*</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/variable-scope.html">Variable Scope</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">0.2.8</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../0.4.5/index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.11/index.html">0.3.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.10/index.html">0.3.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.9/index.html">0.3.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.8/index.html">0.3.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.7/index.html">0.3.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.6/index.html">0.3.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.5/index.html">0.3.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.4/index.html">0.3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.3/index.html">0.3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.2/index.html">0.3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.1/index.html">0.3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.0/index.html">0.3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.14/index.html">0.2.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.13/index.html">0.2.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.12/index.html">0.2.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.11/index.html">0.2.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.10/index.html">0.2.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.9/index.html">0.2.9</a>
+        </li>
+        <li class="version is-current">
+          <a href="../index.html">0.2.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.7/index.html">0.2.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.6/index.html">0.2.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.5/index.html">0.2.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.4/index.html">0.2.4</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../0.4.5/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Vividus</a></li>
+    <li>Plugins</li>
+    <li><a href="plugin-mobile-app.html">Mobile Application</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.2.8</button>
+  <div class="version-menu">
+    <a class="version" href="../../0.4.5/plugins/plugin-mobile-app.html">0.4.5</a>
+    <a class="version" href="../../0.4.4/plugins/plugin-mobile-app.html">0.4.4</a>
+    <a class="version" href="../../0.4.3/plugins/plugin-mobile-app.html">0.4.3</a>
+    <a class="version" href="../../0.4.2/plugins/plugin-mobile-app.html">0.4.2</a>
+    <a class="version" href="../../0.4.1/plugins/plugin-mobile-app.html">0.4.1</a>
+    <a class="version" href="../../0.4.0/plugins/plugin-mobile-app.html">0.4.0</a>
+    <a class="version" href="../../0.3.12/plugins/plugin-mobile-app.html">0.3.12</a>
+    <a class="version" href="../../0.3.11/plugins/plugin-mobile-app.html">0.3.11</a>
+    <a class="version" href="../../0.3.10/plugins/plugin-mobile-app.html">0.3.10</a>
+    <a class="version" href="../../0.3.9/plugins/plugin-mobile-app.html">0.3.9</a>
+    <a class="version" href="../../0.3.8/plugins/plugin-mobile-app.html">0.3.8</a>
+    <a class="version" href="../../0.3.7/plugins/plugin-mobile-app.html">0.3.7</a>
+    <a class="version" href="../../0.3.6/plugins/plugin-mobile-app.html">0.3.6</a>
+    <a class="version" href="../../0.3.5/plugins/plugin-mobile-app.html">0.3.5</a>
+    <a class="version" href="../../0.3.4/plugins/plugin-mobile-app.html">0.3.4</a>
+    <a class="version" href="../../0.3.3/plugins/plugin-mobile-app.html">0.3.3</a>
+    <a class="version" href="../../0.3.2/plugins/plugin-mobile-app.html">0.3.2</a>
+    <a class="version" href="../../0.3.1/plugins/plugin-mobile-app.html">0.3.1</a>
+    <a class="version" href="../../0.3.0/plugins/plugin-mobile-app.html">0.3.0</a>
+    <a class="version" href="../../0.2.14/plugins/plugin-mobile-app.html">0.2.14</a>
+    <a class="version" href="../../0.2.13/plugins/plugin-mobile-app.html">0.2.13</a>
+    <a class="version" href="../../0.2.12/plugins/plugin-mobile-app.html">0.2.12</a>
+    <a class="version" href="../../0.2.11/plugins/plugin-mobile-app.html">0.2.11</a>
+    <a class="version" href="../../0.2.10/plugins/plugin-mobile-app.html">0.2.10</a>
+    <a class="version" href="../../0.2.9/plugins/plugin-mobile-app.html">0.2.9</a>
+    <a class="version is-current" href="plugin-mobile-app.html">0.2.8</a>
+    <a class="version" href="../../0.2.7/plugins/plugin-mobile-app.html">0.2.7</a>
+    <a class="version" href="../../0.2.6/plugins/plugin-mobile-app.html">0.2.6</a>
+    <a class="version is-missing" href="../../0.2.5/index.html">0.2.5</a>
+    <a class="version is-missing" href="../../0.2.4/index.html">0.2.4</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/blob/docs-0.2.8/docs/modules/plugins/pages/plugin-mobile-app.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Mobile Application Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides functionality to test mobile application on real devices, Android Emulators and iOS Simulators</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-mobile-app', version: '0.2.8')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_locator"><a class="anchor" href="#_locator"></a>Locator</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_description"><a class="anchor" href="#_description"></a>Description</h3>
+<div class="paragraph">
+<p>Describes elements locator. Should match regular expression: <code>(?:By\\.)?([a-zA-Z]+)\\((.+?)\\):?([a-zA-Z]*)?</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_syntax"><a class="anchor" href="#_syntax"></a>Syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;-&gt;filter.&lt;filterType&gt;(&lt;filterValue&gt;)</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By. prefix is optional.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>locatorType</code> - <strong>[mandatory]</strong> type of the locator</p>
+</li>
+<li>
+<p><code>locatorValue</code> - <strong>[mandatory]</strong> value of the locator</p>
+</li>
+<li>
+<p><code>visibility</code> - <strong>[optional]</strong> visibility of element (visible by default)</p>
+</li>
+<li>
+<p><code>filterType</code> - <strong>[optional]</strong> type of the filter</p>
+</li>
+<li>
+<p><code>filterValue</code> - <strong>[required if filter type defined]</strong> value of the filter</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types"><a class="anchor" href="#_types"></a>Types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Locator type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search the app XML source using xpath (not recommended, has <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">performance issues</a>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//android.widget.TextView[@text='Home']) or By.xpath(//XCUIElementTypeStaticText[@value='Home'])</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accessibility ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">Accessibility ID</a> selector strategy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accessibilityId(menu-toggler) or By.accessibilityId(menu-toggler)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_visibility_types"><a class="anchor" href="#_visibility_types"></a>Visibility types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Visibility type</th>
+<th class="tableblock halign-left valign-top">Usage example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default visibility option. Only visible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):i</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only invisible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either visible and invisible elements will be found</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="../tests-development/tests-configuration.html#_selenium_grid" class="xref page">Selenium Grid</a> properties to configure remote grid</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 35.2941%;">
+<col style="width: 17.647%;">
+<col style="width: 11.7647%;">
+<col style="width: 35.2942%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-application.session-scope</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>story</code></p>
+</div>
+<div class="paragraph">
+<p><code>scenario</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>story</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines the test lifecycle of the mobile application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the mobile application opens at the first step requiring mobile application interaction</p>
+</li>
+<li>
+<p>the mobile application closes after <code>story</code> or <code>scenario</code> depending on the property value</p>
+</li>
+<li>
+<p>each scenario-level examples table iteration is treated as a separate <code>scenario</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An empty property value will lead to the error: "Application session scope is not set".</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.platform-name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>Android</code></p>
+</div>
+<div class="paragraph">
+<p><code>iOS</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the mobile OS to use</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.automation-name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>UIAutomator2</code>
+<code>XCUITest</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Defines automation engine to use</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Platform</th>
+<th class="tableblock halign-left valign-top">Recommended engine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Android</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://appium.io/docs/en/drivers/android-uiautomator2/">UIAutomator2</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iOS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://appium.io/docs/en/drivers/ios-xcuitest/">XCUITest</a></p></td>
+</tr>
+</tbody>
+</table></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ios"><a class="anchor" href="#_ios"></a>iOS</h3>
+<div class="paragraph">
+<p>The profile can be enabled by adding <code>mobile_app/ios</code> to <code>configuration.profiles</code> property</p>
+</div>
+<div class="paragraph">
+<p>Default profile configuration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=iOS
+selenium.grid.automation-name=XCUITest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_android"><a class="anchor" href="#_android"></a>Android</h3>
+<div class="paragraph">
+<p>The profile can be enabled by adding <code>mobile_app/android</code> to <code>configuration.profiles</code> property</p>
+</div>
+<div class="paragraph">
+<p>Default profile configuration</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Android
+selenium.grid.automation-name=UIAutomator2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browserstack"><a class="anchor" href="#_browserstack"></a>BrowserStack</h3>
+<div class="sect3">
+<h4 id="_info"><a class="anchor" href="#_info"></a>Info</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The profile can be enabled by adding <code>browserstack/mobile_app</code> to <code>configuration.profiles</code> property</p>
+</li>
+<li>
+<p>The profile must be used together with either <code>mobile_app/ios</code> or <code>mobile_app/android</code> profiles</p>
+</li>
+<li>
+<p>BrowserStack specific properties must be prepended with <code>selenium.grid.capabilities.bstack\:options.</code> prefix, meaning given a property <code>projectName</code> with a value <code>My Project</code> the resulting property will be <code>selenium.grid.capabilities.bstack\:options.projectName=My Project</code></p>
+</li>
+<li>
+<p>Appium specific properties in BrowserStack must be prepended with <code>selenium.grid.capabilities.appium\:options.</code> prefix, meaning given a property <code>clearSystemFiles</code> with a value <code>true</code> the resulting property will be <code>selenium.grid.capabilities.appium\:options.clearSystemFiles=true</code></p>
+</li>
+<li>
+<p>See <a href="https://www.browserstack.com/app-automate/capabilities?tag=w3c">Capabilities Builder</a> to setup configuration</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_required_properties"><a class="anchor" href="#_required_properties"></a>Required properties</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>selenium.grid.device-name</code> - defines device name to run tests on</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_start_mobile_application"><a class="anchor" href="#_start_mobile_application"></a>Start mobile application</h3>
+<div class="sect3">
+<h4 id="_info_2"><a class="anchor" href="#_info_2"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording"><a class="anchor" href="#_wording"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 2. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Start mobile application
+Given I start mobile application</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_start_mobile_application_with_capabilities"><a class="anchor" href="#_start_mobile_application_with_capabilities"></a>Start mobile application with capabilities</h3>
+<div class="sect3">
+<h4 id="_info_3"><a class="anchor" href="#_info_3"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user, additionally step takes list of capabilities as an argument that override previously defined capabilities</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_2"><a class="anchor" href="#_wording_2"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application with capabilities:$capabilities</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$capabilities</code> - capabilities to start application with, these capabilies have higher priority than capabilities defined in <code>*.properties</code> files and in profiles</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 3. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Start mobile application with capabilities
+Given I start mobile application with capabilities:
+|name                           |value|
+|bstack:options.networkLogs     |true |
+|appium:options.clearSystemFiles|false|</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tap_on_element_with_duration"><a class="anchor" href="#_tap_on_element_with_duration"></a>Tap on element with duration</h3>
+<div class="sect3">
+<h4 id="_info_4"><a class="anchor" href="#_info_4"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Taps on the element located by the locator with the specified duration.</p>
+</div>
+<div class="paragraph">
+<p>The atomic actions performed are:
+* press on the element
+* wait for the duration
+* release</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_3"><a class="anchor" href="#_wording_3"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located `$locator` with duration `$duration`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$duration</code> - duration between an element is pressed and released in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_3"><a class="anchor" href="#_usage_3"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 4. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Tap on element with duration
+When I tap on element located `accessibilityId(menu-toggler)` with duration `PT0.5S`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tap_on_element"><a class="anchor" href="#_tap_on_element"></a>Tap on element</h3>
+<div class="sect3">
+<h4 id="_info_5"><a class="anchor" href="#_info_5"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Taps on the element located by the locator.</p>
+</div>
+<div class="paragraph">
+<p>The atomic actions performed are:
+* press on the element
+* release</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_4"><a class="anchor" href="#_wording_4"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located `$locator`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_4"><a class="anchor" href="#_usage_4"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 5. Sample.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Tap on element
+When I tap on element located `accessibilityId(menu-toggler)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_type_text"><a class="anchor" href="#_type_text"></a>Type text</h3>
+<div class="sect3">
+<h4 id="_info_6"><a class="anchor" href="#_info_6"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Types the text into the element located by the locator.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Existing text is re-written by the text passed into the step
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The atomic actions performed are:
+* type text into the element
+* hide keyboard</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_5"><a class="anchor" href="#_wording_5"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type `$text` in field located `$locator`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$text</code> - text to type into the element</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_5"><a class="anchor" href="#_usage_5"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 6. Keyboard.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Type text
+When I type `Bob` in field located `accessibilityId(username)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verify_elements_number"><a class="anchor" href="#_verify_elements_number"></a>Verify elements number</h3>
+<div class="sect3">
+<h4 id="_info_7"><a class="anchor" href="#_info_7"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Verifies if the number of elements located by locator matches desired number</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_6"><a class="anchor" href="#_wording_6"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison rule</a></p>
+</li>
+<li>
+<p><code>$quantity</code> - expected number of elements</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_6"><a class="anchor" href="#_usage_6"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 7. VerifyNumber.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of elements found by `$locator` is $comparisonRule `$quantity`'
+Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verify_elements_state"><a class="anchor" href="#_verify_elements_state"></a>Verify elements state</h3>
+<div class="sect3">
+<h4 id="_info_8"><a class="anchor" href="#_info_8"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Verifies if the number of elements located by locator matches number condition and all of them are in desired state</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you describe number condition as equal to 5 in case if there are 10 elements by this locator and only 5 of them in the desired state. You will get two failed assertions.
+The first one about number condition violation. The second one about state check failure.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_7"><a class="anchor" href="#_wording_7"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of $state elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$state</code> - <a href="../parameters/state.html" class="xref page">State</a></p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison rule</a></p>
+</li>
+<li>
+<p><code>$quantity</code> - expected number of elements</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_7"><a class="anchor" href="#_usage_7"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 8. VerifyState.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Step verification 'Then number of $state elements found by `$locator` is $comparisonRule `$quantity`'
+Given I am on a page with the URL '${vividus-test-site-url}'
+Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_appearance"><a class="anchor" href="#_wait_for_element_appearance"></a>Wait for element appearance</h3>
+<div class="sect3">
+<h4 id="_info_9"><a class="anchor" href="#_info_9"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Waits for appearance of an element by the locator</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_8"><a class="anchor" href="#_wording_8"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` appears</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_8"><a class="anchor" href="#_usage_8"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 9. Wait.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element appearance
+When I wait until element located `name(welcome-image)` appears</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_disappearance"><a class="anchor" href="#_wait_for_element_disappearance"></a>Wait for element disappearance</h3>
+<div class="sect3">
+<h4 id="_info_10"><a class="anchor" href="#_info_10"></a><strong><em>Info</em></strong></h4>
+<div class="paragraph">
+<p>Waits for disappearance of an element by the locator</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wording_9"><a class="anchor" href="#_wording_9"></a><strong><em>Wording</em></strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` disappears</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a><strong><em>Parameters</em></strong></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage_9"><a class="anchor" href="#_usage_9"></a><strong><em>Usage</em></strong></h4>
+<div class="listingblock">
+<div class="title">Example 10. Wait.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Wait for element disappearance
+When I wait until element located `name(welcome-image)` disappears</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
