@@ -1357,83 +1357,6 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_perform_steps_on_elements_in_json"><a class="anchor" href="#_perform_steps_on_elements_in_json"></a>Perform steps on elements in JSON</h3>
-<div class="paragraph">
-<p>Performs steps against all elements found by JSON path in JSON data</p>
-</div>
-<div class="paragraph">
-<p>Actions performed by step:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>searches for elements using JSON path</p>
-</li>
-<li>
-<p>checks that elements quantity matches comparison rule and elements number</p>
-</li>
-<li>
-<p>passes if the comparison rule matches and the elements number is 0</p>
-</li>
-<li>
-<p>for each element switches JSON context and performs all steps. No steps will be performed in case of comparison rule mismatch</p>
-</li>
-<li>
-<p>restores previously set context</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from `$json` by `$jsonPath` and for each element do$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">comparison rule</a></p>
-</li>
-<li>
-<p><code>elementsNumber</code> - expected number of elements</p>
-</li>
-<li>
-<p><code>json</code> - JSON data</p>
-</li>
-<li>
-<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a></p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - steps to perform on JSON elements</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 19. Verify each account id is a number</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
-{
-  "accounts": [
-    {
-      "accountId": 00,
-      "status": "Active"
-    },
-    {
-      "accountId": 01,
-      "status": "Active"
-    },
-    {
-      "accountId": 10,
-      "status": "Active"
-    }
-  ]
-}
-` by `$.accounts.*` and for each element do
-|step                                                                                 |
-|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_validate_http_resources"><a class="anchor" href="#_validate_http_resources"></a>Validate HTTP resources</h3>
 <div class="paragraph">
 <p>Validates the defined HTTP resources</p>
@@ -1473,7 +1396,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Verify HTTP resources</div>
+<div class="title">Example 19. Verify HTTP resources</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
 |url                                                    |

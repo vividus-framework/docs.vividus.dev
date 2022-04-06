@@ -834,6 +834,246 @@ Then `${jsonData.store.book[1].price}` is = `12.99`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_perform_steps_on_elements_in_json"><a class="anchor" href="#_perform_steps_on_elements_in_json"></a>Perform steps on elements in JSON</h3>
+<div class="paragraph">
+<p>Performs steps against all elements found by JSON path in JSON data or the context.</p>
+</div>
+<div class="paragraph">
+<p>Actions performed by step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Searches for elements using JSON path</p>
+</li>
+<li>
+<p>Checks that elements quantity matches comparison rule and elements number</p>
+</li>
+<li>
+<p>Passes if the comparison rule matches and the elements number is 0</p>
+</li>
+<li>
+<p>For each element switches JSON context and performs all steps. No steps will be performed in case of comparison rule mismatch</p>
+</li>
+<li>
+<p>Restores previously set context</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. JSON-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from `$json` by `$jsonPath` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON data.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Context-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from context by `$jsonPath` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON data.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Verify each account id is a number from JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
+{
+  "accounts": [
+    {
+      "accountId": 00,
+      "status": "Active"
+    },
+    {
+      "accountId": 01,
+      "status": "Active"
+    },
+    {
+      "accountId": 10,
+      "status": "Active"
+    }
+  ]
+}
+` by `$.accounts.*` and for each element do
+|step                                                                                 |
+|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Verify each account id is a number from response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send HTTP GET to the relative URL 'api/v3/accounts'
+When I find &gt; `0` JSON elements from context by `$.accounts.*` and for each element do
+|step                                                                                 |
+|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_perform_steps_on_elements_in_json_and_exit_on_condition"><a class="anchor" href="#_perform_steps_on_elements_in_json_and_exit_on_condition"></a>Perform steps on elements in JSON and exit on condition</h3>
+<div class="paragraph">
+<p>Performs steps against all elements found by JSON path in JSON data or the context until variable is not set or its value corresponds to the expected one.</p>
+</div>
+<div class="paragraph">
+<p>Actions performed by step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Searches for elements using JSON path</p>
+</li>
+<li>
+<p>Checks that elements quantity matches comparison rule and elements number</p>
+</li>
+<li>
+<p>Passes if the comparison rule matches and the elements number is 0</p>
+</li>
+<li>
+<p>For each element switches JSON context and performs all steps until variable not set or mismatches expected value. No steps will be performed in case of comparison rule mismatch</p>
+</li>
+<li>
+<p>Restores previously set context</p>
+</li>
+<li>
+<p>Step will fail if variable never be set along the iterations</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. JSON-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in `$json` by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. JSON-based step alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in '$json' by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON data.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
+</li>
+<li>
+<p><code>variableName</code> - The name of variable to validate.</p>
+</li>
+<li>
+<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
+</li>
+<li>
+<p><code>expectedValue</code> - The expected value of the variable.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Context-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in context by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Context-based step alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in context by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
+</li>
+<li>
+<p><code>variableName</code> - The name of variable to validate.</p>
+</li>
+<li>
+<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
+</li>
+<li>
+<p><code>expectedValue</code> - The expected value of the variable.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Find the title from JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
+|step|
+|When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
+Then `Moby Dick` is = `${title}`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Find the title from context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+When I find &gt; `1` JSON elements in context by `$.store.book` and until variable `title` matches `S.+` for each element I do:
+|step|
+|When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
+Then `Sayings of the Century` is = `${title}`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
