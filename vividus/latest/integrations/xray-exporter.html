@@ -413,6 +413,9 @@
           <a href="../index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
           <a href="../../0.4.4/index.html">0.4.4</a>
         </li>
         <li class="version">
@@ -492,6 +495,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
     <a class="version is-current" href="xray-exporter.html">latest</a>
+    <a class="version" href="../../0.4.5/integrations/xray-exporter.html">0.4.5</a>
     <a class="version" href="../../0.4.4/integrations/xray-exporter.html">0.4.4</a>
     <a class="version" href="../../0.4.3/integrations/xray-exporter.html">0.4.3</a>
     <a class="version" href="../../0.4.2/integrations/xray-exporter.html">0.4.2</a>
@@ -946,19 +950,25 @@ Meta: @testCaseId TEST-435
 <div class="ulist">
 <ul>
 <li>
-<p>Download <a href="https://vividuscentral.jfrog.io/artifactory/snapshots/org/vividus/vividus-to-xray-exporter/0.4.6-SNAPSHOT/vividus-to-xray-exporter-0.4.6-SNAPSHOT.jar">Exporter JAR</a></p>
+<p>Go to the corresponding GitHub Packages <a href="https://github.com/vividus-framework/vividus/packages/875005?version=0.4.6-SNAPSHOT">repository</a></p>
 </li>
 <li>
-<p>Create a file called <code>application.properties</code> and put there all necessary properties</p>
+<p>Find the link with name <code>vividus-to-xray-exporter-0.4.6-&lt;timestamp&gt;-&lt;publishing-number&gt;.jar</code></p>
 </li>
 <li>
-<p>Run the following command with replacing <code>&lt;jar name&gt;</code> with existing jar name previously downloaded</p>
+<p>Click the link and download the exporter JAR-file</p>
+</li>
+<li>
+<p>Create a new file with name <code>application.properties</code> and put all necessary properties there</p>
+</li>
+<li>
+<p>Run the following command replacing <code>&lt;jar-file name&gt;</code> with the name of the JAR-file downloaded previously</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar &lt;jar name&gt; -Dspring.config.location=classpath:/application.properties,./application.properties</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar &lt;jar-file name&gt; -Dspring.config.location=classpath:/application.properties,./application.properties</code></pre>
 </div>
 </div>
 </div>
