@@ -604,8 +604,10 @@ placeholder will be kept as is: <code>${variableName}</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_scopes"><a class="anchor" href="#_scopes"></a>Scopes</h2>
+<h2 id="_regular_variables"><a class="anchor" href="#_regular_variables"></a>Regular variables</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_scopes"><a class="anchor" href="#_scopes"></a>Scopes</h3>
 <div class="paragraph">
 <p>Regular variables can have one of the following scopes.</p>
 </div>
@@ -634,23 +636,23 @@ The scopes names are case-insensitive.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">step</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>step</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The scope is used within nested steps and the variables are invalidated after the nested steps are executed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">scenario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>scenario</strong> scope is available in the rest of the scenario after its declaration. The <strong>scenario</strong>-scoped variables are invalidated once the scenario is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scenario</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variables are available in the rest of the scenario after variable declaration. <code>scenario</code>-scoped variables are invalidated once the scenario is completed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">story</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>story</strong> scope is available in the rest of the story after its declaration. The <strong>story</strong>-scoped variables declared inside given stories are available in the parent story. The variables are invalidated once the story is completed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>story</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variables are available in the rest of the story after variable declaration. <code>story</code>-scoped variables declared inside given stories are available in the parent story. Variables are invalidated once the story is completed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">next_batches</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Variable declared with the <strong>next_batches</strong> scope is available in the next batches. The <strong>next_batches</strong>-scoped variable is not available in batch it&#8217;s declared within.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>next_batches</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variables are available in the next batches. <code>next_batches</code>-scoped variable is not available in batch it&#8217;s declared within.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">global</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>global</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Such variables are declared only via properties with <code>bdd.variables.global.</code> prefix and available throughout the entire execution. An attempt to create the globally scoped variables during test execution leads to an error.</p>
 </div>
@@ -711,6 +713,50 @@ Then the response code is equal to '200'</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_resolution_2"><a class="anchor" href="#_resolution_2"></a>Resolution</h3>
+<div class="paragraph">
+<p>Regular variables are resolved using the chain having the following order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>step</code>-scoped variables,</p>
+</li>
+<li>
+<p><code>scenario</code>-scoped variables,</p>
+</li>
+<li>
+<p><code>story</code>-scoped variables,</p>
+</li>
+<li>
+<p><code>next_batches</code>-scoped variables,</p>
+</li>
+<li>
+<p><code>global</code>-scoped variables.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If variable is resolved, the resolution process is stopped, it means the narrower-scoped variables may override the wider-scoped variables in narrow scope lifetime. For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Variables override mechanism</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: First scenario
+When I initialize the scenario variable `var` with value `scenario`
+When I initialize the story variable `var` with value `story`
+Then `${var}` is equal to `scenario`
+
+Scenario: Second scenario
+Then `${var}` is equal to `story`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>var</code> variable will be resolved to value <code>scenario</code> at the validation point in the first scenario, but it will be resolved to value <code>story</code> in the second scenario.</p>
+</div>
+</div>
 </div>
 </div>
 </article>
