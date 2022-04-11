@@ -537,7 +537,7 @@
 <div class="listingblock">
 <div class="title">Example 1. configuration.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configuration.suites=testSuite,anotherDir/anotherTestSuite</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.suites=testSuite,anotherDir/anotherTestSuite</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -995,13 +995,13 @@ This meta tag is deprecated and will be removed in VIVIDUS 0.5.0. The replacemen
 <div class="listingblock">
 <div class="title">Example 8. environment.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 9. Test.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Meta:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
 
 Scenario: Should check variables equals
@@ -1060,7 +1060,7 @@ Then `1` is = `1`</code></pre>
 <div class="listingblock">
 <div class="title">Example 10. environment.properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Default property
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
 # Additional property with .dev suffix, that used to create links annotated with @isssueId.dev
 system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
@@ -1069,7 +1069,7 @@ system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
 <div class="listingblock">
 <div class="title">Example 11. Test.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Meta:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
     @issueId.dev DEV-1
 
