@@ -2621,6 +2621,127 @@ to apply the cookie changes.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_web_storage_steps"><a class="anchor" href="#_web_storage_steps"></a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage</a> steps</h3>
+<div class="sect3">
+<h4 id="_get_web_storage_item"><a class="anchor" href="#_get_web_storage_item"></a>Get web storage item</h4>
+<div class="paragraph">
+<p>Finds the web storage item by the key and saves its value to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $storageType storage item with key `$key` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to retrieve the value of.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to store the value of the web storage item.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 40. Get the value of the local storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save local storage item with key `token` to scenario variable `application-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_web_storage_item"><a class="anchor" href="#_set_web_storage_item"></a>Set web storage item</h4>
+<div class="paragraph">
+<p>Adds the item with the specified key-value pair to the web storage, or updates
+that key&#8217;s value if it already exists.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set $storageType storage item with key `$key` and value `$value`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to create/update.</p>
+</li>
+<li>
+<p><code>$value</code> - The value to give the key that is creating/updating.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 41. Set the session storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set session storage item with key `token` and value `session-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_presence"><a class="anchor" href="#_validate_web_storage_item_presence"></a>Validate web storage item presence</h4>
+<div class="paragraph">
+<p>Validates the web storage item with the specified key exists.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` exists</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 42. Check the session storage item is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then session storage item with `token` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_absence"><a class="anchor" href="#_validate_web_storage_item_absence"></a>Validate web storage item absence</h4>
+<div class="paragraph">
+<p>Validates the web storage item with the specified key does not exist.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` does not exist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The key of the local storage item to check absence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 43. Check the local storage item is not present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then local storage item with key `token` does not exist</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_proxy_steps"><a class="anchor" href="#_proxy_steps"></a>Proxy Steps</h3>
 <div class="sect3">
 <h4 id="_check_the_number_of_http_requests"><a class="anchor" href="#_check_the_number_of_http_requests"></a>Check the number of HTTP requests</h4>
@@ -2671,7 +2792,7 @@ to apply the cookie changes.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 44. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -2780,7 +2901,7 @@ to apply the cookie changes.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 45. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2788,7 +2909,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 46. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2798,7 +2919,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Validate the request data from the matching HTTP message</div>
+<div class="title">Example 47. Validate the request data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -2809,7 +2930,7 @@ Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Validate the response data from the matching HTTP message</div>
+<div class="title">Example 48. Validate the response data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -2841,7 +2962,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Wait for the HTTP request</div>
+<div class="title">Example 49. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
@@ -2874,7 +2995,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Add headers to the proxied HTTP request</div>
+<div class="title">Example 50. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
@@ -2902,7 +3023,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Clear the data recorded by the proxy</div>
+<div class="title">Example 51. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I clear proxy log
@@ -2922,7 +3043,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Clear the proxy mocks</div>
+<div class="title">Example 52. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -2979,7 +3100,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Hijack a page</div>
+<div class="title">Example 53. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -3030,7 +3151,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Hijack a page</div>
+<div class="title">Example 54. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -3078,7 +3199,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. 404 page</div>
+<div class="title">Example 55. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
@@ -3120,7 +3241,7 @@ where the first measure is window width, the last one is window height.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Resize the browser window</div>
+<div class="title">Example 56. Resize the browser window</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
 When I change window size to `640x320`</code></pre>
@@ -3231,7 +3352,7 @@ For more information about the properties see <a href="https://www.w3schools.com
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Video player verifications</div>
+<div class="title">Example 57. Video player verifications</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.youtube.com/watch?v=pYqyVpCV-3c'
 When I pause video in video player located `cssSelector(video)`
@@ -3294,7 +3415,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Script type check</div>
+<div class="title">Example 58. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
 |step                                                                                      |
