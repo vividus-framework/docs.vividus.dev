@@ -3424,6 +3424,55 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_browser_configuration_steps"><a class="anchor" href="#_browser_configuration_steps"></a>Browser Configuration Steps</h3>
+<div class="sect3">
+<h4 id="_set_the_browser_command_line_arguments"><a class="anchor" href="#_set_the_browser_command_line_arguments"></a>Set the browser command line arguments</h4>
+<div class="paragraph">
+<p>Allows to set command line arguments for browsers.
+This step works similar to the property</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser-name&gt;.command-line-arguments</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case both property and step are used - arguments from property will be ignored.
+Step will take effect for all new browser sessions created in the current story. It will not affect the current sessions.</p>
+</div>
+<div class="paragraph">
+<p>List of supported command line arguments for popular browsers:
+. <a href="https://peter.sh/experiments/chromium-command-line-switches/">Chrome</a>
+. <a href="https://www-archive.mozilla.org/docs/command-line-args">Firefox</a>
+. <a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/hh826025(v=vs.85)">Internet Explorer</a></p>
+</div>
+<div class="paragraph">
+<p>Not supported browsers:
+. Safari
+. Edge</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set browser command line arguments to `$argsString`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$argsString</code> - Sequence of command line arguments, separated by space.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 59. Set the browser to use the mocked camera stream</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set browser command line arguments to `--use-fake-ui-for-media-stream --use-file-for-fake-video-capture=${videoStorage}/${video1}.y4m --use-fake-device-for-media-stream`
+Given I am on the main application page</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
