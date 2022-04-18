@@ -726,7 +726,7 @@ By. prefix is optional.
 <div class="sect2">
 <h3 id="_filter_types"><a class="anchor" href="#_filter_types"></a>Filter types</h3>
 <div class="paragraph">
-<p>The filters are applied after elements search using of the locators specified above.
+<p>The filters are applied after elements search using one of the locators specified above.
 The elements not matching the filter condition are sorted out without any notice.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -859,7 +859,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>story</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Defines the test lifecycle of the browser:</p>
+<p>The test lifecycle of the browser:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -880,14 +880,20 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.publish-source-on-failure</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true/false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines if Vividus publishes the application source code on failure</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to publish the application source code on failure or not</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.context.self-healing</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true/false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><em>Incubating feature.</em></p>
 </div>
@@ -898,60 +904,63 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>selenium.grid.host</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hostname</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remote grid host to be used to create a new session</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remote grid username to be used to create a new session</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.password</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password to be used to create a new session</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy.enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true/false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled proxy for the run</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy for the whole test run</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy.host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any host name resolving on the machine</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the host which will be used by proxy</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy.ports</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ports range(e.g., 10000-10005)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines ports range which could be used for proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.ports</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ports range (e.g., <code>10000-10005</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ports range which could be occupied for proxy</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy.connectable-host</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">host.docker.internal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.connectable-host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host.docker.internal</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">screenshot.on-failure.debug-modes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>screenshot.on-failure.debug-modes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides possibility to attach screenshot for failed proxy steps</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">web.driver.&lt;browser-name&gt;.command-line-arguments</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.driver.&lt;browser-name&gt;.command-line-arguments</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string with arguments</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The command line arguments to use when starting browser.</p>
+<p>The command line (CLI) arguments to use when starting browser.</p>
 </div>
 <div class="paragraph">
-<p><code>&lt;browser-name&gt;</code> is one supported browsers:</p>
+<p><code>&lt;browser-name&gt;</code> is one of the browsers supporting CLI arguments:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -968,9 +977,9 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">web-application.sticky-header-size-percentage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web-application.sticky-header-size-percentage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">header size as a viewport size percent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>25</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Before the click VIVIDUS scrolls element into the viewport, the property defines top edge indent in viewport percent for the scroll</p></td>
 </tr>
 </tbody>
