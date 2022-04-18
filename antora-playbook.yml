@@ -5,7 +5,7 @@ antora:
 
 site:
   title: VIVIDUS
-  url: https://docs.vividus.dev/
+  url: https://docs.vividus.dev
   start_page: vividus::index.adoc
   robots: allow
 
