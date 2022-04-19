@@ -1376,6 +1376,62 @@ implementation level or by applying the generic approach at the table level:</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_externalized_configuration"><a class="anchor" href="#_externalized_configuration"></a>Externalized Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most common use cases for externalized configuration are tests parametrization with properties passed from CI/CD pipeline,
+passing of secrets into test run etc. The available approaches are listed below.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Declare an <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variable</a> containing the desired property value and
+then point the property to the declared environment variable:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export EXTERNAL_CONFIG_VALUE=value</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.some-key=${EXTERNAL_CONFIG_VALUE}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Pass the property with its value into a test run using command line arguments prepending it with the <code>-Pvividus.</code> prefix.
+The prefix only plays role during test start-up phase and cut off during the actual test run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -Pvividus.bdd.variables.global.some-key-1=value1 -Pvividus.bdd.variables.global.some-key-2=value2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This approach can be used only when tests are run via Gradle.</p>
+</div>
+</li>
+<li>
+<p>Generate the <code>overriding.properties</code> file on-the-fly and put it into corresponding folder in a test project.</p>
+<div class="paragraph">
+<p>The following script assumes that we are in the root of the test project folder.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cat &gt; src/main/resources/overriding.properties &lt;&lt; EOD
+bdd.variables.global.some-key-1=value1
+bdd.variables.global.some-key-2=value2
+EOD</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This approach can be used only when tests are run via Gradle.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_sensitive_data_encryption"><a class="anchor" href="#_sensitive_data_encryption"></a>Sensitive Data Encryption</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1560,6 +1616,9 @@ This value must be kept secret and must not be committed to version control syst
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Please see <a href="#_externalized_configuration">Externalized Configuration</a> to find the ways how encryptor password can be passed to the tests.</p>
 </div>
 </div>
 </div>
