@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '16'
-    - run: npm i -g @antora/cli @antora/site-generator @antora/lunr-extension
+    - run: npm i -g @antora/cli @antora/site-generator @antora/lunr-extension@1.0.0-alpha.5
     - run: antora ./antora-playbook.yml
 
     - name: Deploy
