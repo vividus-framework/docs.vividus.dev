@@ -535,6 +535,37 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_expression"><a class="anchor" href="#_expression"></a>Expression</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Synoyms</strong>: VIVIDUS expression.</p>
+</div>
+<div class="paragraph">
+<p>An expression is a special placeholder which is detected, evaluated and resolved
+during test execution. Expressions are used for the data generation and
+transformation. General expression syntax is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">#{expression}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>During resolution process the expression placeholder is replaced with the result
+of the expression evaluation. If expression is unknown for VIVIDUS,
+the placeholder will be kept as is. If expression evaluation results in error,
+it will be propagated to the top level and the test will be marked as broken.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s allowed to construct nested expressions: in this case the evaluation starts
+with the deepest expression.</p>
+</div>
+<div class="paragraph">
+<p>Expressions may include any number of variables placeholders.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_resource"><a class="anchor" href="#_resource"></a>Resource</h2>
 <div class="sectionbody">
 <div class="paragraph">
