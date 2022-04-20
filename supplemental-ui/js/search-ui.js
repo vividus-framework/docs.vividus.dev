@@ -45,7 +45,7 @@
     return hits
   }
 
-  function highlightTitle (hash, doc, position) {
+  function highlightTitle (sectionTitle, doc, position) {
     var hits = []
     var start = position[0]
     var length = position[1]
@@ -53,10 +53,8 @@
     var highlightSpan = document.createElement('span')
     highlightSpan.classList.add('search-result-highlight')
     var title
-    if (hash) {
-      title = doc.titles.filter(function (item) {
-        return item.id === hash
-      })[0].text
+    if (sectionTitle) {
+      title = sectionTitle.text
     } else {
       title = doc.title
     }
@@ -80,7 +78,7 @@
     return hits
   }
 
-  function highlightHit (metadata, hash, doc) {
+  function highlightHit (metadata, sectionTitle, doc) {
     var hits = []
     for (var token in metadata) {
       var fields = metadata[token]
@@ -89,7 +87,7 @@
         if (positions.position) {
           var position = positions.position[0] // only higlight the first match
           if (field === 'title') {
-            hits = highlightTitle(hash, doc, position)
+            hits = highlightTitle(sectionTitle, doc, position)
           } else if (field === 'text') {
             hits = highlightText(doc, position)
           }
@@ -101,27 +99,30 @@
 
   function createSearchResult (result, store, searchResultDataset) {
     result.forEach(function (item) {
-      var doc = store[item.ref]
-      var url = doc.url
-      var hash
-      if (url.includes('#')) {
-        hash = url.substring(url.indexOf('#') + 1)
-        url = url.replace('#' + hash, '')
+      var ids = item.ref.split('-')
+      var docId = ids[0]
+      var doc = store[docId]
+      var sectionTitle
+      if (ids.length > 1) {
+        var titleId = ids[1]
+        sectionTitle = doc.titles.filter(function (item) {
+          return String(item.id) === titleId
+        })[0]
       }
       var metadata = item.matchData.metadata
-      var hits = highlightHit(metadata, hash, doc)
-      searchResultDataset.appendChild(createSearchResultItem(doc, item, hits))
+      var hits = highlightHit(metadata, sectionTitle, doc)
+      searchResultDataset.appendChild(createSearchResultItem(doc, sectionTitle, item, hits))
     })
   }
 
-  function createSearchResultItem (doc, item, hits) {
+  function createSearchResultItem (doc, sectionTitle, item, hits) {
     var documentTitle = document.createElement('div')
     documentTitle.classList.add('search-result-document-title')
     documentTitle.innerText = doc.title
     var documentHit = document.createElement('div')
     documentHit.classList.add('search-result-document-hit')
     var documentHitLink = document.createElement('a')
-    documentHitLink.href = siteRootPath + doc.url
+    documentHitLink.href = siteRootPath + doc.url + (sectionTitle ? '#' + sectionTitle.hash : '')
     documentHit.appendChild(documentHitLink)
     hits.forEach(function (hit) {
       documentHitLink.appendChild(hit)
