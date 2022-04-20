@@ -612,6 +612,105 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <h2 id="_string_manipulations"><a class="anchor" href="#_string_manipulations"></a>String manipulations</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_replacefirstbyregexp_replaceallbyregexp"><a class="anchor" href="#_replacefirstbyregexp_replaceallbyregexp"></a><code>replaceFirstByRegExp</code> / <code>replaceAllByRegExp</code></h3>
+<div class="paragraph">
+<p>Replaces the first / every substring of the input that matches the regular
+expression with the given replacement string.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Online tools like <a href="https://www.regexplanet.com/advanced/java/index.html">RegexPlanet</a> or
+<a href="https://regex101.com/">Regex101</a> can be used to test and debug regular expressions</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{replaceFirstByRegExp(<strong>$regularExpression</strong>, <strong>$replacement</strong>, <strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{replaceAllByRegExp(<strong>$regularExpression</strong>, <strong>$replacement</strong>, <strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>$regularExpression</strong> - the regular expression to match substring(s)</p>
+</li>
+<li>
+<p><strong>$replacement</strong> - the replacement string, it may contain references to captured
+substrings, e.g. <code>$1</code> is a reference to the first group</p>
+</li>
+<li>
+<p><strong>$input</strong> - any string to be processed</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The expression parameters containing commas must be surrounded with triple quotes: <code>"""</code>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extract ID from the string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(product-(\d+), $1, product-86)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>86</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extract ID and build new string with it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(/user/(\d+), author/$1, /user/21)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>author/21</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extract password from the string with comma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(.*new password is (\d+), $1, """Updated, new password is qwe123""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>qwe123</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace whitespaces with dashes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\s, -, convert spaces to dashes)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convert-spaces-to-dashes</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove all numbers from the string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\d, """""", a1b2c3d)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>abcd</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_tolowercase"><a class="anchor" href="#_tolowercase"></a><code>toLowerCase</code></h3>
 <div class="paragraph">
 <p>Converts an input string to lower case.</p>
