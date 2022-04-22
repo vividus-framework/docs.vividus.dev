@@ -533,7 +533,8 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides the ability to collect information about Azure resources.</p>
+<p>The plugin provides the ability to collect information about Azure resources,
+also to create, update and delete them.</p>
 </div>
 </div>
 </div>
@@ -644,6 +645,105 @@ the technical perspective it&#8217;s a part of Azure resource REST API URL path.
 <div class="title">Example 2. Retrieve the Key Vault properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/TEST-RG/providers/Microsoft.KeyVault/vaults/KEY-VAULT-NAME` using API version `2021-10-01` and save it to scenario variable `key-vault-properties`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_createupdate_azure_resource"><a class="anchor" href="#_createupdate_azure_resource"></a>Create/Update Azure resource</h4>
+<div class="paragraph">
+<p>Creates (if resource doesn&#8217;t exist) or updates the specified Azure resource
+using the declared Azure API version. For more information, see the
+<a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure Azure resource with identifier `$azureResourceIdentifier` and body `$azureResourceBody` using API version `$apiVersion`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$azureResourceIdentifier</code> - This is a VIVIDUS-only term. It&#8217;s used to specify Azure resource uniquely. From
+the technical perspective it&#8217;s a part of Azure resource REST API URL path. For example, if the full Azure resource URL is</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/sample-resource-group/providers/Microsoft.KeyVault/vaults/sample-vault?api-version=2021-10-01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then the resource identifier will be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">resourceGroups/sample-resource-group/providers/Microsoft.KeyVault/vaults/sample-vault</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>$azureResourceBody</code> - The Azure resource configuration in JSON format.</p>
+</li>
+<li>
+<p><code>$apiVersion</code> - Azure resource provider API version. Note API versions may vary depending on the resource type.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Create linked service in Azure DataFactory</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure Azure resource with identifier `resourceGroups/TEST-RG/providers/Microsoft.DataFactory/factories/TEST-ADF/linkedservices/test-datalake` and body `
+{
+    "properties": {
+        "annotations": [],
+        "type": "AzureBlobFS",
+        "typeProperties": {
+            "url": "https://storageaccount.dfs.core.windows.net/"
+        }
+    }
+}
+` using API version `2018-06-01`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_delete_azure_resource"><a class="anchor" href="#_delete_azure_resource"></a>Delete Azure resource</h4>
+<div class="paragraph">
+<p>Deletes the specified Azure resource using the declared Azure API version.
+For more information, see the
+<a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete Azure resource with identifier `$azureResourceIdentifier` using API version `$apiVersion`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$azureResourceIdentifier</code> - This is a VIVIDUS-only term. It&#8217;s used to specify Azure resource uniquely. From
+the technical perspective it&#8217;s a part of Azure resource REST API URL path. For example, if the full Azure resource URL is</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/sample-resource-group/providers/Microsoft.KeyVault/vaults/sample-vault?api-version=2021-10-01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then the resource identifier will be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">resourceGroups/sample-resource-group/providers/Microsoft.KeyVault/vaults/sample-vault</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>$apiVersion</code> - Azure resource provider API version. Note API versions may vary depending on the resource type.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Delete linked service from Azure DataFactory</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete Azure resource with identifier `resourceGroups/TEST-RG/providers/Microsoft.DataFactory/factories/TEST-ADF/linkedservices/test-datalake` using API version `2018-06-01`</code></pre>
 </div>
 </div>
 </div>
