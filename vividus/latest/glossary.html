@@ -538,7 +538,7 @@
 <h2 id="_expression"><a class="anchor" href="#_expression"></a>Expression</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Synoyms</strong>: VIVIDUS expression.</p>
+<p><strong>Synonyms</strong>: VIVIDUS expression.</p>
 </div>
 <div class="paragraph">
 <p>An expression is a special placeholder which is detected, evaluated and resolved
@@ -569,7 +569,7 @@ with the deepest expression.</p>
 <h2 id="_resource"><a class="anchor" href="#_resource"></a>Resource</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Synoyms</strong>: project resource, test resource.</p>
+<p><strong>Synonyms</strong>: project resource, test resource.</p>
 </div>
 <div class="paragraph">
 <p>A resource is data (text, images, audio, and so on) that tests need to access
@@ -597,6 +597,54 @@ located at:</p>
 <div class="paragraph">
 <p>The name of a resource is independent of the used operating system;
 in particular, the path separator is always a slash <code>/</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_table_transformer"><a class="anchor" href="#_table_transformer"></a>Table Transformer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Synonyms</strong>: transformer, ExampleTable transformer.</p>
+</div>
+<div class="paragraph">
+<p>ExampleTable enables the transformation of its string representation via the
+"transformer" inlined property. It&#8217;s allowed to define a chain of transformers,
+in this case the transformers are applied sequentially from top to bottom:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER}
+{transformer=ONE_MORE_MY_TRANSFORMER}
+|header 1|header 2| .... |header n|
+|value 11|value 12| .... |value 1n|
+...
+|value m1|value m2| .... |value mn|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The special characters <code>,</code> <code>{</code> <code>}</code> must be escaped in the transformer properties
+using character <code>\</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Escaping special characters in transformer properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER, countries=\{Australia\,Canada\}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above the transformer will have a single property with name
+<code>countries</code> and value <code>{Australia,Canada}</code>.</p>
+</div>
+<div class="paragraph">
+<p>VIVIDUS variables of scopes <code>global</code> and <code>next batches</code> can be used in
+transformer properties (pay attention to escapes of the variables placeholders
+in the example below).</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Usage of global variable <code>${locale}</code> in transformer property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ONE_MORE_MY_TRANSFORMER, tables=/$\{locale\}/table1.table;/$\{locale\}/table2.table}</code></pre>
+</div>
 </div>
 </div>
 </div>

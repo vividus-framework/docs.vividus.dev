@@ -558,6 +558,127 @@ to the project root.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a><a href="../glossary.html#_table_transformer" class="xref page">Table Transformers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to create and register own table transformer the following steps should
+be done.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new class that implements
+<a href="https://javadoc.io/doc/org.jbehave/jbehave-core/latest/org/jbehave/core/model/TableTransformers.TableTransformer.html"><code>org.jbehave.core.model.TableTransformers.TableTransformer</code></a>:</p>
+<div class="listingblock">
+<div class="title">Example 2. /src/main/java/com/mycompany/transformer/MyTableTransformer.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycompany.transformer;
+
+import org.jbehave.core.model.TableTransformers.TableTransformer;
+
+public class MyTableTransformer implements TableTransformer
+{
+    @Override
+    public String transform(String tableAsString, TableParsers tableParsers, TableProperties properties)
+    {
+        String transformedTable = ...; // Table transformation logic
+        // ...
+        return transformedTable;
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Register Spring bean where <code>id</code> is the name of the transformer which will
+be used to refer it in tests:</p>
+<div class="listingblock">
+<div class="title">Example 3. /src/main/resources/spring.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;bean id="MY_TRANSFORMER" class="com.mycompany.transformer.MyTableTransformer"/&gt;
+
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use new transformer in tests:</p>
+<div class="listingblock">
+<div class="title">Example 4. /src/main/resources/story/MyStory.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Use the custom tramsfomer to modify ExamplesTable
+Given ...
+When ...
+Then ...
+Examples:
+{transformer=MY_TRANSFORMER}
+|header |
+|value 1|
+|value 2|</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It&#8217;s recommended to stick to the following naming conventions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SCREAMING_SNAKE_CASE</code> for transfomer names:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>lowerCamelCase</code> for transformer parameters:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER, transformerParameter=value}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>kebab-case</code> with dot <code>.</code> as a separator for transformer bean properties:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">transformer.my-transformer.my-property=value</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pay attention to the property format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">transformer.&lt;custom-transform-name&gt;.&lt;property-name&gt;=&lt;property-value&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a>Dynamic variables</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -570,7 +691,7 @@ be done.</p>
 <p>Create a new class that implements
 <a href="https://github.com/vividus-framework/vividus/blob/master/vividus-engine/src/main/java/org/vividus/variable/DynamicVariable.java"><code>org.vividus.variable.DynamicVariable</code></a>:</p>
 <div class="listingblock">
-<div class="title">Example 2. /src/main/java/com/mycompany/variable/MyDynamicVariable.java</div>
+<div class="title">Example 5. /src/main/java/com/mycompany/variable/MyDynamicVariable.java</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycompany.variable;
 
@@ -600,7 +721,7 @@ public class MyDynamicVariable implements DynamicVariable
 <p>Register Spring bean where <code>id</code> is the name of the dynamic variable which will
 be used to refer it in tests:</p>
 <div class="listingblock">
-<div class="title">Example 3. /src/main/resources/spring.xml</div>
+<div class="title">Example 6. /src/main/resources/spring.xml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans
@@ -617,7 +738,7 @@ be used to refer it in tests:</p>
 <li>
 <p>Use new variable in tests:</p>
 <div class="listingblock">
-<div class="title">Example 4. /src/main/resources/story/MyStory.story</div>
+<div class="title">Example 7. /src/main/resources/story/MyStory.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
 Then `${my-dynamic-varibale}` is equal to `my app specific value`</code></pre>
@@ -628,7 +749,7 @@ Then `${my-dynamic-varibale}` is equal to `my app specific value`</code></pre>
 case will be available out of the box:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. /src/main/resources/story/MyStory.story</div>
+<div class="title">Example 8. /src/main/resources/story/MyStory.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate with help of the custom dynamic variable
 Then `${myDynamicVaribale}` is equal to `my app specific value`</code></pre>
