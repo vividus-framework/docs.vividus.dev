@@ -801,6 +801,134 @@ are otherwise illegal within the given URI component type, as defined in
 <h2 id="_http_steps"><a class="anchor" href="#_http_steps"></a>HTTP Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_set_http_request_configuration"><a class="anchor" href="#_set_http_request_configuration"></a>Set HTTP request configuration</h3>
+<div class="paragraph">
+<p>Set up custom request configuration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set HTTP request configuration:$configItems</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$configItems</code> - Table representing list of configuration items with columns "name" and "value" specifying their names and values respectively.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Available configs</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Config</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Request config default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expectContinueEnabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/100">Expect: 100-Continue</a>' handshake is enabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>staleConnectionCheckEnabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether stale connection check is to be used</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>redirectsEnabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether redirects should be handled automatically</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relativeRedirectsAllowed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether relative redirects should be rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>circularRedirectsAllowed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether "circular redirects" (redirects to the same location) should be allowed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authenticationEnabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether authentication should be handled automatically</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contentCompressionEnabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the target server is requested to compress content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>normalizeUri</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether client should normalize URIs in requests or not</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxRedirects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>50</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of redirects to be followed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectionRequestTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout in milliseconds used when requesting a connection from the connection manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>socketTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The socket timeout in milliseconds</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>socketTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The socket timeout in milliseconds, which is the timeout for waiting for data or, put differently, a maximum period inactivity between two consecutive data packets</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieSpec</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the cookie specification to be used for HTTP state management</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>* <code>-1</code> means "infinity"</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Load a page with slow connection and with the property <code>http.socket-timeout</code> set to <code>15000</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set HTTP request configuration:
+|socketTimeout |
+|25000         |
+When I execute HTTP GET request for resource with URL `http://vividus-test-site.herokuapp.com/delayedLoading?pageTimeout=20000`
+Then '${responseStatusCode}' is = '200'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_set_http_request_body"><a class="anchor" href="#_set_http_request_body"></a>Set HTTP request body</h3>
 <div class="paragraph">
 <p>Sets HTTP request body that will be used while executing the request. In the case of textual content the default HTTP
@@ -831,13 +959,13 @@ No HTTP request header is set in the case of binary content.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Set textual HTTP request body</div>
+<div class="title">Example 4. Set textual HTTP request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: Hello!</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Set binary HTTP request body</div>
+<div class="title">Example 5. Set binary HTTP request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: #{loadBinaryResource(/data/image.png)}
 When I set request headers:
@@ -891,7 +1019,7 @@ parameter is not allowed for <code>STRING</code> part type, but it&#8217;s requi
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Init HTTP request consisting of 4 different parts</div>
+<div class="title">Example 6. Init HTTP request consisting of 4 different parts</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `temp-file-content` with value `Your first and last stop for No-Code Test Automation!`
 When I create temporary file with name `abc.txt` and content `${temp-file-content}` and put path to scenario variable `temp-file-path`
@@ -922,7 +1050,7 @@ Given multipart request:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Add request header with name Accept-Language and value en-ru</div>
+<div class="title">Example 7. Add request header with name Accept-Language and value en-ru</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:
 |name           |value |
@@ -959,7 +1087,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Execute HTTP GET request</div>
+<div class="title">Example 8. Execute HTTP GET request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`</code></pre>
 </div>
@@ -967,6 +1095,57 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </div>
 <div class="sect2">
 <h3 id="_wait_for_json_element_in_the_http_response"><a class="anchor" href="#_wait_for_json_element_in_the_http_response"></a>Wait for JSON element in the HTTP response</h3>
+<div class="paragraph">
+<p>Waits for a specified amount of time until HTTP response body contains an element by the specified JSON path. The actions of the step:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Execute sub-steps.</p>
+</li>
+<li>
+<p>Check if the HTTP response is present and the response body contains an element by JSON path.</p>
+</li>
+<li>
+<p>If the required JSON element exists or the maximum number of retries is reached, then the execution stops, otherwise the step actions are repeated.</p>
+</li>
+<li>
+<p>Stop step execution if HTTP response is not present or JSON element is found, otherwise sleep for the calculated part of specified duration and repeat actions from the start.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$jsonPath` for `$duration` duration retrying $retryTimes times$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsonPath</code> - The JSON path of the element to find.</p>
+</li>
+<li>
+<p><code>$duration</code> - The time duration to wait in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$retryTimes</code> -  The maximum of attempts. <code>duration/retryTimes = timeout</code> is a polling timeout between requests.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The sub-steps to execute at each iteration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Wait for presence of element 10 times with polling timeout between requests 5 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.unstableElement` for `PT50S` duration retrying 10 times
+|step                                                                                    |
+|When I execute HTTP GET request for resource with URL `http://example.com/testing-page` |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_json_element_in_the_http_response_with_polling_interval"><a class="anchor" href="#_wait_for_json_element_in_the_http_response_with_polling_interval"></a>Wait for JSON element in the HTTP response with polling interval</h3>
 <div class="paragraph">
 <p>Executes the provided sub-steps until the HTTP response body contains an element by the specified JSON path or the maximum number of retries is reached. The maximum duration of the step execution is not limited. The actions of the step:</p>
 </div>
@@ -1005,7 +1184,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Wait for presence of element by JSON path $.data.testData</div>
+<div class="title">Example 10. Wait for presence of element by JSON path $.data.testData</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
 |step                                  |
@@ -1041,7 +1220,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
+<div class="title">Example 11. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `vividus-test-site.herokuapp.com` supports secure protocols that contain `TLSv1.2,TLSv1.3`</code></pre>
 </div>
@@ -1074,11 +1253,161 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Wait until HTTP GET request returns status code 200</div>
+<div class="title">Example 12. Wait until HTTP GET request returns status code 200</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for response code `200` for `PT10S` duration retrying 3 times
 |step                                                        |
 |When I send HTTP GET to the relative URL '/delayed-resource'|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_content_type_of_response_body"><a class="anchor" href="#_validate_content_type_of_response_body"></a>Validate content type of response body</h3>
+<div class="paragraph">
+<p>Checks content type of HTTP response body matches to the specified expected <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">content type</a> according to the provided string validation rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then content type of response body $comparisonRule `$contentType`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String validation rule</a>.</p>
+</li>
+<li>
+<p><code>$contentType</code> – Expected <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">content type</a>, e.g. <code>text/html</code>, <code>application/xml</code>, <code>application/json</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Submit a GET request and check that response body type is <code>application/json</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
+Then content type of response body is equal to `application/json`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_size_of_response_body"><a class="anchor" href="#_validate_size_of_response_body"></a>Validate size of response body</h3>
+<div class="paragraph">
+<p>Compare size of decompressed HTTP response body with the specified expected size in bytes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then size of decompressed response body is $comparisonRule `$sizeInBytes`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$sizeInBytes</code> - The expected size of the response body in bytes.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Submit a GET request and check that response body size is greater or equal to <code>1200</code> bytes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`
+Then size of decompressed response body is greater than or equal to `1200`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_archive_from_response_body"><a class="anchor" href="#_validate_archive_from_response_body"></a>Validate archive from response body</h3>
+<div class="paragraph">
+<p>Verifies that one of specified entries in the response archive has one of specified names.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the response archive contains entries with the names:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> - The ExamplesTable with names of entries.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
+Then the response archive contains entries with the names:
+|name                           |
+|responseTextFromZipArchive.txt |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_http_cookie_steps"><a class="anchor" href="#_http_cookie_steps"></a>HTTP cookie steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_save_value_of_http_cookie"><a class="anchor" href="#_save_value_of_http_cookie"></a>Save value of HTTP cookie</h3>
+<div class="paragraph">
+<p>Saves cookie to scope variable. If present several cookies with the same name will be saved cookie with the root path value (path is '/').</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of HTTP cookie with name `$cookieName` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of cookie.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of variable.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://httpbin.org/cookies/set/cookieName/cookieValue'
+When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
+Then '${value}' is equal to 'cookieValue'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_change_value_of_all_http_cookies"><a class="anchor" href="#_change_value_of_all_http_cookies"></a>Change value of all HTTP cookies</h3>
+<div class="paragraph">
+<p>Change cookie value. If several cookies with the same name exist in cookie store, the value will be changed for all of them.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change value of all HTTP cookies with name `$cookieName` to `$newCookieValue`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of cookie.</p>
+</li>
+<li>
+<p><code>$newCookieValue</code> - The new value for <code>$cookieName</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
+When I change value of all HTTP cookies with name `cookieName` to `newCookieValue`
+When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
+Then '${value}' is equal to 'newCookieValue'</code></pre>
 </div>
 </div>
 </div>
@@ -1111,7 +1440,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Check JSON context contains JSON object by JSON path</div>
+<div class="title">Example 18. Check JSON context contains JSON object by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element by JSON path `$.accountList[0]` is equal to `
 {
@@ -1150,7 +1479,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Check JSON contains string value by JSON path</div>
+<div class="title">Example 19. Check JSON contains string value by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
 {
@@ -1185,7 +1514,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 20. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements by JSON path `$.accountList` is equal to 2</code></pre>
 </div>
@@ -1218,7 +1547,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 21. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
 [
@@ -1257,7 +1586,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Save accountId element from JSON context</div>
+<div class="title">Example 22. Save accountId element from JSON context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from context by JSON path `$.accountId` to SCENARIO variable `account-id`</code></pre>
 </div>
@@ -1290,7 +1619,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Save accountId element from JSON</div>
+<div class="title">Example 23. Save accountId element from JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from `
 {
@@ -1325,7 +1654,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Save number of id elements</div>
+<div class="title">Example 24. Save number of id elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set number of elements found by JSON path `$..id` to scenario variable `idsCount`</code></pre>
 </div>
@@ -1358,7 +1687,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Save number of elements from the JSON</div>
+<div class="title">Example 25. Save number of elements from the JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
 </div>
@@ -1404,7 +1733,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Verify HTTP resources</div>
+<div class="title">Example 26. Verify HTTP resources</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
 |url                                                    |
