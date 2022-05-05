@@ -1160,6 +1160,49 @@ The expression parameters containing commas must be surrounded with triple quote
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_quoteregexp"><a class="anchor" href="#_quoteregexp"></a><code>quoteRegExp</code></h3>
+<div class="paragraph">
+<p>Quotes the input literal so that metacharacters or escape sequences in the input sequence will be given no special meaning in regular expression.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{quoteRegExp(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be quoted</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. Quote regular expression</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{quoteRegExp(Some(Value))}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\QSome(Value)\E</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 1. Verify the data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${frontEndData}` matches `#{quorePattern(${backEndData})}.*`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1186,7 +1229,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. Example of hash calculating for string using MD5</caption>
+<caption class="title">Table 15. Example of hash calculating for string using MD5</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1226,7 +1269,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Example of hash calculating for file using SHA-1</caption>
+<caption class="title">Table 16. Example of hash calculating for file using SHA-1</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1268,7 +1311,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Load data from the project resource</div>
+<div class="title">Example 2. Load data from the project resource</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `my-data` with value `#{loadResource(/data/body.txt)}`</code></pre>
 </div>
@@ -1292,7 +1335,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Load data from the project resource as bytes</div>
+<div class="title">Example 3. Load data from the project resource as bytes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadBinaryResource(page.html)}` and headers:
 |name        |value    |
@@ -1318,7 +1361,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Load data as Base64 from the project resource</div>
+<div class="title">Example 4. Load data as Base64 from the project resource</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `my-data` with value `#{resourceToBase64(/data/body.txt)}`</code></pre>
 </div>
@@ -1354,7 +1397,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Evaluate JEXL script</div>
+<div class="title">Example 5. Evaluate JEXL script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify eval expression
 Then `#{&lt;expression&gt;}` is = `&lt;expected&gt;`
@@ -1414,7 +1457,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Evaluate Groovy script</div>
+<div class="title">Example 6. Evaluate Groovy script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize Scenario variable `listOfMaps` with values:
 |key|
@@ -1453,7 +1496,7 @@ Null expression can only be evaluated separately. Strings or other expressions w
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Validation of JSON element with <code>null</code> value</div>
+<div class="title">Example 7. Validation of JSON element with <code>null</code> value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `json` with value `
 {
