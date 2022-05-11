@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>XML Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-xml.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -235,7 +235,7 @@
     <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="plugin-xml.html">XML*</a>
+    <a class="nav-link" href="plugin-xml.html">XML</a>
   </li>
 </ul>
   </li>
@@ -494,7 +494,7 @@
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
     <li>Data Formats</li>
-    <li><a href="plugin-xml.html">XML*</a></li>
+    <li><a href="plugin-xml.html">XML</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -532,8 +532,263 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">XML Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides a set of actions for transformation and validation of XML data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-xml', version: '0.4.8-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_save_data_by_xpath"><a class="anchor" href="#_save_data_by_xpath"></a>Save data by XPath</h3>
+<div class="paragraph">
+<p>Saves XML data by XPath to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save data found by xpath `$xpath` in XML `$xml` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xpath</code> - The <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+</li>
+<li>
+<p><code>$xml</code> - The <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store a result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Save message body</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save data found by xpath `/message/body` in XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;message&gt;
+  &lt;to&gt;Bob&lt;/to&gt;
+  &lt;from&gt;Alice&lt;/from&gt;
+  &lt;heading&gt;Reminder&lt;/heading&gt;
+  &lt;body&gt;Don't forget to fill TJ gaps for this week&lt;/body&gt;
+&lt;/message&gt;` to scenario variable `body`
+Then `${body}` is equal to `Don't forget to fill TJ gaps for this week`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transform_xml_document"><a class="anchor" href="#_transform_xml_document"></a>Transform XML document</h3>
+<div class="paragraph">
+<p>Performs transformation of XML document using XSLT and saves the result to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I transform XML `$xml` with `$xslt` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xml</code> - The <a href="https://www.w3schools.com/xml/default.asp">XML document</a> to transform.</p>
+</li>
+<li>
+<p><code>$xslt</code> - The <a href="https://www.w3schools.com/xml/xml_xslt.asp">XSLT</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store a result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Transform CD catalog into list of artists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I transform XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;catalog&gt;
+    &lt;cd&gt;
+        &lt;title&gt;Unchain my heart&lt;/title&gt;
+        &lt;artist&gt;Joe Cocker&lt;/artist&gt;
+        &lt;price&gt;8.20&lt;/price&gt;
+        &lt;year&gt;1987&lt;/year&gt;
+    &lt;/cd&gt;
+    &lt;cd&gt;
+        &lt;title&gt;Empire Burlesque&lt;/title&gt;
+        &lt;artist&gt;Bob Dylan&lt;/artist&gt;
+        &lt;price&gt;10.90&lt;/price&gt;
+        &lt;year&gt;1985&lt;/year&gt;
+    &lt;/cd&gt;
+    &lt;cd&gt;
+        &lt;title&gt;Hide your heart&lt;/title&gt;
+        &lt;artist&gt;Bonnie Tyler&lt;/artist&gt;
+        &lt;price&gt;9.90&lt;/price&gt;
+        &lt;year&gt;1988&lt;/year&gt;
+  &lt;/cd&gt;
+&lt;/catalog&gt;
+` with `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:template match="/"&gt;
+        &lt;xsl:for-each select="catalog/cd"&gt;
+            &lt;xsl:value-of select="artist"/&gt;,
+        &lt;/xsl:for-each&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+` and save result to scenario variable `artists`
+Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_element_existence"><a class="anchor" href="#_check_element_existence"></a>Check element existence</h3>
+<div class="paragraph">
+<p>Checks if XML document contains element by <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `$xml` contains element by xpath `$xpath`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xml</code> - The <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+<li>
+<p><code>$xpath</code> - The <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Check a message contains heading element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;message&gt;
+  &lt;to&gt;Bob&lt;/to&gt;
+  &lt;from&gt;Alice&lt;/from&gt;
+  &lt;heading&gt;Reminder&lt;/heading&gt;
+  &lt;body&gt;Don't forget to fill TJ gaps for this week&lt;/body&gt;
+&lt;/message&gt;
+` contains element by xpath `/message/heading`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_xml_documents"><a class="anchor" href="#_compare_xml_documents"></a>Compare XML documents</h3>
+<div class="paragraph">
+<p>Checks if XML document is equal to expected XML document.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `$xml` is equal to `$expectedXml`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xml</code> - The actual <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+<li>
+<p><code>$expectedXml</code> - The expected <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Compare messages</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;message&gt;
+  &lt;to&gt;Bob&lt;/to&gt;
+  &lt;from&gt;Alice&lt;/from&gt;
+  &lt;heading&gt;Reminder&lt;/heading&gt;
+  &lt;body&gt;Don't forget to fill TJ gaps for this week&lt;/body&gt;
+&lt;/message&gt;
+` is equal to `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;message&gt;
+  &lt;to&gt;Bob&lt;/to&gt;
+  &lt;from&gt;Alice&lt;/from&gt;
+  &lt;heading&gt;Reminder&lt;/heading&gt;
+  &lt;body&gt;Don't forget to fill TJ gaps for this week&lt;/body&gt;
+&lt;/message&gt;
+`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_xml_document"><a class="anchor" href="#_validate_xml_document"></a>Validate XML document</h3>
+<div class="paragraph">
+<p>Validates <a href="https://www.w3schools.com/xml/default.asp">XML document</a> against <a href="https://www.w3schools.com/xml/schema_intro.asp">XSD Schema</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `$xml` is valid against XSD `$xsd`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xml</code> - The <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+<li>
+<p><code>$xsd</code> - The <a href="https://www.w3schools.com/xml/schema_intro.asp">XSD Schema</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Validate shipping information</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;shipto&gt;
+    &lt;name&gt;Ola Nordmann&lt;/name&gt;
+    &lt;address&gt;Langgt 23&lt;/address&gt;
+    &lt;city&gt;4000 Stavanger&lt;/city&gt;
+    &lt;country&gt;Norway&lt;/country&gt;
+&lt;/shipto&gt;
+` is valid against XSD `
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+    &lt;xs:element name="shipto"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="name" type="xs:string"/&gt;
+                &lt;xs:element name="address" type="xs:string"/&gt;
+                &lt;xs:element name="city" type="xs:string"/&gt;
+                &lt;xs:element name="country" type="xs:string"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
