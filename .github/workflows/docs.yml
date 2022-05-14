@@ -36,3 +36,8 @@ jobs:
         heroku_app_name: "docs-vividus-dev"
         heroku_email: "bitearray@gmail.com"
         appdir: "public"
+
+    - name: Check internal links
+      uses: filiph/linkcheck@2.0.23
+      with:
+        arguments: https://docs.vividus.dev/vividus/latest/
