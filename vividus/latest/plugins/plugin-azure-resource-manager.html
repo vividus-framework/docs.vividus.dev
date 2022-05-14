@@ -709,6 +709,64 @@ the technical perspective it&#8217;s a part of Azure resource REST API URL path.
 </div>
 </div>
 <div class="sect3">
+<h4 id="_execute_azure_operation"><a class="anchor" href="#_execute_azure_operation"></a>Execute Azure operation</h4>
+<div class="paragraph">
+<p>Executes the specified Azure operation using the declared Azure API version and
+saves the result to a variable. For more information, see the
+<a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute Azure operation with identifier `$azureOperationIdentifier` using API version `$apiVersion` and body `$azureOperationBody` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$azureOperationIdentifier</code> - This is a VIVIDUS-only term. It&#8217;s used to specify Azure operation uniquely. From
+the technical perspective it&#8217;s a part of Azure operation REST API URL path. For
+example, if the full Azure operation URL is</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.KeyVault/checkNameAvailability?api-version=2021-10-01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then the operation identifier will be</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">providers/Microsoft.KeyVault/checkNameAvailability</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><code>$apiVersion</code> - Azure resource provider API version. Note API versions may vary depending on the resource type.</p>
+</li>
+<li>
+<p><code>$azureOperationBody</code> - The Azure operation definition in JSON format.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the result of Azure operation execution.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Check Key Vault name availability</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute Azure operation with identifier `providers/Microsoft.KeyVault/checkNameAvailability` using API version `2021-10-01` and body `
+{
+  "name": "my-super-vault",
+  "type": "Microsoft.KeyVault/vaults"
+}
+` and save result to scenario variable `keyVaultNameAvailabilityCheckResult`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_delete_azure_resource"><a class="anchor" href="#_delete_azure_resource"></a>Delete Azure resource</h4>
 <div class="paragraph">
 <p>Deletes the specified Azure resource using the declared Azure API version.
@@ -745,7 +803,7 @@ the technical perspective it&#8217;s a part of Azure resource REST API URL path.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Delete linked service from Azure DataFactory</div>
+<div class="title">Example 5. Delete linked service from Azure DataFactory</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete Azure resource with identifier `resourceGroups/TEST-RG/providers/Microsoft.DataFactory/factories/TEST-ADF/linkedservices/test-datalake` using API version `2018-06-01`</code></pre>
 </div>
