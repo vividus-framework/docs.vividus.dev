@@ -1333,7 +1333,7 @@ If comparison rule column does not exist, the verification that archive entries 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the response archive contains entries with the names:$parameters</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then response archive contains entries with names:$parameters</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1369,7 +1369,7 @@ Entry name in archive is not always the same as file name. Entry name reflects t
 <div class="title">Example 15. Submit a GET request and check that response archive has file with extension 'data' in 'data' folder but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
-Then the response archive contains entries with the names:
+Then response archive contains entries with names:
 |rule             |name                     |
 |matches          |data/.+\.data            |
 |does not contain |restrictedData.data      |</code></pre>
@@ -1379,7 +1379,7 @@ Then the response archive contains entries with the names:
 <div class="title">Example 16. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
-Then the response archive contains entries with the names:
+Then response archive contains entries with names:
 |name                           |
 |responseTextFromZipArchive.txt |</code></pre>
 </div>
