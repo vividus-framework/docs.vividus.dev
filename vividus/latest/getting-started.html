@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Glossary :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/glossary.html">
+    <title>Getting Started :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/getting-started.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
@@ -122,10 +122,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index.html">What is VIVIDUS</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="getting-started.html">Getting Started</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -501,25 +501,25 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">VIVIDUS</a></li>
-    <li><a href="glossary.html">Glossary</a></li>
+    <li><a href="getting-started.html">Getting Started</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="glossary.html">latest</a>
-    <a class="version" href="../0.4.9/glossary.html">0.4.9</a>
-    <a class="version" href="../0.4.8/glossary.html">0.4.8</a>
-    <a class="version" href="../0.4.7/glossary.html">0.4.7</a>
-    <a class="version" href="../0.4.6/glossary.html">0.4.6</a>
-    <a class="version" href="../0.4.5/glossary.html">0.4.5</a>
-    <a class="version" href="../0.4.4/glossary.html">0.4.4</a>
-    <a class="version" href="../0.4.3/glossary.html">0.4.3</a>
-    <a class="version" href="../0.4.2/glossary.html">0.4.2</a>
-    <a class="version" href="../0.4.1/glossary.html">0.4.1</a>
-    <a class="version" href="../0.4.0/glossary.html">0.4.0</a>
-    <a class="version" href="../0.3.12/glossary.html">0.3.12</a>
-    <a class="version" href="../0.3.11/glossary.html">0.3.11</a>
+    <a class="version is-current" href="getting-started.html">latest</a>
+    <a class="version is-missing" href="../0.4.9/index.html">0.4.9</a>
+    <a class="version is-missing" href="../0.4.8/index.html">0.4.8</a>
+    <a class="version is-missing" href="../0.4.7/index.html">0.4.7</a>
+    <a class="version is-missing" href="../0.4.6/index.html">0.4.6</a>
+    <a class="version is-missing" href="../0.4.5/index.html">0.4.5</a>
+    <a class="version is-missing" href="../0.4.4/index.html">0.4.4</a>
+    <a class="version is-missing" href="../0.4.3/index.html">0.4.3</a>
+    <a class="version is-missing" href="../0.4.2/index.html">0.4.2</a>
+    <a class="version is-missing" href="../0.4.1/index.html">0.4.1</a>
+    <a class="version is-missing" href="../0.4.0/index.html">0.4.0</a>
+    <a class="version is-missing" href="../0.3.12/index.html">0.3.12</a>
+    <a class="version is-missing" href="../0.3.11/index.html">0.3.11</a>
     <a class="version is-missing" href="../0.3.10/index.html">0.3.10</a>
     <a class="version is-missing" href="../0.3.9/index.html">0.3.9</a>
     <a class="version is-missing" href="../0.3.8/index.html">0.3.8</a>
@@ -534,131 +534,297 @@
     <a class="version is-missing" href="../0.2.14/index.html">0.2.14</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/ROOT/pages/glossary.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/ROOT/pages/getting-started.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Glossary</h1>
+<h1 class="page">Getting Started</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This glossary contains the descriptions for terms and abbreviations that are used in the documentation.</p>
+<p>Everyone has to start somewhere and if you’re new to VIVIDUS, this is where to begin.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_expression"><a class="anchor" href="#_expression"></a>Expression</h2>
+<h2 id="_before_you_start"><a class="anchor" href="#_before_you_start"></a>Before you start</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Synonyms</strong>: VIVIDUS expression.</p>
-</div>
-<div class="paragraph">
-<p>An expression is a special placeholder which is detected, evaluated and resolved
-during test execution. Expressions are used for the data generation and
-transformation. General expression syntax is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">#{expression}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>During resolution process the expression placeholder is replaced with the result
-of the expression evaluation. If expression is unknown for VIVIDUS,
-the placeholder will be kept as is. If expression evaluation results in error,
-it will be propagated to the top level and the test will be marked as broken.</p>
-</div>
-<div class="paragraph">
-<p>It&#8217;s allowed to construct nested expressions: in this case the evaluation starts
-with the deepest expression.</p>
-</div>
-<div class="paragraph">
-<p>Expressions may include any number of variables placeholders.</p>
+<p>In order to use VIVIDUS effectively, you need to know what it is and understand
+some of its fundamental concepts. So before you start using VIVIDUS in earnest,
+we highly recommend you read <a href="tests-configuration.html" class="xref page">"How to cook VIVIDUS?"</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_resource"><a class="anchor" href="#_resource"></a>Resource</h2>
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><strong>Synonyms</strong>: project resource, test resource.</p>
-</div>
-<div class="paragraph">
-<p>A resource is data (text, images, audio, and so on) that tests need to access
-in a way that is independent of the location of the test source code (either
-it&#8217;s a local tests execution from IDE, or via Gradle, or from test artifact
-in CI/CD).</p>
-</div>
-<div class="paragraph">
-<p>All resources are located in <code>src/main/resources</code> folder of the test project by
-default. A resource name is a path relative to this folder, e.g. the resource
-located at:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">└─ src
-    └─ main
-        └─ resources
-            └─ data
-                └─ request.json</code></pre>
+<div class="sect2">
+<h3 id="_install_and_configure_git"><a class="anchor" href="#_install_and_configure_git"></a>Install and configure Git</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download and install <a href="http://git-scm.com/downloads">Git client</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup#_your_identity">Configure</a> your identity</p>
+</li>
+</ol>
 </div>
 </div>
-<div class="paragraph">
-<p>can be referenced in the tests as <code>/data/request.json</code>.</p>
+<div class="sect2">
+<h3 id="_install_java"><a class="anchor" href="#_install_java"></a>Install Java</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://jdk.java.net/17/">LTS JDK 17</a> is the baseline. <a href="https://jdk.java.net/11/">LTS JDK 11</a> and the latest <a href="https://jdk.java.net/18/">JDK 18</a> are supported as well.</p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/java-home-on-windows-7-8-10-mac-os-x-linux">Configure <code>JAVA_HOME</code> environment variable</a> to point your directory with installed JDK.</p>
+</li>
+<li>
+<p>Add new entry to <code>PATH</code> environment variable:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>for Windows: <code>%JAVA_HOME%/bin</code></p>
+</li>
+<li>
+<p>for macOS / Linux: <code>$JAVA_HOME/bin</code></p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>The name of a resource is independent of the used operating system;
-in particular, the path separator is always a slash <code>/</code>.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_table_transformer"><a class="anchor" href="#_table_transformer"></a>Table Transformer</h2>
+<h2 id="_create_tests_project"><a class="anchor" href="#_create_tests_project"></a>Create tests project</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login to <a href="http://github.com/">GitHub</a> (create a new account at first if you don&#8217;t have any).</p>
+</li>
+<li>
+<p>Generate your own project based on the starter project:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>open <a href="https://github.com/vividus-framework/vividus-starter/generate">generator</a></p>
+</li>
+<li>
+<p>provide repository name for your test project</p>
+</li>
+<li>
+<p>choose option to set visibility of your repository: <code>Public</code> or <code>Private</code> (<code>Private</code> is recommended from start, it can be changed in future)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Clone your newly generated repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --recursive your_generated_project_url.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the local directory with your cloned repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd your_repository_name</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Build the project:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>macOS / Linux:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew build</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Windows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew build</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_ide_for_the_tests_development"><a class="anchor" href="#_use_ide_for_the_tests_development"></a>Use IDE for the tests development</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a>Eclipse</h3>
+<div class="sect3">
+<h4 id="_prerequisites_2"><a class="anchor" href="#_prerequisites_2"></a>Prerequisites</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://www.eclipse.org/downloads/packages/release/2022-03/r/eclipse-ide-java-developers">Eclipse IDE 2022-03</a></p>
+</li>
+<li>
+<p>Add <a href="https://jbehave.org/eclipse-integration.html">JBehave plugin</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_import_the_project"><a class="anchor" href="#_import_the_project"></a>Import the project</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate Eclipse configuration files:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>macOS / Linux:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew eclipse</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Windows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew eclipse</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://help.eclipse.org/2022-03/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-importproject.htm">Import the project to Eclipse</a></p>
+</li>
+<li>
+<p>Start creating your tests</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_execute_the_tests_via_cli"><a class="anchor" href="#_execute_the_tests_via_cli"></a>Execute the tests via CLI</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Execute your tests via Gradle:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>macOS / Linux:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Windows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew runStories</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_view_the_test_execution_report"><a class="anchor" href="#_view_the_test_execution_report"></a>View the test execution report</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Synonyms</strong>: transformer, ExampleTable transformer.</p>
-</div>
-<div class="paragraph">
-<p>ExampleTable enables the transformation of its string representation via the
-"transformer" inlined property. It&#8217;s allowed to define a chain of transformers,
-in this case the transformers are applied sequentially from top to bottom:</p>
+<p>At the end of any test run, VIVIDUS will give you a link to where the corresponding test report was published. It should look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER}
-{transformer=ONE_MORE_MY_TRANSFORMER}
-|header 1|header 2| .... |header n|
-|value 11|value 12| .... |value 1n|
-...
-|value m1|value m2| .... |value mn|</code></pre>
+<pre class="highlightjs highlight"><code class="language-log hljs" data-lang="log">2022-05-23 13:38:15,523 [main] INFO  org.vividus.report.allure.AllureReportGenerator - Allure report is successfully generated at /dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure/index.html</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The special characters <code>,</code> <code>{</code> <code>}</code> must be escaped in the transformer properties
-using character <code>\</code>.</p>
+<p>It&#8217;s not allowed to open the report hosted on the local filesystem
+<a href="https://stackoverflow.com/a/24002146/2067574">due to security restrictions</a>.
+The following options could be considered.</p>
 </div>
+<div class="sect2">
+<h3 id="_option_1_safe_but_a_bit_complicated"><a class="anchor" href="#_option_1_safe_but_a_bit_complicated"></a>Option 1 (Safe, but a bit complicated)</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go into the directory:</p>
 <div class="listingblock">
-<div class="title">Example 1. Escaping special characters in transformer properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER, countries=\{Australia\,Canada\}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In the example above the transformer will have a single property with name
-<code>countries</code> and value <code>{Australia,Canada}</code>.</p>
-</div>
-<div class="paragraph">
-<p>VIVIDUS variables of scopes <code>global</code> and <code>next batches</code> can be used in
-transformer properties (pay attention to escapes of the variables placeholders
-in the example below).</p>
-</div>
+</li>
+<li>
+<p>Start a webserver of your choice, in the example below we are using a <a href="https://www.npmjs.com/package/http-server">node webserver</a> through port <code>3456</code>:</p>
 <div class="listingblock">
-<div class="title">Example 2. Usage of global variable <code>${locale}</code> in transformer property</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ONE_MORE_MY_TRANSFORMER, tables=/$\{locale\}/table1.table;/$\{locale\}/table2.table}</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">    ✔ ~/dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure
+    $ http-server -p 3456</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Launch a browser, type <code>localhost:3456</code> into the URL. If you followed the instructions properly, you should see your report.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_option_2_relax_browser_security"><a class="anchor" href="#_option_2_relax_browser_security"></a>Option 2 (Relax browser security)</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tune <a href="https://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/">CORS option in the browser of your choice</a>.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure this browser will be used to view test reports only, it&#8217;s not safe to surf the Internet with relaxed security rules.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Go to the test report directory and open <code>index.html</code> in the configured browser.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
