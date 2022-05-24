@@ -949,7 +949,48 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </li>
 <li>
-<p><code>$screenshotConfiguration</code> - The screenshot configuration</p>
+<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Web screenshot configuration fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+</li>
+<li>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+</li>
+<li>
+<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CEILING</code> - Based on JS API.</p>
+</li>
+<li>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>scrollableElement</code> - The element to scroll.</p>
+</li>
+<li>
+<p><code>scrollTimeout</code> - The scroll timeout.</p>
 </li>
 </ul>
 </div>

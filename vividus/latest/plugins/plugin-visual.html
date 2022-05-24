@@ -808,7 +808,7 @@ where:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scrollable-element</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">locator</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Locator of element for performing scroll action during visual check</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locator of element for performing scroll action during visual check, steps fails if an element by the locator does not exist</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
@@ -1014,13 +1014,67 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
+<p><code>actionType</code> - The `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`.</p>
 </li>
 <li>
-<p><code>name</code> - name of baseline</p>
+<p><code>name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>screenshotConfiguration</code> - configuration to make screenshot</p>
+<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Web screenshot configuration fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+</li>
+<li>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+</li>
+<li>
+<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CEILING</code> - Based on JS API.</p>
+</li>
+<li>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>scrollableElement</code> - The element to scroll.</p>
+</li>
+<li>
+<p><code>scrollTimeout</code> - The scroll timeout.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Mobile screenshot configuration fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
@@ -1078,16 +1132,70 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>actionType</code> - `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`</p>
+<p><code>$actionType</code> - The `ESTABLISH`, `COMPARE_AGAINST` and `CHECK_INEQUALITY_AGAINST`.</p>
 </li>
 <li>
-<p><code>name</code> - name of baseline</p>
+<p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>checkSettings</code> - examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCENTAGE</code></p>
+<p><code>$checkSettings</code> - The examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCENTAGE</code>.</p>
 </li>
 <li>
-<p><code>screenshotConfiguration</code> - configuration to make screenshot</p>
+<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Web screenshot configuration fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+</li>
+<li>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+</li>
+<li>
+<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CEILING</code> - Based on JS API.</p>
+</li>
+<li>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>scrollableElement</code> - The element to scroll.</p>
+</li>
+<li>
+<p><code>scrollTimeout</code> - The scroll timeout.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Mobile screenshot configuration fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
