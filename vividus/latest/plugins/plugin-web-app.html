@@ -3620,6 +3620,81 @@ Given I am on the main application page</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_code_steps"><a class="anchor" href="#_code_steps"></a>Code steps</h3>
+<div class="sect3">
+<h4 id="_execute_javascript_and_save_result"><a class="anchor" href="#_execute_javascript_and_save_result"></a>Execute JavaScript and save result.</h4>
+<div class="paragraph">
+<p><a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html">Executes JavaScript</a> code and saves result into variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `$jsCode` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - Any JavaScript code. In order to save a result <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return">return</a> statement should be used.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 65. Validate timings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
+When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
+Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_execute_async_javascript_and_save_result"><a class="anchor" href="#_execute_async_javascript_and_save_result"></a>Execute async JavaScript and save result.</h4>
+<div class="paragraph">
+<p><a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html">Executes async JavaScript</a> code and saves result into variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute async javascript `$jsCode` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - Any JavaScript code. In order to save a result <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return">return</a> statement should be used.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 66. Validate response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute async javascript `
+var callback = arguments[arguments.length - 1];
+var xhr = new XMLHttpRequest();
+xhr.open('GET', '/resource/data.json', true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    callback(xhr.responseText);
+  }
+};
+xhr.send();` and save result to scenario variable `response`
+Then `${response}` matcher `.+`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
