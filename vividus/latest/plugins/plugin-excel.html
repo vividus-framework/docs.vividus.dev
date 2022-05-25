@@ -698,6 +698,103 @@ and put path to scenario variable `path`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_excel_validations"><a class="anchor" href="#_excel_validations"></a>Excel validations</h3>
+<div class="sect3">
+<h4 id="_by_sheet_name"><a class="anchor" href="#_by_sheet_name"></a>By sheet name</h4>
+<div class="paragraph">
+<p>Checks that excel has a sheet with name <strong>name</strong> and specified <strong>records</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$excelDocument` contains excel sheet with name `$name` and records:$records</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$excelDocument</code> - The excel document data to verify.</p>
+</li>
+<li>
+<p><code>$name</code> - The name of the sheet to verify.</p>
+</li>
+<li>
+<p><code>$record</code> - The ExampleTable that contains specified expected records in the sheet. Available columns:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>cellsRange</strong></code> - The range of the cells to verify. (e.g. "B1:D8", "A1", "C1:C5")</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>valueRegex</strong></code> - The regular expression to match a value against.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Validate excel sheet by name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
+Then the response code is = '200'
+Then `${response-as-bytes}` contains excel sheet with name `Mapping` and records:
+{valueSeparator=!}
+|cellsRange|valueRegex             |
+!A4:B5     !(Product|Price)\d+\s*  !
+!B3        !Price                  !
+!C1:C5     !                       !</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_by_sheet_index"><a class="anchor" href="#_by_sheet_index"></a>By sheet index</h4>
+<div class="paragraph">
+<p>Checks that excel has a sheet with index <strong>index</strong> and specified <strong>records</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$excelDocument` contains excel sheet with index `$index` and records:$records</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$excelDocument</code> - The excel document data to verify.</p>
+</li>
+<li>
+<p><code>$index</code> - The index of the sheet to verify.</p>
+</li>
+<li>
+<p><code>$record</code> - The ExampleTable that contains specified expected records in the sheet. Available columns:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>cellsRange</strong></code> - The range of the cells to verify. (e.g. "B1:D8", "A1", "C1:C5")</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>valueRegex</strong></code> - The regular expression to match a value against.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Validate excel sheet by index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
+Then the response code is = '200'
+Then `${response-as-bytes}` contains excel sheet with index `0` and records:
+{valueSeparator=!}
+|cellsRange|valueRegex             |
+!A4:B5     !(Product|Price)\d+\s*  !
+!B3        !Price                  !
+!C1:C5     !                       !</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
