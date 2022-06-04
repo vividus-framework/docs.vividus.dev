@@ -1,3 +1,13 @@
 h4 {
   font-weight: bold!important;
 }
+
+/* The following lines remove max-width limits (https://stackoverflow.com/questions/65398110/antora-supplemental-ui-removing-max-width-from-doc-in-doc-css) */
+.doc {
+    max-width: none;
+}
+@media screen and (min-width: 1024px) {
+    .doc {
+        max-width: none;
+    }
+}
