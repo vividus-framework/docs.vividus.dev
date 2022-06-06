@@ -1102,6 +1102,36 @@ Given multipart request:
 </div>
 </div>
 <div class="sect2">
+<h3 id="_set_form_data_http_request"><a class="anchor" href="#_set_form_data_http_request"></a>Set form data HTTP request</h3>
+<div class="paragraph">
+<p>Sets <a href="https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1">URL-encoded form data</a> request entity that will be used while executing HTTP requests.
+Default HTTP request header with name <code>Content-Type</code> and value <code>application/x-www-form-urlencoded; charset=UTF-8</code> is set.
+In case if <code>Content-Type</code> is <code>text/plain</code> <a href="#_set_http_request_body">Set HTTP request body</a> should be used</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given form data request:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> -  <code>ExamplesTable</code> representing list of parameters with columns <code>name</code> and <code>value</code> specifying form data request.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Set ExamplesTable HTTP request body</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given form data request:
+|name     |value  |
+|firstName|Ivan   |
+|lastName |Ivanov |
+|password |!@3qwer|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_add_http_headers_to_the_request"><a class="anchor" href="#_add_http_headers_to_the_request"></a>Add HTTP headers to the request</h3>
 <div class="paragraph">
 <p>Adds <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields">HTTP headers</a> to the HTTP request.</p>
@@ -1119,7 +1149,7 @@ Given multipart request:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Add request header with name Accept-Language and value en-ru</div>
+<div class="title">Example 10. Add request header with name Accept-Language and value en-ru</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:
 |name           |value |
@@ -1156,7 +1186,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Execute HTTP GET request</div>
+<div class="title">Example 11. Execute HTTP GET request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`</code></pre>
 </div>
@@ -1205,7 +1235,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Wait for presence of element 10 times with polling timeout between requests 5 seconds</div>
+<div class="title">Example 12. Wait for presence of element 10 times with polling timeout between requests 5 seconds</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.unstableElement` for `PT50S` duration retrying 10 times
 |step                                                                                    |
@@ -1253,7 +1283,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Wait for presence of element by JSON path $.data.testData</div>
+<div class="title">Example 13. Wait for presence of element by JSON path $.data.testData</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
 |step                                  |
@@ -1289,7 +1319,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
+<div class="title">Example 14. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `vividus-test-site.herokuapp.com` supports secure protocols that contain `TLSv1.2,TLSv1.3`</code></pre>
 </div>
@@ -1322,7 +1352,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Wait until HTTP GET request returns status code 200</div>
+<div class="title">Example 15. Wait until HTTP GET request returns status code 200</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for response code `200` for `PT10S` duration retrying 3 times
 |step                                                        |
@@ -1351,7 +1381,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Submit a GET request and check that response body type is <code>application/json</code></div>
+<div class="title">Example 16. Submit a GET request and check that response body type is <code>application/json</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Then content type of response body is equal to `application/json`</code></pre>
@@ -1379,7 +1409,7 @@ Then content type of response body is equal to `application/json`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Submit a GET request and check that response body size is greater or equal to <code>1200</code> bytes</div>
+<div class="title">Example 17. Submit a GET request and check that response body size is greater or equal to <code>1200</code> bytes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`
 Then size of decompressed response body is greater than or equal to `1200`</code></pre>
@@ -1423,7 +1453,7 @@ Then size of decompressed response body is greater than or equal to `1200`</code
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Save archive entries</div>
+<div class="title">Example 18. Save archive entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 When I save content of `${response-as-bytes}` archive entries to variables:
@@ -1488,7 +1518,7 @@ Entry name in archive is not always the same as file name. Entry name reflects t
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Submit a GET request and check that response archive has file with extension 'data' in 'data' folder but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 19. Submit a GET request and check that response archive has file with extension 'data' in 'data' folder but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then response archive contains entries with names:
@@ -1498,7 +1528,7 @@ Then response archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 20. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then response archive contains entries with names:
@@ -1551,7 +1581,7 @@ Entry name in archive is not always the same as file name. Entry name reflects t
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Submit a GET request and check that response archive has file with extension 'data' in 'data' folder but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 21. Submit a GET request and check that response archive has file with extension 'data' in 'data' folder but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1561,7 +1591,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 22. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1599,7 +1629,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
+<div class="title">Example 23. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://httpbin.org/cookies/set/cookieName/cookieValue'
 When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
@@ -1628,7 +1658,7 @@ Then '${value}' is equal to 'cookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
+<div class="title">Example 24. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I change value of all HTTP cookies with name `cookieName` to `newCookieValue`
@@ -1666,7 +1696,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Check JSON context contains JSON object by JSON path</div>
+<div class="title">Example 25. Check JSON context contains JSON object by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element by JSON path `$.accountList[0]` is equal to `
 {
@@ -1705,7 +1735,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Check JSON contains string value by JSON path</div>
+<div class="title">Example 26. Check JSON contains string value by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
 {
@@ -1740,7 +1770,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 27. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements by JSON path `$.accountList` is equal to 2</code></pre>
 </div>
@@ -1773,7 +1803,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Number of account lists in JSON is equal to 2</div>
+<div class="title">Example 28. Number of account lists in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
 [
@@ -1812,7 +1842,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Save accountId element from JSON context</div>
+<div class="title">Example 29. Save accountId element from JSON context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from context by JSON path `$.accountId` to SCENARIO variable `account-id`</code></pre>
 </div>
@@ -1845,7 +1875,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Save accountId element from JSON</div>
+<div class="title">Example 30. Save accountId element from JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from `
 {
@@ -1880,7 +1910,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Save number of id elements</div>
+<div class="title">Example 31. Save number of id elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set number of elements found by JSON path `$..id` to scenario variable `idsCount`</code></pre>
 </div>
@@ -1913,7 +1943,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Save number of elements from the JSON</div>
+<div class="title">Example 32. Save number of elements from the JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
 </div>
@@ -1959,7 +1989,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Verify HTTP resources</div>
+<div class="title">Example 33. Verify HTTP resources</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
 |url                                                    |
