@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Getting Started :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/getting-started.html">
+    <title>Reporting Configuration :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/reporting.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
@@ -125,14 +125,14 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="glossary.html">Glossary</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="getting-started.html">Getting Started</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="tests-configuration.html">Configuration</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="reporting.html">Reporting</a>
   </li>
 </ul>
@@ -513,14 +513,15 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">VIVIDUS</a></li>
-    <li><a href="getting-started.html">Getting Started</a></li>
+    <li><a href="tests-configuration.html">Configuration</a></li>
+    <li><a href="reporting.html">Reporting</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="getting-started.html">latest</a>
-    <a class="version" href="../0.4.10/getting-started.html">0.4.10</a>
+    <a class="version is-current" href="reporting.html">latest</a>
+    <a class="version is-missing" href="../0.4.10/index.html">0.4.10</a>
     <a class="version is-missing" href="../0.4.9/index.html">0.4.9</a>
     <a class="version is-missing" href="../0.4.8/index.html">0.4.8</a>
     <a class="version is-missing" href="../0.4.7/index.html">0.4.7</a>
@@ -547,298 +548,248 @@
     <a class="version is-missing" href="../0.2.14/index.html">0.2.14</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/ROOT/pages/getting-started.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/ROOT/pages/reporting.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Getting Started</h1>
-<div id="preamble">
+<h1 class="page">Reporting Configuration</h1>
+<div class="sect1">
+<h2 id="_add_external_links_to_report"><a class="anchor" href="#_add_external_links_to_report"></a>Add external links to report</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Everyone has to start somewhere and if you’re new to VIVIDUS, this is where to begin.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_before_you_start"><a class="anchor" href="#_before_you_start"></a>Before you start</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In order to use VIVIDUS effectively, you need to know what it is and understand
-some of its fundamental concepts. So before you start using VIVIDUS in earnest,
-we highly recommend you read <a href="tests-configuration.html" class="xref page">"How to cook VIVIDUS?"</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_install_and_configure_git"><a class="anchor" href="#_install_and_configure_git"></a>Install and configure Git</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download and install <a href="http://git-scm.com/downloads">Git client</a></p>
-</li>
-<li>
-<p><a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup#_your_identity">Configure</a> your identity</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_install_java"><a class="anchor" href="#_install_java"></a>Install Java</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://jdk.java.net/17/">LTS JDK 17</a> is the baseline. <a href="https://jdk.java.net/11/">LTS JDK 11</a> and the latest <a href="https://jdk.java.net/18/">JDK 18</a> are supported as well.</p>
-</li>
-<li>
-<p><a href="https://www.baeldung.com/java-home-on-windows-7-8-10-mac-os-x-linux">Configure <code>JAVA_HOME</code> environment variable</a> to point your directory with installed JDK.</p>
-</li>
-<li>
-<p>Add new entry to <code>PATH</code> environment variable:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>for Windows: <code>%JAVA_HOME%/bin</code></p>
-</li>
-<li>
-<p>for macOS / Linux: <code>$JAVA_HOME/bin</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_create_tests_project"><a class="anchor" href="#_create_tests_project"></a>Create tests project</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Login to <a href="http://github.com/">GitHub</a> (create a new account at first if you don&#8217;t have any).</p>
-</li>
-<li>
-<p>Generate your own project based on the starter project:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>open <a href="https://github.com/vividus-framework/vividus-starter/generate">generator</a></p>
-</li>
-<li>
-<p>provide repository name for your test project</p>
-</li>
-<li>
-<p>choose option to set visibility of your repository: <code>Public</code> or <code>Private</code> (<code>Private</code> is recommended from start, it can be changed in future)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Clone your newly generated repository:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --recursive your_generated_project_url.git</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Go to the local directory with your cloned repository:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd your_repository_name</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Build the project:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>macOS / Linux:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew build</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Windows:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew build</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_use_ide_for_the_tests_development"><a class="anchor" href="#_use_ide_for_the_tests_development"></a>Use IDE for the tests development</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_eclipse"><a class="anchor" href="#_eclipse"></a>Eclipse</h3>
-<div class="sect3">
-<h4 id="_prerequisites_2"><a class="anchor" href="#_prerequisites_2"></a>Prerequisites</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Install <a href="https://www.eclipse.org/downloads/packages/release/2022-03/r/eclipse-ide-java-developers">Eclipse IDE 2022-03</a></p>
-</li>
-<li>
-<p>Add <a href="https://jbehave.org/eclipse-integration.html">JBehave plugin</a></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_import_the_project"><a class="anchor" href="#_import_the_project"></a>Import the project</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Generate Eclipse configuration files:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>macOS / Linux:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew eclipse</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Windows:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew eclipse</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><a href="https://help.eclipse.org/2022-03/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-importproject.htm">Import the project to Eclipse</a></p>
-</li>
-<li>
-<p>Start creating your tests</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_execute_the_tests_via_cli"><a class="anchor" href="#_execute_the_tests_via_cli"></a>Execute the tests via CLI</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Execute your tests via Gradle:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>macOS / Linux:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Windows:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">gradlew runStories</code></pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_view_the_test_execution_report"><a class="anchor" href="#_view_the_test_execution_report"></a>View the test execution report</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>At the end of any test run, VIVIDUS will give you a link to where the corresponding test report was published. It should look like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-log hljs" data-lang="log">2022-05-23 13:38:15,523 [main] INFO  org.vividus.report.allure.AllureReportGenerator - Allure report is successfully generated at /dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure/index.html</code></pre>
-</div>
+<p>User has possibility to link stories/scenarios to external systems like test-management or bug-tracking systems.</p>
 </div>
 <div class="paragraph">
-<p>It&#8217;s not allowed to open the report hosted on the local filesystem
-<a href="https://stackoverflow.com/a/24002146/2067574">due to security restrictions</a>.
-The following options could be considered.</p>
+<p>There are a few steps to achieve this:</p>
 </div>
-<div class="sect2">
-<h3 id="_option_1_safe_but_a_bit_complicated"><a class="anchor" href="#_option_1_safe_but_a_bit_complicated"></a>Option 1 (Safe, but a bit complicated)</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go into the directory:</p>
+<p>Configure link pattern via properties.</p>
 <div class="listingblock">
+<div class="title">Example 1. Configure link to issue tracking system in <code>environment.properties</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Start a webserver of your choice, in the example below we are using a <a href="https://www.npmjs.com/package/http-server">node webserver</a> through port <code>3456</code>:</p>
+<p>Add meta tags to the story/scenario meta.</p>
 <div class="listingblock">
+<div class="title">Example 2. Story level meta-tag containing ID of the issue</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">    ✔ ~/dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure
-    $ http-server -p 3456</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
+    @issueId VVD-1
+
+Scenario: Should check variables equals
+Then `1` is = `1`</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Launch a browser, type <code>localhost:3456</code> into the URL. If you followed the instructions properly, you should see your report.</p>
+<p>Run tests and explore the links in the report.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/linked.png" alt="Link in allure report">
+</div>
+</div>
 </li>
 </ol>
 </div>
+<div class="sect2">
+<h3 id="_system_types"><a class="anchor" href="#_system_types"></a>System types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Meta tag</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>system.allure.link.issue.pattern</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@issueId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Issue link pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/vividus-framework/vividus/issues/{}" class="bare">https://github.com/vividus-framework/vividus/issues/{}</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>system.allure.link.requirement.pattern</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@requirementId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement link pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/vividus-framework/vividus/issues/{}" class="bare">https://github.com/vividus-framework/vividus/issues/{}</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>system.allure.link.tms.pattern</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@testCaseId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test case link pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://vividus.jira.com/issues/{}" class="bare">https://vividus.jira.com/issues/{}</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="_option_2_relax_browser_security"><a class="anchor" href="#_option_2_relax_browser_security"></a>Option 2 (Relax browser security)</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Tune <a href="https://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/">CORS option in the browser of your choice</a>.</p>
-<div class="admonitionblock warning">
+<h3 id="_multiple_external_systems"><a class="anchor" href="#_multiple_external_systems"></a>Multiple external systems</h3>
+<div class="paragraph">
+<p>It is possible to configure linking to multiple systems of the same type.
+To achieve this user should define <strong>a custom suffix</strong> for the properties and meta tags.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Configure links to several issue tracking systems in <code>environment.properties</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default property
+system.allure.link.issue.pattern=https://vividus.prod/issues/{}
+# Additional property with .dev suffix, that used to create links annotated with @isssueId.dev
+system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Story level meta-tags containing IDs of the issues belonging to different systems</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
+    @issueId VVD-1
+    @issueId.dev DEV-1
+
+Scenario: Should check variables equal
+Then `1` is = `1`</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/multiple-links.png" alt="Multiple external systems">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_notifications"><a class="anchor" href="#_notifications"></a>Notifications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VIVIDUS can send notifications with test execution summary upon test completion.</p>
+</div>
+<div class="sect2">
+<h3 id="_base_configuration"><a class="anchor" href="#_base_configuration"></a>Base configuration</h3>
+<div class="paragraph">
+<p>The following table defines a set of common properties that may be used to generate notification data.
+All properties are optional, in case if property is not set, no corresponding data will be added to the notification.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifications.base.project</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project name (e.g. abbreviation, code or full descriptive name)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vividus-tests</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifications.base.environment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test execution environment, by default it&#8217;s mapped to <code>configuration.environments</code> property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web/qa</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifications.base.comment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any comment to add</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Smoke tests</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>notifications.base.report-link</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL of the report</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://my-jenkins.com/build/123/report" class="bare">https://my-jenkins.com/build/123/report</a></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_e_mail"><a class="anchor" href="#_e_mail"></a>E-mail</h3>
+<div class="paragraph">
+<p>VIVIDUS can send e-mail notifications via <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">Simple Mail Transfer Protocol (SMTP)</a>.
+The following properties are used configure notification sending.</p>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Make sure this browser will be used to view test reports only, it&#8217;s not safe to surf the Internet with relaxed security rules.
+The properties marked with <strong>bold</strong> are mandatory.
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>Go to the test report directory and open <code>index.html</code> in the configured browser.</p>
-</li>
-</ol>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.host</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SMTP server to connect to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>smtp.gmail.com</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.port</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The SMTP server port to connect to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>465</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.username</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User name for SMTP connection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iamvividus@gmail.com</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.password</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user&#8217;s password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>abcdefghijklmnop</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.from</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The envelope return address</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iamvividus@gmail.com</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.recipient</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated set the recipient addresses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dl@my-company.com, <a href="mailto:test-results@my-company.com">test-results@my-company.com</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.enable-ssl</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, use SSL to connect</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
