@@ -676,7 +676,13 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The pattern with a single paramter referenced twice.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single parameter doesn&#8217;t require comma escaping.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>//<strong>[@</strong>='%1$s' or text()='%1$s']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>customLocator(Hello, Vlad!)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>//<strong>[@</strong>='Hello, Vlad!' or text()='Hello, Vlad!']</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pattern with a single parameter was referenced twice.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>//<strong>[@</strong>='%1$s' or text()='%1$s']</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>customLocator(text)</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>//<strong>[@</strong>='text' or text()='text']</code></p></td>
@@ -698,6 +704,12 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>//input[@id="username"]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>customLocator()</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>//input[@id="username"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pattern with two parameter placeholders was used with invalid number of parameters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>//<strong>[@</strong>='%s' or text()='%s']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>customLocator(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Exception will be thrown!</code></p></td>
 </tr>
 </tbody>
 </table>
