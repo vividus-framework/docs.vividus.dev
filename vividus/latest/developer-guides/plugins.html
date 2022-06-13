@@ -788,6 +788,67 @@ Then `${myDynamicVaribale}` is equal to `my app specific value`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_baseline_repositories"><a class="anchor" href="#_baseline_repositories"></a>Baseline repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Baseline reposity is a source of the baseline images used to perform visual checks in <a href="../plugins/plugin-visual.html" class="xref page">visual testing plugin</a></p>
+</div>
+<div class="paragraph">
+<p>In order to create and register own baselines repository the following steps should be done</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new class that implements
+<a href="https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-visual/src/main/java/org/vividus/visual/engine/BaselineRepository.java"><code>org.vividus.visual.engine.BaselineRepository</code></a>:</p>
+<div class="listingblock">
+<div class="title">Example 9. /src/main/java/com/mycompany/visual/engine/AzureBaselineRepository.java</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycompany.visual.engine;
+
+import org.vividus.visual.engine.BaselineRepository;
+
+public class AzureBaselineRepository implements BaselineRepository
+{
+    @Override
+    public Optional&lt;Screenshot&gt; getBaseline(String baselineName) throws IOException
+    {
+        // gets the baseline screenshot
+    }
+
+    @Override
+    public void saveBaseline(Screenshot toSave, String baselineName) throws IOException
+    {
+        // saves the baseline screenshot
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Register Spring bean where <code>id</code> is the name of the baseline repository which will
+be used in visual testing plugin:</p>
+<div class="listingblock">
+<div class="title">Example 10. /src/main/resources/spring.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;bean id="azure" class="com.mycompany.visual.engine.AzureBaselineRepository"/&gt;
+
+&lt;/beans&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
