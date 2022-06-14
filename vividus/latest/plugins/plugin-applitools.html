@@ -618,7 +618,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ui.visual.applitools.read-api-key</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to access tests and test results, but does not allow them to execute tests, change data through the API, or make any changes to the tests. For more details see how to <a href="https://applitools.com/docs/topics/overview/obtain-api-key.html">obtain API keys</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to access tests and test results, but does not allow them to execute tests, change data through the API, or make any changes to the tests. For more details see how to <a href="https://applitools.com/docs/topics/overview/obtain-api-key.html">obtain API keys</a>. Note if this key is not set, incorrect or does not have the necessary permission to read, screenshots of visual tests will not be available in the report and a warning message will be displayed.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.match-level</code></p></td>
@@ -640,31 +640,37 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property Name</th>
 <th class="tableblock halign-left valign-top">Default</th>
 <th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top"><code>ui.visual.applitools.host-os</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.host-os</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The host OS running the application under test.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.host-app</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.host-app</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application running the application under test (e.g. Safari, Chrome).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.viewport-size</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The required viewport size for the environment.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.baseline-env-name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the baseline&#8217;s environment.</p></td>
 </tr>
 </tbody>
 </table>
