@@ -745,12 +745,12 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(h3)&#8594;filter.textPart(Welcome)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their exact text.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(android.widget.EditText)&#8594;filter.text(Welcome)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attribute</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their attribute values</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>tagName(android.widget.TextView)&#8594;filter.attribute(text=Hi)</code> - <code>android.widget.TextView</code> element has the <code>text</code> attribute with <code>Hi</code> value
@@ -780,25 +780,25 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">XPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Search the app XML source using xpath (not recommended, has <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">performance issues</a>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//android.widget.TextView[@text='Home']) or By.xpath(//XCUIElementTypeStaticText[@value='Home'])</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accessibility ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessibilityId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">Accessibility ID</a> selector strategy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">accessibilityId(menu-toggler) or By.accessibilityId(menu-toggler)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://appium.io/docs/en/commands/element/find-elements/index.html#selector-strategies">ID</a> selector strategy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(org.vividus:id/menu-toggler) or By.id(menu-toggler)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">iOS Class Chain</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>iosClassChain</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iOS</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://github.com/facebookarchive/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules">Class Chain Queries</a> for more details</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">iosClassChain(**/XCUIElementTypeCell[$name BEGINSWITH "A"$]) or By.iosClassChain(**/XCUIElementTypeCell[$name BEGINSWITH "B"$])</p></td>
