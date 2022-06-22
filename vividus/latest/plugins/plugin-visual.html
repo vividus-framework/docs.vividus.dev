@@ -650,10 +650,10 @@ For example, <code>ui.visual.baselines-folder=C:/Workspace/vividus-tests/src/mai
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path to folder for saving debug screenshots. For example, <code>ui.screenshot.debug-directory=C:/temp/debug</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.baseline-repository</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Any available baseline repository name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.baseline-storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any available baseline storage name.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>filesystem</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to override default <a href="../developer-guides/plugins.html#_baseline_repositories" class="xref page">baseline repository</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to override default <a href="../developer-guides/plugins.html#_baseline_storages" class="xref page">baseline storage</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1025,13 +1025,13 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_simple_visual_test_with_custom_baseline_repository"><a class="anchor" href="#_run_simple_visual_test_with_custom_baseline_repository"></a>Run simple visual test with custom baseline repository</h3>
+<h3 id="_run_simple_visual_test_with_custom_baseline_storage"><a class="anchor" href="#_run_simple_visual_test_with_custom_baseline_storage"></a>Run simple visual test with custom baseline storage</h3>
 <div class="paragraph">
-<p>Establishes baseline or compares against existing one using <a href="../developer-guides/plugins.html#_baseline_repositories" class="xref page">baseline repository</a>.</p>
+<p>Establishes baseline or compares against existing one using <a href="../developer-guides/plugins.html#_baseline_storages" class="xref page">baseline storage</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using repository `$repository`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using storage `$storage`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1043,14 +1043,14 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>$repository</code> - The name of repository. Ony <code>filesystem</code> available by the default.</p>
+<p><code>$storage</code> - The name of storage. Ony <code>filesystem</code> available by the default.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Perform simple visual check using baseline repository</div>
+<div class="title">Example 3. Perform simple visual check using baseline storage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with name `test` using repository `azure`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with name `test` using storage `azure`</code></pre>
 </div>
 </div>
 </div>
@@ -1141,13 +1141,13 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_visual_test_with_specified_configuration_and_baseline_repository"><a class="anchor" href="#_run_visual_test_with_specified_configuration_and_baseline_repository"></a>Run visual test with specified configuration and baseline repository</h3>
+<h3 id="_run_visual_test_with_specified_configuration_and_baseline_storage"><a class="anchor" href="#_run_visual_test_with_specified_configuration_and_baseline_storage"></a>Run visual test with specified configuration and baseline storage</h3>
 <div class="paragraph">
-<p>Establishes baseline or compares against existing one using the specified configuration and <a href="../developer-guides/plugins.html#_baseline_repositories" class="xref page">baseline repository</a>.</p>
+<p>Establishes baseline or compares against existing one using the specified configuration and <a href="../developer-guides/plugins.html#_baseline_storages" class="xref page">baseline storage</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using repository `$repository` and screenshot configuration:$screenshotConfiguration</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using storage `$storage` and screenshot configuration:$screenshotConfiguration</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1159,7 +1159,7 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>$repository</code> - The name of repository. Ony <code>filesystem</code> available by the default.</p>
+<p><code>$storage</code> - The name of storage. Ony <code>filesystem</code> available by the default.</p>
 </li>
 <li>
 <p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
@@ -1221,9 +1221,9 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Perform visual check on establish with specified configuration and baseline repository</div>
+<div class="title">Example 5. Perform visual check on establish with specified configuration and baseline storage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with name `test` using repository `azure` and screenshot configuration:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with name `test` using storage `azure` and screenshot configuration:
 |scrollableElement  |webFooterToCut|webHeaderToCut|coordsProvider|
 |By.xpath(.//header)|100           |100           |CEILING       |</code></pre>
 </div>
@@ -1262,13 +1262,13 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_visual_test_with_ignoring_option_and_baseline_repository"><a class="anchor" href="#_run_visual_test_with_ignoring_option_and_baseline_repository"></a>Run visual test with ignoring option and baseline repository</h3>
+<h3 id="_run_visual_test_with_ignoring_option_and_baseline_storage"><a class="anchor" href="#_run_visual_test_with_ignoring_option_and_baseline_storage"></a>Run visual test with ignoring option and baseline storage</h3>
 <div class="paragraph">
-<p>Establishes baseline or compares against existing one using the ignoring option and <a href="../developer-guides/plugins.html#_baseline_repositories" class="xref page">baseline repository</a>.</p>
+<p>Establishes baseline or compares against existing one using the ignoring option and <a href="../developer-guides/plugins.html#_baseline_storages" class="xref page">baseline storage</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using repository `$repository` and ignoring:$ignoredElements</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using storage `$storage` and ignoring:$ignoredElements</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1280,7 +1280,7 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>$repository</code> - The name of repository. Ony <code>filesystem</code> available by the default.</p>
+<p><code>$storage</code> - The name of storage. Ony <code>filesystem</code> available by the default.</p>
 </li>
 <li>
 <p><code>$checkSettings</code> - The examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCENTAGE</code>.</p>
@@ -1288,9 +1288,9 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Perform visual check on compare with ignoring options and baseline repository</div>
+<div class="title">Example 7. Perform visual check on compare with ignoring options and baseline storage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with `test` using repository `azure` and ignoring:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I COMPARE_AGAINST baseline with `test` using storage `azure` and ignoring:
 |ELEMENT            |AREA                  |ACCEPTABLE_DIFF_PERCENTAGE|
 |By.xpath(.//header)|By.cssSelector(footer)|5                         |</code></pre>
 </div>
@@ -1389,13 +1389,13 @@ using screenshot configuration:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_run_visual_test_with_ignoring_option_and_specified_configuration_and_baseline_repository"><a class="anchor" href="#_run_visual_test_with_ignoring_option_and_specified_configuration_and_baseline_repository"></a>Run visual test with ignoring option and specified configuration and baseline repository</h3>
+<h3 id="_run_visual_test_with_ignoring_option_and_specified_configuration_and_baseline_storage"><a class="anchor" href="#_run_visual_test_with_ignoring_option_and_specified_configuration_and_baseline_storage"></a>Run visual test with ignoring option and specified configuration and baseline storage</h3>
 <div class="paragraph">
-<p>Establishes baseline or compares against existing one using the ignoring option, the specified configuration, and <a href="../developer-guides/plugins.html#_baseline_repositories" class="xref page">baseline repository</a>..</p>
+<p>Establishes baseline or compares against existing one using the ignoring option, the specified configuration, and <a href="../developer-guides/plugins.html#_baseline_storages" class="xref page">baseline storage</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using repository `$repository` and ignoring:$ignoredElements and screenshot configuration:$screenshotConfiguration</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $actionType baseline with name `$name` using storage `$storage` and ignoring:$ignoredElements and screenshot configuration:$screenshotConfiguration</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1407,7 +1407,7 @@ using screenshot configuration:
 <p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>$repository</code> - The name of repository. Ony <code>filesystem</code> available by the default.</p>
+<p><code>$storage</code> - The name of storage. Ony <code>filesystem</code> available by the default.</p>
 </li>
 <li>
 <p><code>$checkSettings</code> - The examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCENTAGE</code>.</p>
@@ -1472,9 +1472,9 @@ using screenshot configuration:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Perform visual check on establish with ignoring options and specified configuration and baseline repository</div>
+<div class="title">Example 9. Perform visual check on establish with ignoring options and specified configuration and baseline storage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with name `test` using repository `azure` and ignoring:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I ESTABLISH baseline with name `test` using storage `azure` and ignoring:
 |ELEMENT            |AREA                  |ACCEPTABLE_DIFF_PERCENTAGE|
 |By.xpath(.//header)|By.cssSelector(footer)|5                         |
 and screenshot configuration:
