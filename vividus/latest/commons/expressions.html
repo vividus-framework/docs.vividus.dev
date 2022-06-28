@@ -643,6 +643,142 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 <div class="sect1">
+<h2 id="_math_calculations"><a class="anchor" href="#_math_calculations"></a>Math calculations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_round"><a class="anchor" href="#_round"></a><code>round</code></h3>
+<div class="paragraph">
+<p>Rounds a number with an approximate value based on specific rounding definitions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{round(<strong>$value</strong>, $maxFractionDigits, $roundingMode)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$value</code></strong> - any number to be processed</p>
+</li>
+<li>
+<p><code>$maxFractionDigits</code> - maximum number of digits after the decimal separator</p>
+</li>
+<li>
+<p><code>$roundingMode</code> - specifies a rounding behavior for numerical operations (more information <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html">here</a>):</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Rouding Mode</th>
+<th class="tableblock halign-left valign-top">Readable</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds away from zero.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards zero.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CEILING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ceiling</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards positive infinity.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLOOR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">floor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards negative infinity.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HALF_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">half up</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards "nearest neighbor" unless both neighbors are equidistant, in which case round up.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HALF_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">half down</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards "nearest neighbor" unless both neighbors are equidistant, in which case round down.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HALF_EVEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">half even</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rounds towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UNNECESSARY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unnecessary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asserts that the requested operation has an exact result, hence no rounding is necessary.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Examples of rounding operations with different parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(5.0)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-5.9, 0)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-6</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(5.551, 2)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5.55</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(1.4, 0, ceiling)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-1.4, 0, floor)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-5.5555, 3, half up)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-5.556</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-5.555, 2, half down)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-5.55</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-5.5, 0, half even)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-6</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{round(-1.1, 2, unnecessary)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1.1</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_string_manipulations"><a class="anchor" href="#_string_manipulations"></a>String manipulations</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -762,7 +898,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Examples of the expressions converting strings to lower case</caption>
+<caption class="title">Table 3. Examples of the expressions converting strings to lower case</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -799,7 +935,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Examples of the expressions converting strings to upper case</caption>
+<caption class="title">Table 4. Examples of the expressions converting strings to upper case</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -836,7 +972,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Examples of the expressions capitalizing strings</caption>
+<caption class="title">Table 5. Examples of the expressions capitalizing strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -873,7 +1009,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Examples of the expressions capitalizing words in the string</caption>
+<caption class="title">Table 6. Examples of the expressions capitalizing words in the string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -910,7 +1046,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. Examples of the expressions capitalizing strings</caption>
+<caption class="title">Table 7. Examples of the expressions capitalizing strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -947,7 +1083,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Examples of the expressions capitalizing strings</caption>
+<caption class="title">Table 8. Examples of the expressions capitalizing strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -984,7 +1120,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Examples of the expressions capitalizing words in the string</caption>
+<caption class="title">Table 9. Examples of the expressions capitalizing words in the string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1021,7 +1157,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. Examples of the expressions trimming strings</caption>
+<caption class="title">Table 10. Examples of the expressions trimming strings</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1058,7 +1194,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. Examples of the expressions encoding to Base64</caption>
+<caption class="title">Table 11. Examples of the expressions encoding to Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1095,7 +1231,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. Examples of the expressions decoding Base64</caption>
+<caption class="title">Table 12. Examples of the expressions decoding Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1132,7 +1268,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. Examples of the expressions compressing and encoding to Base64 GZip</caption>
+<caption class="title">Table 13. Examples of the expressions compressing and encoding to Base64 GZip</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1169,7 +1305,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. Escape HTML string</caption>
+<caption class="title">Table 14. Escape HTML string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1206,7 +1342,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. Quote regular expression</caption>
+<caption class="title">Table 15. Quote regular expression</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1257,7 +1393,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Example of hash calculating for string using MD5</caption>
+<caption class="title">Table 16. Example of hash calculating for string using MD5</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1297,7 +1433,7 @@ The expression parameters containing commas must be surrounded with triple quote
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. Example of hash calculating for file using SHA-1</caption>
+<caption class="title">Table 17. Example of hash calculating for file using SHA-1</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
