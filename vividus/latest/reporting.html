@@ -754,9 +754,9 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 40%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
 </colgroup>
 <thead>
 <tr>
@@ -797,9 +797,23 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>dl@my-company.com, <a href="mailto:test-results@my-company.com">test-results@my-company.com</a></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>notifications.mail.enable-ssl</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set to true, use SSL to connect</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes">notifications.mail.security-protocol</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>One of the following security protocols:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SSL</code> - use SSL to connect (make sure the SSL port is used).</p>
+</li>
+<li>
+<p><code>STARTTLS</code> - use of the STARTTLS command (if supported by the server) to switch the connection to
+a TLS-protected connection before issuing any login commands. If the server does not support STARTTLS,
+the connection continues without the use of TLS.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SSL</code></p></td>
 </tr>
 </tbody>
 </table>
