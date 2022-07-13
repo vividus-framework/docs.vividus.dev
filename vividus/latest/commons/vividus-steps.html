@@ -976,6 +976,165 @@ Then `${preprod-data}` is = `${prod-data}`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_execute_steps_n_times"><a class="anchor" href="#_execute_steps_n_times"></a>Execute steps N times</h3>
+<div class="paragraph">
+<p>Step is designed to execute specified steps while counter with a certain limit matches a comparison rule. On each iteration the counter is increased on specified value, which is allowed to be either positive or negative. The seed value is used as a starting point for iteration. Current iteration index is available within steps to execute as <code>${iterationVariable}</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule `$limit` with increment `$increment` starting from `$seed`:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule '$limit' with increment '$increment' starting from '$seed':$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$limit</code> - The counter limit.</p>
+</li>
+<li>
+<p><code>$increment</code> - The number to add to the counter on each iteration.</p>
+</li>
+<li>
+<p><code>$seed</code> - The initial counter value.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The ExamplesTable with a single column <code>step</code> containing the steps to execute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Press the button four times</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
+|step                                                                         |
+|When I click on element located `By.caseSensitiveText(CLICK ME FOUR TIMES!)` |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Press one button four times and press the second button from the nested step eight times</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                      !
+!When I click on element located `By.caseSensitiveText(CLICK ME FOUR TIMES)`               !
+!When I execute steps while counter is less than '2' with increment '1' starting from '0': !
+!|step                                                                                    |!
+!|When I click on element located `By.caseSensitiveText(CLICK ME EIGHT TIMES)`            |!</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_if_a_condition_is_true"><a class="anchor" href="#_execute_steps_if_a_condition_is_true"></a>Execute steps if a condition is true</h3>
+<div class="paragraph">
+<p>Steps designed to execute specified steps if result of a condition is true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition `$condition` is true I do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition '$condition' is true I do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$condition</code> - The verifiable condition.
+If result of the <code>$condition</code> is <code>true</code> - performs all specified steps. No steps will be performed if result of the <code>$condition</code> <code>false</code> or contains any non-boolean value.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The ExamplesTable with a single column <code>step</code> containing the steps to execute if the result of the <code>$condition</code> is true.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Click on the element if parent element is found</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
+|step                                                                   |
+|When I click on element located `By.xpath(//*[@class='innerElement'])` |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Click on the element if parent element is found and the element itself is presented on the page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                                                       !
+!When I save number of elements located `By.xpath(//*[@class='innerElement'])` to SCENARIO variable `numberOfInnerElements` !
+!When the condition '#{eval(${numberOfInnerElements} == 1)}' is true I do                                                   !
+!|step                                                                                                                     |!
+!|When I click on element located `By.xpath(//*[@class='innerElement'])`                                                   |!</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_if_a_variable_is_not_set"><a class="anchor" href="#_execute_steps_if_a_variable_is_not_set"></a>Execute steps if a variable is not set</h3>
+<div class="paragraph">
+<p>Execute steps if the variable with specified name is not set into context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `$name` is not set I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable '$name' is not set I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$name</code> - The variable name to check.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The ExamplesTable with a single column <code>step</code> containing the steps to execute if variable <code>$name</code> is not set.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Initialize variable <code>token</code> if it is not already initialized</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
+|step                                                                                                 |
+|When I initialize the STORY variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g` |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                                 !
+!When I initialize the STORY variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g` !
+!When variable 'api-key' is not set I do:                                                             !
+!|step                                                                                                |!
+!|When I initialize the STORY variable `api-key` with value `as38der4535fdERAnA443mIlb`               |!</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
