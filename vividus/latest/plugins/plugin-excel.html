@@ -708,7 +708,7 @@ The following <a href="https://support.microsoft.com/en-us/office/data-types-in-
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_create_excel_file_with_specified_content"><a class="anchor" href="#_create_excel_file_with_specified_content"></a>Create excel file with specified content</h3>
+<h3 id="_create_excel_file_containing_sheet_with_specified_content"><a class="anchor" href="#_create_excel_file_containing_sheet_with_specified_content"></a>Create excel file containing sheet with specified content</h3>
 <div class="paragraph">
 <p>Create temporary excel file with specified content and save the path to the variable</p>
 </div>
@@ -720,13 +720,13 @@ The following <a href="https://support.microsoft.com/en-us/office/data-types-in-
 <div class="ulist">
 <ul>
 <li>
-<p><code>$content</code> - the data to be put to the excel file. Any valid ExamplesTable</p>
+<p><code>$content</code> - The data to be put to the excel file. Any valid ExamplesTable</p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
-<p><code>$variableName</code> - the variable name</p>
+<p><code>$variableName</code> - The variable name</p>
 </li>
 </ul>
 </div>
@@ -737,6 +737,44 @@ The following <a href="https://support.microsoft.com/en-us/office/data-types-in-
 |key1  |key2  |
 |value1|value2|
 and put path to scenario variable `path`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_excel_file_containing_sheet_with_specified_name_and_content"><a class="anchor" href="#_create_excel_file_containing_sheet_with_specified_name_and_content"></a>Create excel file containing sheet with specified name and content</h3>
+<div class="paragraph">
+<p>Create temporary excel file containing sheet with specified name and content and save the file&#8217;s path to the variable</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary excel file containing sheet with name `$sheetName` and content:$content and put its path to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sheetName</code> - Then name of the Excel sheet.</p>
+</li>
+<li>
+<p><code>$content</code> - The data to be put to the excel file. Any valid ExamplesTable</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Create temporary excel file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary excel file containing sheet with name `movies` and content:
+|name                           |year|
+|14 Peaks: Nothing Is Impossible|2021|
+|Free Solo                      |2018|
+|Grizzly Man                    |2005|
+and put its path to scenario variable `movies-path`</code></pre>
 </div>
 </div>
 </div>
@@ -776,7 +814,7 @@ and put path to scenario variable `path`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Validate excel sheet by name</div>
+<div class="title">Example 7. Validate excel sheet by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
 Then the response code is = '200'
@@ -823,7 +861,7 @@ Then `${response-as-bytes}` contains excel sheet with name `Mapping` and records
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Validate excel sheet by index</div>
+<div class="title">Example 8. Validate excel sheet by index</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
 Then the response code is = '200'
