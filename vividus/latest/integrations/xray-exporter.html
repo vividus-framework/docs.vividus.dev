@@ -891,19 +891,21 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cucumber_test_cases"><a class="anchor" href="#_cucumber_test_cases"></a>Cucumber Test Cases</h2>
+<h2 id="_test_case_types"><a class="anchor" href="#_test_case_types"></a>Test Case Types</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Any scenario that doesn&#8217;t correspons to the <a href="#_manual_test_cases">manual test case rules</a> is considered as cucumber test case</p>
+<p>This separation of automated and manual test cases by using special keywords is specific to VIVIDUS.</p>
+</div>
+<div class="sect2">
+<h3 id="_automated_test_cases"><a class="anchor" href="#_automated_test_cases"></a>Automated Test Cases</h3>
+<div class="paragraph">
+<p>Any scenario that doesn&#8217;t correspond to the <a href="#_manual_test_cases">manual test case rules</a> is considered as automated test case.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Cucumber.story</div>
+<div class="title">Example 2. Automated.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-231
-      @requirementId STORY-783
-      @xray.labels link
-      @xray.components web
 
 Given I am on a page with the URL '${vividus-test-site-url}/links.html'
 When I wait until the page has the title 'Links'
@@ -916,13 +918,10 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. CucumberWithManualPart.story</div>
+<div class="title">Example 3. AutomatedWithManualPart.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-566
-      @requirementId STORY-983
-      @xray.labels link
-      @xray.components web
 
 !-- Step: Open main app page
 !-- Step: Wait for page with title is loaded
@@ -943,10 +942,8 @@ Examples:
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_manual_test_cases"><a class="anchor" href="#_manual_test_cases"></a>Manual Test Cases</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_manual_test_cases"><a class="anchor" href="#_manual_test_cases"></a>Manual Test Cases</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -956,7 +953,7 @@ Examples:
 <p>The <code>Manual Test Case</code> step must start with <code>Step:</code> used to specify action to perform and can optionally contain <code>Data:</code> and <code>Result:</code> for specifying action data and action expected result respectively.</p>
 </li>
 <li>
-<p>The <code>Manual Test Case</code> step parts are allowed to have multilines.</p>
+<p>The <code>Manual Test Case</code> step parts are allowed to have multiple lines.</p>
 </li>
 <li>
 <p>The <code>JBehave Keywords</code> values (e.g. <code>Given</code>, <code>When</code>, <code>Then</code> &#8230;&#8203;) on new lines not prefixed with <code>Step:</code>, <code>Data:</code> or <code>Result</code> must be escaped with <code>-</code> sign.</p>
@@ -968,9 +965,6 @@ Examples:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseId TEST-435
-      @requirementId STORY-234
-      @xray.labels shopping; payment
-      @xray.components web
 
 !-- Step: Go to the test item with the following id
 !-- Data: 39914061
@@ -985,6 +979,7 @@ Meta: @testCaseId TEST-435
 !-- Go through all the steps and confirm the payment method.
 !-- Result: Then you should get an error message mentioning that there are no more items in the stock.
 !-- - Then payment method was not made</code></pre>
+</div>
 </div>
 </div>
 </div>

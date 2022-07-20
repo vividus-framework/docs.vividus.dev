@@ -585,7 +585,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Create and update test cases</p>
+<p>Create and update Test Cases. VIVIDUS scenarios are mapped to Azure DevOps Test Cases by using <code>testCaseId</code> meta tags.</p>
+</li>
+<li>
+<p>Create automated Test Runs.</p>
 </li>
 </ul>
 </div>
@@ -660,6 +663,45 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>AUTOMATED</code> or <code>MANUAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The scenario part to export into <code>Steps</code> section of <code>Test Case</code> work item, the remaining scenario part is exported into <code>Summary</code> section.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.create-test-run</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> or <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to create test run.</p>
+</div>
+<div class="paragraph">
+<p>In Azure DevOps only Test Cases with <a href="https://docs.microsoft.com/en-us/azure/devops/test/associate-automated-test-with-test-case?view=azure-devops">associated automation</a> can be included into automated Test Run. The associated automation is automatically added by exported only for <a href="#_automated_test_cases">Automated Test Cases</a>. Attempts to include <a href="#_manual_test_cases">Manual Test Case</a> into automated Test Run will fail the execution process.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.test-run.name</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The test run name.</p>
+</div>
+<div class="paragraph">
+<p>This property is mandatory when the test run creation is enabled, see <code>azure-devops-exporter.create-test-run</code> property for details.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.test-run.test-plan-id</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The ID of Azure DevOps Test Plan that the Azure DevOps Test Run belongs to.</p>
+</div>
+<div class="paragraph">
+<p>In Azure DevOps Test Plan is used to group individual Test Cases and Test Suites, in their turn Test Suites are used to group Test Cases into separate testing scenarios within a single Test Plan and also may include child Test Suites. Azure DevOps allows to have an individual Test Case to be included into several Test Suites and into the Test Plan, <strong>BUT</strong> this is not supported by the exporter which requires the Test Case to be linked to either Test Plan or only one Test Suite, the export process fails if this condition is not met.</p>
+</div>
+<div class="paragraph">
+<p>This property is mandatory when the test run creation is enabled, see <code>azure-devops-exporter.create-test-run</code> property for details.</p>
+</div>
+<div class="paragraph">
+<p>The ID can be found by opening appropriate Azure DevOps Test Plan in "Test Plans" and copying number value of the <code>planId</code> query parameter in the page URL, e.g. having URL <code><a href="https://dev.azure.com/organization/project/_testPlans/define?planId=911" class="bare">https://dev.azure.com/organization/project/_testPlans/define?planId=911</a></code> the plan ID is 911.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -714,7 +756,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>testCaseId</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@testCaseId STUB-0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@testCaseId 911</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Map scenario to Azure DevOps test case in 1 to 1 relation</p></td>
 </tr>
 <tr>
@@ -724,6 +766,100 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_case_types"><a class="anchor" href="#_test_case_types"></a>Test Case Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This separation of automated and manual test cases by using special keywords is specific to VIVIDUS.</p>
+</div>
+<div class="sect2">
+<h3 id="_automated_test_cases"><a class="anchor" href="#_automated_test_cases"></a>Automated Test Cases</h3>
+<div class="paragraph">
+<p>Any scenario that doesn&#8217;t correspond to the <a href="#_manual_test_cases">manual test case rules</a> is considered as automated test case.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Automated.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
+Meta: @testCaseId TEST-231
+
+Given I am on a page with the URL '${vividus-test-site-url}/links.html'
+When I wait until the page has the title 'Links'
+Then number of elements found by `&lt;locator&gt;` is equal to `1`
+Examples:
+|locator                        |
+|By.linkUrl(#ElementId)         |
+|By.linkUrlPart(Element)        |
+|By.linkText(Link to an element)|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. AutomatedWithManualPart.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
+Meta: @testCaseId TEST-566
+
+!-- Step: Open main app page
+!-- Step: Wait for page with title is loaded
+!-- Step: Verify number of links
+!-- Data: * link url is '#ElementId'
+!-- * link url part is 'Element'
+!-- * link text is 'Link to an element'
+!-- Result: The number of links for all locators is equal to 1
+
+Given I am on a page with the URL '${vividus-test-site-url}/links.html'
+When I wait until the page has the title 'Links'
+Then number of elements found by `&lt;locator&gt;` is equal to `1`
+Examples:
+|locator                        |
+|By.linkUrl(#ElementId)         |
+|By.linkUrlPart(Element)        |
+|By.linkText(Link to an element)|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manual_test_cases"><a class="anchor" href="#_manual_test_cases"></a>Manual Test Cases</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Scenario is considered as <code>Manual Test Case</code> if all of its lines start with <code>!--</code> prefix.</p>
+</li>
+<li>
+<p>The <code>Manual Test Case</code> step must start with <code>Step:</code> used to specify action to perform and can optionally contain <code>Data:</code> and <code>Result:</code> for specifying action data and action expected result respectively.</p>
+</li>
+<li>
+<p>The <code>Manual Test Case</code> step parts are allowed to have multiple lines.</p>
+</li>
+<li>
+<p>The <code>JBehave Keywords</code> values (e.g. <code>Given</code>, <code>When</code>, <code>Then</code> &#8230;&#8203;) on new lines not prefixed with <code>Step:</code>, <code>Data:</code> or <code>Result</code> must be escaped with <code>-</code> sign.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Manual.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
+Meta: @testCaseId TEST-435
+
+!-- Step: Go to the test item with the following id
+!-- Data: 39914061
+!-- Result: The current stock is 1
+
+!-- Step: Add the item to the shopping cart
+!-- Result: Shopping cart now displays one 39914061 item and no items in stock
+
+!-- Step: In the backoffice app update the stock to 0 on item
+
+!-- Step: Back in the browser, proceed to checkout.
+!-- Go through all the steps and confirm the payment method.
+!-- Result: Then you should get an error message mentioning that there are no more items in the stock.
+!-- - Then payment method was not made</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
