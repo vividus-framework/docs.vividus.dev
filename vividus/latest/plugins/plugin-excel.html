@@ -779,6 +779,41 @@ and put its path to scenario variable `movies-path`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_add_sheet_to_existing_excel_file"><a class="anchor" href="#_add_sheet_to_existing_excel_file"></a>Add sheet to existing excel file</h3>
+<div class="paragraph">
+<p>Add new sheet with the specified name and content to the existing excel file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add sheet with name `$sheetName` and content:$content to excel file at path `$path`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sheetName</code> - Then name of the sheet.</p>
+</li>
+<li>
+<p><code>$content</code> - The data to put into the sheet. Any valid ExamplesTable.</p>
+</li>
+<li>
+<p><code>$path</code> - The path to existing excel file.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Add sheet with pets</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add sheet with name `pets` and content:
+|type|name      |
+|duck|DuckDuckGo|
+|fish|GlassFish |
+|dog |Datadog   |
+to excel file at path `/home/collection.xslx`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_excel_validations"><a class="anchor" href="#_excel_validations"></a>Excel validations</h3>
 <div class="sect3">
 <h4 id="_by_sheet_name"><a class="anchor" href="#_by_sheet_name"></a>By sheet name</h4>
@@ -814,7 +849,7 @@ and put its path to scenario variable `movies-path`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Validate excel sheet by name</div>
+<div class="title">Example 8. Validate excel sheet by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
 Then the response code is = '200'
@@ -861,7 +896,7 @@ Then `${response-as-bytes}` contains excel sheet with name `Mapping` and records
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate excel sheet by index</div>
+<div class="title">Example 9. Validate excel sheet by index</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
 Then the response code is = '200'
