@@ -627,8 +627,7 @@ The details on executing SQL statements on connection
 <div class="listingblock">
 <div class="title">Example 1. Configure connection and initialization of the database</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
-db.connection.testh2db.url=jdbc:h2:mem:test;\
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.url=jdbc:h2:mem:test;\
   INIT=create schema if not exists test\\;\
   SET SCHEMA test\\;\
   DROP TABLE IF EXISTS test.students\\;\
@@ -641,8 +640,7 @@ db.connection.testh2db.password=</code></pre>
 <div class="listingblock">
 <div class="title">Example 2. Configure connection and initialization of the database with <code>RUNSCRIPT</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
-db.connection.testh2db.url=jdbc:h2:mem:test;\
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.url=jdbc:h2:mem:test;\
   INIT=create schema if not exists test\\;\
   SET SCHEMA test\\;\
   RUNSCRIPT FROM 'classpath:/path/to/sql/file1.sql'\\;\
@@ -664,8 +662,7 @@ db.connection.testh2db.password=</code></pre>
 <div class="listingblock">
 <div class="title">Example 3. Configure connection to database</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.driver-class-name=org.h2.Driver
-db.connection.testh2db.url=jdbc:h2:mem:test;\
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.testh2db.url=jdbc:h2:mem:test;\
   DB_CLOSE_DELAY=-1;
 db.connection.testh2db.username=
 db.connection.testh2db.password=</code></pre>
