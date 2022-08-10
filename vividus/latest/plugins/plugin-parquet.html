@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>Paquet Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-parquet.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -244,7 +244,7 @@
     <a class="nav-link" href="plugin-json.html">JSON</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="plugin-parquet.html">Parquet*</a>
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="plugin-xml.html">XML</a>
@@ -542,7 +542,7 @@
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
     <li>Data Formats</li>
-    <li><a href="plugin-parquet.html">Parquet*</a></li>
+    <li><a href="plugin-parquet.html">Parquet</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -586,8 +586,132 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Paquet Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the ability to create <a href="https://parquet.apache.org/">Parquet</a> files.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-parquet', version: '0.4.15-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expression.csv-to-parquet.csv-format</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#DEFAULT">DEFAULT</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#EXCEL">EXCEL</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#INFORMIX_UNLOAD">INFORMIX_UNLOAD</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#INFORMIX_UNLOAD_CSV">INFORMIX_UNLOAD_CSV</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#MYSQL">MYSQL</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#RFC4180">RFC4180</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#ORACLE">ORACLE</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#POSTGRESQL_CSV">POSTGRESQL_CSV</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#POSTGRESQL_TEXT">POSTGRESQL_TEXT</a></p>
+</li>
+<li>
+<p><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#TDF">TDF</a></p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://commons.apache.org/proper/commons-csv/apidocs/org/apache/commons/csv/CSVFormat.html#DEFAULT">DEFAULT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the format of a CSV file to create a Parquet file from.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expressions"><a class="anchor" href="#_expressions"></a>Expressions</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The expression parameters marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_convertcsvtoparquetfile"><a class="anchor" href="#_convertcsvtoparquetfile"></a><code>convertCsvToParquetFile</code></h3>
+<div class="paragraph">
+<p>Creates temporary Parquet file, writes CSV data records to the file using <a href="https://avro.apache.org/docs/1.11.1/specification/_print/">Avro schema</a>
+and returns its path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{convertCsvToParquetFile(<strong>$csv-resource-path</strong>, <strong>$avro-schema-resource-path</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$csv-resource-path</code></strong> - The path to a resource containig CSV data.</p>
+</li>
+<li>
+<p><strong><code>$avro-schema-resource-path</code></strong> - The path to a resource containig <a href="https://avro.apache.org/docs/1.11.1/specification/_print/">Avro schema</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Initialize a variable with a path to a Parquet file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `parquet-path` with value `#{convertCsvToParquetFile(data/pets.csv, data/pets-schema.avsc)}`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
