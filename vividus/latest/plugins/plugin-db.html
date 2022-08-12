@@ -861,6 +861,31 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </details>
 <details>
+<summary class="title">DB2</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example 19. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.ibm.db2.jcc', name: 'db2jcc', version: 'db2jcc4')</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. environment.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:db2://localhost:50000/my_db
+db.connection.vividus.username=vividus
+db.connection.vividus.password=pa$$w0rd</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 21. <a href="https://www.ibm.com/docs/en/db2-for-zos/11?topic=cdsudidsdjs-url-format-data-server-driver-jdbc-sqlj-type-4-connectivity">URL template</a></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:db2://&lt;host&gt;:&lt;port&gt;/&lt;database_name&gt;</code></pre>
+</div>
+</div>
+</div>
+</details>
+<details>
 <summary class="title">CSV</summary>
 <div class="content">
 <div class="paragraph">
@@ -868,19 +893,19 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 Please see the <a href="../user-guides/execute-sql-against-csv.html" class="xref page">step-by-step guide</a> for more details.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. build.gradle</div>
+<div class="title">Example 22. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'net.sourceforge.csvjdbc', name: 'csvjdbc', version: '1.0.40')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. environment.properties</div>
+<div class="title">Example 23. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data.url=jdbc:relique:csv:classpath:path/to/csv/data</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. URL template</div>
+<div class="title">Example 24. URL template</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:relique:csv:classpath:path/to/resources?parameters</code></pre>
 </div>
@@ -896,19 +921,19 @@ are created at the beginning of the tests and are dropped after the run is
 finished. Please see the <a href="../user-guides/use-in-memory-db-to-manage-test-data.html" class="xref page">detailed guide</a>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. build.gradle</div>
+<div class="title">Example 25. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.h2database', name: 'h2', version: '2.1.214')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. environment.properties</div>
+<div class="title">Example 26. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data.url=jdbc:relique:csv:classpath:path/to/csv/data</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. <a href="https://h2database.com/html/features.html#database_url">URL template</a> for in-memory named database</div>
+<div class="title">Example 27. <a href="https://h2database.com/html/features.html#database_url">URL template</a> for in-memory named database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:h2:mem:databaseName</code></pre>
 </div>
@@ -919,13 +944,13 @@ finished. Please see the <a href="../user-guides/use-in-memory-db-to-manage-test
 <summary class="title">Snowflake</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 25. build.gradle</div>
+<div class="title">Example 28. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'net.snowflake', name: 'snowflake-jdbc', version: '3.13.21')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. environment.properties</div>
+<div class="title">Example 29. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:snowflake://myinstance.west-europe.azure.snowflakecomputing.com/?role=DEVELOPER&amp;warehouse=WAREHOUSE&amp;db=MY_DB
 db.connection.vividus.username=vividus
@@ -933,7 +958,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. <a href="https://docs.snowflake.com/en/user-guide/jdbc-configure.html#syntax">URL template</a></div>
+<div class="title">Example 30. <a href="https://docs.snowflake.com/en/user-guide/jdbc-configure.html#syntax">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:snowflake://account_identifier.snowflakecomputing.com/?connection_parameters</code></pre>
 </div>
@@ -1048,7 +1073,7 @@ specified database using SQL query.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 28. Generate ExampleTable using data from H2 database</div>
+<div class="title">Example 31. Generate ExampleTable using data from H2 database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_DB, dbKey=testh2db, sqlQuery=SELECT * FROM students, nullReplacement= }</code></pre>
 </div>
