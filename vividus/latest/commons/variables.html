@@ -714,18 +714,38 @@ The scopes names are case-insensitive.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variables are available in the next batches. <code>next_batches</code>-scoped variable is not available in batch it&#8217;s declared within.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Such variables are declared only with <code>bdd.variables.batch-&lt;batch-number&gt;.</code> prefix and available throughout the execution of the batch in the suite. An attempt to create the batch-scoped variables during test execution leads to an error.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Declaring batch variable <code>locale</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.batch-1.locale=/us/en/
+bdd.variables.batch-2.locale=/uk/en/</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Using batch variable <code>locale</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on the main application page
+When I go to the relative URL '${locale}'</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>global</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Such variables are declared only via properties with <code>bdd.variables.global.</code> prefix and available throughout the entire execution. An attempt to create the globally scoped variables during test execution leads to an error.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Declaring global variable <code>login-endpoint</code></div>
+<div class="title">Example 3. Declaring global variable <code>login-endpoint</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.login-endpoint=https://my-auth-server.com/api/login</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Using global variable <code>login-endpoint</code></div>
+<div class="title">Example 4. Using global variable <code>login-endpoint</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:
 {
@@ -755,13 +775,13 @@ may produce different results per usage.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Declaring global variable with expression <code>random-user</code></div>
+<div class="title">Example 5. Declaring global variable with expression <code>random-user</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.random-user=#{anyOf(superadmin,admin)}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Using global variable <code>random-user</code></div>
+<div class="title">Example 6. Using global variable <code>random-user</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:
 {
@@ -799,6 +819,9 @@ Then the response code is equal to '200'</code></pre>
 <p><code>next_batches</code>-scoped variables,</p>
 </li>
 <li>
+<p><code>batch</code>-scoped variables,</p>
+</li>
+<li>
 <p><code>global</code>-scoped variables.</p>
 </li>
 </ul>
@@ -807,7 +830,7 @@ Then the response code is equal to '200'</code></pre>
 <p>If variable is resolved, the resolution process is stopped, it means the narrower-scoped variables may override the wider-scoped variables in narrow scope lifetime. For example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Variables override mechanism</div>
+<div class="title">Example 7. Variables override mechanism</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: First scenario
 When I initialize the scenario variable `var` with value `scenario`
