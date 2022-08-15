@@ -775,7 +775,7 @@ the columns.</p>
 <h2 id="_repeating"><a class="anchor" href="#_repeating"></a>REPEATING</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>REPEATING</code> transformer generates <code>ExamplesTable</code> by copy-pasting the initial table the deisred number of times.</p>
+<p><code>REPEATING</code> transformer generates <code>ExamplesTable</code> by copy-pasting the initial table the desired number of times.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -913,6 +913,56 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 |value1|value2|value3|
 |value4|value5|value6|
 |value7|value8|value9|</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_distincting"><a class="anchor" href="#_distincting"></a>DISTINCTING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>DISTINCTING</code> transformer generates <code>ExamplesTable</code> from the specified columns, deleting the rows with repeating values.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byColumnNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the names of the columns to keep separated by semicolon</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following <code>DISTINCTING</code> transformer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=DISTINCTING, byColumnNames=column1;column2}
+|column1|column2|column3|
+|A      |C      |0      |
+|B      |D      |1      |
+|A      |C      |1      |
+|A      |C      |0      |
+|B      |D      |1      |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <code>ExamplesTable</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|column1|column2|
+|A      |C      |
+|B      |D      |</code></pre>
 </div>
 </div>
 </div>
