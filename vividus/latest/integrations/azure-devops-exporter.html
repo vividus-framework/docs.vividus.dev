@@ -669,10 +669,15 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Project ID or project name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>azure-devops-exporter.area</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.area</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The area of the product which a test case is associated with.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The area of the product which a test case is associated with.</p>
+</div>
+<div class="paragraph">
+<p>If the Area name is inherited from the Project name in AzureDevOps this property should be empty. You can check this by making a request for any <a href="https://docs.microsoft.com/en-us/rest/api/azure/devops/wit/work-items/get-work-item?view=azure-devops-rest-7.1&amp;tabs=HTTP">Work Item</a> within current Area and checking if the <code>System.AreaPath</code> contains any data besides the Project name.</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>azure-devops-exporter.section-mapping.steps</code></p></td>
