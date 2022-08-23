@@ -862,12 +862,44 @@ where:
 <td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>VIEWPORT_PASTING</code> by default)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-top</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of top part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-bottom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of bottom part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-left</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of left part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-right</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of right part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy=YOUR_STRATEGY_NAME</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">After configuration necessary properties use this one to enable your custom strategy</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Mind that <code>cut-<strong>*</strong></code> modifications applied to the final screenshot, for example final stitched screenshot will be cut for the viewport-pasting strategy.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_step_based_configuration"><a class="anchor" href="#_step_based_configuration"></a>Step based configuration</h4>
@@ -886,15 +918,15 @@ where:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_examples_of_usage_property_based_configuration"><a class="anchor" href="#_examples_of_usage_property_based_configuration"></a><strong>Examples of usage property based configuration:</strong></h4>
+<h4 id="_examples_of_usage_property_based_web_configuration"><a class="anchor" href="#_examples_of_usage_property_based_web_configuration"></a><strong>Examples of usage property based web configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">web.screenshot.strategy.bombaysapphire.web-header-to-cut=80
-web.screenshot.strategy.bombaysapphire.web-footer-to-cut=0
-web.screenshot.strategy.bombaysapphire.scrollable-element=By.cssSelector(.page__inner)
-web.screenshot.strategy.bombaysapphire.scroll-timeout=PT1S
-web.screenshot.strategy.bombaysapphire.shooting-strategy=SIMPLE
-web.screenshot.strategy=bombaysapphire</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">web.screenshot.strategy.custom.web-header-to-cut=80
+web.screenshot.strategy.custom.web-footer-to-cut=0
+web.screenshot.strategy.custom.scrollable-element=By.cssSelector(.page__inner)
+web.screenshot.strategy.custom.scroll-timeout=PT1S
+web.screenshot.strategy.custom.shooting-strategy=SIMPLE
+web.screenshot.strategy=custom</code></pre>
 </div>
 </div>
 </div>
@@ -977,9 +1009,29 @@ where:
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><sub><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></sub></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~size in pixels~</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~Native footer to cut.~ <strong>DEPRECATED</strong> use <code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-bottom</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-top</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Native footer to cut</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of top part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-bottom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of bottom part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-left</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of left part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-right</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of right part of the final screenshot to cut.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
@@ -995,12 +1047,16 @@ where:
 </table>
 </div>
 <div class="sect3">
-<h4 id="_examples_of_usage_property_based_configuration_2"><a class="anchor" href="#_examples_of_usage_property_based_configuration_2"></a><strong>Examples of usage property based configuration:</strong></h4>
+<h4 id="_examples_of_usage_property_based_configuration"><a class="anchor" href="#_examples_of_usage_property_based_configuration"></a><strong>Examples of usage property based configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">mobile.screenshot.strategy.bombaysapphire.native-footer-to-cut=100
-mobile.screenshot.strategy.bombaysapphire.shooting-strategy=SIMPLE
-mobile.screenshot.strategy=bombaysapphire</code></pre>
+mobile.screenshot.strategy.custom.cut-top=100
+mobile.screenshot.strategy.custom.cut-left=100
+mobile.screenshot.strategy.custom.cut-right=100
+mobile.screenshot.strategy.custom.cut-bottom=100
+mobile.screenshot.strategy.custom.shooting-strategy=SIMPLE
+mobile.screenshot.strategy=custom</code></pre>
 </div>
 </div>
 </div>
@@ -1009,7 +1065,7 @@ mobile.screenshot.strategy=bombaysapphire</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
-|nativeFooterToCut|shootingStrategy|
+|cutTop           |shootingStrategy|
 |51               |SIMPLE          |</code></pre>
 </div>
 </div>
@@ -1161,61 +1217,57 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <p><code>$name</code> - The name of baseline.</p>
 </li>
 <li>
-<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Web screenshot configuration fields:</p>
-</div>
+<p><code>$screenshotConfiguration</code> - The screenshot configuration:</p>
 <div class="ulist">
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
-<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+<p><code>nativeHeaderToCut</code> - The native header to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+<p><code>nativeFooterToCut</code> - The native footer to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<p><code>cutTop</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutLeft</code> - The left bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutRight</code> - The right bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutBottom</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll. <strong>(Web only)</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CEILING</code> - Based on JS API.</p>
+<p><code>CEILING</code> - Based on JS API. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>scrollableElement</code> - The element to scroll.</p>
+<p><code>scrollableElement</code> - The element to scroll. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>scrollTimeout</code> - The scroll timeout.</p>
+<p><code>scrollTimeout</code> - The scroll timeout. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Mobile screenshot configuration fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
-</li>
-<li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
@@ -1250,61 +1302,57 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <p><code>$storage</code> - The name of storage. Ony <code>filesystem</code> available by the default.</p>
 </li>
 <li>
-<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Web screenshot configuration fields:</p>
-</div>
+<p><code>$screenshotConfiguration</code> - The screenshot configuration:</p>
 <div class="ulist">
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
-<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+<p><code>nativeHeaderToCut</code> - The native header to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+<p><code>nativeFooterToCut</code> - The native footer to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<p><code>cutTop</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutLeft</code> - The left bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutRight</code> - The right bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutBottom</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll. <strong>(Web only)</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CEILING</code> - Based on JS API.</p>
+<p><code>CEILING</code> - Based on JS API. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>scrollableElement</code> - The element to scroll.</p>
+<p><code>scrollableElement</code> - The element to scroll. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>scrollTimeout</code> - The scroll timeout.</p>
+<p><code>scrollTimeout</code> - The scroll timeout. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Mobile screenshot configuration fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
-</li>
-<li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
@@ -1505,61 +1553,57 @@ When I compare_against baseline with name `context-element-with-acceptable-diff-
 <p><code>$checkSettings</code> - The examples table of <code>ELEMENT</code>, <code>AREA</code>, <code>ACCEPTABLE_DIFF_PERCENTAGE</code> or <code>REQUIRED_DIFF_PERCENTAGE</code>.</p>
 </li>
 <li>
-<p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Web screenshot configuration fields:</p>
-</div>
+<p><code>$screenshotConfiguration</code> - The screenshot configuration:</p>
 <div class="ulist">
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
-<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+<p><code>nativeHeaderToCut</code> - The native header to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+<p><code>nativeFooterToCut</code> - The native footer to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<p><code>cutTop</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutLeft</code> - The left bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutRight</code> - The right bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutBottom</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll. <strong>(Web only)</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CEILING</code> - Based on JS API.</p>
+<p><code>CEILING</code> - Based on JS API. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>scrollableElement</code> - The element to scroll.</p>
+<p><code>scrollableElement</code> - The element to scroll. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>scrollTimeout</code> - The scroll timeout.</p>
+<p><code>scrollTimeout</code> - The scroll timeout. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Mobile screenshot configuration fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
-</li>
-<li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
@@ -1601,60 +1645,56 @@ using screenshot configuration:
 </li>
 <li>
 <p><code>$screenshotConfiguration</code> - The screenshot configurations.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Web screenshot configuration fields:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
-<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
+<p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer.</p>
+<p><code>webFooterToCut</code> - The footer to cut on each screenshot segment during scroll e.g. sticky footer. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>nativeHeaderToCut</code> - The header to cut on final screenshot.</p>
+<p><code>nativeHeaderToCut</code> - The native header to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
+<p><code>nativeFooterToCut</code> - The native footer to cut (e.g. system/browser bars). <strong>(Web on mobile only)</strong></p>
 </li>
 <li>
-<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll.</p>
+<p><code>cutTop</code> - The header to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutLeft</code> - The left bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutRight</code> - The right bar to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>cutBottom</code> - The footer to cut on final screenshot.</p>
+</li>
+<li>
+<p><code>coordsProvider</code> - The coords provider used to get ignoring elements position during scroll. <strong>(Web only)</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>CEILING</code> - Based on JS API.</p>
+<p><code>CEILING</code> - Based on JS API. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>WEB_DRIVER</code> - Based on WebDriver API.</p>
+<p><code>WEB_DRIVER</code> - Based on WebDriver API. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>scrollableElement</code> - The element to scroll.</p>
+<p><code>scrollableElement</code> - The element to scroll. <strong>(Web only)</strong></p>
 </li>
 <li>
-<p><code>scrollTimeout</code> - The scroll timeout.</p>
+<p><code>scrollTimeout</code> - The scroll timeout. <strong>(Web only)</strong></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Mobile screenshot configuration fields:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
-</li>
-<li>
-<p><code>nativeFooterToCut</code> - The footer to cut on final screenshot.</p>
 </li>
 </ul>
 </div>
