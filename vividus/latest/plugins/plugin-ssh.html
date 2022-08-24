@@ -621,7 +621,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>my-server</code> is a key used to refer SSH connection in the steps. The key is defined by users, must be unique and can&#8217;t contain dots.</p>
+<p>where <code>my-server</code> is a key used to refer SSH connection in the steps. The key is defined by users, it must be unique and can&#8217;t contain dots.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -672,7 +672,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.agent-forwarding</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -681,7 +681,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.pseudo-terminal-enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -723,7 +723,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.channel-type</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>exec</code>
+<p><code>exec</code><br>
 <code>shell</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>exec</code></p></td>
@@ -741,11 +741,343 @@ The properties marked with <strong>bold</strong> are mandatory.
 </ul>
 </div>
 <div class="paragraph">
-<p>With <a href="https://stackoverflow.com/a/56713547/2067574">less common SSH servers</a>, the difference can be even more significant. Some servers may even not support one of the channels. It is also quite common that they seemingly support both, but one of them (typically the <code>exec</code>) is completely broken.</p>
+<p>With <a href="https://stackoverflow.com/a/56713547/2067574">less common SSH servers</a>, the difference can be even more significant. Some servers may not even support one of the channels. It is also quite common that they seemingly support both, but one of them (typically the <code>exec</code>) is completely broken.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configure_dynamic_ssh_connection"><a class="anchor" href="#_configure_dynamic_ssh_connection"></a>Configure dynamic SSH connection</h3>
+<div class="paragraph">
+<p>Creates a new dynamic SSH connection from the provided parameters, the connection is available only within the story creating the connection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure SSH connection with key `$connectionKey` and parameters:$connectionParameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$connectionKey</code> - The key to assign to the creating SSH connection. In case if the key conflicts with a global connection key, the dynamic connection will take precedence within the story.</p>
+</li>
+<li>
+<p><code>$connectionParameters</code> - <code>ExamplesTable</code> with SSH connection parameters.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The parameters marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>username</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the user logging in</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>host</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hostname or IP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The remote host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>port</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0..65535</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The remote port (The standard TCP port for SSH is 22)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>agent-forwarding</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable forwarding of the authentication agent connection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pseudo-terminal-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allocate a <a href="https://tools.ietf.org/html/rfc4254#section-6.2">Pseudo-Terminal</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are used only for the password-based authentication</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>password</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are used only for the public key authentication</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>private-key</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The private key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>public-key</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>passphrase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase for the private key</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are not applicable for SFTP</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>channel-type</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>exec</code><br>
+<code>shell</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exec</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>In common *nix OpenSSH server:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>shell</code> channel executes a login shell (as if you login with SSH terminal client).</p>
+</li>
+<li>
+<p>The <code>exec</code> command takes a command as an "argument" and executes it in an isolated environment &ndash; still via user&#8217;s default shell, but not as a "login" shell, what may cause significant differences in the command execution.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With <a href="https://stackoverflow.com/a/56713547/2067574">less common SSH servers</a>, the difference can be even more significant. Some servers may not even support one of the channels. It is also quite common that they seemingly support both, but one of them (typically the <code>exec</code>) is completely broken.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 2. Configure SSH connection dynamically</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure SSH connection with key `my-connection` and parameters:
+|username |host       |port|password|
+|admin    |10.10.10.10|22  |Pa$$w0rd|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_commands"><a class="anchor" href="#_execute_commands"></a>Execute commands</h3>
+<div class="paragraph">
+<p>Retrieves SSH connection parameters by key, opens SSH session and executes commands remotely via the specified protocol.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands `$commands` on $connectionKey over $protocol</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$commands</code> - Semicolon-separated commands to execute.</p>
+</li>
+<li>
+<p><code>$connectionKey</code> - The SSH connection key matching any of configured ones.</p>
+</li>
+<li>
+<p><code>$protocol</code> - The protocol of execution: <code>SSH</code> or <code>SFTP</code>.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. The list of the supported <code>SFTP</code> commands</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cd path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change remote directory to <code>path</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>get remote-path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Download file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ls [path]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display remote directory listing (optionally directory <code>path</code> can be specified)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mkdir path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create remote directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pwd</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display remote working directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rmdir path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove remote directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rm path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove remote file</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Execute commands via SSH protocol</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands `cd /; pwd` on my-host over SSH</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Execute commands via SFTP protocol</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands `cd /Users` on my-host over SFTP</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_commands_via_sftp_and_save_the_result"><a class="anchor" href="#_execute_commands_via_sftp_and_save_the_result"></a>Execute commands via SFTP and save the result</h3>
+<div class="paragraph">
+<p>Retrieves SSH connection parameters by key, opens SSH session, executes SFTP
+commands remotely and saves the result of the commands to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands `$commands` on $connectionKey over SFTP and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$commands</code> - Semicolon-separated commands to execute.</p>
+</li>
+<li>
+<p><code>$connectionKey</code> - The SSH connection key matching any of configured ones.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the SFTP commands execution result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Retrive file via SFTP protocol</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute commands `get remote-file.txt` on my-host over SFTP and save result to scenario variable `file-content`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_file_via_sftp"><a class="anchor" href="#_create_a_file_via_sftp"></a>Create a file via SFTP</h3>
+<div class="paragraph">
+<p>Retrieves SSH connection parameters by key, opens SSH session and creates file
+with the given content at the provided remote destination.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create file with content `$content` at path `$destination` on $connectionKey over SFTP</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$content</code> - The content of the file to create.</p>
+</li>
+<li>
+<p><code>$destination</code> - The remote file destination.</p>
+</li>
+<li>
+<p><code>$connectionKey</code> - The SSH connection key matching any of configured ones.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Create a file via SFTP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create file with content `hello world!` at path `remote-file.txt` on my-host over SFTP</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_copy_a_file_via_sftp"><a class="anchor" href="#_copy_a_file_via_sftp"></a>Copy a file via SFTP</h3>
+<div class="paragraph">
+<p>Retrieves SSH connection parameters by key, opens SSH session and copies the
+local file to the remote destination.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I copy local file located at `$filePath` to path `$destination` on $connectionKey over SFTP</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filePath</code> - The path of the file to copy.</p>
+</li>
+<li>
+<p><code>$destination</code> - The remote file destination.</p>
+</li>
+<li>
+<p><code>$connectionKey</code> - The SSH connection key matching any of configured ones.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Copy a file via SFTP</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I copy local file located at `local-file.txt` to path `remote-file.txt` on my-host over SFTP</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
