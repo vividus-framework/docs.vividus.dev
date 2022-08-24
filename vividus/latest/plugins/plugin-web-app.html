@@ -3997,6 +3997,40 @@ Then `${response}` matcher `.+`</code></pre>
 <div class="paragraph">
 <p>This set of steps allows to validate the <a href="https://developer.mozilla.org/en-US/docs/Web/API/console">browser console logging messages</a>.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In order to configure availability of the INFO level messages use following properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property to enable INFO logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Chrome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.capabilities.goog\:loggingPrefs.browser=INFO</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Edge Chromium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">]selenium.capabilities.ms\:loggingPrefs.browser=INFO`</p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="_validate_log_entries_absence"><a class="anchor" href="#_validate_log_entries_absence"></a>Validate log entries absence</h4>
 <div class="paragraph">
@@ -4010,7 +4044,7 @@ Then `${response}` matcher `.+`</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 </ul>
 </div>
@@ -4035,7 +4069,7 @@ Then there are no browser console ERRORS</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 <li>
 <p><code>$pattern</code> - The regular expression to match log entry messages.</p>
@@ -4063,7 +4097,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 <li>
 <p><code>$pattern</code> - The regular expression to match log entry messages.</p>
