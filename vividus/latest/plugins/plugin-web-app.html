@@ -3992,6 +3992,93 @@ Then `${response}` matcher `.+`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_browser_logs_steps"><a class="anchor" href="#_browser_logs_steps"></a>Browser logs steps</h3>
+<div class="paragraph">
+<p>This set of steps allows to validate the <a href="https://developer.mozilla.org/en-US/docs/Web/API/console">browser console logging messages</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_validate_log_entries_absence"><a class="anchor" href="#_validate_log_entries_absence"></a>Validate log entries absence</h4>
+<div class="paragraph">
+<p>Validates the absence of log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 72. Validate absence of JS errors</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are no browser console ERRORS</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_absence"><a class="anchor" href="#_validate_specific_log_entries_absence"></a>Validate specific log entries absence</h4>
+<div class="paragraph">
+<p>Validates the absence of specific log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex '$pattern'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 73. Validate absence of JS error referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_presence"><a class="anchor" href="#_validate_specific_log_entries_presence"></a>Validate specific log entries presence</h4>
+<div class="paragraph">
+<p>Validates the presence of specific log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are browser console $logLevels by regex '$pattern'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 74. Validate presence of JS errors referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
