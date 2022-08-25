@@ -597,7 +597,23 @@
 <p>Zephyr Exporter is a tool used for exporting test execution results into Jira Zephyr Plugin.</p>
 </div>
 <div class="paragraph">
-<p>Features:</p>
+<p>Zephyr <code>Scale</code> Features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create test executions</p>
+</li>
+<li>
+<p>Set test execution statuses</p>
+</li>
+<li>
+<p>Update statuses for existent execution</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Zephyr <code>Squad</code> Features:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -706,6 +722,14 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.api-type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of Jira API (<code>SCALE</code>, <code>SQUAD</code>). The <code>SCALE</code> type is selected by default.</p>
+<p class="tableblock">Zephyr Squad (formerly "Zephyr for Jira") provides base functionality for test case management easy to start, easy to use. <a href="https://smartbear.com/test-management/zephyr-squad/">More info</a></p>
+<p class="tableblock">Zephyr Scale (formerly "Test Management for Jira") provides advanced test case management capabilities, such as cross-project test management solution with
+advanced test planning, reporting, and reusability features. <a href="https://smartbear.com/test-management/zephyr-scale/">More info</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.jira-instance-key</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The key of the configured JIRA instance, in case of missing value it will be evaluated automatically based on issue keys being exported</p></td>
@@ -714,16 +738,6 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.source-directory</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Path to directory with test execution JSON results.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.update-execution-statuses-only</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Property for update existing executions statuses only.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.statuses-of-test-cases-to-add-to-execution</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">List of test case statuses for adding to execution.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.project-key</code></p></td>
@@ -745,6 +759,19 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Folder name where new test executions should be created</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="3"><p class="tableblock"><em>The following properties are applicable only for Squad</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.statuses-of-test-cases-to-add-to-execution</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of test case statuses for adding to execution.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.exporter.update-execution-statuses-only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property for update existing executions statuses only.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -755,41 +782,52 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <div class="paragraph">
 <p>The Zephyr plugin for Jira has own configurable execution statuses. testExecutionStatus endpoint is used to get the detailed information about the statuses, like: <a href="https://jira.example.com/rest/zapi/latest/util/testExecutionStatus" class="bare">https://jira.example.com/rest/zapi/latest/util/testExecutionStatus</a>. The following properties are used to setup a mapping between Vividus and Zephyr execution statuses.</p>
 </div>
+<div class="paragraph">
+<p>This approach is similar for both API types (Scale and Squad), the major differences are Zephyr Scale has fewer test case statuses by default and the status representation during import (for Scale status transmitted in text format, like: Failed (Fail), but for Squad it transmitted in number format (status code), like: 7).</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
+<col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50.0001%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Vividus execution status property name</th>
-<th class="tableblock halign-left valign-top">Zephyr execution status value (by default)</th>
+<th class="tableblock halign-left valign-top">Zephyr Squad execution status value (by default)</th>
+<th class="tableblock halign-left valign-top">Zephyr Scale execution status value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.FAILED</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FAILED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fail</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.BROKEN</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TEST NEEDS REWORK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fail</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.PENDING</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TEST NEEDS REWORK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Progress</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.UNKNOWN</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PASSED WITH REMARKS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.SKIPPED</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SCHEDULED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not Executed</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>zephyr.statuses.PASSED</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PASSED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass</p></td>
 </tr>
 </tbody>
 </table>
