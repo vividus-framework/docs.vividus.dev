@@ -974,6 +974,20 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password to be used to create a new session</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.timeout</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1M</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total duration to wait for UI condition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.polling-period</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT2S</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used together with <code>ui.wait.timeout</code>. Total duration of time between two iterations of UI condition check</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.platform-name</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>Android</code></p>
@@ -981,15 +995,17 @@ The properties marked with <strong>bold</strong> are mandatory.
 <div class="paragraph">
 <p><code>iOS</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the mobile OS to use</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the mobile OS to use</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.automation-name</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>UIAutomator2</code>
 <code>XCUITest</code></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Defines automation engine to use</p>
@@ -1016,8 +1032,6 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.real-device</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code></p>
@@ -1025,6 +1039,8 @@ The properties marked with <strong>bold</strong> are mandatory.
 <div class="paragraph">
 <p><code>false</code></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Defines whether the tests run on real device</p>
@@ -1055,10 +1071,10 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.device.folder-for-file-upload</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Defines a destination folder on a device for a file being uploaded</p>
@@ -1085,42 +1101,38 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy for the whole test run</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any host name resolving on the machine</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the host which will be used by proxy</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.ports</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ports range (e.g., <code>10000-10005</code>)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ports range which could be occupied for proxy</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.connectable-host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host.docker.internal</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">proxy.publish-har-on-failure</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables publishing of attachments with HAR to each failed step. <code>@noHarOnFailure</code> meta tag can be used to disable HAR publishing at the story level.</p></td>
 </tr>
 </tbody>
 </table>

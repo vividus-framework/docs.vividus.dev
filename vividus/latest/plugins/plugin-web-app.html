@@ -1083,50 +1083,66 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password to be used to create a new session</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.timeout</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1M</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total duration to wait for UI condition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.polling-period</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT2S</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used together with <code>ui.wait.timeout</code>. Total duration of time between two iterations of UI condition check</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy for the whole test run</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any host name resolving on the machine</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the host which will be used by proxy</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.ports</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ports range (e.g., <code>10000-10005</code>)</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ports range which could be occupied for proxy</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.connectable-host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>host.docker.internal</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">proxy.publish-har-on-failure</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables publishing of attachments with HAR to each failed step. <code>@noHarOnFailure</code> meta tag can be used to disable HAR publishing at the story level.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>screenshot.on-failure.debug-modes</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provides possibility to attach screenshot for failed proxy steps</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides possibility to attach screenshot for failed proxy steps</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.driver.&lt;browser-name&gt;.command-line-arguments</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">string with arguments</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The command line (CLI) arguments to use when starting browser.</p>
@@ -1147,12 +1163,8 @@ The properties marked with <strong>bold</strong> are mandatory.
 </li>
 </ul>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web-application.sticky-header-size-percentage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">header size as a viewport size percent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>25</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Before the click VIVIDUS scrolls element into the viewport, the property defines top edge indent in viewport percent for the scroll</p></td>
 </tr>
 </tbody>
 </table>
@@ -4109,6 +4121,53 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
 Then there are browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_console_log_entries_and_save_them"><a class="anchor" href="#_wait_for_console_log_entries_and_save_them"></a>Wait for console log entries and save them</h4>
+<div class="paragraph">
+<p>Waits for the appearance of the console log entries with the expected level and which match regular expression and saves all the entries (including awaited ones) of the expected level gathered during the wait to the scoped variable.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout</code> and <code>ui.wait.polling-period</code>. See <a href="#_properties">Properties</a> section for more details.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until browser console $logEntries by regex `$regex` appear and save all entries into $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 75. Wait for application readiness</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
+Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
 </div>
 </div>
 </div>
