@@ -1348,6 +1348,153 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <div class="sect1">
 <h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Profiles allow to choose or parameterize browser that tests run on. See more details on the profiles and nesting strategy on the <a href="../tests-configuration.html#_profiles" class="xref page">configuration page</a>.</p>
+</div>
+<div class="paragraph">
+<p>Web-application plugin contains significant amount of built-in profiles. They can be found after plugin installation by the following path in Eclipse IDE:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-DIR hljs" data-lang="DIR">Referenced Libraries -&gt; vividus-plugin-web-app-X.Y.Z -&gt; properties -&gt; profile -&gt; web</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go through the structure and review its content.</p>
+</div>
+<div class="sect2">
+<h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
+<div class="paragraph">
+<p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to webdriver or to a custom browser.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/chrome</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=chrome
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10
+web.driver.chrome.command-line-arguments=--disable-auto-reload
+web.driver.chrome.binary-path=/path/to/custom/chrome</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/edge.chromium</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=edge_chromium
+selenium.grid.platform-name=macOS
+selenium.grid.platform-version=12.5
+selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/firefox</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=firefox
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10
+web.driver.firefox.command-line-arguments=--turbo</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/iexplore</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=iexplore
+selenium.grid.capabilities.browserName=internet explorer
+web.driver.iexplore.command-line-arguments=-private
+selenium.grid.capabilities.iedriverVersion=3.141.0
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=7</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/opera</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=opera
+selenium.grid.screen-resolution=1920x1080
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/desktop/safari</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=safari
+selenium.grid.platform-name=macOS
+selenium.grid.platform-version=11.00</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_mobile_emulation"><a class="anchor" href="#_mobile_emulation"></a>Mobile emulation</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Built-in devices</p>
+<div class="paragraph">
+<p>Chrome allows to emulate view on mobile devices using <a href="https://developer.chrome.com/docs/devtools/device-mode/">Device mode</a>. Such feature is reflected in <code>mobile_emulation</code> subdirectory in Profiles. Use device-name property to mention target device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.CHROME.mobile-emulation.device-name=DEVICE_NAME</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Available for emulation devices you can find in the <a href="https://developer.chrome.com/docs/devtools/device-mode/#device">Dimensions list</a> in chrome.</p>
+</div>
+</li>
+<li>
+<p>Custom devices</p>
+<div class="paragraph">
+<p>In case you need to use <a href="https://developer.chrome.com/docs/devtools/device-mode/#responsive">Responsive Viewport Mode</a> and set up your own device, update the screen resolution in the following properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.CHROME.mobile-emulation.width=1440
+web.driver.CHROME.mobile-emulation.height=900</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
 <div class="paragraph">
@@ -1371,6 +1518,79 @@ Default selenium grid URL is set to <code>selenium.grid.url=http://localhost:444
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">confgiguraiton.profiles=web/docker,web/desktop/chrome</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_headless"><a class="anchor" href="#_headless"></a>Headless</h3>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Headless_browser">Headless mode</a> is a functionality that allows the execution of a full version of the browser while controlling it programmatically. It can be used without dedicated graphics or display, meaning that it runs without its “head”, the Graphical User Interface (GUI). Update properties in this directory to adjust your headless automation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_phone"><a class="anchor" href="#_phone"></a>Phone</h3>
+<div class="paragraph">
+<p>Contains phone related properties, for android and iOS devices, including portrait and landscape orientations.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/phone</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platform=Android
+selenium.grid.capabilities.platformVersion=11.0
+selenium.grid.capabilities.deviceOrientation=portrait
+selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_tablet"><a class="anchor" href="#_tablet"></a>Tablet</h3>
+<div class="paragraph">
+<p>Similar to the <a href="#_phone">Phone</a> directory, but is designed for tablets properties.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/tablet</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformName=iOS
+selenium.grid.capabilities.platformVersion=14.0
+selenium.grid.capabilities.deviceName=iPad
+selenium.grid.capabilities.deviceOrientation=landscape
+selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
