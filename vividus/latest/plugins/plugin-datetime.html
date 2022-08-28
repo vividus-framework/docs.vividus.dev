@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Date/Time Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-datetime.html">
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.herokuapp.com/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AWS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-key-vault.html">Key Vault</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-sql-db.html">SQL Database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-xml.html">XML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-cross-browser-testing.html">SmartBear: CrossBrowserTesting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.15/index.html">0.4.15</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.14/index.html">0.4.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.13/index.html">0.4.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.11/index.html">0.4.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.10/index.html">0.4.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.9/index.html">0.4.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.8/index.html">0.4.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.7/index.html">0.4.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.6/index.html">0.4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.11/index.html">0.3.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.10/index.html">0.3.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.9/index.html">0.3.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.8/index.html">0.3.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.7/index.html">0.3.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.6/index.html">0.3.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.5/index.html">0.3.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.4/index.html">0.3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.3/index.html">0.3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.2/index.html">0.3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.1/index.html">0.3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.0/index.html">0.3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.2.14/index.html">0.2.14</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>Plugins</li>
+    <li><a href="plugin-datetime.html">Date/Time</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="plugin-datetime.html">latest</a>
+    <a class="version" href="../../0.4.16/plugins/plugin-datetime.html">0.4.16</a>
+    <a class="version" href="../../0.4.15/plugins/plugin-datetime.html">0.4.15</a>
+    <a class="version" href="../../0.4.14/plugins/plugin-datetime.html">0.4.14</a>
+    <a class="version" href="../../0.4.13/plugins/plugin-datetime.html">0.4.13</a>
+    <a class="version" href="../../0.4.11/plugins/plugin-datetime.html">0.4.11</a>
+    <a class="version" href="../../0.4.10/plugins/plugin-datetime.html">0.4.10</a>
+    <a class="version" href="../../0.4.9/plugins/plugin-datetime.html">0.4.9</a>
+    <a class="version" href="../../0.4.8/plugins/plugin-datetime.html">0.4.8</a>
+    <a class="version" href="../../0.4.7/plugins/plugin-datetime.html">0.4.7</a>
+    <a class="version" href="../../0.4.6/plugins/plugin-datetime.html">0.4.6</a>
+    <a class="version" href="../../0.4.5/plugins/plugin-datetime.html">0.4.5</a>
+    <a class="version" href="../../0.4.4/plugins/plugin-datetime.html">0.4.4</a>
+    <a class="version" href="../../0.4.3/plugins/plugin-datetime.html">0.4.3</a>
+    <a class="version" href="../../0.4.2/plugins/plugin-datetime.html">0.4.2</a>
+    <a class="version" href="../../0.4.1/plugins/plugin-datetime.html">0.4.1</a>
+    <a class="version" href="../../0.4.0/plugins/plugin-datetime.html">0.4.0</a>
+    <a class="version" href="../../0.3.12/plugins/plugin-datetime.html">0.3.12</a>
+    <a class="version" href="../../0.3.11/plugins/plugin-datetime.html">0.3.11</a>
+    <a class="version" href="../../0.3.10/plugins/plugin-datetime.html">0.3.10</a>
+    <a class="version" href="../../0.3.9/plugins/plugin-datetime.html">0.3.9</a>
+    <a class="version" href="../../0.3.8/plugins/plugin-datetime.html">0.3.8</a>
+    <a class="version" href="../../0.3.7/plugins/plugin-datetime.html">0.3.7</a>
+    <a class="version" href="../../0.3.6/plugins/plugin-datetime.html">0.3.6</a>
+    <a class="version" href="../../0.3.5/plugins/plugin-datetime.html">0.3.5</a>
+    <a class="version" href="../../0.3.4/plugins/plugin-datetime.html">0.3.4</a>
+    <a class="version" href="../../0.3.3/plugins/plugin-datetime.html">0.3.3</a>
+    <a class="version" href="../../0.3.2/plugins/plugin-datetime.html">0.3.2</a>
+    <a class="version" href="../../0.3.1/plugins/plugin-datetime.html">0.3.1</a>
+    <a class="version" href="../../0.3.0/plugins/plugin-datetime.html">0.3.0</a>
+    <a class="version" href="../../0.2.14/plugins/plugin-datetime.html">0.2.14</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-datetime.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Date/Time Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides functionality to generate, modify and validate date/time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-datetime', version: '0.5.0-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_required"><a class="anchor" href="#_required"></a>Required</h3>
+<div class="paragraph">
+<p>There are no required properties for the plugin.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional"><a class="anchor" href="#_optional"></a>Optional</h3>
+<div class="paragraph">
+<p><code>location.zone-id</code> - Defines time zone which will be used. The default is set to a system default timezone. <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/ZoneId.html">Time zone format</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expressions"><a class="anchor" href="#_expressions"></a><a href="../glossary.html#_expression" class="xref page">Expressions</a></h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The expression parameters marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_generatedate"><a class="anchor" href="#_generatedate"></a><code>generateDate</code></h3>
+<div class="paragraph">
+<p>Generates the date using current date as a baseline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> #{generateDate(<strong>$period</strong>, $outputFormat)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>period</code></strong> - the period in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+<li>
+<p><code>outputFormat</code> - the output format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expression.generate-date.locale</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">2-letter language code</a> followed by underscore <code>_</code> and then <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2-letter country code</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>en_US</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The locale used for the resulting date.<br></p>
+</div>
+<div class="paragraph">
+<p>For example, the date '2022-08-11' with format 'EEE, dd MMM yyyy' will be displayed as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>'Mon, 15 Aug 2022' for <code>en_US</code> locale</p>
+</li>
+<li>
+<p>'lun., 15 août 2022' for <code>fr_FR</code> locale</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Let&#8217;s imagine the current date is <code>2020-11-23</code> and the time is <code>00:10:01</code>. Here is a set of examples with the results and comments.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Examples of the expressions generating dates</caption>
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+<th class="tableblock halign-left valign-top">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P1DT2h)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-24T02:10:01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date +1 day and +2 hours</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(-P1D}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date -1 day</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P1M)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-12-23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date + 1 month</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(-PT10M)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-23T00:00:01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date time -10 mins</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P, yyyy-MM)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date with the custom output format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P, MM/dd/yyyy)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/23/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date with a custom format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P1D, yy-MM-dd)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20-11-24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date +1 day with the custom output format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P, yyyy-MM-dd'T'HH:mm:ssZ)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-23T00:10:01+0300</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date with the custom output format including time zone offset</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_formatdate"><a class="anchor" href="#_formatdate"></a><code>formatDate</code></h3>
+<div class="paragraph">
+<p>Formats the input date to another format. Additionally, time zone can be changed in the output result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{formatDate(<strong>$inputDate</strong>, <strong>$outputFormat</strong>, $outputTimeZone)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$inputDate</code></strong> - the date to be formatted, it should be presented in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+<li>
+<p><strong><code>$outputFormat</code></strong> - the outut format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+<li>
+<p><code>$outputTimeZone</code> - the time zone for the output result</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Examples of the expressions formatting dates</caption>
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-right valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSS)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862-05:00, yyyy-MM-dd'T'HH:mm:ss.SSS)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862-0500, yyyy-MM-dd'T'HH:mm:ss.SSS)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Throw exception</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862, yyyy-MM-dd'T'HH:mm:ss)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42+0000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ssZ)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42-05:00</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSSZ, -05:00)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T04:00:42.862-05:00, yyyy-MM-dd'T'HH:mm:ss.SSSZ, GMT)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T09:00:42.862+0000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSSZ, America/New_York)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13T04:00:42.862-0500</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017:01:13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSS)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Error: invalid input data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, BBByyyy-MM-dd'T'HH:mm:ss.SSS)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Error: invalid output format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSS, ABCD)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Error: invalid output timezone</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_formatdateto"><a class="anchor" href="#_formatdateto"></a>formatDateTo</h3>
+<div class="paragraph">
+<p>Formats the input date to the desired format. The format of the input date should be provided in the second parameter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{formatDateTo(<strong>$inputDate</strong>, <strong>$inputFormat</strong>, $outputFormat)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$inputDate</code></strong> - the date to be formatted, it can be in any format but this format should be described in the second parameter</p>
+</li>
+<li>
+<p><strong><code>$inputFormat</code></strong> - the input date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+<li>
+<p><code>$outputFormat</code> - the output date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Examples of the expressions formatting dates with the custom input format</caption>
+<colgroup>
+<col style="width: 75%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDateTo("2017-03-31T07:20:43.808Z", "yyyy-MM-dd'T'HH:mm:ss.SSSVV", EEE\, dd MMM yyyy HH:mm:ss ZZZZ)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fri, 31 Mar 2017 07:20:43 GMT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDateTo(Fri\, 31 Mar 2017 07:20:43 GMT, EEE\, dd MMM yyyy HH:mm:ss zzz, yyyy-MM-dd'T'HH:mm:ss)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2017-03-31T07:20:43</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_shiftdate"><a class="anchor" href="#_shiftdate"></a><code>shiftDate</code></h3>
+<div class="paragraph">
+<p>Shifts the given input date for a given period in any direction (+/-).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{shiftDate(<strong>$inputDate</strong>, <strong>$inputFormat</strong>, <strong>$period</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$inputDate</code></strong> - the date to be shifted, it can be in any format but this format should be described in the second parameter</p>
+</li>
+<li>
+<p><strong><code>$inputFormat</code></strong> - the input date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+<li>
+<p><strong><code>$period</code></strong> -  the period by which the date will be shifted, it should be written in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Examples of the expressions shifting dates</caption>
+<colgroup>
+<col style="width: 75%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-right valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{shiftDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, -P1Y)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2018-03-19 01:40:00</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{shiftDate(Wed\, 10 Apr 2019 07:20:43 GMT, EEE\, dd MMM yyyy HH:mm:ss zzz, P1MT2H)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">Fri, 10 May 2019 09:20:43 GMT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{shiftDate("Wed\, 10 Apr\, 2019\, 07:20:43 GMT", "EEE\, dd MMM\, yyyy\, HH:mm:ss zzz", P1MT2H)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">"Fri, 10 May, 2019, 09:20:43 GMT"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_diffdate"><a class="anchor" href="#_diffdate"></a><code>diffDate</code></h3>
+<div class="paragraph">
+<p>Calculates the difference between two dates with given formats and returns result as <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> period.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{diffDate(<strong>$inputDate1</strong>, <strong>$inputDate1Format</strong>, <strong>$inputDate2</strong>, <strong>$inputDate2Format</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$inputDate1</code></strong> - the first input date, it can be in any format but this format should be described in the second parameter</p>
+</li>
+<li>
+<p><strong><code>$inputDate1Format</code></strong> - the first input date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+<li>
+<p><strong><code>$inputDate2</code></strong> - the second input date, it can be in any format but this format should be described in the second parameter</p>
+</li>
+<li>
+<p><strong><code>$inputDate2Format</code></strong> - the second input date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Examples of the expressions calculating dates difference</caption>
+<colgroup>
+<col style="width: 75%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-right valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 2019-03-19 03:40, yyyy-MM-dd HH:mm)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT0S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate("Wed 10 Apr\, 2019\, 13:20:43 GMT", "EEE dd MMM\, yyyy\, HH:mm:ss zzz", "Wed 10 Apr\, 2019\, 09:20:43 America/New_York", "EEE dd MMM\, yyyy\, HH:mm:ss zzz")}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT0S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 3020-03-19 03:39:20, yyyy-MM-dd HH:mm:ss)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">PT8774591H59M20S</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_toepochsecond"><a class="anchor" href="#_toepochsecond"></a><code>toEpochSecond</code></h3>
+<div class="paragraph">
+<p>Converts the input date to <a href="https://en.wikipedia.org/wiki/Unix_time">the unix epoch time</a> (the number of seconds from the epoch of 1970-01-01T00:00:00Z).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{toEpochSecond(<strong>$inputDate</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$inputDate</code></strong> - the date to be formatted, it should be presented in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Examples of the expressions converting the input date to the unix epoch time</caption>
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-right valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{toEpochSecond(1993-04-16T00:00:00)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">734918400</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{toEpochSecond(2020-12-11T18:43:05+05:30)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">1607692385</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_compare_date_and_current_instant"><a class="anchor" href="#_compare_date_and_current_instant"></a>Compare date and current instant</h3>
+<div class="paragraph">
+<p>Validates the difference between the current instant and the provided date in seconds.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date' is $comparisonRule current for $seconds seconds</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$date</code> - The date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$seconds</code> - The amount of seconds between the current instant and the provided date.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate the date is less than current for 10 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2020-06-16T15:25:29.516580Z' is less than current for 10 seconds</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_two_dates"><a class="anchor" href="#_compare_two_dates"></a>Compare two dates</h3>
+<div class="paragraph">
+<p>Compares two dates according to the given comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date1' is $comparisonRule the date '$date2'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$date1</code> - The first date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$date2</code> - The second date in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Compare dates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2021-04-20T01:02:03.004Z' is greater than the date '2021-04-20T01:02:03.003Z'
+Then the date '2021-04-19' is less than the date '2021-04-20'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_date_with_custom_format_and_current_instant"><a class="anchor" href="#_compare_date_with_custom_format_and_current_instant"></a>Compare date with custom format and current instant</h3>
+<div class="paragraph">
+<p>Validates the difference between the current instant and the provided date in seconds using the custom date format.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '$date' in the format '$format' is $comparisonRule current for $seconds seconds</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$date</code> - The date to validate.</p>
+</li>
+<li>
+<p><code>$format</code> - <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a>.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$seconds</code> - The amount of seconds between the current instant and the provided date.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Validate the date is greater than current for 10 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then the date '2020-06-25T00:19:58.890007Z' in the format 'uuuu-MM-dd'T'HH:mm:ss.nnnX' is &gt; current for 10 seconds</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2022 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
