@@ -922,7 +922,7 @@ Then `${response-code}` is equal to `200`</code></pre>
 <div class="listingblock">
 <div class="title">Example 5. Save excel into temp folder</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
 Then the response code is = '200'
 When I create temporary file with name `excel` and content `${response-as-bytes}` and put path to SCENARIO variable `excelPath`</code></pre>
 </div>
@@ -1356,7 +1356,7 @@ Then a JSON element by the JSON path '$.headers.Accept-Language' is equal to '"e
 |{headerSeparator=!,valueSeparator=!}  |
 |!name          !value                !|
 |!Authorization !${accessToken}       !|
-|When I issue a HTTP GET request for a resource with the URL '${requestUrl}'|</code></pre>
+|When I execute HTTP GET request for resource with URL `${requestUrl}`|</code></pre>
 </div>
 </div>
 </div>
@@ -1510,7 +1510,7 @@ Then size of decompressed response body is greater than or equal to `1200`</code
 <p><code class="subs=+quotes"><strong>scopes</strong></code> -  <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
-<p><code class="subs=+quotes"><strong>outputFormat</strong></code> - Defines output format of the entriy, either <code>TEXT</code> or <code>BASE64</code>.</p>
+<p><code class="subs=+quotes"><strong>outputFormat</strong></code> - Defines output format of the entry, either <code>TEXT</code> or <code>BASE64</code>.</p>
 </li>
 </ul>
 </div>
@@ -1696,7 +1696,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 <div class="listingblock">
 <div class="title">Example 24. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'https://httpbin.org/cookies/set/cookieName/cookieValue'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
 Then '${value}' is equal to 'cookieValue'</code></pre>
 </div>

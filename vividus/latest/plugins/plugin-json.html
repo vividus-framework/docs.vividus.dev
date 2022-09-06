@@ -672,7 +672,7 @@ specified name and scope.</p>
 <div class="listingblock">
 <div class="title">Example 2. Validate the author of the first book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I save JSON element value from context by JSON path `$.store.book[0].author` to scenario variable `author-of-first-book`
 Then `${author-of-first-book}` is equal to `Nigel Rees`</code></pre>
 </div>
@@ -708,7 +708,7 @@ specified name and scope.</p>
 <div class="listingblock">
 <div class="title">Example 3. Validate the title of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I save JSON element value from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
 Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
 </div>
@@ -757,7 +757,7 @@ the comparison rule by the specified JSON path.</p>
 <div class="listingblock">
 <div class="title">Example 4. Validate the price of the third book is less than 9</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 Then JSON element value from context by JSON path `$.store.book[2].price` is less than `9`</code></pre>
 </div>
 </div>
@@ -806,9 +806,9 @@ the comparison rule by the specified JSON path.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Validate the price of the fouth book is greater than 22.50</div>
+<div class="title">Example 5. Validate the price of the fourth book is greater than 22.50</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 Then JSON element value from `${response}` by JSON path `$.store.book[3].price` is greater than `22.50`</code></pre>
 </div>
 </div>
@@ -873,7 +873,7 @@ Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
 <div class="listingblock">
 <div class="title">Example 7. Validate the title of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I convert JSON `${response}` to scenario variable `jsonData`
 Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre>
 </div>
@@ -902,7 +902,7 @@ Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre
 <div class="listingblock">
 <div class="title">Example 8. Validate the price of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I issue a HTTP GET request for a resource with the URL 'http://jsonpath.herokuapp.com/json/goessner.json'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I convert JSON from context to scenario variable `jsonData`
 Then `${jsonData.store.book[1].price}` is = `12.99`</code></pre>
 </div>
