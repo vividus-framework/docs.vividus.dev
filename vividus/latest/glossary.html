@@ -601,6 +601,148 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_examplestable"><a class="anchor" href="#_examplestable"></a>ExamplesTable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Synonyms</strong>: examples table, data table.</p>
+</div>
+<div class="paragraph">
+<p><code>ExamplesTable</code> represents a tabular structure that holds rows of example data for
+parameters named via the column headers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|header 1|header 2| .... |header n|
+|value 11|value 12| .... |value 1n|
+...
+|value m1|value m2| .... |value mn|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rows starting with an ignorable separator (defaults to <code>|--</code>) are allowed and ignored:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|header 1|header 2| .... |header n|
+|-- A commented row --|
+|value 11|value 12| .... |value 1n|
+...
+|-- Another commented row --|
+|value m1|value m2| .... |value mn|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The separators are also configurable via inlined properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{ignorableSeparator=!--,headerSeparator=!,valueSeparator=!}
+!header 1!header 2! .... !header n!
+!-- A commented row --!
+!value 11!value 12! .... !value 1n!
+...
+!-- Another commented row --!
+!value m1!value m2! .... !value mn!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Comments in column values are supported via the <code>commentSeparator</code> inlined
+property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{commentSeparator=#}
+| header 1#comment | header 2 | .... | header n |
+| value 11#comment | value 12 | .... | value 1n |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Comments including the separator are stripped.</p>
+</div>
+<div class="sect2">
+<h3 id="_preserving_whitespace"><a class="anchor" href="#_preserving_whitespace"></a>Preserving whitespace</h3>
+<div class="paragraph">
+<p>By default all column values are trimmed. To avoid trimming the values, use
+the <code>trim</code> inlined property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{trim=false}
+| header 1 | header 2 | .... | header n |
+| value 11 | value 12 | .... | value 1n |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mapping_values_to_null_s"><a class="anchor" href="#_mapping_values_to_null_s"></a>Mapping values to <code>null</code>-s</h3>
+<div class="paragraph">
+<p>By default, all empty values in <code>ExamplesTable</code> are treated as empty strings. However,
+it might be required to map certain values to <code>null</code>-s. This can be done at the step
+implementation level or by applying the generic approach at the table level:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{nullPlaceholder=NULL}
+|header |
+|value 1|
+|NULL   |
+|value 3|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_values_with_line_breaks"><a class="anchor" href="#_using_values_with_line_breaks"></a>Using values with line breaks</h3>
+<div class="paragraph">
+<p>Line break is a default separator for rows in <code>ExamplesTable</code>, that&#8217;s why they
+can&#8217;t be added as is to the data. In order to put value with line breaks to
+<code>ExamplesTable</code> escape sequences (a character preceded by a backslash <code>\</code> is
+an escape sequence) must be used.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Escape Sequence</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\n&lt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Insert a newline in the value at this point.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\r</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Insert a carriage return in the text at this point.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Insert a backslash character in the text at this point.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The inlined property <code>processEscapeSequences</code> defines whether escape sequences
+should be replaced in the data. It’s <code>false</code> by default (no property is declared
+explicitly). The allowed values are <code>true</code> and <code>false</code>, any other values are
+considered invalid and will lead to parsing error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{processEscapeSequences=true, commentSeparator=#}
+|header          |
+|line 1\nline 2  |# The value with a newline
+|line 1\r\nline 2|# The value with a carriage return and a newline
+|line 1\\nline 2 |# The value with an escaped escape sequence, the result will be "line 1\nline 2"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_expression"><a class="anchor" href="#_expression"></a>Expression</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -670,10 +812,10 @@ in particular, the path separator is always a slash <code>/</code>.</p>
 <h2 id="_table_transformer"><a class="anchor" href="#_table_transformer"></a>Table Transformer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Synonyms</strong>: transformer, ExampleTable transformer.</p>
+<p><strong>Synonyms</strong>: transformer, ExamplesTable transformer.</p>
 </div>
 <div class="paragraph">
-<p>ExampleTable enables the transformation of its string representation via the
+<p><a href="#_examplestable">ExamplesTable</a> enables the transformation of its string representation via the
 "transformer" inlined property. It&#8217;s allowed to define a chain of transformers,
 in this case the transformers are applied sequentially from top to bottom:</p>
 </div>
