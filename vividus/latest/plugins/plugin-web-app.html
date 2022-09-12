@@ -2787,729 +2787,977 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:inject-image` with arguments:
 |value                                                                                       |type  |
-|iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=|string|
-
-.Throttle CPU
-[source,gherkin]</code></pre>
+|iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=|string|</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I execute javascript <code>sauce:throttleCPU</code> with arguments:
+<div class="listingblock">
+<div class="title">Example 40. Throttle CPU</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:throttleCPU` with arguments:
 |value                                                                                       |type  |
-|{"rate" : 4}|object|</p>
+|{"rate" : 4}|object|</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_execute_javascript_and_save_result"><a class="anchor" href="#_execute_javascript_and_save_result"></a>Execute JavaScript and save result.</h4>
+<div class="paragraph">
+<p><a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html">Executes JavaScript</a> code and saves result into variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Execute JavaScript and save result.
-
-https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html[Executes JavaScript] code and saves result into variable.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `$jsCode` and save result to $scopes variable `$variableName`</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - Any JavaScript code. In order to save a result <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return">return</a> statement should be used.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to script execution result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 41. Validate timings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
+When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
+Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scan_barcode_from_context"><a class="anchor" href="#_scan_barcode_from_context"></a>Scan barcode from context</h3>
+<div class="paragraph">
+<p>Scan a barcode from the specified context and save its value to the variable with the specified name.
+If context not set - takes a screenshot of the entire page. Only the first found barcode will be scanned.</p>
 </div>
 <div class="paragraph">
-<p>When I execute javascript <code>$jsCode</code> and save result to $scopes variable <code>$variableName</code></p>
+<p>Supported Code Formats</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">1D product</th>
+<th class="tableblock halign-left valign-top">1D industrial</th>
+<th class="tableblock halign-left valign-top">2D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>UPC-A</p>
+</li>
+<li>
+<p>UPC-E</p>
+</li>
+<li>
+<p>EAN-8</p>
+</li>
+<li>
+<p>EAN-13</p>
+</li>
+<li>
+<p>UPC/EAN Extension 2/5</p>
+</li>
+<li>
+<p>RSS-14</p>
+</li>
+<li>
+<p>RSS-Expanded</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Code 39</p>
+</li>
+<li>
+<p>Code 93</p>
+</li>
+<li>
+<p>Code 128</p>
+</li>
+<li>
+<p>Codabar</p>
+</li>
+<li>
+<p>ITF</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>QR Code</p>
+</li>
+<li>
+<p>Data Matrix</p>
+</li>
+<li>
+<p>Aztec</p>
+</li>
+<li>
+<p>PDF 417</p>
+</li>
+<li>
+<p>MaxiCode</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Actions performed at this step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Takes a screenshot of the specified context. If it&#8217;s not set - takes a screenshot of the entire page</p>
+</li>
+<li>
+<p>Scans a barcode from the screenshot and save its value to the variable</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$jsCode` - Any JavaScript code. In order to save a result https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return[return] statement should be used.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to script execution result.
-
-.Validate timings
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from context and save result to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 42. Scan the barcode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.xpath(//div[@id='qrCode'])`
+When I scan barcode from context and save result to scenario variable `qrCodeLink`
+Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dropdown_steps"><a class="anchor" href="#_dropdown_steps"></a>Dropdown Steps</h3>
+<div class="sect3">
+<h4 id="_validate_available_options"><a class="anchor" href="#_validate_available_options"></a>Validate available options</h4>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
-When I execute javascript <code>return JSON.stringify(window.performance.timing)</code> and save result to scenario variable <code>timings</code>
-Then number of JSON elements from <code>${timings}</code> by JSON path <code>$.connectStart</code> is = 1</p>
+<p>Validates whether the dropdown located by locator exists and contains the list
+of the expected options.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Scan barcode from context
-
-Scan a barcode from the specified context and save its value to the variable with the specified name.
-If context not set - takes a screenshot of the entire page. Only the first found barcode will be scanned.
-
-Supported Code Formats
-
-
-[cols="2,2,2", options="header"]
-|===
-
-|1D product
-|1D industrial
-|2D
-
-a|
-* UPC-A
-* UPC-E
-* EAN-8
-* EAN-13
-* UPC/EAN Extension 2/5
-* RSS-14
-* RSS-Expanded
-a|
-* Code 39
-* Code 93
-* Code 128
-* Codabar
-* ITF
-a|
-* QR Code
-* Data Matrix
-* Aztec
-* PDF 417
-* MaxiCode
-
-|===
-
-Actions performed at this step:
-
-* Takes a screenshot of the specified context. If it's not set - takes a screenshot of the entire page
-* Scans a barcode from the screenshot and save its value to the variable
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` contains options: $option</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I scan barcode from context and save result to $scopes variable <code>$variableName</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$options</code> - examples table describing expected options</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 43. Validate dropdown contains a set of colors</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The name of the variable to save the value of the barcode.
-
-.Scan the barcode
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I change context to element located <code>By.xpath(//div[@id='qrCode'])</code>
-When I scan barcode from context and save result to scenario variable <code>qrCodeLink</code>
-Then <code>${qrCodeLink}</code> is equal to <code><a href="https://www.example.com" class="bare">https://www.example.com</a></code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Dropdown Steps
-==== Validate available options
-
-Validates whether the dropdown located by locator exists and contains the list
-of the expected options.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then dropdown located <code>$locator</code> contains options: $option</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$locator` - &lt;&lt;_locator&gt;&gt;
-* `$options` - examples table describing expected options
-
-.Validate dropdown contains a set of colors
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then a drop down with the name 'colors' contains the items:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
 |false|Red  |
 |false|Green|
-|true |Blue |</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">IMPORTANT: The item is an option. The state (`true` or `false`) specifies whether the item is selected.
-
-
-==== Validate the first selected option
-
-Verifies if dropdown located by locator exists and first selected option.
-
-[source,gherkin]</code></pre>
+|true |Blue |</code></pre>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The item is an option. The state (<code>true</code> or <code>false</code>) specifies whether the item is selected.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_the_first_selected_option"><a class="anchor" href="#_validate_the_first_selected_option"></a>Validate the first selected option</h4>
 <div class="paragraph">
-<p>Then dropdown located <code>$locator</code> exists and selected option is <code>$option</code></p>
+<p>Verifies if dropdown located by locator exists and first selected option.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$locator` - &lt;&lt;_locator&gt;&gt;
-* `$option` - first selected option
-
-.Dropdown.story
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `$locator` exists and selected option is `$option`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$option</code> - first selected option</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 44. Dropdown.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_an_option_to_the_mutli_select_dropdown"><a class="anchor" href="#_add_an_option_to_the_mutli_select_dropdown"></a>Add an option to the mutli-select dropdown</h4>
 <div class="paragraph">
-<p>Then dropdown located <code>id(colors)</code> exists and selected option is <code>Blue</code></p>
+<p>Selects option in multi-select dropdown</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Add an option to the mutli-select dropdown
-
-Selects option in multi-select dropdown
-
-[IMPORTANT]
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 Step will fail if target dropdown is not multi-select
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I add <code>$option</code> to selection in dropdown located <code>$locator</code></p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$option` - option to select
-* `$locator` - &lt;&lt;_locator&gt;&gt;
-
-.Dropdown.story
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$option` to selection in dropdown located `$locator`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I add <code>Two</code> to selection in dropdown located <code>id(numbers)</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$option</code> - option to select</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 45. Dropdown.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Select the option
-
-Selects option in dropdown
-
-[IMPORTANT]
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_select_the_option"><a class="anchor" href="#_select_the_option"></a>Select the option</h4>
+<div class="paragraph">
+<p>Selects option in dropdown</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 Does not support multi-selection
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I select <code>$option</code> in dropdown located <code>$locator`</code></p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$option` - option to select
-* `$locator` - &lt;&lt;_locator&gt;&gt;
-
-.Dropdown.story
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located `$locator``</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$option</code> - option to select</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 46. Dropdown.story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cookie_steps"><a class="anchor" href="#_cookie_steps"></a>Cookie Steps</h3>
+<div class="sect3">
+<h4 id="_validate_cookie_presence"><a class="anchor" href="#_validate_cookie_presence"></a>Validate cookie presence</h4>
 <div class="paragraph">
-<p>When I select <code>Red</code> in dropdown located <code>id(colors)</code></p>
+<p>Validates whether the certain cookie is set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Cookie Steps
-
-==== Validate cookie presence
-
-Validates whether the certain cookie is set.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is set</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 47. Check the session cookie is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_cookie_absence"><a class="anchor" href="#_validate_cookie_absence"></a>Validate cookie absence</h4>
 <div class="paragraph">
-<p>Then cookie with name <code>$cookieName</code> is set</p>
+<p>Validates whether the certain cookie is not set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to check presence.
-
-.Check the session cookie is present
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is not set</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Then cookie with name <code>JSESSIONID</code> is set</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Validate cookie absence
-
-Validates whether the certain cookie is not set.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then cookie with name <code>$cookieName</code> is not set</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check absence.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 48. Check the session cookie is not present</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to check absence.
-
-.Check the session cookie is not present
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is not set</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_set_cookies"><a class="anchor" href="#_set_cookies"></a>Set cookies</h4>
 <div class="paragraph">
-<p>Then cookie with name <code>JSESSIONID</code> is not set</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Set cookies
-
-Adds the cookies provided in the input xref:ROOT:glossary.adoc#_examplestable[ExamplesTable]. It's allowed to add the
+<p>Adds the cookies provided in the input <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>. It&#8217;s allowed to add the
 cookies for the current domain only: make sure the web browser is opened at the
-expected domain. The actions performed by the step:
-
-* add the cookies;
-* refresh the current page (this action is required to apply the changes in cookies).
-
-[source,gherkin]</code></pre>
+expected domain. The actions performed by the step:</p>
 </div>
-</div>
-<div class="paragraph">
-<p>When I set all cookies for current domain:$parameters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>add the cookies;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$parameters` - The parameters of the cookies to set as xref:ROOT:glossary.adoc#_examplestable[ExamplesTable]:
-+
-[cols="1,2", options="header"]
-|===
-
-|Column Name
-|Description
-
-|`cookieName`
-|the name of the cookie to set
-
-|`cookieValue`
-|the value of the cookie to set
-
-|`path`
-|the path of the cookie to set
-
-|===
-
-.Set the cookie for the current domain
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:$parameters</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I set all cookies for current domain:
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> - The parameters of the cookies to set as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the name of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the value of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the path of the cookie to set</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 49. Set the cookie for the current domain</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
 |cookieName   |cookieValue |path |
-|cookieAgreed |2           |/    |</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Get cookie value
-
-Finds the cookie by the name and saves its value to a variable.
-
-[source,gherkin]</code></pre>
+|cookieAgreed |2           |/    |</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie_value"><a class="anchor" href="#_get_cookie_value"></a>Get cookie value</h4>
 <div class="paragraph">
-<p>When I save value of cookie with name <code>$cookieName</code> to $scopes variable <code>$variableName</code></p>
+<p>Finds the cookie by the name and saves its value to a variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to save the value.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to save the cookie value.
-
-.Get the value of the session cookie
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `$cookieName` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save the value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 50. Get the value of the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie"><a class="anchor" href="#_get_cookie"></a>Get cookie</h4>
 <div class="paragraph">
-<p>When I save value of cookie with name <code>JSESSIONID</code> to scenario variable <code>session-id</code></p>
+<p>Finds the cookie by the name and saves all its parameters as JSON to a variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Get cookie
-
-Finds the cookie by the name and saves all its parameters as JSON to a variable.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `$cookieName` as JSON to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 51. Get the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_cookie"><a class="anchor" href="#_remove_cookie"></a>Remove cookie</h4>
 <div class="paragraph">
-<p>When I save cookie with name <code>$cookieName</code> as JSON to $scopes variable <code>$variableName</code></p>
+<p>Removes the certain cookie from the current domain. The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>remove the certain cookie the from current domain;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to save.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to save the cookie.
-
-.Get the session cookie
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `$cookieName` from current domain</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to remove.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 52. Remove the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_cookie_without_apply"><a class="anchor" href="#_remove_cookie_without_apply"></a>Remove cookie without apply</h4>
 <div class="paragraph">
-<p>When I save cookie with name <code>JSESSIONID</code> as JSON to scenario variable <code>session-id</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Remove cookie
-
-Removes the certain cookie from the current domain. The actions performed by the step:
-
-* remove the certain cookie the from current domain;
-* refresh the current page (this action is required to apply the changes in cookies).
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I remove cookie with name <code>$cookieName</code> from current domain</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to remove.
-
-.Remove the session cookie
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I remove cookie with name <code>JSESSIONID</code> from current domain</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Remove cookie without apply
-
-Removes the certain cookie from the current domain, but does not apply the
+<p>Removes the certain cookie from the current domain, but does not apply the
 changes in cookies. The current page must be refreshed or the navigation must
-be performed to apply the cookie changes.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I remove cookie with name <code>$cookieName</code> from current domain without applying changes</p>
+be performed to apply the cookie changes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$cookieName` - The name of the cookie to remove.
-
-.Remove the session cookie
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `$cookieName` from current domain without applying changes</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to remove.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 53. Remove the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain without applying changes
+When I refresh the page</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_all_cookies"><a class="anchor" href="#_remove_all_cookies"></a>Remove all cookies</h4>
 <div class="paragraph">
-<p>When I remove cookie with name <code>JSESSIONID</code> from current domain without applying changes
-When I refresh the page</p>
+<p>Removes all cookies from the current domain. The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>remove all cookies from the current domain;</p>
+</li>
+<li>
+<p>refresh the current page (this action is required to apply the changes in cookies).</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Remove all cookies
-
-Removes all cookies from the current domain. The actions performed by the step:
-
-* remove all cookies from the current domain;
-* refresh the current page (this action is required to apply the changes in cookies).
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_remove_all_cookies_without_apply"><a class="anchor" href="#_remove_all_cookies_without_apply"></a>Remove all cookies without apply</h4>
 <div class="paragraph">
-<p>When I remove all cookies from current domain</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Remove all cookies without apply
-
-Removes all cookies from the current domain, but does not apply the changes in
+<p>Removes all cookies from the current domain, but does not apply the changes in
 cookies. The current page must be refreshed or the navigation must be performed
-to apply the cookie changes.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I remove all cookies from current domain without applying changes</p>
+to apply the cookie changes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API[Web Storage] steps
-==== Get web storage item
-
-Finds the web storage item by the key and saves its value to the variable.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain without applying changes</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web_storage_steps"><a class="anchor" href="#_web_storage_steps"></a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage</a> steps</h3>
+<div class="sect3">
+<h4 id="_get_web_storage_item"><a class="anchor" href="#_get_web_storage_item"></a>Get web storage item</h4>
 <div class="paragraph">
-<p>When I save $storageType storage item with key <code>$key</code> to $scopes variable <code>$variableName</code></p>
+<p>Finds the web storage item by the key and saves its value to the variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$storageType` - One of the web storage mechanisms: either `local` or `session`.
-* `$key` - The name of the key to retrieve the value of.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The name of the variable to store the value of the web storage item.
-
-.Get the value of the local storage item
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $storageType storage item with key `$key` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to retrieve the value of.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to store the value of the web storage item.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 54. Get the value of the local storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save local storage item with key `token` to scenario variable `application-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_web_storage_item"><a class="anchor" href="#_set_web_storage_item"></a>Set web storage item</h4>
 <div class="paragraph">
-<p>When I save local storage item with key <code>token</code> to scenario variable <code>application-token</code></p>
+<p>Adds the item with the specified key-value pair to the web storage, or updates
+that key&#8217;s value if it already exists.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Set web storage item
-
-Adds the item with the specified key-value pair to the web storage, or updates
-that key's value if it already exists.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set $storageType storage item with key `$key` and value `$value`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to create/update.</p>
+</li>
+<li>
+<p><code>$value</code> - The value to give the key that is creating/updating.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 55. Set the session storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set session storage item with key `token` and value `session-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_presence"><a class="anchor" href="#_validate_web_storage_item_presence"></a>Validate web storage item presence</h4>
 <div class="paragraph">
-<p>When I set $storageType storage item with key <code>$key</code> and value <code>$value</code></p>
+<p>Validates the web storage item with the specified key exists.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$storageType` - One of the web storage mechanisms: either `local` or `session`.
-* `$key` - The name of the key to create/update.
-* `$value` - The value to give the key that is creating/updating.
-
-.Set the session storage item
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` exists</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 56. Check the session storage item is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then session storage item with key `token` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_absence"><a class="anchor" href="#_validate_web_storage_item_absence"></a>Validate web storage item absence</h4>
 <div class="paragraph">
-<p>When I set session storage item with key <code>token</code> and value <code>session-token</code></p>
+<p>Validates the web storage item with the specified key does not exist.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Validate web storage item presence
-
-Validates the web storage item with the specified key exists.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` does not exist</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The key of the local storage item to check absence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 57. Check the local storage item is not present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then local storage item with key `token` does not exist</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_proxy_steps"><a class="anchor" href="#_proxy_steps"></a>Proxy Steps</h3>
+<div class="sect3">
+<h4 id="_check_the_number_of_http_requests"><a class="anchor" href="#_check_the_number_of_http_requests"></a>Check the number of HTTP requests</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.</p>
 </div>
 <div class="paragraph">
-<p>Then $storageType storage item with key <code>$key</code> exists</p>
+<p>The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with the response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and the URL regular expression</p>
+</li>
+<li>
+<p>check that the total number of the found HTTP messages satisfies the desired condition</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$storageType` - One of the web storage mechanisms: either `local` or `session`.
-* `$key` - The name of the key to check presence.
-
-.Check the session storage item is present
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP $httpMethods requests with URL pattern `$urlPattern` is $comparisonRule `$number`</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The comma-separated HTTP methods to filter by</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - The regular expression to match HTTP request URL</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison Rule</a></p>
+</li>
+<li>
+<p><code>$number</code> - The number to compare with</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 58. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_capture_http_message"><a class="anchor" href="#_capture_http_message"></a>Capture HTTP message</h4>
+<div class="paragraph">
+<p>Save the HTTP message part from the HTTP request with given URL-pattern into the variable with specified name and the scopes.</p>
 </div>
 <div class="paragraph">
-<p>Then session storage item with key <code>token</code> exists</p>
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.</p>
+</div>
+<div class="paragraph">
+<p>The actions preformed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the recorded proxy archive</p>
+</li>
+<li>
+<p>filter out the HTTP messages with the response status code <code>302 Moved Temporarily</code></p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and the URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages is equal to <code>1</code></p>
+</li>
+<li>
+<p>save the HTTP message part to the specified variable</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Validate web storage item absence
-
-Validates the web storage item with the specified key does not exist.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save $httpMessagePart to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Then $storageType storage item with key <code>$key</code> does not exist</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
+</li>
+<li>
+<p><code>$httpMessagePart</code> - The HTTP message part to save. One of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>URL</code> - The request URL.</p>
+</li>
+<li>
+<p><code>URL query</code> - The request URL query parameters.</p>
+</li>
+<li>
+<p><code>request data</code> - The request data includes the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>query</code> - The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.</p>
+</li>
+<li>
+<p><code>requestBody.mimeType</code> - The MIME type of posted data, the variable will not be saved if MIME type is not present.</p>
+</li>
+<li>
+<p><code>requestBody.text</code> - The posted data as plain text, the variable will not be saved if the request body is not present.</p>
+</li>
+<li>
+<p><code>requestBodyParameters</code> - The form data parameters are stored as a collection of key and value pairs, where key is the name of the form parameter and value is the list of form parameter values. The form parameter values are accessible via zero-based index.</p>
+</li>
+<li>
+<p><code>responseStatus</code> - The response status, the variable will not be saved if the response is not present.</p>
+</li>
+</ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$storageType` - One of the web storage mechanisms: either `local` or `session`.
-* `$key` - The key of the local storage item to check absence.
-
-.Check the local storage item is not present
-[source,gherkin]</code></pre>
+</li>
+<li>
+<p><code>response data</code> - The response data includes the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>responseBody.mimeType</code> - The MIME type of response data, the variable will not be saved if MIME type is not present.</p>
+</li>
+<li>
+<p><code>responseBody.text</code> - The response data as plain text, the variable will not be saved if the response body is not present.</p>
+</li>
+</ul>
 </div>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Then local storage item with key <code>token</code> does not exist</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Proxy Steps
-==== Check the number of HTTP requests
-:proxy: This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-:har-attached: In case of failure the full HTTP archive (HAR) is attached to the report.
-
-{proxy}
-
-The actions preformed by the step:
-
-* extract HTTP messages from the recorded proxy archive
-* filter out the HTTP messages with the response status code `302 Moved Temporarily`
-* find HTTP requests matching the provided HTTP methods and the URL regular expression
-* check that the total number of the found HTTP messages satisfies the desired condition
-
-{har-attached}
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then number of HTTP $httpMethods requests with URL pattern <code>$urlPattern</code> is $comparisonRule <code>$number</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The comma-separated HTTP methods to filter by
-* `$urlPattern` - The regular expression to match HTTP request URL
-* `$comparisonRule` - xref:parameters:comparison-rule.adoc[Comparison Rule]
-* `$number` - The number to compare with
-
-.Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then number of HTTP GET, POST requests with URL pattern <code><a href="http://httpbin\.org/get" class="bare">http://httpbin\.org/get</a></code> is equal to <code>1</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Capture HTTP message
-
-Save the HTTP message part from the HTTP request with given URL-pattern into the variable with specified name and the scopes.
-
-{proxy}
-
-The actions preformed by the step:
-
-* extract HTTP messages from the recorded proxy archive
-* filter out the HTTP messages with the response status code `302 Moved Temporarily`
-* find HTTP requests matching the provided HTTP methods and the URL regular expression
-* check that total number of the found HTTP messages is equal to `1`
-* save the HTTP message part to the specified variable
-
-{har-attached}
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I capture HTTP $httpMethods request with URL pattern <code>$urlPattern</code> and save $httpMessagePart to $scopes variable <code>$variableName</code></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the HTTP message part.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 59. Validate the URL of the matching HTTP request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The "or"-separated set of HTTP methods to filter by, e.g. `GET or POST or PUT`.
-* `$urlPattern` - The regular expression to match HTTP request URL.
-* `$httpMessagePart` - The HTTP message part to save. One of:
-** `URL` - The request URL.
-** `URL query` - The request URL query parameters.
-** `request data` - The request data includes the following keys:
-*** `query` - The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.
-*** `requestBody.mimeType` - The MIME type of posted data, the variable will not be saved if MIME type is not present.
-*** `requestBody.text` - The posted data as plain text, the variable will not be saved if the request body is not present.
-*** `requestBodyParameters` - The form data parameters are stored as a collection of key and value pairs, where key is the name of the form parameter and value is the list of form parameter values. The form parameter values are accessible via zero-based index.
-*** `responseStatus` - The response status, the variable will not be saved if the response is not present.
-** `response data` - The response data includes the following keys:
-*** `responseBody.mimeType` - The MIME type of response data, the variable will not be saved if MIME type is not present.
-*** `responseBody.text` - The response data as plain text, the variable will not be saved if the response body is not present.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to save the HTTP message part.
-
-.Validate the URL of the matching HTTP request
-[source,gherkin,subs="attributes+"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
+Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I capture HTTP GET or POST request with URL pattern <code>.<strong>/search.</strong>=vividus</code> and save URL to scenario variable <code>URL</code>
-Then <code>${URL}</code> is equal to <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code></p>
 </div>
 <div class="listingblock">
+<div class="title">Example 60. Validate the URL query of the matching HTTP request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the URL query of the matching HTTP request
-[source,gherkin,subs="attributes+"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
+Then `${query.q[0]}` is equal to `vividus`
+Then `${query.q}` is equal to `[vividus]`
+Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I capture HTTP GET request with URL pattern <code>.<strong>/search.</strong>=vividus</code> and save URL query to scenario variable <code>query</code>
-Then <code>${query.q[0]}</code> is equal to <code>vividus</code>
-Then <code>${query.q}</code> is equal to <code>[vividus]</code>
-Then <code>${query}</code> is equal to <code>{q=[vividus]}</code></p>
 </div>
 <div class="listingblock">
+<div class="title">Example 61. Validate the request data from the matching HTTP message</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the request data from the matching HTTP message
-[source,gherkin,subs="attributes+"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
+Then `${data.query}` is equal to `{}`
+Then `${data.requestBodyParameters}` is equal to `{delivery=, custtel=, comments=, custemail=, custname=}`
+Then `${data.requestBody}` is not equal to `null`
+Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I capture HTTP GET request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> and save request data to scenario variable <code>data</code>
-Then <code>${data.query}</code> is equal to <code>{}</code>
-Then <code>${data.requestBodyParameters}</code> is equal to <code>{delivery=, custtel=, comments=, custemail=, custname=}</code>
-Then <code>${data.requestBody}</code> is not equal to <code>null</code>
-Then <code>${data.responseStatus}</code> is equal to <code>200</code></p>
 </div>
 <div class="listingblock">
+<div class="title">Example 62. Validate the response data from the matching HTTP message</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the response data from the matching HTTP message
-[source,gherkin,subs="attributes+"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
+Then `${data.responseBody.text}` is equal to `{"status": "ok"}`
+Then `${data.responseBody.mimeType}` is equal to `application/json`</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_the_http_request"><a class="anchor" href="#_wait_for_the_http_request"></a>Wait for the HTTP request</h4>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I capture HTTP GET request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> and save request data to scenario variable <code>data</code>
-Then <code>${data.responseBody.text}</code> is equal to <code>{"status": "ok"}</code>
-Then <code>${data.responseBody.mimeType}</code> is equal to <code>application/json</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Wait for the HTTP request
-
-{proxy}
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
 Waits for the HTTP requests matching the provided HTTP methods and URL regular expression.
-If no HTTP request is sent and wait timeout is reached, then the step will fail.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I wait until HTTP $httpMethods request with URL pattern <code>$urlPattern</code> exists in proxy log</p>
+If no HTTP request is sent and wait timeout is reached, then the step will fail.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'
-* `$urlPattern` - the regular expression to match HTTP request URL
-
-.Wait for the HTTP request
-[source,gherkin,subs="attributes+"]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` exists in proxy log</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 63. Wait for the HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
+Then number of HTTP GET or POST requests with URL pattern `https://www.google.com/search?q=vividus` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_headers_to_the_http_request"><a class="anchor" href="#_add_headers_to_the_http_request"></a>Add headers to the HTTP request</h4>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-When I wait until HTTP GET or POST request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> exists in proxy log
-Then number of HTTP GET or POST requests with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> is equal to <code>1</code></p>
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+Add headers to the proxied HTTP request satisfying the desired condition</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Add headers to the HTTP request
-
-{proxy}
-Add headers to the proxied HTTP request satisfying the desired condition
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which $comparisonRule `$url`:$headers</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I add headers to proxied requests with URL pattern which $comparisonRule <code>$url</code>:$headers</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - The input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 64. Add headers to the proxied HTTP request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$comparisonRule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
-* `$url` - The input value of URL to filter by
-* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
-
-.Add headers to the proxied HTTP request
-[source,gherkin,subs="attributes+"]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I add headers to proxied requests with URL pattern which is equal to <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code>:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
 |testName1|testValue1|
 |testName2|testValue2|
@@ -3519,378 +3767,501 @@ Then a JSON element from '${response}' by the JSON path '$.headers' is equal to 
     "Testname1": "testValue1",
     "Testname2": "testValue2"
 }
-'ignoring extra fields</p>
+'ignoring extra fields</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clear_the_recordings"><a class="anchor" href="#_clear_the_recordings"></a>Clear the recordings</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Clear the recordings
-
-{proxy}
-The step clears the HTTP requests and responses recorded by the proxy
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>When I clear proxy log</p>
 </div>
 <div class="listingblock">
+<div class="title">Example 65. Clear the data recorded by the proxy</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Clear the data recorded by the proxy
-[source,gherkin,subs="attributes+"]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I clear proxy log
-Then number of HTTP GET requests with URL pattern 'https://www.google.com/search?q=vividus' is equal to <code>0</code></p>
+Then number of HTTP GET requests with URL pattern 'https://www.google.com/search?q=vividus' is equal to `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clear_the_mocks"><a class="anchor" href="#_clear_the_mocks"></a>Clear the mocks</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+The step clears previously created mocks</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Clear the mocks
-
-{proxy}
-The step clears previously created mocks
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy mocks</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>When I clear proxy mocks</p>
 </div>
 <div class="listingblock">
+<div class="title">Example 66. Clear the proxy mocks</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Clear the proxy mocks
-[source,gherkin,subs="attributes+"]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I mock HTTP responses with request URL which CONTAINS <code>vividus</code> using response code <code>200</code>, content <code>#{loadResource(page.html)}</code> and headers:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
 |Content-Type|text/html|
 When I clear proxy mocks
 Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
-Then number of elements found by <code>id(sw)</code> is = <code>0</code></p>
+Then number of elements found by `id(sw)` is = `0`</code></pre>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response by methods with content
-
-{proxy}
-Mocks HTTP response by methods with a provided content
-
-[IMPORTANT]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mock_the_http_response_by_methods_with_content"><a class="anchor" href="#_mock_the_http_response_by_methods_with_content"></a>Mock the HTTP response by methods with content</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+Mocks HTTP response by methods with a provided content</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 No actual request will be executed. Short-circuited response will be returned.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I mock HTTP $httpMethods responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code>, content <code>$payload</code> and headers:$headers</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The "or"-separated set of HTTP methods to filter by, e.g. `GET or POST or PUT`.
-* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
-* `$url` - The input value of URL to filter by
-* `$code` - The response status code
-* `$content` - The content to send within a response
-* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
-
-.Hijack a page
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP $httpMethods responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I mock HTTP POST responses with request URL which CONTAINS <code>example</code> using response code <code>202</code>, content <code>#{loadResource(mocked-example.json)}</code> and headers:
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
+</li>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - The input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - The response status code</p>
+</li>
+<li>
+<p><code>$content</code> - The content to send within a response</p>
+</li>
+<li>
+<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 67. Hijack a page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
-|Content-Type|application/json|</p>
+|Content-Type|application/json|</code></pre>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response with content
-
-{proxy}
-Mocks HTTP response with a provided content
-
-[IMPORTANT]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mock_the_http_response_with_content"><a class="anchor" href="#_mock_the_http_response_with_content"></a>Mock the HTTP response with content</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+Mocks HTTP response with a provided content</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 No actual request will be executed. Short-circuited response will be returned.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I mock HTTP responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code>, content <code>$payload</code> and headers:$headers</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
-* `$url` - The input value of URL to filter by
-* `$code` - The response status code
-* `$content` - The content to send within a response
-* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
-
-.Hijack a page
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I mock HTTP responses with request URL which CONTAINS <code>example.com</code> using response code <code>200</code>, content <code>#{loadResourceAsByteArray(page.html)}</code> and headers:
+<div class="ulist">
+<ul>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - The input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - The response status code</p>
+</li>
+<li>
+<p><code>$content</code> - The content to send within a response</p>
+</li>
+<li>
+<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 68. Hijack a page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
-|Content-Type|text/html|</p>
+|Content-Type|text/html|</code></pre>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response without content
-
-{proxy}
-Mocks HTTP response
-
-[IMPORTANT]
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mock_the_http_response_without_content"><a class="anchor" href="#_mock_the_http_response_without_content"></a>Mock the HTTP response without content</h4>
+<div class="paragraph">
+<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+Mocks HTTP response</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 No actual request will be executed. Short-circuited response will be returned.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I mock HTTP responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code> and headers:$headers</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
-* `$url` - The input value of URL to filter by
-* `$code` - The response status code
-* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
-
-.404 page
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode` and headers:$headers</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I mock HTTP responses with request URL which CONTAINS <code>example.com</code> using response code <code>404</code> and headers:
+<div class="ulist">
+<ul>
+<li>
+<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
+</li>
+<li>
+<p><code>$url</code> - The input value of URL to filter by</p>
+</li>
+<li>
+<p><code>$code</code> - The response status code</p>
+</li>
+<li>
+<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 69. 404 page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
-|Content-Length|0    |</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Window Steps
-==== Resize the current browser window
-
-Changes the current browser window size to the specified one.
-
-IMPORTANT: The specified browser window size should be smaller than the current screen resolution.
-
-[source,gherkin]</code></pre>
+|Content-Length|0    |</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_window_steps"><a class="anchor" href="#_window_steps"></a>Window Steps</h3>
+<div class="sect3">
+<h4 id="_resize_the_current_browser_window"><a class="anchor" href="#_resize_the_current_browser_window"></a>Resize the current browser window</h4>
 <div class="paragraph">
-<p>When I change window size to <code>$targetSize</code></p>
+<p>Changes the current browser window size to the specified one.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The specified browser window size should be smaller than the current screen resolution.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$targetSize` - The desired browser window size in pixels, e.g. `800x600`,
-where the first measure is window width, the last one is window height.
-
-.Resize the browser window
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change window size to `$targetSize`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$targetSize</code> - The desired browser window size in pixels, e.g. <code>800x600</code>,
+where the first measure is window width, the last one is window height.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 70. Resize the browser window</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+When I change window size to `640x320`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_video_steps"><a class="anchor" href="#_video_steps"></a>Video steps</h3>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://example.com/'
-When I change window size to <code>640x320</code></p>
+<p>Steps allow to interact with <a href="https://www.w3schools.com/html/html5_video.asp">video</a> elements.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Video steps
-
-Steps allow to interact with https://www.w3schools.com/html/html5_video.asp[video] elements.
-
-==== Play Video
-
-Starts video playback.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
+<div class="sect3">
+<h4 id="_play_video"><a class="anchor" href="#_play_video"></a>Play Video</h4>
 <div class="paragraph">
-<p>When I play video in video player located <code>$locator</code></p>
+<p>Starts video playback.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$locator` - &lt;&lt;_locator&gt;&gt;
-
-==== Pause Video
-
-Pauses video playback.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I play video in video player located `$locator`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_pause_video"><a class="anchor" href="#_pause_video"></a>Pause Video</h4>
 <div class="paragraph">
-<p>When I pause video in video player located <code>$locator</code></p>
+<p>Pauses video playback.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$locator` - &lt;&lt;_locator&gt;&gt;
-
-==== Rewind Video
-
-Rewinds video to the desired mark in seconds.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I pause video in video player located `$locator`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rewind_video"><a class="anchor" href="#_rewind_video"></a>Rewind Video</h4>
 <div class="paragraph">
-<p>When I rewind time to <code>$number</code> seconds in video player located <code>$locator</code></p>
+<p>Rewinds video to the desired mark in seconds.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$number` - time mark in seconds
-* `$locator` - &lt;&lt;_locator&gt;&gt;
-
-==== Get info
-Saves video player info: *duration*, *currentTime*, *src*, *networkState*.
-For more information about the properties see https://www.w3schools.com/tags/ref_av_dom.asp[HTML Audio/Video Properties]
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I rewind time to `$number` seconds in video player located `$locator`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$number</code> - time mark in seconds</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_info"><a class="anchor" href="#_get_info"></a>Get info</h4>
 <div class="paragraph">
-<p>When I save info from video player located <code>$locator</code> to $scopes variable <code>$variableName</code></p>
+<p>Saves video player info: <strong>duration</strong>, <strong>currentTime</strong>, <strong>src</strong>, <strong>networkState</strong>.
+For more information about the properties see <a href="https://www.w3schools.com/tags/ref_av_dom.asp">HTML Audio/Video Properties</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$locator` - &lt;&lt;_locator&gt;&gt;
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to save the info. If the variable name is *info*, the following variables will be created:
-** `${info.src}`- The current source of the audio/video element
-** `${info.duration}` - The length of the current audio/video (in seconds)
-** `${info.currentTime}` - The current playback position in the audio/video(in seconds)
-** `${info.networkState}` - The current network state of the audio/video. For more information see: https://www.w3schools.com/tags/av_prop_networkstate.asp[Network State]
-
-.Video player verifications
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save info from video player located `$locator` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the info. If the variable name is <strong>info</strong>, the following variables will be created:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${info.src}</code>- The current source of the audio/video element</p>
+</li>
+<li>
+<p><code>${info.duration}</code> - The length of the current audio/video (in seconds)</p>
+</li>
+<li>
+<p><code>${info.currentTime}</code> - The current playback position in the audio/video(in seconds)</p>
+</li>
+<li>
+<p><code>${info.networkState}</code> - The current network state of the audio/video. For more information see: <a href="https://www.w3schools.com/tags/av_prop_networkstate.asp">Network State</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 71. Video player verifications</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.youtube.com/watch?v=pYqyVpCV-3c'
+When I pause video in video player located `cssSelector(video)`
+When I rewind time to `777` seconds in video player located `cssSelector(video)`
+When I play video in video player located `cssSelector(video)`
+When I save info from video player located `cssSelector(video)` to SCENARIO variable `info`
+Then `${info.currentTime}` is &gt; `0`
+Then `${info.duration}` is &gt; `1000`
+Then `${info.networkState}` is = `2`
+Then `${info.src}` matches `.+youtube.+`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_perform_steps_for_each_found_element"><a class="anchor" href="#_perform_steps_for_each_found_element"></a>Perform steps for each found element</h3>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://www.youtube.com/watch?v=pYqyVpCV-3c'
-When I pause video in video player located <code>cssSelector(video)</code>
-When I rewind time to <code>777</code> seconds in video player located <code>cssSelector(video)</code>
-When I play video in video player located <code>cssSelector(video)</code>
-When I save info from video player located <code>cssSelector(video)</code> to SCENARIO variable <code>info</code>
-Then <code>${info.currentTime}</code> is &gt; <code>0</code>
-Then <code>${info.duration}</code> is &gt; <code>1000</code>
-Then <code>${info.networkState}</code> is = <code>2</code>
-Then <code>${info.src}</code> matches <code>.+youtube.+</code></p>
+<p>Executes the steps against all elements found by locator. After a required number of elements is found,
+search context switches in order for each found element and performs all steps on it.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Perform steps for each found element
-
-Executes the steps against all elements found by locator. After a required number of elements is found,
-search context switches in order for each found element and performs all steps on it.
-
-[IMPORTANT]
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 If comparison rule mismatch steps will not be performed even if elements are found.
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I find $comparisonRule <code>$number</code> elements by <code>$locator</code> and for each element do$stepsToExecute</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Alias:
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$number` elements by `$locator` and for each element do$stepsToExecute</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>When I find $comparisonRule '$number' elements by $locator and for each element do$stepsToExecute</p>
+<p>Alias:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$comparisonRule` - xref:parameters:comparison-rule.adoc[The comparison rule].
-* `$number` - The number of elements to find.
-* `$locator` - &lt;&lt;_locator&gt;&gt;.
-* `$stepsToExecute` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] with a single column containing the steps to execute.
-
-.Script type check
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$number' elements by $locator and for each element do$stepsToExecute</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I find = <code>5</code> elements by <code>By.xpath(//script):a</code> and for each element do
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$number</code> - The number of elements to find.</p>
+</li>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 72. Script type check</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
 |step                                                                                      |
 |When I set 'type' attribute value of the context element to the 'scenario' variable 'type'|
-|Then <code>${type}</code> is equal to <code>text/javascript</code>                                              |</p>
+|Then `${type}` is equal to `text/javascript`                                              |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browser_configuration_steps"><a class="anchor" href="#_browser_configuration_steps"></a>Browser Configuration Steps</h3>
+<div class="sect3">
+<h4 id="_set_the_browser_command_line_arguments"><a class="anchor" href="#_set_the_browser_command_line_arguments"></a>Set the browser command line arguments</h4>
+<div class="paragraph">
+<p>Allows to set command line arguments for browsers.
+This step works similar to the property</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Browser Configuration Steps
-==== Set the browser command line arguments
-
-Allows to set command line arguments for browsers.
-This step works similar to the property
-```properties
-web.driver.&lt;browser-name&gt;.command-line-arguments
-```
-In case both property and step are used - arguments from property will be ignored.
-Step will take effect for all new browser sessions created in the current story. It will not affect the current sessions.
-
-List of supported command line arguments for popular browsers:
-. https://peter.sh/experiments/chromium-command-line-switches/[Chrome]
-. https://www-archive.mozilla.org/docs/command-line-args[Firefox]
-. https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/hh826025(v=vs.85)[Internet Explorer]
-
-Not supported browsers:
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser-name&gt;.command-line-arguments</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case both property and step are used - arguments from property will be ignored.
+Step will take effect for all new browser sessions created in the current story. It will not affect the current sessions.</p>
+</div>
+<div class="paragraph">
+<p>List of supported command line arguments for popular browsers:
+. <a href="https://peter.sh/experiments/chromium-command-line-switches/">Chrome</a>
+. <a href="https://www-archive.mozilla.org/docs/command-line-args">Firefox</a>
+. <a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/hh826025(v=vs.85)">Internet Explorer</a></p>
+</div>
+<div class="paragraph">
+<p>Not supported browsers:
 . Safari
-. Edge
-
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I set browser command line arguments to <code>$argsString</code></p>
+. Edge</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$argsString` - Sequence of command line arguments, separated by space.
-
-.Set the browser to use the mocked camera stream
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set browser command line arguments to `$argsString`</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$argsString</code> - Sequence of command line arguments, separated by space.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 73. Set the browser to use the mocked camera stream</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set browser command line arguments to `--use-fake-ui-for-media-stream --use-file-for-fake-video-capture=${videoStorage}/${video1}.y4m --use-fake-device-for-media-stream`
+Given I am on the main application page</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_steps"><a class="anchor" href="#_code_steps"></a>Code steps</h3>
+<div class="sect3">
+<h4 id="_execute_async_javascript_and_save_result"><a class="anchor" href="#_execute_async_javascript_and_save_result"></a>Execute async JavaScript and save result.</h4>
 <div class="paragraph">
-<p>When I set browser command line arguments to <code>--use-fake-ui-for-media-stream --use-file-for-fake-video-capture=${videoStorage}/${video1}.y4m --use-fake-device-for-media-stream</code>
-Given I am on the main application page</p>
+<p><a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html">Executes async JavaScript</a> code and saves result into variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Code steps
-
-==== Execute async JavaScript and save result.
-
-https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html[Executes async JavaScript] code and saves result into variable.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute async javascript `$jsCode` and save result to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I execute async javascript <code>$jsCode</code> and save result to $scopes variable <code>$variableName</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - Any JavaScript code. In order to save a result <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return">return</a> statement should be used.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 74. Validate response</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$jsCode` - Any JavaScript code. In order to save a result https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return[return] statement should be used.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The variable name to save the cookie value.
-
-.Validate response
-[source,gherkin]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When I execute async javascript `
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute async javascript `
 var callback = arguments[arguments.length - 1];
 var xhr = new XMLHttpRequest();
 xhr.open('GET', '/resource/data.json', true);
@@ -3899,138 +4270,177 @@ xhr.onreadystatechange = function() {
     callback(xhr.responseText);
   }
 };
-xhr.send();` and save result to scenario variable <code>response</code>
-Then <code>${response}</code> matcher <code>.+</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Browser logs steps
-
-This set of steps allows to validate the https://developer.mozilla.org/en-US/docs/Web/API/console[browser console logging messages].
-
-:log-levels: List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.
-
-[TIP]
-=====
-In order to configure availability of the INFO level messages use following properties:
-[cols="1,2"]
-|===
-
-|Browser
-|Property to enable INFO logs
-
-|Google Chrome
-|`selenium.capabilities.goog\:loggingPrefs.browser=INFO`
-
-|Microsoft Edge Chromium
-|`selenium.capabilities.ms\:loggingPrefs.browser=INFO`
-|===
-=====
-
-==== Validate log entries absence
-
-Validates the absence of log entries of the desired level in the browser console.
-
-[source,gherkin]</code></pre>
+xhr.send();` and save result to scenario variable `response`
+Then `${response}` matcher `.+`</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browser_logs_steps"><a class="anchor" href="#_browser_logs_steps"></a>Browser logs steps</h3>
 <div class="paragraph">
-<p>Then there are no browser console $logLevels</p>
+<p>This set of steps allows to validate the <a href="https://developer.mozilla.org/en-US/docs/Web/API/console">browser console logging messages</a>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$logLevels` - {log-levels}
-
-.Validate absence of JS errors
-[source,gherkin]</code></pre>
-</div>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
-Then there are no browser console ERRORS</p>
+<p>In order to configure availability of the INFO level messages use following properties:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Validate specific log entries absence
-
-Validates the absence of specific log entries of the desired level in the browser console.
-
-[source,gherkin]</code></pre>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property to enable INFO logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Chrome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.capabilities.goog\:loggingPrefs.browser=INFO</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Edge Chromium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.capabilities.ms\:loggingPrefs.browser=INFO</code></p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
 </div>
-</div>
+<div class="sect3">
+<h4 id="_validate_log_entries_absence"><a class="anchor" href="#_validate_log_entries_absence"></a>Validate log entries absence</h4>
 <div class="paragraph">
-<p>Then there are no browser console $logLevels by regex '$pattern'</p>
+<p>Validates the absence of log entries of the desired level in the browser console.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$logLevels` - {log-levels}
-* `$pattern` - The regular expression to match log entry messages.
-
-.Validate absence of JS error referencing user
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 75. Validate absence of JS errors</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are no browser console ERRORS</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_absence"><a class="anchor" href="#_validate_specific_log_entries_absence"></a>Validate specific log entries absence</h4>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
-Then there are no browser console ERRORS by regex '.<strong>user.</strong>'</p>
+<p>Validates the absence of specific log entries of the desired level in the browser console.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Validate specific log entries presence
-
-Validates the presence of specific log entries of the desired level in the browser console.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex '$pattern'</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 76. Validate absence of JS error referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_presence"><a class="anchor" href="#_validate_specific_log_entries_presence"></a>Validate specific log entries presence</h4>
 <div class="paragraph">
-<p>Then there are browser console $logLevels by regex '$pattern'</p>
+<p>Validates the presence of specific log entries of the desired level in the browser console.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$logLevels` - {log-levels}
-* `$pattern` - The regular expression to match log entry messages.
-
-.Validate presence of JS errors referencing user
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are browser console $logLevels by regex '$pattern'</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 77. Validate presence of JS errors referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+Then there are browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_console_log_entries_and_save_them"><a class="anchor" href="#_wait_for_console_log_entries_and_save_them"></a>Wait for console log entries and save them</h4>
 <div class="paragraph">
-<p>Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
-Then there are browser console ERRORS by regex '.<strong>user.</strong>'</p>
+<p>Waits for the appearance of the console log entries with the expected level and which match regular expression and saves all the entries (including awaited ones) of the expected level gathered during the wait to the scoped variable.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout</code> and <code>ui.wait.polling-period</code>. See <a href="#_properties">Properties</a> section for more details.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Wait for console log entries and save them
-
-Waits for the appearance of the console log entries with the expected level and which match regular expression and saves all the entries (including awaited ones) of the expected level gathered during the wait to the scoped variable.
-
-NOTE: Wait uses generic UI timeouts specified by the properties `ui.wait.timeout` and `ui.wait.polling-period`. See &lt;&lt;_properties&gt;&gt; section for more details.
-
-[source,gherkin]</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until browser console $logEntries by regex `$regex` appear and save all entries into $scopes variable `$variableName`</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>When I wait until browser console $logEntries by regex <code>$regex</code> appear and save all entries into $scopes variable <code>$variableName</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$logLevels` - {log-levels}
-* `$pattern` - The regular expression to match log entry messages.
-* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
-* `$variableName` - The name of the variable to save the value of the barcode.
-
-.Wait for application readiness</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
-When I wait until browser console infos by regex <code>.<strong>Application ready.</strong></code> appear and save all entries into scenario variable <code>logs</code>
-Then <code>${logs}</code> matches <code>.<strong>Application ready in \d+ seconds.</strong></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 78. Wait for application readiness</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"></code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
+Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
+</div>
 </div>
 </div>
 </div>
