@@ -3033,389 +3033,331 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scan_barcode_from_context"><a class="anchor" href="#_scan_barcode_from_context"></a>Scan barcode from context</h3>
+<h3 id="_execute_javascript_with_arguments"><a class="anchor" href="#_execute_javascript_with_arguments"></a>Execute JavaScript with arguments</h3>
 <div class="paragraph">
-<p>Scan a barcode from the specified context and save its value to the variable with the specified name.
-If context not set - takes a screenshot of the current screen. Only the first found barcode will be scanned.</p>
-</div>
-<div class="paragraph">
-<p>Supported Code Formats</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">1D product</th>
-<th class="tableblock halign-left valign-top">1D industrial</th>
-<th class="tableblock halign-left valign-top">2D</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>UPC-A</p>
-</li>
-<li>
-<p>UPC-E</p>
-</li>
-<li>
-<p>EAN-8</p>
-</li>
-<li>
-<p>EAN-13</p>
-</li>
-<li>
-<p>UPC/EAN Extension 2/5</p>
-</li>
-<li>
-<p>RSS-14</p>
-</li>
-<li>
-<p>RSS-Expanded</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>Code 39</p>
-</li>
-<li>
-<p>Code 93</p>
-</li>
-<li>
-<p>Code 128</p>
-</li>
-<li>
-<p>Codabar</p>
-</li>
-<li>
-<p>ITF</p>
-</li>
-</ul>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>QR Code</p>
-</li>
-<li>
-<p>Data Matrix</p>
-</li>
-<li>
-<p>Aztec</p>
-</li>
-<li>
-<p>PDF 417</p>
-</li>
-<li>
-<p>MaxiCode</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Actions performed at this step:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Takes a screenshot of the specified context. If it&#8217;s not set - takes a screenshot of the current screen (viewport and system bars)</p>
-</li>
-<li>
-<p>Scans a barcode from the screenshot and save its value to the variable</p>
-</li>
-</ul>
+<p>Executes JavaScript via <a href="https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html">JavascriptExecutor</a>. Step executes the script either without any arguments or with <code>String</code> or <code>Object</code> argument types.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from context and save result to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `$script` with arguments:$arguments</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$script</code> - The JavaScript code to execute.</p>
 </li>
 <li>
-<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 55. Scan the barcode</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `xpath(//android.view.ViewGroup[@resource-id='qrContainer'])`
-When I scan barcode from context and save result to scenario variable `qrCodeLink`
-Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_proxy_steps"><a class="anchor" href="#_proxy_steps"></a>Proxy Steps</h3>
-<div class="sect3">
-<h4 id="_check_the_number_of_http_requests"><a class="anchor" href="#_check_the_number_of_http_requests"></a>Check the number of HTTP requests</h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.</p>
-</div>
-<div class="paragraph">
-<p>The actions preformed by the step:</p>
-</div>
+<p><code>$arguments</code> - The examples table with set of arguments and their type:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>extract HTTP messages from the recorded proxy archive</p>
+<p><code class="subs=+quotes"><strong>value</strong></code> -  The value of the argument.</p>
 </li>
 <li>
-<p>filter out the HTTP messages with the response status code <code>302 Moved Temporarily</code></p>
-</li>
-<li>
-<p>find HTTP requests matching the provided HTTP methods and the URL regular expression</p>
-</li>
-<li>
-<p>check that the total number of the found HTTP messages satisfies the desired condition</p>
+<p><code class="subs=+quotes"><strong>type</strong></code> -  The type of the argument. Either <code>string</code> or <code>object</code>.</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 55. Remove noisy assistant</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `document.querySelector('#assistant').remove()` with arguments:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 56. Inject image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:inject-image` with arguments:
+|value                                                                                       |type  |
+|iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=|string|
+
+.Throttle CPU
+[source,gherkin]</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+<p>When I execute javascript <code>sauce:throttleCPU</code> with arguments:
+|value                                                                                       |type  |
+|{"rate" : 4}|object|</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP $httpMethods requests with URL pattern `$urlPattern` is $comparisonRule `$number`</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Execute JavaScript and save result.
+
+https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/JavascriptExecutor.html[Executes JavaScript] code and saves result into variable.
+
+[source,gherkin]</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$httpMethods</code> - The comma-separated HTTP methods to filter by</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - The regular expression to match HTTP request URL</p>
-</li>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">Comparison Rule</a></p>
-</li>
-<li>
-<p><code>$number</code> - The number to compare with</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 56. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_capture_http_message"><a class="anchor" href="#_capture_http_message"></a>Capture HTTP message</h4>
-<div class="paragraph">
-<p>Save the HTTP message part from the HTTP request with given URL-pattern into the variable with specified name and the scopes.</p>
 </div>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.</p>
+<p>When I execute javascript <code>$jsCode</code> and save result to $scopes variable <code>$variableName</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$jsCode` - Any JavaScript code. In order to save a result https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return[return] statement should be used.
+* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
+* `$variableName` - The variable name to script execution result.
+
+.Validate timings
+[source,gherkin]</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The actions preformed by the step:</p>
+<p>Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
+When I execute javascript <code>return JSON.stringify(window.performance.timing)</code> and save result to scenario variable <code>timings</code>
+Then number of JSON elements from <code>${timings}</code> by JSON path <code>$.connectStart</code> is = 1</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>extract HTTP messages from the recorded proxy archive</p>
-</li>
-<li>
-<p>filter out the HTTP messages with the response status code <code>302 Moved Temporarily</code></p>
-</li>
-<li>
-<p>find HTTP requests matching the provided HTTP methods and the URL regular expression</p>
-</li>
-<li>
-<p>check that total number of the found HTTP messages is equal to <code>1</code></p>
-</li>
-<li>
-<p>save the HTTP message part to the specified variable</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Scan barcode from context
+
+Scan a barcode from the specified context and save its value to the variable with the specified name.
+If context not set - takes a screenshot of the current screen. Only the first found barcode will be scanned.
+
+Supported Code Formats
+
+
+[cols="2,2,2", options="header"]
+|===
+
+|1D product
+|1D industrial
+|2D
+
+a|
+* UPC-A
+* UPC-E
+* EAN-8
+* EAN-13
+* UPC/EAN Extension 2/5
+* RSS-14
+* RSS-Expanded
+a|
+* Code 39
+* Code 93
+* Code 128
+* Codabar
+* ITF
+a|
+* QR Code
+* Data Matrix
+* Aztec
+* PDF 417
+* MaxiCode
+
+|===
+
+Actions performed at this step:
+
+* Takes a screenshot of the specified context. If it's not set - takes a screenshot of the current screen (viewport and system bars)
+* Scans a barcode from the screenshot and save its value to the variable
+
+[source,gherkin]</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In case of failure the full HTTP archive (HAR) is attached to the report.</p>
+<p>When I scan barcode from context and save result to $scopes variable <code>$variableName</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save $httpMessagePart to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
+* `$variableName` - The name of the variable to save the value of the barcode.
+
+.Scan the barcode
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
-</li>
-<li>
-<p><code>$httpMessagePart</code> - The HTTP message part to save. One of:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>URL</code> - The request URL.</p>
-</li>
-<li>
-<p><code>URL query</code> - The request URL query parameters.</p>
-</li>
-<li>
-<p><code>request data</code> - The request data includes the following keys:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>query</code> - The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.</p>
-</li>
-<li>
-<p><code>requestBody.mimeType</code> - The MIME type of posted data, the variable will not be saved if MIME type is not present.</p>
-</li>
-<li>
-<p><code>requestBody.text</code> - The posted data as plain text, the variable will not be saved if the request body is not present.</p>
-</li>
-<li>
-<p><code>requestBodyParameters</code> - The form data parameters are stored as a collection of key and value pairs, where key is the name of the form parameter and value is the list of form parameter values. The form parameter values are accessible via zero-based index.</p>
-</li>
-<li>
-<p><code>responseStatus</code> - The response status, the variable will not be saved if the response is not present.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>response data</code> - The response data includes the following keys:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>responseBody.mimeType</code> - The MIME type of response data, the variable will not be saved if MIME type is not present.</p>
-</li>
-<li>
-<p><code>responseBody.text</code> - The response data as plain text, the variable will not be saved if the response body is not present.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
-</li>
-<li>
-<p><code>$variableName</code> - The variable name to save the HTTP message part.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 57. Validate the URL of the matching HTTP request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
-When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
-Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 58. Validate the URL query of the matching HTTP request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
-When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
-Then `${query.q[0]}` is equal to `vividus`
-Then `${query.q}` is equal to `[vividus]`
-Then `${query}` is equal to `{q=[vividus]}`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 59. Validate the request data from the matching HTTP message</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
-When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
-Then `${data.query}` is equal to `{}`
-Then `${data.requestBodyParameters}` is equal to `{delivery=, custtel=, comments=, custemail=, custname=}`
-Then `${data.requestBody}` is not equal to `null`
-Then `${data.responseStatus}` is equal to `200`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 60. Validate the response data from the matching HTTP message</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
-When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
-Then `${data.responseBody.text}` is equal to `{"status": "ok"}`
-Then `${data.responseBody.mimeType}` is equal to `application/json`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wait_for_the_http_request"><a class="anchor" href="#_wait_for_the_http_request"></a>Wait for the HTTP request</h4>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+<p>When I change context to element located <code>xpath(//android.view.ViewGroup[@resource-id='qrContainer'])</code>
+When I scan barcode from context and save result to scenario variable <code>qrCodeLink</code>
+Then <code>${qrCodeLink}</code> is equal to <code><a href="https://www.example.com" class="bare">https://www.example.com</a></code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Proxy Steps
+==== Check the number of HTTP requests
+:proxy: This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
+:har-attached: In case of failure the full HTTP archive (HAR) is attached to the report.
+
+{proxy}
+
+The actions preformed by the step:
+
+* extract HTTP messages from the recorded proxy archive
+* filter out the HTTP messages with the response status code `302 Moved Temporarily`
+* find HTTP requests matching the provided HTTP methods and the URL regular expression
+* check that the total number of the found HTTP messages satisfies the desired condition
+
+{har-attached}
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then number of HTTP $httpMethods requests with URL pattern <code>$urlPattern</code> is $comparisonRule <code>$number</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The comma-separated HTTP methods to filter by
+* `$urlPattern` - The regular expression to match HTTP request URL
+* `$comparisonRule` - xref:parameters:comparison-rule.adoc[Comparison Rule]
+* `$number` - The number to compare with
+
+.Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then number of HTTP GET, POST requests with URL pattern <code><a href="http://httpbin\.org/get" class="bare">http://httpbin\.org/get</a></code> is equal to <code>1</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Capture HTTP message
+
+Save the HTTP message part from the HTTP request with given URL-pattern into the variable with specified name and the scopes.
+
+{proxy}
+
+The actions preformed by the step:
+
+* extract HTTP messages from the recorded proxy archive
+* filter out the HTTP messages with the response status code `302 Moved Temporarily`
+* find HTTP requests matching the provided HTTP methods and the URL regular expression
+* check that total number of the found HTTP messages is equal to `1`
+* save the HTTP message part to the specified variable
+
+{har-attached}
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I capture HTTP $httpMethods request with URL pattern <code>$urlPattern</code> and save $httpMessagePart to $scopes variable <code>$variableName</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The "or"-separated set of HTTP methods to filter by, e.g. `GET or POST or PUT`.
+* `$urlPattern` - The regular expression to match HTTP request URL.
+* `$httpMessagePart` - The HTTP message part to save. One of:
+** `URL` - The request URL.
+** `URL query` - The request URL query parameters.
+** `request data` - The request data includes the following keys:
+*** `query` - The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.
+*** `requestBody.mimeType` - The MIME type of posted data, the variable will not be saved if MIME type is not present.
+*** `requestBody.text` - The posted data as plain text, the variable will not be saved if the request body is not present.
+*** `requestBodyParameters` - The form data parameters are stored as a collection of key and value pairs, where key is the name of the form parameter and value is the list of form parameter values. The form parameter values are accessible via zero-based index.
+*** `responseStatus` - The response status, the variable will not be saved if the response is not present.
+** `response data` - The response data includes the following keys:
+*** `responseBody.mimeType` - The MIME type of response data, the variable will not be saved if MIME type is not present.
+*** `responseBody.text` - The response data as plain text, the variable will not be saved if the response body is not present.
+* `$scopes` - xref:commons:variables.adoc#_scopes[The comma-separated set of the variables scopes].
+* `$variableName` - The variable name to save the HTTP message part.
+
+.Validate the URL of the matching HTTP request
+[source,gherkin,subs="attributes+"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given I start mobile application
+When I capture HTTP GET or POST request with URL pattern <code>.<strong>/search.</strong>=vividus</code> and save URL to scenario variable <code>URL</code>
+Then <code>${URL}</code> is equal to <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the URL query of the matching HTTP request
+[source,gherkin,subs="attributes+"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given I start mobile application
+When I capture HTTP GET request with URL pattern <code>.<strong>/search.</strong>=vividus</code> and save URL query to scenario variable <code>query</code>
+Then <code>${query.q[0]}</code> is equal to <code>vividus</code>
+Then <code>${query.q}</code> is equal to <code>[vividus]</code>
+Then <code>${query}</code> is equal to <code>{q=[vividus]}</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the request data from the matching HTTP message
+[source,gherkin,subs="attributes+"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given I start mobile application
+When I capture HTTP GET request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> and save request data to scenario variable <code>data</code>
+Then <code>${data.query}</code> is equal to <code>{}</code>
+Then <code>${data.requestBodyParameters}</code> is equal to <code>{delivery=, custtel=, comments=, custemail=, custname=}</code>
+Then <code>${data.requestBody}</code> is not equal to <code>null</code>
+Then <code>${data.responseStatus}</code> is equal to <code>200</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Validate the response data from the matching HTTP message
+[source,gherkin,subs="attributes+"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Given I start mobile application
+When I capture HTTP GET request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> and save request data to scenario variable <code>data</code>
+Then <code>${data.responseBody.text}</code> is equal to <code>{"status": "ok"}</code>
+Then <code>${data.responseBody.mimeType}</code> is equal to <code>application/json</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Wait for the HTTP request
+
+{proxy}
 Waits for the HTTP requests matching the provided HTTP methods and URL regular expression.
-If no HTTP request is sent and wait timeout is reached, then the step will fail.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` exists in proxy log</code></pre>
+If no HTTP request is sent and wait timeout is reached, then the step will fail.
+
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$httpMethods</code> - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'</p>
-</li>
-<li>
-<p><code>$urlPattern</code> - the regular expression to match HTTP request URL</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 61. Wait for the HTTP request</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
-When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
-Then number of HTTP GET or POST requests with URL pattern `https://www.google.com/search?q=vividus` is equal to `1`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_add_headers_to_the_http_request"><a class="anchor" href="#_add_headers_to_the_http_request"></a>Add headers to the HTTP request</h4>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-Add headers to the proxied HTTP request satisfying the desired condition</p>
+<p>When I wait until HTTP $httpMethods request with URL pattern <code>$urlPattern</code> exists in proxy log</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which $comparisonRule `$url`:$headers</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - the "or"-separated HTTP methods to filter by, e.g. 'GET or POST or PUT'
+* `$urlPattern` - the regular expression to match HTTP request URL
+
+.Wait for the HTTP request
+[source,gherkin,subs="attributes+"]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
-</li>
-<li>
-<p><code>$url</code> - The input value of URL to filter by</p>
-</li>
-<li>
-<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Given I start mobile application
+When I wait until HTTP GET or POST request with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> exists in proxy log
+Then number of HTTP GET or POST requests with URL pattern <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code> is equal to <code>1</code></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 62. Add headers to the proxied HTTP request</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Add headers to the HTTP request
+
+{proxy}
+Add headers to the proxied HTTP request satisfying the desired condition
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I add headers to proxied requests with URL pattern which $comparisonRule <code>$url</code>:$headers</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$comparisonRule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
+* `$url` - The input value of URL to filter by
+* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
+
+.Add headers to the proxied HTTP request
+[source,gherkin,subs="attributes+"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I add headers to proxied requests with URL pattern which is equal to <code><a href="https://www.google.com/search?q=vividus" class="bare">https://www.google.com/search?q=vividus</a></code>:
 |name     |value     |
 |testName1|testValue1|
 |testName2|testValue2|
@@ -3425,329 +3367,258 @@ Then a JSON element from '${response}' by the JSON path '$.headers' is equal to 
     "Testname1": "testValue1",
     "Testname2": "testValue2"
 }
-'ignoring extra fields</code></pre>
+'ignoring extra fields</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Clear the recordings
+
+{proxy}
+The step clears the HTTP requests and responses recorded by the proxy
+
+[source,gherkin]</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_clear_the_recordings"><a class="anchor" href="#_clear_the_recordings"></a>Clear the recordings</h4>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-The step clears the HTTP requests and responses recorded by the proxy</p>
+<p>When I clear proxy log</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Clear the data recorded by the proxy
+[source,gherkin,subs="attributes+"]</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">Example 63. Clear the data recorded by the proxy</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
+<div class="paragraph">
+<p>Given I start mobile application
 When I clear proxy log
-Then number of HTTP GET requests with URL pattern 'https://www.google.com/search?q=vividus' is equal to `0`</code></pre>
+Then number of HTTP GET requests with URL pattern 'https://www.google.com/search?q=vividus' is equal to <code>0</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Clear the mocks
+
+{proxy}
+The step clears previously created mocks
+
+[source,gherkin]</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_clear_the_mocks"><a class="anchor" href="#_clear_the_mocks"></a>Clear the mocks</h4>
 <div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-The step clears previously created mocks</p>
+<p>When I clear proxy mocks</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy mocks</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Clear the proxy mocks
+[source,gherkin,subs="attributes+"]</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">Example 64. Clear the proxy mocks</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
+<div class="paragraph">
+<p>When I mock HTTP responses with request URL which CONTAINS <code>vividus</code> using response code <code>200</code>, content <code>#{loadResource(page.html)}</code> and headers:
 |name        |value    |
 |Content-Type|text/html|
 When I clear proxy mocks
 Given I start mobile application
-Then number of elements found by `id(sw)` is = `0`</code></pre>
+Then number of elements found by <code>id(sw)</code> is = <code>0</code></p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_mock_the_http_response_by_methods_with_content"><a class="anchor" href="#_mock_the_http_response_by_methods_with_content"></a>Mock the HTTP response by methods with content</h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-Mocks HTTP response by methods with a provided content</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response by methods with content
+
+{proxy}
+Mocks HTTP response by methods with a provided content
+
+[IMPORTANT]
 No actual request will be executed. Short-circuited response will be returned.
-</td>
-</tr>
-</table>
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I mock HTTP $httpMethods responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code>, content <code>$payload</code> and headers:$headers</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP $httpMethods responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$httpMethods` - The "or"-separated set of HTTP methods to filter by, e.g. `GET or POST or PUT`.
+* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
+* `$url` - The input value of URL to filter by
+* `$code` - The response status code
+* `$content` - The content to send within a response
+* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
+
+.Hijack a page
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$httpMethods</code> - The "or"-separated set of HTTP methods to filter by, e.g. <code>GET or POST or PUT</code>.</p>
-</li>
-<li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
-</li>
-<li>
-<p><code>$url</code> - The input value of URL to filter by</p>
-</li>
-<li>
-<p><code>$code</code> - The response status code</p>
-</li>
-<li>
-<p><code>$content</code> - The content to send within a response</p>
-</li>
-<li>
-<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 65. Hijack a page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
+<div class="paragraph">
+<p>When I mock HTTP POST responses with request URL which CONTAINS <code>example</code> using response code <code>202</code>, content <code>#{loadResource(mocked-example.json)}</code> and headers:
 |name        |value           |
-|Content-Type|application/json|</code></pre>
+|Content-Type|application/json|</p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_mock_the_http_response_with_content"><a class="anchor" href="#_mock_the_http_response_with_content"></a>Mock the HTTP response with content</h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-Mocks HTTP response with a provided content</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response with content
+
+{proxy}
+Mocks HTTP response with a provided content
+
+[IMPORTANT]
 No actual request will be executed. Short-circuited response will be returned.
-</td>
-</tr>
-</table>
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I mock HTTP responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code>, content <code>$payload</code> and headers:$headers</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode`, content `$payload` and headers:$headers</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
+* `$url` - The input value of URL to filter by
+* `$code` - The response status code
+* `$content` - The content to send within a response
+* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
+
+.Hijack a page
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
-</li>
-<li>
-<p><code>$url</code> - The input value of URL to filter by</p>
-</li>
-<li>
-<p><code>$code</code> - The response status code</p>
-</li>
-<li>
-<p><code>$content</code> - The content to send within a response</p>
-</li>
-<li>
-<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 66. Hijack a page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
+<div class="paragraph">
+<p>When I mock HTTP responses with request URL which CONTAINS <code>example.com</code> using response code <code>200</code>, content <code>#{loadResourceAsByteArray(page.html)}</code> and headers:
 |name        |value    |
-|Content-Type|text/html|</code></pre>
+|Content-Type|text/html|</p>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_mock_the_http_response_without_content"><a class="anchor" href="#_mock_the_http_response_without_content"></a>Mock the HTTP response without content</h4>
-<div class="paragraph">
-<p>This step requires proxy to be turned on. It can be done in properties or by switching on @proxy meta tag at the story level.
-Mocks HTTP response</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">==== Mock the HTTP response without content
+
+{proxy}
+Mocks HTTP response
+
+[IMPORTANT]
 No actual request will be executed. Short-circuited response will be returned.
-</td>
-</tr>
-</table>
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I mock HTTP responses with request URL which $comparisonRule <code>$url</code> using response code <code>$responseCode</code> and headers:$headers</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which $comparisonRule `$url` using response code `$responseCode` and headers:$headers</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$rule` - xref:parameters:string-comparison-rule.adoc[String comparison rule]
+* `$url` - The input value of URL to filter by
+* `$code` - The response status code
+* `$headers` - The xref:ROOT:glossary.adoc#_examplestable[ExamplesTable] representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively
+
+.404 page
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$rule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a></p>
-</li>
-<li>
-<p><code>$url</code> - The input value of URL to filter by</p>
-</li>
-<li>
-<p><code>$code</code> - The response status code</p>
-</li>
-<li>
-<p><code>$headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns "name" and "value" specifying HTTP header names and values respectively</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 67. 404 page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
+<div class="paragraph">
+<p>When I mock HTTP responses with request URL which CONTAINS <code>example.com</code> using response code <code>404</code> and headers:
 |name          |value|
-|Content-Length|0    |</code></pre>
+|Content-Length|0    |</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Change network connection
+
+Turns ON/OFF network connection.
+
+WARNING: To be able to use this step in the cloud testing platform, review the documentation related to simulating the mobile network conditions on the selected platform.
+
+[source,gherkin]</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_change_network_connection"><a class="anchor" href="#_change_network_connection"></a>Change network connection</h3>
 <div class="paragraph">
-<p>Turns ON/OFF network connection.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-To be able to use this step in the cloud testing platform, review the documentation related to simulating the mobile network conditions on the selected platform.
-</td>
-</tr>
-</table>
+<p>When I turn $toggle <code>$connectionName</code> network connection</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn $toggle `$connectionName` network connection</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$toggle` - The modes of the toggle: `ON` or `OFF`.
+* `$connectionName` - The name of the network connect to toggle.
+
+[cols="2,3,2", options="header"]
+|===
+
+|Connection name
+|Supported platforms
+|Description
+
+|`WIFI`
+|Android emulators, Android and iOS real devices
+|Wi-Fi connection
+
+|`MOBILE_DATA`
+|Android emulators, Android and iOS real devices
+|Mobile Data connection
+
+|`AIRPLANE`
+|Android real devices, Android emulators
+|Airplane Mode
+
+|`WIFI_AND_MOBILE_DATA`
+|Android real devices, Android emulators
+|Mobile Data and Wi-Fi connections
+
+|===
+
+[TIP]
+====
+For iOS real devices: to return to the application you must use the step:
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$toggle</code> - The modes of the toggle: <code>ON</code> or <code>OFF</code>.</p>
-</li>
-<li>
-<p><code>$connectionName</code> - The name of the network connect to toggle.</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 28.5714%;">
-<col style="width: 42.8571%;">
-<col style="width: 28.5715%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Connection name</th>
-<th class="tableblock halign-left valign-top">Supported platforms</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WIFI</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Android emulators, Android and iOS real devices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Wi-Fi connection</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MOBILE_DATA</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Android emulators, Android and iOS real devices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mobile Data connection</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>AIRPLANE</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Android real devices, Android emulators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Airplane Mode</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WIFI_AND_MOBILE_DATA</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Android real devices, Android emulators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mobile Data and Wi-Fi connections</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>For iOS real devices: to return to the application you must use the step:</p>
+<p>When I activate application with bundle identifier <code>$bundleId</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I activate application with bundle identifier `$bundleId`.</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">====
+
+.Turn OFF Wi-Fi for Android
+[source,gherkin]</code></pre>
 </div>
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Example 68. Turn OFF Wi-Fi for Android</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 69. Turn OFF Wi-Fi for iOS</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection
-When I activate application with bundle identifier `my-aplication-bundle-id`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_change_device_screen_orientation"><a class="anchor" href="#_change_device_screen_orientation"></a>Change device screen orientation</h3>
 <div class="paragraph">
-<p>Changes the device screen orientation.</p>
+<p>When I turn OFF <code>WIFI</code> network connection</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change device screen orientation to $orientation</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Turn OFF Wi-Fi for iOS
+[source,gherkin]</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$orientation</code> - The device screen orientation, either <code>portrait</code> or <code>landscape</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>When I turn OFF <code>WIFI</code> network connection
+When I activate application with bundle identifier <code>my-aplication-bundle-id</code></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 70. Change the device screen orientation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change device screen orientation to portrait</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">=== Change device screen orientation
+
+Changes the device screen orientation.
+
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I change device screen orientation to $orientation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* `$orientation` - The device screen orientation, either `portrait` or `landscape`.
+
+.Change the device screen orientation
+[source,gherkin]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When I change device screen orientation to portrait</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"></code></pre>
 </div>
 </div>
 </div>
