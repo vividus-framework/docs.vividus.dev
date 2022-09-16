@@ -423,6 +423,9 @@
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="plugins.html">Plugins</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="custom-modules.html">Custom modules</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -598,15 +601,20 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Plugins are extensible and flexible mechanism for development. New plugin can be developed by
-3rd party team and integrated.</p>
+<p>Plugins are extensible and flexible mechanism for development and represent generic features that
+can be used by multiple projects, it could be either VIVIDUS or external ones. The dependencies
+between plugins are not recommended, all the generic logics should be moved to approppriate extensions.</p>
 </div>
 <div class="paragraph">
-<p>The plugin configuration should be placed at the <code>/src/main/resources/spring.xml</code> path relatively
-to the project root.</p>
+<p>The plugin configuration should be placed at the following path relatively to the project root:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. /src/main/resources/spring.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">/src/main/resources/vividus-plugin/spring.xml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. /src/main/resources/vividus-plugin/spring.xml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
