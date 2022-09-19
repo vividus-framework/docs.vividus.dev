@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>WinRM Plugin :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-winrm.html">
+    <title>YAML Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-yaml.html">
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -249,7 +249,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="plugin-xml.html">XML</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="plugin-yaml.html">YAML</a>
   </li>
 </ul>
@@ -261,7 +261,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="plugin-ssh.html">SSH</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="plugin-winrm.html">WinRM</a>
   </li>
 </ul>
@@ -553,16 +553,16 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
-    <li>Remoting</li>
-    <li><a href="plugin-winrm.html">WinRM</a></li>
+    <li>Data Formats</li>
+    <li><a href="plugin-yaml.html">YAML</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-winrm.html">latest</a>
-    <a class="version" href="../../0.4.16/plugins/plugin-winrm.html">0.4.16</a>
-    <a class="version" href="../../0.4.15/plugins/plugin-winrm.html">0.4.15</a>
+    <a class="version is-current" href="plugin-yaml.html">latest</a>
+    <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
+    <a class="version is-missing" href="../../0.4.15/index.html">0.4.15</a>
     <a class="version is-missing" href="../../0.4.14/index.html">0.4.14</a>
     <a class="version is-missing" href="../../0.4.13/index.html">0.4.13</a>
     <a class="version is-missing" href="../../0.4.11/index.html">0.4.11</a>
@@ -593,18 +593,18 @@
     <a class="version is-missing" href="../../0.2.14/index.html">0.2.14</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-winrm.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-yaml.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">WinRM Plugin</h1>
+<h1 class="page">YAML Plugin</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides functionality to execute commands via <a href="https://docs.microsoft.com/en-us/windows/win32/winrm/portal">WinRM</a>.</p>
+<p>The plugin provides a set of actions for validation of YAML data.</p>
 </div>
 </div>
 </div>
@@ -614,295 +614,57 @@
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-winrm', version: '0.5.0-SNAPSHOT')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-yaml', version: '0.5.0-SNAPSHOT')</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It&#8217;s allowed to configure unlimited number of WinRM connections via mechanism of the dynamic properties. The properties prefix example is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">winrm.server.my-server</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code>my-server</code> is a key used to refer WinRm connection in the steps. The key is defined by users, must be unique and can&#8217;t contain dots.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The properties marked with <strong>bold</strong> are mandatory.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>winrm.server.&lt;key&gt;.address</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Either full endpoint URL (e.g. <code><a href="https://10.240.1.1:5986/wsman" class="bare">https://10.240.1.1:5986/wsman</a></code>) or hostname and port separated by colon (e.g. <code>10.240.1.1:5986</code>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>winrm.server.&lt;key&gt;.username</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the user logging in</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>winrm.server.&lt;key&gt;.password</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the user logging in</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>winrm.server.&lt;key&gt;.authentication-scheme</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>Basic</code><br>
-<code>Digest</code><br>
-<code>NTLM</code><br>
-<code>Negotiate</code><br>
-<code>Kerberos</code><br>
-<code>CredSSP</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NTLM</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>winrm.server.&lt;key&gt;.disable-certificate-checks</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code><br>
-<code>false</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disable/enable HTTPS certificates validation</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_configure_dynamic_winrm_connection"><a class="anchor" href="#_configure_dynamic_winrm_connection"></a>Configure dynamic WinRM connection</h3>
 <div class="paragraph">
-<p>Creates a new dynamic WinRM connection from the provided parameters, the
-connection is available only within the story creating the connection.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure WinRM connection with key `$connectionKey` and parameters:$connectionParameters</code></pre>
-</div>
+<p>The steps syntax uses internal (VIVIDUS-only) term:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$connectionKey</code> - The key to assign to the creating WinRM connection. In case if the key conflicts with a global connection key, the dynamic connection will take precedence within the story.</p>
-</li>
-<li>
-<p><code>$connectionParameters</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with WinRM connection parameters.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The parameters marked with <strong>bold</strong> are mandatory.
-</td>
-</tr>
-</table>
-</div>
+<p>"YAML element value" or "value of YAML element" - scalar values like
+<code>string</code>, <code>integer</code>, <code>float</code>, <code>boolean</code> (<code>true</code> or <code>false</code>) and <code>null</code>.</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>address</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Either full endpoint URL (e.g. <code><a href="https://10.240.1.1:5986/wsman" class="bare">https://10.240.1.1:5986/wsman</a></code>) or hostname and port separated by colon (e.g. <code>10.240.1.1:5986</code>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>username</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the user logging in</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>password</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password of the user logging in</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authentication-scheme</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>Basic</code><br>
-<code>Digest</code><br>
-<code>NTLM</code><br>
-<code>Negotiate</code><br>
-<code>Kerberos</code><br>
-<code>CredSSP</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NTLM</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>disable-certificate-checks</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code><br>
-<code>false</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disable/enable HTTPS certificates validation</p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Example 2. Configure WinRM connection dynamically</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure WinRM connection with key `my-connection` and parameters:
-|address         |username |password|authentication-scheme|
-|10.10.10.10:5985|admin    |Pa$$w0rd|Basic                |</code></pre>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_execute_batch_command"><a class="anchor" href="#_execute_batch_command"></a>Execute batch command</h3>
+<h3 id="_save_yaml_element_value_from_input"><a class="anchor" href="#_save_yaml_element_value_from_input"></a>Save YAML element value from input</h3>
 <div class="paragraph">
-<p>Executes a <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting">native Windows command</a>. A new session is created on the destination host for each step invocation.</p>
+<p>Saves a value of YAML element found in the given YAML into the variable with
+the specified name and scope.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute batch command `$command` on server `$connectionKey` using WinRM and save result to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save YAML element value from `$yaml` by YAML path `$yamlPath` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$command</code> - The batch command limited to 8096 bytes. The maximum length of the command can be even less depending on the <a href="https://support.microsoft.com/en-us/kb/830473">platform</a>.</p>
+<p><code>$yaml</code> - The YAML used to find YAML element value.</p>
 </li>
 <li>
-<p><code>$connectionKey</code> - The WinRM connection key matching any of configured ones.</p>
+<p><code>$yamlPath</code> - The <a href="https://github.com/yaml-path/YamlPath#usage">YAML Path</a> used to find YAML element value.</p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
-<p><code>$variableName</code> - The variable name to store the command execution results. The the data will be stored under the following keys:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$variableName.stdout</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">command standard output stream</a>;</p>
-</li>
-<li>
-<p><code>$variableName.stderr</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)">command standard error stream</a>;</p>
-</li>
-<li>
-<p><code>$variableName.exit-status</code> - the <a href="https://en.wikipedia.org/wiki/Exit_status">exit status (a.k.a exit code)</a> of the command.</p>
-</li>
-</ul>
-</div>
+<p><code>$variableName</code> - The name of the variable to save the found YAML element value.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Check batch command result</div>
+<div class="title">Example 2. Validate the title of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute batch command `echo hello cmd` on server `my-server` using WinRM and save result as JSON to scenario variable `cmd-result`
-Then `${cmd-result.stdout}` is equal to `hello cmd`
-Then `${cmd-result.stderr}` is equal to ``
-Then `${cmd-result.exit-status}` is equal to `0`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_execute_powershell_command"><a class="anchor" href="#_execute_powershell_command"></a>Execute PowerShell command</h3>
-<div class="paragraph">
-<p>Executes a PowerShell[<a href="https://docs.microsoft.com/en-us/powershell/scripting/overview" class="bare">https://docs.microsoft.com/en-us/powershell/scripting/overview</a>] command. A new session is created on the destination host for each step invocation.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute PowerShell command `$command` on server `$connectionKey` using WinRM and save result to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$command</code> - The PowerShell command.</p>
-</li>
-<li>
-<p><code>$connectionKey</code> - The WinRM connection key matching any of configured ones.</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
-</li>
-<li>
-<p><code>$variableName</code> - The variable name to store the command execution results. The the data will be stored under the following keys:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$variableName.stdout</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">command standard output stream</a>;</p>
-</li>
-<li>
-<p><code>$variableName.stderr</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)">command standard error stream</a>;</p>
-</li>
-<li>
-<p><code>$variableName.exit-status</code> - the <a href="https://en.wikipedia.org/wiki/Exit_status">exit status (a.k.a exit code)</a> of the command.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 4. Check PowerShell command result</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute PowerShell command `echo hello ps` on server `my-server` using WinRM and save result to scenario variable `ps-result`
-Then `${ps-result.stdout}` is equal to `hello ps`
-Then `${ps-result.stderr}` is equal to ``
-Then `${ps-result.exit-status}` is equal to `0`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save YAML element value from `${response}` by YAML path `store.book[1].title` to scenario variable `title-of-second-book`
+Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
 </div>
 </div>
 </div>
