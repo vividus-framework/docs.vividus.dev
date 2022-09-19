@@ -656,14 +656,54 @@ The version of VIVIDUS used in the project (see <code>build.gradle</code> file) 
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>VIVIDUS Docker image includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java runtime environment</p>
+</li>
+<li>
+<p>All VIVIDUS plugins</p>
+</li>
+<li>
+<p>Database connectors for the following databases:</p>
+</li>
+<li>
+<p><code>mysql-connector-java</code> (MySQL)</p>
+</li>
+<li>
+<p><code>mssql-jdbc</code> (Microsoft SQL Server, Azure SQL)</p>
+</li>
+<li>
+<p><code>postgresql</code> (PostgreSQL)</p>
+</li>
+<li>
+<p><code>ojdbc10</code> (Oracle Database)</p>
+</li>
+<li>
+<p><code>db2jcc</code> (DB2)</p>
+</li>
+<li>
+<p><code>csvjdbc</code> (CSV)</p>
+</li>
+<li>
+<p><code>h2</code> (H2)</p>
+</li>
+<li>
+<p><code>snowflake-jdbc</code> (Snowflake)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The Docker image includes only Java runtime and doesn&#8217;t contain any browsers, so if it&#8217;s required to run web UI tests via approach described above, it&#8217;s recommended to use solution based on Selenium Grid.
+VIVIDUS Docker image doesn&#8217;t contain any browsers.
 </td>
 </tr>
 </table>
