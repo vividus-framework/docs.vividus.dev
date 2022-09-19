@@ -669,6 +669,27 @@ could be optionally specified using the property <code>azure.environment</code>
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_retrieve_the_key_vault_properties"><a class="anchor" href="#_retrieve_the_key_vault_properties"></a>Retrieve the Key Vault properties</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.KeyVault/vaults/&lt;keyVaultName&gt;` using API version `2021-10-01` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Retrieves the properties of the specified Azure key vault and saves them as JSON
 to a variable. For more information, see the

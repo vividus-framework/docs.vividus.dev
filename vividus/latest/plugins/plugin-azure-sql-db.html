@@ -669,6 +669,27 @@ could be optionally specified using the property <code>azure.environment</code>
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_collect_sql_servers_info"><a class="anchor" href="#_collect_sql_servers_info"></a>Collect SQL Servers info</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Sql/servers` using API version `2021-08-01-preview` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Collects the info about all the SQL Servers under the specified resource group
 and saves it as JSON to a variable. For more information, see the
@@ -701,6 +722,27 @@ and saves it as JSON to a variable. For more information, see the
 </div>
 <div class="sect3">
 <h4 id="_collect_sql_databases_info"><a class="anchor" href="#_collect_sql_databases_info"></a>Collect SQL Databases info</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Sql/servers/&lt;sqlServerName&gt;/databases` using API version `2021-08-01-preview` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Collects the info about all the databases belonging to the identified SQL Server
 under the specified resource group and saves it as JSON to a variable. For more
@@ -737,6 +779,27 @@ information, see the
 </div>
 <div class="sect3">
 <h4 id="_retrieve_the_sql_database_properties"><a class="anchor" href="#_retrieve_the_sql_database_properties"></a>Retrieve the SQL Database properties</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Sql/servers/&lt;sqlServerName&gt;/databases/&lt;databaseName&gt;` using API version `2021-08-01-preview` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Retrieves the properties of the specified SQL Database belonging to the
 identified SQL Server and saves them as JSON to a variable. For more
