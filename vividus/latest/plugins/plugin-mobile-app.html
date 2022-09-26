@@ -2696,9 +2696,27 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_element_exists_for_duration"><a class="anchor" href="#_element_exists_for_duration"></a>Element exists for duration</h3>
+<h3 id="_element_existence_during_the_time_period"><a class="anchor" href="#_element_existence_during_the_time_period"></a>Element existence during the time period</h3>
 <div class="paragraph">
-<p>Verifies that an element located by locator exists for given duration.</p>
+<p>Validates the element located by the locator has existed for the period
+specified by the duration.</p>
+</div>
+<div class="paragraph">
+<p>The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>check the search context is set,</p>
+</li>
+<li>
+<p>search for the element to validate existence (this search may include wait for
+element appearance if it&#8217;s configured),</p>
+</li>
+<li>
+<p>validate the element has presented for the period specified by the duration.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2708,17 +2726,17 @@ Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+<p><code>$locator</code> - The <a href="#_locator">Locator</a> to find an element.</p>
 </li>
 <li>
-<p><code>$duration</code> - The duration in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$duration</code> - The period of time the element should have existed in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Element should exists for 5 second</div>
+<div class="title">Example 49. The element should have existed for 5 second</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `id(banner)` exists for `PT5S` duration</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located `By.id(banner)` exists for `PT5S` duration</code></pre>
 </div>
 </div>
 </div>
