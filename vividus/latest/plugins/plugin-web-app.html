@@ -1101,65 +1101,61 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.timeout</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1M</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Total duration to wait for UI condition</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.polling-period</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.polling-period</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT2S</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used together with <code>ui.wait.timeout</code>. Total duration of time between two iterations of UI condition check</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy for the whole test run</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any host name resolving on the machine</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the host which will be used by proxy</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.ports</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ports range (e.g., <code>10000-10005</code>)</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ports range which could be occupied for proxy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.connectable-host</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host.docker.internal</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.connectable-host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>host.docker.internal</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">proxy.publish-har-on-failure</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables publishing of attachments with HAR to each failed step. <code>@noHarOnFailure</code> meta tag can be used to disable HAR publishing at the story level.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>screenshot.on-failure.debug-modes</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides possibility to attach screenshot for failed proxy steps</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.driver.&lt;browser-name&gt;.command-line-arguments</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string with arguments</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.driver.&lt;browser-name&gt;.command-line-arguments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string with arguments</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The command line (CLI) arguments to use when starting browser.</p>
@@ -1180,8 +1176,12 @@ The properties marked with <strong>bold</strong> are mandatory.
 </li>
 </ul>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web-application.sticky-header-size-percentage</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">header size as a viewport size percent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>25</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Before the click VIVIDUS scrolls element into the viewport, the property defines top edge indent in viewport percent for the scroll</p></td>
 </tr>
 </tbody>
 </table>
