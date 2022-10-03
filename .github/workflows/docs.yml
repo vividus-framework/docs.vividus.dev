@@ -16,12 +16,15 @@ jobs:
 
     - name: Install node
       uses: actions/setup-node@v3
-      env:
-        GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       with:
         node-version: '16'
-    - run: npm i -g @antora/cli@3.1.1 @antora/site-generator@3.1.1 @antora/lunr-extension@1.0.0-alpha.8
-    - run: antora ./antora-playbook.yml
+
+    - name: Build
+      env:
+        GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+      run: |
+        npm i -g @antora/cli@3.1.1 @antora/site-generator@3.1.1 @antora/lunr-extension@1.0.0-alpha.8
+        antora ./antora-playbook.yml
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
