@@ -622,6 +622,30 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a><a href="../commons/variables.html" class="xref page">Dynamic variables</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_json_context"><a class="anchor" href="#_json_context"></a>JSON context</h3>
+<div class="paragraph">
+<p>The variable provides the HTTP response body of the latest executed HTTP call
+by default or the current JSON element for steps iterating over JSON.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${json-context}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate the HTTP response matches the regular expression</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send HTTP GET to the relative URL '/get?productsPerPage=5'
+Then number of JSON elements from `${json-context}` by JSON path `$.product` is equal to 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -630,33 +654,43 @@
 <div class="ulist">
 <ul>
 <li>
-<p>"JSON element" - any part of JSON document including both compex data
-structures like <code>array</code>, <code>object</code> and primitive values like <code>string</code> in
+<p>"JSON element" - any part of JSON document including both complex data
+structures like <code>array</code>, <code>object</code> and scalar values like <code>string</code> in
 double quotes, <code>number</code>, <code>boolean</code> (<code>true</code> or <code>false</code>) and <code>null</code>.</p>
 </li>
 <li>
-<p>"JSON element value" or "value of JSON element" - primitive values like
+<p>"JSON element value" or "value of JSON element" - scalar values like
 <code>string</code> <em>not wrapped</em> into double quotes, <code>number</code>, <code>boolean</code>
 (<code>true</code> or <code>false</code>) and <code>null</code>.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
+<div class="sect2">
+<h3 id="_save_json_element_value_from_context"><a class="anchor" href="#_save_json_element_value_from_context"></a>Save JSON element value from context</h3>
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-JSON context is pointed to the latest HTTP response by default.
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+the combination of the <a href="#_json_context">dynamic variable</a> and the
+<a href="#_save_json_element_value">step saving JSON element value from the input</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element value from `${json-context}` by JSON path `&lt;jsonPath&gt;` to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_save_json_element_value_from_context"><a class="anchor" href="#_save_json_element_value_from_context"></a>Save JSON element value from context</h3>
 <div class="paragraph">
-<p>Saves a value of JSON element found in JSON context into the variable with
+<p>Saves a value of JSON element found in JSON context into the variable with the
 specified name and scope.</p>
 </div>
 <div class="listingblock">
@@ -678,7 +712,7 @@ specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Validate the author of the first book</div>
+<div class="title">Example 3. Validate the author of the first book</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I save JSON element value from context by JSON path `$.store.book[0].author` to scenario variable `author-of-first-book`
@@ -687,10 +721,10 @@ Then `${author-of-first-book}` is equal to `Nigel Rees`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_save_json_element_value_from_input"><a class="anchor" href="#_save_json_element_value_from_input"></a>Save JSON element value from input</h3>
+<h3 id="_save_json_element_value"><a class="anchor" href="#_save_json_element_value"></a>Save JSON element value</h3>
 <div class="paragraph">
 <p>Saves a value of JSON element found in the given JSON into the variable with
-specified name and scope.</p>
+the specified name and scope.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -714,7 +748,7 @@ specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Validate the title of the second book</div>
+<div class="title">Example 4. Validate the title of the second book</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 When I save JSON element value from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
@@ -723,9 +757,499 @@ Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate_json_element_value_from_context"><a class="anchor" href="#_validate_json_element_value_from_context"></a>Validate JSON element value from context</h3>
+<h3 id="_save_json_element"><a class="anchor" href="#_save_json_element"></a>Save JSON element</h3>
 <div class="paragraph">
-<p>Validates if the JSON contex contains the expected JSON element value matching
+<p>Saves a JSON element found in the given JSON into the variable with the
+specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from `$json` by JSON path `$jsonPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find JSON element.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+When I save JSON element from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
+Then `${title-of-second-book}` is equal to `"Sword of Honour"`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_number_of_json_elements"><a class="anchor" href="#_save_number_of_json_elements"></a>Save number of JSON elements</h3>
+<div class="paragraph">
+<p>Saves the number of elements found in the JSON by JSON path into the variable
+with the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `$json` found by JSON path `$jsonPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the number of elements found in the JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Save number of elements from the JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convert_json_to_variable"><a class="anchor" href="#_convert_json_to_variable"></a>Convert JSON to variable</h3>
+<div class="paragraph">
+<p>Converts JSON element into the variable with the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `$json` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$json</code> - The JSON used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `{
+    "store": {
+        "book": [
+            {
+                "category": "reference",
+                "author": "Nigel Rees",
+                "title": "Sayings of the Century",
+                "price": 8.95
+            },
+            {
+                "category": "fiction",
+                "author": "Evelyn Waugh",
+                "title": "Sword of Honour",
+                "price": 12.99
+            }
+        ],
+    }
+}` to scenario variable `jsonData`
+Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convert_json_to_variable_from_context"><a class="anchor" href="#_convert_json_to_variable_from_context"></a>Convert JSON to variable from context</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+the combination of the <a href="#_json_context">dynamic variable</a> and the
+<a href="#_convert_json_to_variable">step converting JSON element from the input</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `${json-context}` to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Converts JSON element into the variable with the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON from context to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Validate the price of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+When I convert JSON from context to scenario variable `jsonData`
+Then `${jsonData.store.book[1].price}` is = `12.99`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_patch_json"><a class="anchor" href="#_patch_json"></a>Patch JSON</h3>
+<div class="paragraph">
+<p>Modified an input JSON using a sequence of operations defined in JSON patch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `$sourceJson` using `$jsonPatch` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sourceJson</code> - JSON data to be patched.</p>
+</li>
+<li>
+<p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC-6902</a></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the patched JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Patch JSON data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"b"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJson`
+Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_on_json_elements"><a class="anchor" href="#_execute_steps_on_json_elements"></a>Execute steps on JSON elements</h3>
+<div class="paragraph">
+<p>Executes steps against all elements found by JSON path in the JSON data.
+The actions performed by the step are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>searches for elements using JSON path;</p>
+</li>
+<li>
+<p>checks the elements number matches comparison rule;</p>
+</li>
+<li>
+<p>passes if the comparison rule matches and the elements number is 0;</p>
+</li>
+<li>
+<p>otherwise switches JSON context to each found element and executes all steps (no steps will be executed in case of comparison rule mismatch);</p>
+</li>
+<li>
+<p>restores previous JSON context.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from `$json` by `$jsonPath` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements from '$json' by '$jsonPath' and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The context-based step is deprecated and will be removed in VIVIDUS 0.6.0. The
+<a href="#_json_context">dynamic variable</a> must be used instead. The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `&lt;elementsNumber&gt;` JSON elements from `${json-context}` by `&lt;jsonPath&gt;` and for each element do&lt;stepsToExecute&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Context-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements by `$jsonPath` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements by '$jsonPath' and for each element doa$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Validate each <code>accountId</code> consists of digits</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
+{
+  "accounts": [
+    {
+      "accountId": 00,
+      "status": "Active"
+    },
+    {
+      "accountId": 01,
+      "status": "Active"
+    },
+    {
+      "accountId": 10,
+      "status": "Active"
+    }
+  ]
+}
+` by `$.accounts.*` and for each element do
+|step                                                                                 |
+|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_on_json_elements_and_exit_on_condition"><a class="anchor" href="#_execute_steps_on_json_elements_and_exit_on_condition"></a>Execute steps on JSON elements and exit on condition</h3>
+<div class="paragraph">
+<p>Executes steps against all elements found by JSON path in the JSON data until
+the variable is not set or its value corresponds to the expected one. The
+actions performed by the step are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>searches for elements using JSON path;</p>
+</li>
+<li>
+<p>checks the elements number matches comparison rule;</p>
+</li>
+<li>
+<p>passes if the comparison rule matches and the elements number is 0;</p>
+</li>
+<li>
+<p>otherwise switches JSON context to each found element and executes all steps until the variable is not set or mismatches the expected value (no steps will be executed in case of comparison rule mismatch);</p>
+</li>
+<li>
+<p>restores previous JSON context;</p>
+</li>
+<li>
+<p>fails if the variable has never been set during the iterations execution.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in `$json` by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in '$json' by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>variableName</code> - The name of the variable to validate.</p>
+</li>
+<li>
+<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
+</li>
+<li>
+<p><code>expectedValue</code> - The expected value of the variable.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The context-based step is deprecated and will be removed in VIVIDUS 0.6.0. The
+<a href="#_json_context">dynamic variable</a> must be used instead. The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &lt;comparisonRule&gt; `&lt;elementsNumber&gt;` JSON elements in `${json-context}` by `&lt;jsonPath&gt;` and until variable `&lt;variableName&gt;` &lt;variableMatcher&gt; `&lt;expectedValue&gt;` for each element I do:&lt;stepsToExecute&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Context-based step</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in context by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Context-based step alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in context by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>variableName</code> - The name of the variable to validate.</p>
+</li>
+<li>
+<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
+</li>
+<li>
+<p><code>expectedValue</code> - The expected value of the variable.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Find the title from JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
+|step|
+|When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
+Then `Moby Dick` is = `${title}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_json_element_value_from_context"><a class="anchor" href="#_validate_json_element_value_from_context"></a>Validate JSON element value from context</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+the combination of the <a href="#_json_context">dynamic variable</a> and the
+<a href="#_validate_json_element_value">step validating JSON element value from the input</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element value from `${json-context}` by JSON path `&lt;jsonPath` &lt;comparisonRule&gt; `&lt;expectedValue&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Validates if the JSON context contains the expected JSON element value matching
 the comparison rule by the specified JSON path.</p>
 </div>
 <div class="listingblock">
@@ -763,7 +1287,7 @@ the comparison rule by the specified JSON path.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Validate the price of the third book is less than 9</div>
+<div class="title">Example 18. Validate the price of the third book is less than 9</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 Then JSON element value from context by JSON path `$.store.book[2].price` is less than `9`</code></pre>
@@ -771,7 +1295,7 @@ Then JSON element value from context by JSON path `$.store.book[2].price` is les
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate_json_element_value_from_input"><a class="anchor" href="#_validate_json_element_value_from_input"></a>Validate JSON element value from input</h3>
+<h3 id="_validate_json_element_value"><a class="anchor" href="#_validate_json_element_value"></a>Validate JSON element value</h3>
 <div class="paragraph">
 <p>Validates if the given JSON contains the expected JSON element value matching
 the comparison rule by the specified JSON path.</p>
@@ -814,7 +1338,7 @@ the comparison rule by the specified JSON path.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Validate the price of the fourth book is greater than 22.50</div>
+<div class="title">Example 19. Validate the price of the fourth book is greater than 22.50</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
 Then JSON element value from `${response}` by JSON path `$.store.book[3].price` is greater than `22.50`</code></pre>
@@ -822,337 +1346,84 @@ Then JSON element value from `${response}` by JSON path `$.store.book[3].price` 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_patch_json"><a class="anchor" href="#_patch_json"></a>Patch JSON</h3>
+<h3 id="_validate_json_element"><a class="anchor" href="#_validate_json_element"></a>Validate JSON element</h3>
 <div class="paragraph">
-<p>Modified an input JSON using a sequence of operations defined in JSON patch.</p>
+<p>Validates if the given JSON contains the expected JSON element matching the
+comparison rule by the specified JSON path.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `$sourceJson` using `$jsonPatch` and save result to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `$json` by JSON path `$jsonPath` is equal to `$expectedData`$options</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$sourceJson</code> - JSON data to be patched.</p>
+<p><code>json</code> - The JSON used to find the actual JSON element.</p>
 </li>
 <li>
-<p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC-6902</a></p>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find the actual JSON element.</p>
 </li>
 <li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>expectedData</code> - The expected JSON element to compare against.</p>
 </li>
 <li>
-<p><code>$variableName</code> - The name of the variable to save the patched JSON.</p>
+<p><code>options</code> - The set of <a href="https://github.com/lukas-krecan/JsonUnit/blob/master/README.md#options">JSON comparison options</a>.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Patch JSON data</div>
+<div class="title">Example 20. Validate JSON contains string value by JSON path</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"b"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJson`
-Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_convert_json_to_variable_from_input"><a class="anchor" href="#_convert_json_to_variable_from_input"></a>Convert JSON to variable from input</h3>
-<div class="paragraph">
-<p>Converts JSON element into the variable with specified name and scope.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `$json` to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$json</code> - The JSON used to find JSON element value.</p>
-</li>
-<li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
-</li>
-<li>
-<p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 7. Validate the title of the second book</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
-When I convert JSON `${response}` to scenario variable `jsonData`
-Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_convert_json_to_variable_from_context"><a class="anchor" href="#_convert_json_to_variable_from_context"></a>Convert JSON to variable from context</h3>
-<div class="paragraph">
-<p>Converts JSON element into the variable with specified name and scope.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON from context to $scopes variable `$variableName`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
-</li>
-<li>
-<p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 8. Validate the price of the second book</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
-When I convert JSON from context to scenario variable `jsonData`
-Then `${jsonData.store.book[1].price}` is = `12.99`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_perform_steps_on_elements_in_json"><a class="anchor" href="#_perform_steps_on_elements_in_json"></a>Perform steps on elements in JSON</h3>
-<div class="paragraph">
-<p>Performs steps against all elements found by JSON path in JSON data or the context.</p>
-</div>
-<div class="paragraph">
-<p>Actions performed by step:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Searches for elements using JSON path</p>
-</li>
-<li>
-<p>Checks that elements quantity matches comparison rule and elements number</p>
-</li>
-<li>
-<p>Passes if the comparison rule matches and the elements number is 0</p>
-</li>
-<li>
-<p>For each element switches JSON context and performs all steps. No steps will be performed in case of comparison rule mismatch</p>
-</li>
-<li>
-<p>Restores previously set context</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 9. JSON-based step</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from `$json` by `$jsonPath` and for each element do$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
-</li>
-<li>
-<p><code>elementsNumber</code> - The expected number of elements.</p>
-</li>
-<li>
-<p><code>json</code> - The JSON data.</p>
-</li>
-<li>
-<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 10. Context-based step</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from context by `$jsonPath` and for each element do$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
-</li>
-<li>
-<p><code>elementsNumber</code> - The expected number of elements.</p>
-</li>
-<li>
-<p><code>json</code> - The JSON data.</p>
-</li>
-<li>
-<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 11. Verify each account id is a number from JSON</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
 {
-  "accounts": [
-    {
-      "accountId": 00,
-      "status": "Active"
-    },
-    {
-      "accountId": 01,
-      "status": "Active"
-    },
-    {
-      "accountId": 10,
-      "status": "Active"
-    }
-  ]
+  "accountId": 12345,
+  "status": "Active"
 }
-` by `$.accounts.*` and for each element do
-|step                                                                                 |
-|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 12. Verify each account id is a number from response</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send HTTP GET to the relative URL 'api/v3/accounts'
-When I find &gt; `0` JSON elements from context by `$.accounts.*` and for each element do
-|step                                                                                 |
-|Then number of JSON elements by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1|</code></pre>
+` by JSON path `$.status` is equal to `"Active"`</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_perform_steps_on_elements_in_json_and_exit_on_condition"><a class="anchor" href="#_perform_steps_on_elements_in_json_and_exit_on_condition"></a>Perform steps on elements in JSON and exit on condition</h3>
+<h3 id="_validate_number_of_json_elements"><a class="anchor" href="#_validate_number_of_json_elements"></a>Validate number of JSON elements</h3>
 <div class="paragraph">
-<p>Performs steps against all elements found by JSON path in JSON data or the context until variable is not set or its value corresponds to the expected one.</p>
+<p>Validates the number of JSON elements found by the JSON path matches the
+expected number according to the specified comparison rule.</p>
 </div>
-<div class="paragraph">
-<p>Actions performed by step:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `$json` by JSON path `$jsonPath` is $comparisonRule $elementsNumber</code></pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Searches for elements using JSON path</p>
+<p><code>json</code> - The JSON used to find the actual JSON elements.</p>
 </li>
 <li>
-<p>Checks that elements quantity matches comparison rule and elements number</p>
+<p><code>jsonPath</code> - The <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a> used to find JSON elements.</p>
 </li>
-<li>
-<p>Passes if the comparison rule matches and the elements number is 0</p>
-</li>
-<li>
-<p>For each element switches JSON context and performs all steps until variable not set or mismatches expected value. No steps will be performed in case of comparison rule mismatch</p>
-</li>
-<li>
-<p>Restores previously set context</p>
-</li>
-<li>
-<p>Step will fail if variable never be set along the iterations</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 13. JSON-based step</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in `$json` by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 14. JSON-based step alias</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in '$json' by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
 <li>
 <p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
 </li>
 <li>
-<p><code>elementsNumber</code> - The expected number of elements.</p>
-</li>
-<li>
-<p><code>json</code> - The JSON data.</p>
-</li>
-<li>
-<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
-</li>
-<li>
-<p><code>variableName</code> - The name of variable to validate.</p>
-</li>
-<li>
-<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
-</li>
-<li>
-<p><code>expectedValue</code> - The expected value of the variable.</p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
+<p><code>elementsNumber</code> - The expected number of JSON elements.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Context-based step</div>
+<div class="title">Example 21. Validate the number of accounts in JSON is equal to 2</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in context by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 16. Context-based step alias</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in context by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
-</li>
-<li>
-<p><code>elementsNumber</code> - The expected number of elements.</p>
-</li>
-<li>
-<p><code>jsonPath</code> - <a href="https://github.com/json-path/JsonPath#path-examples">JSON Path</a>.</p>
-</li>
-<li>
-<p><code>variableName</code> - The name of variable to validate.</p>
-</li>
-<li>
-<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
-</li>
-<li>
-<p><code>expectedValue</code> - The expected value of the variable.</p>
-</li>
-<li>
-<p><code>stepsToExecute</code> - The steps to perform on JSON elements.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 17. Find the title from JSON</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
-When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
-|step|
-|When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
-Then `Moby Dick` is = `${title}`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 18. Find the title from context</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
-When I find &gt; `1` JSON elements in context by `$.store.book` and until variable `title` matches `S.+` for each element I do:
-|step|
-|When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
-Then `Sayings of the Century` is = `${title}`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
+[
+  {
+    "accountId": 843
+  },
+  {
+    "accountId": 233
+  }
+]
+` by JSON path `$..accountId` is equal to 2</code></pre>
 </div>
 </div>
 </div>
