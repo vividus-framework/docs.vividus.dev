@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The page is under construction :: VIVIDUS</title>
+    <title>Electron Plugin :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-electron.html">
     <meta name="generator" content="Antora 3.1.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -296,7 +296,7 @@
     <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="plugin-electron.html">Electron*</a>
+    <a class="nav-link" href="plugin-electron.html">Electron</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-email.html">Email</a>
@@ -555,7 +555,7 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-electron.html">Electron*</a></li>
+    <li><a href="plugin-electron.html">Electron</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -601,8 +601,111 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The page is under construction</h1>
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/l378BzHA5FwWFXVSg" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/adultswim-l378BzHA5FwWFXVSg">via GIPHY</a></p>
+<h1 class="page">Electron Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the ability to test <a href="https://www.electronjs.org/">Electron</a>-based desktop applications.
+VIVIDUS uses <a href="https://www.electronjs.org/docs/latest/tutorial/automated-testing">ChromeDriver</a> functionality to interact with the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-electron', version: '0.5.0-SNAPSHOT')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to interact with the user interface one can use the steps from <a href="plugin-web-app.html" class="xref page">Web Application Plugin</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_start_application"><a class="anchor" href="#_start_application"></a>Start application</h3>
+<div class="paragraph">
+<p>Starts the application under tests.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before tests execution make sure you set the path to the application executable via <code>web.driver.CHROME.binary-path</code> property.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Start the electron application</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application
+When I wait `PT1M` until window with title that contains ` | Microsoft Teams` appears and switch to it
+When I wait until element located `id(searchInputField)` appears</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Electron based applications may have one or more windows at the same time. Consider usage of the <a href="plugin-web-app.html#_wait_for_window_and_switch" class="xref page">window waiting step</a> to manipulate with the windows during testing.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You could also find the complete example for Elector-based desktop application tests <a href="https://github.com/vividus-framework/vividus-sample-tests/tree/main#list-of-the-available-samples">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_debug_electron_based_applications"><a class="anchor" href="#_how_to_debug_electron_based_applications"></a>How to debug electron-based applications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you are writing tests for the electron based application you have few options to use DevTools. The first one relies on the embedded DevTools. The second option is to use <a href="https://developers.google.com/cast/docs/debugging/remote_debugger">remote DevTools debugging</a>.
+The simplest way is to start your application with <code>--remote-debugging-port=&lt;port&gt;</code> flag. Once the port is passed as an argument, DevTools will be available at <code><a href="http://localhost:&lt;port&gt" class="bare">http://localhost:&lt;port&gt</a>;</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/dev-tools-available-windows.png" alt="dev tools available windows">
+</div>
+<div class="title">Figure 1. Available Application Windows</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Start electron app with the flag</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron --remote-debugging-port=9222</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/dev-tools.png" alt="dev tools">
+</div>
+<div class="title">Figure 2. DevTools view</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
