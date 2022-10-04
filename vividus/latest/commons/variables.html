@@ -849,8 +849,8 @@ Then the response code is equal to '200'</code></pre>
 <div class="title">Example 7. Variables override mechanism</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: First scenario
-When I initialize the scenario variable `var` with value `scenario`
-When I initialize the story variable `var` with value `story`
+Given I initialize scenario variable `var` with value `scenario`
+Given I initialize story variable `var` with value `story`
 Then `${var}` is equal to `scenario`
 
 Scenario: Second scenario

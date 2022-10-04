@@ -6366,7 +6366,7 @@ The expression parameters containing commas or empty values must be surrounded w
 <div class="listingblock">
 <div class="title">Example 2. Load data from the project resource</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `my-data` with value `#{loadResource(/data/body.txt)}`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `my-data` with value `#{loadResource(/data/body.txt)}`</code></pre>
 </div>
 </div>
 </div>
@@ -6416,7 +6416,7 @@ The expression parameters containing commas or empty values must be surrounded w
 <div class="listingblock">
 <div class="title">Example 4. Load data as Base64 from the project resource</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `my-data` with value `#{resourceToBase64(/data/body.txt)}`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `my-data` with value `#{resourceToBase64(/data/body.txt)}`</code></pre>
 </div>
 </div>
 </div>
@@ -6551,7 +6551,7 @@ Null expression can only be evaluated separately. Strings or other expressions w
 <div class="listingblock">
 <div class="title">Example 7. Validation of JSON element with <code>null</code> value</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `json` with value `
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `json` with value `
 {
     "persons": {
         "nemo": null

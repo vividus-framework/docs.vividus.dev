@@ -1157,7 +1157,7 @@ parameter is not allowed for <code>STRING</code> part type, but it&#8217;s requi
 <div class="listingblock">
 <div class="title">Example 9. Init HTTP request consisting of 4 different parts</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `temp-file-content` with value `Your first and last stop for No-Code Test Automation!`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `temp-file-content` with value `Your first and last stop for No-Code Test Automation!`
 When I create temporary file with name `abc.txt` and content `${temp-file-content}` and put path to scenario variable `temp-file-path`
 Given multipart request:
 |type  |name      |value            |contentType|fileName       |

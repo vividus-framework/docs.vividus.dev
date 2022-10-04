@@ -609,6 +609,42 @@
 <p>Here one could find description of the steps that are delivered with Vividus itself without any plugins required.</p>
 </div>
 <div class="sect2">
+<h3 id="_initialize_variable"><a class="anchor" href="#_initialize_variable"></a>Initialize variable</h3>
+<div class="paragraph">
+<p>Initializes a variable with the specified value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize $scopes variable `$variableName` with value `$variableValue`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to refer to the variable value.</p>
+</li>
+<li>
+<p><code>$variableValue</code> - The variable value to store.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Initializes variable with a simple value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `message` with value `Hello World!`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Initializes variable with an expression result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `date` with value `#{generateDate(P1DT2h)}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_execute_steps"><a class="anchor" href="#_execute_steps"></a>Execute steps</h3>
 <div class="paragraph">
 <p>Executes the steps located in the table.</p>
@@ -626,13 +662,13 @@
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Check and increment the value of a variable</div>
+<div class="title">Example 3. Check and increment the value of a variable</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the STORY variable `var` with value `0`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize story variable `var` with value `0`
 When I execute steps:
-|step                                                                         |
-|Then `${var}` is = `0`                                                       |
-|When I initialize the STORY variable `var` with value `#{eval(${var} + 1)}`  |
+|step                                                                     |
+|Then `${var}` is = `0`                                                   |
+|Given I initialize story variable `var` with value `#{eval(${var} + 1)}` |
 Then `${var}` is = `1`</code></pre>
 </div>
 </div>
@@ -687,7 +723,7 @@ If the maximum number of iterations is reached no failure or exception will occu
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Click button 5 times</div>
+<div class="title">Example 4. Click button 5 times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -753,7 +789,7 @@ If the maximum number of iterations is reached no failure or exception will occu
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Click button 5 times with 1 second delay</div>
+<div class="title">Example 5. Click button 5 times with 1 second delay</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps with delay `PT1S` at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -796,7 +832,7 @@ The step is for debugging purpose only
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Wait 30 seconds for debug</div>
+<div class="title">Example 6. Wait 30 seconds for debug</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
@@ -815,7 +851,7 @@ The step is for debugging purpose only
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize the $scopes variable `$variableName` using template `$templatePath` with parameters:$templateParameters</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize $scopes variable `$variableName` using template `$templatePath` with parameters:$templateParameters</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -835,7 +871,7 @@ The step is for debugging purpose only
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Personal info template at templates/person.ftl</div>
+<div class="title">Example 7. Personal info template at templates/person.ftl</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "id": ${execVividusExpression('randomInt', 1, 10)},
@@ -848,10 +884,10 @@ The step is for debugging purpose only
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Generate JSON from the personal info template</div>
+<div class="title">Example 8. Generate JSON from the personal info template</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize the scenario variable `age` with value `4510`
-Given I initialize the scenario variable `personalInfo` using template `templates/person.ftl` with parameters:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `age` with value `4510`
+Given I initialize scenario variable `personalInfo` using template `templates/person.ftl` with parameters:
 |name     |race  |
 |Dagoth Ur|Dunmer|</code></pre>
 </div>
@@ -932,7 +968,7 @@ The created file will be removed upon test run completion.</p>
 <p>If you want to use the created temporary file in further batches of the test suite as an input data, you should use <a href="https://datatracker.ietf.org/doc/html/rfc8089#appendix-A">URL with <code>file</code> protocol</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Batch 1 - Create a temporary local file</div>
+<div class="title">Example 9. Batch 1 - Create a temporary local file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name `.table` and content `
 |column|
@@ -941,7 +977,7 @@ The created file will be removed upon test run completion.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
+<div class="title">Example 10. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `&lt;column&gt;` is equal to `value`
 Examples:
@@ -989,19 +1025,19 @@ If the variables contain valid numbers than they will be converted into <a href=
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Compare Strings</div>
+<div class="title">Example 11. Compare Strings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `Duke` is != `Leto`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Compare numbers</div>
+<div class="title">Example 12. Compare numbers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `10` is = `10.0`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Compare list of maps</div>
+<div class="title">Example 13. Compare list of maps</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `preprod` and save result to scenario variable `preprod-date`
 When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `prod` and save result to scenario variable `prod-data`
@@ -1047,7 +1083,7 @@ Then `${preprod-data}` is = `${prod-data}`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Press the button four times</div>
+<div class="title">Example 14. Press the button four times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
 |step                                                                         |
@@ -1055,7 +1091,7 @@ Then `${preprod-data}` is = `${prod-data}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Press one button four times and press the second button from the nested step eight times</div>
+<div class="title">Example 15. Press one button four times and press the second button from the nested step eight times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
 {headerSeparator=!, valueSeparator=!}
@@ -1146,7 +1182,7 @@ The error will stop steps execution in case if unsupported condition value is pr
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Click on the element if parent element is found</div>
+<div class="title">Example 16. Click on the element if parent element is found</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
@@ -1155,7 +1191,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Click on the element if parent element is found and the element itself is presented on the page</div>
+<div class="title">Example 17. Click on the element if parent element is found and the element itself is presented on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
@@ -1197,23 +1233,23 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Initialize variable <code>token</code> if it is not already initialized</div>
+<div class="title">Example 18. Initialize variable <code>token</code> if it is not already initialized</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
-|step                                                                                                 |
-|When I initialize the STORY variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g` |</code></pre>
+|step                                                                                             |
+|Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`|</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
+<div class="title">Example 19. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
 {headerSeparator=!, valueSeparator=!}
 !step                                                                                                 !
-!When I initialize the STORY variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g` !
+!Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`    !
 !When variable 'api-key' is not set I do:                                                             !
-!|step                                                                                                |!
-!|When I initialize the STORY variable `api-key` with value `as38der4535fdERAnA443mIlb`               |!</code></pre>
+!|step                                                                                               |!
+!|Given I initialize story variable `api-key` with value `as38der4535fdERAnA443mIlb`                 |!</code></pre>
 </div>
 </div>
 </div>
