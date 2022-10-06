@@ -622,6 +622,92 @@ VIVIDUS uses <a href="https://www.electronjs.org/docs/latest/tutorial/automated-
 </div>
 </div>
 <div class="sect1">
+<h2 id="_profile"><a class="anchor" href="#_profile"></a>Profile</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The available profile is <code>desktop/electron</code>. It should be used together with <code>web/desktop/chrome</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. configuration.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=desktop/electron,web/desktop/chrome</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 35.2941%;">
+<col style="width: 17.647%;">
+<col style="width: 11.7647%;">
+<col style="width: 35.2942%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>electron-app.binary-path</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An absolute file path.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the executable file of the application under test.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>electron-app.chromium-version</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version string, e.g. <code>102</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The chromium version used to build the application. The simplest way to determine the version is to run the tests without this property and then you should receive error message like this one:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="chrome-driver-version.png" alt="chrome driver version">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use major version e.g. <code>102.0</code>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>electron-app.comamand-line-arguments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The space-separated list of arguments e.g. <code>--remote-debugging-port=9515 --user-dir=/Users/testtestius/temp</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of command line arguments for the application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -632,27 +718,13 @@ VIVIDUS uses <a href="https://www.electronjs.org/docs/latest/tutorial/automated-
 <div class="paragraph">
 <p>Starts the application under tests.</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Before tests execution make sure you set the path to the application executable via <code>web.driver.CHROME.binary-path</code> property.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Start the electron application</div>
+<div class="title">Example 3. Start the electron application</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application
 When I wait `PT1M` until window with title that contains ` | Microsoft Teams` appears and switch to it
@@ -693,7 +765,7 @@ The simplest way is to start your application with <code>--remote-debugging-port
 <div class="title">Figure 1. Available Application Windows</div>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Start electron app with the flag</div>
+<div class="title">Example 4. Start electron app with the flag</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron --remote-debugging-port=9222</code></pre>
 </div>
