@@ -2490,6 +2490,19 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 <div class="paragraph">
 <p>Waits for disappearance of an element by the locator.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the element doesn&#8217;t exist on the page/context, the step will immediately complete successfully.
+Checking the element on the page (if needed) should be done in a separate step (e.g. <a href="#_wait_for_element_appearance">Wait for element appearance</a> or <a href="plugin-html.html#_validate_elements" class="xref page">Validate elements</a>).
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located `$locator` disappears</code></pre>

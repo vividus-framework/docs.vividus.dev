@@ -1753,7 +1753,7 @@ The replacement pattern is:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$duration</code> - The timout duration to wait for a window in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$duration</code> - The timeout duration to wait for a window in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - The window title <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
@@ -2313,6 +2313,19 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 <h3 id="_wait_for_element_disappearance"><a class="anchor" href="#_wait_for_element_disappearance"></a>Wait for element disappearance</h3>
 <div class="paragraph">
 <p>Waits for disappearance of an element by the locator.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the element doesn&#8217;t exist on the page/context, the step will immediately complete successfully.
+Checking the element on the page (if needed) should be done in a separate step (e.g. <a href="#_wait_for_element_appearance">Wait for element appearance</a> or <a href="plugin-html.html#_validate_elements" class="xref page">Validate elements</a>).
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4611,6 +4624,109 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
 Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_element_wait_steps"><a class="anchor" href="#_element_wait_steps"></a>Element wait steps</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_wait_for_disappearance_of_an_element_with_a_tag"><a class="anchor" href="#_wait_for_disappearance_of_an_element_with_a_tag"></a>Wait for disappearance of an element with a tag</h3>
+<div class="paragraph">
+<p>Waits for an element with the specified tag, attribute type and value disappearance.</p>
+</div>
+<div class="paragraph">
+<p>Actions performed by step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Searches for an element with the specified attribute and tag within search context</p>
+</li>
+<li>
+<p>If there are no elements by specified attribute and tag, step provides passed assertion and don&#8217;t check disappearance of an element</p>
+</li>
+<li>
+<p>If there are elements by specified attribute and tag, waits until this element becomes not visible</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the element doesn&#8217;t exist on the page/context, the step will immediately complete successfully. Checking the element on the page (if needed) should be done in a separate step (e.g. <a href="#_wait_for_element_appearance">Wait for element appearance</a> or <a href="plugin-html.html#_validate_elements" class="xref page">Validate elements</a>).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until an element with the tag '$elementTag' and attribute '$attributeType'='$attributeValue' disappears</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$elementTag</code> - Type of the <a href="https://www.w3schools.com/TAgs/default.asp">html tag</a> (e.g. <code>div</code> or <code>iframe</code>).</p>
+</li>
+<li>
+<p><code>$attributeType</code> - Type of the <a href="https://www.w3schools.com/html/html_attributes.asp">tag attribute</a> (e.g. <code>name</code> or <code>id</code>).</p>
+</li>
+<li>
+<p><code>$attributeValue</code> - Value of the attribute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 82. Click on the button and waiting for disappearance of the <code>div</code> element with a certain attribute and value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on a button with the name 'Toggle element visibility with delay'
+When I wait until an element with the tag 'div' and attribute 'id'='delayed' disappears</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_disappearance_with_timeout"><a class="anchor" href="#_wait_for_element_disappearance_with_timeout"></a>Wait for element disappearance with timeout</h3>
+<div class="paragraph">
+<p>Waits for element disappearance with desired timeout in seconds.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the element doesn&#8217;t exist on the page/context, the step will immediately complete successfully. Checking the element on the page (if needed) should be done in a separate step (e.g. <a href="#_wait_for_element_appearance">Wait for element appearance</a> or <a href="plugin-html.html#_validate_elements" class="xref page">Validate elements</a>).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located '$locator' disappears in '$timeout'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+</li>
+<li>
+<p><code>$timeout</code> - The maximum time to wait for the element disappearance in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 83. Click on the button and waiting for disappearance of the element for 3 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on a button with the name 'Toggle element visibility with delay'
+Then element located 'By.xpath(//div[@id='delayed'])' disappears in 'PT3S'</code></pre>
 </div>
 </div>
 </div>
