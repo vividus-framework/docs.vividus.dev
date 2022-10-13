@@ -2640,8 +2640,14 @@ their text in the specified order. The collection should have more than 1
 element with not empty text, otherwise the step fails.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example 37. Deprecated syntax</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then elements located `$locator` are sorted by text in $sortingOrder order</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then elements located $locator are sorted by text in $sortingOrder order</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then elements located by $locator are sorted by text in $sortingOrder order</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -2691,11 +2697,11 @@ element with not empty text, otherwise the step fails.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 37. Check items are sorted</div>
+<div class="title">Example 38. Check items are sorted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://grocery.by'
 When I click on element located by `id(a-z)`
-Then elements located `By.xpath(//span[@id='item-to-purchase'])` are sorted by text in ascending order</code></pre>
+Then elements located by `xpath(//span[@id='item-to-purchase'])` are sorted by text in ascending order</code></pre>
 </div>
 </div>
 </div>
@@ -2740,7 +2746,7 @@ The full path to a screenshot will be posted to logs and allure
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Take a screenshot to a path</div>
+<div class="title">Example 39. Take a screenshot to a path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `${screenshot-directory}/#{generate(Ancient.god)}.png`</code></pre>
 </div>
@@ -2864,7 +2870,7 @@ The full path to a screenshot will be posted to logs and allure
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Scan a barcode</div>
+<div class="title">Example 40. Scan a barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to scenario variable `qrCodeLink`
 Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
@@ -2921,7 +2927,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Disable menus</div>
+<div class="title">Example 41. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                            |
@@ -2960,13 +2966,13 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Remove noisy assistant</div>
+<div class="title">Example 42. Remove noisy assistant</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `document.querySelector('#assistant').remove()` with arguments:</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Inject image</div>
+<div class="title">Example 43. Inject image</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:inject-image` with arguments:
 |value                                                                                       |type  |
@@ -2974,7 +2980,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Throttle CPU</div>
+<div class="title">Example 44. Throttle CPU</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:throttleCPU` with arguments:
 |value                                                                                       |type  |
@@ -3005,7 +3011,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Validate timings</div>
+<div class="title">Example 45. Validate timings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
@@ -3133,7 +3139,7 @@ If context not set - takes a screenshot of the entire page. Only the first found
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Scan the barcode</div>
+<div class="title">Example 46. Scan the barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.xpath(//div[@id='qrCode'])`
 When I scan barcode from context and save result to scenario variable `qrCodeLink`
@@ -3165,7 +3171,7 @@ of the expected options.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Validate dropdown contains a set of colors</div>
+<div class="title">Example 47. Validate dropdown contains a set of colors</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a drop down with the name 'colors' contains the items:
 |state|item |
@@ -3208,7 +3214,7 @@ The item is an option. The state (<code>true</code> or <code>false</code>) speci
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Dropdown.story</div>
+<div class="title">Example 48. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then dropdown located `id(colors)` exists and selected option is `Blue`</code></pre>
 </div>
@@ -3247,7 +3253,7 @@ Step will fail if target dropdown is not multi-select
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Dropdown.story</div>
+<div class="title">Example 49. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `Two` to selection in dropdown located `id(numbers)`</code></pre>
 </div>
@@ -3286,7 +3292,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Dropdown.story</div>
+<div class="title">Example 50. Dropdown.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located `id(colors)`</code></pre>
 </div>
@@ -3313,7 +3319,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Check the session cookie is present</div>
+<div class="title">Example 51. Check the session cookie is present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is set</code></pre>
 </div>
@@ -3337,7 +3343,7 @@ Does not support multi-selection
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Check the session cookie is not present</div>
+<div class="title">Example 52. Check the session cookie is not present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is not set</code></pre>
 </div>
@@ -3399,7 +3405,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Set the cookie for the current domain</div>
+<div class="title">Example 53. Set the cookie for the current domain</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
 |cookieName   |cookieValue |path |
@@ -3431,7 +3437,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Get the value of the session cookie</div>
+<div class="title">Example 54. Get the value of the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
 </div>
@@ -3461,7 +3467,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Get the session cookie</div>
+<div class="title">Example 55. Get the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
 </div>
@@ -3495,7 +3501,7 @@ expected domain. The actions performed by the step:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 55. Remove the session cookie</div>
+<div class="title">Example 56. Remove the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
 </div>
@@ -3521,7 +3527,7 @@ be performed to apply the cookie changes.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 56. Remove the session cookie</div>
+<div class="title">Example 57. Remove the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain without applying changes
 When I refresh the page</code></pre>
@@ -3592,7 +3598,7 @@ to apply the cookie changes.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 57. Get the value of the local storage item</div>
+<div class="title">Example 58. Get the value of the local storage item</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save local storage item with key `token` to scenario variable `application-token`</code></pre>
 </div>
@@ -3623,7 +3629,7 @@ that key&#8217;s value if it already exists.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Set the session storage item</div>
+<div class="title">Example 59. Set the session storage item</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set session storage item with key `token` and value `session-token`</code></pre>
 </div>
@@ -3650,7 +3656,7 @@ that key&#8217;s value if it already exists.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 59. Check the session storage item is present</div>
+<div class="title">Example 60. Check the session storage item is present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then session storage item with key `token` exists</code></pre>
 </div>
@@ -3677,7 +3683,7 @@ that key&#8217;s value if it already exists.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 60. Check the local storage item is not present</div>
+<div class="title">Example 61. Check the local storage item is not present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then local storage item with key `token` does not exist</code></pre>
 </div>
@@ -3735,7 +3741,7 @@ that key&#8217;s value if it already exists.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 61. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 62. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -3844,7 +3850,7 @@ that key&#8217;s value if it already exists.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 62. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 63. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -3852,7 +3858,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 63. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 64. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -3862,7 +3868,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 64. Validate the request data from the matching HTTP message</div>
+<div class="title">Example 65. Validate the request data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -3873,7 +3879,7 @@ Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 65. Validate the response data from the matching HTTP message</div>
+<div class="title">Example 66. Validate the response data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -3905,7 +3911,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 66. Wait for the HTTP request</div>
+<div class="title">Example 67. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
@@ -3938,7 +3944,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 67. Add headers to the proxied HTTP request</div>
+<div class="title">Example 68. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
@@ -3966,7 +3972,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 68. Clear the data recorded by the proxy</div>
+<div class="title">Example 69. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.google.com/search?q=vividus'
 When I clear proxy log
@@ -3986,7 +3992,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 69. Clear the proxy mocks</div>
+<div class="title">Example 70. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -4043,7 +4049,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 70. Hijack a page</div>
+<div class="title">Example 71. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -4094,7 +4100,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 71. Hijack a page</div>
+<div class="title">Example 72. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -4142,7 +4148,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 72. 404 page</div>
+<div class="title">Example 73. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
@@ -4184,7 +4190,7 @@ where the first measure is window width, the last one is window height.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 73. Resize the browser window</div>
+<div class="title">Example 74. Resize the browser window</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
 When I change window size to `640x320`</code></pre>
@@ -4295,7 +4301,7 @@ For more information about the properties see <a href="https://www.w3schools.com
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 74. Video player verifications</div>
+<div class="title">Example 75. Video player verifications</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://www.youtube.com/watch?v=pYqyVpCV-3c'
 When I pause video in video player located `cssSelector(video)`
@@ -4358,7 +4364,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 75. Script type check</div>
+<div class="title">Example 76. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
 |step                                                                                      |
@@ -4408,7 +4414,7 @@ Step will take effect for all new browser sessions created in the current story.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 76. Set the browser to use the mocked camera stream</div>
+<div class="title">Example 77. Set the browser to use the mocked camera stream</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set browser command line arguments to `--use-fake-ui-for-media-stream --use-file-for-fake-video-capture=${videoStorage}/${video1}.y4m --use-fake-device-for-media-stream`
 Given I am on the main application page</code></pre>
@@ -4442,7 +4448,7 @@ Given I am on the main application page</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 77. Validate response</div>
+<div class="title">Example 78. Validate response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute async javascript `
 var callback = arguments[arguments.length - 1];
@@ -4516,7 +4522,7 @@ Then `${response}` matcher `.+`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 78. Validate absence of JS errors</div>
+<div class="title">Example 79. Validate absence of JS errors</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
 Then there are no browser console ERRORS</code></pre>
@@ -4544,7 +4550,7 @@ Then there are no browser console ERRORS</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 79. Validate absence of JS error referencing user</div>
+<div class="title">Example 80. Validate absence of JS error referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
 Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
@@ -4572,7 +4578,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 80. Validate presence of JS errors referencing user</div>
+<div class="title">Example 81. Validate presence of JS errors referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
 Then there are browser console ERRORS by regex '.*user.*'</code></pre>
@@ -4618,7 +4624,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 81. Wait for application readiness</div>
+<div class="title">Example 82. Wait for application readiness</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
@@ -4683,7 +4689,7 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 82. Click on the button and waiting for disappearance of the <code>div</code> element with a certain attribute and value</div>
+<div class="title">Example 83. Click on the button and waiting for disappearance of the <code>div</code> element with a certain attribute and value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on a button with the name 'Toggle element visibility with delay'
 When I wait until an element with the tag 'div' and attribute 'id'='delayed' disappears</code></pre>
@@ -4723,7 +4729,7 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 83. Click on the button and waiting for disappearance of the element for 3 seconds</div>
+<div class="title">Example 84. Click on the button and waiting for disappearance of the element for 3 seconds</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on a button with the name 'Toggle element visibility with delay'
 Then element located 'By.xpath(//div[@id='delayed'])' disappears in 'PT3S'</code></pre>
