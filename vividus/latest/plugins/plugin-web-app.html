@@ -1384,7 +1384,44 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <div class="sect2">
 <h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
 <div class="paragraph">
-<p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to webdriver or to a custom browser.</p>
+<p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to driver or to a custom browser.</p>
+</div>
+<div class="paragraph">
+<p>While executing tests on the local machine it is allowed to use custom browser
+driver. This approach first requires manually downloading the driver (See
+<a href="https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference">Quick Reference Section</a>
+for download links). The path to the downloaded binary should be configured
+using the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.driver-executable-path=/path/to/driver/executable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chrome</code></p>
+</li>
+<li>
+<p><code>firefox</code></p>
+</li>
+<li>
+<p><code>safari</code></p>
+</li>
+<li>
+<p><code>iexplore</code></p>
+</li>
+<li>
+<p><code>edge_chromium</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
+</li>
+</ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1404,8 +1441,7 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=chrome
-selenium.grid.platform-name=Windows
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
 selenium.grid.platform-version=10
 web.driver.chrome.command-line-arguments=--disable-auto-reload
 web.driver.chrome.binary-path=/path/to/custom/chrome</code></pre>
@@ -1414,12 +1450,11 @@ web.driver.chrome.binary-path=/path/to/custom/chrome</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/edge.chromium</p>
+<p>web/desktop/edge/chromium</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=edge_chromium
-selenium.grid.platform-name=macOS
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
 selenium.grid.platform-version=12.5
 selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
 </div>
@@ -1431,8 +1466,7 @@ selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=firefox
-selenium.grid.platform-name=Windows
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
 selenium.grid.platform-version=10
 web.driver.firefox.command-line-arguments=--turbo</code></pre>
 </div>
@@ -1444,8 +1478,7 @@ web.driver.firefox.command-line-arguments=--turbo</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=iexplore
-selenium.grid.capabilities.browserName=internet explorer
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.browserName=internet explorer
 web.driver.iexplore.command-line-arguments=-private
 selenium.grid.capabilities.iedriverVersion=3.141.0
 selenium.grid.platform-name=Windows
@@ -1459,8 +1492,7 @@ selenium.grid.platform-version=7</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=opera
-selenium.grid.screen-resolution=1920x1080
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.screen-resolution=1920x1080
 selenium.grid.platform-name=Windows
 selenium.grid.platform-version=10</code></pre>
 </div>
@@ -1487,8 +1519,7 @@ selenium.grid.platform-version=10</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.browser=safari
-selenium.grid.platform-name=macOS
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
 selenium.grid.platform-version=11.00</code></pre>
 </div>
 </div></div></td>
