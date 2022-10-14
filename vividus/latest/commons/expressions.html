@@ -6029,6 +6029,166 @@ The expression parameters containing commas or empty values must be surrounded w
 </table>
 </div>
 <div class="sect2">
+<h3 id="_substringbefore"><a class="anchor" href="#_substringbefore"></a><code>substringBefore</code></h3>
+<div class="paragraph">
+<p>Gets the substring before the first occurrence of a separator. The separator is not included in the result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{substringBefore(<strong>$input</strong>, <strong>$separator</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to get a substring from</p>
+</li>
+<li>
+<p><strong><code>$separator</code></strong> - the string to search for</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since the arguments of the expression are comma-separated, meaningful commas (in <code>$input</code> or/and <code>$separator</code>) must be escaped with <code>\</code>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 20. Examples of the expressions getting the substring</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(, a)}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abc, a)}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abcba, b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abcba,b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abc, c)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ab</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abc, d)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>abc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(abc, )}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(a\,b\,c\,b\,a, c)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a,b,</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_substringafter"><a class="anchor" href="#_substringafter"></a><code>substringAfter</code></h3>
+<div class="paragraph">
+<p>Gets the substring after the first occurrence of a separator. The separator is not included in the result.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{substringAfter(<strong>$input</strong>, <strong>$separator</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to get a substring from</p>
+</li>
+<li>
+<p><strong><code>$separator</code></strong> - the string to search for</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since the arguments of the expression are comma-separated, meaningful commas (in <code>$input</code> or/and <code>$separator</code>) must be escaped with <code>\</code>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 21. Examples of the expressions getting the substring</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(, a)}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abc, a)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abcba, b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cba</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abcba,b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cba</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abc, c)}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abc, d)}</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(abc, )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>abc</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(a\,b\,c\,b\,a, c)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>,b,a</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_encodetobase64"><a class="anchor" href="#_encodetobase64"></a><code>encodeToBase64</code></h3>
 <div class="paragraph">
 <p>Encode the input string to Base64 format</p>
@@ -6046,7 +6206,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. Examples of the expressions encoding to Base64</caption>
+<caption class="title">Table 22. Examples of the expressions encoding to Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6083,7 +6243,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. Examples of the expressions decoding Base64</caption>
+<caption class="title">Table 23. Examples of the expressions decoding Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6120,7 +6280,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. Examples of the expressions compressing and encoding to Base64 GZip</caption>
+<caption class="title">Table 24. Examples of the expressions compressing and encoding to Base64 GZip</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6157,7 +6317,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. Escape HTML string</caption>
+<caption class="title">Table 25. Escape HTML string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6194,7 +6354,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. Escape JSON string</caption>
+<caption class="title">Table 26. Escape JSON string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6231,7 +6391,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Quote regular expression</caption>
+<caption class="title">Table 27. Quote regular expression</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6282,7 +6442,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Example of hash calculating for string using MD5</caption>
+<caption class="title">Table 28. Example of hash calculating for string using MD5</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6322,7 +6482,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Example of hash calculating for file using SHA-1</caption>
+<caption class="title">Table 29. Example of hash calculating for file using SHA-1</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
