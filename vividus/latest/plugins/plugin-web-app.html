@@ -1386,6 +1386,8 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <div class="paragraph">
 <p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to driver or to a custom browser.</p>
 </div>
+<div class="sect3">
+<h4 id="_configure_driver_path"><a class="anchor" href="#_configure_driver_path"></a>Configure driver path</h4>
 <div class="paragraph">
 <p>While executing tests on the local machine it is allowed to use custom browser
 driver. This approach first requires manually downloading the driver (See
@@ -1423,6 +1425,43 @@ using the following property:</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_configure_browser_path"><a class="anchor" href="#_configure_browser_path"></a>Configure browser path</h4>
+<div class="paragraph">
+<p>While executing tests on the local machine it is allowed to configure path to
+browser executable file. In general cases it&#8217;s not required, installed browsers
+are found automatically (except Opera browser). Also, for example, if browser is
+not installed, but only downloaded and unpacked into some folder, the path to
+the downloaded binary should be configured using the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.binary-path=/path/to/custom/browser/executable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chrome</code></p>
+</li>
+<li>
+<p><code>firefox</code></p>
+</li>
+<li>
+<p><code>edge</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list_of_desktop_profiles"><a class="anchor" href="#_list_of_desktop_profiles"></a>List of desktop profiles</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col>
@@ -1443,8 +1482,7 @@ using the following property:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
 selenium.grid.platform-version=10
-web.driver.chrome.command-line-arguments=--disable-auto-reload
-web.driver.chrome.binary-path=/path/to/custom/chrome</code></pre>
+web.driver.chrome.command-line-arguments=--disable-auto-reload</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -1515,20 +1553,18 @@ selenium.grid.platform-name=Windows
 selenium.grid.platform-version=10</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To run tests in Opera browser locally it is required to set the following property:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.OPERA.binary-path=&lt;path to opera&gt;</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&lt;path to opera&gt; - path to the Opera browser (for example, "C:/Programs/Opera/opera.exe")</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order to run tests in Opera browser locally, it is required
+to configure <a href="#_configure_browser_path">browser path</a>.
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
@@ -1544,6 +1580,7 @@ selenium.grid.platform-version=11.00</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
 <div class="sect3">
 <h4 id="_mobile_emulation"><a class="anchor" href="#_mobile_emulation"></a>Mobile emulation</h4>
 <div class="olist arabic">
