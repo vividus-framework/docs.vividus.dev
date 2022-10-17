@@ -629,7 +629,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <div class="sect2">
 <h3 id="_generate"><a class="anchor" href="#_generate"></a>generate</h3>
 <div class="paragraph">
-<p>Generate expression allows to create various types of data using <a href="https://www.datafaker.net/documentation/getting-started/">Datafaker</a> library.</p>
+<p>Generates random data from various domain areas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -639,83 +639,21 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$expression</code></strong> - data type from the chosen <a href="https://www.datafaker.net/documentation/providers/">data provider</a>. Specify its name, desired method and required parameters to get data you want</p>
+<p><strong><code>$expression</code></strong> - one of the <a href="https://www.datafaker.net/documentation/providers/">data providers</a>,
+its dot-separated method and space separated parameters wrapped into single
+quptes (for majority of cases parameters are not needed, their number and
+possible values depend on the chosen data provider method).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s see the structure of the expression for the following example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"><code>#{generate(Internet.password '5', '10', 'true')}</code></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-expression hljs" data-lang="expression">#{generate                                       <i class="conum" data-value="1"></i><b>(1)</b>
-          (Internet                              <i class="conum" data-value="2"></i><b>(2)</b>
-                   .password                     <i class="conum" data-value="3"></i><b>(3)</b>
-                             '5',                <i class="conum" data-value="4"></i><b>(4)</b>
-                                  '10',          <i class="conum" data-value="4"></i><b>(4)</b>
-                                        'true')} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Generate expression itself;</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Data provider from the <a href="https://www.datafaker.net/documentation/providers/">list</a>. In this case - <code>Internet</code>. Click on its name to see the methods it contains;</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>One of the available <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.4.0/datafaker-1.4.0-javadoc.jar/!/net/datafaker/Internet.html">methods</a> within <code>Internet</code> data provider - <code>password</code>. There are multiple choices, we picked the fourth one;</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Available parameters for the chosen <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.4.0/datafaker-1.4.0-javadoc.jar/!/net/datafaker/Internet.html#password-int-int-boolean-">method</a>;
-<div class="paragraph">
-<p>There are three of them:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>int minimumLength - minimum number of symbols;</p>
-</li>
-<li>
-<p>int maximumLength - maximum number of symbols;</p>
-</li>
-<li>
-<p>boolean includeUppercase - <code>true</code> or <code>false</code> for Uppercase usage;</p>
-</li>
-</ul>
-</div></td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>In this way we created an <strong>expression</strong> that <strong>generates</strong> a <strong>password</strong> from <strong>5</strong> to <strong>10</strong> characters length <strong>including</strong> uppercase letters.<br>
-Possible output is <code>51gVj5aLZY</code></p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Below you can find a list of examples. Please keep in mind, that the list is not full, all the expressions you can find <a href="https://www.datafaker.net/documentation/providers/">here</a>.<br>
-On the DataFaker site click on the data provider name to see available methods and required parameters.
-</td>
-</tr>
-</table>
+<p>Below you can find a complete list of the supported expressions with results
+exmaples. Descriptions of the data providers and their parameters can be found
+<a href="https://www.datafaker.net/documentation/providers/">in DataFaker documentation</a>:
+click on the data provider name to find details.</p>
 </div>
 <details>
-<summary class="title">Generate expressions</summary>
+<summary class="title"><mark>Click here to view the complete list of the supported expressions</mark></summary>
 <div class="content">
 <table class="tableblock frame-all grid-all fit-content stretch">
 <colgroup>
@@ -4021,6 +3959,64 @@ a=rtpmap:0 PCMU/8000</p>
 </table>
 </div>
 </details>
+<div class="paragraph">
+<p>Let&#8217;s see the structure of the expression for the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"><code>#{generate(Internet.password '5', '10', 'true')}</code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-expression hljs" data-lang="expression">#{generate                                       <i class="conum" data-value="1"></i><b>(1)</b>
+          (Internet                              <i class="conum" data-value="2"></i><b>(2)</b>
+                   .password                     <i class="conum" data-value="3"></i><b>(3)</b>
+                             '5',                <i class="conum" data-value="4"></i><b>(4)</b>
+                                  '10',          <i class="conum" data-value="4"></i><b>(4)</b>
+                                        'true')} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Generate expression itself.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Data provider from the <a href="https://www.datafaker.net/documentation/providers/">list</a>. In this case - <code>Internet</code>. Click on its name to see the methods it contains.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>One of the available <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.6.0/datafaker-1.6.0-javadoc.jar/!/net/datafaker/Internet.html">methods</a> within <code>Internet</code> data provider - <code>password</code>. There are multiple choices, we picked the fourth one.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Available parameters for the chosen <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.6.0/datafaker-1.6.0-javadoc.jar/!/net/datafaker/Internet.html#password-int-int-boolean-">method</a>.
+<div class="paragraph">
+<p>There are three of them:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>int minimumLength - minimum number of symbols;</p>
+</li>
+<li>
+<p>int maximumLength - maximum number of symbols;</p>
+</li>
+<li>
+<p>boolean includeUppercase - <code>true</code> or <code>false</code> for Uppercase usage;</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this way we created an <strong>expression</strong> that <strong>generates</strong> a <strong>password</strong> from <strong>5</strong> to <strong>10</strong> characters length <strong>including</strong> uppercase letters.<br>
+Possible output is <code>51gVj5aLZY</code></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_letterify"><a class="anchor" href="#_letterify"></a>letterify</h3>
