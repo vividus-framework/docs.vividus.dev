@@ -1416,7 +1416,7 @@ using the following property:</p>
 <p><code>iexplore</code></p>
 </li>
 <li>
-<p><code>edge_chromium</code></p>
+<p><code>edge</code></p>
 </li>
 <li>
 <p><code>opera</code></p>
@@ -1437,7 +1437,7 @@ using the following property:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/chrome</p>
+<p><code>web/desktop/chrome</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -1450,7 +1450,25 @@ web.driver.chrome.binary-path=/path/to/custom/chrome</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/edge/chromium</p>
+<p><code>web/desktop/edge</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>web/desktop/edge/chromium</code> profile is deprecated in favor of <code>web/desktop/edge</code> and will be removed in VIVIDUS 0.6.0.</p>
+</div>
+<div class="paragraph">
+<p>EdgeHTML was <a href="https://techcommunity.microsoft.com/t5/microsoft-365-blog/new-microsoft-edge-to-replace-microsoft-edge-legacy-with-april-s/ba-p/2114224">retired</a> some time ago,
+so only Chromium backed Edge is available now, thus there is no need to distinguish Edge builds anymore.</p>
+</div>
+</td>
+</tr>
+</table>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -1462,7 +1480,7 @@ selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/firefox</p>
+<p><code>web/desktop/firefox</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -1474,7 +1492,7 @@ web.driver.firefox.command-line-arguments=--turbo</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/iexplore</p>
+<p><code>web/desktop/iexplore</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -1488,7 +1506,7 @@ selenium.grid.platform-version=7</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/opera</p>
+<p><code>web/desktop/opera</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -1515,7 +1533,7 @@ selenium.grid.platform-version=10</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/desktop/safari</p>
+<p><code>web/desktop/safari</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
