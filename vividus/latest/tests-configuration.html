@@ -1664,11 +1664,30 @@ Use this tool at your own risk, since there is a chance of potential leakage of 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the secret key/text to the project properties as the value of:</p>
+<p>Set the password in one of the following ways:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Pass the key with its password-value into a test run using command line:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -Pvividus.encryptor.password=MYPAS_WORD</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the password to the system project properties as the value of:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">system.vividus.encryptor.password=MYPAS_WORD</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Set via OS environment variable <code>VIVIDUS_ENCRYPTOR_PASSWORD</code></p>
+<div class="paragraph">
+<p>Keep in mind that a password specified in the command line takes priority over the project system property,
+and the project system property takes priority over the environment variable.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1677,7 +1696,7 @@ Use this tool at your own risk, since there is a chance of potential leakage of 
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This value must be kept secret and must not be committed to version control system.
+This password must be kept secret and must not be committed to version control system.
 </td>
 </tr>
 </table>
@@ -1695,6 +1714,9 @@ This value must be kept secret and must not be committed to version control syst
 </table>
 </div>
 </li>
+</ol>
+</div>
+</li>
 <li>
 <p>Use the wrapping <code>ENC(&#8230;&#8203;)</code> for any encrypted property value. e.g.</p>
 <div class="listingblock">
@@ -1706,7 +1728,7 @@ This value must be kept secret and must not be committed to version control syst
 </ol>
 </div>
 <div class="paragraph">
-<p>Please see <a href="#_externalized_configuration">Externalized Configuration</a> to find the ways how encryptor password can be passed to the tests.</p>
+<p>Please see <a href="#_externalized_configuration">Externalized Configuration</a> to get more information about how encryptor password can be passed to the tests.</p>
 </div>
 </div>
 </div>
