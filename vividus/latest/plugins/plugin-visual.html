@@ -451,6 +451,9 @@
           <a href="../index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
           <a href="../../0.4.16/index.html">0.4.16</a>
         </li>
         <li class="version">
@@ -562,6 +565,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
     <a class="version is-current" href="plugin-visual.html">latest</a>
+    <a class="version" href="../../0.5.0/plugins/plugin-visual.html">0.5.0</a>
     <a class="version" href="../../0.4.16/plugins/plugin-visual.html">0.4.16</a>
     <a class="version" href="../../0.4.15/plugins/plugin-visual.html">0.4.15</a>
     <a class="version" href="../../0.4.14/plugins/plugin-visual.html">0.4.14</a>
@@ -981,6 +985,39 @@ web.screenshot.strategy=custom</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.android.append-bottom-navigation-bar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to append Android bottom navigation bar (black bar with system buttons on the screenshots below table) or not.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The default behavior will be changed in VIVIDUS 0.6.0: the navigation bar won&#8217;t
+be appended.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are starting creation of visual tests, please, consider setting the property to <code>false</code>.</p>
+</li>
+<li>
+<p>If you are in the middle of your tests lifecycle, please, find some convenient time and re-establish baselines with the property set to <code>false</code>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.downscale</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
