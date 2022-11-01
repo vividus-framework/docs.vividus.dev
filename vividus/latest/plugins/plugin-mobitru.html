@@ -632,12 +632,29 @@
 <h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin defines profile with a set of the preconfigured properties. In order to simplify work with Mobitru the plugin does following steps:
-.Waits for the requested device to be available using <a href="https://app.mobitru.com/wiki/api/#api-Device-TakeDeviceDesiredCapabilities">REST API call</a> and takes it in the usage.
-.Installs application on the devices using <a href="https://app.mobitru.com/wiki/api/#api-InstallApp-InstallApp">REST API call</a>.</p>
+<p>The plugin defines profile with a set of the preconfigured properties. In order to simplify work with Mobitru the plugin does following steps:</p>
 </div>
-<div class="paragraph">
-<p>INFO: For the device search plugin relies on the capabilities specified in the <a href="plugin-mobile-app.html#_properties" class="xref page">properties</a>.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Waits for the requested device to be available using <a href="https://app.mobitru.com/wiki/api/#api-Device-TakeDeviceDesiredCapabilities">REST API call</a> and takes it in the usage.</p>
+</li>
+<li>
+<p>Installs application on the devices using <a href="https://app.mobitru.com/wiki/api/#api-InstallApp-InstallApp">REST API call</a>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+For the device search plugin relies on the capabilities specified in the <a href="plugin-mobile-app.html#_properties" class="xref page">properties</a>.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
