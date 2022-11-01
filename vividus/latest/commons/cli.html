@@ -660,6 +660,8 @@ on the file system.</p>
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_treat_known_issues_only_as_a_positive_result"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
 <p>Known issues occurred during stories run fail the overall test execution with the corresponding <a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a> by default. Use the following property in order to not treat known issues as failures:</p>
 </div>
@@ -680,6 +682,42 @@ on the file system.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_write_exit_code_to_a_file"><a class="anchor" href="#_write_exit_code_to_a_file"></a>Write exit code to a file</h3>
+<div class="paragraph">
+<p>Writing of the exit code can be enabled globally using project properties:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Write exit code to a file by an absolute path via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Write an exit code to a file with a path related to the project build directory via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Writing of the exit code can be enabled globally for the project by adding the following lines into the
+<code>build.gradle</code> file of the test project:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Write the exit code to a file by an absolute path via the project property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCoded ='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Write an exit code to file with a path related to the project build directory via project property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCoded = '/exitCode.txt'
+runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="_debug_stories"><a class="anchor" href="#_debug_stories"></a>Debug stories</h2>
@@ -689,22 +727,24 @@ on the file system.</p>
 and tests state on the file system.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. macOS / Linux:</div>
+<div class="title">Example 11. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Windows:</div>
+<div class="title">Example 12. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew debugStories</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_treat_known_issues_only_as_a_positive_result_2"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result_2"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
 <p>Known issues occurred during stories run fail the overall test execution with the corresponding <a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a> by default. Use the following property in order to not treat known issues as failures:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Enable treating of known issues as positive result for current debug run</div>
+<div class="title">Example 13. Enable treating of known issues as positive result for current debug run</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PtreatKnownIssuesOnlyAsPassed=true</code></pre>
 </div>
@@ -714,9 +754,45 @@ and tests state on the file system.</p>
 <code>build.gradle</code> file of the tests project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Enable treating of known issues as positive result for debug runs at project level</div>
+<div class="title">Example 14. Enable treating of known issues as positive result for debug runs at project level</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_exit_code_to_a_file_2"><a class="anchor" href="#_write_exit_code_to_a_file_2"></a>Write exit code to a file</h3>
+<div class="paragraph">
+<p>Writing of the exit code can be enabled globally using project properties:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Write exit code to a file by an absolute path via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Write an exit code to a file with a path related to the project build directory via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Writing of the exit code can be enabled globally for the project by adding the following lines into the
+<code>build.gradle</code> file of the test project:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Write the exit code to a file by an absolute path via the project property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.fileToSaveExitCoded ='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Write an exit code to file with a path related to the project build directory via project property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.fileToSaveExitCoded = '/exitCode.txt'
+debugStories.resolvePathAgainstProjectBuildDir = true</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -753,19 +829,19 @@ and tests state on the file system.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 11. macOS / Linux:</div>
+<div class="title">Example 19. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew printSteps --args='-f my-steps.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Windows:</div>
+<div class="title">Example 20. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew printSteps --args='-f my-steps.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Output</div>
+<div class="title">Example 21. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">vividus                                             Then `$value` matches `$regex`
 vividus-plugin-web-app                              When I switch back to the page
@@ -814,19 +890,19 @@ vividus-plugin-web-app                              When I press $keys on keyboa
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 14. macOS / Linux:</div>
+<div class="title">Example 22. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew countSteps --args='-t 5 -d story/uat'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Windows:</div>
+<div class="title">Example 23. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew countSteps --args='-t 5 -d story/uat'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Output</div>
+<div class="title">Example 24. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Top of the most used steps:                                                                  occurrence(s)
 Then `$variable1` is $comparisonRule `$variable2`                                                      330
@@ -870,19 +946,19 @@ When I change context to element located `$locator`                             
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 17. macOS / Linux:</div>
+<div class="title">Example 25. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew countScenarios --args='-d story/uat'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Windows:</div>
+<div class="title">Example 26. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew countScenarios --args='-d story/uat'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Output</div>
+<div class="title">Example 27. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">5  | Stories
 13 | Scenarios
@@ -898,19 +974,19 @@ When I change context to element located `$locator`                             
 <p>The task validates known issues format and prints the validated known issues into the console.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. macOS / Linux:</div>
+<div class="title">Example 28. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Windows:</div>
+<div class="title">Example 29. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Output</div>
+<div class="title">Example 30. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Known issues found:
 VVD-5
@@ -965,25 +1041,25 @@ If you miss the file argument into the task it will behave as described per <a h
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. assertion-patterns.txt</div>
+<div class="title">Example 31. assertion-patterns.txt</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.*Doctor Who.*</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. macOS / Linux:</div>
+<div class="title">Example 32. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues --args='-f ./assertion-failures.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Windows:</div>
+<div class="title">Example 33. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew validateKnownIssues --args='-f assertion-failures.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Output</div>
+<div class="title">Example 34. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Known Issue | Assertion Error
 VVD-6       | .*Doctor Who.*</code></pre>
