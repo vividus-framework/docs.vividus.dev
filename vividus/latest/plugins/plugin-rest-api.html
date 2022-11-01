@@ -2425,7 +2425,7 @@ to install <code>vividus-plugin-json</code> explicitly starting from VIVIDUS 0.6
 <div class="sect2">
 <h3 id="_validate_http_response_body"><a class="anchor" href="#_validate_http_response_body"></a>Validate HTTP response body</h3>
 <div class="paragraph">
-<p>In order to validate the body of the latest HTTP response use the <a href="#_response">[_response]</a> dynamic variable to access the body
+<p>In order to validate the body of the latest HTTP response use the <a href="#_http_response_as_text">response</a> dynamic variable to access the body
 data in conjunction with any step responsible for data validation like data comparison, JSON, XML and other steps.</p>
 </div>
 <div class="listingblock">
@@ -2460,7 +2460,7 @@ Then JSON element from `${response}` by JSON path `$.slideshow` is equal to `
 <h3 id="_save_http_response_body_into_variable"><a class="anchor" href="#_save_http_response_body_into_variable"></a>Save HTTP response body into variable</h3>
 <div class="paragraph">
 <p>The HTTP response body can be saved into static variable by using the <a href="../commons/vividus-steps.html#_initialize_variable" class="xref page">init variable step</a>
-in conjunction with the <a href="#_response">[_response]</a> dynamic variable, it might be useful if you want to preserve the data for further computations since each
+in conjunction with the <a href="#_http_response_as_text">response</a> dynamic variable, it might be useful if you want to preserve the data for further computations since each
 subsequent HTTP call rewrites previously received response data.</p>
 </div>
 <div class="listingblock">
