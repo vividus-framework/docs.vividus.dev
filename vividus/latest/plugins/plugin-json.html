@@ -721,7 +721,7 @@ specified name and scope.</p>
 <div class="listingblock">
 <div class="title">Example 3. Validate the author of the first book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I save JSON element value from context by JSON path `$.store.book[0].author` to scenario variable `author-of-first-book`
 Then `${author-of-first-book}` is equal to `Nigel Rees`</code></pre>
 </div>
@@ -757,7 +757,7 @@ the specified name and scope.</p>
 <div class="listingblock">
 <div class="title">Example 4. Validate the title of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I save JSON element value from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
 Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
 </div>
@@ -793,7 +793,7 @@ specified name and scope.</p>
 <div class="listingblock">
 <div class="title">Example 5. Validate the title of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I save JSON element from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
 Then `${title-of-second-book}` is equal to `"Sword of Honour"`</code></pre>
 </div>
@@ -926,7 +926,7 @@ The replacement pattern is:</p>
 <div class="listingblock">
 <div class="title">Example 8. Validate the price of the second book</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I convert JSON from context to scenario variable `jsonData`
 Then `${jsonData.store.book[1].price}` is = `12.99`</code></pre>
 </div>
@@ -1223,7 +1223,7 @@ actions performed by the step are:</p>
 <div class="listingblock">
 <div class="title">Example 17. Find the title from JSON</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
 |step|
 |When I save JSON element value from context by JSON path `$.title` to scenario variable `title`|
@@ -1296,7 +1296,7 @@ the comparison rule by the specified JSON path.</p>
 <div class="listingblock">
 <div class="title">Example 18. Validate the price of the third book is less than 9</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 Then JSON element value from context by JSON path `$.store.book[2].price` is less than `9`</code></pre>
 </div>
 </div>
@@ -1347,7 +1347,7 @@ the comparison rule by the specified JSON path.</p>
 <div class="listingblock">
 <div class="title">Example 19. Validate the price of the fourth book is greater than 22.50</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `http://jsonpath.herokuapp.com/json/goessner.json`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/json-path/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 Then JSON element value from `${response}` by JSON path `$.store.book[3].price` is greater than `22.50`</code></pre>
 </div>
 </div>

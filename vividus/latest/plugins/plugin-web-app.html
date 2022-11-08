@@ -3244,7 +3244,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <div class="listingblock">
 <div class="title">Example 47. Validate timings</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'http://vividus-test-site.herokuapp.com/mouseEvents.html'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
 Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
 </div>
@@ -4755,7 +4755,7 @@ Then `${response}` matcher `.+`</code></pre>
 <div class="listingblock">
 <div class="title">Example 81. Validate absence of JS errors</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
 Then there are no browser console ERRORS</code></pre>
 </div>
 </div>
@@ -4783,7 +4783,7 @@ Then there are no browser console ERRORS</code></pre>
 <div class="listingblock">
 <div class="title">Example 82. Validate absence of JS error referencing user</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
 Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 </div>
 </div>
@@ -4811,7 +4811,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 <div class="listingblock">
 <div class="title">Example 83. Validate presence of JS errors referencing user</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
 Then there are browser console ERRORS by regex '.*user.*'</code></pre>
 </div>
 </div>
@@ -4857,7 +4857,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 <div class="listingblock">
 <div class="title">Example 84. Wait for application readiness</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.herokuapp.com/'
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
 Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
 </div>
