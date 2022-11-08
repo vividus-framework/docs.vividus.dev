@@ -1128,6 +1128,15 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy for the whole test run</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.recording.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable proxy recording</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.host</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any host name resolving on the machine</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
@@ -1146,13 +1155,70 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overrides the proxy host which will be passed to browser</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">proxy.publish-har-on-failure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.publish-har-on-failure</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables publishing of attachments with HAR to each failed step. <code>@noHarOnFailure</code> meta tag can be used to disable HAR publishing at the story level.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.trust-all-servers</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to disable verification of upstream servers SSL certificates</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.capture-types</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HAR capture types: <code>REQUEST_HEADERS</code>, <code>REQUEST_COOKIES</code>, <code>REQUEST_CONTENT</code>, <code>REQUEST_BINARY_CONTENT</code>, <code>RESPONSE_HEADERS</code>, <code>RESPONSE_COOKIES</code>, <code>RESPONSE_CONTENT</code>, <code>RESPONSE_BINARY_CONTENT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>REQUEST_CONTENT, RESPONSE_CONTENT, REQUEST_BINARY_CONTENT, RESPONSE_BINARY_CONTENT, REQUEST_HEADERS, RESPONSE_HEADERS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of HAR capture types</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to enable <a href="https://docs.mitmproxy.org/stable">MITM proxy</a> for the whole test run</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.mitm-manager-type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELF_SIGNED</code>
+<code>IMPERSONATED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMPERSONATED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The MITM type using the corresponding certificates. <code>SELF_SIGNED</code> MITM manager uses self-signed certificates that
+are generated lazily if the given key store file doesn&#8217;t yet exist. Please note that certificates are usually generated
+in the current working directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.key-store.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keystore type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>JKS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/security/standard-names.html#keystore-types">keystore type</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.key-store.path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">path to keystore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The relative to <code>src/main/resources</code> path to keystore</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.key-store.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password for keystore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password for keystore</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>proxy.mitm.key-store.alias</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keystore alias</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The alias for certificate entry in keystore</p></td>
 </tr>
 </tbody>
 </table>
