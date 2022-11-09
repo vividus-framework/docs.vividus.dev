@@ -587,7 +587,7 @@ system (DBMS) can understand.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add plugin dependency into <code>build.gradle</code> file:</p>
+<p>Copy the below line code to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
@@ -634,6 +634,11 @@ In case Maven repository does not contain driver you need, please refer to the d
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new plugin,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
 </li>
 </ol>
 </div>
