@@ -1217,9 +1217,9 @@ When I perform highly time consuming task</code></pre>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 80%;">
-<col style="width: 10%;">
+<col style="width: 9.0909%;">
+<col style="width: 81.8181%;">
+<col style="width: 9.091%;">
 </colgroup>
 <thead>
 <tr>
@@ -1231,22 +1231,35 @@ When I perform highly time consuming task</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed tests.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>GREEN</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed and tests with known issues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains only passed and tests with known issues.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>AMBER</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains any tests except passed and with known issues or doesn&#8217;t contain tests at all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Test report is generated, contains any tests except passed and with known issues or doesn&#8217;t contain tests at all.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>RED</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test report isn&#8217;t generated</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Test report isn&#8217;t generated.</p>
+</div>
+<div class="paragraph">
+<p><strong>Common errors:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"InvalidConfigurationException: No batches with tests to execute are configured" -
+the <a href="#_suites">configured suite</a> has 0 batches, i.e. no tests to execute are configured.</p>
+</li>
+</ul>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>RED</code></p></td>
 </tr>
 </tbody>
