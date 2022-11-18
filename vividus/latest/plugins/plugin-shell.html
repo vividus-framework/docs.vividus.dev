@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Electron Plugin :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-electron.html">
+    <title>Shell Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-shell.html">
     <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
@@ -298,7 +298,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-electron.html">Electron</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -319,7 +319,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="plugin-rest-api.html">REST API</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="plugin-shell.html">Shell</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -531,84 +531,57 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
-    <li><a href="plugin-electron.html">Electron</a></li>
+    <li><a href="plugin-shell.html">Shell</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="plugin-electron.html">latest</a>
-    <a class="version" href="../../0.5.0/plugins/plugin-electron.html">0.5.0</a>
-    <a class="version" href="../../0.4.16/plugins/plugin-electron.html">0.4.16</a>
-    <a class="version" href="../../0.4.15/plugins/plugin-electron.html">0.4.15</a>
-    <a class="version" href="../../0.4.14/plugins/plugin-electron.html">0.4.14</a>
-    <a class="version" href="../../0.4.13/plugins/plugin-electron.html">0.4.13</a>
-    <a class="version" href="../../0.4.12/plugins/plugin-electron.html">0.4.12</a>
-    <a class="version" href="../../0.4.11/plugins/plugin-electron.html">0.4.11</a>
-    <a class="version" href="../../0.4.10/plugins/plugin-electron.html">0.4.10</a>
-    <a class="version" href="../../0.4.9/plugins/plugin-electron.html">0.4.9</a>
-    <a class="version" href="../../0.4.8/plugins/plugin-electron.html">0.4.8</a>
-    <a class="version" href="../../0.4.7/plugins/plugin-electron.html">0.4.7</a>
-    <a class="version" href="../../0.4.6/plugins/plugin-electron.html">0.4.6</a>
-    <a class="version" href="../../0.4.5/plugins/plugin-electron.html">0.4.5</a>
-    <a class="version" href="../../0.4.4/plugins/plugin-electron.html">0.4.4</a>
-    <a class="version" href="../../0.4.3/plugins/plugin-electron.html">0.4.3</a>
-    <a class="version" href="../../0.4.2/plugins/plugin-electron.html">0.4.2</a>
-    <a class="version" href="../../0.4.1/plugins/plugin-electron.html">0.4.1</a>
-    <a class="version" href="../../0.4.0/plugins/plugin-electron.html">0.4.0</a>
-    <a class="version" href="../../0.3.12/plugins/plugin-electron.html">0.3.12</a>
-    <a class="version" href="../../0.2.14/plugins/plugin-electron.html">0.2.14</a>
+    <a class="version is-current" href="plugin-shell.html">latest</a>
+    <a class="version is-missing" href="../../0.5.0/index.html">0.5.0</a>
+    <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
+    <a class="version is-missing" href="../../0.4.15/index.html">0.4.15</a>
+    <a class="version is-missing" href="../../0.4.14/index.html">0.4.14</a>
+    <a class="version is-missing" href="../../0.4.13/index.html">0.4.13</a>
+    <a class="version is-missing" href="../../0.4.12/index.html">0.4.12</a>
+    <a class="version is-missing" href="../../0.4.11/index.html">0.4.11</a>
+    <a class="version is-missing" href="../../0.4.10/index.html">0.4.10</a>
+    <a class="version is-missing" href="../../0.4.9/index.html">0.4.9</a>
+    <a class="version is-missing" href="../../0.4.8/index.html">0.4.8</a>
+    <a class="version is-missing" href="../../0.4.7/index.html">0.4.7</a>
+    <a class="version is-missing" href="../../0.4.6/index.html">0.4.6</a>
+    <a class="version is-missing" href="../../0.4.5/index.html">0.4.5</a>
+    <a class="version is-missing" href="../../0.4.4/index.html">0.4.4</a>
+    <a class="version is-missing" href="../../0.4.3/index.html">0.4.3</a>
+    <a class="version is-missing" href="../../0.4.2/index.html">0.4.2</a>
+    <a class="version is-missing" href="../../0.4.1/index.html">0.4.1</a>
+    <a class="version is-missing" href="../../0.4.0/index.html">0.4.0</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+    <a class="version is-missing" href="../../0.2.14/index.html">0.2.14</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-electron.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-shell.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Electron Plugin</h1>
+<h1 class="page">Shell Plugin</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides the ability to test <a href="https://www.electronjs.org/">Electron</a>-based desktop applications.
-VIVIDUS uses <a href="https://www.electronjs.org/docs/latest/tutorial/automated-testing">ChromeDriver</a> functionality to interact with the application.</p>
+<p>The plugin provides functionality to execute commands via <a href="https://en.wikipedia.org/wiki/Shell_(computing)">Shell</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
 <div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-electron', version: '0.5.1-SNAPSHOT')</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>If the project was imported to the IDE before adding new plugin,
-<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
-the configuration files for the used IDE and then refresh the project in the used IDE.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_profile"><a class="anchor" href="#_profile"></a>Profile</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The available profile is <code>desktop/electron</code>. It should be used together with <code>web/desktop/chrome</code>.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example 2. configuration.properties</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=desktop/electron,web/desktop/chrome</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-shell', version: '0.5.1-SNAPSHOT')</code></pre>
 </div>
 </div>
 </div>
@@ -616,28 +589,39 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The properties marked with <strong>bold</strong> are mandatory.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You are allowed to define a custom shell using properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>shell.&lt;shell-key&gt;.executable</code> - The executable file.</p>
+</li>
+<li>
+<p><code>shell.&lt;shell-key&gt;.option</code> - The command option.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Where <code>&lt;shell-key&gt;</code> is the key which will be used to select a shell for the commands execution.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Configure custom shell</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">shell.ksh.executable=ksh
+shell.ksh.option=-c</code></pre>
+</div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 35.2941%;">
-<col style="width: 17.647%;">
-<col style="width: 11.7647%;">
-<col style="width: 35.2942%;">
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Name</th>
 <th class="tableblock halign-left valign-top">Acceptable values</th>
 <th class="tableblock halign-left valign-top">Default</th>
 <th class="tableblock halign-left valign-top">Description</th>
@@ -645,41 +629,24 @@ The properties marked with <strong>bold</strong> are mandatory.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>electron-app.binary-path</code></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An absolute file path.</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the executable file of the application under test.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>electron-app.chromium-version</code></strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The version string, e.g. <code>102</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shell.active-shell-key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The chromium version used to build the application. The simplest way to determine the version is to run the tests without this property and then you should receive error message like this one:</p>
+<p>The key of the shell which will be used for commands execution. By default, VIVIDUS picks the shell depending on the operating system:
+. <code>Windows</code> - <strong>powershell</strong>
+. <code>Mac OS</code> - <strong>zsh</strong>
+. <code>Linux</code> - <strong>bash</strong></p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/chrome-driver-version.png" alt="chrome driver version">
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Use major version e.g. <code>102.0</code>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Out of the box VIVIDUS supports <code>cmd</code>, <code>powershell</code>, <code>sh</code>, <code>zsh</code>, <code>bash</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>electron-app.comamand-line-arguments</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The space-separated list of arguments e.g. <code>--remote-debugging-port=9515 --user-dir=/Users/testtestius/temp</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The list of command line arguments for the application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shell.command-execution-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT5M</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout duration to wait for command execution finish.</p></td>
 </tr>
 </tbody>
 </table>
@@ -688,71 +655,118 @@ Use major version e.g. <code>102.0</code>
 <div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>In order to interact with the user interface one can use the steps from <a href="plugin-web-app.html" class="xref page">Web Application Plugin</a>.</p>
-</div>
 <div class="sect2">
-<h3 id="_start_application"><a class="anchor" href="#_start_application"></a>Start application</h3>
-<div class="paragraph">
-<p>Starts the application under tests.</p>
-</div>
+<h3 id="_execute_shell_commands"><a class="anchor" href="#_execute_shell_commands"></a>Execute shell commands</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `$command` and save result to $scopes variable `$variableName`</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$command</code> - The command to execute, it should follow the syntax of the currently active shell.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the command execution results. The the data will be stored under the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$variableName.stdout</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">command standard output stream</a>;</p>
+</li>
+<li>
+<p><code>$variableName.stderr</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)">command standard error stream</a>;</p>
+</li>
+<li>
+<p><code>$variableName.exit-code</code> - the <a href="https://en.wikipedia.org/wiki/Exit_status">exit code</a> of the command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Start the electron application</div>
+<div class="title">Example 3. Execute shell command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start electron application
-When I wait `PT1M` until window with title that contains ` | Microsoft Teams` appears and switch to it
-When I wait until element located `id(searchInputField)` appears</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `echo 'Hello World!'` and save result to scenario variable `result`
+Then `${result.stdout}` is equal to `Hello World!`
+Then `${result.stderr}` is equal to ``
+Then `${result.exit-code}` is equal to `0`</code></pre>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>Electron based applications may have one or more windows at the same time. Consider usage of the <a href="plugin-web-app.html#_wait_for_window_and_switch" class="xref page">window waiting step</a> to manipulate with the windows during testing.</p>
-</div>
+The saved stdout/stderr are limited to ~2 billions of characters. But keep in mind depending on run configuration and environment it&#8217;s possible to hit memory limits before reaching described output limits.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>You could also find the complete example for Elector-based desktop application tests <a href="https://github.com/vividus-framework/vividus-sample-tests/tree/main#list-of-the-available-samples">here</a>.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_to_debug_electron_based_applications"><a class="anchor" href="#_how_to_debug_electron_based_applications"></a>How to debug electron-based applications</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When you are writing tests for the electron based application you have few options to use DevTools. The first one relies on the embedded DevTools. The second option is to use <a href="https://developers.google.com/cast/docs/debugging/remote_debugger">remote DevTools debugging</a>.
-The simplest way is to start your application with <code>--remote-debugging-port=&lt;port&gt;</code> flag. Once the port is passed as an argument, DevTools will be available at <code><a href="http://localhost:&lt;port&gt" class="bare">http://localhost:&lt;port&gt</a>;</code></p>
-</div>
-<div class="imageblock">
+<div class="sect2">
+<h3 id="_execute_shell_commands_using_specific_shell"><a class="anchor" href="#_execute_shell_commands_using_specific_shell"></a>Execute shell commands using specific shell</h3>
+<div class="listingblock">
 <div class="content">
-<img src="_images/dev-tools-available-windows.png" alt="dev tools available windows">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `$command` using $shellName and save result to $scopes variable `$variableName`</code></pre>
 </div>
-<div class="title">Figure 1. Available Application Windows</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$command</code> - The command to execute, it should follow the syntax of the shell defined under the <code>shellKey</code>.</p>
+</li>
+<li>
+<p><code>$shellKey</code> - The key of the shell which will be used for commands execution.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the command execution results. The the data will be stored under the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$variableName.stdout</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)">command standard output stream</a>;</p>
+</li>
+<li>
+<p><code>$variableName.stderr</code> - the content of the <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_error_(stderr)">command standard error stream</a>;</p>
+</li>
+<li>
+<p><code>$variableName.exit-code</code> - the <a href="https://en.wikipedia.org/wiki/Exit_status">exit code</a> of the command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Start electron app with the flag</div>
+<div class="title">Example 4. Execute PowerShel command</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron --remote-debugging-port=9222</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `echo 'Hello World!'` using PowerShell and save result to scenario variable `result`
+Then `${result.stdout}` is equal to `Hello World!`
+Then `${result.stderr}` is equal to ``
+Then `${result.exit-code}` is equal to `0`</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/dev-tools.png" alt="dev tools">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The saved stdout/stderr are limited to ~2 billions of characters. But keep in mind depending on run configuration and environment it&#8217;s possible to hit memory limits before reaching described output limits.
+</td>
+</tr>
+</table>
 </div>
-<div class="title">Figure 2. DevTools view</div>
 </div>
 </div>
 </div>
