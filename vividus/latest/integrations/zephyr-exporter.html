@@ -897,17 +897,20 @@ Then page is scrolled to element located `id(toClick)`</code></pre>
 <p>Click the link and download the exporter JAR-file</p>
 </li>
 <li>
-<p>Create a new file with name <code>application.properties</code> and put all necessary properties there</p>
+<p>Create a new file with name <code>application.properties</code> in the same directory with the downloaded JAR-file</p>
+</li>
+<li>
+<p>Put all custom properties to the created file</p>
 </li>
 <li>
 <p>Run the following command replacing <code>&lt;jar-file name&gt;</code> with the name of the JAR-file downloaded previously</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar &lt;jar-file name&gt; -Dspring.config.location=classpath:/application.properties,./application.properties</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">java -jar &lt;jar-file name&gt; -Dspring.config.location=classpath:/application.properties,./application.properties</code></pre>
 </div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
