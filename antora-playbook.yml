@@ -9,6 +9,10 @@ site:
   start_page: vividus::index.adoc
   robots: allow
 
+asciidoc:
+  attributes:
+    experimental: true
+
 content:
   sources:
   - url: https://github.com/vividus-framework/vividus
