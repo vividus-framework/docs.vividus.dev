@@ -1275,6 +1275,66 @@ Examples:
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_indexing"><a class="anchor" href="#_indexing"></a>INDEXING</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>INDEXING</code> transformer adds a column with the rows indices in the specified order. Indices are zero-based</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The mandatory indedxing order: <code>ASCENDING</code> or <code>DESCENDING</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 24. ASCENDING order example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=ASCENDING}
+|key   |
+|value |
+|value2|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 25. ASCENDING order resulting table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
+|value |0    |
+|value2|1    |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 26. DESCENDING order example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=DESCENDING}
+|key   |
+|value |
+|value2|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. DESCENDING order resulting table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
+|value |1    |
+|value2|0    |</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
