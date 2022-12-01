@@ -634,6 +634,18 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If argument allows meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>. Refer to examples for each expression.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_generatedate"><a class="anchor" href="#_generatedate"></a><code>generateDate</code></h3>
 <div class="paragraph">
@@ -754,6 +766,11 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Current date +1 day with the custom output format</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P2D, yyyy\\,MM\\,dd)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2020,11,25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current date +2 day with the custom output format</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{generateDate(P, yyyy-MM-dd'T'HH:mm:ssZ)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2020-11-23T00:10:01+0300</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Current date with the custom output format including time zone offset</p></td>
@@ -778,7 +795,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <p><strong><code>$inputDate</code></strong> - the date to be formatted, it should be presented in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
 </li>
 <li>
-<p><strong><code>$outputFormat</code></strong> - the outut format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+<p><strong><code>$outputFormat</code></strong> - the output format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
 </li>
 <li>
 <p><code>$outputTimeZone</code> - the time zone for the output result</p>
@@ -825,6 +842,10 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd)}</code></p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy\\,MM\\,dd)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">2017,01,13</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy-MM-dd'T'HH:mm:ss.SSSZ, -05:00)}</code></p></td>
@@ -876,18 +897,6 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
-</td>
-</tr>
-</table>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Examples of the expressions formatting dates with the custom input format</caption>
 <colgroup>
@@ -934,18 +943,6 @@ Since parameters of the expression comma-separated, meaningful commas (like, par
 <p><strong><code>$period</code></strong> -  the period by which the date will be shifted, it should be written in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a></p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
-</td>
-</tr>
-</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 4. Examples of the expressions shifting dates</caption>
@@ -1000,18 +997,6 @@ Since parameters of the expression comma-separated, meaningful commas (like, par
 <p><strong><code>$inputDate2Format</code></strong> - the second input date format based on <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Since parameters of the expression comma-separated, meaningful commas (like, parts of the date format pattern) should be escaped using <code>\</code>.
-</td>
-</tr>
-</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 5. Examples of the expressions calculating dates difference</caption>
