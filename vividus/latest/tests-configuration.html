@@ -686,6 +686,16 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> and any failure is occurred during the batch execution, the subsequent batches will not be executed.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;.story.fail-fast</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set the value overrides global setting <code>story.fail-fast</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;.scenario.fail-fast</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set the value overrides global setting <code>scenario.fail-fast</code>.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;.story-execution-timeout</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT3H</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The max duration of the single story in the batch.</p></td>
