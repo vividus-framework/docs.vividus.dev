@@ -1223,6 +1223,146 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_zip_archives"><a class="anchor" href="#_zip_archives"></a>ZIP archives</h3>
+<div class="sect3">
+<h4 id="_save_zip_archive_entries"><a class="anchor" href="#_save_zip_archive_entries"></a>Save ZIP archive entries</h4>
+<div class="paragraph">
+<p>Saves the specified archive entries into variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save content of `$archiveData` archive entries to variables:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$archiveData</code> - The archive data to parse.</p>
+</li>
+<li>
+<p><code>$parameters</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> containing the following columns:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>path</strong></code> - The path to the archive entry.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>variable</strong></code> - The name of variable to save the data.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>scopes</strong></code> -  The <a href="variables.html#_scopes" class="xref page">comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>outputFormat</strong></code> - Defines output format of the entry, either <code>TEXT</code> or <code>BASE64</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following example requires <a href="../plugins/plugin-rest-api.html" class="xref page"><code>vividus-plugin-rest-api</code></a> in order to execute HTTP requests.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. Save archive entries</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
+When I save content of `${response-as-bytes}` archive entries to variables:
+|path                     |variableName|scopes  |outputFormat|
+|txtFileFromZipArchive.txt|text        |SCENARIO|TEXT        |
+|txtFileFromZipArchive.txt|base64      |SCENARIO|BASE64      |
+Then `${text}` is = `Response text from ZIP archive`
+Then `${base64}` is = `UmVzcG9uc2UgdGV4dCBmcm9tIFpJUCBhcmNoaXZl`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_zip_archive"><a class="anchor" href="#_validate_zip_archive"></a>Validate ZIP archive</h4>
+<div class="paragraph">
+<p>Validates that at least one (or none) entry in the archive matches the specified
+<a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rule</a>. If comparison
+rule column does not exist, the validation that archive entries have the specified names is performed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$archiveData` archive contains entries with names:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$archiveData</code> - The archive data to verify.</p>
+</li>
+<li>
+<p><code>$parameters</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> containing the following columns:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>rule</strong></code> - The <a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rule</a>.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>name</strong></code> - Desired entry name pattern used with current <code>rule</code>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Entry name in archive is not always the same as file name. Entry name reflects the full relative path from archive root.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following examples require <a href="../plugins/plugin-rest-api.html" class="xref page"><code>vividus-plugin-rest-api</code></a> in order to execute HTTP requests.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 21. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
+Then `${response-as-bytes}` archive contains entries with names:
+|rule             |name                |
+|matches          |data/.+\.data       |
+|does not contain |restrictedData.data |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 22. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
+Then `${response-as-bytes}` archive contains entries with names:
+|name                           |
+|responseTextFromZipArchive.txt |</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
