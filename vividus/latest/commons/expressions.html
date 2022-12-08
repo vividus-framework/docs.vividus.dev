@@ -5385,6 +5385,66 @@ The expression parameters containing commas or empty values must be surrounded w
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\d, """""", a1b2c3d)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>abcd</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all whitespaces with commas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\s, """,""", string with spaces)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string,with,spaces</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all whitespaces with commas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\s, \,, string with spaces)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string,with,spaces</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all commas with underscores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\,, _, string,with,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with_commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all commas with underscores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(""",""", _, string,with,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with_commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all commas with underscores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\,, _, """string,with,commas""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with_commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace all commas with underscores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\,, _, string\,with\,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with_commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first whitespace with comma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(\s, """,""", string with spaces)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string,with spaces</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first whitespace with comma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(\s, \,, string with spaces)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string,with spaces</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first comma with underscore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(\,, _, string,with,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with,commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first comma with underscore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(""",""", _, string,with,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with,commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first comma with underscore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(\,, _, """string,with,commas""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with,commas</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replace the first comma with underscore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceFirstByRegExp(\,, _, string\,with\,commas)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string_with,commas</code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -6113,6 +6173,14 @@ Since the arguments of the expression are comma-separated, meaningful commas (in
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{calculateHash(MD5, vividus)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>0a05ba6064ae7e5d6ee9818f85b666ad</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{calculateHash(SHA256, with,comma)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>f93dcfd6fc4c91c058177af3b5de34090073f2cc4a658010609ed8778d6d89f3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{calculateHash(SHA256, with\,comma)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>f93dcfd6fc4c91c058177af3b5de34090073f2cc4a658010609ed8778d6d89f3</code></p></td>
 </tr>
 </tbody>
 </table>
