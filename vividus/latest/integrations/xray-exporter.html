@@ -679,6 +679,18 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <div class="sect1">
 <h2 id="_xray_export_properties"><a class="anchor" href="#_xray_export_properties"></a>Xray Export Properties</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -699,7 +711,7 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The key of the configured JIRA instance, in case of missing value it will be evaluated automatically based on issue keys being exported</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.json-results-directory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>xray-exporter.json-results-directory</code></strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Path to directory with test execution JSON results.</p>
@@ -712,7 +724,7 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.project-key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>xray-exporter.project-key</code></strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Key of a Jira project where new test cases should be created</p></td>
 </tr>
@@ -738,6 +750,13 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="listingblock">
+<div class="title">Example 2. application.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">xray-exporter.project-key=ABBA
+xray-exporter.json-results-directory=/Users/happytester/Repositories/app-tests/output/results/jbehave</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -777,6 +796,13 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="listingblock">
+<div class="title">Example 3. mapping.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">jira.&lt;jira instance key placeholder&gt;.fields-mapping.test-case-type=customfield_10001
+jira.&lt;jira instance key placeholder&gt;.fields-mapping.manual-steps=customfield_10002</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_cucumber_test_case_properties"><a class="anchor" href="#_cucumber_test_case_properties"></a>Cucumber Test Case Properties</h3>
@@ -814,6 +840,14 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 </tr>
 </tbody>
 </table>
+<div class="listingblock">
+<div class="title">Example 4. mapping.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">jira.&lt;jira instance key placeholder&gt;.fields-mapping.test-case-type=customfield_10003
+jira.&lt;jira instance key placeholder&gt;.fields-mapping.cucumber-scenario-type=customfield_10004
+jira.&lt;jira instance key placeholder&gt;.fields-mapping.cucumber-scenario=customfield_10005</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -823,11 +857,12 @@ jira.vividus.fields-mapping.test-case-type=customfield_10002</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>If the authentication through basic schema is available on your JIRA instance use <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties, both properties must be set.</p>
+<p>If the authentication through basic schema is available on your JIRA instance use <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties, both properties must be set. It&#8217;s also advisible to turn the <code>preemptive authentication</code> on.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.auth.username=admin
-jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d</code></pre>
+jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d
+jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=true</code></pre>
 </div>
 </div>
 </li>
@@ -901,7 +936,7 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d</
 <p>Any scenario that doesn&#8217;t correspond to the <a href="#_manual_test_cases">manual test case rules</a> is considered as automated test case.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Automated.story</div>
+<div class="title">Example 5. Automated.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-231
@@ -917,7 +952,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. AutomatedWithManualPart.story</div>
+<div class="title">Example 6. AutomatedWithManualPart.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-566
@@ -960,7 +995,7 @@ Examples:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Manual.story</div>
+<div class="title">Example 7. Manual.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseId TEST-435

@@ -821,11 +821,12 @@ advanced test planning, reporting, and reusability features. <a href="https://sm
 <div class="ulist">
 <ul>
 <li>
-<p>If the authentication through basic schema is available on your JIRA instance use <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties, both properties must be set.</p>
+<p>If the authentication through basic schema is available on your JIRA instance use <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties, both properties must be set. It&#8217;s also advisible to turn the <code>preemptive authentication</code> on.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.auth.username=admin
-jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d</code></pre>
+jira.&lt;jira instance key placeholder&gt;.http.auth.password=5401a7d27b291c5d
+jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=true</code></pre>
 </div>
 </div>
 </li>
