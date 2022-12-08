@@ -1072,6 +1072,229 @@ specified database using SQL query.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_execute_sql_query_and_save_its_result"><a class="anchor" href="#_execute_sql_query_and_save_its_result"></a>Execute SQL query and save its result</h3>
+<div class="paragraph">
+<p>Executes SQL query against the specified database and saves the query result to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `$sqlQuery` against `$dbKey` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a>.</p>
+</li>
+<li>
+<p><code>$dbKey</code> - The <a href="#_database_connection">database connection key</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the SQL query result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 32. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
+|1 |Falcon 9    |$2,720      |USA    |
+|2 |Zhongxing-19|$4,320      |CHINA  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 33. Query USA rocket launches and validate result set</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+SELECT *
+FROM launch_rockets
+WHERE country='USA'
+` against `launches` and save result to scenario variable `usa-launches`
+Then `${usa-launches}` is equal to table:
+|name    |payload_cost|country|
+|Falcon 9|$2,720      |USA    |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Individual rows are available by index starting from zero as per the following example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 34. Query USA rocket launches and check name in first row</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+SELECT *
+FROM launch_rockets
+WHERE country='USA'
+` against `launches` and save result to scenario variable `usa-launches`
+Then `usa-launches[0].name` is equal to `Falcon 9`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_update_query"><a class="anchor" href="#_execute_update_query"></a>Execute update query</h3>
+<div class="paragraph">
+<p>Executes SQL query that changes the target table e.g.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.w3schools.com/sql/sql_update.asp">UPDATE SQL query</a></p>
+</li>
+<li>
+<p><a href="https://www.w3schools.com/sql/sql_insert.asp">INSERT SQL query</a></p>
+</li>
+<li>
+<p><a href="https://www.w3schools.com/sql/sql_delete.asp">DELETE SQL query</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In case of <a href="https://www.w3schools.com/sql/sql_select.asp">SELECT SQL query</a> an exception will be thrown.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `$sqlQuery` against `$dbKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a>.</p>
+</li>
+<li>
+<p><code>$dbKey</code> - The <a href="#_database_connection">database connection key</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 35. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
+|1 |Falcon 9    |$2,720      |USA    |
+|2 |Zhongxing-19|$4,320      |CHINA  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 36. Update payload_cost for 'Falcon 9' launch</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
+UPDATE launch_rockets
+SET payload_cost='unknown'
+WHERE name='Falcon 9'
+` against `launches`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_two_result_sets"><a class="anchor" href="#_compare_two_result_sets"></a>Compare two result sets</h3>
+<div class="paragraph">
+<p>Compares the result set queried from the baseline database with the result set queried from the checkpoint database matching by user-defined keys. Please see <a href="#_data_comparison">Data Comparison</a> for more fine-grained comparison configuration. The order of columns is ignored.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then data from `$leftSqlQuery` executed against `$leftDbKey` $comparisonRule data from `$rightSqlQuery` executed against `$rightDbKey` matching rows using keys:$keys</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$leftSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve baseline result set.</p>
+</li>
+<li>
+<p><code>$leftDbKey</code> - The <a href="#_database_connection">database connection key</a> for baseline result set.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$rightSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve checkpoint result set.</p>
+</li>
+<li>
+<p><code>$rightDbKey</code> - The <a href="#_database_connection">database connection key</a>. for checkpoint result set.</p>
+</li>
+<li>
+<p><code>$keys</code> - The database columns to compare.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 37. Given <code>launch_rockets</code> table available at 'launches' and 'launches-replica' db connections</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
+|1 |Falcon 9    |$2,720      |USA    |
+|2 |Zhongxing-19|$4,320      |CHINA  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 38. Compare name and country columns in launch_rockets table contained in two databases</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then data from `SELECT * FROM launch_rockets` executed against `launches` is equal to data from `SELECT * FROM launch_rockets` executed against `launches-replica` matching rows using keys:name,country</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compare_result_set_with_table"><a class="anchor" href="#_compare_result_set_with_table"></a>Compare result set with table</h3>
+<div class="paragraph">
+<p>Compares the result set queried from the baseline database with the user-defined data set matching by the specified keys. Please see <a href="#_data_comparison">Data Comparison</a> for more fine-grained comparison configuration. The order of columns is ignored.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$leftData` matching rows using `$keys` from `$leftDbKey` $comparisonRule data from:$rightTable</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$leftData</code> - The baseline result set.</p>
+</li>
+<li>
+<p><code>$keys</code> - The database columns to compare.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$rightTable</code> - The checkpoint data set.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 39. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
+|1 |Falcon 9    |$2,720      |USA    |
+|2 |Zhongxing-19|$4,320      |CHINA  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 40. Compare name and country columns in result set against defined data set</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `SELECT * FROM launch_rockets` against `rockets` and save result to scenario variable `all-launches`
+Then `${all-launches}` matching rows using `name,country` from `launches` is equal to data from:
+|name        |country|
+|Falcon 9    |USA    |
+|Zhongxing-19|CHINA  |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
