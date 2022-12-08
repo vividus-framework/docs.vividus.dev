@@ -1475,7 +1475,7 @@ then point the property to the declared environment variable:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.variables.global.some-key=${EXTERNAL_CONFIG_VALUE}</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">variables.some-key=${EXTERNAL_CONFIG_VALUE}</code></pre>
 </div>
 </div>
 </li>
@@ -1484,7 +1484,7 @@ then point the property to the declared environment variable:</p>
 The prefix only plays role during test start-up phase and cut off during the actual test run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -Pvividus.bdd.variables.global.some-key-1=value1 -Pvividus.bdd.variables.global.some-key-2=value2</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -Pvividus.variables.some-key-1=value1 -Pvividus.variables.some-key-2=value2</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1499,8 +1499,8 @@ The prefix only plays role during test start-up phase and cut off during the act
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cat &gt; src/main/resources/overriding.properties &lt;&lt; EOD
-bdd.variables.global.some-key-1=value1
-bdd.variables.global.some-key-2=value2
+variables.some-key-1=value1
+variables.some-key-2=value2
 EOD</code></pre>
 </div>
 </div>
