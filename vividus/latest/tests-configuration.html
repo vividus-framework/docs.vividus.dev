@@ -740,6 +740,11 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines text threshold length to enable unified diff report publishing on failure, for variable comparisons. If you want to have this report despite the size of the compared data set 0.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>engine.composite-paths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to the composite steps e.g. <code>steps/*.steps</code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1727,6 +1732,65 @@ This password must be kept secret and must not be committed to version control s
 </div>
 </div>
 <div class="sect1">
+<h2 id="_composite_steps"><a class="anchor" href="#_composite_steps"></a>Composite steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://jbehave.org/reference/stable/composite-steps.html">Composite steps</a> allow to reuse set of actions via custom steps with own wordings.</p>
+</div>
+<div class="sect2">
+<h3 id="_how_to_use_composite_steps"><a class="anchor" href="#_how_to_use_composite_steps"></a>How to use composite steps</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Define composite step in <code>*.steps</code> file, e.g. <code>steps/ui/my-app.steps</code>:</p>
+<div class="listingblock">
+<div class="title">Example 16. Compsite step definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: When I login with username `$username` and password `$password`
+When I enter `&lt;username&gt;` in field located by `id(username)`
+When I enter `&lt;password&gt;` in field located by `id(password)`
+When I click on element located by `id(signInButton)`</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure paths to files with custom steps:</p>
+<div class="listingblock">
+<div class="title">Example 17. Compsite steps paths configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">engine.composite-paths=steps/ui/*.steps</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use your step in the story:</p>
+<div class="listingblock">
+<div class="title">Example 18. Composite step usage example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify login
+Given I am on the main application page
+When I login with username `admin` and password `pa$$w0rd`</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Users are allowed to use composite steps in composite step definition.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps_aliases"><a class="anchor" href="#_steps_aliases"></a>Steps aliases</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1739,7 +1803,7 @@ This password must be kept secret and must not be committed to version control s
 <li>
 <p>Select a step you want to create alias for, as an example let&#8217;s take the following step:</p>
 <div class="listingblock">
-<div class="title">Example 16. VIVIDUS step</div>
+<div class="title">Example 19. VIVIDUS step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located `$locator`</code></pre>
 </div>
@@ -1748,7 +1812,7 @@ This password must be kept secret and must not be committed to version control s
 <li>
 <p>Create a new JSON file (for example, <code>aliases/aliases.json</code>) and put the following content with one or more aliases:</p>
 <div class="listingblock">
-<div class="title">Example 17. aliases/aliases.json</div>
+<div class="title">Example 20. aliases/aliases.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
     {
