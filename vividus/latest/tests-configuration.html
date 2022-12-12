@@ -1548,7 +1548,7 @@ text is used to decrypt the encrypted text. The default encryption algorithm is
 <p>Go to <code>bin</code> folder</p>
 </li>
 <li>
-<p>Run the command perfoming encryption:</p>
+<p>Run the command performing encryption:</p>
 <div class="listingblock">
 <div class="title">Example 13. Windows:</div>
 <div class="content">
@@ -1748,7 +1748,7 @@ This password must be kept secret and must not be committed to version control s
 <li>
 <p>Define composite step in <code>*.steps</code> file, e.g. <code>steps/ui/my-app.steps</code>:</p>
 <div class="listingblock">
-<div class="title">Example 16. Compsite step definition</div>
+<div class="title">Example 16. Composite step definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: When I login with username `$username` and password `$password`
 When I enter `&lt;username&gt;` in field located by `id(username)`
@@ -1760,7 +1760,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <li>
 <p>Configure paths to files with custom steps:</p>
 <div class="listingblock">
-<div class="title">Example 17. Compsite steps paths configuration</div>
+<div class="title">Example 17. Composite steps paths configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">engine.composite-paths=steps/ui/*.steps</code></pre>
 </div>
@@ -1836,7 +1836,7 @@ Users are allowed to use composite steps in composite step definition.
 </div>
 </li>
 <li>
-<p>Point the alias configuration property to an exact location or location pattern with the JSON files containing ailases:</p>
+<p>Point the alias configuration property to an exact location or location pattern with the JSON files containing aliases:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">engine.alias-paths=aliases/aliases.json</code></pre>
@@ -1844,7 +1844,7 @@ Users are allowed to use composite steps in composite step definition.
 </div>
 </li>
 <li>
-<p>Use the defned alias in place of actual step in your story</p>
+<p>Use the defined alias in place of actual step in your story</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I place mouse pointer over web element located by `id(loginButton)`</code></pre>

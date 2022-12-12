@@ -1478,7 +1478,7 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <h3 id="_start_mobile_application_with_capabilities"><a class="anchor" href="#_start_mobile_application_with_capabilities"></a>Start mobile application with capabilities</h3>
 <div class="paragraph">
 <p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user.
-Additionally the step takes a list of capabilities as an argument that overrides gloablly-defined capabilities.</p>
+Additionally the step takes a list of capabilities as an argument that overrides globally-defined capabilities.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1488,7 +1488,7 @@ Additionally the step takes a list of capabilities as an argument that overrides
 <div class="ulist">
 <ul>
 <li>
-<p><code>$capabilities</code> - The capabilities to start application with, these capabilies
+<p><code>$capabilities</code> - The capabilities to start application with, these capabilities
 have higher priority than capabilities defined in <code>*.properties</code> files and profiles.</p>
 </li>
 </ul>
@@ -1608,7 +1608,7 @@ navigates to the home device screen. The remote session will not be closed.</p>
 <div class="sect2">
 <h3 id="_run_mobile_application_in_background"><a class="anchor" href="#_run_mobile_application_in_background"></a>Run mobile application in background</h3>
 <div class="paragraph">
-<p>Runs mobile application in the backround for specific period of time and either activates the app after a certain amount of time, or leave the app deactivated (when PT-1S is used). See <a href="https://appium.io/docs/en/commands/device/app/background-app/">Appium docs</a> for more details.</p>
+<p>Runs mobile application in the background for specific period of time and either activates the app after a certain amount of time, or leave the app deactivated (when PT-1S is used). See <a href="https://appium.io/docs/en/commands/device/app/background-app/">Appium docs</a> for more details.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1760,7 +1760,7 @@ accomplish it by deleting following files: <strong>/Media/PhotoData/Photos.sqlit
 <div class="sect2">
 <h3 id="_switch_to_web_view_by_name"><a class="anchor" href="#_switch_to_web_view_by_name"></a>Switch to Web view by name</h3>
 <div class="paragraph">
-<p>Switches context to a web view with name that matches the rule (see <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information). Also Appium capabilities for <a href="https://github.com/appium/appium-xcuitest-driver#web-context">iOS</a> and <a href="https://github.com/appium/appium-uiautomator2-driver#web-context">Android</a> are available for the fine-tuning configuration.</p>
+<p>Switches context to a web view with name that matches the rule (see <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information). Also, Appium capabilities for <a href="https://github.com/appium/appium-xcuitest-driver#web-context">iOS</a> and <a href="https://github.com/appium/appium-uiautomator2-driver#web-context">Android</a> are available for the fine-tuning configuration.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3614,7 +3614,7 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 69. Check the number of HTTP GET and POST requests matching URL regurlar expression is equal to 1</div>
+<div class="title">Example 69. Check the number of HTTP GET and POST requests matching URL regular expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -4127,7 +4127,7 @@ To be able to use this step in the cloud testing platform, review the documentat
 <div class="title">Example 82. Turn OFF Wi-Fi for iOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection
-When I activate application with bundle identifier `my-aplication-bundle-id`</code></pre>
+When I activate application with bundle identifier `my-application-bundle-id`</code></pre>
 </div>
 </div>
 </div>

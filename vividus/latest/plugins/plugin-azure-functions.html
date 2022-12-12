@@ -709,7 +709,7 @@ could be optionally specified using the property <code>azure.environment</code>
 <div class="listingblock">
 <div class="title">Example 2. Trigger function</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I trigger function `HttpTrigger1` from function app `vivdus-http-function` in resource group `vividus` with payload:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I trigger function `HttpTrigger1` from function app `vividus-http-function` in resource group `vividus` with payload:
 and save response into scenario variable `functionTrigger`
 Then `${functionTrigger.status-code}` is equal to `202`</code></pre>
 </div>
