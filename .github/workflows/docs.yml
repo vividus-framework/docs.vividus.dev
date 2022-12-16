@@ -24,7 +24,7 @@ jobs:
         GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       run: |
         npm i -g @antora/cli@3.1.2 @antora/site-generator@3.1.2 @antora/lunr-extension@1.0.0-alpha.8
-        antora ./antora-playbook.yml
+        antora --log-failure-level=warn ./antora-playbook.yml
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
