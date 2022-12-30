@@ -747,11 +747,282 @@ the placeholder will be kept as is. If expression evaluation results in error,
 it will be propagated to the top level and the test will be marked as broken.</p>
 </div>
 <div class="paragraph">
-<p>It&#8217;s allowed to construct nested expressions: in this case the evaluation starts
-with the deepest expression.</p>
+<p>Expression accepts 1 or more arguments as input parameters. It&#8217;s allowed to
+construct nested expressions: in this case the evaluation starts with the
+deepest expression.</p>
 </div>
 <div class="paragraph">
 <p>Expressions may include any number of variables placeholders.</p>
+</div>
+<div class="sect2">
+<h3 id="_single_argument_expressions"><a class="anchor" href="#_single_argument_expressions"></a>Single argument expressions</h3>
+<div class="paragraph">
+<p>Expressions accepting exactly 1 argument process it as is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>all leading and trailing spaces are preserved</p>
+</li>
+<li>
+<p>no symbols are changed or removed</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Resulting argument</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code style="white-space: pre"> x </code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x, y, z )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code style="white-space: pre"> x, y, z </code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x\, y\, z )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code style="white-space: pre"> x\, y\, z </code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(""" x, y, z """)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>""" x, y, z """</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_multi_argument_expressions"><a class="anchor" href="#_multi_argument_expressions"></a>Multi argument expressions</h3>
+<div class="paragraph">
+<p>The rules used for processing of expressions accepting more than 1 argument are
+following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>comma <code>,</code> is a delimiter for arguments</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Resulting arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x,y)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x:a,y;b,z)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x:a</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y;b</code></p>
+</div>
+<div class="paragraph">
+<p>argument 3: <code>z</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x,)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: &lt;empty string&gt;</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>all leading and trailing argument spaces are trimmed</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Resulting arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x, y)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x , y , z )}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y</code></p>
+</div>
+<div class="paragraph">
+<p>argument 3: <code>z</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x , )}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: &lt;empty string&gt;</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>meaningful commas (not used as delimiters) can be added to arguments in 2 ways:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>escape comma using backslash <code>\</code></p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Resulting arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression(x\,a, y\, b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x,a</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y, b</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x \, a , y\,b ,  )}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x , a</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y,b</code></p>
+</div>
+<div class="paragraph">
+<p>argument 3: &lt;empty string&gt;</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>wrap argument into triple quotes (it might be convenient when arguments are
+get dynamically (e.g. from HTTP response) and escaping of such values could be a
+bit complicated)</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The leading and trailing spaces outside triple quotes are trimmed, but the leading and trailing spaces inside triple quotes are preserved.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Resulting arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( """x,a""" , y\, b)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x,a</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code>y, b</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x , """ y\,b """)}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Escaping of commas in triple quotes is not allowed, all data is used as argument value.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: <code style="white-space: pre"> y\,b </code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{expression( x , """""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>argument 1: <code>x</code></p>
+</div>
+<div class="paragraph">
+<p>argument 2: &lt;empty string&gt;</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

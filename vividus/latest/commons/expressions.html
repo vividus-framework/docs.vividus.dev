@@ -575,13 +575,12 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Expressions</h1>
+<h1 class="page"><a href="ROOT:glossary.html#_expression">Expressions</a></h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>VIVIDUS provides a set of pre-defined <a href="../glossary.html#_expression" class="xref page">expressions</a>.
-Also plugins may define own expressions (they are documented in the
-corresponding plugins articles).</p>
+<p>VIVIDUS provides a set of pre-defined expressions. Also plugins may define own
+expressions (they are documented in the corresponding plugins articles).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5381,18 +5380,6 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The expression parameters containing commas or empty values must be surrounded with triple quotes: <code>"""</code>
-</td>
-</tr>
-</table>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -5429,7 +5416,7 @@ The expression parameters containing commas or empty values must be surrounded w
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove all numbers from the string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\d, """""", a1b2c3d)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{replaceAllByRegExp(\d, , a1b2c3d)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>abcd</code></p></td>
 </tr>
 <tr>
@@ -5811,18 +5798,6 @@ The expression parameters containing commas or empty values must be surrounded w
 </li>
 </ul>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Since the arguments of the expression are comma-separated, meaningful commas (in <code>$input</code> or/and <code>$separator</code>) must be escaped with <code>\</code>
-</td>
-</tr>
-</table>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 20. Examples of the expressions getting the substring</caption>
 <colgroup>
@@ -5868,6 +5843,10 @@ Since the arguments of the expression are comma-separated, meaningful commas (in
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore(a\,b\,c\,b\,a, c)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>a,b,</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringBefore("""a,b,c,b,a""", c)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a,b,</code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -5890,18 +5869,6 @@ Since the arguments of the expression are comma-separated, meaningful commas (in
 <p><strong><code>$separator</code></strong> - the string to search for</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Since the arguments of the expression are comma-separated, meaningful commas (in <code>$input</code> or/and <code>$separator</code>) must be escaped with <code>\</code>
-</td>
-</tr>
-</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 21. Examples of the expressions getting the substring</caption>
@@ -5946,6 +5913,10 @@ Since the arguments of the expression are comma-separated, meaningful commas (in
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter(a\,b\,c\,b\,a, c)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>,b,a</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{substringAfter("""a,b,c,b,a""", c)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>,b,a</code></p></td>
 </tr>
 </tbody>
