@@ -1085,13 +1085,13 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT1M</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Total duration to wait for UI condition</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.polling-period</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT2S</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Used together with <code>ui.wait.timeout</code>. Total duration of time between two iterations of UI condition check</p></td>
 </tr>
@@ -2491,7 +2491,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 <div class="ulist">
 <ul>
 <li>
-<p><code>$duration</code> - The timeout duration to wait for a window in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$duration</code> - The timeout duration to wait for a window in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 <li>
 <p><code>$comparisonRule</code> - The window title <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
@@ -2553,7 +2553,7 @@ When I stop page loading</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$duration</code> - total duration to wait for page load completion in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format</p>
+<p><code>$duration</code> - total duration to wait for page load completion in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 </ul>
 </div>
@@ -2602,7 +2602,7 @@ When I set page load timeout to `PT10S`</code></pre>
 <p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The duration comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$duration</code> - The duration to compare against in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$duration</code> - The duration to compare against in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 </ul>
 </div>
@@ -3117,7 +3117,7 @@ element appearance if it&#8217;s configured),</p>
 <p><code>$locator</code> - The <a href="#_locator">Locator</a> to find an element.</p>
 </li>
 <li>
-<p><code>$duration</code> - The period of time the element should have existed in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$duration</code> - The period of time the element should have existed in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 </ul>
 </div>
@@ -5181,7 +5181,7 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 <p><code>$locator</code> - The <a href="#_locator">locator</a> used to element.</p>
 </li>
 <li>
-<p><code>$timeout</code> - The maximum time to wait for the element disappearance in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+<p><code>$timeout</code> - The maximum time to wait for the element disappearance in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 </ul>
 </div>
