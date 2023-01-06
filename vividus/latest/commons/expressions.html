@@ -519,9 +519,6 @@
         <li class="version">
           <a href="../../0.3.12/index.html">0.3.12</a>
         </li>
-        <li class="version">
-          <a href="../../0.2.14/index.html">0.2.14</a>
-        </li>
       </ul>
     </li>
   </ul>
@@ -565,7 +562,6 @@
     <a class="version" href="../../0.4.1/commons/expressions.html">0.4.1</a>
     <a class="version" href="../../0.4.0/commons/expressions.html">0.4.0</a>
     <a class="version" href="../../0.3.12/commons/expressions.html">0.3.12</a>
-    <a class="version" href="../../0.2.14/commons/expressions.html">0.2.14</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/commons/pages/expressions.adoc">Edit this Page</a></div>
@@ -5924,6 +5920,71 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </table>
 </div>
 <div class="sect2">
+<h3 id="_anyof"><a class="anchor" href="#_anyof"></a><code>anyOf</code></h3>
+<div class="paragraph">
+<p>Pick a random value from a predefined list</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{anyOf(<strong>$list</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$list</code></strong> - comma-separated list of values</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 22. Examples of the expressions picking a random value</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf(1, 2, 3)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">either <code>1</code>, or <code>2</code>, or <code>3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf(123)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>123</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf(1\,2)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1,2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf()}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf( )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf(,)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf(, )}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{anyOf("""a,b\, c""")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a,b\, c</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="_encodetobase64"><a class="anchor" href="#_encodetobase64"></a><code>encodeToBase64</code></h3>
 <div class="paragraph">
 <p>Encode the input string to Base64 format</p>
@@ -5941,7 +6002,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. Examples of the expressions encoding to Base64</caption>
+<caption class="title">Table 23. Examples of the expressions encoding to Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5978,7 +6039,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. Examples of the expressions decoding Base64</caption>
+<caption class="title">Table 24. Examples of the expressions decoding Base64</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6015,7 +6076,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. Examples of the expressions compressing and encoding to Base64 GZip</caption>
+<caption class="title">Table 25. Examples of the expressions compressing and encoding to Base64 GZip</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6052,7 +6113,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. Escape HTML string</caption>
+<caption class="title">Table 26. Escape HTML string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6089,7 +6150,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Escape JSON string</caption>
+<caption class="title">Table 27. Escape JSON string</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6126,7 +6187,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. Quote regular expression</caption>
+<caption class="title">Table 28. Quote regular expression</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6177,7 +6238,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. Example of hash calculating for string using MD5</caption>
+<caption class="title">Table 29. Example of hash calculating for string using MD5</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6225,7 +6286,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Example of hash calculating for file using SHA-1</caption>
+<caption class="title">Table 30. Example of hash calculating for file using SHA-1</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
