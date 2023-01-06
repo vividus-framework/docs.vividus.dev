@@ -6059,6 +6059,30 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </table>
 </div>
 <div class="sect2">
+<h3 id="_decodefrombase64tobinary"><a class="anchor" href="#_decodefrombase64tobinary"></a><code>decodeFromBase64ToBinary</code></h3>
+<div class="paragraph">
+<p>Decodes the input string from Base64 format to the binary data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{decodeFromBase64ToBinary(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - Base64 string to decode</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Decoding Base64-encoded image to perfrom visual check</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">When I compare against baseline with name `expected` from image `#{decodeFromBase64toBinary(iVBORw0KGgoAAAANSU...)}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_tobase64gzip"><a class="anchor" href="#_tobase64gzip"></a><code>toBase64Gzip</code></h3>
 <div class="paragraph">
 <p>Compress the input string to GZip and encode compressed bytes to Base64 format</p>
@@ -6206,7 +6230,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 1. Verify the data</div>
+<div class="title">Example 2. Verify the data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${frontEndData}` matches `#{quorePattern(${backEndData})}.*`</code></pre>
 </div>
@@ -6328,7 +6352,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Load data from the project resource</div>
+<div class="title">Example 3. Load data from the project resource</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `my-data` with value `#{loadResource(/data/body.txt)}`</code></pre>
 </div>
@@ -6352,7 +6376,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Load data from the project resource as bytes</div>
+<div class="title">Example 4. Load data from the project resource as bytes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `frames.html` using response code `200`, content `#{loadBinaryResource(page.html)}` and headers:
 |name        |value    |
@@ -6378,7 +6402,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Load data as Base64 from the project resource</div>
+<div class="title">Example 5. Load data as Base64 from the project resource</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `my-data` with value `#{resourceToBase64(/data/body.txt)}`</code></pre>
 </div>
@@ -6414,7 +6438,7 @@ substrings, e.g. <code>$1</code> is a reference to the first group</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Evaluate JEXL script</div>
+<div class="title">Example 6. Evaluate JEXL script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify eval expression
 Then `#{&lt;expression&gt;}` is = `&lt;expected&gt;`
@@ -6474,7 +6498,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Evaluate Groovy script</div>
+<div class="title">Example 7. Evaluate Groovy script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize Scenario variable `listOfMaps` with values:
 |key|
@@ -6513,7 +6537,7 @@ Null expression can only be evaluated separately. Strings or other expressions w
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Validation of JSON element with <code>null</code> value</div>
+<div class="title">Example 8. Validation of JSON element with <code>null</code> value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `json` with value `
 {
