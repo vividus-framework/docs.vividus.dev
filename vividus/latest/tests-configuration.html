@@ -696,9 +696,9 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">If set the value overrides global setting <code>scenario.fail-fast</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;.story-execution-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch-&lt;batch-number&gt;.story.execution-timeout</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT3H</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The max duration of the single story in the batch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The max duration of the single story in the batch in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format. Overrides value specified via <code>story.execution-timeout</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch.fail-fast</code></p></td>
@@ -714,6 +714,11 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>scenario.fail-fast</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code> the scenario execution will be stopped after first failed assertion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>story.execution-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT3H</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The max duration of the single story in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format. Could be overriden via corresponging batch setting.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bdd.configuration.dry-run</code></p></td>
