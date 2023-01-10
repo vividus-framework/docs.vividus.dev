@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Web Testing :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.5.3/tutorials/web-testing.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="0.5.3">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AWS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../plugins/azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-key-vault.html">Key Vault</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-sql-db.html">SQL Database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-cross-browser-testing.html">SmartBear: CrossBrowserTesting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">0.5.3</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.15/index.html">0.4.15</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.14/index.html">0.4.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.13/index.html">0.4.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.12/index.html">0.4.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.11/index.html">0.4.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.10/index.html">0.4.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.9/index.html">0.4.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.8/index.html">0.4.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.7/index.html">0.4.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.6/index.html">0.4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li><a href="web-testing.html">Web Testing</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.5.3</button>
+  <div class="version-menu">
+    <a class="version is-current" href="web-testing.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/tutorials/web-testing.html">0.5.2</a>
+    <a class="version is-missing" href="../../0.5.1/index.html">0.5.1</a>
+    <a class="version is-missing" href="../../0.5.0/index.html">0.5.0</a>
+    <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
+    <a class="version is-missing" href="../../0.4.15/index.html">0.4.15</a>
+    <a class="version is-missing" href="../../0.4.14/index.html">0.4.14</a>
+    <a class="version is-missing" href="../../0.4.13/index.html">0.4.13</a>
+    <a class="version is-missing" href="../../0.4.12/index.html">0.4.12</a>
+    <a class="version is-missing" href="../../0.4.11/index.html">0.4.11</a>
+    <a class="version is-missing" href="../../0.4.10/index.html">0.4.10</a>
+    <a class="version is-missing" href="../../0.4.9/index.html">0.4.9</a>
+    <a class="version is-missing" href="../../0.4.8/index.html">0.4.8</a>
+    <a class="version is-missing" href="../../0.4.7/index.html">0.4.7</a>
+    <a class="version is-missing" href="../../0.4.6/index.html">0.4.6</a>
+    <a class="version is-missing" href="../../0.4.5/index.html">0.4.5</a>
+    <a class="version is-missing" href="../../0.4.4/index.html">0.4.4</a>
+    <a class="version is-missing" href="../../0.4.3/index.html">0.4.3</a>
+    <a class="version is-missing" href="../../0.4.2/index.html">0.4.2</a>
+    <a class="version is-missing" href="../../0.4.1/index.html">0.4.1</a>
+    <a class="version is-missing" href="../../0.4.0/index.html">0.4.0</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/tutorials/pages/web-testing.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Web Testing</h1>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.5.3')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new plugin,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Profiles allow to choose or parameterize browser that tests run on. See more details on the profiles and nesting strategy on the <a href="../tests-configuration.html#_profiles" class="xref page">configuration page</a>.</p>
+</div>
+<div class="paragraph">
+<p>Web-application plugin contains significant number of built-in profiles. They can be found after plugin installation by the following path in Eclipse IDE:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-DIR hljs" data-lang="DIR">Referenced Libraries -&gt; vividus-plugin-web-app-X.Y.Z -&gt; properties -&gt; profile -&gt; web</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go through the structure and review its content.</p>
+</div>
+<div class="sect2">
+<h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
+<div class="paragraph">
+<p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to driver or to a custom browser.</p>
+</div>
+<div class="sect3">
+<h4 id="_configure_driver_path"><a class="anchor" href="#_configure_driver_path"></a>Configure driver path</h4>
+<div class="paragraph">
+<p>While executing tests on the local machine it is allowed to use custom browser
+driver. This approach first requires manually downloading the driver (See
+<a href="https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference">Quick Reference Section</a>
+for download links). The path to the downloaded binary should be configured
+using the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.driver-executable-path=/path/to/driver/executable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chrome</code></p>
+</li>
+<li>
+<p><code>firefox</code></p>
+</li>
+<li>
+<p><code>safari</code></p>
+</li>
+<li>
+<p><code>iexplore</code></p>
+</li>
+<li>
+<p><code>edge</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_browser_path"><a class="anchor" href="#_configure_browser_path"></a>Configure browser path</h4>
+<div class="paragraph">
+<p>While executing tests on the local machine it is allowed to configure path to
+browser executable file. In general cases it&#8217;s not required, installed browsers
+are found automatically (except Opera browser). Also, for example, if browser is
+not installed, but only downloaded and unpacked into some folder, the path to
+the downloaded binary should be configured using the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.binary-path=/path/to/custom/browser/executable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chrome</code></p>
+</li>
+<li>
+<p><code>firefox</code></p>
+</li>
+<li>
+<p><code>edge</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list_of_desktop_profiles"><a class="anchor" href="#_list_of_desktop_profiles"></a>List of desktop profiles</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/chrome</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10
+web.driver.chrome.command-line-arguments=--disable-auto-reload</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/edge</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>web/desktop/edge/chromium</code> profile is deprecated in favor of <code>web/desktop/edge</code> and will be removed in VIVIDUS 0.6.0.</p>
+</div>
+<div class="paragraph">
+<p>EdgeHTML was <a href="https://techcommunity.microsoft.com/t5/microsoft-365-blog/new-microsoft-edge-to-replace-microsoft-edge-legacy-with-april-s/ba-p/2114224">retired</a> some time ago,
+so only Chromium backed Edge is available now, thus there is no need to distinguish Edge builds anymore.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
+selenium.grid.platform-version=12.5
+selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/firefox</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10
+web.driver.firefox.command-line-arguments=--turbo</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/iexplore</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.browserName=internet explorer
+web.driver.iexplore.command-line-arguments=-private
+selenium.grid.capabilities.iedriverVersion=3.141.0
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=7</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/opera</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.screen-resolution=1920x1080
+selenium.grid.platform-name=Windows
+selenium.grid.platform-version=10</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order to run tests in Opera browser locally, it is required
+to configure <a href="#_configure_browser_path">browser path</a>.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>web/desktop/safari</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
+selenium.grid.platform-version=11.00</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_mobile_emulation"><a class="anchor" href="#_mobile_emulation"></a>Mobile emulation</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Built-in devices</p>
+<div class="paragraph">
+<p>Chrome allows to emulate view on mobile devices using <a href="https://developer.chrome.com/docs/devtools/device-mode/">Device mode</a>. Such feature is reflected in <code>mobile_emulation</code> subdirectory in Profiles. Use device-name property to mention target device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.CHROME.mobile-emulation.device-name=DEVICE_NAME</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Available for emulation devices you can find in the <a href="https://developer.chrome.com/docs/devtools/device-mode/#device">Dimensions list</a> in chrome.</p>
+</div>
+</li>
+<li>
+<p>Custom devices</p>
+<div class="paragraph">
+<p>In case you need to use <a href="https://developer.chrome.com/docs/devtools/device-mode/#responsive">Responsive Viewport Mode</a> and set up your own device, update the screen resolution in the following properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.CHROME.mobile-emulation.width=1440
+web.driver.CHROME.mobile-emulation.height=900</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
+<div class="paragraph">
+<p>The profile can be enabled by adding <code>web/docker</code> to <code>configuration.profiles</code> property. The profile should be used together with the browser profile.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Default selenium grid URL is set to <code>selenium.grid.url=http://localhost:4444/wd/hub</code>. Don&#8217;t forget to modify it if your grid is running in a different location.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Run chrome in docker container</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">confgiguraiton.profiles=web/docker,web/desktop/chrome</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_headless"><a class="anchor" href="#_headless"></a>Headless</h3>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Headless_browser">Headless mode</a> is a functionality that allows the execution of a full version of the browser while controlling it programmatically. It can be used without dedicated graphics or display, meaning that it runs without its “head”, the Graphical User Interface (GUI). Update properties in this directory to adjust your headless automation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_phone"><a class="anchor" href="#_phone"></a>Phone</h3>
+<div class="paragraph">
+<p>Contains phone related properties, for android and iOS devices, including portrait and landscape orientations.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/phone</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platform=Android
+selenium.grid.capabilities.platformVersion=11.0
+selenium.grid.capabilities.deviceOrientation=portrait
+selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_tablet"><a class="anchor" href="#_tablet"></a>Tablet</h3>
+<div class="paragraph">
+<p>Similar to the <a href="../plugins/plugin-web-app.html#_phone" class="xref page">Phone</a> directory, but is designed for tablets properties.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile</th>
+<th class="tableblock halign-left valign-top">Example of properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p>web/tablet</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformName=iOS
+selenium.grid.capabilities.platformVersion=14.0
+selenium.grid.capabilities.deviceName=iPad
+selenium.grid.capabilities.deviceOrientation=landscape
+selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_locator"><a class="anchor" href="#_locator"></a>Locator</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_locator_types"><a class="anchor" href="#_locator_types"></a>Locator Types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id attribute of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(submitForm)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cssSelector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS selector to an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cssSelector(.menu-item)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/XPath">Xpath to locate an element</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tagName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name of an element tagName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>className</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS class name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">className(bold)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text of the link</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText(Google)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl(/faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrlPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of a <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart(faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>caseSensitiveText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case sensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseSensitiveText(Description)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>caseInsensitiveText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">case insensitive text of an element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">caseInsensitiveText(description)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[@src='&lt;value&gt;&gt;']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrc(/images/kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrcPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortcut to a <strong>.//img[contains(@src,'&lt;value&gt;&gt;')]']</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrcPart(kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>buttonName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elements of type button or input with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buttonName(submit)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input or textarea with text or any attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName(editor)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>checkboxName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input element with @type="checkbox" and text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkboxName(allow)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>elementName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any attribute or text value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName(OK)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shadowCssSelector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chain of css selectors, separated by <code>;</code>, where first value - selector for upper shadow host, last value - target element selector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shadowCssSelector(.upperHost; #innerHost1; #innerHost2; .targetValue)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_visibility_types"><a class="anchor" href="#_visibility_types"></a>Visibility types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Visibility type</th>
+<th class="tableblock halign-left valign-top">Usage example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default visibility option. Only visible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INVISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):i</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only invisible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either visible and invisible elements will be found</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_filter_types"><a class="anchor" href="#_filter_types"></a>Filter types</h3>
+<div class="paragraph">
+<p>The filters are applied after elements search using one of the locators specified above.
+The elements not matching the filter condition are sorted out without any notice.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Filter type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get an element by the specified index from a collection of elements found by a locator. Indexes start from 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(div)&#8594;filter.index(2)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>textPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their text parts.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(h3)&#8594;filter.textPart(Welcome)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="xref page">State</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>caseSensitiveText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">element text should match case sensitively</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.caseSensitiveText(text)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>classAttributePart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">class attribute should contain part</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.classAttributePart(clazz)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrl(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrlPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">part of <strong>href</strong> attribute of the link element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrlPart(/url)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tooltip</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">title attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.tooltip(title)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrcPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">src attribute should contain value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.imageSrcPart(part)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>placeholder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder attribute should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.placeholder(placeholder-value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>validationIconSource</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSS property background-image should match</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.validationIconSource(src)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should match expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldText(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldTextPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">field text should contain expected value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldTextPart(value)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dropDownText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any of select options should be equal to a value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.dropDownText(value)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the full list of web-related steps, please see <a href="../plugins/plugin-web-app.html#_steps" class="xref page">Web Application plugin documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_clicking_steps"><a class="anchor" href="#_clicking_steps"></a>Clicking steps</h3>
+<div class="sect3">
+<h4 id="_click_on_element"><a class="anchor" href="#_click_on_element"></a>Click on element</h4>
+<div class="paragraph">
+<p>Clicks on the element found by the specified locator.</p>
+</div>
+<div class="paragraph">
+<p>The atomic actions performed are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>find the element by the locator;</p>
+</li>
+<li>
+<p>click on the element if it is found, otherwise the whole step is failed and its execution stops;</p>
+</li>
+<li>
+<p>the first two actions are retried once if the field becomes stale during actions execution in other
+words if <a href="https://www.selenium.dev/exceptions/#stale_element_reference">StaleElementReferenceException</a>
+is occurred at any atomic action.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Click on element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `name(Submit)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_click_on_element_without_retry"><a class="anchor" href="#_click_on_element_without_retry"></a>Click on element without retry</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0.
+The replacement is <a href="#_click_on_element">Click on element</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `&lt;locator&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Clicks on an element found by the locator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Click on element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located `name(Submit)`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scrolling_steps"><a class="anchor" href="#_scrolling_steps"></a>Scrolling steps</h3>
+<div class="sect3">
+<h4 id="_scroll_context"><a class="anchor" href="#_scroll_context"></a>Scroll context</h4>
+<div class="paragraph">
+<p>Scrolls the context to an edge</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll context to $scrollDirection edge</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scrollDirection</code> - the direction of the scroll. One of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LEFT</code> - start of a page/element horizontally</p>
+</li>
+<li>
+<p><code>RIGHT</code> - end of a page/element horizontally</p>
+</li>
+<li>
+<p><code>TOP</code> - start of a page/element vertically</p>
+</li>
+<li>
+<p><code>BOTTOM</code> - end of a page/element vertically</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the context is not set, the whole page will be scrolled
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Scroll login to a bottom</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `id(login)`
+When I scroll context to BOTTOM edge</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_scroll_element_into_view"><a class="anchor" href="#_scroll_element_into_view"></a>Scroll element into view</h4>
+<div class="paragraph">
+<p>Scrolls an element into the view.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll element located `$locator` into view</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Scroll button into view</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll element located `id(way_down_button)` into view</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tab_steps"><a class="anchor" href="#_tab_steps"></a>Tab steps</h3>
+<div class="sect3">
+<h4 id="_open_a_new_tab"><a class="anchor" href="#_open_a_new_tab"></a>Open a new tab</h4>
+<div class="paragraph">
+<p>Opens a new browser tab and switches the focus for future commands to this tab.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open new tab</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Open page in a new tab</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open new tab
+Given I am on a page with the URL 'https://docs.vividus.dev/'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_open_url_in_a_new_tab"><a class="anchor" href="#_open_url_in_a_new_tab"></a>Open URL in a new tab</h4>
+<div class="paragraph">
+<p>Opens a new tab, switches the focus to this tab and loads the given URL.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The key difference of this step from the <a href="#_open_a_new_tab">previous one opening a new tab</a>
+is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>new tab will have acces to the <a href="#_web_storage_steps">session storage</a> of the previous tab,</p>
+</li>
+<li>
+<p>it will be possible <a href="#_close_current_tab_with_possibility_to_handle_alert">to handle alerts appearing on tab closing</a>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `$URL` in new window</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$URL</code> - The URL to open.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Open docs in a new tab</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://docs.vividus.dev` in new window</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_close_current_tab"><a class="anchor" href="#_close_current_tab"></a>Close current tab</h4>
+<div class="paragraph">
+<p>Closes the current tab and switches to the previous tab.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I close the current window</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Handling <a href="https://www.w3schools.com/js/js_popup.asp">alerts</a> displayed with '<a href="https://www.w3schools.com/jsref/event_onbeforeunload.asp">onbeforeunload</a>' events is not implied by the WebDriver specification to <a href="https://w3c.github.io/webdriver/webdriver-spec.html#close-window">close</a> window. For handling alerts use step based on JavaScript '<a href="#_close_current_tab_with_possibility_to_handle_alert">Close current tab with possibility to handle alert</a>'.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step can only be applied to a session with multiple tabs open.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Open URL in new tab, close it and switch to the previous page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+When I open URL `https://example.com/contact-us` in new window
+When I close the current window</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_close_current_tab_with_possibility_to_handle_alert"><a class="anchor" href="#_close_current_tab_with_possibility_to_handle_alert"></a>Close current tab with possibility to handle alert</h4>
+<div class="paragraph">
+<p>Trying to close the current tab with '<a href="https://www.w3schools.com/jsref/event_onbeforeunload.asp">onbeforeunload</a>' events handling.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If an <a href="https://www.w3schools.com/js/js_popup.asp">alert</a> window is opened via '<a href="https://www.w3schools.com/jsref/event_onbeforeunload.asp">onbeforeunload</a>' event, it must be checked and handled in the subsequent steps.</p>
+</li>
+<li>
+<p>If an <a href="https://www.w3schools.com/js/js_popup.asp">alert</a> window is not opened, the step closes the current window and switches to the previous window.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I attempt to close current window with possibility to handle alert</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This step can only be used if the current tab was opened via the step <a href="#_open_url_in_a_new_tab"><code>When I open URL `$pageUrl` in new window</code></a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.asp">alert</a>, the tab will be closed, and you will need to switch to current tab using the following step: <code>When I switch to window with title that $stringComparisonRule `$windowName`</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Checking for an alert when trying to close a window with form</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+When I open URL `https://example.com/form` in new window
+When I click on element located by `xpath(//*[@id='form-edit'])`
+When I execute sequence of actions:
+|type      |argument    |
+|ENTER_TEXT|changed text|
+When I attempt to close current window with possibility to handle alert
+Then an alert is present
+When I accept alert with message which matches `.*`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_sequence_of_actions"><a class="anchor" href="#_execute_sequence_of_actions"></a>Execute sequence of actions</h3>
+<div class="paragraph">
+<p>Executes the sequence of web actions</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions: $actions</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$actions</code> - table of actions to execute</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Possible actions</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 55.5555%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>type</code></th>
+<th class="tableblock halign-left valign-top"><code>argument</code></th>
+<th class="tableblock halign-left valign-top">Argument example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkUrl(<a href="http://httpbin.org" class="bare">http://httpbin.org</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK_AND_HOLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkText(Click me)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_BY_OFFSET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(10, 15) where <strong>x</strong> is 10 and <strong>y</strong> is 15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RELEASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.tagName(div)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENTER_TEXT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text to type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minsk City</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.caseSensitiveText(Done)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRESS_KEYS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press and release any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BACK_SPACE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Press any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> one by one</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> one by one</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_TO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.id(username)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Execute various web-actions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type          |argument                                |
+|DOUBLE_CLICK  |By.fieldText(Hello World)               |
+|DOUBLE_CLICK  |                                        |
+|CLICK_AND_HOLD|By.xpath(//signature-pad-control/canvas)|
+|CLICK_AND_HOLD|                                        |
+|MOVE_BY_OFFSET|(-300, 0)                               |
+|RELEASE       |By.xpath(//signature-pad-control/canvas)|
+|RELEASE       |                                        |
+|ENTER_TEXT    |Text                                    |
+|CLICK         |By.placeholder(Enter your password)     |
+|CLICK         |                                        |
+|PRESS_KEYS    |BACK_SPACE                              |
+|KEY_DOWN      |CONTROL,SHIFT                           |
+|KEY_UP        |CONTROL,SHIFT                           |
+|MOVE_TO       |By.id(name)                             |</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step can be used to perform clipboard interactions.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument  |
+|KEY_DOWN  |CONTROL, a|
+|KEY_UP    |a, CONTROL|
+|KEY_DOWN  |CONTROL, c|
+|KEY_UP    |c, CONTROL|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument  |
+|KEY_DOWN  |COMMAND, v|
+|KEY_UP    |v, COMMAND|</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_browser_logs_steps"><a class="anchor" href="#_browser_logs_steps"></a>Browser logs steps</h3>
+<div class="paragraph">
+<p>This set of steps allows to validate the <a href="https://developer.mozilla.org/en-US/docs/Web/API/console">browser console logging messages</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In order to configure availability of the INFO level messages use following properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property to enable INFO logs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google Chrome</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.capabilities.goog\:loggingPrefs.browser=INFO</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Edge Chromium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.capabilities.ms\:loggingPrefs.browser=INFO</code></p></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_validate_log_entries_absence"><a class="anchor" href="#_validate_log_entries_absence"></a>Validate log entries absence</h4>
+<div class="paragraph">
+<p>Validates the absence of log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Validate absence of JS errors</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
+Then there are no browser console ERRORS</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_absence"><a class="anchor" href="#_validate_specific_log_entries_absence"></a>Validate specific log entries absence</h4>
+<div class="paragraph">
+<p>Validates the absence of specific log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex '$pattern'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Validate absence of JS error referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
+Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_specific_log_entries_presence"><a class="anchor" href="#_validate_specific_log_entries_presence"></a>Validate specific log entries presence</h4>
+<div class="paragraph">
+<p>Validates the presence of specific log entries of the desired level in the browser console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are browser console $logLevels by regex '$pattern'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Validate presence of JS errors referencing user</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
+Then there are browser console ERRORS by regex '.*user.*'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_console_log_entries_and_save_them"><a class="anchor" href="#_wait_for_console_log_entries_and_save_them"></a>Wait for console log entries and save them</h4>
+<div class="paragraph">
+<p>Waits for the appearance of the console log entries with the expected level and which match regular expression and saves all the entries (including awaited ones) of the expected level gathered during the wait to the scoped variable.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout</code> and <code>ui.wait.polling-period</code>. See <a href="#_properties">[_properties]</a> section for more details.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until browser console $logEntries by regex `$regex` appear and save all entries into $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the value of the barcode.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Wait for application readiness</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on a page with the URL 'https://vividus-test-site.onrender.com/'
+When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
+Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_perform_steps_for_each_found_element"><a class="anchor" href="#_perform_steps_for_each_found_element"></a>Perform steps for each found element</h3>
+<div class="paragraph">
+<p>Executes the steps against all elements found by locator. After a required number of elements is found,
+search context switches in order for each found element and performs all steps on it.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If comparison rule mismatch steps will not be performed even if elements are found.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$number` elements by `$locator` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$number' elements by $locator and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$number</code> - The number of elements to find.</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find elements.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Script type check</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
+|step                                                                                      |
+|When I set 'type' attribute value of the context element to the 'scenario' variable 'type'|
+|Then `${type}` is equal to `text/javascript`                                              |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
