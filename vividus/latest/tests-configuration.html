@@ -1084,7 +1084,7 @@ Scenario: Open Epam main page
 Meta:
   @severity 1
   @layout desktop
-Given I am on a page with the URL 'https://www.epam.com/'
+Given I am on page with URL `https://www.epam.com/`
 Then the page title is equal to 'EPAM | Enterprise Software Development, Design &amp; Consulting'
 
 Scenario: Open Google main page
@@ -1092,7 +1092,7 @@ Meta:
   @severity 2
   @layout desktop
   @skip
-Given I am on a page with the URL 'https://www.google.com/'
+Given I am on page with URL `https://www.google.com/`
 Then the page title is equal to 'Google'</code></pre>
 </div>
 </div>
@@ -1777,7 +1777,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <div class="title">Example 18. Composite step usage example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify login
-Given I am on the main application page
+Given I am on main application page
 When I login with username `admin` and password `pa$$w0rd`</code></pre>
 </div>
 </div>

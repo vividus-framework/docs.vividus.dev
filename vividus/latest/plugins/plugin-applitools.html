@@ -720,7 +720,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <div class="listingblock">
 <div class="title">Example 2. Establish baseline</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I run visual test with Applitools using:
 |appName    |batchName      |baselineName |action   |
 |example.com|example-testing|main-app-page|ESTABLISH|</code></pre>
@@ -751,7 +751,7 @@ When I run visual test with Applitools using:
 <div class="listingblock">
 <div class="title">Example 3. Compare against established baseline</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I run visual test with Applitools using:
 |appName    |batchName      |baselineName |action         |elementsToIgnore|
 |example.com|example-testing|main-app-page|COMPARE_AGAINST|By.tagName(h1)  |</code></pre>
@@ -782,7 +782,7 @@ When I run visual test with Applitools using:
 <div class="listingblock">
 <div class="title">Example 4. Check inequality established baseline</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://example.com/'
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I run visual test with Applitools using:
 |appName    |batchName      |baselineName |action                  |elementsToIgnore|
 |example.com|example-testing|main-app-page|CHECK_INEQUALITY_AGAINST|By.tagName(h1)  |</code></pre>
