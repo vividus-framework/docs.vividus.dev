@@ -1338,14 +1338,16 @@ When I compare against baseline with name `inlined-image` from image `#{decodeDa
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Examples of the expressions decoding Data URL</caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expression</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Result</p></td>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{decodeDataUrl(data:,value)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
@@ -1367,7 +1369,7 @@ When I compare against baseline with name `inlined-image` from image `#{decodeDa
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Hello, World!</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">`#{decodeDataUrl(data:image/png;base64,iVBORw&#8230;&#8203;.)}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{decodeDataUrl(data:image/png;base64,iVBORw&#8230;&#8203;.)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Image binary data.</p></td>
 </tr>
 </tbody>
