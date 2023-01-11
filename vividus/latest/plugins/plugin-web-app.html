@@ -1869,7 +1869,7 @@ selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_page_steps"><a class="anchor" href="#_page_steps"></a>Page steps</h3>
+<h3 id="_steps_opening_pages"><a class="anchor" href="#_steps_opening_pages"></a>Steps opening pages</h3>
 <div class="sect3">
 <h4 id="_open_main_application_page"><a class="anchor" href="#_open_main_application_page"></a>Open main application page</h4>
 <div class="paragraph">
@@ -1904,6 +1904,92 @@ selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
 <div class="title">Example 13. Open 'https://docs.vividus.dev/' page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_open_page_with_relative_url"><a class="anchor" href="#_open_page_with_relative_url"></a>Open page with relative URL</h4>
+<div class="paragraph">
+<p>Navigates the browser to the specific path in the current host defined in the <em>relative URL</em> step parameter.</p>
+</div>
+<div class="paragraph">
+<p>A relative URL can point to a file within a web site (like <code>about.html</code> or <code>/products</code>).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the parameter starts with '/' char, navigation will be performed from the root of the host, see examples below.</p>
+</li>
+<li>
+<p>If the parameter starts without '/' char or with './', navigation will be performed from the current path directory.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Examples</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Current page</th>
+<th class="tableblock halign-left valign-top">Relative URL parameter</th>
+<th class="tableblock halign-left valign-top">Opened page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com" class="bare">https://mysite.com</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">about.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/about.html" class="bare">https://mysite.com/about.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com" class="bare">https://mysite.com</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/products/new</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/products/new" class="bare">https://mysite.com/products/new</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/path/foo" class="bare">https://mysite.com/path/foo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/path/foo/stats" class="bare">https://mysite.com/path/foo/stats</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/path/foo" class="bare">https://mysite.com/path/foo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">./docs/info.html</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/path/foo/docs/info.html" class="bare">https://mysite.com/path/foo/docs/info.html</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/path/foo" class="bare">https://mysite.com/path/foo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/documents</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://mysite.com/documents" class="bare">https://mysite.com/documents</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I go to relative URL `$relativeURL`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>relativeURL</code> - A string value of the relative URL.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open main application page and then navigate to '/products/new' page on the application host</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on main application page
+When I go to relative URL `/products/new`</code></pre>
 </div>
 </div>
 </div>
@@ -2265,7 +2351,7 @@ When I accept alert with message which matches `.*`</code></pre>
 <li>
 <p><code>$actions</code> - table of actions to execute</p>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Possible actions</caption>
+<caption class="title">Table 3. Possible actions</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 55.5555%;">
