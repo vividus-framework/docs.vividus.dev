@@ -1484,7 +1484,7 @@ In case of missing search context the error will be logged and <code>-1</code> w
 <div class="listingblock">
 <div class="title">Example 9. Check the size and the location of the image</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `id(userpic)`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(userpic)`
 Then `${context-height}` is &gt; `0`
 Then `${context-width}` is &gt; `0`
 Then `${context-x-coordinate}` is &gt; `0`
@@ -2134,7 +2134,7 @@ If the context is not set, the whole page will be scrolled
 <div class="listingblock">
 <div class="title">Example 16. Scroll login to a bottom</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `id(login)`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(login)`
 When I scroll context to BOTTOM edge</code></pre>
 </div>
 </div>
@@ -3111,7 +3111,7 @@ Step will throw an error if the context element is not set.
 <div class="listingblock">
 <div class="title">Example 40. Save the text of the context element</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.id(username)`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save text of context element to SCENARIO variable `username`</code></pre>
 </div>
 </div>
@@ -3154,7 +3154,7 @@ Step will throw an error if the context element is not set.
 <div class="listingblock">
 <div class="title">Example 41. Save the attribute value of the context element</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.id(username)`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
 </div>
 </div>
@@ -3232,6 +3232,14 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator` in scope of current context</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator` in scope of current context</code></pre>
 </div>
 </div>
@@ -3246,7 +3254,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="title">Example 43. Change context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
-When I change context to element located `By.xpath(//body)` in scope of current context
+When I change context to element located by `xpath(//body)` in scope of current context
 Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
@@ -3255,6 +3263,14 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <h3 id="_reset_and_change_context"><a class="anchor" href="#_reset_and_change_context"></a>Reset and change context</h3>
 <div class="paragraph">
 <p>Resets current context and changes the context to an element located by locator for limiting area of subsequent UI interactions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3272,7 +3288,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="title">Example 44. Change context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
-When I change context to element located `By.xpath(//body)`
+When I change context to element located by `xpath(//body)`
 Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
@@ -3291,7 +3307,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="title">Example 45. Reset context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
-When I change context to element located `By.xpath(//body)`
+When I change context to element located by `xpath(//body)`
 Then number of elements found by `By.xpath(html)` is equal to `0`
 When I reset context
 Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
@@ -3879,7 +3895,7 @@ If context not set - takes a screenshot of the entire page. Only the first found
 <div class="listingblock">
 <div class="title">Example 57. Scan the barcode</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `By.xpath(//div[@id='qrCode'])`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `xpath(//div[@id='qrCode'])`
 When I scan barcode from context and save result to scenario variable `qrCodeLink`
 Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </div>
