@@ -1206,34 +1206,34 @@ WHERE name='Falcon 9'
 </div>
 </div>
 <div class="sect2">
-<h3 id="_compare_two_result_sets"><a class="anchor" href="#_compare_two_result_sets"></a>Compare two result sets</h3>
+<h3 id="_compare_two_data_sets"><a class="anchor" href="#_compare_two_data_sets"></a>Compare two data sets</h3>
 <div class="paragraph">
 <p>Compares the result set queried from the baseline database with the result set queried from the checkpoint database matching by user-defined keys. Please see <a href="#_data_comparison">Data Comparison</a> for more fine-grained comparison configuration. The order of columns is ignored.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then data from `$leftSqlQuery` executed against `$leftDbKey` $comparisonRule data from `$rightSqlQuery` executed against `$rightDbKey` matching rows using keys:$keys</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then data from `$leftSqlQuery` executed against `$leftDbKey` $comparisonRule data from `$rightSqlQuery` executed against `$rightDbKey` matching rows using keys:$columnsForMapping</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$leftSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve baseline result set.</p>
+<p><code>$leftSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve baseline data set.</p>
 </li>
 <li>
-<p><code>$leftDbKey</code> - The <a href="#_database_connection">database connection key</a> for baseline result set.</p>
+<p><code>$leftDbKey</code> - The <a href="#_database_connection">database connection key</a> to execute baseline query against.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - The data set comparison rule: either <code>is equal to</code> or <code>contains</code>.</p>
 </li>
 <li>
-<p><code>$rightSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve checkpoint result set.</p>
+<p><code>$rightSqlQuery</code> - The <a href="https://www.techtarget.com/searchdatamanagement/definition/SQL">SQL query to execute</a> to retrieve checkpoint data set.</p>
 </li>
 <li>
-<p><code>$rightDbKey</code> - The <a href="#_database_connection">database connection key</a>. for checkpoint result set.</p>
+<p><code>$rightDbKey</code> - The <a href="#_database_connection">database connection key</a> to execute checkpoint query against.</p>
 </li>
 <li>
-<p><code>$keys</code> - The database columns to compare.</p>
+<p><code>$columnsForMapping</code> - The comma-separated list of column names to map rows in the retrieved data sets. If empty then all column names from the retrieved data sets are used to map rows.</p>
 </li>
 </ul>
 </div>
