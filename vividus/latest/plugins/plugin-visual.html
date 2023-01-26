@@ -974,20 +974,6 @@ web.screenshot.strategy=custom</code></pre>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Whether to append Android bottom navigation bar (black bar with system buttons on the screenshots below table) or not.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The property available only for <strong>VIEWPORT</strong> shooting strategy</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1080,24 +1066,8 @@ where:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VIEWPORT</code>, <code>FULL_SCREEN</code>, <code>SIMPLE</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Screenshot shooting strategy name (<code>VIEWPORT</code> by default)</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The shooting strategy <code>SIMPLE</code> is deprecated and will be removed in VIVIDUS 0.6.0. Use <code>VIEWPORT</code> instead. <code>VIEWPORT</code> is equal to <code>SIMPLE</code> shooting strategy</p>
-</div>
-</td>
-</tr>
-</table>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>SIMPLE</code> by default)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile.screenshot.strategy=YOUR_STRATEGY_NAME</code></p></td>
@@ -1116,7 +1086,7 @@ mobile.screenshot.strategy.custom.cut-top=100
 mobile.screenshot.strategy.custom.cut-left=100
 mobile.screenshot.strategy.custom.cut-right=100
 mobile.screenshot.strategy.custom.cut-bottom=100
-mobile.screenshot.strategy.custom.shooting-strategy=VIEWPORT
+mobile.screenshot.strategy.custom.shooting-strategy=SIMPLE
 mobile.screenshot.strategy=custom</code></pre>
 </div>
 </div>
@@ -1127,7 +1097,7 @@ mobile.screenshot.strategy=custom</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
 |cutTop           |shootingStrategy|
-|51               |VIEWPORT        |</code></pre>
+|51               |SIMPLE          |</code></pre>
 </div>
 </div>
 </div>
