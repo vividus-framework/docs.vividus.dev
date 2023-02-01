@@ -2019,6 +2019,27 @@ is occurred at any atomic action.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If element by the specified locator is not clickable (overlapped by another element, problems with page/context loading or the element is disabled) the step will fail with corresponding error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Could not click on the element: org.openqa.selenium.ElementClickInterceptedException: element click intercepted:
+Element &lt;a href="#where-to-buy" data-tab-name="..." role="button"&gt;Where to Buy&lt;/a&gt; is not clickable at point (1619, 275).
+Other element would receive the click: &lt;div class="content"&gt;...&lt;/div&gt;</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `$locator`</code></pre>
