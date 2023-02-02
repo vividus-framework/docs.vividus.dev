@@ -1517,6 +1517,65 @@ When I scroll context to BOTTOM edge</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_text_validation_steps"><a class="anchor" href="#_text_validation_steps"></a>Text validation steps</h3>
+<div class="sect3">
+<h4 id="_validate_the_text_exists"><a class="anchor" href="#_validate_the_text_exists"></a>Validate the text exists</h4>
+<div class="paragraph">
+<p>Validates that the text is presented in the current context. Expected text is <strong>case sensitive</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The context can be set by the <a href="#_change_context">corresponding steps</a>. If no context is set, the text will be searched on the whole page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then text `$text` exists</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - Expected text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Check the text 'Contract Us' is presented on the page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
+Then text `Contract Us` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_the_text_does_not_exists"><a class="anchor" href="#_validate_the_text_does_not_exists"></a>Validate the text does not exists</h4>
+<div class="paragraph">
+<p>Validates that the text is not presented in the current context.</p>
+</div>
+<div class="paragraph">
+<p>The context can be set by the <a href="#_change_context">corresponding steps</a>. If no context is set, the text will be searched on the whole page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then text `$text` does not exist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - Text that should not exist.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Check the text 'Deprecated' is not presented in the element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(code)`
+Then text `Deprecated` does not exist</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_tab_steps"><a class="anchor" href="#_tab_steps"></a>Tab steps</h3>
 <div class="sect3">
 <h4 id="_open_a_new_tab"><a class="anchor" href="#_open_a_new_tab"></a>Open a new tab</h4>
@@ -1529,7 +1588,7 @@ When I scroll context to BOTTOM edge</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Open page in a new tab</div>
+<div class="title">Example 11. Open page in a new tab</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open new tab
 Given I am on page with URL `https://docs.vividus.dev/`</code></pre>
@@ -1579,7 +1638,7 @@ is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Open docs in a new tab</div>
+<div class="title">Example 12. Open docs in a new tab</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://docs.vividus.dev` in new window</code></pre>
 </div>
@@ -1620,7 +1679,7 @@ This step can only be applied to a session with multiple tabs open.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Open URL in new tab, close it and switch to the previous page</div>
+<div class="title">Example 13. Open URL in new tab, close it and switch to the previous page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I open URL `https://example.com/contact-us` in new window
@@ -1673,7 +1732,7 @@ If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.as
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Checking for an alert when trying to close a window with form</div>
+<div class="title">Example 14. Checking for an alert when trying to close a window with form</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I open URL `https://example.com/form` in new window
@@ -1773,7 +1832,7 @@ When I accept alert with message which matches `.*`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Execute various web-actions</div>
+<div class="title">Example 15. Execute various web-actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type          |argument                                |
@@ -1804,7 +1863,7 @@ When I accept alert with message which matches `.*`</code></pre>
 <p>This step can be used to perform clipboard interactions.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="title">Example 16. Select all text in the focused field and copy it to the clipboard on Windows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument  |
@@ -1815,7 +1874,7 @@ When I accept alert with message which matches `.*`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="title">Example 17. Paste text from the clipboard to the focused field on MacOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument  |
@@ -1885,7 +1944,7 @@ When I accept alert with message which matches `.*`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Validate absence of JS errors</div>
+<div class="title">Example 18. Validate absence of JS errors</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are no browser console ERRORS</code></pre>
@@ -1913,7 +1972,7 @@ Then there are no browser console ERRORS</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Validate absence of JS error referencing user</div>
+<div class="title">Example 19. Validate absence of JS error referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
@@ -1941,7 +2000,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Validate presence of JS errors referencing user</div>
+<div class="title">Example 20. Validate presence of JS errors referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are browser console ERRORS by regex '.*user.*'</code></pre>
@@ -1987,7 +2046,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Wait for application readiness</div>
+<div class="title">Example 21. Wait for application readiness</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
@@ -2044,7 +2103,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Script type check</div>
+<div class="title">Example 22. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
 |step                                                                                      |
