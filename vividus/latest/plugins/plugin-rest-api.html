@@ -2388,7 +2388,7 @@ subsequent HTTP call rewrites previously received response data.</p>
 <div class="title">Example 42. Save response body into variable</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
-When I initialize the scenario variable `json` with value `${response}`</code></pre>
+Given I initialize scenario variable `json` with value `${response}`</code></pre>
 </div>
 </div>
 </div>
