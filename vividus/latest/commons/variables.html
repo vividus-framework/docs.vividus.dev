@@ -839,6 +839,84 @@ Then `${var}` is equal to `story`</code></pre>
 <p><code>var</code> variable will be resolved to value <code>scenario</code> at the validation point in the first scenario, but it will be resolved to value <code>story</code> in the second scenario.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_default_values"><a class="anchor" href="#_default_values"></a>Default values</h3>
+<div class="paragraph">
+<p>Reference to uninitialized variable can be resolved to default value using the operator <code>:</code> (colon).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Examples of using default values</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Reference to resolve</th>
+<th class="tableblock halign-left valign-top">Variable value</th>
+<th class="tableblock halign-left valign-top">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:default}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:default}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:default:with:colons}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default:with:colons</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var[0]:default}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var[0].key:default}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:#{generate(DungeonsAndDragons.alignments)}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaotic Evil</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:${var1}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var - <code>&lt;uninitialized&gt;</code>, var1 - <code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">value</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${var:${var1:}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">var - <code>&lt;uninitialized&gt;</code>, var1 - <code>&lt;uninitialized&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;empty string&gt;</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 8. Open either user specified page or default page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Open page to be checked
+Given I am on main application page
+When the condition `#{eval(`${optionalPathToCheck:/defaultPath}` != `/forbiddenPath`)}` is true I do
+|step                                                                |
+|When I go to the relative URL '${optionalPathToCheck:/defaultPath}' |</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
