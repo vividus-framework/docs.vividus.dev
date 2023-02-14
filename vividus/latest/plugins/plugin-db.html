@@ -769,15 +769,36 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. environment.properties</div>
+<div class="title">Example 8. <code>environment.properties</code> to connect using port number</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:sqlserver://mssql.db.server:1433\mssql_instance;databaseName=my_database
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:sqlserver://mssql.db.server:1433;databaseName=my_database
 db.connection.vividus.username=vividus
 db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. <a href="https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url">URL template</a></div>
+<div class="title">Example 9. <code>environment.properties</code> to connect using instance name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:sqlserver://mssql.db.server\\mssql_instance;databaseName=my_database
+db.connection.vividus.username=vividus
+db.connection.vividus.password=pa$$w0rd</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pay attenttion to <code>\\</code> before instance name: it&#8217;s required because <code>\</code> is a special char in properties-files
+and thus meaningful backward slash should be additionally escaped: <code>\\</code> will result in <code>\</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. <a href="https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:sqlserver://serverName\instanceName:portNumber;parameter1=value1;parameter2=value2</code></pre>
 </div>
@@ -788,13 +809,13 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 <summary class="title">Azure SQL</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 10. build.gradle</div>
+<div class="title">Example 11. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '11.2.1.jre11')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. environment.properties</div>
+<div class="title">Example 12. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:sqlserver://vividusdb.database.windows.net:1433;database=demo;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
 db.connection.vividus.username=vividus
@@ -802,7 +823,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/connect-query-java?view=azuresql#prepare-a-configuration-file-to-connect-to-azure-sql-database">URL template</a></div>
+<div class="title">Example 13. <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/connect-query-java?view=azuresql#prepare-a-configuration-file-to-connect-to-azure-sql-database">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:sqlserver://serverName:portNumber;parameter1=value1;parameter2=value2</code></pre>
 </div>
@@ -813,13 +834,13 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 <summary class="title">PostgreSQL</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 13. build.gradle</div>
+<div class="title">Example 14. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.postgresql', name: 'postgresql', version: '42.5.3')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. environment.properties</div>
+<div class="title">Example 15. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:postgresql://postgresql.db.server:5432/my_database?ssl=true&amp;loglevel=2
 db.connection.vividus.username=vividus
@@ -827,7 +848,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. <a href="https://jdbc.postgresql.org/documentation/head/connect.html">URL template</a></div>
+<div class="title">Example 16. <a href="https://jdbc.postgresql.org/documentation/head/connect.html">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:postgresql://host:port/database?parameters</code></pre>
 </div>
@@ -838,13 +859,13 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 <summary class="title">Oracle Database</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 16. build.gradle</div>
+<div class="title">Example 17. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.oracle.database.jdbc', name: 'ojdbc10', version: '19.18.0.0')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. environment.properties</div>
+<div class="title">Example 18. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:oracle:thin:@//myoracle.db.server:1521/my_servicename
 db.connection.vividus.username=vividus
@@ -852,7 +873,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. <a href="http://www.orafaq.com/wiki/JDBC#Thin_driver">URL template</a> based on the services approach</div>
+<div class="title">Example 19. <a href="http://www.orafaq.com/wiki/JDBC#Thin_driver">URL template</a> based on the services approach</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:oracle:thin:user/password@//host:port/service</code></pre>
 </div>
@@ -863,13 +884,13 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 <summary class="title">DB2</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 19. build.gradle</div>
+<div class="title">Example 20. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.ibm.db2.jcc', name: 'db2jcc', version: 'db2jcc4')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. environment.properties</div>
+<div class="title">Example 21. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:db2://localhost:50000/my_db
 db.connection.vividus.username=vividus
@@ -877,7 +898,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. <a href="https://www.ibm.com/docs/en/db2-for-zos/11?topic=cdsudidsdjs-url-format-data-server-driver-jdbc-sqlj-type-4-connectivity">URL template</a></div>
+<div class="title">Example 22. <a href="https://www.ibm.com/docs/en/db2-for-zos/11?topic=cdsudidsdjs-url-format-data-server-driver-jdbc-sqlj-type-4-connectivity">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:db2://&lt;host&gt;:&lt;port&gt;/&lt;database_name&gt;</code></pre>
 </div>
@@ -892,19 +913,19 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 Please see the <a href="../user-guides/execute-sql-against-csv.html" class="xref page">step-by-step guide</a> for more details.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. build.gradle</div>
+<div class="title">Example 23. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'net.sourceforge.csvjdbc', name: 'csvjdbc', version: '1.0.40')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. environment.properties</div>
+<div class="title">Example 24. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data.url=jdbc:relique:csv:classpath:path/to/csv/data</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. URL template</div>
+<div class="title">Example 25. URL template</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:relique:csv:classpath:path/to/resources?parameters</code></pre>
 </div>
@@ -920,19 +941,19 @@ are created at the beginning of the tests and are dropped after the run is
 finished. Please see the <a href="../user-guides/use-in-memory-db-to-manage-test-data.html" class="xref page">detailed guide</a>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. build.gradle</div>
+<div class="title">Example 26. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'com.h2database', name: 'h2', version: '2.1.214')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. environment.properties</div>
+<div class="title">Example 27. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.csv-data.url=jdbc:relique:csv:classpath:path/to/csv/data</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. <a href="https://h2database.com/html/features.html#database_url">URL template</a> for in-memory named database</div>
+<div class="title">Example 28. <a href="https://h2database.com/html/features.html#database_url">URL template</a> for in-memory named database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:h2:mem:databaseName</code></pre>
 </div>
@@ -943,13 +964,13 @@ finished. Please see the <a href="../user-guides/use-in-memory-db-to-manage-test
 <summary class="title">Snowflake</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Example 28. build.gradle</div>
+<div class="title">Example 29. build.gradle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'net.snowflake', name: 'snowflake-jdbc', version: '3.13.27')</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. environment.properties</div>
+<div class="title">Example 30. environment.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.vividus.url=jdbc:snowflake://myinstance.west-europe.azure.snowflakecomputing.com/?role=DEVELOPER&amp;warehouse=WAREHOUSE&amp;db=MY_DB
 db.connection.vividus.username=vividus
@@ -957,7 +978,7 @@ db.connection.vividus.password=pa$$w0rd</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. <a href="https://docs.snowflake.com/en/user-guide/jdbc-configure.html#syntax">URL template</a></div>
+<div class="title">Example 31. <a href="https://docs.snowflake.com/en/user-guide/jdbc-configure.html#syntax">URL template</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jdbc:snowflake://account_identifier.snowflakecomputing.com/?connection_parameters</code></pre>
 </div>
@@ -1072,7 +1093,7 @@ specified database using SQL query.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 31. Generate ExampleTable using data from H2 database</div>
+<div class="title">Example 32. Generate ExampleTable using data from H2 database</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_DB, dbKey=testh2db, sqlQuery=SELECT * FROM students, nullReplacement= }</code></pre>
 </div>
@@ -1110,7 +1131,7 @@ specified database using SQL query.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="title">Example 33. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
 |1 |Falcon 9    |$2,720      |USA    |
@@ -1118,7 +1139,7 @@ specified database using SQL query.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Query USA rocket launches and validate result set</div>
+<div class="title">Example 34. Query USA rocket launches and validate result set</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
 SELECT *
@@ -1134,7 +1155,7 @@ Then `${usa-launches}` is equal to table:
 <p>Individual rows are available by index starting from zero as per the following example:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Query USA rocket launches and check name in first row</div>
+<div class="title">Example 35. Query USA rocket launches and check name in first row</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
 SELECT *
@@ -1191,7 +1212,7 @@ In case of <a href="https://www.w3schools.com/sql/sql_select.asp">SELECT SQL que
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="title">Example 36. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
 |1 |Falcon 9    |$2,720      |USA    |
@@ -1199,7 +1220,7 @@ In case of <a href="https://www.w3schools.com/sql/sql_select.asp">SELECT SQL que
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Update payload_cost for 'Falcon 9' launch</div>
+<div class="title">Example 37. Update payload_cost for 'Falcon 9' launch</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `
 UPDATE launch_rockets
@@ -1242,7 +1263,7 @@ WHERE name='Falcon 9'
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Given <code>launch_rockets</code> table available at 'launches' and 'launches-replica' db connections</div>
+<div class="title">Example 38. Given <code>launch_rockets</code> table available at 'launches' and 'launches-replica' db connections</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
 |1 |Falcon 9    |$2,720      |USA    |
@@ -1250,7 +1271,7 @@ WHERE name='Falcon 9'
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Compare name and country columns in launch_rockets table contained in two databases</div>
+<div class="title">Example 39. Compare name and country columns in launch_rockets table contained in two databases</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then data from `SELECT * FROM launch_rockets` executed against `launches` is equal to data from `SELECT * FROM launch_rockets` executed against `launches-replica` matching rows using keys:name,country</code></pre>
 </div>
@@ -1283,7 +1304,7 @@ WHERE name='Falcon 9'
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
+<div class="title">Example 40. Given <code>launch_rockets</code> table available at 'launches' db connection</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|id|name        |payload_cost|country|
 |1 |Falcon 9    |$2,720      |USA    |
@@ -1291,7 +1312,7 @@ WHERE name='Falcon 9'
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Compare name and country columns in result set against defined data set</div>
+<div class="title">Example 41. Compare name and country columns in result set against defined data set</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `SELECT * FROM launch_rockets` against `rockets` and save result to scenario variable `all-launches`
 Then `${all-launches}` matching rows using `name,country` from `launches` is equal to data from:
