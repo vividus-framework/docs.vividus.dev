@@ -903,6 +903,57 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <p>Environment variables can also be declared in multiple files. Define common and specific properties for your environments and take the <a href="#_profiles_setup">same approach</a> of reusing and separating values.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_configuration_sets"><a class="anchor" href="#_configuration_sets"></a>Configuration sets</h3>
+<div class="paragraph">
+<p>Configuration set simplifies reusage of pre-defined combinations of profiles/suites/environments. Users are allowed to define multiple configuration sets. Only one configuration set can be used during a test run.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Configuration sets definition</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration-set.api-preprod-uat.profiles=
+configuration-set.api-preprod-uat.suites=uat
+configuration-set.api-preprod-uat.environments=preprod
+
+configuration-set.api-test-regression.profiles=
+configuration-set.api-test-regression.suites=regression
+configuration-set.api-test-regression.environments=test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once configuration sets are defined, one can use an active configuration set for test execution.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Usage of configuration set</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration-set.active=api-preprod-uat</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration sets can be defined only in <code>configuration.properties</code> file.</p>
+</li>
+<li>
+<p>Active configuration set overrides defined <code>configuration.profiles</code>, <code>configuration.suites</code> and <code>configuration.environments</code> properties.</p>
+</li>
+<li>
+<p>Configuration set requires to define <code>profiles</code>, <code>suites</code> and <code>environments</code>, empty value considered as a valid one.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -958,7 +1009,7 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
 <p>The file represents a collection of JSON elements describing known issues.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. known-issues.json</div>
+<div class="title">Example 7. known-issues.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> {
     "VVD-1": { <i class="conum" data-value="1"></i><b>(1)</b>
@@ -1077,7 +1128,7 @@ Use <strong>\\</strong> for escaping of special characters in regular expression
 <p>Meta tags may be used at both story and scenario level. Meta tags specified at the story level are propagated to every scenario, if the same meta tag is used at the scenario level, then the scenario level value takes precedence.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Levels of meta tags</div>
+<div class="title">Example 8. Levels of meta tags</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">!-- Story level
 Meta:
@@ -1108,7 +1159,7 @@ Then the page title is equal to 'Google'</code></pre>
 relies on Groovy syntax.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Execute stoies and scenarios marked with '@group Login' tag and matching default filters</div>
+<div class="title">Example 9. Execute stoies and scenarios marked with '@group Login' tag and matching default filters</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.meta-filters=group == 'Login'</code></pre>
 </div>
@@ -1118,7 +1169,7 @@ relies on Groovy syntax.</p>
 meta filters based on the tags: <code>@skip</code>, <code>@layout</code> etc.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
+<div class="title">Example 10. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: (group == 'Login' &amp;&amp; !skip)</code></pre>
 </div>
@@ -1134,13 +1185,13 @@ by default. If it&#8217;s required to use arbitrary characters in meta tags name
 subscript operator must be used in the properties.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Execute stoies and scenarios not marked with '@test-stand' tag (quoted identifiers approach)</div>
+<div class="title">Example 11. Execute stoies and scenarios not marked with '@test-stand' tag (quoted identifiers approach)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this.'test-stand'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Execute stoies and scenarios not marked with '@test-stand' tag (subscript operator approach)</div>
+<div class="title">Example 12. Execute stoies and scenarios not marked with '@test-stand' tag (subscript operator approach)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this['test-stand']</code></pre>
 </div>
@@ -1213,7 +1264,7 @@ subscript operator must be used in the properties.</p>
 <p>To enable the feature create a file <code>spring.xml</code> in the <code>src/main/resources</code> directory and add the following XML data into that file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Configuration</div>
+<div class="title">Example 13. Configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -1234,7 +1285,7 @@ subscript operator must be used in the properties.</p>
 <p>Taking <code>story_priority</code> as an example the priority meta should be placed at the story level as the following example shows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Prioritized.story</div>
+<div class="title">Example 14. Prioritized.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta: @story_priority 15
 
@@ -1559,13 +1610,13 @@ text is used to decrypt the encrypted text. The default encryption algorithm is
 <li>
 <p>Run the command performing encryption:</p>
 <div class="listingblock">
-<div class="title">Example 13. Windows:</div>
+<div class="title">Example 15. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bat hljs" data-lang="bat">encrypt.bat input="This is my message to be encrypted" password=MYPAS_WORD</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Linux/UNIX/macOS:</div>
+<div class="title">Example 16. Linux/UNIX/macOS:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./encrypt.sh input="This is my message to be encrypted" password=MYPAS_WORD</code></pre>
 </div>
@@ -1599,7 +1650,7 @@ text is used to decrypt the encrypted text. The default encryption algorithm is
 <li>
 <p>Find the encrypted data in <code>OUTPUT</code> section</p>
 <div class="listingblock">
-<div class="title">Example 15. Encryption command output</div>
+<div class="title">Example 17. Encryption command output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-log hljs" data-lang="log">----ENVIRONMENT-----------------
 
@@ -1757,7 +1808,7 @@ This password must be kept secret and must not be committed to version control s
 <li>
 <p>Define composite step in <code>*.steps</code> file, e.g. <code>steps/ui/my-app.steps</code>:</p>
 <div class="listingblock">
-<div class="title">Example 16. Composite step definition</div>
+<div class="title">Example 18. Composite step definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: When I login with username `$username` and password `$password`
 When I enter `&lt;username&gt;` in field located by `id(username)`
@@ -1769,7 +1820,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <li>
 <p>Configure paths to files with custom steps:</p>
 <div class="listingblock">
-<div class="title">Example 17. Composite steps paths configuration</div>
+<div class="title">Example 19. Composite steps paths configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">engine.composite-paths=steps/ui/*.steps</code></pre>
 </div>
@@ -1778,7 +1829,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <li>
 <p>Use your step in the story:</p>
 <div class="listingblock">
-<div class="title">Example 18. Composite step usage example</div>
+<div class="title">Example 20. Composite step usage example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify login
 Given I am on main application page
@@ -1816,7 +1867,7 @@ Users are allowed to use composite steps in composite step definition.
 <li>
 <p>Select a step you want to create alias for, as an example let&#8217;s take the following step:</p>
 <div class="listingblock">
-<div class="title">Example 19. VIVIDUS step</div>
+<div class="title">Example 21. VIVIDUS step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located `$locator`</code></pre>
 </div>
@@ -1825,7 +1876,7 @@ Users are allowed to use composite steps in composite step definition.
 <li>
 <p>Create a new JSON file (for example, <code>aliases/aliases.json</code>) and put the following content with one or more aliases:</p>
 <div class="listingblock">
-<div class="title">Example 20. aliases/aliases.json</div>
+<div class="title">Example 22. aliases/aliases.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
     {
