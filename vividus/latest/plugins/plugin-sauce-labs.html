@@ -744,10 +744,10 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
+<col style="width: 33.3333%;">
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -778,12 +778,45 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>saucelabs.data-center</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>US</code></p>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>US_WEST</code><br></p>
+</li>
+<li>
+<p><code>US_EAST</code><br></p>
+</li>
+<li>
+<p><code>EU_CENTRAL</code><br></p>
+</li>
+<li>
+<p><code>APAC_SOUTHEAST</code></p>
+</li>
+</ul>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><code>EU</code>
-<code>US_EAST</code></p>
+<p>The data centers listed below are deprecated and will be removed in VIVIDUS 0.6.0:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>US</code> (use <code>US_WEST</code> instead)</p>
+</li>
+<li>
+<p><code>EU</code> (use <code>EU_CENTRAL</code> instead)</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div></div></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://wiki.saucelabs.com/display/DOCS/Data+Center+Endpoints">Sauce Labs data center</a> to use</p></td>
@@ -791,7 +824,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.sauce-connect.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -800,7 +833,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.sauce-connect.use-latest-version</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
@@ -816,7 +849,31 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.sauce-connect.skip-host-glob-patterns</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Comma (,) separated list of host <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling/Proxy_Auto-Configuration_PAC_file#shexpmatch">glob patterns</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This property comes into effect only if proxy is used, otherwise its value is ignored. The property specifies the list of glob patterns for hosts that are connected-to directly, others are connected through the proxy. By default the list inicludes <code><strong>.miso.saucelabs.com</code>, <code></strong>.api.testobject.com</code>, <code>*.saucelabs.com</code>, <code>saucelabs.com</code> host patterns to avoid sending of status information by SauceConnect to SauceLabs REST API throughout the lifetime of a tunnel via proxy used by tests.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>This property comes into effect only if proxy is used, otherwise its value is ignored. The property specifies
+the list of glob patterns for hosts that are connected-to directly, others are connected through the proxy. By default
+the list inicludes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>*.miso.saucelabs.com</code></p>
+</li>
+<li>
+<p><code>*.api.testobject.com</code></p>
+</li>
+<li>
+<p><code>*.saucelabs.com</code></p>
+</li>
+<li>
+<p><code>saucelabs.com</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>host patterns to avoid sending of status information by SauceConnect to SauceLabs REST API throughout the lifetime of
+a tunnel via proxy used by tests.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
