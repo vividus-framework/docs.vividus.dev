@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>YAML Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-yaml.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AWS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-key-vault.html">Key Vault</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-sql-db.html">SQL Database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-cross-browser-testing.html">SmartBear: CrossBrowserTesting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.5/index.html">0.5.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.4/index.html">0.5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.3/index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.15/index.html">0.4.15</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.14/index.html">0.4.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.13/index.html">0.4.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.12/index.html">0.4.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.11/index.html">0.4.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.10/index.html">0.4.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.9/index.html">0.4.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.8/index.html">0.4.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.7/index.html">0.4.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.6/index.html">0.4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>Plugins</li>
+    <li>Data Formats</li>
+    <li><a href="plugin-yaml.html">YAML</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="plugin-yaml.html">latest</a>
+    <a class="version" href="../../0.5.5/plugins/plugin-yaml.html">0.5.5</a>
+    <a class="version" href="../../0.5.4/plugins/plugin-yaml.html">0.5.4</a>
+    <a class="version" href="../../0.5.3/plugins/plugin-yaml.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/plugins/plugin-yaml.html">0.5.2</a>
+    <a class="version" href="../../0.5.1/plugins/plugin-yaml.html">0.5.1</a>
+    <a class="version" href="../../0.5.0/plugins/plugin-yaml.html">0.5.0</a>
+    <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
+    <a class="version is-missing" href="../../0.4.15/index.html">0.4.15</a>
+    <a class="version is-missing" href="../../0.4.14/index.html">0.4.14</a>
+    <a class="version is-missing" href="../../0.4.13/index.html">0.4.13</a>
+    <a class="version is-missing" href="../../0.4.12/index.html">0.4.12</a>
+    <a class="version is-missing" href="../../0.4.11/index.html">0.4.11</a>
+    <a class="version is-missing" href="../../0.4.10/index.html">0.4.10</a>
+    <a class="version is-missing" href="../../0.4.9/index.html">0.4.9</a>
+    <a class="version is-missing" href="../../0.4.8/index.html">0.4.8</a>
+    <a class="version is-missing" href="../../0.4.7/index.html">0.4.7</a>
+    <a class="version is-missing" href="../../0.4.6/index.html">0.4.6</a>
+    <a class="version is-missing" href="../../0.4.5/index.html">0.4.5</a>
+    <a class="version is-missing" href="../../0.4.4/index.html">0.4.4</a>
+    <a class="version is-missing" href="../../0.4.3/index.html">0.4.3</a>
+    <a class="version is-missing" href="../../0.4.2/index.html">0.4.2</a>
+    <a class="version is-missing" href="../../0.4.1/index.html">0.4.1</a>
+    <a class="version is-missing" href="../../0.4.0/index.html">0.4.0</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-yaml.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">YAML Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides a set of actions for validation of YAML data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-yaml', version: '0.5.6-SNAPSHOT')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new plugin,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The steps syntax uses internal (VIVIDUS-only) term:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"YAML element value" or "value of YAML element" - scalar values like
+<code>string</code>, <code>integer</code>, <code>float</code>, <code>boolean</code> (<code>true</code> or <code>false</code>) and <code>null</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_save_yaml_element_value_from_input"><a class="anchor" href="#_save_yaml_element_value_from_input"></a>Save YAML element value from input</h3>
+<div class="paragraph">
+<p>Saves a value of YAML element found in the given YAML into the variable with
+the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save YAML element value from `$yaml` by YAML path `$yamlPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$yaml</code> - The YAML used to find YAML element value.</p>
+</li>
+<li>
+<p><code>$yamlPath</code> - The <a href="https://github.com/yaml-path/YamlPath#usage">YAML Path</a> used to find YAML element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found YAML element value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save YAML element value from `${response}` by YAML path `store.book[1].title` to scenario variable `title-of-second-book`
+Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
