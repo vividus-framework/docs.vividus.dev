@@ -929,7 +929,7 @@ The parameters marked with <strong>bold</strong> are mandatory.
 </li>
 <li>
 <p><code>$protocol</code> - The protocol of execution: <code>SSH</code> or <code>SFTP</code>.</p>
-<table class="tableblock frame-all grid-all stretch">
+<table id="sftp-commands" class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. The list of the supported <code>SFTP</code> commands</caption>
 <colgroup>
 <col style="width: 25%;">
@@ -967,7 +967,7 @@ The parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove remote directory</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">rm path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rm path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove remote file</p></td>
 </tr>
 </tbody>
@@ -1002,7 +1002,34 @@ commands remotely and saves the result of the commands to the variable.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$commands</code> - Semicolon-separated commands to execute.</p>
+<p><code>$commands</code> - Semicolon-separated <a href="#sftp-commands">SFTP commands</a> to execute.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It&#8217;s allowed to combine any SFTP commands, but at least one of them should return result. SFTP commands returning results are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>get remote-path</code></p>
+</li>
+<li>
+<p><code>ls [path]</code></p>
+</li>
+<li>
+<p><code>pwd</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p><code>$connectionKey</code> - The SSH connection key matching any of configured ones.</p>
