@@ -663,9 +663,17 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
-<h4 id="_send_the_data"><a class="anchor" href="#_send_the_data"></a><strong>Send the data</strong></h4>
+<h4 id="_send_event_with_value"><a class="anchor" href="#_send_event_with_value"></a><strong>Send event with value</strong></h4>
 <div class="paragraph">
-<p>Sends the data to the provided topic with no key or partition.</p>
+<p>Sends the event with the value to the provided topic with no key or partition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with value `$value` to `$producerKey` Kafka topic `$topic`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -675,13 +683,13 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="ulist">
 <ul>
 <li>
-<p><code>$producerKey</code> - the key of Kafka producer configuration</p>
+<p><code>$value</code> - The event value.</p>
 </li>
 <li>
-<p><code>$data</code> - the data to send</p>
+<p><code>$producerKey</code> - The key of Kafka producer configuration.</p>
 </li>
 <li>
-<p><code>$topic</code> - the topic name</p>
+<p><code>$topic</code> - The topic name.</p>
 </li>
 </ul>
 </div>
@@ -690,9 +698,9 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 2. Send the data to the Kafka topic</div>
+<div class="title">Example 2. Send the event to the Kafka topic</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send data `my-data` to `dev` Kafka topic `my-topic`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with value `my-data` to `dev` Kafka topic `my-topic`</code></pre>
 </div>
 </div>
 </div>
@@ -759,24 +767,40 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `$consumerKey` Kafka topics `$topics`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `$consumerKey` Kafka topics `$topics`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
+<p><code>$consumerKey</code> - The key of the Kafka consumer configuration.</p>
 </li>
 <li>
-<p><code>$topics</code> - the comma-separated set of topics to listen</p>
+<p><code>$topics</code> - The comma-separated set of topics to listen.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_drainpeek_the_consumed_messages"><a class="anchor" href="#_drainpeek_the_consumed_messages"></a><strong>Drain/Peek the consumed messages</strong></h4>
+<h4 id="_drainpeek_the_consumed_events"><a class="anchor" href="#_drainpeek_the_consumed_events"></a><strong>Drain/Peek the consumed events</strong></h4>
 <div class="paragraph">
-<p>Drains/Peeks the consumed messaged to the specified variable. If the consumer is not stopped, the new messages might arrive after the draining. If the consumer is stopped, all the messages received from the consumer start or after the last draining operation are stored to the variable.</p>
+<p>Drains/Peeks the consumed events to the specified variable. If the consumer is not stopped, the new events might arrive after the draining. If the consumer is stopped, all the events received from the consumer start or after the last draining operation are stored to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $queueOperation consumed `$consumerKey` Kafka events to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -786,24 +810,32 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="ulist">
 <ul>
 <li>
-<p><code>$queueOperation</code> -  <code>DRAIN</code> - saves the messages consumed since the last drain or from the consumption start and moves the consumer cursor to the position after the last consumed message, <code>PEEK</code> - saves the messages consumed since the last drain or from the consumption start and doesn&#8217;t change the consumer cursor position</p>
+<p><code>$queueOperation</code> -  <code>DRAIN</code> - saves the events consumed since the last drain or from the consumption start and moves the consumer cursor to the position after the last consumed event, <code>PEEK</code> - saves the events consumed since the last drain or from the consumption start and doesn&#8217;t change the consumer cursor position</p>
 </li>
 <li>
-<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
+<p><code>$consumerKey</code> - The key of the Kafka consumer configuration.</p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
 </li>
 <li>
-<p><code>$variableName</code> - the variable name to store the messages. The messages are accessible via zero-based index, e.g. <code>${my-var[0]}</code> will return the first received message.</p>
+<p><code>$variableName</code> - The variable name to store the events. The events are accessible via zero-based index, e.g. <code>${my-var[0]}</code> will return the first received event.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wait_for_the_messages"><a class="anchor" href="#_wait_for_the_messages"></a><strong>Wait for the messages</strong></h4>
+<h4 id="_wait_for_the_events"><a class="anchor" href="#_wait_for_the_events"></a><strong>Wait for the events</strong></h4>
 <div class="paragraph">
-<p>Waits until the count of the consumed messaged (from the consumer start or after the last draining operation) matches to the rule or until the timeout is exceeded.</p>
+<p>Waits until the count of the consumed events (from the consumer start or after the last draining operation) matches to the rule or until the timeout is exceeded.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `$timeout` timeout until count of consumed `$consumerKey` Kafka events is $comparisonRule `$expectedCount`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -813,16 +845,16 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="ulist">
 <ul>
 <li>
-<p><code>$timeout</code> - the maximum time to wait for the messages in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+<p><code>$timeout</code> - The maximum time to wait for the events in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 <li>
-<p><code>$consumerKey</code> - the key of the Kafka consumer configuration.</p>
+<p><code>$consumerKey</code> - The key of the Kafka consumer configuration.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">the comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$expectedCount</code> - the expected count of the messages to be matched by the rule.</p>
+<p><code>$expectedCount</code> - The expected count of the events to be matched by the rule.</p>
 </li>
 </ul>
 </div>
@@ -830,7 +862,15 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="sect3">
 <h4 id="_stop_the_consumer"><a class="anchor" href="#_stop_the_consumer"></a><strong>Stop the consumer</strong></h4>
 <div class="paragraph">
-<p>Stops the Kafka consumer started by the corresponding step before. All recorded messages are kept and can be drained into the variable using the step described above.</p>
+<p>Stops the Kafka consumer started by the corresponding step before. All recorded events are kept and can be drained into the variable using the step described above.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming events from `$consumerKey` Kafka</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -840,7 +880,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="ulist">
 <ul>
 <li>
-<p><code>$consumerKey</code> - the key of the Kafka consumer configuration</p>
+<p><code>$consumerKey</code> - The key of the Kafka consumer configuration.</p>
 </li>
 </ul>
 </div>
@@ -849,36 +889,36 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="sect2">
 <h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 3. Consume messages from the Kafka topic</div>
+<div class="title">Example 3. Consume events from the Kafka topic</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `dev` Kafka topics `my-topic-1, my-topic-2`
-!-- Perform any actions triggering the publishing of messages to Kafka
-When I wait with `PT30S` timeout until count of consumed `dev` Kafka messages is greater than `1`
-When I stop consuming messages from `dev` Kafka
-When I drain consumed Kafka messages to scenario variable `consumed-messages`
-Then `${consumed-messages[0]}` is equal to `some-expected-message`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `dev` Kafka topics `my-topic-1, my-topic-2`
+!-- Perform any actions triggering the publishing of events to Kafka
+When I wait with `PT30S` timeout until count of consumed `dev` Kafka events is greater than `1`
+When I stop consuming events from `dev` Kafka
+When I drain consumed Kafka events to scenario variable `consumed-events`
+Then `${consumed-events[0]}` is equal to `some-expected-event`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Drain messages while listener is rinning</div>
+<div class="title">Example 4. Drain events while listener is running</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `prod` Kafka topics `my-topic-1, my-topic-2`
-!-- Perform any actions triggering the publishing of messages to Kafka
-When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-X`
-!-- Perform more actions triggering the publishing of messages to Kafka
-When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-Y`
-When I stop consuming messages from `prod` Kafka</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
+!-- Perform any actions triggering the publishing of events to Kafka
+When I drain consumed `prod` Kafka events to scenario variable `events-after-action-X`
+!-- Perform more actions triggering the publishing of events to Kafka
+When I drain consumed `prod` Kafka events to scenario variable `events-after-action-Y`
+When I stop consuming events from `prod` Kafka</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Peek messages while listener is rinning</div>
+<div class="title">Example 5. Peek events while listener is running</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `prod` Kafka topics `my-topic-1, my-topic-2`
-!-- Perform any actions triggering the publishing of messages to Kafka
-When I drain consumed `prod` Kafka messages to scenario variable `messages-after-action-X`
-!-- Perform more actions triggering the publishing of messages to Kafka
-When I peek consumed `prod` Kafka messages to scenario variable `messages-after-action-Y`
-When I stop consuming messages from `prod` Kafka</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
+!-- Perform any actions triggering the publishing of events to Kafka
+When I drain consumed `prod` Kafka events to scenario variable `events-after-action-X`
+!-- Perform more actions triggering the publishing of events to Kafka
+When I peek consumed `prod` Kafka events to scenario variable `events-after-action-Y`
+When I stop consuming events from `prod` Kafka</code></pre>
 </div>
 </div>
 </div>
