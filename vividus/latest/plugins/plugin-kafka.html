@@ -703,6 +703,42 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with value `my-data` to `dev` Kafka topic `my-topic`</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_send_event_with_key_and_value"><a class="anchor" href="#_send_event_with_key_and_value"></a><strong>Send event with key and value</strong></h4>
+<div class="paragraph">
+<p>Sends the event with the key and the value to the provided topic. Events with the same event key are written to the [same partition](<a href="https://kafka.apache.org/documentation/#intro_concepts_and_terms" class="bare">https://kafka.apache.org/documentation/#intro_concepts_and_terms</a>), and Kafka guarantees that any consumer of a given topic-partition will always read that partition&#8217;s events in exactly the same order as they were written.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with key `$key` and value `$value` to `$producerKey` Kafka topic `$topic`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$key</code> - The event key, all the events with the same event key are written to the same partition.</p>
+</li>
+<li>
+<p><code>$value</code> - The event value.</p>
+</li>
+<li>
+<p><code>$producerKey</code> - The key of Kafka producer configuration.</p>
+</li>
+<li>
+<p><code>$topic</code> - The topic name.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<div class="listingblock">
+<div class="title">Example 3. Send the event to the Kafka topic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with key `passenger car` and value `BMW x7` to `dev` Kafka topic `cars`</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -887,9 +923,9 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
+<h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 3. Consume events from the Kafka topic</div>
+<div class="title">Example 4. Consume events from the Kafka topic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `dev` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
@@ -900,7 +936,7 @@ Then `${consumed-events[0]}` is equal to `some-expected-event`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Drain events while listener is running</div>
+<div class="title">Example 5. Drain events while listener is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
@@ -911,7 +947,7 @@ When I stop consuming events from `prod` Kafka</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Peek events while listener is running</div>
+<div class="title">Example 6. Peek events while listener is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
