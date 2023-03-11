@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Azure Storage Account Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.5.6/plugins/plugin-azure-storage-account.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="0.5.6">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AWS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-key-vault.html">Key Vault</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-sql-db.html">SQL Database</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-cross-browser-testing.html">SmartBear: CrossBrowserTesting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">0.5.6</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">0.5.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.5/index.html">0.5.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.4/index.html">0.5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.3/index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.15/index.html">0.4.15</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.14/index.html">0.4.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.13/index.html">0.4.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.12/index.html">0.4.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.11/index.html">0.4.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.10/index.html">0.4.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.9/index.html">0.4.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.8/index.html">0.4.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.7/index.html">0.4.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.6/index.html">0.4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>Plugins</li>
+    <li>Clouds</li>
+    <li><a href="azure.html">Azure</a></li>
+    <li><a href="plugin-azure-storage-account.html">Storage Account</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.5.6</button>
+  <div class="version-menu">
+    <a class="version is-current" href="plugin-azure-storage-account.html">0.5.6</a>
+    <a class="version" href="../../0.5.5/plugins/plugin-azure-storage-account.html">0.5.5</a>
+    <a class="version" href="../../0.5.4/plugins/plugin-azure-storage-account.html">0.5.4</a>
+    <a class="version" href="../../0.5.3/plugins/plugin-azure-storage-account.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/plugins/plugin-azure-storage-account.html">0.5.2</a>
+    <a class="version" href="../../0.5.1/plugins/plugin-azure-storage-account.html">0.5.1</a>
+    <a class="version" href="../../0.5.0/plugins/plugin-azure-storage-account.html">0.5.0</a>
+    <a class="version" href="../../0.4.16/plugins/plugin-azure-storage-account.html">0.4.16</a>
+    <a class="version" href="../../0.4.15/plugins/plugin-azure-storage-account.html">0.4.15</a>
+    <a class="version" href="../../0.4.14/plugins/plugin-azure-storage-account.html">0.4.14</a>
+    <a class="version" href="../../0.4.13/plugins/plugin-azure-storage-account.html">0.4.13</a>
+    <a class="version" href="../../0.4.12/plugins/plugin-azure-storage-account.html">0.4.12</a>
+    <a class="version" href="../../0.4.11/plugins/plugin-azure-storage-account.html">0.4.11</a>
+    <a class="version" href="../../0.4.10/plugins/plugin-azure-storage-account.html">0.4.10</a>
+    <a class="version" href="../../0.4.9/plugins/plugin-azure-storage-account.html">0.4.9</a>
+    <a class="version" href="../../0.4.8/plugins/plugin-azure-storage-account.html">0.4.8</a>
+    <a class="version" href="../../0.4.7/plugins/plugin-azure-storage-account.html">0.4.7</a>
+    <a class="version" href="../../0.4.6/plugins/plugin-azure-storage-account.html">0.4.6</a>
+    <a class="version" href="../../0.4.5/plugins/plugin-azure-storage-account.html">0.4.5</a>
+    <a class="version" href="../../0.4.4/plugins/plugin-azure-storage-account.html">0.4.4</a>
+    <a class="version" href="../../0.4.3/plugins/plugin-azure-storage-account.html">0.4.3</a>
+    <a class="version" href="../../0.4.2/plugins/plugin-azure-storage-account.html">0.4.2</a>
+    <a class="version" href="../../0.4.1/plugins/plugin-azure-storage-account.html">0.4.1</a>
+    <a class="version" href="../../0.4.0/plugins/plugin-azure-storage-account.html">0.4.0</a>
+    <a class="version" href="../../0.3.12/plugins/plugin-azure-storage-account.html">0.3.12</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-azure-storage-account.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Azure Storage Account Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides functionality to interact with <a href="https://docs.microsoft.com/en-us/azure/storage/">Azure Storage Account</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-azure-storage-account', version: '0.5.6')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new plugin,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_blob_storage"><a class="anchor" href="#_blob_storage"></a>Blob storage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h4>
+<div class="paragraph">
+<p>The authentication process relies on the configuration of the environment variables.</p>
+</div>
+<div class="paragraph">
+<p>See the official <a href="https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/identity/azure-identity#environment-variables">"Azure identity"</a> guide to get more details on what types of authentication could be used.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h4>
+<div class="paragraph">
+<p>The blob storages endpoints are configured with the following property format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">azure.storage-account.&lt;key&gt;.blob-service=&lt;endpoint&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>key</code> - The logical key used to refer the storage account in the steps.</p>
+</li>
+<li>
+<p><code>endpoint</code> - The blob service URL, e.g. <code><a href="https://mystorageaccount.blob.core.windows.net/" class="bare">https://mystorageaccount.blob.core.windows.net/</a></code>.
+It&#8217;s allowed to use blob service <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview">SAS</a> URL here,
+in this case the authentication configuration is not required.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_retrieve_the_blob_service_properties"><a class="anchor" href="#_retrieve_the_blob_service_properties"></a>Retrieve the blob service properties</h4>
+<div class="paragraph">
+<p>Retrieves the properties of a storage account’s Blob service and saves them as
+JSON to a variable. For more information, see the
+<a href="https://docs.microsoft.com/rest/api/storageservices/get-blob-service-properties">Azure Docs</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve blob service properties of storage account `$storageAccountKey` and save them to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the blob service properties.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Retrieve the blob service properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve blob service properties of storage account `testaccount` and save them to scenario variable `blob-service-properties`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_download_the_blob"><a class="anchor" href="#_download_the_blob"></a>Download the blob</h4>
+<div class="paragraph">
+<p>Downloads the entire blob from the container and saves its content as a text to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey` and save its content to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the blob content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Download the blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download blob with name `raw/test.json` from container `vividus-container` of storage account `testaccount` and save its content to scenario variable `blob`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_download_the_blob_to_a_temporary_file"><a class="anchor" href="#_download_the_blob_to_a_temporary_file"></a>Download the blob to a temporary file</h4>
+<div class="paragraph">
+<p>Downloads the entire blob from the container into a temporary file with the specified name and saves the full path to the specified variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey` to temporary file with name `$baseFileName` and save path to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$baseFileName</code> - The base file name used to generate the prefix and the suffix for the creating temporary file.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the path to the temporary file with the blob content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Download the blob to a temporary file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download blob with name `raw/test.json` from container `vividus-container` of storage account `testaccount` to temporary file with name `test.json` and save path to scenario variable `pathToBlob`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_retrieve_the_blob_properties"><a class="anchor" href="#_retrieve_the_blob_properties"></a>Retrieve the blob properties</h4>
+<div class="paragraph">
+<p>Retrieves the blob properties (all user-defined metadata, standard HTTP
+properties, and system properties for the blob) and saves them as JSON to a
+variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve properties of blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey` and save them to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the blob properties.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Retrieve the blob properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve properties of blob with name `raw/test.json` from container `vividus-container` of storage account `testaccount` and save them to scenario variable `blob-properties`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_upload_the_blob"><a class="anchor" href="#_upload_the_blob"></a>Upload the blob</h4>
+<div class="paragraph">
+<p>Uploads the blob to the container.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload blob with name `$blobName` and data `$data` to container `$containerName` of storage account `$storageAccountKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$data</code> - The data to store as blob.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Upload the text blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload blob with name `raw/test.json` and data `{"test":"data"}` to container `vividus` of storage account `testaccount`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Upload the binary blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload blob with name `folder/image.jpg` and data `#{loadBinaryResource(/data/image.jpg)}` to container `vividus` of storage account `testaccount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_upsert_the_blob"><a class="anchor" href="#_upsert_the_blob"></a>Upsert the blob</h4>
+<div class="paragraph">
+<p>Uploads the blob to the container. If blob already exists it will be replaced.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upsert blob with name `$blobName` and data `$data` to container `$containerName` of storage account `$storageAccountKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$data</code> - The data to store as blob.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Upsert the blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upsert blob with name `raw/test.json` and data `{"test":"data"}` to container `vividus` of storage account `testaccount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_delete_the_blob"><a class="anchor" href="#_delete_the_blob"></a>Delete the blob</h4>
+<div class="paragraph">
+<p>Deletes the specified blob from the container.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete blob with name `$blobName` from container `$containerName` of storage account `$storageAccountKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$blobName</code> - The full path to the blob in the container.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Delete the blob</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete blob with name `raw/test.json` from container `vividus-container` of storage account `testaccount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_find_blobs"><a class="anchor" href="#_find_blobs"></a>Find blobs</h4>
+<div class="paragraph">
+<p>Finds the blobs with names matching the specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find all blobs with name which $comparisonRule `$blobNameToMatch` in container `$containerName` of storage account `$storageAccountKey` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The blob name comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$blobNameToMatch</code> - The full or partial blob name to be matched.</p>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the list of found blob names.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Find blobs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find all blobs with name which contains `json` in container `vividus` of storage account `testaccount` and save result to scenario variable `blobsCollection`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_find_blobs_by_filter"><a class="anchor" href="#_find_blobs_by_filter"></a>Find blobs by filter</h4>
+<div class="paragraph">
+<p>Finds blobs with names filtered by the specified rules in the container.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At least one rule is required.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I filter blobs by:$filter in container `$containerName` of storage account `$storageAccountKey` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filter</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with filter rules to apply on blob names.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. The supported filter rules</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Filter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNamePrefix</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The prefix which blob names should start with.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path/to/data/</code> (equal to <code>/path/to/data</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>resultsLimit</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of blob names to return.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNameFilterRule</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../parameters/string-comparison-rule.html" class="xref page">The blob name comparison rule</a>.
+It should be specified along with <code>blobNameFilterValue</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MATCHES</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>blobNameFilterValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The full or partial blob name to be matched.
+It should be specified along with <code>blobNameFilterRule</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.*</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>$containerName</code> - The name of the container to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of storage account from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the list of found blob names.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Find blobs by filter</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I filter blobs by:
+|blobNameFilterRule|blobNameFilterValue|blobNamePrefix                       |resultsLimit |
+|matches           |.*_test            |images_for_testing_05.10.2021/images/|10           |
+in container `vividus` of storage account `testaccount` and save result to story variable `imagePathList`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_share"><a class="anchor" href="#_file_share"></a>File share</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration_2"><a class="anchor" href="#_configuration_2"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="_endpoints_2"><a class="anchor" href="#_endpoints_2"></a>Endpoints</h4>
+<div class="paragraph">
+<p>The file share endpoints are configured with the following property format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">azure.storage-account.&lt;key&gt;.file-service=&lt;endpoint&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>key</code> - The logical key used to refer the storage account in the steps.</p>
+</li>
+<li>
+<p><code>endpoint</code> - The file service URL, e.g. <code><a href="https://mystorageaccount.file.core.windows.net/" class="bare">https://mystorageaccount.file.core.windows.net/</a></code>.
+It&#8217;s recommended to use file service <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview">SAS</a> URL here,
+because the authentication via <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals">Service Principals</a>
+is not available for file shares.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_download_the_file"><a class="anchor" href="#_download_the_file"></a>Download the file</h4>
+<div class="paragraph">
+<p>Downloads the file from the file share and saves its content as a text to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download file with path `$filePath` from file share `$shareName` of storage account `$storageAccountKey` and save its content to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filePath</code> - The full path to the file in the file share.</p>
+</li>
+<li>
+<p><code>$shareName</code> - The name of the file share to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of the storage account file service endpoint from the configuration.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the file content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Download the file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download file with path `data/file.json` from file share `vividus-file-share` of storage account `testaccount` and save its content to scenario variable `json-file`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_download_the_file_to_a_temporary_file"><a class="anchor" href="#_download_the_file_to_a_temporary_file"></a>Download the file to a temporary file</h4>
+<div class="paragraph">
+<p>Downloads the file from the file share into a temporary file with the specified name and saves the full path to the specified variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download file with path `$filePath` from file share `$shareName` of storage account `$storageAccountKey` to temporary file with name `$baseFileName` and save path to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filePath</code> - The full path to the file in the file share.</p>
+</li>
+<li>
+<p><code>$shareName</code> - The name of the file share to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of the storage account file service endpoint from the configuration.</p>
+</li>
+<li>
+<p><code>$baseFileName</code> - The base file name used to generate the prefix and the suffix for the creating temporary file.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the path to the temporary file with the file content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Download the file to a temporary file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I download file with path `data/file.json` from file share `vividus-file-share` of storage account `testaccount` to temporary file with name `test.json` and save path to scenario variable `path-to-file`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_upload_the_file"><a class="anchor" href="#_upload_the_file"></a>Upload the file</h4>
+<div class="paragraph">
+<p>Uploads the file to the file share.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload file with path `$filePath` and data `$data` to file share `$shareName` of storage account `$storageAccountKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filePath</code> - The full path to the creating file in the file share.</p>
+</li>
+<li>
+<p><code>$data</code> - The data to store as a file.</p>
+</li>
+<li>
+<p><code>$shareName</code> - The name of the file share to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of the storage account file service endpoint from the configuration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Upload the text file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload file with path `data/file.json` and data `{"test":"data"}` to file share `vividus-file-share` of storage account `testaccount`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Upload the binary file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I upload file with path `images/file.jpg` and data `#{loadBinaryResource(/data/image.jpg)}` to file share `vividus-file-share` of storage account `testaccount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_delete_the_file"><a class="anchor" href="#_delete_the_file"></a>Delete the file</h4>
+<div class="paragraph">
+<p>Deletes the specified file from the file share.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete file with path `$filePath` from file share `$shareName` of storage account `$storageAccountKey`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$filePath</code> - The full path to the file in the file share.</p>
+</li>
+<li>
+<p><code>$shareName</code> - The name of the file share to point to.</p>
+</li>
+<li>
+<p><code>$storageAccountKey</code> - The key of the storage account file service endpoint from the configuration.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Delete the file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I delete file with path `data/file.json` from file share `vividus-file-share` of storage account `testaccount`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storage_account_management"><a class="anchor" href="#_storage_account_management"></a>Storage account management</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration_3"><a class="anchor" href="#_configuration_3"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="_azure_environment_selection"><a class="anchor" href="#_azure_environment_selection"></a>Azure environment selection</h4>
+<div class="paragraph">
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/authentication-national-cloud">Azure environment</a>
+could be optionally specified using the property <code>azure.environment</code>
+(sets the environment for all Azure plugins). The default value is <code>AZURE</code>.</p>
+</div>
+<div class="paragraph">
+<p>The supported environments are only:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AZURE</code></p>
+</li>
+<li>
+<p><code>AZURE_CHINA</code></p>
+</li>
+<li>
+<p><code>AZURE_GERMANY</code></p>
+</li>
+<li>
+<p><code>AZURE_US_GOVERNMENT</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_azure_subscription_selection"><a class="anchor" href="#_azure_subscription_selection"></a>Azure subscription selection</h4>
+<div class="paragraph">
+<p>Azure subscription must be configured via <code>AZURE_SUBSCRIPTION_ID</code> environment variable.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_steps_3"><a class="anchor" href="#_steps_3"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_collect_storage_accounts_info"><a class="anchor" href="#_collect_storage_accounts_info"></a>Collect storage accounts info</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Storage/storageAccounts` using API version `2021-08-01` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Collects storage accounts info in the specified resource group and saves it as
+JSON to a variable. For more information, see the
+<a href="https://docs.microsoft.com/en-us/rest/api/storagerp/storage-accounts/list">Azure Docs</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect storage accounts in resource group `$resourceGroupName` and save them as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group to list the storage accounts from.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the info about storage accounts as JSON.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The client should have permission to run action <code>Microsoft.Storage/storageAccounts/read</code>
+over scope <code>/subscriptions/{subscription ID}/resourceGroups/{resource group name}/providers/Microsoft.Storage</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Collect storage accounts info</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I collect storage accounts in resource group `TEST-SA` and save them as JSON to scenario variable `storage-accounts`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_retrieve_the_blob_service_properties_2"><a class="anchor" href="#_retrieve_the_blob_service_properties_2"></a>Retrieve the blob service properties</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step is deprecated and will be removed in VIVIDUS 0.6.0. The replacement is
+<a href="plugin-azure-resource-manager.html#_get_information_about_azure_resource" class="xref page">the generic step retrieving information about Azure resources</a>.
+The replacement pattern is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I get Azure resource with identifier `resourceGroups/&lt;resourceGroupName&gt;/providers/Microsoft.Storage/storageAccounts/&lt;storageAccountName&gt;/blobServices/default` using API version `2021-08-01` and save it to &lt;scopes&gt; variable `&lt;variableName&gt;`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Retrieves the properties of a storage account’s Blob service, including
+properties for Storage Analytics and CORS (Cross-Origin Resource Sharing) rules,
+and saves them as JSON to a variable. For more information, see the
+<a href="https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties">Azure Docs</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve blob service properties of storage account with name `$storageAccountName` from resource group `$resourceGroupName` and save them as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageAccountName</code> - The name of the storage account within the specified resource group.</p>
+</li>
+<li>
+<p><code>$resourceGroupName</code> - The name of the resource group within the user&#8217;s subscription to retrieve the storage account from. The name is case-insensitive.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the blob service properties as JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Retrieve the blob service properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I retrieve blob service properties of storage account with name `testaccountname` from resource group `TEST-SA` and save them as JSON to scenario variable `blob-service-properties`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
