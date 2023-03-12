@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Appium Setup :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/appium-setup.html">
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../tests-configuration.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">AWS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../plugins/azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-key-vault.html">Key Vault</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-sql-db.html">SQL Database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../plugins/plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../plugins/plugin-cross-browser-testing.html">SmartBear: CrossBrowserTesting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../plugins/plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">VIVIDUS</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.6/index.html">0.5.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.5/index.html">0.5.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.4/index.html">0.5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.3/index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.15/index.html">0.4.15</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.14/index.html">0.4.14</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.13/index.html">0.4.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.12/index.html">0.4.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.11/index.html">0.4.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.10/index.html">0.4.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.9/index.html">0.4.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.8/index.html">0.4.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.7/index.html">0.4.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.6/index.html">0.4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.5/index.html">0.4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.4/index.html">0.4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.3/index.html">0.4.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.2/index.html">0.4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.1/index.html">0.4.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.0/index.html">0.4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.3.12/index.html">0.3.12</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>User Guides</li>
+    <li>Mobile Testing</li>
+    <li><a href="appium-setup.html">Appium Setup</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="appium-setup.html">latest</a>
+    <a class="version" href="../../0.5.6/user-guides/appium-setup.html">0.5.6</a>
+    <a class="version" href="../../0.5.5/user-guides/appium-setup.html">0.5.5</a>
+    <a class="version" href="../../0.5.4/user-guides/appium-setup.html">0.5.4</a>
+    <a class="version" href="../../0.5.3/user-guides/appium-setup.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/user-guides/appium-setup.html">0.5.2</a>
+    <a class="version" href="../../0.5.1/user-guides/appium-setup.html">0.5.1</a>
+    <a class="version" href="../../0.5.0/user-guides/appium-setup.html">0.5.0</a>
+    <a class="version" href="../../0.4.16/user-guides/appium-setup.html">0.4.16</a>
+    <a class="version" href="../../0.4.15/user-guides/appium-setup.html">0.4.15</a>
+    <a class="version" href="../../0.4.14/user-guides/appium-setup.html">0.4.14</a>
+    <a class="version" href="../../0.4.13/user-guides/appium-setup.html">0.4.13</a>
+    <a class="version" href="../../0.4.12/user-guides/appium-setup.html">0.4.12</a>
+    <a class="version is-missing" href="../../0.4.11/index.html">0.4.11</a>
+    <a class="version is-missing" href="../../0.4.10/index.html">0.4.10</a>
+    <a class="version is-missing" href="../../0.4.9/index.html">0.4.9</a>
+    <a class="version is-missing" href="../../0.4.8/index.html">0.4.8</a>
+    <a class="version is-missing" href="../../0.4.7/index.html">0.4.7</a>
+    <a class="version is-missing" href="../../0.4.6/index.html">0.4.6</a>
+    <a class="version is-missing" href="../../0.4.5/index.html">0.4.5</a>
+    <a class="version is-missing" href="../../0.4.4/index.html">0.4.4</a>
+    <a class="version is-missing" href="../../0.4.3/index.html">0.4.3</a>
+    <a class="version is-missing" href="../../0.4.2/index.html">0.4.2</a>
+    <a class="version is-missing" href="../../0.4.1/index.html">0.4.1</a>
+    <a class="version is-missing" href="../../0.4.0/index.html">0.4.0</a>
+    <a class="version is-missing" href="../../0.3.12/index.html">0.3.12</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/user-guides/pages/appium-setup.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Appium Setup</h1>
+<div class="sect1">
+<h2 id="_intro"><a class="anchor" href="#_intro"></a>Intro</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Appium is an open-source test automation framework for use with native, hybrid, and mobile web apps.
+It drives iOS, Android, and Windows apps using the WebDriver protocol. <a href="http://appium.io/docs/en/about-appium/intro/">Learn more</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can run VIVIDUS automated scenarios on mobile devices using Appium tool.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_appium_server"><a class="anchor" href="#_install_appium_server"></a>Install Appium server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since Appium has a Client/Server Architecture, it is required to install and run Appium server to perform mobile tests.</p>
+</div>
+<div class="paragraph">
+<p>There are two ways of installing Appium server:</p>
+</div>
+<details>
+<summary class="title">Application installation (Appium Desktop)</summary>
+<div class="content">
+<div class="paragraph">
+<p>Appium Desktop is a GUI wrapper around the Appium server that can be downloaded for any platform. It comes bundled with everything required to run the Appium server, so you don&#8217;t need to worry about Node.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/appium/appium-desktop/releases/latest">Download</a> the latest version of Appium Desktop.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Command line installation</summary>
+<div class="content">
+<div class="paragraph">
+<p>Appium is a server written in Node.js. It can be built and installed from source or installed directly from NPM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">npm install -g appium</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run Appium use the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">appium</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_environment_setup"><a class="anchor" href="#_environment_setup"></a>Environment setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Make sure you have installed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.java.com/en/download/manual.jsp">Java</a></p>
+</li>
+<li>
+<p><a href="http://developer.android.com/sdk/index.html">Android SDK</a></p>
+</li>
+<li>
+<p><a href="https://developer.apple.com/xcode/">Xcode (iOS)</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>And the following environment variables are set:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JAVA_HOME</p>
+</li>
+<li>
+<p>ANDROID_HOME</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can open "Edit configuration" to set the variables in Appium Desktop.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Read more details for basic <a href="http://appium.io/docs/en/drivers/android-uiautomator2/">Android</a> and <a href="http://appium.io/docs/en/drivers/ios-xcuitest/">iOS</a> setup in Appium Guide.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appium_doctor_optional"><a class="anchor" href="#_appium_doctor_optional"></a>Appium-Doctor (Optional)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/appium/appium-doctor">Appium-Doctor</a> diagnoses, reports and fixes common Node, iOS and Android configuration issues before starting Appium. It helps to make sure you have everything to start using Appium.</p>
+</div>
+<div class="paragraph">
+<p>Appium-doctor checks for:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Android:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Android sdk exists and configured properly;</p>
+</li>
+<li>
+<p>Environment variables and path check;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>iOS:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>XCode is installed (with command line tools);</p>
+</li>
+<li>
+<p>Dev tools security check;</p>
+</li>
+<li>
+<p>Auth check;</p>
+</li>
+<li>
+<p>Node binary check;</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appium_capabilities"><a class="anchor" href="#_appium_capabilities"></a>Appium Capabilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Desired Capabilities are just a set of keys and values that get sent to the Appium server during session initialization, that tell Appium what kind of thing we want to automate. The minimum set of required capabilities for any Appium driver should include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>platformName</strong>: the name of the platform to automate</p>
+</li>
+<li>
+<p><strong>platformVersion</strong>: the version of the platform to automate</p>
+</li>
+<li>
+<p><strong>deviceName</strong>: the kind of device to automate</p>
+</li>
+<li>
+<p><strong>app</strong>: the path to the app you want to automate (but use the browserName capability instead in the case of automating a web browser)</p>
+</li>
+<li>
+<p><strong>automationName</strong>: the name of the driver you wish to use</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are lots of other capabilities. To find out more please see <a href="http://appium.io/docs/en/writing-running-appium/caps/index.html">Appium Capabilities Doc</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_setting_capabilities_in_vividus"><a class="anchor" href="#_setting_capabilities_in_vividus"></a>Setting capabilities in VIVIDUS</h3>
+<div class="paragraph">
+<p>Before running VIVIDUS scenarios it is necessary to pass Desired Capabilities to Appium Server. Use them as properties with <code>selenium.grid.capabilities.</code> prefix. Then just put these capabilities into the appropriate <code>*.properties</code> file. Please see examples below:</p>
+</div>
+<div class="sect3">
+<h4 id="_basic_properties"><a class="anchor" href="#_basic_properties"></a>Basic properties</h4>
+<div class="listingblock">
+<div class="title">Example 1. iOS properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">selenium.grid.capabilities.platformName=iOS
+selenium.grid.capabilities.platformVersion=15.5
+selenium.grid.capabilities.deviceName=iPad Pro (9.7-inch)
+selenium.grid.capabilities.automationName=XCUITest
+selenium.grid.capabilities.app=/Users/myDirectory/application.ipa</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Android properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">selenium.grid.capabilities.platformName=android
+selenium.grid.capabilities.platformVersion=11.0
+selenium.grid.capabilities.deviceName=Pixel 6
+selenium.grid.capabilities.automationName=UIAutomator2
+selenium.grid.capabilities.app=/Users/myDirectory/application.apk</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_real_devices_properties"><a class="anchor" href="#_real_devices_properties"></a>Real devices properties</h4>
+<div class="paragraph">
+<p>While Android devices require only one additional property, for iOS you need to set three more.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+See the relevant sections for defining these properties for <a href="#_define_properties_for_running_a_real_apple_device">iOS</a> and <a href="#_android_device_udid">Android</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appium_inspector_optional"><a class="anchor" href="#_appium_inspector_optional"></a>Appium Inspector (Optional)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/appium/appium-inspector">Appium Inspector</a> is basically just an Appium client with a user interface. It allows to interact with application elements and Appium commands in a user friendly way.
+You can get the latest version of Inspector application following the <a href="https://github.com/appium/appium-inspector/releases">link</a>.</p>
+</div>
+<details>
+<summary class="title">Click to view capabilities set up in Inspector</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-inspector-capabilities-android.png" alt="appium inspector capabilities android">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-inspector-capabilities-ios.png" alt="appium inspector capabilities ios">
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_simulatoremulator"><a class="anchor" href="#_running_tests_on_simulatoremulator"></a>Running tests on Simulator/Emulator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VIVIDUS Sample Tests is a <a href="https://github.com/vividus-framework/vividus-sample-tests">GitHub repository</a>. Its purpose is to demo VIVIDUS capabilities via sample tests.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s use it as an example for running mobile tests via Appium.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Assumptions</strong></p>
+<div class="paragraph">
+<p>You have installed and properly set up the following:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> IDE</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Appium Server</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> AVD Manager (Android)</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Simulator application (iOS)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Cloning and importing the repository</strong></p>
+<div class="paragraph">
+<p>Clone vividus-sample-tests project using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --recursive git@github.com:vividus-framework/vividus-sample-tests.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then use <a href="../getting-started.html#_create_tests_project" class="xref page">this detailed guide</a> to proceed with importing and building the project.</p>
+</div>
+</li>
+<li>
+<p><strong>Overriding properties</strong></p>
+<div class="paragraph">
+<p>Since we are only interested in the mobile application story, add the following properties to the overriding.properties file. Choose one of the platforms and make sure properties match with your simulator set up.</p>
+</div>
+<details>
+<summary class="title">Click to expand overriding.properties</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example 3. Minimum iOS setup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">selenium.grid.capabilities.appiumVersion=1.20.2
+selenium.grid.url=http://127.0.0.1:4723/wd/hub
+configuration.profiles=mobile_app/ios
+configuration.suites=mobile_app/ios
+configuration.environments=
+selenium.grid.capabilities.deviceName=iPad Pro (9.7-inch)
+selenium.grid.capabilities.platformName=iOS
+selenium.grid.capabilities.automationName=XCUITest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Minimum Android setup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">selenium.grid.capabilities.appiumVersion=1.20.2
+selenium.grid.url=http://127.0.0.1:4723/wd/hub
+configuration.profiles=mobile_app/android
+configuration.suites=mobile_app/android
+configuration.environments=
+selenium.grid.capabilities.deviceName=Lenovo
+selenium.grid.capabilities.platformName=android
+selenium.grid.capabilities.automationName=UIAutomator2</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p><strong>Start Appium Server</strong></p>
+<div class="paragraph">
+<p>Make sure Appium Server is started.</p>
+</div>
+<details>
+<summary class="title">Click to view screenshots</summary>
+<div class="content">
+<div class="paragraph">
+<p><strong>Appium-Desktop</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-desktop.png" alt="appium desktop">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-server-running.png" alt="appium server running">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Appium in the terminal</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-server-cli.png" alt="appium server cli">
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p><strong>Tests execution and expected results</strong></p>
+<div class="paragraph">
+<p>Execute the test either via <code>./gradlew runStories</code> command or by clicking the <code>Run</code> button in the IDE.</p>
+</div>
+<div class="paragraph">
+<p>In case everything has been set up correctly you will see the following:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Appium creates a new session;</p>
+</li>
+<li>
+<p>Testing application (Swag Labs Mobile) is installed on the simulator;</p>
+</li>
+<li>
+<p>Application is started;</p>
+</li>
+<li>
+<p>Credentials are entered into username and password fields;</p>
+</li>
+<li>
+<p>After successful login user sees the landing page;</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_tests_on_real_devices"><a class="anchor" href="#_running_tests_on_real_devices"></a>Running tests on Real Devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Executing tests on real devices has some features and required different preparations depending on the platform.</p>
+</div>
+<div class="sect2">
+<h3 id="_android"><a class="anchor" href="#_android"></a>Android</h3>
+<div class="paragraph">
+<p>Firstly, make sure you have installed <a href="https://developer.android.com/studio/command-line/adb">Android Debug Bridge</a>. Simply enter in the command line <code>adb --version</code>. You should get some adb information in the output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">adb --version
+Android Debug Bridge version 1.0.41
+Version 31.0.3-7562133
+Installed as /usr/local/bin/adb</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_android_device_udid"><a class="anchor" href="#_android_device_udid"></a>Android device UDID</h4>
+<div class="paragraph">
+<p>Connect the device you want to interact with to your workstation. Use <code>adb devices</code> command to see the list of connected devices:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">adb devices
+List of devices attached
+UKjeCe9Mr9 device</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example <code>UKjeCe9Mr9</code> is the unique identifier of the device. Use that number as a udid capability (property) in VIVIDUS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property">selenium.grid.capabilities.udid=UKjeCe9Mr9</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You are ready to run tests! Just add this property to your <code>*.properties</code> file and use <a href="#_running_tests_on_simulatoremulator">the same approach as for Emulators</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ios"><a class="anchor" href="#_ios"></a>iOS</h3>
+<div class="paragraph">
+<p>Automating a real device with XCUITest Driver(iOS) is considerably more complicated, due to Apple&#8217;s restrictions around running apps on real devices.</p>
+</div>
+<div class="paragraph">
+<p>XCUITest driver installs a helper application called WebDriverAgent-Runner onto the device, and handles the application under test via it. While this is simple in theory, the hoops of code signing and provisioning applications for development and testing can make this a bit of a headache.</p>
+</div>
+<div class="sect3">
+<h4 id="_wda_configuration"><a class="anchor" href="#_wda_configuration"></a>WDA configuration</h4>
+<div class="paragraph">
+<p>There are two approaches for WebDriverAgent configuration:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Automatic WDA configuration</strong>.
+Proper work of the WDA requires signing it with a valid Apple Developer account. If you have a paid Apple Developer account, please see the following instructions on <a href="http://appium.io/docs/en/drivers/ios-xcuitest-real-devices/#basic-automatic-configuration">Appium Doc</a>;</p>
+</li>
+<li>
+<p><strong>Manual WDA configuration</strong>.
+Using a "Free" developer account often leads to issues with the impossibility of creating a wildcard provisioning profile for the default application bundle.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Follow the instructions below to handle this issue.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_manual_wda_configuration"><a class="anchor" href="#_manual_wda_configuration"></a>Manual WDA configuration</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The next steps are based on <a href="https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/#basic-manual-configuration">Appium manual configuration doc</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new Apple Development Certificate for your Apple ID;</p>
+<details>
+<summary class="title">Click to see details</summary>
+<div class="content">
+<div class="paragraph">
+<p><strong>Open Xcode and go to settings</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-xcode-preferences.png" alt="appium xcode preferences">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Click "+" to add an account and then Sign In with your Apple ID</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-add-apple-id-account.png" alt="appium add apple id account">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-apple-id-signed-in.png" alt="appium apple id signed in">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Add a new Apple Development Certificate</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-open-manage-certificates.png" alt="appium open manage certificates">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-add-a-new-certificate.png" alt="appium add a new certificate">
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Build WebDriverAgent signed with your newly created certificate;</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open WDA project in Xcode;</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Most common path to the project: <code>/Applications/Appium.app/Contents/Resources/app/node_modules/appium/node_modules/appium-webdriveragent/WebDriverAgent.xcodeproj</code>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Come up with your unique <strong>Bundle Identifier</strong>. Use it for updating build parameters.</p>
+<details>
+<summary class="title">Click to see details</summary>
+<div class="content">
+<div class="paragraph">
+<p><strong>Make sure you&#8217;ve chosen correct device and parameters</strong>
+image::appium-check-device-and-parameters.png[]</p>
+</div>
+<div class="paragraph">
+<p><strong>Create your unique BundleId and update build parameters</strong>
+image::appium-update-build-parameters.png[]</p>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Build the project</p>
+<details>
+<summary class="title">Click to see details</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-start-building.png" alt="appium start building">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-grant-access.png" alt="appium grant access">
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_define_properties_for_running_a_real_apple_device"><a class="anchor" href="#_define_properties_for_running_a_real_apple_device"></a>Define properties for running a real apple device</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-property hljs" data-lang="property"># iOS
+selenium.grid.capabilities.xcodeSigningId=Apple Development<i class="conum" data-value="1"></i><b>(1)</b>
+selenium.grid.capabilities.udid=b3f34105281bb345p980p824401d5913f13efe81<i class="conum" data-value="2"></i><b>(2)</b>
+selenium.grid.capabilities.xcodeOrgId=5H8S64Q9G4<i class="conum" data-value="3"></i><b>(3)</b>
+selenium.grid.capabilities.updatedWDABundleId=yourUniqueBundleId.WebDriverAgentRunner<i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><strong>xcodeSigningId</strong>
+<div class="paragraph">
+<p>For any Apple device use <code>Apple Development</code> as the <code>xcodeSigningId</code> property.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><strong>UDID</strong>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Make sure your Apple device is connected;</p>
+</li>
+<li>
+<p>Open Finder and choose your device;</p>
+</li>
+<li>
+<p>Copy udid from the device information;</p>
+<details>
+<summary class="title">Click to view screenshots</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-finder-list-of-devices.png" alt="appium finder list of devices">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-finder-copy-udid.png" alt="appium finder copy udid">
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><strong>xcodeOrgId</strong>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open KeyChain Access application;</p>
+</li>
+<li>
+<p>Go to <code>Default Keychains &#8594; Login</code>;</p>
+</li>
+<li>
+<p>Open <code>My Certificates</code> tab and find certificated you have created recently;</p>
+</li>
+<li>
+<p>Open Certificate and use <code>Organisational Unit</code> parameter as <code>xcodeOrgId</code> property;</p>
+<details>
+<summary class="title">Click to view screenshots</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-find-keychain.png" alt="appium find keychain">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-keychain-certificates-list.png" alt="appium keychain certificates list">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-certificate-details.png" alt="appium certificate details">
+</div>
+</div>
+</div>
+</details>
+</li>
+</ol>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><strong>updatedWDABundleId</strong>
+<div class="paragraph">
+<p>Use your unique Bundle Identifier that was created previously as <code>updatedWDABundleId</code> property;</p>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_first_start"><a class="anchor" href="#_first_start"></a>First start</h4>
+<div class="paragraph">
+<p>When all tools are installed and set up and all desired capabilities are defined, we can start our tests.
+For the first time, Appium will install the WDA application on the Apple device. Since WDA is signed with an unknown Apple Developer account, we need to add it to the trust.</p>
+</div>
+<div class="paragraph">
+<p>Start the session either via Appium Inspector or by running an autotest. Once the WDA icon appears on the screen, do the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to Settings→General→Profile &amp; Device Management (iOS 15 and higher - Settings→General→VPN &amp; Device Management);</p>
+</li>
+<li>
+<p>Tap on "Apple Development: "account name";</p>
+</li>
+<li>
+<p>Choose "Trust";</p>
+</li>
+</ol>
+</div>
+<details>
+<summary class="title">Click to view screenshot</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/appium-wda-on-device.png" alt="appium wda on device">
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>You are ready to run tests! Just add properties from above to your <code>*.properties</code> file and use <a href="#_running_tests_on_simulatoremulator">the same approach as for Simulators</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f_a_q"><a class="anchor" href="#_f_a_q"></a>F.A.Q.</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_why_cant_i_start_the_session_with_an_android_device"><a class="anchor" href="#_why_cant_i_start_the_session_with_an_android_device"></a>Why can’t I start the session with an Android device?</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that the device is physically connected;</p>
+</li>
+<li>
+<p>Check UDID capability(property). It should match the serial number of the device;</p>
+</li>
+<li>
+<p>Make sure adb sees the device (<code>adb devices</code>). In case the device is not on the list, try restarting adb server via terminal:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">adb kill-server &amp;&amp; \
+adb start-server</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_why_cant_i_start_the_session_with_an_ios_device"><a class="anchor" href="#_why_cant_i_start_the_session_with_an_ios_device"></a>Why can’t I start the session with an iOS device?</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>WDA is expired. This is the most common issue that appeared on iOS devices</p>
+<div class="exampleblock">
+<div class="content">
+Unable to launch WebDriverAgent because of xcodebuild failure: xcodebuild failed with code 65
+</div>
+</div>
+<div class="paragraph">
+<p>When it happens, the icon of the WebDriverAgent disappears from
+the device menu. To get it back on the device you should rebuild WDA for your device and add your developer account to trust again;</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use <a href="#_its_quite_unhandy_to_add_an_apple_developer_account_to_trusted_every_time_wda_is_expired_is_there_a_more_convenient_way">this</a> guide to fix WDA expiration much faster
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Make sure that the device is physically connected;</p>
+</li>
+<li>
+<p>Check UDID capability(property). It should match the serial number of the device;</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_its_quite_unhandy_to_add_an_apple_developer_account_to_trusted_every_time_wda_is_expired_is_there_a_more_convenient_way"><a class="anchor" href="#_its_quite_unhandy_to_add_an_apple_developer_account_to_trusted_every_time_wda_is_expired_is_there_a_more_convenient_way"></a>It&#8217;s quite unhandy to add an Apple Developer account to trusted every time WDA is expired. Is there a more convenient way?</h3>
+<div class="paragraph">
+<p>Yes. You can create the second application signed with your Apple Developer account. Once WebDriverAgent get expired, it will be deleted. But your second app will remain on the device and keep your Apple Developer account in the trusted list. You will only need to rebuild WDA in a click to get it back.</p>
+</div>
+<details>
+<summary class="title">Click to expand steps</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure your device is connected to your workstation;</p>
+</li>
+<li>
+<p>Open Xcode and create a new project;</p>
+</li>
+<li>
+<p>Choose Application type "App" for your platform;</p>
+</li>
+<li>
+<p>Enter Product Name, let&#8217;s say "keeper";</p>
+</li>
+<li>
+<p>Use the same Team and Organization Identifier that you used for WebDriverAgent;</p>
+</li>
+<li>
+<p>Click Build;</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now your mobile device has the keeper application installed. It will remain on the device even when WDA is deleted due to expiration. When it happens, just connect the device, open the WDA project and click build. After the build is successful you can start your Appium sessions again.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_how_to_pair_appletv_with_macbook"><a class="anchor" href="#_how_to_pair_appletv_with_macbook"></a>How to pair AppleTV with MacBook?</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure your computer and Apple TV are connected to the same Wi-FI network.;</p>
+</li>
+<li>
+<p>On Apple TV go to Settings→Remotes and Devices→Remote App and Devices;</p>
+</li>
+<li>
+<p>On your Mac open Xcode→Window→Devices and Simulators (⌘+2);</p>
+</li>
+<li>
+<p>Click " + " on the tab "Devices" to add a new device.;</p>
+</li>
+<li>
+<p>Choose your Apple TV from the list;</p>
+</li>
+<li>
+<p>Enter the 6-digit passcode that appeared on the TV screen;</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
