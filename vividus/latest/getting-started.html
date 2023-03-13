@@ -649,7 +649,7 @@ we highly recommend you read <a href="tests-configuration.html" class="xref page
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_tests_project"><a class="anchor" href="#_create_tests_project"></a>Create tests project</h2>
+<h2 id="_setup_test_project"><a class="anchor" href="#_setup_test_project"></a>Setup test project</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -657,20 +657,56 @@ we highly recommend you read <a href="tests-configuration.html" class="xref page
 <p>Login to <a href="http://github.com/">GitHub</a> (create a new account at first if you don&#8217;t have any).</p>
 </li>
 <li>
-<p>Generate your own project based on the starter project:</p>
+<p>Create test project repository:</p>
+<details>
+<summary class="title">generate your own empty project based on the starter project &#8230;&#8203;</summary>
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>open <a href="https://github.com/vividus-framework/vividus-starter/generate">generator</a></p>
+<p>Open <a href="https://github.com/vividus-framework/vividus-starter/generate">generator</a>.</p>
 </li>
 <li>
-<p>provide repository name for your test project</p>
+<p>Provide repository name for your test project.</p>
 </li>
 <li>
-<p>choose option to set visibility of your repository: <code>Public</code> or <code>Private</code> (<code>Private</code> is recommended from start, it can be changed in future)</p>
+<p>Choose option to set visibility of your repository: <code>Public</code> or <code>Private</code> (<code>Private</code> is recommended from start, it can be changed in future).</p>
+</li>
+<li>
+<p>Click <b class="button">Create repository from template</b> button.</p>
 </li>
 </ul>
 </div>
+</div>
+</details>
+<details>
+<summary class="title">or get an existing test project from GitHub.</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to the target VIVIDUS tests repository page (e.g. <a href="https://github.com/vividus-framework/vividus-sample-tests">vividus-sample-tests</a>)</p>
+</li>
+<li>
+<p>Create a fork of the target tests repository to be able to execute and modify scripts at your convenience:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>click <b class="button">Fork</b> icon at the top-right corner of the screen,</p>
+</li>
+<li>
+<p>the pre-populated values cover the average user needs, so just click <b class="button">Create fork</b> button,</p>
+</li>
+<li>
+<p>as the result you now have a copy of the target tests repository at your personal GitHub account.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
 </li>
 <li>
 <p>Clone your newly generated repository:</p>
