@@ -1355,6 +1355,141 @@ Examples:
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_inner_join"><a class="anchor" href="#_inner_join"></a>INNER_JOIN</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>INNER_JOIN</code> transformer combines rows from two tables whenever there are matching values between the columns.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>leftTableJoinColumn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the column name for matching in the left table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rightTableJoinColumn</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the column name for matching in the right table</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tables</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>-s to join</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p><code>left</code> table is the first <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> declared in <code>tables</code> parameter,</p>
+</li>
+<li>
+<p><code>right</code> table is the second <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> declared in <code>tables</code> parameter or table body put under the transformer definition.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The number of used <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>-s must be equal to 2 (<code>left</code> and <code>right</code>).</p>
+</li>
+<li>
+<p>The column names of input tables must be different (except the column names for matching).</p>
+</li>
+<li>
+<p>If any of tables is empty - the resulting table will also be empty.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 28. Usage of INNER_JOIN transformer with table body</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/some-table.table}
+|joinID|column2|
+|5     |row25  |
+|3     |row23  |
+|1     |row21  |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> from /tables/some-table.table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|joinID|column1|
+|1     |row11  |
+|2     |row12  |
+|3     |row13  |
+|4     |row14  |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|column1|joinID|column2|
+|row11  |1     |row21  |
+|row13  |3     |row23  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 29. Usage of INNER_JOIN transformer with the same column names for matching</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/test1.table;/tables/test2.table}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Usage of INNER_JOIN transformer with the different column names for matching</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID1, rightTableJoinColumn=joinID2, tables=/tables/test1.table;/tables/test2.table}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Usage of INNER_JOIN transformer with nested tables</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
+ transformer=INNER_JOIN,
+ leftTableJoinColumn=joinID,
+ rightTableJoinColumn=joinID,
+ tables=
+ \{
+   transformer=FROM_EXCEL\,
+   path=TestTemplate.xlsx\,
+   sheet=Data\, addresses=A2\;A3\,
+   column=joinID
+ \};
+ \{
+   transformer=FROM_EXCEL\,
+   path=TestTemplate.xlsx\,
+   sheet=Data\, range=B2:B4\,
+   column=joinID
+ \}
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
