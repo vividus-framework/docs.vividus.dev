@@ -1368,10 +1368,10 @@ the <a href="#_suites">configured suite</a> has 0 batches, i.e. no tests to exec
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
+<col style="width: 33.3333%;">
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -1423,9 +1423,21 @@ the <a href="#_suites">configured suite</a> has 0 batches, i.e. no tests to exec
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.cookie-spec</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>default</code>, <code>ignoreCookies</code>, <code>standard-strict</code>, <code>standard</code>, <code>netscape</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>default</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <a href="https://hc.apache.org/httpcomponents-client-4.5.x/current/tutorial/html/statemgmt.html#d5e515">cookie specification</a> to be used for HTTP state management</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>relaxed</code> - The <a href="https://datatracker.ietf.org/doc/rfc6265/">RFC 6265</a> compliant policy (interoperability profile).</p>
+</li>
+<li>
+<p><code>strict</code> - The <a href="https://datatracker.ietf.org/doc/rfc6265/">RFC 6265</a> compliant policy (strict profile).</p>
+</li>
+<li>
+<p><code>ignore</code> - The policy that ignores cookies.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relaxed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the cookie specification to be used for HTTP state management</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em id="_authentication">Authentication</em></p></td>

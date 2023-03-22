@@ -1097,65 +1097,62 @@ Examples:
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Config</th>
+<th class="tableblock halign-left valign-top">Configuration item</th>
 <th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Request config default value</th>
+<th class="tableblock halign-left valign-top">Default value</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>expectContinueEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether the '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/100">Expect: 100-Continue</a>' handshake is enabled</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>staleConnectionCheckEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether stale connection check is to be used</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>redirectsEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether redirects should be handled automatically</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relativeRedirectsAllowed</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether relative redirects should be rejected</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>circularRedirectsAllowed</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether "circular redirects" (redirects to the same location) should be allowed</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authenticationEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether authentication should be handled automatically</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>contentCompressionEnabled</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Whether the target server is requested to compress content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>normalizeUri</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether client should normalize URIs in requests or not</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>maxRedirects</code></p></td>
@@ -1165,35 +1162,44 @@ Examples:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectionRequestTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout in milliseconds used when requesting a connection from the connection manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer (milliseconds)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>180000</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout used when requesting a connection from the connection manager</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>socketTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The socket timeout in milliseconds</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connectTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer (milliseconds)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>180000</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout until a new connection is fully established</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>socketTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The socket timeout in milliseconds, which is the timeout for waiting for data or, put differently, a maximum period inactivity between two consecutive data packets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>responseTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer (milliseconds)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The timeout until arrival of a response from the opposite endpoint. A timeout value of zero is interpreted as an infinite timeout.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieSpec</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>relaxed</code> - The <a href="https://datatracker.ietf.org/doc/rfc6265/">RFC 6265</a> compliant policy (interoperability profile).</p>
+</li>
+<li>
+<p><code>strict</code> - The <a href="https://datatracker.ietf.org/doc/rfc6265/">RFC 6265</a> compliant policy (strict profile).</p>
+</li>
+<li>
+<p><code>ignore</code> - The policy that ignores cookies.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;not set&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the cookie specification to be used for HTTP state management</p></td>
 </tr>
 </tbody>
 </table>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>* <code>-1</code> means "infinity"</p>
 </div>
 <div class="listingblock">
 <div class="title">Example 9. Load a page with slow connection and with the property <code>http.socket-timeout</code> set to <code>15000</code></div>
