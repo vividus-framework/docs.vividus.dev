@@ -1533,6 +1533,87 @@ expected number according to the specified comparison rule.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_matchers"><a class="anchor" href="#_matchers"></a>Matchers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Matcher is an object which compares objects against a specific criteria and returns a boolean value indicating whether the match was successful or not.</p>
+</div>
+<div class="paragraph">
+<p>Embedded matchers, placeholders and expressions can be found on the json-unit library <a href="https://github.com/lukas-krecan/JsonUnit#readme">readme</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_array_contains_any_of_entries"><a class="anchor" href="#_array_contains_any_of_entries"></a>Array contains any of entries</h3>
+<div class="paragraph">
+<p>Validate if actual array contains any of entries from the expected one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{json-unit.matches:anyOf}(<strong>$input</strong>)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string which represents expected array entries</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 23. Validate entries</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize story variable `actual-json` with value `
+{
+  "store":{
+    "authors":[
+      {
+        "name":"Yakub Kolas",
+        "available":true
+      },
+      {
+        "name":"Uladzimir Karatkevich",
+        "available":true
+      }
+    ]
+  }
+}
+`
+Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `{"book":"#{json-unit.matches:anyOf}[{\"name\":\"Uladzimir Karatkevich\",\"available\":true},{\"author\":\"Yanka Kupala\",\"available\":true}])}"`</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+As JSON do not support multi line strings if you want to improve readability use <a href="#expressions.adoc#_escapejson" class="xref unresolved">escapeJson</a> expression inside matcher
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 24. Validate entries with <code>escapeJson</code> expression</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `
+{
+  "book":"#{json-unit.matches:anyOf}#{escapeJson([
+    {
+      "name":"Uladzimir Karatkevich",
+      "available":true
+    },
+    {
+      "author":"Yanka Kupala",
+      "available":true
+    }
+  ])}"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
