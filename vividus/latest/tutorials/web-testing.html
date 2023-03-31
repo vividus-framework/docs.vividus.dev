@@ -1229,7 +1229,7 @@ For the full list of web-related steps, please see <a href="../plugins/plugin-we
 </table>
 </div>
 <div class="sect2">
-<h3 id="_steps_opening_pages"><a class="anchor" href="#_steps_opening_pages"></a>Steps opening pages</h3>
+<h3 id="_page_steps"><a class="anchor" href="#_page_steps"></a>Page steps</h3>
 <div class="sect3">
 <h4 id="_open_main_application_page"><a class="anchor" href="#_open_main_application_page"></a>Open main application page</h4>
 <div class="paragraph">
@@ -1350,6 +1350,25 @@ For the full list of web-related steps, please see <a href="../plugins/plugin-we
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on main application page
 When I go to relative URL `/products/new`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_refresh_the_page"><a class="anchor" href="#_refresh_the_page"></a>Refresh the page</h4>
+<div class="paragraph">
+<p>Refreshes the page: the step does the same as the reload button in the browser.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I refresh page</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.6.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I refresh the page</code></pre>
 </div>
 </div>
 </div>
