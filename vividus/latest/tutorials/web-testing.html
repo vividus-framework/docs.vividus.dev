@@ -1884,58 +1884,79 @@ When I accept alert with message which matches `.*`</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_CLICK</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By.linkUrl(<a href="http://httpbin.org" class="bare">http://httpbin.org</a>)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CLICK_AND_HOLD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By.linkText(Click me)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_BY_OFFSET</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(10, 15) where <strong>x</strong> is 10 and <strong>y</strong> is 15</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">RELEASE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By.tagName(div)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ENTER_TEXT</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Text to type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text to type.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Minsk City</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CLICK</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By.caseSensitiveText(Done)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRESS_KEYS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Press and release any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">keys</a> to press and release.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">BACK_SPACE</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEY_DOWN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Press any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> one by one</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">keys</a> to press one by one.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">KEY_UP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Release any of <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">Keys</a> one by one</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://selenium.dev/selenium/docs/api/java/org/openqa/selenium/Keys.html">keys</a> to release one by one.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CONTROL,SHIFT,ALT</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_TO</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">By.id(username)</p></td>
 </tr>
 </tbody>
 </table>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Windows/Unix and macOS platforms have different keyboards. For example, <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> combination is used to copy text
+on Windows and Unix, but <span class="keyseq"><kbd>⌘ Command</kbd>+<kbd>C</kbd></span> should be used on macOS with default preferences.</p>
+</div>
+<div class="paragraph">
+<p>In order to close this gap VIVIDUS offers unique key <code>OS_INDEPENDENT_CONTROL</code>: it is mapped to
+<a href="https://en.wikipedia.org/wiki/Control_key"><code>CONTROL</code></a> key on Windows/Unix and to
+<a href="https://en.wikipedia.org/wiki/Command_key"><code>COMMAND</code></a> key on macOS. Using this key it is possible to make tests fully
+platform independent.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Example 17. Execute various web-actions</div>
@@ -1986,6 +2007,17 @@ When I accept alert with message which matches `.*`</code></pre>
 |type      |argument  |
 |KEY_DOWN  |COMMAND, v|
 |KEY_UP    |v, COMMAND|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. Select all text in the focused field and copy it to the clipboard on any OS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument                 |
+|KEY_DOWN  |OS_INDEPENDENT_CONTROL, a|
+|KEY_UP    |a, OS_INDEPENDENT_CONTROL|
+|KEY_DOWN  |OS_INDEPENDENT_CONTROL, c|
+|KEY_UP    |c, OS_INDEPENDENT_CONTROL|</code></pre>
 </div>
 </div>
 </td>
@@ -2050,7 +2082,7 @@ When I accept alert with message which matches `.*`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Validate absence of JS errors</div>
+<div class="title">Example 21. Validate absence of JS errors</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are no browser console ERRORS</code></pre>
@@ -2078,7 +2110,7 @@ Then there are no browser console ERRORS</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Validate absence of JS error referencing user</div>
+<div class="title">Example 22. Validate absence of JS error referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
@@ -2106,7 +2138,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Validate presence of JS errors referencing user</div>
+<div class="title">Example 23. Validate presence of JS errors referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 Then there are browser console ERRORS by regex '.*user.*'</code></pre>
@@ -2152,7 +2184,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Wait for application readiness</div>
+<div class="title">Example 24. Wait for application readiness</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
@@ -2209,7 +2241,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Script type check</div>
+<div class="title">Example 25. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
 |step                                                                                      |
