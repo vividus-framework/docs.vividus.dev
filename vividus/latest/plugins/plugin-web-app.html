@@ -1043,6 +1043,36 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the operating system version for the testing. e.g. <code>10</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>selenium.grid.host</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hostname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The host of <a href="https://www.selenium.dev/documentation/grid/">Selenium Grid</a> used to create a new session.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username for authentication at <a href="https://www.selenium.dev/documentation/grid/">Selenium Grid</a> used to create a new session.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password for authentication at <a href="https://www.selenium.dev/documentation/grid/">Selenium Grid</a> used to create a new session.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.retry-session-creation-on-http-connect-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to rety session creation at <a href="https://www.selenium.dev/documentation/grid/">Selenium Grid</a> in case of HTTP
+connect timeout. This flag may be useful when tests are executed via intermittent network connection.</p>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web-application.session-scope</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>story</code></p>
@@ -1074,7 +1104,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.publish-source-on-failure</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
@@ -1088,24 +1118,6 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the value is set to <code>true</code>, an attempt to reset context will be performed when it becomes stale.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>selenium.grid.host</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hostname</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Remote grid host to be used to create a new session</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.username</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Remote grid username to be used to create a new session</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password to be used to create a new session</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.wait.timeout</code></p></td>
