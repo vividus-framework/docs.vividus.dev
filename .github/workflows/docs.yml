@@ -29,8 +29,6 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        user_name: ${{ secrets.COMMITTER_NAME }}
-        user_email: ${{ secrets.COMMITTER_EMAIL }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
         cname: docs.vividus.dev
