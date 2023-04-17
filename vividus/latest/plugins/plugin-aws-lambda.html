@@ -172,7 +172,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">AWS</span>
+    <a class="nav-link" href="aws.html">AWS</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
@@ -553,7 +553,7 @@
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>Plugins</li>
     <li>Clouds</li>
-    <li>AWS</li>
+    <li><a href="aws.html">AWS</a></li>
     <li><a href="plugin-aws-lambda.html">Lambda</a></li>
   </ul>
 </nav>
@@ -638,6 +638,9 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>The AWS credentials scoped to either current scenario or story (configured via the <a href="aws.html#_configure_authentication" class="xref page">corresponding step</a>).</p>
+</li>
 <li>
 <p>Environment variables: <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> (the optional variable for session token is <code>AWS_SESSION_TOKEN</code>).</p>
 </li>
