@@ -715,6 +715,8 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_general"><a class="anchor" href="#_general"></a>General</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -763,11 +765,6 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Statuses of test cases allowed to update</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.test-execution-key</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The key of a <code>Test Execution</code> to which the exported test cases along with their statuses will be added</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.test-set-key</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The key of a <code>Test Set</code> to which the exported test cases will be added</p></td>
@@ -780,6 +777,93 @@ The properties marked with <strong>bold</strong> are mandatory.
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">xray-exporter.project-key=ABBA
 xray-exporter.json-results-directory=/Users/happytester/Repositories/app-tests/output/results/jbehave</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_execution"><a class="anchor" href="#_test_execution"></a>Test Execution</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.test-execution-key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The key of <code>Test Execution</code> which the exported test cases along with their statuses will be added to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.test-execution-summary</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>Test Execution</code> summary</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Test execution import varies depending on values in <code>xray-exporter.test-execution-key</code> and <code>xray-exporter.test-execution-summary</code>, the following matrix shows this behavior change:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Configuration</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both <code>xray-exporter.test-execution-key</code> and <code>xray-exporter.test-execution-summary</code> are set</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Test execution summary and associated test cases will be updated, the update of test cases is performed according to following rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>new test cases are added to the test execution</p>
+</li>
+<li>
+<p>statuses of existing test cases are updated</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only <code>xray-exporter.test-execution-summary</code> is set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New test execution will be created</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only <code>xray-exporter.test-execution-key</code> is set</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Associated test cases will be updated according to following rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>new test cases are added to the test execution</p>
+</li>
+<li>
+<p>statuses of existing test cases are updated</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Neither <code>xray-exporter.test-execution-key</code> nor <code>xray-exporter.test-execution-summary</code> are set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text execution import is skipped</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
