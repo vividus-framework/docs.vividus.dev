@@ -610,7 +610,7 @@ any AWS service will use the provided credentials.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure $awsCredentialsScope-scoped AWS credentials with access key `$accessKey` and secret key `$secretKey`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I configure $awsCredentialsScope-scoped AWS credentials with access key `$accessKey` and secret key `$secretKey`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -629,7 +629,7 @@ any AWS service will use the provided credentials.</p>
 <div class="listingblock">
 <div class="title">Example 1. Upload data to Amazon S3 with locally configured credentials (<code>vividus-plugin-aws-s3</code> is required for data upload)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I configure scenario-scoped AWS credentials with access key `AKIAZ4GQYGXFMNXYYQ6Q` and secret key `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`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I configure scenario-scoped AWS credentials with access key `AKIAZ4GQYGXFMNXYYQ6Q` and secret key `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`
 When I upload data `{"my":"json"}` with key `folder/name.json` and content type `application/json` to S3 bucket `testBucket`</code></pre>
 </div>
 </div>
