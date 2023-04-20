@@ -933,6 +933,60 @@ When the condition `#{eval(`${optionalPathToCheck:/defaultPath}` != `/forbiddenP
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_complex_types_variables"><a class="anchor" href="#_complex_types_variables"></a>Complex types variables</h3>
+<div class="paragraph">
+<p>VIVIDUS provides the ability to work with not only primitive variables like numbers and strings but also supports complex types such as lists and maps.</p>
+</div>
+<div class="sect3">
+<h4 id="_accessing_values"><a class="anchor" href="#_accessing_values"></a>Accessing values</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Values from list variables can be accessed by index. For example, <code>${listVar[0]}</code> returns the first value.</p>
+</li>
+<li>
+<p>Values from map variables can be accessed by key. For instance, <code>${mapVar.key}</code> returns the value associated with 'key'.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_working_with_tables"><a class="anchor" href="#_working_with_tables"></a>Working with tables</h4>
+<div class="paragraph">
+<p>VIVIDUS provides the ability to store tables in variables.
+Tables should have a header and at least one row with values.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Assuming we have the table below stored in the variable 'tableVar':</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">B2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>To access specific cell values, specify the row and header key. Rows indexing starts from 0.
+* <code>${tableVar[0].A}</code> returns the value from the first row of column A: A1.
+* <code>${tableVar[1].B}</code> returns the value from the second row of column B: B2.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
