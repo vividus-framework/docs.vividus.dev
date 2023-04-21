@@ -5802,6 +5802,74 @@ When I save table to SCENARIO variable `table`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_tips_tricks"><a class="anchor" href="#_tips_tricks"></a>Tips &amp; Tricks</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_validate_url_host_of_the_opened_page"><a class="anchor" href="#_validate_url_host_of_the_opened_page"></a>Validate URL host of the opened page</h3>
+<div class="paragraph">
+<p>To validate host component of the current page URL the following statement can be used:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 103. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
+Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${current-page-url}</code> is the <a href="#_current_page_url">current page URL</a> dynamic variable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_url_path_of_the_opened_page"><a class="anchor" href="#_validate_url_path_of_the_opened_page"></a>Validate URL path of the opened page</h3>
+<div class="paragraph">
+<p>To validate path component of the current page URL the following statement can be used:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 104. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
+Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${current-page-url}</code> is the <a href="#_current_page_url">current page URL</a> dynamic variable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_url_of_the_opened_page_partially"><a class="anchor" href="#_validate_url_of_the_opened_page_partially"></a>Validate URL of the opened page partially</h3>
+<div class="paragraph">
+<p>To validate whether current page URL contains some part the following statement can be used:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 105. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
+Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>${current-page-url}</code> is the <a href="#_current_page_url">current page URL</a> dynamic variable.</p>
+</li>
+<li>
+<p><code>.+\/relative\/url.+</code> is a regular expression to match the expected part of the page URL.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
