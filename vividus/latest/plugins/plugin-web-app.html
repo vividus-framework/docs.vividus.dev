@@ -5858,6 +5858,33 @@ When I save table to SCENARIO variable `table`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_save_the_number_of_opened_tabs"><a class="anchor" href="#_save_the_number_of_opened_tabs"></a>Save the number of opened tabs</h4>
+<div class="paragraph">
+<p>Saves the number of currently opened tabs in the browser to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of open tabs to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to refer to the variable value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 105. Save the number of currently opened browser tabs into a variable named 'count'</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of open tabs to SCENARIO variable `count`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5870,7 +5897,7 @@ When I save table to SCENARIO variable `table`</code></pre>
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 105. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 106. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -5890,7 +5917,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 106. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 107. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -5910,7 +5937,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 107. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 108. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
