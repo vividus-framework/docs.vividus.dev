@@ -640,13 +640,9 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Waits for the requested device to be available using <a href="https://app.mobitru.com/wiki/api/#api-Device-TakeDeviceDesiredCapabilities">REST API call</a> and takes it in the usage.</p>
-</li>
-<li>
-<p>Installs application on the devices using <a href="https://app.mobitru.com/wiki/api/#api-InstallApp-InstallApp">REST API call</a>.</p>
-</li>
-</ol>
-</div>
+<p>Takes device.</p>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -692,6 +688,81 @@ For the device search plugin relies on the capabilities specified in the <a href
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.deviceName=iPhone 13</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>For more fine-grained configuration of taking device additionally use
+Mobitru device search capabilities specified below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 46.1538%;">
+<col style="width: 15.3846%;">
+<col style="width: 38.4616%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong>selenium.grid.capabilities.mobitru-device-search\:type</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code> or <code>tablet</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the device.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.capabilities.mobitru-device-search\:manufacturer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ZTE</code> or <code>samsung</code> or <code>IPHONE</code> etc.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The device manufacture name (case-insensitive).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>selenium.grid.capabilities.mobitru-device-search\:model</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SM-G930F</code> or <code>sm-s901b</code> etc.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The model of the device (case-insensitive).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>selenium.grid.capabilities.platformName</code> and <code>selenium.grid.capabilities.udid</code>  capabilities can not be specified along with Mobitru device search capabilities.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Capabilities to run tests on any SAMSUNG phone with a specific platform version</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformVersion=12
+selenium.grid.capabilities.mobitru-device-search\:type=phone
+selenium.grid.capabilities.mobitru-device-search\:manufacturer=SAMSUNG</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Installs application on the device.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
