@@ -1160,6 +1160,15 @@ The elements not matching the filter condition are sorted out without any notice
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(h3)&#8594;filter.textPart(Welcome)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attribute</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their attribute values</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>tagName(div)&#8594;filter.attribute(class=burger-menu)</code> - <code>div</code> element has the <code>class</code> attribute with <code>burger-menu</code> value
+<code>tagName(div)&#8594;filter.attribute(class)</code> - <code>div</code> element has the <code>class</code> attribute with any value
+<code>tagName(div)&#8594;filter.attribute(class=)</code> - <code>div</code> element has the <code>class</code> attribute with an empty value</p>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="xref page">State</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
