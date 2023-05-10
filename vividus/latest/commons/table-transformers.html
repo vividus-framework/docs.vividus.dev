@@ -729,8 +729,8 @@ the columns.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 40%;">
-<col style="width: 60%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
@@ -747,10 +747,14 @@ the columns.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">the optional sorting order: ASCENDING or DESCENDING. By default - ASCENDING.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sortingTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the optional sorting types ordered according to the column names from the <code>byColumns</code> parameter: STRING or NUMBER (only for number values). By default - STRING. The sorting types are joined using <code>|</code> (if one sorting type is defined, it applies to all column names from the <code>byColumns</code> parameter)</p></td>
+</tr>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 6. Usage of SORTING transformer with DESCENDING  sorting. The following transformer:</div>
+<div class="title">Example 6. Usage of SORTING transformer with DESCENDING  sorting and sorting type by default (STRING). The following transformer:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key1|key2, order=DESCENDING}
 |key1|key2|key3|
@@ -773,7 +777,70 @@ the columns.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Usage of SORTING transformer with sorting by default (ASCENDING)</div>
+<div class="title">Example 7. Usage of SORTING transformer with DESCENDING  sorting and NUMBER sorting type. The following transformer:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key2, order=DESCENDING, sortingTypes=NUMBER}
+|key1|key2|
+|a   |10  |
+|b   |2.3 |
+|c   |10.2|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key1|key2|
+|c   |10.2|
+|a   |10  |
+|b   |2.3 |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Usage of SORTING transformer with DESCENDING  sorting and STRING sorting type. The following transformer:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key2, order=DESCENDING, sortingTypes=STRING}
+|key1|key2|
+|a   |10  |
+|b   |2.3 |
+|c   |10.2|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key1|key2|
+|b   |2.3 |
+|c   |10.2|
+|a   |10  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Usage of SORTING transformer with sorting by default (ASCENDING) and STRING sorting type for column name <code>key1</code> and NUMBER sorting type for column name <code>key2</code>. The following transformer:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key1|key2, sortingTypes=STRING|NUMBER}
+|key1|key2|index|
+|a1  |10  |1    |
+|a1  |2.3 |2    |
+|a2  |10.2|3    |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key1|key2 |index|
+|a1   |2.3 |2    |
+|a1   |10  |1    |
+|a2   |10.2|3    |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Usage of SORTING transformer with sorting by default (ASCENDING) and sorting type by default (STRING)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=SORTING, byColumns=key|key1}
 |key   |key1  |
@@ -834,7 +901,7 @@ The property is deprecated and will be removed in VIVIDUS 0.6.0. Use <code>start
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 8. Usage of ITERATING transformer</div>
+<div class="title">Example 11. Usage of ITERATING transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ITERATING, startInclusive=0, endInclusive=4}</code></pre>
 </div>
@@ -957,7 +1024,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
+<div class="title">Example 12. Usage of FILTERING transformer with filtering by column names and by max number of rows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byColumnNames=key1;key3, byMaxRows=1}
 |key1  |key2  |key3  |
@@ -966,7 +1033,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
+<div class="title">Example 13. Usage of FILTERING transformer with filtering by max number of columns and by row indexes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byMaxColumns=2, byRowIndexes=0;2}
 |key1  |key2  |key3  |
@@ -976,7 +1043,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Usage of FILTERING transformer with filtering by column names and the number of random rows to keep</div>
+<div class="title">Example 14. Usage of FILTERING transformer with filtering by column names and the number of random rows to keep</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FILTERING, byColumnNames=key2;key3, byRandomRows=2}
 |key1  |key2  |key3  |
@@ -1103,25 +1170,25 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Usage of MERGING transformer with 'rows' merge mode</div>
+<div class="title">Example 15. Usage of MERGING transformer with 'rows' merge mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=rows, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Usage of MERGING transformer with 'columns' merge mode</div>
+<div class="title">Example 16. Usage of MERGING transformer with 'columns' merge mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=story/tables/test1.table;story/tables/test2.table;story/tables/test3.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Usage of MERGING transformer with nested tables</div>
+<div class="title">Example 17. Usage of MERGING transformer with nested tables</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, fillerValue=null, tables=\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, addresses=A2\;A3\, column=test1\};\{transformer=FROM_EXCEL\, path=TestTemplate.xlsx\, sheet=Data\, range=B2:B4\, column=test2\}}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Usage of nested MERGING transformers</div>
+<div class="title">Example 18. Usage of nested MERGING transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
  transformer=MERGING,
@@ -1160,7 +1227,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Usage of MERGING transformer with table body</div>
+<div class="title">Example 19. Usage of MERGING transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=/data/some-table.table}
 |column1|
@@ -1214,7 +1281,7 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Usage of JOINING transformer with <code>columns</code> join mode</div>
+<div class="title">Example 20. Usage of JOINING transformer with <code>columns</code> join mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default columns mode
 Then `&lt;joinedColumn&gt;` is equal to `A B`
@@ -1225,7 +1292,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Usage of JOINING transformer with <code>columns</code> join mode and definition of columns to join</div>
+<div class="title">Example 21. Usage of JOINING transformer with <code>columns</code> join mode and definition of columns to join</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in configured columns mode
 Then `&lt;joinedColumn&gt;` is equal to `B D`
@@ -1236,7 +1303,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Usage of JOINING transformer with <code>rows</code> join mode</div>
+<div class="title">Example 22. Usage of JOINING transformer with <code>rows</code> join mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify JOINING transformer in default rows mode
 Then `&lt;column1&gt;` is equal to `A B`
@@ -1249,7 +1316,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Usage of JOINING transformer in the chain of transformers</div>
+<div class="title">Example 23. Usage of JOINING transformer in the chain of transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MERGING, mergeMode=columns, tables=
   \{transformer=FROM_EXCEL\, path=/TestTemplate.xlsx\, sheet=Mapping\, range=A4:A5\, column=header1\, joinValues=true\};
@@ -1259,7 +1326,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Usage of JOINING transformer with table body containing path to table file</div>
+<div class="title">Example 24. Usage of JOINING transformer with table body containing path to table file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=JOINING, joinMode=columns, joinedColumn=header}
 /test1.table</code></pre>
@@ -1316,13 +1383,13 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Usage of CARTESIAN_PRODUCT transformer</div>
+<div class="title">Example 25. Usage of CARTESIAN_PRODUCT transformer</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=story/tables/test1.table;story/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Usage of CARTESIAN_PRODUCT transformer with table body</div>
+<div class="title">Example 26. Usage of CARTESIAN_PRODUCT transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=/data/some-table.table}
 |column1|
@@ -1330,7 +1397,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
+<div class="title">Example 27. Usage of CARTESIAN_PRODUCT transformer with nested transformers</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=CARTESIAN_PRODUCT, tables=\{transformer=REPEATING\, times=100\};\{transformer=FROM_CSV\, csvPath=/data/csv.csv\}}</code></pre>
 </div>
@@ -1362,7 +1429,7 @@ Examples:
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 25. ASCENDING order example</div>
+<div class="title">Example 28. ASCENDING order example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=ASCENDING}
 |key   |
@@ -1371,7 +1438,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. ASCENDING order resulting table</div>
+<div class="title">Example 29. ASCENDING order resulting table</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
 |value |0    |
@@ -1379,7 +1446,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. DESCENDING order example</div>
+<div class="title">Example 30. DESCENDING order example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=DESCENDING}
 |key   |
@@ -1388,7 +1455,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. DESCENDING order resulting table</div>
+<div class="title">Example 31. DESCENDING order resulting table</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
 |value |1    |
@@ -1464,7 +1531,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Usage of INNER_JOIN transformer with table body</div>
+<div class="title">Example 32. Usage of INNER_JOIN transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/some-table.table}
 |joinID|column2|
@@ -1496,19 +1563,19 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Usage of INNER_JOIN transformer with the same column names for matching</div>
+<div class="title">Example 33. Usage of INNER_JOIN transformer with the same column names for matching</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/test1.table;/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Usage of INNER_JOIN transformer with the different column names for matching</div>
+<div class="title">Example 34. Usage of INNER_JOIN transformer with the different column names for matching</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID1, rightTableJoinColumn=joinID2, tables=/tables/test1.table;/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Usage of INNER_JOIN transformer with nested tables</div>
+<div class="title">Example 35. Usage of INNER_JOIN transformer with nested tables</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
  transformer=INNER_JOIN,
