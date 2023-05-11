@@ -801,8 +801,15 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/XPath">Xpath to locate an element</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/XPath">xPath to locate an element</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>unnormalizedXPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/XPath">xPath to locate an element</a>.
+Unlike <code>xPath</code> locator this one doesn&#8217;t add <a href="https://developer.mozilla.org/en-US/docs/Web/XPath/Functions/normalize-space">space normalization</a>
+and moves handling of spaces up to user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unnormalizedXPath(//li[text()='ID:&#160;&#160;&#160;&#160;testId'])</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tagName</code></p></td>
