@@ -5832,8 +5832,23 @@ expression with the given replacement string.</p>
 <p><strong>$regularExpression</strong> - the regular expression to match substring(s)</p>
 </li>
 <li>
-<p><strong>$replacement</strong> - the replacement string, it may contain references to captured
-substrings, e.g. <code>$1</code> is a reference to the first group</p>
+<p><strong>$replacement</strong> - the replacement string</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Backslashes (<code>\</code>) and dollar signs (<code>$</code>) in the replacement string may cause the results to be different than if it were
+being treated as a literal replacement string. Dollar signs may be treated as references to captured substrings (e.g.
+<code>$1</code> is a reference to the first group) and backslashes are used to escape literal characters in the replacement string.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p><strong>$input</strong> - any string to be processed</p>
