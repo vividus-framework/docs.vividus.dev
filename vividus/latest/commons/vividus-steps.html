@@ -603,12 +603,16 @@
 </aside>
 <article class="doc">
 <h1 class="page">Steps available out of the box</h1>
-<div class="sect1">
-<h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here one could find description of the steps that are delivered with Vividus itself without any plugins required.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_variables_initialization"><a class="anchor" href="#_variables_initialization"></a>Variables initialization</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_initialize_variable"><a class="anchor" href="#_initialize_variable"></a>Initialize variable</h3>
 <div class="paragraph">
@@ -646,6 +650,163 @@
 </div>
 </div>
 <div class="sect2">
+<h3 id="_initialize_variable_using_template"><a class="anchor" href="#_initialize_variable_using_template"></a>Initialize variable using template</h3>
+<div class="paragraph">
+<p>Initializes a variable with a result of the processed <a href="https://freemarker.apache.org/docs/dgui_template_overallstructure.html">Freemarker template</a></p>
+</div>
+<div class="paragraph">
+<p>Set the <code>template-processor.resolve-bdd-variables</code> property to <code>true</code> value to be able to use <code>global</code>, <code>next batches</code>, <code>scenario</code> and <code>story</code> variables within templates. The variables can be referred using the variable reference notation. Note that the parameters passed to the step take precedence over the variables.</p>
+</div>
+<div class="paragraph">
+<p>The vividus expressions can be used within templates by using <code>${execVividusExpression('expression name', args)}</code> syntax. It&#8217;s also allowed to use nested expressions by using the following syntax <code>${execVividusExpression('expression name', arg1, execVividusExpression('expression name', args))}</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize $scopes variable `$variableName` using template `$templatePath` with parameters:$templateParameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - <a href="variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store a result.</p>
+</li>
+<li>
+<p><code>$templatePath</code> - The relative to <code>src/main/resources</code> path to a template.</p>
+</li>
+<li>
+<p><code>$templateParameters</code> - The template parameters.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Personal info template at templates/person.ftl</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": ${execVividusExpression('randomInt', 1, 10)},
+  "postalCode": ${execVividusExpression('generate', "Number.digits '6'")},
+  "hash": "${execVividusExpression('encodeToBase64', execVividusExpression('randomInt', 100, 1000))}",
+  "name": "${name[0]}",
+  "race": "${race[0]}",
+  "age": ${age}
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Generate JSON from the personal info template</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `age` with value `4510`
+Given I initialize scenario variable `personalInfo` using template `templates/person.ftl` with parameters:
+|name     |race  |
+|Dagoth Ur|Dunmer|</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simple_validations"><a class="anchor" href="#_simple_validations"></a>Simple validations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_compare_value_against_expected_one"><a class="anchor" href="#_compare_value_against_expected_one"></a>Compare value against expected one</h3>
+<div class="paragraph">
+<p>Compare the actual value against the expected value in accordance with the comparison rule. Could compare Maps and Lists of maps using EQUAL_TO comparison rule.
+Other rules will fallback to strings comparison.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The step prints the comparison results in the unified diff format for the strings with the legth more than specified in the property <a href="../tests-configuration.html#_configuration_properties" class="xref page">report.text-length-diff-threshold</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If the values are valid numbers than they will be converted into <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigInteger.html">BigInteger</a> and compared as numbers.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$actualValue` is $comaprisonRule `$expectedValue`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$actualValue</code> - The actual value.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$expectedValue</code> - The expected value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Compare Strings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `Duke` is != `Leto`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Compare numbers</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `10` is = `10.0`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Compare list of maps</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `preprod` and save result to scenario variable `preprod-date`
+When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `prod` and save result to scenario variable `prod-data`
+Then `${preprod-data}` is = `${prod-data}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_assert_the_value_matches_regex"><a class="anchor" href="#_assert_the_value_matches_regex"></a>Assert the value matches regex</h3>
+<div class="paragraph">
+<p>Asserts that the given value matches the specified regular expression.
+The dotall mode is enabled by default: the expression <code>.</code> matches any character,
+including a line terminator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$value` matches `$regex`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$value</code> - The value to assert.</p>
+</li>
+<li>
+<p><code>$regex</code> - <a href="https://en.wikipedia.org/wiki/Regular_expression">The regular expression</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sub_steps_execution"><a class="anchor" href="#_sub_steps_execution"></a>Sub-steps execution</h2>
+<div class="sectionbody">
+<div class="sect2">
 <h3 id="_execute_steps"><a class="anchor" href="#_execute_steps"></a>Execute steps</h3>
 <div class="paragraph">
 <p>Executes the steps located in the table.</p>
@@ -663,7 +824,7 @@
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Check and increment the value of a variable</div>
+<div class="title">Example 8. Check and increment the value of a variable</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize story variable `var` with value `0`
 When I execute steps:
@@ -671,6 +832,64 @@ When I execute steps:
 |Then `${var}` is = `0`                                                   |
 |Given I initialize story variable `var` with value `#{eval(${var} + 1)}` |
 Then `${var}` is = `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_n_times"><a class="anchor" href="#_execute_steps_n_times"></a>Execute steps N times</h3>
+<div class="paragraph">
+<p>Step is designed to execute specified steps while counter with a certain limit matches a comparison rule. On each iteration the counter is increased on specified value, which is allowed to be either positive or negative. The seed value is used as a starting point for iteration. Current iteration index is available within steps to execute as <code>${iterationVariable}</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule `$limit` with increment `$increment` starting from `$seed`:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule '$limit' with increment '$increment' starting from '$seed':$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$limit</code> - The counter limit.</p>
+</li>
+<li>
+<p><code>$increment</code> - The number to add to the counter on each iteration.</p>
+</li>
+<li>
+<p><code>$seed</code> - The initial counter value.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Press the button four times</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
+|step                                                                         |
+|When I click on element located by `caseSensitiveText(CLICK ME FOUR TIMES!)` |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Press one button four times and press the second button from the nested step eight times</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                      !
+!When I click on element located by `caseSensitiveText(CLICK ME FOUR TIMES)`               !
+!When I execute steps while counter is less than '2' with increment '1' starting from '0': !
+!|step                                                                                    |!
+!|When I click on element located by `caseSensitiveText(CLICK ME EIGHT TIMES)`            |!</code></pre>
 </div>
 </div>
 </div>
@@ -736,7 +955,7 @@ Exactly variable name (e.g. <code>myVaraible</code>) is expected here, <strong>n
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Click button 5 times</div>
+<div class="title">Example 11. Click button 5 times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -814,7 +1033,7 @@ Exactly variable name (e.g. <code>myVaraible</code>) is expected here, <strong>n
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Click button 5 times with 1 second delay</div>
+<div class="title">Example 12. Click button 5 times with 1 second delay</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps with delay `PT1S` at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -828,9 +1047,57 @@ Then `${var}` is = `3`</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wait_for_period"><a class="anchor" href="#_wait_for_period"></a>Wait for period</h3>
+<h3 id="_execute_steps_if_a_condition_is_true"><a class="anchor" href="#_execute_steps_if_a_condition_is_true"></a>Execute steps if a condition is "true"</h3>
 <div class="paragraph">
-<p>Waits during specified period for debug purposes</p>
+<p>Steps designed to execute specified steps if result of a condition is "true".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition `$condition` is true I do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition '$condition' is true I do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$condition</code> - The verifiable condition (Case-insensitive).</p>
+<div class="paragraph">
+<p>|==</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>|Steps are performed|Steps are not performed</p>
+</div>
+<div class="paragraph">
+<p>|1|0</p>
+</div>
+<div class="paragraph">
+<p>|true|false</p>
+</div>
+<div class="paragraph">
+<p>|t|f</p>
+</div>
+<div class="paragraph">
+<p>|on|off</p>
+</div>
+<div class="paragraph">
+<p>|yes|no</p>
+</div>
+<div class="paragraph">
+<p>|y|n</p>
+</div>
+<div class="paragraph">
+<p>|==
+* <code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if the result of the <code>$condition</code> is true.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -839,108 +1106,88 @@ Then `${var}` is = `3`</code></pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-The step is for debugging purpose only
+The error will stop steps execution in case if unsupported condition value is provided.
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
+<div class="title">Example 13. Click on the element if parent element is found</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$period` for debug</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
+|step                                                                   |
+|When I click on element located by `xpath(//*[@class='innerElement'])` |</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$period</code> - total duration to wait in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Wait 30 seconds for debug</div>
+<div class="title">Example 14. Click on the element if parent element is found and the element itself is presented on the page</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                                                       !
+!When I save number of elements located `By.xpath(//*[@class='innerElement'])` to SCENARIO variable `numberOfInnerElements` !
+!When the condition '#{eval(${numberOfInnerElements} == 1)}' is true I do                                                   !
+!|step                                                                                                                     |!
+!|When I click on element located by `xpath(//*[@class='innerElement'])`                                                   |!</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_initialize_variable_using_template"><a class="anchor" href="#_initialize_variable_using_template"></a>Initialize variable using template</h3>
+<h3 id="_execute_steps_if_a_variable_is_not_set"><a class="anchor" href="#_execute_steps_if_a_variable_is_not_set"></a>Execute steps if a variable is not set</h3>
 <div class="paragraph">
-<p>Initializes a variable with a result of the processed <a href="https://freemarker.apache.org/docs/dgui_template_overallstructure.html">Freemarker template</a></p>
-</div>
-<div class="paragraph">
-<p>Set the <code>template-processor.resolve-bdd-variables</code> property to <code>true</code> value to be able to use <code>global</code>, <code>next batches</code>, <code>scenario</code> and <code>story</code> variables within templates. The variables can be referred using the variable reference notation. Note that the parameters passed to the step take precedence over the variables.</p>
-</div>
-<div class="paragraph">
-<p>The vividus expressions can be used within templates by using <code>${execVividusExpression('expression name', args)}</code> syntax. It&#8217;s also allowed to use nested expressions by using the following syntax <code>${execVividusExpression('expression name', arg1, execVividusExpression('expression name', args))}</code>.</p>
+<p>Execute steps if the variable with specified name is not set into context.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize $scopes variable `$variableName` using template `$templatePath` with parameters:$templateParameters</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `$name` is not set I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable '$name' is not set I do:$stepsToExecute</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$scopes</code> - <a href="variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+<p><code>$name</code> - The variable name to check.</p>
 </li>
 <li>
-<p><code>$variableName</code> - The variable name to store a result.</p>
-</li>
-<li>
-<p><code>$templatePath</code> - The relative to <code>src/main/resources</code> path to a template.</p>
-</li>
-<li>
-<p><code>$templateParameters</code> - The template parameters.</p>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if variable <code>$name</code> is not set.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Personal info template at templates/person.ftl</div>
+<div class="title">Example 15. Initialize variable <code>token</code> if it is not already initialized</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "id": ${execVividusExpression('randomInt', 1, 10)},
-  "postalCode": ${execVividusExpression('generate', "Number.digits '6'")},
-  "hash": "${execVividusExpression('encodeToBase64', execVividusExpression('randomInt', 100, 1000))}",
-  "name": "${name[0]}",
-  "race": "${race[0]}",
-  "age": ${age}
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
+|step                                                                                             |
+|Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`|</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Generate JSON from the personal info template</div>
+<div class="title">Example 16. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `age` with value `4510`
-Given I initialize scenario variable `personalInfo` using template `templates/person.ftl` with parameters:
-|name     |race  |
-|Dagoth Ur|Dunmer|</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
+{headerSeparator=!, valueSeparator=!}
+!step                                                                                                 !
+!Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`    !
+!When variable 'api-key' is not set I do:                                                             !
+!|step                                                                                               |!
+!|Given I initialize story variable `api-key` with value `as38der4535fdERAnA443mIlb`                 |!</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_assert_the_value_matches_regex"><a class="anchor" href="#_assert_the_value_matches_regex"></a>Assert the value matches regex</h3>
-<div class="paragraph">
-<p>Asserts that the given value matches the specified regular expression.
-The dotall mode is enabled by default: the expression <code>.</code> matches any character,
-including a line terminator.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$value` matches `$regex`</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$value</code> - The value to assert.</p>
-</li>
-<li>
-<p><code>$regex</code> - <a href="https://en.wikipedia.org/wiki/Regular_expression">The regular expression</a>.</p>
-</li>
-</ul>
-</div>
-</div>
+<div class="sect1">
+<h2 id="_files"><a class="anchor" href="#_files"></a>Files</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_create_a_file"><a class="anchor" href="#_create_a_file"></a>Create a file</h3>
 <div class="paragraph">
@@ -993,7 +1240,7 @@ The created file will be removed upon test run completion.</p>
 <p>If you want to use the created temporary file in further batches of the test suite as an input data, you should use <a href="https://datatracker.ietf.org/doc/html/rfc8089#appendix-A">URL with <code>file</code> protocol</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Batch 1 - Create a temporary local file</div>
+<div class="title">Example 17. Batch 1 - Create a temporary local file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name `.table` and content `
 |column|
@@ -1002,7 +1249,7 @@ The created file will be removed upon test run completion.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
+<div class="title">Example 18. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `&lt;column&gt;` is equal to `value`
 Examples:
@@ -1010,287 +1257,13 @@ file:///${examples-table-temporary-file}</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zip_archives"><a class="anchor" href="#_zip_archives"></a>ZIP archives</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_compare_variables"><a class="anchor" href="#_compare_variables"></a>Compare variables</h3>
-<div class="paragraph">
-<p>Compare the value from the first <strong>variable</strong> with the value from the second <strong>variable</strong> in accordance with the <strong>condition</strong>. Could compare Maps and Lists of maps using EQUAL_TO comparison rule.
-Other rules will fallback to strings comparison.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The step prints the comparison results in the unified diff format for the strings with the legth more than specified in the property <a href="../tests-configuration.html#_configuration_properties" class="xref page">report.text-length-diff-threshold</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-If the variables contain valid numbers than they will be converted into <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigInteger.html">BigInteger</a> and compared as numbers.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$variable1` is $comaprisonRule `$variable2`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$variable1</code> - The first variable.</p>
-</li>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
-</li>
-<li>
-<p><code>$variable1</code> - The second variable.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 11. Compare Strings</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `Duke` is != `Leto`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 12. Compare numbers</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `10` is = `10.0`</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 13. Compare list of maps</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `preprod` and save result to scenario variable `preprod-date`
-When I execute SQL query `SELECT * FROM test.launch_rockets WHERE name='Proton'` against `prod` and save result to scenario variable `prod-data`
-Then `${preprod-data}` is = `${prod-data}`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_execute_steps_n_times"><a class="anchor" href="#_execute_steps_n_times"></a>Execute steps N times</h3>
-<div class="paragraph">
-<p>Step is designed to execute specified steps while counter with a certain limit matches a comparison rule. On each iteration the counter is increased on specified value, which is allowed to be either positive or negative. The seed value is used as a starting point for iteration. Current iteration index is available within steps to execute as <code>${iterationVariable}</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule `$limit` with increment `$increment` starting from `$seed`:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alias:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is $comparisonRule '$limit' with increment '$increment' starting from '$seed':$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
-</li>
-<li>
-<p><code>$limit</code> - The counter limit.</p>
-</li>
-<li>
-<p><code>$increment</code> - The number to add to the counter on each iteration.</p>
-</li>
-<li>
-<p><code>$seed</code> - The initial counter value.</p>
-</li>
-<li>
-<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 14. Press the button four times</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
-|step                                                                         |
-|When I click on element located by `caseSensitiveText(CLICK ME FOUR TIMES!)` |</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 15. Press one button four times and press the second button from the nested step eight times</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
-{headerSeparator=!, valueSeparator=!}
-!step                                                                                      !
-!When I click on element located by `caseSensitiveText(CLICK ME FOUR TIMES)`               !
-!When I execute steps while counter is less than '2' with increment '1' starting from '0': !
-!|step                                                                                    |!
-!|When I click on element located by `caseSensitiveText(CLICK ME EIGHT TIMES)`            |!</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_execute_steps_if_a_condition_is_true"><a class="anchor" href="#_execute_steps_if_a_condition_is_true"></a>Execute steps if a condition is "true"</h3>
-<div class="paragraph">
-<p>Steps designed to execute specified steps if result of a condition is "true".</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition `$condition` is true I do$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alias:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When the condition '$condition' is true I do$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$condition</code> - The verifiable condition (Case-insensitive).</p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Steps are performed</th>
-<th class="tableblock halign-left valign-top">Steps are not performed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">t</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">f</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">on</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">off</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">y</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n</p></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if the result of the <code>$condition</code> is true.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-The error will stop steps execution in case if unsupported condition value is provided.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Example 16. Click on the element if parent element is found</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
-When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
-|step                                                                   |
-|When I click on element located by `xpath(//*[@class='innerElement'])` |</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 17. Click on the element if parent element is found and the element itself is presented on the page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
-When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
-{headerSeparator=!, valueSeparator=!}
-!step                                                                                                                       !
-!When I save number of elements located `By.xpath(//*[@class='innerElement'])` to SCENARIO variable `numberOfInnerElements` !
-!When the condition '#{eval(${numberOfInnerElements} == 1)}' is true I do                                                   !
-!|step                                                                                                                     |!
-!|When I click on element located by `xpath(//*[@class='innerElement'])`                                                   |!</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_execute_steps_if_a_variable_is_not_set"><a class="anchor" href="#_execute_steps_if_a_variable_is_not_set"></a>Execute steps if a variable is not set</h3>
-<div class="paragraph">
-<p>Execute steps if the variable with specified name is not set into context.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `$name` is not set I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alias:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable '$name' is not set I do:$stepsToExecute</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$name</code> - The variable name to check.</p>
-</li>
-<li>
-<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if variable <code>$name</code> is not set.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 18. Initialize variable <code>token</code> if it is not already initialized</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
-|step                                                                                             |
-|Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`|</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 19. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
-{headerSeparator=!, valueSeparator=!}
-!step                                                                                                 !
-!Given I initialize story variable `token` with value `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSIiwiq46g`    !
-!When variable 'api-key' is not set I do:                                                             !
-!|step                                                                                               |!
-!|Given I initialize story variable `api-key` with value `as38der4535fdERAnA443mIlb`                 |!</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_zip_archives"><a class="anchor" href="#_zip_archives"></a>ZIP archives</h3>
-<div class="sect3">
-<h4 id="_save_zip_archive_entries"><a class="anchor" href="#_save_zip_archive_entries"></a>Save ZIP archive entries</h4>
+<h3 id="_save_zip_archive_entries"><a class="anchor" href="#_save_zip_archive_entries"></a>Save ZIP archive entries</h3>
 <div class="paragraph">
 <p>Saves the specified archive entries into variables.</p>
 </div>
@@ -1338,7 +1311,7 @@ The following example requires <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Save archive entries</div>
+<div class="title">Example 19. Save archive entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 When I save content of `${response-as-bytes}` archive entries to variables:
@@ -1350,8 +1323,8 @@ Then `${base64}` is = `UmVzcG9uc2UgdGV4dCBmcm9tIFpJUCBhcmNoaXZl`</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_validate_zip_archive"><a class="anchor" href="#_validate_zip_archive"></a>Validate ZIP archive</h4>
+<div class="sect2">
+<h3 id="_validate_zip_archive"><a class="anchor" href="#_validate_zip_archive"></a>Validate ZIP archive</h3>
 <div class="paragraph">
 <p>Validates that at least one (or none) entry in the archive matches the specified
 <a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rule</a>. If comparison
@@ -1407,7 +1380,7 @@ The following examples require <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 20. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1417,13 +1390,53 @@ Then `${response-as-bytes}` archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 21. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
 |name                           |
 |responseTextFromZipArchive.txt |</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_debug"><a class="anchor" href="#_debug"></a>Debug</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_wait_for_period"><a class="anchor" href="#_wait_for_period"></a>Wait for period</h3>
+<div class="paragraph">
+<p>Waits during specified period for debug purposes</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The step is for debugging purpose only
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$period` for debug</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$period</code> - total duration to wait in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 22. Wait 30 seconds for debug</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
 </div>
 </div>
