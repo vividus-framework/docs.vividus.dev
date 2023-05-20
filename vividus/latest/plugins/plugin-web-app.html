@@ -3259,6 +3259,74 @@ Then metric PAGE_LOAD_TIME is less than `PT5S`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_taking_screenshot_steps"><a class="anchor" href="#_taking_screenshot_steps"></a>Taking screenshot steps</h3>
+<div class="sect3">
+<h4 id="_take_screenshot"><a class="anchor" href="#_take_screenshot"></a>Take screenshot</h4>
+<div class="paragraph">
+<p>Takes a screenshot and publish it to the report.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_take_screenshot_and_save_it_to_the_file"><a class="anchor" href="#_take_screenshot_and_save_it_to_the_file"></a>Take screenshot and save it to the file</h4>
+<div class="paragraph">
+<p>Takes a screenshot and saves it to the file at the specified path.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The full path to the file with the taken screenshot is posted to logs and report.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to file at path `$screenshotFilePath`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `$screenshotFilePath`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$screenshotFilePath</code> - The path to the file to save the screenshot, the allowed values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>an absolute path to the file, e.g. <code>C:\Windows\screenshot.png</code>;</p>
+</li>
+<li>
+<p>a relative path (it is resolved from the current working directory, e.g. <code>screenshot.png</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 45. Take a screenshot and save it to the file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to file at path `${screenshot-directory}/start-page.png`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_wait_for_element_appearance"><a class="anchor" href="#_wait_for_element_appearance"></a>Wait for element appearance</h3>
 <div class="paragraph">
 <p>Waits for appearance of the element by the locator.</p>
@@ -3296,7 +3364,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Wait for appearance of the element with the specified name</div>
+<div class="title">Example 46. Wait for appearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` appears</code></pre>
 </div>
@@ -3353,7 +3421,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Wait for disappearance of the element with the specified name</div>
+<div class="title">Example 47. Wait for disappearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` disappears</code></pre>
 </div>
@@ -3395,13 +3463,13 @@ In order to wait for invisible elements one rely on <a href="#_visibility_types"
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Wait for the visible elements</div>
+<div class="title">Example 48. Wait for the visible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img)` is equal to `5`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Wait for the invisible elements</div>
+<div class="title">Example 49. Wait for the invisible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img):1` is equal to `5`</code></pre>
 </div>
@@ -3431,7 +3499,7 @@ In order to wait for invisible elements one rely on <a href="#_visibility_types"
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Verify the number of elements</div>
+<div class="title">Example 50. Verify the number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 </div>
@@ -3491,7 +3559,7 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Verify the number of elements in the state</div>
+<div class="title">Example 51. Verify the number of elements in the state</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
@@ -3530,7 +3598,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Save the text of the context element</div>
+<div class="title">Example 52. Save the text of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save text of context element to SCENARIO variable `username`</code></pre>
@@ -3573,7 +3641,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Save the attribute value of the context element</div>
+<div class="title">Example 53. Save the attribute value of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
@@ -3639,7 +3707,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Save number of elements</div>
+<div class="title">Example 54. Save number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `tagName(a)` to scenario variable `numberOfLinks`
 Then `${numberOfLinks}` is equal to `1`</code></pre>
@@ -3672,7 +3740,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Change context</div>
+<div class="title">Example 55. Change context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)` in scope of current context
@@ -3706,7 +3774,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 55. Change context</div>
+<div class="title">Example 56. Change context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
@@ -3725,7 +3793,7 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 56. Reset context</div>
+<div class="title">Example 57. Reset context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
@@ -3782,7 +3850,7 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 57. The element should have existed for 5 second</div>
+<div class="title">Example 58. The element should have existed for 5 second</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `id(banner)` exists for `PT5S` duration</code></pre>
 </div>
@@ -3799,7 +3867,7 @@ element appearance if it&#8217;s configured),</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Navigate back</div>
+<div class="title">Example 59. Navigate back</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(//*[@*='Welcome'])` is equal to `1`
 When I navigate back
@@ -3874,58 +3942,11 @@ element with not empty text, otherwise the step fails.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 59. Check items are sorted</div>
+<div class="title">Example 60. Check items are sorted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://grocery.by`
 When I click on element located by `id(a-z)`
 Then elements located by `xpath(//span[@id='item-to-purchase'])` are sorted by text in ascending order</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_take_a_screenshot"><a class="anchor" href="#_take_a_screenshot"></a>Take a screenshot</h3>
-<div class="paragraph">
-<p>Takes a screenshot and publish it to the report.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_take_a_screenshot_and_save_it_to_the_folder"><a class="anchor" href="#_take_a_screenshot_and_save_it_to_the_folder"></a>Take a screenshot and save it to the folder</h3>
-<div class="paragraph">
-<p>Takes a screenshot and saves it to the default folder defined by user.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The full path to a screenshot will be posted to logs and allure
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `$path`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$path</code> - The absolute or relative path to the folder to save taken screenshot.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 60. Take a screenshot to a path</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to folder `${screenshot-directory}/#{generate(Ancient.god)}.png`</code></pre>
 </div>
 </div>
 </div>
