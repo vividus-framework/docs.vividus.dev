@@ -646,7 +646,15 @@ the configuration files for the used IDE and then refresh the project in the use
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_validate_accessibility"><a class="anchor" href="#_validate_accessibility"></a>Validate accessibility</h3>
+<h3 id="_validate_site_accessibility"><a class="anchor" href="#_validate_site_accessibility"></a>Validate site accessibility</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I perform accessibility scan:$options</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I test accessibility:$options</code></pre>
@@ -723,7 +731,7 @@ The step based on the contextual approach and when it&#8217;s necessary it could
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 When I change context to element located by `xpath(//body)`
-Then I test accessibility:
+When I perform accessibility scan:
 |standard|level |elementsToIgnore                                 |elementsToCheck|violationsToIgnore                                                                     |
 |WCAG2AAA|NOTICE|By.id(ignore), By.cssSelector(#errors &gt; h1 &gt; img)|               |WCAG2AAA.Principle1.Guideline1_3.1_3_1.H42.2,WCAG2AAA.Principle2.Guideline2_4.2_4_9.H30|
 |WCAG2AAA|NOTICE|By.xpath(//*)                                    |               |                                                                                       |</code></pre>
