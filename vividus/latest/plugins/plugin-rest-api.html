@@ -804,12 +804,12 @@ When I send HTTP GET to the relative URL 'rest/#{removeWrappingDoubleQuotes(${id
 <p><code>#{encodeUriXyz(..)}</code> is a family of expressions that encode specific URI components (e.g. path, query)
 by percent encoding illegal characters, which includes non-US-ASCII characters, and also characters that
 are otherwise illegal within the given URI component type, as defined in
-<a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.</p>
+<a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 60%;">
-<col style="width: 40%;">
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
 </colgroup>
 <thead>
 <tr>
@@ -819,32 +819,38 @@ are otherwise illegal within the given URI component type, as defined in
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUri(<strong>$anyValue</strong>)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes all characters that are either illegal, or have any reserved meaning, anywhere within a URI, as defined in
+<a href="https://tools.ietf.org/html/rfc3986">RFC 3986</a>. This is useful to ensure that the given value will be preserved as-is
+and will not have any impact on the structure or meaning of the URI.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriUserInfo(<strong>$userInfo</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI user info</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI user info.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriHost(<strong>$host</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI host.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPath(<strong>$path</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI path.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriPathSegment(<strong>$segment</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI path segment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI path segment.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQuery(<strong>$query</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI query.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriQueryParameter(<strong>$queryParameter</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encodes the given URI query parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encodes the given URI query parameter.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriFragment(<strong>$fragment</strong>)}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">encode the given URI fragment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encode the given URI fragment.</p></td>
 </tr>
 </tbody>
 </table>
@@ -861,6 +867,12 @@ are otherwise illegal within the given URI component type, as defined in
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriUserInfo(
+<a href="https://user@vividus.dev:vividus.dev/path/segment?a&amp;b=c#fragment)}" class="bare">https://user@vividus.dev:vividus.dev/path/segment?a&amp;b=c#fragment)}</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">https%3A%2F%2Fuser%40vividus.dev%3Avividus.dev
+%2Fpath%2Fsegment%3Fa%26b%3Dc%23fragment</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{encodeUriUserInfo(<a href="mailto:user@vividus.dev">user@vividus.dev</a>:pass)}</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user%40vividus.dev:pass</p></td>
