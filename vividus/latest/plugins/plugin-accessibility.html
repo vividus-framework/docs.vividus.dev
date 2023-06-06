@@ -616,9 +616,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides functionality to perform accessibility validations.
-For more info please see <a href="https://squizlabs.github.io/HTML_CodeSniffer/">HTML Code Sniffer</a>
-Supported checks against following standards: <a href="https://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/">WCAG2</a> and <a href="https://squizlabs.github.io/HTML_CodeSniffer/Standards/Section508/">Section 508</a></p>
+<p>The plugin provides functionality to perform accessibility validations using <a href="https://squizlabs.github.io/HTML_CodeSniffer/">HTML Code Sniffer</a> or <a href="https://www.deque.com/axe/">Axe Core</a> engines.</p>
 </div>
 </div>
 </div>
@@ -663,6 +661,82 @@ the configuration files for the used IDE and then refresh the project in the use
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I test accessibility:$options</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The step can be used to test accessibility using the following engines:</p>
+</div>
+<div class="sect3">
+<h4 id="_axe_core"><a class="anchor" href="#_axe_core"></a>Axe Core</h4>
+<div class="paragraph">
+<p>Axe Core is a powerful and accurate accessibility toolkit can get you to 80% issue coverage, or more, during development. It supports a wide range of standards such as <code>WCAG 2.0</code>, <code>WCAG 2.1</code>, <code>WCAG 2.2</code>, <code>Section 508</code>, <code>ACT</code> and so on.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Configure Axe Core engine</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">accessibility.engine=AXE_CORE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Accessibility test options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$options</code> - The accessibility validation options. Where:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>standard</strong></code> - The tag of accessibility standard to check a page against, the list of available tags can be found <a href="https://www.deque.com/axe/core-documentation/api-documentation/#axe-core-tags">here</a>.</p>
+</li>
+<li>
+<p><code>elementsToCheck</code> - The comma-separated list of <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to verify.</p>
+</li>
+<li>
+<p><code>elementsToIgnore</code> - The comma-separated list of <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to ignore.</p>
+</li>
+<li>
+<p><code>violationsToIgnore</code> - The comma-separated list of <a href="https://dequeuniversity.com/rules/axe/4.7/">violations</a> to ignore.</p>
+</li>
+<li>
+<p><code>violationsToCheck</code> - The comma-separated list of <a href="https://dequeuniversity.com/rules/axe/4.7/">violations</a> to check.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Check page against WCAG 2.2 Level AA</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+Then I test accessibility:
+|standard|
+|WCAG22AA|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Check video elements against no-autoplay-audio and video-caption rules</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+Then I test accessibility:
+|violationsToCheck              |elementsToCheck|
+|no-autoplay-audio,video-caption|tagName(video) |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_html_cs"><a class="anchor" href="#_html_cs"></a>HTML CS</h4>
+<div class="paragraph">
+<p>The <a href="https://squizlabs.github.io/HTML_CodeSniffer/">HTML Code Sniffer</a> supports checks against <a href="https://squizlabs.github.io/HTML_CodeSniffer/Standards/WCAG2/">WCAG2</a> and <a href="https://squizlabs.github.io/HTML_CodeSniffer/Standards/Section508/">Section 508</a> standards.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Configure HTML CS engine</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">accessibility.engine=HTML_CS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Accessibility test options:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -689,10 +763,10 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </li>
 <li>
-<p><code>locators</code> - The comma-separated <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to verify</p>
+<p><code>elementsToCheck</code> - The comma-separated list of <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to verify</p>
 </li>
 <li>
-<p><code>elementsToIgnore</code> - The comma-separated <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to ignore</p>
+<p><code>elementsToIgnore</code> - The comma-separated list of <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to ignore</p>
 </li>
 <li>
 <p><code>violationsToIgnore</code> - The violations codes which should be ignored</p>
@@ -730,7 +804,7 @@ The step based on the contextual approach and when it&#8217;s necessary it could
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Check accessibility</div>
+<div class="title">Example 6. Check accessibility</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
 When I change context to element located by `xpath(//body)`
@@ -738,6 +812,7 @@ When I perform accessibility scan:
 |standard|level |elementsToIgnore                                 |elementsToCheck|violationsToIgnore                                                                     |
 |WCAG2AAA|NOTICE|By.id(ignore), By.cssSelector(#errors &gt; h1 &gt; img)|               |WCAG2AAA.Principle1.Guideline1_3.1_3_1.H42.2,WCAG2AAA.Principle2.Guideline2_4.2_4_9.H30|
 |WCAG2AAA|NOTICE|By.xpath(//*)                                    |               |                                                                                       |</code></pre>
+</div>
 </div>
 </div>
 </div>
