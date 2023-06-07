@@ -1078,36 +1078,49 @@ Then `${var}` is = `3`</code></pre>
 <ul>
 <li>
 <p><code>$condition</code> - The verifiable condition (Case-insensitive).</p>
-<div class="paragraph">
-<p>|==</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Steps are performed</th>
+<th class="tableblock halign-left valign-top">Steps are not performed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">f</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">on</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">off</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if the result of the <code>$condition</code> is true.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>|Steps are performed|Steps are not performed</p>
-</div>
-<div class="paragraph">
-<p>|1|0</p>
-</div>
-<div class="paragraph">
-<p>|true|false</p>
-</div>
-<div class="paragraph">
-<p>|t|f</p>
-</div>
-<div class="paragraph">
-<p>|on|off</p>
-</div>
-<div class="paragraph">
-<p>|yes|no</p>
-</div>
-<div class="paragraph">
-<p>|y|n</p>
-</div>
-<div class="paragraph">
-<p>|==
-* <code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if the result of the <code>$condition</code> is true.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
