@@ -685,7 +685,20 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="ulist">
 <ul>
 <li>
-<p><code class="subs=+quotes"><strong>standard</strong></code> - The tag of accessibility standard to check a page against, the list of available tags can be found <a href="https://www.deque.com/axe/core-documentation/api-documentation/#axe-core-tags">here</a>.</p>
+<p><code class="subs=+quotes"><strong>standard</strong></code> - The tag of accessibility standard to check a page against, the list of available tags can be found <a href="https://www.deque.com/axe/core-documentation/api-documentation/#axe-core-tags">here</a>. Aside from tags provided by Axe Code, VIVIDUS provides own standards:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WCAG2xA</code> - includes <code>wcag2a</code>, <code>wcag21a</code>.</p>
+</li>
+<li>
+<p><code>WCAG2xAA</code> - includes tags from <code>WCAG2xA</code> and <code>wcag2aa</code>, <code>wcag21aa</code>, <code>wcag22aa</code>.</p>
+</li>
+<li>
+<p><code>WCAG2xAAA</code> - includes tags from <code>WCAG2xAAA</code> and <code>wcag2aaa</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><code>elementsToCheck</code> - The comma-separated list of <a href="plugin-web-app.html#_locator" class="xref page">locators</a> of elements to verify.</p>
