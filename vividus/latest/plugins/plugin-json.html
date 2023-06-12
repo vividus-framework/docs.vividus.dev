@@ -1542,10 +1542,10 @@ expected number according to the specified comparison rule.</p>
     "tags": {
       "description": "Tags for the product",
       "type": "array",
-      "prefixItems": {
+      "prefixItems": [{
         "type": "string",
         "enum": ["lamp", "desk"]
-      },
+      }],
       "minItems": 1,
       "uniqueItems": true
     }
