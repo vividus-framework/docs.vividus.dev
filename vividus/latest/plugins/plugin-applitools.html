@@ -605,8 +605,8 @@
     <a class="version" href="../../0.3.12/plugins/plugin-applitools.html">0.3.12</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-applitools.adoc">Edit this Page</a></div>
-  </div>
+<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-applitools.adoc">Edit this Page</a></div>
+</div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
@@ -675,29 +675,81 @@ The properties marked with <strong>bold</strong> are mandatory.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.server-uri</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>applitools.server-uri</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>ui.visual.applitools.server-uri</code> property is deprecated in favor of <code>applitools.server-uri</code> and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://eyesapi.applitools.com" class="bare">https://eyesapi.applitools.com</a></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The URI of the rest server.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.execute-api-key</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>applitools.execute-api-key</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>ui.visual.applitools.execute-api-key</code> property is deprecated in favor of <code>applitools.execute-api-key</code> and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to execute tests but does not allow them to access the tests and test results, change data through the API, or make any changes to the tests. For more details see how to <a href="https://applitools.com/docs/topics/overview/obtain-api-key.html">obtain API keys</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ui.visual.applitools.read-api-key</strong></code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>applitools.app-name</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>ui.visual.applitools.app-name</code> property is deprecated in favor of <code>applitools.app-name</code> and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the application under test.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code class="subs=+quotes"><strong>ui.visual.applitools.read-api-key</strong></code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to access tests and test results, but does not allow them to execute tests, change data through the API, or make any changes to the tests. For more details see how to <a href="https://applitools.com/docs/topics/overview/obtain-api-key.html">obtain API keys</a>. Note if this key is not set, incorrect or does not have the necessary permission to read, screenshots of visual tests will not be available in the report and a warning message will be displayed.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.match-level</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>ui.visual.applitools.match-level</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>EXACT</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://applitools.com/docs/common/cmn-eyes-match-levels.html#Available">available match levels</a>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ui.visual.applitools.app-name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the application under test.</p></td>
 </tr>
 </tbody>
 </table>
