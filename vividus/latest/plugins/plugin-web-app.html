@@ -6117,12 +6117,52 @@ When I save table to SCENARIO variable `table`</code></pre>
 <div class="sect2">
 <h3 id="_alert_steps"><a class="anchor" href="#_alert_steps"></a>Alert Steps</h3>
 <div class="sect3">
-<h4 id="_type_text_in_the_alert_input_field"><a class="anchor" href="#_type_text_in_the_alert_input_field"></a>Type text in the alert input field</h4>
+<h4 id="_perform_action_in_the_alert_box"><a class="anchor" href="#_perform_action_in_the_alert_box"></a>Perform action in the alert box</h4>
 <div class="paragraph">
-<p>This step allows you to type text into the alert input field and then accept the alert.</p>
+<p>Accepts the action in <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> with matching text by clicking on the "OK" button or dismiss it by clicking "Cancel" button.</p>
 </div>
 <div class="paragraph">
-<p>An <strong>alert</strong> is a small dialog box that appears on the display screen to provide information or to warn about a potentially damaging operation. To proceed, the user needs to confirm or dismiss the alert by clicking the 'OK' or 'Cancel' button, respectively.</p>
+<p>Actions performed at this step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Finds the appropriate alert with matching message</p>
+</li>
+<li>
+<p>Performs the corresponding action</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $alertAction alert with message which $comparisonRule `$message`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$alertAction</code> - Action to perform. Possible values: <code>ACCEPT</code>, <code>DISMISS</code>.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$message</code> - The text message of the alert.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 112. Accept popup alert with any text message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I accept alert with message which matches `.*`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_type_text_in_the_alert_input_field"><a class="anchor" href="#_type_text_in_the_alert_input_field"></a>Type text in the alert input field</h4>
+<div class="paragraph">
+<p>This step allows you to type text into <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> input field and then accept the alert.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6150,9 +6190,45 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 112. Type text 'VIVIDUS' into alert and close it by clicking OK button</div>
+<div class="title">Example 113. Type text 'VIVIDUS' into alert and close it by clicking OK button</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type text `VIVIDUS` in alert and accept it</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verify_that_an_alert_is_present"><a class="anchor" href="#_verify_that_an_alert_is_present"></a>Verify that an alert is present</h4>
+<div class="paragraph">
+<p>Checks that there is <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> on the page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then an alert is present</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 114. Check that an alert appears after clicking on the button</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
+Then an alert is present</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verify_that_an_alert_isnt_present"><a class="anchor" href="#_verify_that_an_alert_isnt_present"></a>Verify that an alert isn&#8217;t present</h4>
+<div class="paragraph">
+<p>Checks that there is no any <a href="https://www.w3schools.com/js/js_popup.asp">popup alerts</a> on the page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then an alert is not present</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 115. Check that an alert doesn&#8217;t appear on the page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
+Then an alert is not present</code></pre>
 </div>
 </div>
 </div>
@@ -6168,7 +6244,7 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 113. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 116. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -6188,7 +6264,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 114. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 117. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -6208,7 +6284,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 115. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 118. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
