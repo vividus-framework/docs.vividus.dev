@@ -616,7 +616,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The plugin provides the ability to perform visual testing using the <a href="https://applitools.com/">Applitools</a> visual testing platform.</p>
+<p>The plugin provides the ability to perform various kinds of testing using the <a href="https://applitools.com/">Applitools</a> services such as <a href="https://applitools.com/platform/eyes/">Eyes</a>, <a href="https://applitools.com/platform/ultrafast-grid/">Ultrafast Grid</a> and <a href="https://applitools.com/platform/execution-cloud/">Execution Cloud</a>.</p>
 </div>
 </div>
 </div>
@@ -644,10 +644,11 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect1">
-<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<h2 id="_general_properties"><a class="anchor" href="#_general_properties"></a>General properties</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_general_properties"><a class="anchor" href="#_general_properties"></a>General properties</h3>
+<div class="paragraph">
+<p>The following properties should be configured prior to start working with any of the <a href="https://applitools.com/">Applitools</a> services.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -697,7 +698,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>applitools.execute-api-key</code><br></p>
+<p><code class="subs=+quotes"><strong>applitools.execute-api-key</strong></code><br></p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -713,7 +714,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </table>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows users to execute tests but does not allow them to access the tests and test results, change data through the API, or make any changes to the tests. For more details see how to <a href="https://applitools.com/docs/topics/overview/obtain-api-key.html">obtain API keys</a>.</p></td>
 </tr>
 <tr>
@@ -734,9 +735,49 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </table>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application under test</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the application under test.</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visual_testing"><a class="anchor" href="#_visual_testing"></a>Visual Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://applitools.com/platform/eyes/">Applitools Eyes</a> and <a href="https://applitools.com/platform/ultrafast-grid/">Ultrafast Grid</a> are UI validation tools powered by AI to help write &amp; maintain visual tests and rapidly test across different browsers or devices for massive scalability.</p>
+</div>
+<div class="sect2">
+<h3 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h3>
+<div class="sect3">
+<h4 id="_general_visual_testing_properties"><a class="anchor" href="#_general_visual_testing_properties"></a>General visual testing properties</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code class="subs=+quotes"><strong>ui.visual.applitools.read-api-key</strong></code></p>
@@ -754,8 +795,8 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_cross_environment_properties"><a class="anchor" href="#_cross_environment_properties"></a>Cross-environment properties</h3>
+<div class="sect3">
+<h4 id="_cross_environment_properties"><a class="anchor" href="#_cross_environment_properties"></a>Cross-environment properties</h4>
 <div class="paragraph">
 <p>See <a href="https://applitools.com/docs/topics/general-concepts/working-withcross-environment-tests.html">cross-environment testing</a> for more details.</p>
 </div>
@@ -797,12 +838,10 @@ The properties marked with <strong>bold</strong> are mandatory.
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_common_visual_testing_actions_use_cases"><a class="anchor" href="#_common_visual_testing_actions_use_cases"></a>Common visual testing actions use cases</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_establish"><a class="anchor" href="#_establish"></a><code>ESTABLISH</code></h3>
+<h3 id="_common_visual_testing_actions_use_cases"><a class="anchor" href="#_common_visual_testing_actions_use_cases"></a>Common visual testing actions use cases</h3>
+<div class="sect3">
+<h4 id="_establish"><a class="anchor" href="#_establish"></a><code>ESTABLISH</code></h4>
 <div class="paragraph">
 <p>Creates a baseline image.</p>
 </div>
@@ -832,8 +871,8 @@ When I run visual test with Applitools using:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_compare_against"><a class="anchor" href="#_compare_against"></a><code>COMPARE_AGAINST</code></h3>
+<div class="sect3">
+<h4 id="_compare_against"><a class="anchor" href="#_compare_against"></a><code>COMPARE_AGAINST</code></h4>
 <div class="paragraph">
 <p>Compares actual appearance of the page or element against the baseline. Make sure that the baseline you compare against actually exists.</p>
 </div>
@@ -863,8 +902,8 @@ When I run visual test with Applitools using:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_check_inequality_against"><a class="anchor" href="#_check_inequality_against"></a><code>CHECK_INEQUALITY_AGAINST</code></h3>
+<div class="sect3">
+<h4 id="_check_inequality_against"><a class="anchor" href="#_check_inequality_against"></a><code>CHECK_INEQUALITY_AGAINST</code></h4>
 <div class="paragraph">
 <p>Work the same way as <a href="#_compare_against"><code>COMPARE_AGAINST</code></a> except it checks if actual appearance differs from the baseline.</p>
 </div>
@@ -879,12 +918,10 @@ When I run visual test with Applitools using:
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_visual_check_with_default_applitools_configuration"><a class="anchor" href="#_visual_check_with_default_applitools_configuration"></a>Visual check with default Applitools configuration</h3>
+<h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
+<div class="sect3">
+<h4 id="_visual_check_with_default_applitools_configuration"><a class="anchor" href="#_visual_check_with_default_applitools_configuration"></a>Visual check with default Applitools configuration</h4>
 <div class="paragraph">
 <p>Performs visual check on the Applitools visual testing plarform.</p>
 </div>
@@ -913,8 +950,8 @@ When I run visual test with Applitools using:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_visual_check_with_custom_applitools_configuration"><a class="anchor" href="#_visual_check_with_custom_applitools_configuration"></a>Visual check with custom Applitools configuration</h3>
+<div class="sect3">
+<h4 id="_visual_check_with_custom_applitools_configuration"><a class="anchor" href="#_visual_check_with_custom_applitools_configuration"></a>Visual check with custom Applitools configuration</h4>
 <div class="paragraph">
 <p>Performs visual check on the Applitools visual testing platform with custom Applitools configuration.</p>
 </div>
@@ -1009,8 +1046,8 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_visual_check_with_custom_applitools_and_screenshot_configuration"><a class="anchor" href="#_visual_check_with_custom_applitools_and_screenshot_configuration"></a>Visual check with custom Applitools and screenshot configuration</h3>
+<div class="sect3">
+<h4 id="_visual_check_with_custom_applitools_and_screenshot_configuration"><a class="anchor" href="#_visual_check_with_custom_applitools_and_screenshot_configuration"></a>Visual check with custom Applitools and screenshot configuration</h4>
 <div class="paragraph">
 <p>Performs visual check on the Applitools visual testing platform with custom configuration and screenshot strategy.</p>
 </div>
@@ -1186,8 +1223,8 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_ultrafast_grid_check_with_default_applitools_configuration"><a class="anchor" href="#_ultrafast_grid_check_with_default_applitools_configuration"></a>Ultrafast Grid check with default Applitools configuration</h3>
+<div class="sect3">
+<h4 id="_ultrafast_grid_check_with_default_applitools_configuration"><a class="anchor" href="#_ultrafast_grid_check_with_default_applitools_configuration"></a>Ultrafast Grid check with default Applitools configuration</h4>
 <div class="paragraph">
 <p>Performs visual check on the <a href="https://applitools.com/platform/ultrafast-grid/">Ultrafast Grid Applitools</a> visual testing plarform.</p>
 </div>
@@ -1288,8 +1325,8 @@ The step parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_ultrafast_grid_check_with_custom_applitools_configuration"><a class="anchor" href="#_ultrafast_grid_check_with_custom_applitools_configuration"></a>Ultrafast Grid check with custom Applitools configuration</h3>
+<div class="sect3">
+<h4 id="_ultrafast_grid_check_with_custom_applitools_configuration"><a class="anchor" href="#_ultrafast_grid_check_with_custom_applitools_configuration"></a>Ultrafast Grid check with custom Applitools configuration</h4>
 <div class="paragraph">
 <p>Performs visual check on the <a href="https://applitools.com/platform/ultrafast-grid/">Ultrafast Grid Applitools</a> visual testing plarform.</p>
 </div>
@@ -1455,6 +1492,80 @@ The step parameters marked with <strong>bold</strong> are mandatory.
 |desktop                |firefox|1920x1080   |          |
 |ios                    |       |            |iPhone X  |
 |chrome_mobile_emulation|       |            |Galaxy S10|</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_execution_cloud"><a class="anchor" href="#_execution_cloud"></a>Execution cloud</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://applitools.com/platform/execution-cloud/">Execution Cloud</a> is a self-healing test infrastructure for running resilient tests.</p>
+</div>
+<div class="sect2">
+<h3 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>applitools/web</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use in conjunction with web application profiles.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_properties_2"><a class="anchor" href="#_properties_2"></a>Properties</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code class="subs=+quotes"><strong>applitools.execution-cloud.batch-name</strong></code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The batch name used to group stories being run under one batch (i.e. suite name)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 11. configuration.properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">configuration.profiles=applitools/web,web/desktop/chrome
+
+applitools.server-uri=https://privatecloud.applitools.com/
+applitools.execute-api-key=cee293b00ee1440bcd20
+applitools.app-name=Grocery Store App
+
+applitools.execution-cloud.batch-name=Smoke suite</code></pre>
 </div>
 </div>
 </div>
