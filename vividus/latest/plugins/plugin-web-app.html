@@ -2864,7 +2864,15 @@ Then there are no browser console ERRORS</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex '$pattern'</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex `$regex`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are no browser console $logLevels by regex '$regex'</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -2873,7 +2881,7 @@ Then there are no browser console ERRORS</code></pre>
 <p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 <li>
-<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+<p><code>$regex</code> - The regular expression to match log entry messages.</p>
 </li>
 </ul>
 </div>
@@ -2881,7 +2889,7 @@ Then there are no browser console ERRORS</code></pre>
 <div class="title">Example 33. Validate absence of JS error referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
-Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
+Then there are no browser console ERRORS by regex `.*user.*`</code></pre>
 </div>
 </div>
 </div>
@@ -2892,7 +2900,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are browser console $logLevels by regex '$pattern'</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then there are browser console $logLevels by regex `$regex`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -2901,7 +2909,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 <p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 <li>
-<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+<p><code>$regex</code> - The regular expression to match log entry messages.</p>
 </li>
 </ul>
 </div>
@@ -2909,7 +2917,7 @@ Then there are no browser console ERRORS by regex '.*user.*'</code></pre>
 <div class="title">Example 34. Validate presence of JS errors referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
-Then there are browser console ERRORS by regex '.*user.*'</code></pre>
+Then there are browser console ERRORS by regex `.*user.*`</code></pre>
 </div>
 </div>
 </div>
@@ -2941,7 +2949,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 <p><code>$logLevels</code> - List of the comma-separated messages levels. The supported levels are: ERRORS, WARNINGS, INFOS.</p>
 </li>
 <li>
-<p><code>$pattern</code> - The regular expression to match log entry messages.</p>
+<p><code>$regex</code> - The regular expression to match log entry messages.</p>
 </li>
 <li>
 <p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
