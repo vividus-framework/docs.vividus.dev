@@ -2501,6 +2501,14 @@ is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `$URL` in new tab</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `$URL` in new window</code></pre>
 </div>
 </div>
@@ -2514,7 +2522,7 @@ is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
 <div class="listingblock">
 <div class="title">Example 25. Open docs in a new tab</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://docs.vividus.dev` in new window</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://docs.vividus.dev` in new tab</code></pre>
 </div>
 </div>
 </div>
@@ -2522,6 +2530,14 @@ is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
 <h4 id="_close_current_tab"><a class="anchor" href="#_close_current_tab"></a>Close current tab</h4>
 <div class="paragraph">
 <p>Closes the current tab and switches to the previous tab.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I close current tab</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2556,8 +2572,8 @@ This step can only be applied to a session with multiple tabs open.
 <div class="title">Example 26. Open URL in new tab, close it and switch to the previous page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
-When I open URL `https://example.com/contact-us` in new window
-When I close the current window</code></pre>
+When I open URL `https://example.com/contact-us` in new tab
+When I close current tab</code></pre>
 </div>
 </div>
 </div>
@@ -2578,6 +2594,14 @@ When I close the current window</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I attempt to close current tab with possibility to handle alert</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I attempt to close current window with possibility to handle alert</code></pre>
 </div>
 </div>
@@ -2588,7 +2612,7 @@ When I close the current window</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-This step can only be used if the current tab was opened via the step <a href="#_open_url_in_a_new_tab"><code>When I open URL `$pageUrl` in new window</code></a>.
+This step can only be used if the current tab was opened via the step <a href="#_open_url_in_a_new_tab"><code>When I open URL `$pageUrl` in new tab</code></a>.
 </td>
 </tr>
 </table>
@@ -2600,7 +2624,7 @@ This step can only be used if the current tab was opened via the step <a href="#
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.asp">alert</a>, the tab will be closed, and you will need to switch to current tab using the following step: <code>When I switch to window with title that $stringComparisonRule `$windowName`</code>.
+If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.asp">alert</a>, the tab will be closed, and you will need to switch to current tab using the following step: <code>When I switch to tab with title that $stringComparisonRule `$windowName`</code>.
 </td>
 </tr>
 </table>
@@ -2609,12 +2633,12 @@ If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.as
 <div class="title">Example 27. Checking for an alert when trying to close a window with form</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
-When I open URL `https://example.com/form` in new window
+When I open URL `https://example.com/form` in new tab
 When I click on element located by `xpath(//*[@id='form-edit'])`
 When I execute sequence of actions:
 |type      |argument    |
 |ENTER_TEXT|changed text|
-When I attempt to close current window with possibility to handle alert
+When I attempt to close current tab with possibility to handle alert
 Then an alert is present
 When I accept alert with message which matches `.*`</code></pre>
 </div>
@@ -3081,6 +3105,29 @@ Then text `Modal Frame Example` exists</code></pre>
 <div class="paragraph">
 <p>Switch the focus of future browser commands to new tab.</p>
 </div>
+<div class="paragraph">
+<p>This step gets the identifier of the currently active tab and then switches focus to the first available tab with a different identifier. For example, if tabs #1, #2, #3 are open and tab #2 is active, this step will switch focus to tab #3.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A new tab should already be open for this step to function. After executing this step, the new tab will become the active tab.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to new tab</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to a new window</code></pre>
@@ -3092,7 +3139,7 @@ Then text `Modal Frame Example` exists</code></pre>
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://the-internet.herokuapp.com/windows`
 When I click on element located by `linkUrlPart(/windows/new)`
 Then text `New Window` does not exist
-When I switch to a new window
+When I switch to new tab
 Then text `New Window` exists</code></pre>
 </div>
 </div>
@@ -3101,6 +3148,14 @@ Then text `New Window` exists</code></pre>
 <h4 id="_switch_context_to_new_tab_with_specified_title"><a class="anchor" href="#_switch_context_to_new_tab_with_specified_title"></a>Switch context to new tab with specified title</h4>
 <div class="paragraph">
 <p>Switch the focus of future browser commands to new tab with specified title.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to tab with title that $stringComparisonRule `$tabName`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3113,7 +3168,7 @@ Then text `New Window` exists</code></pre>
 <p><code>$stringComparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$windowName</code> - The expected tab title.</p>
+<p><code>$tabName</code> - The expected tab title.</p>
 </li>
 </ul>
 </div>
@@ -3123,7 +3178,7 @@ Then text `New Window` exists</code></pre>
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://the-internet.herokuapp.com/windows`
 When I click on element located by `linkUrlPart(/windows/new)`
 Then text `New Window` does not exist
-When I switch to window with title that matches `.*[wW]indow.*`
+When I switch to tab with title that matches `.*[wW]indow.*`
 Then text `New Window` exists</code></pre>
 </div>
 </div>
@@ -3141,9 +3196,17 @@ Then text `New Window` exists</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wait_for_window_and_switch"><a class="anchor" href="#_wait_for_window_and_switch"></a>Wait for window and switch</h3>
+<h3 id="_wait_for_tab_and_switch"><a class="anchor" href="#_wait_for_tab_and_switch"></a>Wait for tab and switch</h3>
 <div class="paragraph">
-<p>Waits for the windows with desired title and switches to it.</p>
+<p>Waits for the tab with desired title and switches to it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$duration` until tab with title that $comparisonRule `$title` appears and switch to it</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3153,22 +3216,22 @@ Then text `New Window` exists</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$duration</code> - The timeout duration to wait for a window in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+<p><code>$duration</code> - The timeout duration to wait for a tab in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
 </li>
 <li>
-<p><code>$comparisonRule</code> - The window title <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
+<p><code>$comparisonRule</code> - The tab title <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$windowTitle</code> - The expected window title.</p>
+<p><code>$title</code> - The expected tab title.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Wait for window and switch to it</div>
+<div class="title">Example 41. Wait for tab and switch to it</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/windows.html`
 When I click on element located by `id(timeout)`
-When I wait `PT3S` until window with title that is equal to `Vividus test site` appears and switch to it</code></pre>
+When I wait `PT3S` until tab with title that is equal to `Vividus test site` appears and switch to it</code></pre>
 </div>
 </div>
 </div>
@@ -3197,7 +3260,7 @@ Could be useful in combination with Selenium&#8217;s <a href="https://www.seleni
 <div class="listingblock">
 <div class="title">Example 42. Stop page loading.story</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://delayed.vividus.dev` in new window
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://delayed.vividus.dev` in new tab
 When I stop page loading</code></pre>
 </div>
 </div>
@@ -3224,7 +3287,7 @@ When I stop page loading</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I set page load timeout to `PT20S`
-When I open URL `https://example.com/super-heavy-page` in new window
+When I open URL `https://example.com/super-heavy-page` in new tab
 When I set page load timeout to `PT10S`</code></pre>
 </div>
 </div>
