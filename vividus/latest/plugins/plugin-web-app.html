@@ -2880,7 +2880,7 @@ platform independent.</p>
 <div class="listingblock">
 <div class="title">Example 32. Validate absence of JS errors</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are no browser console ERRORS</code></pre>
 </div>
 </div>
@@ -2916,7 +2916,7 @@ Then there are no browser console ERRORS</code></pre>
 <div class="listingblock">
 <div class="title">Example 33. Validate absence of JS error referencing user</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are no browser console ERRORS by regex `.*user.*`</code></pre>
 </div>
 </div>
@@ -2944,7 +2944,7 @@ Then there are no browser console ERRORS by regex `.*user.*`</code></pre>
 <div class="listingblock">
 <div class="title">Example 34. Validate presence of JS errors referencing user</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are browser console ERRORS by regex `.*user.*`</code></pre>
 </div>
 </div>
@@ -2990,7 +2990,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 <div class="listingblock">
 <div class="title">Example 35. Wait for application readiness</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
 Then `${logs}` matches `.*Application ready in \d+ seconds.*`</code></pre>
 </div>
@@ -3069,7 +3069,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 <div class="listingblock">
 <div class="title">Example 37. Switch to user context and back to the default context of page</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site.onrender.com/elementState.html`
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/elementState.html`
 When I change context to element located by `id(button-hide)`
 Then text `Element to hide` does not exist
 When I switch back to the page
@@ -3097,7 +3097,7 @@ Then text `Element to hide` exists</code></pre>
 <div class="listingblock">
 <div class="title">Example 38. Switch to frame</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site.onrender.com/nestedFrames.html`
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/nestedFrames.html`
 Then text `Modal Frame Example` does not exist
 When I switch to frame located `id(parent)`
 Then text `Modal Frame Example` exists</code></pre>
@@ -3233,7 +3233,7 @@ Then text `New Window` exists</code></pre>
 <div class="listingblock">
 <div class="title">Example 41. Wait for tab and switch to it</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/windows.html`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/windows.html`
 When I click on element located by `id(timeout)`
 When I wait `PT3S` until tab with title that is equal to `Vividus test site` appears and switch to it</code></pre>
 </div>
@@ -4373,7 +4373,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <div class="listingblock">
 <div class="title">Example 68. Validate timings</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
 Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
 </div>

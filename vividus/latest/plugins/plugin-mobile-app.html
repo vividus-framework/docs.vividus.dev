@@ -3968,7 +3968,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 <div class="listingblock">
 <div class="title">Example 71. Validate timings</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site.onrender.com/`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
 Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
 </div>
