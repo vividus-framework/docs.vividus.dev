@@ -631,7 +631,7 @@ corresponding plugins articles).</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The expression parameters marked with <strong>bold</strong> are mandatory.
+The expression arguments marked with <strong>bold</strong> are mandatory.
 </td>
 </tr>
 </table>
@@ -648,22 +648,22 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"><code>#{generate(<strong>&lt;expression&gt;</strong>)}</code></code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"><code>#{generate(<strong>$data-provider-and-its-arguments</strong>)}</code></code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$expression</code></strong> - one of the <a href="https://www.datafaker.net/documentation/providers/">data providers</a>,
-its dot-separated method and space separated parameters wrapped into single
-quotes (for majority of cases parameters are not needed, their number and
+<p><strong><code>$data-provider-and-its-arguments</code></strong> - one of the <a href="https://www.datafaker.net/documentation/providers/">data providers</a>,
+its dot-separated method and space separated arguments wrapped into single
+quotes (for majority of cases arguments are not needed, their number and
 possible values depend on the chosen data provider method).</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Below you can find a complete list of the supported expressions with results
-examples. Descriptions of the data providers and their parameters can be found
+examples. Descriptions of the data providers and their arguments can be found
 <a href="https://www.datafaker.net/documentation/providers/">in DataFaker documentation</a>:
 click on the data provider name to find details.</p>
 </div>
@@ -5144,7 +5144,7 @@ a=rtpmap:0 PCMU/8000</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Available parameters for the chosen <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.6.0/datafaker-1.6.0-javadoc.jar/!/net/datafaker/Internet.html#password-int-int-boolean-">method</a>.
+<td>Available arguments for the chosen <a href="https://s01.oss.sonatype.org/service/local/repositories/releases/archive/net/datafaker/datafaker/1.6.0/datafaker-1.6.0-javadoc.jar/!/net/datafaker/Internet.html#password-int-int-boolean-">method</a>.
 <div class="paragraph">
 <p>There are three of them:</p>
 </div>
@@ -5753,7 +5753,7 @@ Possible output is <code>51gVj5aLZY</code></p>
 </ul>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. Examples of rounding operations with different parameters</caption>
+<caption class="title">Table 11. Examples of rounding operations with different arguments</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
