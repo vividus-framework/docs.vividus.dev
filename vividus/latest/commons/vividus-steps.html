@@ -1177,7 +1177,7 @@ The error will stop steps execution in case if unsupported condition value is pr
 <div class="listingblock">
 <div class="title">Example 15. Click on the element if parent element is found</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 |step                                                                   |
 |When I click on element located by `xpath(//*[@class='innerElement'])` |</code></pre>
@@ -1186,11 +1186,11 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 <div class="listingblock">
 <div class="title">Example 16. Click on the element if parent element is found and the element itself is presented on the page</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `By.xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 {headerSeparator=!, valueSeparator=!}
 !step                                                                                                                       !
-!When I save number of elements located `By.xpath(//*[@class='innerElement'])` to SCENARIO variable `numberOfInnerElements` !
+!When I save number of elements located by `xpath(//*[@class='innerElement'])` to SCENARIO variable `numberOfInnerElements` !
 !When the condition '#{eval(${numberOfInnerElements} == 1)}' is true I do                                                   !
 !|step                                                                                                                     |!
 !|When I click on element located by `xpath(//*[@class='innerElement'])`                                                   |!</code></pre>
