@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Steps deprecation procedure :: VIVIDUS</title>
+    <title>Steps Deprecation :: VIVIDUS</title>
     <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/developer-guides/deprecating-steps.html">
     <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -438,6 +438,9 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="deprecating-steps.html">Steps deprecation</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -562,7 +565,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li><a href="deprecating-steps.html">Steps deprecation procedure</a></li>
+    <li>Developer Guides</li>
+    <li><a href="deprecating-steps.html">Steps deprecation</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -609,7 +613,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Steps deprecation procedure</h1>
+<h1 class="page">Steps Deprecation</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -632,7 +636,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deprecate_code_steps"><a class="anchor" href="#_deprecate_code_steps"></a>Deprecate code steps</h2>
+<h2 id="_deprecate_code_steps"><a class="anchor" href="#_deprecate_code_steps"></a>Deprecate Code Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For deprecation of Java code steps use annotation <code>@Replacement</code> with the following mandatory parameters:</p>
@@ -650,17 +654,17 @@
 <div class="listingblock">
 <div class="title">Example 1. /src/main/java/com/mycompany/steps/MySteps.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">    @Deprecated(since = "0.5.0", forRemoval = true)
-    @Replacement(versionToRemoveStep = "0.6.0", replacementFormatPattern = "Given the step with parameters `%2$s` and `%1$s`")
-    @Given(value = "the step with parameters '$parameter1' and '$parameter2'", priority = 1)
-    public void givenStep(String parameter1, String parameter2)
-    {
-        // ... step logic
-    }</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Deprecated(since = "0.6.0", forRemoval = true)
+@Replacement(versionToRemoveStep = "0.7.0", replacementFormatPattern = "Given the step with parameters `%2$s` and `%1$s`")
+@Given(value = "the step with parameters '$parameter1' and '$parameter2'", priority = 1)
+public void givenStep(String parameter1, String parameter2)
+{
+    // ... step logic
+}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Deprecated step in story</div>
+<div class="title">Example 2. Deprecated step in story-file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given the step with parameters 'parameter1' and 'parameter2'</code></pre>
 </div>
@@ -668,30 +672,37 @@
 <div class="listingblock">
 <div class="title">Example 3. Output log</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">org.vividus.replacement.DeprecatedCodeStepsReporter - The step: "Given the step with parameters 'parameter1' and 'parameter2'" is deprecated and will be removed in VIVIDUS 0.6.0. Use step: "Given the step with parameters `parameter2` and `parameter1`"</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">org.vividus.replacement.DeprecatedCodeStepsReporter - The step: "Given the step with parameters 'parameter1' and 'parameter2'" is deprecated and will be removed in VIVIDUS 0.7.0. Use step: "Given the step with parameters `parameter2` and `parameter1`"</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_deprecate_composite_steps"><a class="anchor" href="#_deprecate_composite_steps"></a>Deprecate composite steps</h2>
+<h2 id="_deprecate_composite_steps"><a class="anchor" href="#_deprecate_composite_steps"></a>Deprecate Composite Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For deprecation of composite steps use the comment with the special pattern:
-<code>!--\s+DEPRECATED:\s+(.<strong>),\s+(.</strong>)$</code> where the first group is version to remove, the second one is formatter pattern for the actual step.</p>
+<p>For deprecation of composite steps use the comment with the special pattern:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Deprecated composite step in <code>composite.steps</code> file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">!--\s+DEPRECATED:\s+(.*),\s+(.*)$</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where the first group is the version to remove step in, the second one is formatter pattern for the actual step.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Deprecated composite step in steps-file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: Given the step with parameters '$parameter1' and '$parameter2'
-!-- DEPRECATED: 0.6.0, Given the step with parameter `%2$s` and `%1$s`
-Given the step with parameters `&lt;parameter2&gt;` and `&lt;parameter1&gt;`</code></pre>
+!-- DEPRECATED: 0.7.0, Given the step with parameter `%2$s` and `%1$s`
+Given the step with parameters `&lt;parameter1&gt;` and `&lt;parameter2&gt;`</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 5. Output log</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">org.vividus.log.LoggingStoryReporter - The step: "Given the step with parameters 'parameter1' and 'parameter2'" is deprecated and will be removed in VIVIDUS 0.6.0. Use step: "Given the step with parameters `parameter2` and `parameter1`"</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">org.vividus.log.LoggingStoryReporter - The step: "Given the step with parameters 'parameter1' and 'parameter2'" is deprecated and will be removed in VIVIDUS 0.7.0. Use step: "Given the step with parameters `parameter2` and `parameter1`"</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -705,10 +716,10 @@ Given the step with parameters `&lt;parameter2&gt;` and `&lt;parameter1&gt;`</co
 <p>If composite step cannot be deprecated using formatter pattern it still must have the comment with the certain pattern for user notification in step replacer: <code>!--\s+DEPRECATED: The step .* is deprecated and will be removed in .*</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Example:</div>
+<div class="title">Example 6. Deprecated composite step without replacement in steps-file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: When I send HTTP $httpMethod to the relative URL '$relativeURL'
-!-- DEPRECATED: The step "When I send HTTP $httpMethod to the relative URL '$relativeURL'" is deprecated and will be removed in VIVIDUS 0.6.0
+!-- DEPRECATED: The step "When I send HTTP $httpMethod to the relative URL '$relativeURL'" is deprecated and will be removed in VIVIDUS 0.7.0
 When I execute HTTP &lt;httpMethod&gt; request for resource with relative URL `&lt;relativeURL&gt;`</code></pre>
 </div>
 </div>
@@ -719,7 +730,7 @@ When I execute HTTP &lt;httpMethod&gt; request for resource with relative URL `&
 </div>
 </div>
 <div class="sect1">
-<h2 id="_find_deprecated_steps"><a class="anchor" href="#_find_deprecated_steps"></a>Find deprecated steps</h2>
+<h2 id="_find_deprecated_steps"><a class="anchor" href="#_find_deprecated_steps"></a>Find Deprecated Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_in_the_log_duringafter_tests_execution"><a class="anchor" href="#_in_the_log_duringafter_tests_execution"></a>In the log during/after tests execution</h3>
@@ -727,7 +738,7 @@ When I execute HTTP &lt;httpMethod&gt; request for resource with relative URL `&
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">2023-06-12 11:18:31,719 [batch-1-thread-3] INFO  org.vividus.log.LoggingStoryReporter - The step: "When I find greater than `1` JSON elements by `$.store.book` and for each element do
 |step                                                       |
-|Then number of JSON elements by JSON path `$.author` is = 1|" is deprecated and will be removed in VIVIDUS 0.6.0. Use step: "When I find greater than `1` JSON elements from `${json-context}` by `$.store.book` and for each element do
+|Then number of JSON elements by JSON path `$.author` is = 1|" is deprecated and will be removed in VIVIDUS 0.7.0. Use step: "When I find greater than `1` JSON elements from `${json-context}` by `$.store.book` and for each element do
 |step                                                       |
 |Then number of JSON elements by JSON path `$.author` is = 1|"</code></pre>
 </div>
@@ -782,7 +793,7 @@ COMPOSITE IN STEPS FILE  DEPRECATED  When I go to the relative URL '$relativeURL
 <div class="sect2">
 <h3 id="_in_the_documentation"><a class="anchor" href="#_in_the_documentation"></a>In the documentation</h3>
 <div class="paragraph">
-<p>Deprecated steps and their replacements can be found in the documentation using search (<a href="https://docs.vividus.dev/vividus/latest/plugins/plugin-json.html#_save_json_element_value_from_context">example</a>).</p>
+<p>Deprecated steps and their replacements can be found in the documentation using search, for example, <a href="../plugins/plugin-web-app.html#_change_context" class="xref page">this step</a>.</p>
 </div>
 </div>
 </div>
@@ -797,7 +808,7 @@ But if project in initial development phase (has <code>0.y.z</code> version) inc
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/semantic-versions.png" alt="Semantic Versioning">
+<img src="_images/semantic-versions.png" alt="Semantic Versioning" width="50%">
 </div>
 </div>
 <div class="paragraph">
