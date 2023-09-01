@@ -907,6 +907,42 @@ selenium.grid.password=87380d3afd8fd8aed55a
 saucelabs.data-center=US_WEST</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Example 4. Configuration snippet to run mobile app tests using iOS Sumulator on Sauce Labs US West data center</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=saucelabs/mobile_app,mobile_app/ios
+
+selenium.grid.host=ondemand.us-west-1.saucelabs.com
+selenium.grid.username=secretsauce
+selenium.grid.password=87380d3afd8fd8aed55a
+saucelabs.data-center=US_WEST
+
+selenium.grid.device-name=iPhone Simulator
+selenium.grid.appium-version=2.0.0
+selenium.grid.platform-version=16.2
+
+# https://docs.saucelabs.com/mobile-apps/app-storage/
+selenium.grid.capabilities.app=myapp.app</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Configuration snippet to run mobile app tests using Android Emulator on Sauce Labs US West data center</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=saucelabs/mobile_app,mobile_app/android
+
+selenium.grid.host=ondemand.us-west-1.saucelabs.com
+selenium.grid.username=secretsauce
+selenium.grid.password=87380d3afd8fd8aed55a
+saucelabs.data-center=US_WEST
+
+selenium.grid.device-name=Android GoogleAPI Emulator
+selenium.grid.appium-version=2.0.0
+selenium.grid.platform-version=13.0
+
+# https://docs.saucelabs.com/mobile-apps/app-storage/
+selenium.grid.capabilities.app=myapp.apk</code></pre>
+</div>
+</div>
 </div>
 </div>
 </article>
