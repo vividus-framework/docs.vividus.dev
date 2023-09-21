@@ -731,6 +731,70 @@ Then `1` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_viewing_distribution_of_tests_by_priorities"><a class="anchor" href="#_viewing_distribution_of_tests_by_priorities"></a>Viewing distribution of tests by priorities</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Put meta at story or/and scenario level.</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Meta tag name</th>
+<th class="tableblock halign-left valign-top">Allowed values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>@severity</code><br></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This meta tag is deprecated and will be removed in VIVIDUS 0.7.0. Please use <code>@priority</code> meta tag instead.
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric values (range 1-5)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to mark importance of the test where, most usually, the smallest number is the most important test, the highest number is the least important one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@severity 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>@priority</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numeric values (range 1-5)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to mark importance of the test where, most usually, the smallest number is the most important test, the highest number is the least important one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@priority 1</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Run tests.</p>
+</li>
+<li>
+<p>Open the report and find the distribution of tests by priorities at Graphs tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_notifications"><a class="anchor" href="#_notifications"></a>Notifications</h2>
 <div class="sectionbody">
 <div class="paragraph">
