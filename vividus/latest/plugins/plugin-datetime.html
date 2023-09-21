@@ -731,7 +731,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">2-letter language code</a> followed by underscore <code>_</code> and then <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2-letter country code</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>en_US</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The locale used for the resulting date.<br></p>
+<p>The locale used for formatting of the resulting date.<br></p>
 </div>
 <div class="paragraph">
 <p>For example, the date '2022-08-11' with format 'EEE, dd MMM yyyy' will be displayed as</p>
@@ -849,6 +849,47 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="_properties_3"><a class="anchor" href="#_properties_3"></a>Properties</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 25%;">
+<col style="width: 8.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expression.format-date.locale</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">2-letter language code</a> followed by underscore <code>_</code> and then <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">2-letter country code</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>en_US</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The locale used for fromatting of the resulting date.<br></p>
+</div>
+<div class="paragraph">
+<p>For example, the expression <code>#{formatDate(2023-09-21T00:00:00, EEE\, dd MMM yyyy)}</code> will result in</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>'Thu, 21 Sep 2023' for <code>en_US</code> locale</p>
+</li>
+<li>
+<p>'jeu., 21 sept. 2023' for <code>fr_FR</code> locale</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Examples of the expressions formatting dates</caption>
 <colgroup>
@@ -891,7 +932,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-right valign-top"><p class="tableblock">2017-01-13</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy\\,MM\\,dd)}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{formatDate(2017-01-13T09:00:42.862Z, yyyy\,MM\,dd)}</code></p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">2017,01,13</p></td>
 </tr>
 <tr>
@@ -924,6 +965,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_formatdateto"><a class="anchor" href="#_formatdateto"></a>formatDateTo</h3>
