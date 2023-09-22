@@ -815,6 +815,74 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_compare_lighthouse_audit_scores_of_two_pages"><a class="anchor" href="#_compare_lighthouse_audit_scores_of_two_pages"></a>Compare Lighthouse audit scores of two pages</h3>
+<div class="paragraph">
+<p>Performs a Lighthouse scan on both the baseline and checkpoint pages validating that the audit scores of the checkpoint page have not worsened compared to the audit scores of the baseline page.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Properties</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.acceptable-score-percentage-delta</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lighthouse scan results may <a href="https://developers.google.com/web/tools/lighthouse/variability">vary</a> from one scan to another, to alleviate this variety the property enables acceptable percentage delta between checkpoint and baseline audit scores.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then Lighthouse $scanType audit scores for `$checkpointPage` page are not less than for `$baselinePage` page</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scanType</code> - The scan type to use:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>full</code> - The scan is performed on both <code>desktop</code> and <code>mobile</code> devices.</p>
+</li>
+<li>
+<p><code>desktop</code> - The scan is performed on <code>desktop</code> device.</p>
+</li>
+<li>
+<p><code>mobile</code> - The scan is performed on <code>mobile</code> device.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>$checkpointPage</code> - The checkpoint page.</p>
+</li>
+<li>
+<p><code>$baselinePage</code> - The baseline page.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Compare Lighthouse results of two pages</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Then Lighthouse desktop audit scores for `https://www.vividus-reactjs.com/` page are not less than for `https://www.vividus-vuejs.com/` page</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
