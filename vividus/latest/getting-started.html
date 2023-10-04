@@ -995,6 +995,45 @@ Make sure this browser will be used to view test reports only, it&#8217;s not sa
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_option_3_vscode_live_server"><a class="anchor" href="#_option_3_vscode_live_server"></a>Option 3 (VSCode Live Server)</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Visual Studio Code</p>
+</li>
+<li>
+<p>Install <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> extension (to get help on how to install extensions in VSCode please see <a href="https://code.visualstudio.com/docs/editor/extension-marketplace#_install-an-extension">Install an extension</a> guide)</p>
+</li>
+<li>
+<p>Click <code>File &#8594; Open Folder&#8230;&#8203;</code> in VSCode menu and choose the following folder:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/dir/to/where/the/results-are-published/.out/vividus-demo/reports/allure</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open <code>index.html</code> file</p>
+</li>
+<li>
+<p>Click <code>Go Live</code> icon residing on right side of the bottom bar and wait until report is opened</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> extension supports hot reload so you can run the tests and then just refresh report page in the browser to see actual results, however the VSCode session should remain active.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </article>
