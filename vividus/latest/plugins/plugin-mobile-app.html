@@ -888,7 +888,7 @@ Then number of elements found by `anyAttOrText(attribute, with comma\, text)` is
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iosNsPredicate</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iOS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://github.com/appium/appium-xcuitest-driver/blob/master/docs/ios/ios-predicate.md">iOS Predicate Syntax</a> for more details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <a href="https://appium.github.io/appium-xcuitest-driver/5.6/locator-strategies/">iOS Predicate Syntax</a> for more details</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">iosNsPredicate(name BEGINSWITH 'A') or By.iosNsPredicate(name BEGINSWITH 'B')</p></td>
 </tr>
 </tbody>
@@ -1091,11 +1091,11 @@ connect timeout. This flag may be useful when tests are executed via intermitten
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Android</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://appium.io/docs/en/drivers/android-uiautomator2/">UIAutomator2</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/appium/appium-uiautomator2-driver#readme">UIAutomator2</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>iOS</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://appium.io/docs/en/drivers/ios-xcuitest/">XCUITest</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://appium.github.io/appium-xcuitest-driver/">XCUITest</a></p></td>
 </tr>
 </tbody>
 </table></div></td>
@@ -1374,7 +1374,7 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <div class="sect3">
 <h4 id="_mobile_applocal2"><a class="anchor" href="#_mobile_applocal2"></a><code>mobile_app/local2</code></h4>
 <div class="paragraph">
-<p>The profile simplifies configuration of tests execution against the local Appium <a href="https://appium.github.io/appium/docs/en/2.0/guides/migrating-1-to-2/#breaking-changes"><strong>2.x</strong></a> server.</p>
+<p>The profile simplifies configuration of tests execution against the local Appium <a href="https://appium.github.io/appium/docs/en/2.1/guides/migrating-1-to-2/#breaking-changes"><strong>2.x</strong></a> server.</p>
 </div>
 <div class="listingblock">
 <div class="title">Example 7. Configure local execution of the tests for Android native application</div>
@@ -1413,7 +1413,7 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.wda-bundle-id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empty</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The property is for iOS real devices only and it specifies the WebDriverAgent bundle ID used to <a href="http://appium.io/docs/en/commands/device/clipboard/get-clipboard/#description">get clipboard text</a>. The property value may vary depending on test cloud providers and can be found in the XCode logs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The property is for iOS real devices only and it specifies the WebDriverAgent bundle ID used to <a href="https://appium.github.io/appium-xcuitest-driver/5.6/clipboard/#get-clipboard">get clipboard text</a>. The property value may vary depending on test cloud providers and can be found in the XCode logs.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1709,7 +1709,7 @@ Then number of elements found by `accessibilityId(login-button)` is equal to `1`
 <div class="ulist">
 <ul>
 <li>
-<p><code>$settings</code> - <a href="https://appium.io/docs/en/advanced-concepts/settings/#settings">The settings</a> to set.</p>
+<p><code>$settings</code> - The <a href="https://appium.github.io/appium-xcuitest-driver/5.6/settings/">iOS</a> or <a href="https://github.com/appium/appium-uiautomator2-driver#settings-api">Android</a> settings to set.</p>
 </li>
 </ul>
 </div>
@@ -1956,7 +1956,7 @@ It is mandatory for the app bundle to have debugging enabled in order to use the
 <div class="sect2">
 <h3 id="_switch_to_web_view_by_name"><a class="anchor" href="#_switch_to_web_view_by_name"></a>Switch to Web view by name</h3>
 <div class="paragraph">
-<p>Switches context to a web view with name that matches the rule (see <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information). Also, Appium capabilities for <a href="https://github.com/appium/appium-xcuitest-driver#web-context">iOS</a> and <a href="https://github.com/appium/appium-uiautomator2-driver#web-context">Android</a> are available for the fine-tuning configuration.</p>
+<p>Switches context to a web view with name that matches the rule (see <a href="http://appium.io/docs/en/writing-running-appium/web/hybrid/">Automating hybrid apps</a> for more information). Also, Appium capabilities for <a href="https://appium.github.io/appium-xcuitest-driver/5.6/capabilities/#web-context">iOS</a> and <a href="https://github.com/appium/appium-uiautomator2-driver#web-context">Android</a> are available for the fine-tuning configuration.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2120,7 +2120,7 @@ The step is supported for Android and iOS platforms.
 <div class="sect2">
 <h3 id="_press_key"><a class="anchor" href="#_press_key"></a>Press key</h3>
 <div class="paragraph">
-<p>Presses <a href="https://github.com/appium/appium-xcuitest-driver#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
+<p>Presses <a href="https://appium.github.io/appium-xcuitest-driver/5.6/execute-methods/#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2144,7 +2144,7 @@ The step is supported for Android and iOS platforms.
 <div class="sect2">
 <h3 id="_long_press_key"><a class="anchor" href="#_long_press_key"></a>Long press key</h3>
 <div class="paragraph">
-<p>Performs long press of <a href="https://github.com/appium/appium-xcuitest-driver#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
+<p>Performs long press of <a href="https://appium.github.io/appium-xcuitest-driver/5.6/execute-methods/#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2180,7 +2180,7 @@ to modify long press duration for <code>iOS</code> and <code>tvOS</code> you cou
 <div class="sect2">
 <h3 id="_press_keys"><a class="anchor" href="#_press_keys"></a>Press keys</h3>
 <div class="paragraph">
-<p>Presses a sequence of <a href="https://github.com/appium/appium-xcuitest-driver#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
+<p>Presses a sequence of <a href="https://appium.github.io/appium-xcuitest-driver/5.6/execute-methods/#mobile-pressbutton">iOS keys</a> or <a href="https://appium.github.io/java-client/io/appium/java_client/android/nativekey/AndroidKey.html">Android keys</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2748,7 +2748,7 @@ When I wait until element located by `xpath(&lt;welcomeMessageXpath&gt;)` appear
 <p><code>$direction</code> - The direction to search the value: <code>NEXT</code> or <code>PREVIOUS</code>.</p>
 </li>
 <li>
-<p><code>$offset</code> - The ofset to pick from a middle of the wheel, see <a href="https://appium.io/docs/en/writing-running-appium/ios/ios-xctest-mobile-gestures/index.html#mobile-selectpickerwheelvalue">Select Picker Wheel Value guide</a>.</p>
+<p><code>$offset</code> - The ofset to pick from a middle of the wheel, see <a href="https://appium.github.io/appium-xcuitest-driver/5.6/execute-methods/#mobile-selectpickerwheelvalue">Select Picker Wheel Value guide</a>.</p>
 </li>
 <li>
 <p><code>$locator</code> - The locator to find <code>XCUIElementTypePickerWheel</code> element.</p>
