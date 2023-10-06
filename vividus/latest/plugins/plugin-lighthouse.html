@@ -695,7 +695,31 @@ the configuration files for the used IDE and then refresh the project in the use
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.categories</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">comma-separated list of categories (<code>performance</code>, <code>pwa</code>, <code>best-practices</code>, <code>accessibility</code>, <code>seo</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>performance,pwa,best-practices,accessibility,seo</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The audit catigories to run, by default the scan includes all 5 categories, but you can select particular ones depending on which aspects of your website you wish to analyze.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The audit categories to run, by default the scan includes all 5 categories, but you can select particular ones depending on which aspects of your website you wish to analyze.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.performance-validation-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NONE</code>, <code>HIGHEST</code>, <code>LOWEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NONE</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Lighthouse performance scores are changed due to inherent <a href="https://developers.google.com/web/tools/lighthouse/variability">variability</a> in web and network technologies, even if there hasn&#8217;t been a code change, to alleviate these effects this property allows to run several Lighthouse measurements and perform metrics validation on a measurement selected by user.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HIGHEST</code> - validation is performed against Lighthouse measurement with the highest <code>performance score</code>, can be used only if <code>performance</code> category is specified in <code>lighthouse.categories</code> property.</p>
+</li>
+<li>
+<p><code>LOWEST</code> - validation is performed against Lighthouse measurement with the lowest <code>performance score</code>, can be used only if <code>performance</code> category is specified in <code>lighthouse.categories</code> property.</p>
+</li>
+<li>
+<p><code>NONE</code> - Lighthouse measurement is performed only once.</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 </tbody>
 </table>
