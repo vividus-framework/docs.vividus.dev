@@ -698,34 +698,26 @@ the configuration files for the used IDE and then refresh the project in the use
 <td class="tableblock halign-left valign-top"><p class="tableblock">The audit categories to run, by default the scan includes all 5 categories, but you can select particular ones depending on which aspects of your website you wish to analyze.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.performance-validation-strategy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NONE</code>, <code>HIGHEST</code>, <code>LOWEST</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NONE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.performance.percentile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number between 0 and 100 exclusively</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Lighthouse performance scores are changed due to inherent <a href="https://developers.google.com/web/tools/lighthouse/variability">variability</a> in web and network technologies, even if there hasn&#8217;t been a code change, to alleviate these effects this property allows to run several Lighthouse measurements and perform metrics validation on a measurement selected by user.</p>
+<p>Lighthouse performance scores are changed due to inherent <a href="https://developers.google.com/web/tools/lighthouse/variability">variability</a> in web and network technologies, even if there hasn&#8217;t been a code change, to alleviate these effects this property allows to choose a measurement for validation based on the specified percentile.</p>
 </div>
 <div class="paragraph">
-<p>Available options:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>HIGHEST</code> - validation is performed against Lighthouse measurement with the highest <code>performance score</code>, can be used only if <code>performance</code> category is specified in <code>lighthouse.categories</code> property.</p>
-</li>
-<li>
-<p><code>LOWEST</code> - validation is performed against Lighthouse measurement with the lowest <code>performance score</code>, can be used only if <code>performance</code> category is specified in <code>lighthouse.categories</code> property.</p>
-</li>
-<li>
-<p><code>NONE</code> - Lighthouse measurement is performed only once.</p>
-</li>
-</ul>
+<p>This property requires <code>lighthouse.performance.measurements-number</code> to be set.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lighthouse.performance.measurements-number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">positive number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the number of Lighouse measurements performed before validation, the property takes its effect only if <code>lighthouse.performance-validation-strategy</code> is set to either <code>HIGHEST</code> or <code>LOWEST</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies the number of Lighouse measurements performed before validation.</p>
+</div>
+<div class="paragraph">
+<p>This property requires <code>lighthouse.performance.percentile</code> to be set.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
