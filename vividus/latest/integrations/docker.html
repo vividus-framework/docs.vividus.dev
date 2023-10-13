@@ -731,6 +731,104 @@ VIVIDUS Docker image doesn&#8217;t contain any browsers.
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_how_to_build_an_image_with_tests_and_publish_it_to_docker_registry"><a class="anchor" href="#_how_to_build_an_image_with_tests_and_publish_it_to_docker_registry"></a>How to build an image with tests and publish it to Docker registry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The image is built using the <a href="https://hub.docker.com/r/vividus/vividus">VIVIDUS docker image</a> as its base, and its version aligns with the version of VIVIDUS used in the project. The final image name is derived from the project name, and the image tag reflects the version of the tests.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+It&#8217;s advisible to use release versions of VIVIDUS in your project when building images with tests as the previously pulled snapshot version of VIVIDUS docker image used as a base image may differ from the latest snapshot version of VIVIDUS docker image available on Docker Hub.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The building and publishing process is configured using environment variables or <a href="https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties">project properties</a>, please note the configuration defined using environment variables takes precedence over the configuration defined using project properties.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+<th class="tableblock halign-left valign-top">Project property</th>
+<th class="tableblock halign-left valign-top">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_URL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker.registry-url</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of Docker registry to publish image to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REPOSITORY_PATH</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker.repository-path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>For <a href="https://hub.docker.com/">Docker Hub</a> the repository path is the Docker Hub username
+For private docker registries the repository path should follow <code>&lt;registry host&gt;/&lt;repository name&gt;</code> pattern e.g. <code>myapps.jfrog.io/tests-docker-release</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_USERNAME</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The docker registry username, if it&#8217;s set, the password must be specified as well</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_PASSWORD</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Assuming there is a project containing VIVIDUS-based tests (e.g. <a href="https://github.com/vividus-framework/vividus-starter">VIVIDUS Starter</a>)</p>
+</li>
+<li>
+<p>Go to the project root directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd vividus-starter</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Build and publish docker image with tests to docker registry</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./gradlew pushTestsImage</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optionally run the tests from the docker image</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --rm --mount source="&lt;directory to store test results&gt;",target=/vividus/output,type=bind &lt;image name&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
