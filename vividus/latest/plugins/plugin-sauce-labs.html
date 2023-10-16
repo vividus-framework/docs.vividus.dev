@@ -949,6 +949,105 @@ selenium.grid.capabilities.app=myapp.apk</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_sauce_orchestrate"><a class="anchor" href="#_sauce_orchestrate"></a>Sauce Orchestrate</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://docs.saucelabs.com/orchestrate/">Sauce Orchestrate</a> is a new and unique approach to web and mobile application testing that increases test execution speed and enables end-to-end test orchestration.</p>
+</div>
+<div class="paragraph">
+<p>Prerequisites to install:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.saucelabs.com/dev/cli/saucectl/">saucectl</a></p>
+</li>
+<li>
+<p><a href="https://www.docker.com/get-started/">Docker</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>How to run VIVIDUS steps using Sauce Orchestrate:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the project root directory.</p>
+</li>
+<li>
+<p>Build a docker image with tests and push it to a docker registry as described in this <a href="../integrations/docker.html#_how_to_build_an_image_with_tests_and_publish_it_to_docker_registry" class="xref page">article</a>.</p>
+</li>
+<li>
+<p>Create a <code>.sauce/config.yml</code> file in the project root with the following content:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1alpha
+kind: imagerunner
+sauce:
+  region: us-west-1
+suites:
+  - name: VIVIDUS test suite
+    workload: webdriver
+    resourceProfile: c2m2
+    # replace the image value with the actual one
+    image: vividus.jfrog.io/tests-docker-release/vividus-sample-tests:0.1.0-SNAPSHOT
+    imagePullAuth:
+      user: $DOCKER_REGISTRY_USERNAME
+      token: $DOCKER_REGISTRY_PASSWORD
+    artifacts:
+      - '/vividus/output/reports/*'
+
+artifacts:
+  cleanup: true
+  download:
+    when: always
+    match:
+      - "*"
+    directory: ./report</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Please see <a href="https://docs.saucelabs.com/orchestrate/saucectl-configuration/">saucectl configuration</a> for more details.</p>
+</li>
+<li>
+<p>Make sure <code>region</code> configuration value corresponds to the region specified by the <code>saucelabs.data-center</code> property, please see <a href="https://docs.saucelabs.com/orchestrate/saucectl-configuration/#region">region</a> docs for mapping.</p>
+</li>
+<li>
+<p>The <code>DOCKER_REGISTRY_USERNAME</code> and <code>DOCKER_REGISTRY_PASSWORD</code> are expected to be set during the 2nd step of the guide.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Start tests by using <code>saucectl</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">saucectl run</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait until the tests run is finished and see <code>report</code> folder in the project root for reports.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
