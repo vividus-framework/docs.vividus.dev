@@ -6619,6 +6619,46 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 </div>
 </div>
 <div class="sect3">
+<h4 id="_wait_for_alert_appearance"><a class="anchor" href="#_wait_for_alert_appearance"></a>Wait for alert appearance</h4>
+<div class="paragraph">
+<p>Waits for an <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> appearance on the current page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until alert appears</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 125. Wait untill an alert appear after click on the button</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
+When I wait until alert appears
+Then an alert is present</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_alert_disappearance"><a class="anchor" href="#_wait_for_alert_disappearance"></a>Wait for alert disappearance</h4>
+<div class="paragraph">
+<p>Waits for an <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> disappearance from the current page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until alert disappears</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 126. Wait untill an alert disappear after it is accepted</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
+Then an alert is present
+When I accept alert with message which matches `.*`
+When I wait until alert disappears
+Then an alert is not present</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_verify_that_an_alert_is_present"><a class="anchor" href="#_verify_that_an_alert_is_present"></a>Verify that an alert is present</h4>
 <div class="paragraph">
 <p>Checks that there is <a href="https://www.w3schools.com/js/js_popup.asp">popup alert</a> on the page.</p>
@@ -6629,7 +6669,7 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 125. Check that an alert appears after clicking on the button</div>
+<div class="title">Example 127. Check that an alert appears after clicking on the button</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
 Then an alert is present</code></pre>
@@ -6647,11 +6687,64 @@ Then an alert is present</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 126. Check that an alert doesn&#8217;t appear on the page</div>
+<div class="title">Example 128. Check that an alert doesn&#8217;t appear on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 Then an alert is not present</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_a_frame_with_the_specified_name_and_switch_to_it"><a class="anchor" href="#_wait_for_a_frame_with_the_specified_name_and_switch_to_it"></a>Wait for a frame with the specified name and switch to it</h3>
+<div class="paragraph">
+<p>Waits for a frame with the specified name to appear and then switches to it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until frame with name `$frameName` appears and I switch to it</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$frameName</code> - The name or ID of the expected frame.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 129. Wait for a frame with <code>cookieFrame</code> name and switch to it</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
+When I wait until frame with name `cookieFrame` appears and I switch to it</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_specific_title_of_the_current_page"><a class="anchor" href="#_wait_for_specific_title_of_the_current_page"></a>Wait for specific title of the current page</h3>
+<div class="paragraph">
+<p>Waits until the current page <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">title</a> matches the certain title using specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until page title $comparisonRule `$pattern`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The expected title pattern of the current page.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 130. Check that current title ends with "Domain"</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
+When I wait until page title matches `.*Domain`</code></pre>
 </div>
 </div>
 </div>
@@ -6666,7 +6759,7 @@ Then an alert is not present</code></pre>
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 127. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 131. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -6686,7 +6779,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 128. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 132. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -6706,7 +6799,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 129. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 133. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
