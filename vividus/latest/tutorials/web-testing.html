@@ -2276,7 +2276,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 <div class="listingblock">
 <div class="title">Example 26. Script type check</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `xpath(//script):a` and for each element do
 |step                                                                                      |
 |When I set 'type' attribute value of the context element to the 'scenario' variable 'type'|
 |Then `${type}` is equal to `text/javascript`                                              |</code></pre>

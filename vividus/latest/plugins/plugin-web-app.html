@@ -2995,7 +2995,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 <div class="listingblock">
 <div class="title">Example 36. Script type check</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `By.xpath(//script):a` and for each element do
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `xpath(//script):a` and for each element do
 |step                                                                                      |
 |When I set 'type' attribute value of the context element to the 'scenario' variable 'type'|
 |Then `${type}` is equal to `text/javascript`                                              |</code></pre>
@@ -3890,9 +3890,9 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="listingblock">
 <div class="title">Example 58. Change context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)` in scope of current context
-Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 </div>
@@ -3924,9 +3924,9 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="listingblock">
 <div class="title">Example 59. Change context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
-Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 </div>
@@ -3943,11 +3943,11 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="listingblock">
 <div class="title">Example 60. Reset context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
-Then number of elements found by `By.xpath(html)` is equal to `0`
+Then number of elements found by `xpath(html)` is equal to `0`
 When I reset context
-Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>

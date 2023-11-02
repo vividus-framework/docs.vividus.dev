@@ -3458,9 +3458,9 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 <div class="listingblock">
 <div class="title">Example 61. Change context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)` in scope of current context
-Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 </div>
@@ -3492,9 +3492,9 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="listingblock">
 <div class="title">Example 62. Change context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
-Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </div>
 </div>
 </div>
@@ -3511,11 +3511,11 @@ Then number of elements found by `By.xpath(html)` is equal to `0`</code></pre>
 <div class="listingblock">
 <div class="title">Example 63. Reset context</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `By.xpath(html)` is equal to `1`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I change context to element located by `xpath(//body)`
-Then number of elements found by `By.xpath(html)` is equal to `0`
+Then number of elements found by `xpath(html)` is equal to `0`
 When I reset context
-Then number of elements found by `By.xpath(html)` is equal to `1`</code></pre>
+Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>
