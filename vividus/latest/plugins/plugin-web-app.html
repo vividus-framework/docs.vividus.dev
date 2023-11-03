@@ -6756,6 +6756,66 @@ When I wait until page title matches `.*Domain`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_slider_steps"><a class="anchor" href="#_slider_steps"></a>Slider steps</h3>
+<div class="paragraph">
+<p>Steps allow to interact with <a href="https://www.w3schools.com/jsref/dom_obj_range.asp">slider</a> (input element with type = "range").</p>
+</div>
+<div class="sect3">
+<h4 id="_set_value_in_the_slider"><a class="anchor" href="#_set_value_in_the_slider"></a>Set value in the slider</h4>
+<div class="paragraph">
+<p>Set the specified value in the slider.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value `$value` in slider located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$value</code> - The value to set in the slider. In most cases, it is a numeric value in the range of [0, 100].</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find a slider.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 131. Set the value into the middle of the slider</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value `50` in slider located by `id(test_slider)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_check_value_of_the_slider"><a class="anchor" href="#_check_value_of_the_slider"></a>Check value of the slider</h4>
+<div class="paragraph">
+<p>Check that the actual value in the slider equals to the value provided in the step.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then value `$value` is selected in slider located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$value</code> - The expected value in the slider. In most cases, it is a numeric value in the range of [0, 100].</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find a slider.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 132. Check that the value is set in the middle of the slider</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then value `50` is selected in slider located by `id(test_slider)`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -6767,7 +6827,7 @@ When I wait until page title matches `.*Domain`</code></pre>
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 131. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 133. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -6787,7 +6847,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 132. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 134. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -6807,7 +6867,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 133. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 135. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
