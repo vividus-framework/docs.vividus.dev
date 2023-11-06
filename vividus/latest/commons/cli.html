@@ -612,23 +612,45 @@ on the file system.</p>
 <div class="sect2">
 <h3 id="_treat_known_issues_only_as_a_positive_result"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
-<p>Known issues occurred during stories run fail the overall test execution with the corresponding <a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a> by default. Use the following property in order to not treat known issues as failures:</p>
+<p>Any known issues detected during stories run fail the overall execution with the corresponding
+<a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
+known issues as failures:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Enable treating of known issues as positive result for current stories run</div>
+<div class="title">Example 5. Enable treating of known issues as a positive result for current stories run</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PtreatKnownIssuesOnlyAsPassed=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories --treat-known-issues-only-as-passed</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The treating of known issues as passed can be enabled globally for project by adding the following line into the
-<code>build.gradle</code> file of the tests project:</p>
+<p>The treating of known issues as a positive result can be enabled globally at the project level by adding the following
+line into the <code>build.gradle</code> file of the tests project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Enable treating of known issues as positive result for stories runs at project level</div>
+<div class="title">Example 6. Enable treating of known issues as positive result for stories exeuctions at the project level</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure to put the configuration below the line configuring the project tasks, namely:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">apply from: "$\{buildSystemPath\}/vividus-test-project.gradle"
+...</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -655,13 +677,13 @@ on the file system.</p>
 <div class="listingblock">
 <div class="title">Example 9. Write the exit code to a file by an absolute path via the project property</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCoded ='/user/dir/exitCode.txt'</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode ='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 10. Write an exit code to file with a path related to the project build directory via project property</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCoded = '/exitCode.txt'
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode = '/exitCode.txt'
 runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 </div>
 </div>
@@ -678,35 +700,57 @@ and tests state on the file system.</p>
 <div class="listingblock">
 <div class="title">Example 11. macOS / Linux:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 12. Windows:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew debugStories</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories</code></pre>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_treat_known_issues_only_as_a_positive_result_2"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result_2"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
-<p>Known issues occurred during stories run fail the overall test execution with the corresponding <a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a> by default. Use the following property in order to not treat known issues as failures:</p>
+<p>Any known issues detected during stories run fail the overall execution with the corresponding
+<a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
+known issues as failures:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Enable treating of known issues as positive result for current debug run</div>
+<div class="title">Example 13. Enable treating of known issues as a positive result for current stories run</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PtreatKnownIssuesOnlyAsPassed=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories --treat-known-issues-only-as-passed</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The treating of known issues as passed can be enabled globally for project by adding the following line into the
-<code>build.gradle</code> file of the tests project:</p>
+<p>The treating of known issues as a positive result can be enabled globally at the project level by adding the following
+line into the <code>build.gradle</code> file of the tests project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Enable treating of known issues as positive result for debug runs at project level</div>
+<div class="title">Example 14. Enable treating of known issues as positive result for stories exeuctions at the project level</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure to put the configuration below the line configuring the project tasks, namely:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">apply from: "$\{buildSystemPath\}/vividus-test-project.gradle"
+...</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -717,13 +761,13 @@ and tests state on the file system.</p>
 <div class="listingblock">
 <div class="title">Example 15. Write exit code to a file by an absolute path via CLI</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 16. Write an exit code to a file with a path related to the project build directory via CLI</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew debugStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -733,14 +777,14 @@ and tests state on the file system.</p>
 <div class="listingblock">
 <div class="title">Example 17. Write the exit code to a file by an absolute path via the project property</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.fileToSaveExitCoded ='/user/dir/exitCode.txt'</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode ='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Example 18. Write an exit code to file with a path related to the project build directory via project property</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">debugStories.fileToSaveExitCoded = '/exitCode.txt'
-debugStories.resolvePathAgainstProjectBuildDir = true</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode = '/exitCode.txt'
+runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 </div>
 </div>
 </div>
