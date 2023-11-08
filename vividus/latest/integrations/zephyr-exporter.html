@@ -817,11 +817,30 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=tru
 </div>
 </li>
 <li>
-<p>In case of two-factor authentication or any other complex authentication process it&#8217;s possible to set session cookies into request headers like the following example shows (<code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties must be empty in this case).</p>
+<p>In case of two-factor authentication, token authentication or any other complex authentication process it&#8217;s possible to use request headers like the following example shows:</p>
 <div class="listingblock">
+<div class="title">Example 2. Authenticate using Bearer token</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Authorization=Bearer D5YY0qJDxFDOZjCEpINMTdcQQxNtATrMw/IAsyWI+CzE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Authenticate using session cookies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Both <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties must be empty in this case.
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ul>
@@ -858,7 +877,7 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=tru
 <h2 id="_example_of_scenario_for_export"><a class="anchor" href="#_example_of_scenario_for_export"></a>Example of scenario for export</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Example 2. Test.story</div>
+<div class="title">Example 4. Test.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta:

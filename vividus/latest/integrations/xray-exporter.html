@@ -947,11 +947,30 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=tru
 </div>
 </li>
 <li>
-<p>In case of two-factor authentication or any other complex authentication process it&#8217;s possible to set session cookies into request headers like the following example shows (<code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties must be empty in this case).</p>
+<p>In case of two-factor authentication, token authentication or any other complex authentication process it&#8217;s possible to use request headers like the following example shows:</p>
 <div class="listingblock">
+<div class="title">Example 5. Authenticate using Bearer token</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Authorization=Bearer D5YY0qJDxFDOZjCEpINMTdcQQxNtATrMw/IAsyWI+CzE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Authenticate using session cookies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Both <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> and <code>jira.&lt;jira instance key placeholder&gt;.http.auth.password</code> properties must be empty in this case.
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ul>
@@ -1016,7 +1035,7 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=tru
 <p>Any scenario that doesn&#8217;t correspond to the <a href="#_manual_test_cases">manual test case rules</a> is considered as automated test case.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Automated.story</div>
+<div class="title">Example 7. Automated.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-231
@@ -1032,7 +1051,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. AutomatedWithManualPart.story</div>
+<div class="title">Example 8. AutomatedWithManualPart.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-566
@@ -1075,7 +1094,7 @@ Examples:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Manual.story</div>
+<div class="title">Example 9. Manual.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseId TEST-435
