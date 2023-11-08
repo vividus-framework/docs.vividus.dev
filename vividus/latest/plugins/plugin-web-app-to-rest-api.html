@@ -952,6 +952,85 @@ URLs without extensions will always be crawled.</p></td>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Resource validation statuses:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FAILED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request to the resource returns a status code other than <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BROKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an HTTP request to the page under test returns an empty HTTP response body;</p>
+</li>
+<li>
+<p>an HTTP request to the page under test results in unexpected error;</p>
+</li>
+<li>
+<p>the relative page URL can not be resolved because the <code>web-application.main-page-url</code> property is not set;</p>
+</li>
+<li>
+<p>the resource has invalid URL format;</p>
+</li>
+<li>
+<p>the resource is missing <code>href</code> or <code>src</code> attributes;</p>
+</li>
+<li>
+<p>the resource has <code>href</code> or <code>src</code> attribute but its value is not a valid URL;</p>
+</li>
+<li>
+<p>the resource is a jump link that points to non-existent jump target.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PASSED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request to the resource returns <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> status code.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FILTERED</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the resource path matches the patterns specified by the <code>resource-checker.uri-to-ignore-regex</code> property;</p>
+</li>
+<li>
+<p>the resource path is equal to <code>#</code> (anchor);</p>
+</li>
+<li>
+<p>the resource is not a HTTP(S) resource.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SKIPPED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A resource validation has already been performed, i.e. if the same resource might be present on several pages so we do not need to validate it twice.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` are valid on:$pages</code></pre>
