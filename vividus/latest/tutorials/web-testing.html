@@ -1232,62 +1232,52 @@ For the full list of web-related steps, please see <a href="../plugins/plugin-we
 </table>
 </div>
 <div class="sect2">
-<h3 id="_page_steps"><a class="anchor" href="#_page_steps"></a>Page steps</h3>
+<h3 id="_navigation"><a class="anchor" href="#_navigation"></a>Navigation</h3>
 <div class="sect3">
-<h4 id="_open_main_application_page"><a class="anchor" href="#_open_main_application_page"></a>Open main application page</h4>
+<h4 id="_open_application"><a class="anchor" href="#_open_application"></a>Open application</h4>
 <div class="paragraph">
-<p>Loading the page which was associated with the main application page.</p>
-</div>
-<div class="paragraph">
-<p>Main page can be set by the property <code>web-application.main-page-url</code> in the property file.</p>
+<p>Navigates to the page which was configured as the main application page in the property with name
+<code>web-application.main-page-url</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on main application page</code></pre>
 </div>
 </div>
-<div class="listingblock">
-<div class="title">Example 3. Open page defined in the <code>web-application.main-page-url</code> variable</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on main application page</code></pre>
-</div>
-</div>
 </div>
 <div class="sect3">
-<h4 id="_open_a_page_with_defined_url"><a class="anchor" href="#_open_a_page_with_defined_url"></a>Open a page with defined URL</h4>
+<h4 id="_open_the_page_by_url"><a class="anchor" href="#_open_the_page_by_url"></a>Open the page by URL</h4>
 <div class="paragraph">
-<p>Loading the page with a given absolute URL, e.g. <em><a href="https://example.com/" class="bare">https://example.com/</a></em>.</p>
+<p>Navigates to the page with the given absolute URL, e.g. <code><a href="https://docs.vividus.dev/" class="bare">https://docs.vividus.dev/</a></code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `$pageURL`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `$pageUrl`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Open 'https://docs.vividus.dev/' page</div>
+<div class="title">Example 3. Open the page with URL <code><a href="https://docs.vividus.dev/" class="bare">https://docs.vividus.dev/</a></code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_open_page_with_relative_url"><a class="anchor" href="#_open_page_with_relative_url"></a>Open page with relative URL</h4>
+<h4 id="_navigate_to_the_page_by_relative_url"><a class="anchor" href="#_navigate_to_the_page_by_relative_url"></a>Navigate to the page by relative URL</h4>
 <div class="paragraph">
-<p>Navigates the browser to the specific path in the current host defined in the <em>relative URL</em> step parameter.</p>
+<p>Navigates to the page with the given relative URL.</p>
 </div>
-<div class="paragraph">
-<p>A relative URL can point to a file within a web site (like <code>about.html</code> or <code>/products</code>).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I go to relative URL `$relativeUrl`</code></pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If the parameter starts with '/' char, navigation will be performed from the root of the host, see examples below.</p>
-</li>
-<li>
-<p>If the parameter starts without '/' char or with './', navigation will be performed from the current path directory.</p>
-</li>
-</ul>
-</div>
+<p><code>relativeUrl</code> - A relative URL pointing to a resource within a website (e.g. <code>about.html</code> or <code>/products</code>). If the
+relative URL starts with '/' char, the navigation will be performed from the root. Otherwise the navigation will be
+performed from the current URL path.</p>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Examples</caption>
 <colgroup>
@@ -1297,9 +1287,9 @@ For the full list of web-related steps, please see <a href="../plugins/plugin-we
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Current page</th>
+<th class="tableblock halign-left valign-top">Current page URL</th>
 <th class="tableblock halign-left valign-top">Relative URL parameter</th>
-<th class="tableblock halign-left valign-top">Opened page</th>
+<th class="tableblock halign-left valign-top">Resulting page URL</th>
 </tr>
 </thead>
 <tbody>
@@ -1330,28 +1320,13 @@ For the full list of web-related steps, please see <a href="../plugins/plugin-we
 </tr>
 </tbody>
 </table>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I go to relative URL `$relativeURL`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>relativeURL</code> - A string value of the relative URL.</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open main application page and then navigate to '/products/new' page on the application host</p>
-</li>
-</ol>
-</div>
 </li>
 </ul>
 </div>
 <div class="listingblock">
+<div class="title">Example 4. Open main application page and then navigate to '/products/new' page</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on main application page
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on main application page
 When I go to relative URL `/products/new`</code></pre>
 </div>
 </div>
@@ -1359,7 +1334,7 @@ When I go to relative URL `/products/new`</code></pre>
 <div class="sect3">
 <h4 id="_refresh_the_page"><a class="anchor" href="#_refresh_the_page"></a>Refresh the page</h4>
 <div class="paragraph">
-<p>Refreshes the page: the step does the same as the reload button in the browser.</p>
+<p>Reloads the current page: does the same as the reload button in the browser.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1368,9 +1343,21 @@ When I go to relative URL `/products/new`</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_validate_the_page_title"><a class="anchor" href="#_validate_the_page_title"></a>Validate the page title</h4>
+<h4 id="_navigate_back"><a class="anchor" href="#_navigate_back"></a>Navigate back</h4>
 <div class="paragraph">
-<p>Checks the page title matches to the text according to the provided string validation rule</p>
+<p>Navigates back to the previous page: does the same as the back button in the browser.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I navigate back</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_the_page_title"><a class="anchor" href="#_validate_the_page_title"></a>Validate the page title</h3>
+<div class="paragraph">
+<p>Checks the page title matches the text according to the provided validation rule.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1380,23 +1367,23 @@ When I go to relative URL `/products/new`</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$comparisonRule</code> - string validation rule. One of:</p>
+<p><code>$comparisonRule</code> - The page title validation rule. One of the following options:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>is equal to</code> - title should be equal to <code>text</code></p>
+<p><code>is equal to</code> - validate the page title is equal to <code>$text</code> parameter,</p>
 </li>
 <li>
-<p><code>contains</code> - title should contain <code>text</code></p>
+<p><code>contains</code> - validate the page title title contains the string from <code>$text</code> parameter,</p>
 </li>
 <li>
-<p><code>does not contain</code> - title should not contain <code>text</code></p>
+<p><code>does not contain</code> - validate the page title title does not contain the value from <code>$text</code> parameter.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>text</code> - the text of the title to compare</p>
+<p><code>$text</code> - The text to match according to the rule.</p>
 </li>
 </ul>
 </div>
@@ -1410,7 +1397,6 @@ When I go to relative URL `/products/new`</code></pre>
 <div class="title">Example 6. Validate the part of 'https://docs.vividus.dev/' page title</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page title contains `VIVIDUS`</code></pre>
-</div>
 </div>
 </div>
 </div>
