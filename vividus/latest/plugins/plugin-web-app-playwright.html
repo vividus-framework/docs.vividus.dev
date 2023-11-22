@@ -677,6 +677,45 @@ Playwright captures a set of complete DOM snapshots for each action.</p></td>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_locator"><a class="anchor" href="#_locator"></a>Locator</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_locator_types"><a class="anchor" href="#_locator_types"></a>Locator Types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 50%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose <code>id</code> attribute matches the search value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id(submitBtn)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>css</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching a <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">CSS selector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">css(.menu-item)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching an <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">xPath expression</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -805,7 +844,7 @@ When I go to relative URL `/products/new`</code></pre>
 <div class="sect2">
 <h3 id="_validate_the_page_title"><a class="anchor" href="#_validate_the_page_title"></a>Validate the page title</h3>
 <div class="paragraph">
-<p>Checks the page title matches the text according to the provided validation rule.</p>
+<p>Checks the page title matches the text according to the given validation rule.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -845,6 +884,99 @@ When I go to relative URL `/products/new`</code></pre>
 <div class="title">Example 5. Validate the part of 'https://docs.vividus.dev/' page title</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page title contains `VIVIDUS`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mouse_actions"><a class="anchor" href="#_mouse_actions"></a>Mouse Actions</h3>
+<div class="sect3">
+<h4 id="_click_on_the_element"><a class="anchor" href="#_click_on_the_element"></a>Click on the element</h4>
+<div class="paragraph">
+<p>Finds the element by the given locator and performs a click in the center of the element if it&#8217;s found
+(at first moves mouse to the location of the element).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element to click.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Click on element with name <code>Submit</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `name(Submit)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_right_click_on_the_element"><a class="anchor" href="#_right_click_on_the_element"></a>Right-click on the element</h4>
+<div class="paragraph">
+<p>Finds the element by the given locator and performs a right-click in the center of the element if it&#8217;s found
+(at first moves mouse to the location of the element).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I perform right-click on element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I perform right click on element located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element to right-click.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Right-click on the element with <code>id</code> attribute having value <code>clickme</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I perform right-click on element located by `id(clickme)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hover_mouse_over_the_element"><a class="anchor" href="#_hover_mouse_over_the_element"></a>Hover mouse over the element</h4>
+<div class="paragraph">
+<p>Finds the element by the given locator and moves a mouse cursor over the center of the element, if it&#8217;s found.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element to hover mouse over.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Hover mouse over element with <code>id</code> attribute having value <code>tooltip</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located by `id(tooltip)`</code></pre>
+</div>
 </div>
 </div>
 </div>
