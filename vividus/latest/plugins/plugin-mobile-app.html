@@ -1487,7 +1487,9 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_start_mobile_application"><a class="anchor" href="#_start_mobile_application"></a>Start mobile application</h3>
+<h3 id="_application_management"><a class="anchor" href="#_application_management"></a>Application management</h3>
+<div class="sect3">
+<h4 id="_start_mobile_application"><a class="anchor" href="#_start_mobile_application"></a>Start mobile application</h4>
 <div class="paragraph">
 <p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user.</p>
 </div>
@@ -1497,8 +1499,8 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_start_mobile_application_with_capabilities"><a class="anchor" href="#_start_mobile_application_with_capabilities"></a>Start mobile application with capabilities</h3>
+<div class="sect3">
+<h4 id="_start_mobile_application_with_capabilities"><a class="anchor" href="#_start_mobile_application_with_capabilities"></a>Start mobile application with capabilities</h4>
 <div class="paragraph">
 <p>Starts mobile application with capabilities from user&#8217;s <code>*.properties</code> files and profiles set by a user.
 Additionally the step takes a list of capabilities as an argument that overrides globally-defined capabilities.</p>
@@ -1526,8 +1528,8 @@ have higher priority than capabilities defined in <code>*.properties</code> file
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_activate_mobile_application"><a class="anchor" href="#_activate_mobile_application"></a>Activate mobile application</h3>
+<div class="sect3">
+<h4 id="_activate_mobile_application"><a class="anchor" href="#_activate_mobile_application"></a>Activate mobile application</h4>
 <div class="paragraph">
 <p>Activates the existing application on the device/emulator/simulator and moves
 it to the foreground. The application should be already running in order to
@@ -1552,8 +1554,8 @@ activate it.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_reinstall_mobile_application"><a class="anchor" href="#_reinstall_mobile_application"></a>Reinstall mobile application</h3>
+<div class="sect3">
+<h4 id="_reinstall_mobile_application"><a class="anchor" href="#_reinstall_mobile_application"></a>Reinstall mobile application</h4>
 <div class="paragraph">
 <p>Removes the mobile application from device/emulator/simulator and installs it again.</p>
 </div>
@@ -1592,8 +1594,8 @@ Given I start mobile application with capabilities:
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_terminate_mobile_application"><a class="anchor" href="#_terminate_mobile_application"></a>Terminate mobile application</h3>
+<div class="sect3">
+<h4 id="_terminate_mobile_application"><a class="anchor" href="#_terminate_mobile_application"></a>Terminate mobile application</h4>
 <div class="paragraph">
 <p>Terminates the running application on the device/emulator/simulator and
 navigates to the home device screen. The remote session will not be closed.</p>
@@ -1617,8 +1619,8 @@ navigates to the home device screen. The remote session will not be closed.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_close_mobile_application"><a class="anchor" href="#_close_mobile_application"></a>Close mobile application</h3>
+<div class="sect3">
+<h4 id="_close_mobile_application"><a class="anchor" href="#_close_mobile_application"></a>Close mobile application</h4>
 <div class="paragraph">
 <p>Closes the mobile application and quits the remote session.</p>
 </div>
@@ -1628,8 +1630,8 @@ navigates to the home device screen. The remote session will not be closed.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_run_mobile_application_in_background"><a class="anchor" href="#_run_mobile_application_in_background"></a>Run mobile application in background</h3>
+<div class="sect3">
+<h4 id="_run_mobile_application_in_background"><a class="anchor" href="#_run_mobile_application_in_background"></a>Run mobile application in background</h4>
 <div class="paragraph">
 <p>Runs mobile application in the background for specific period of time and either activates the app after a certain amount of time, or leave the app deactivated (when PT-1S is used). See <a href="https://appium.io/docs/en/commands/device/app/background-app/">Appium docs</a> for more details.</p>
 </div>
@@ -1651,16 +1653,6 @@ navigates to the home device screen. The remote session will not be closed.</p>
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send mobile application to background for `PT5S` period
 Then number of elements found by `accessibilityId(login-button)` is equal to `1`</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_navigate_back"><a class="anchor" href="#_navigate_back"></a>Navigate back</h3>
-<div class="paragraph">
-<p>Navigates back to the previous view.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I navigate back</code></pre>
 </div>
 </div>
 </div>
@@ -1691,7 +1683,9 @@ Then number of elements found by `accessibilityId(login-button)` is equal to `1`
 </div>
 </div>
 <div class="sect2">
-<h3 id="_upload_a_file_to_the_device"><a class="anchor" href="#_upload_a_file_to_the_device"></a>Upload a file to the device</h3>
+<h3 id="_device_file_management"><a class="anchor" href="#_device_file_management"></a>Device file management</h3>
+<div class="sect3">
+<h4 id="_upload_a_file_to_the_device"><a class="anchor" href="#_upload_a_file_to_the_device"></a>Upload a file to the device</h4>
 <div class="paragraph">
 <p>Uploads a file to the device/emulator/simulator.</p>
 </div>
@@ -1727,8 +1721,8 @@ Then the avatar icon is displayed with the uploaded image</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_upload_the_file_with_data_to_the_device"><a class="anchor" href="#_upload_the_file_with_data_to_the_device"></a>Upload the file with data to the device</h3>
+<div class="sect3">
+<h4 id="_upload_the_file_with_data_to_the_device"><a class="anchor" href="#_upload_the_file_with_data_to_the_device"></a>Upload the file with data to the device</h4>
 <div class="paragraph">
 <p>Upload the file with data to the device/emulator/simulator.</p>
 </div>
@@ -1775,8 +1769,8 @@ Then message file is displayed in file explorer</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_delete_a_file_from_the_device"><a class="anchor" href="#_delete_a_file_from_the_device"></a>Delete a file from the device</h3>
+<div class="sect3">
+<h4 id="_delete_a_file_from_the_device"><a class="anchor" href="#_delete_a_file_from_the_device"></a>Delete a file from the device</h4>
 <div class="paragraph">
 <p>Deletes a file from the device/emulator/simulator.</p>
 </div>
@@ -1858,8 +1852,8 @@ accomplish it by deleting following files: <strong>/Media/PhotoData/Photos.sqlit
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_download_the_file_from_the_device"><a class="anchor" href="#_download_the_file_from_the_device"></a>Download the file from the device</h3>
+<div class="sect3">
+<h4 id="_download_the_file_from_the_device"><a class="anchor" href="#_download_the_file_from_the_device"></a>Download the file from the device</h4>
 <div class="paragraph">
 <p>Downloads the file from the device/emulator/simulator and saves its content to a variable.</p>
 </div>
@@ -1921,6 +1915,118 @@ It is mandatory for the app bundle to have debugging enabled in order to use the
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_context_management"><a class="anchor" href="#_context_management"></a>Context management</h3>
+<div class="paragraph">
+<p>The term "context" or "search context" refers to the area within which the element lookup is performed. By changing
+the context during the process of locating elements, it is possible to significantly streamline the creation and
+maintenance of tests. This helps to build more efficient and effective test cases, reducing the time spent interacting
+with unnecessary elements or searching the entire screen for the desired element.</p>
+</div>
+<div class="sect3">
+<h4 id="_change_context"><a class="anchor" href="#_change_context"></a>Change context</h4>
+<div class="paragraph">
+<p>Resets the context, finds the element by the given locator and sets the context to this element if it&#8217;s found.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element to change context to.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 22. Change context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `id(header)` is equal to `1`
+When I change context to element located by `id(table)`
+Then number of elements found by `id(header)` is equal to `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_change_context_within_current_context"><a class="anchor" href="#_change_context_within_current_context"></a>Change context within current context</h4>
+<div class="paragraph">
+<p>Finds the element by the given locator in the current context and sets the context to this element if it&#8217;s found.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator` in scope of current context</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator` in scope of current context</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element to change context to.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 23. Change context in scope of the current context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `id(header)` is equal to `1`
+When I change context to element located by `id(table)`
+Then number of elements found by `id(header)` is equal to `0`
+When I change context to element located `id(first-row)` in scope of current context
+Then number of elements found by `id(table)` is equal to `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reset_context"><a class="anchor" href="#_reset_context"></a>Reset context</h4>
+<div class="paragraph">
+<p>Resets the context if it was set previously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset context</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 24. Reset context behaviour</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `id(header)` is equal to `1`
+When I change context to element located by `id(table)`
+Then number of elements found by `id(header)` is equal to `0`
+When I reset context
+Then number of elements found by `id(header)` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_navigate_back"><a class="anchor" href="#_navigate_back"></a>Navigate back</h3>
+<div class="paragraph">
+<p>Navigates back to the previous view.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I navigate back</code></pre>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_switch_to_web_view_by_name"><a class="anchor" href="#_switch_to_web_view_by_name"></a>Switch to Web view by name</h3>
 <div class="paragraph">
@@ -1942,7 +2048,7 @@ It is mandatory for the app bundle to have debugging enabled in order to use the
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Switch to web view by name</div>
+<div class="title">Example 25. Switch to web view by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `0`
 When I switch to web view with name that contains `vividustestapp`
@@ -1961,7 +2067,7 @@ Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Switch to native context</div>
+<div class="title">Example 26. Switch to native context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I switch to native context
@@ -2000,7 +2106,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Tap on element</div>
+<div class="title">Example 27. Tap on element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located by `accessibilityId(menu-toggler)`</code></pre>
 </div>
@@ -2043,7 +2149,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Tap on element with duration</div>
+<div class="title">Example 28. Tap on element with duration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located by `accessibilityId(menu-toggler)` with duration `PT0.5S`</code></pre>
 </div>
@@ -2079,7 +2185,7 @@ The step is supported for Android and iOS platforms.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Double tap on element</div>
+<div class="title">Example 29. Double tap on element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I double tap on element located by `accessibilityId(increment)`</code></pre>
 </div>
@@ -2103,7 +2209,7 @@ The step is supported for Android and iOS platforms.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Go to Home screen</div>
+<div class="title">Example 30. Go to Home screen</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press Home key</code></pre>
 </div>
@@ -2139,7 +2245,7 @@ to modify long press duration for <code>iOS</code> and <code>tvOS</code> you cou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Go to Home screen</div>
+<div class="title">Example 31. Go to Home screen</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I long press Home key</code></pre>
 </div>
@@ -2163,7 +2269,7 @@ to modify long press duration for <code>iOS</code> and <code>tvOS</code> you cou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Enter password</div>
+<div class="title">Example 32. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press keys:
 |key|
@@ -2205,7 +2311,7 @@ All the characters will be treated as is and passed sequentially. To send specia
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Enter password</div>
+<div class="title">Example 33. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type text `pas1$`</code></pre>
 </div>
@@ -2272,7 +2378,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Type text</div>
+<div class="title">Example 34. Type text</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type `Bob` in field located `accessibilityId(username)`</code></pre>
 </div>
@@ -2299,7 +2405,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Type text and keep keyboard opened</div>
+<div class="title">Example 35. Type text and keep keyboard opened</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type `Bob` in field located `accessibilityId(username)` and keep keyboard opened</code></pre>
 </div>
@@ -2351,7 +2457,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Clear the field</div>
+<div class="title">Example 36. Clear the field</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located `accessibilityId(username)`</code></pre>
 </div>
@@ -2375,7 +2481,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Clear text and keep keyboard open</div>
+<div class="title">Example 37. Clear text and keep keyboard open</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located `accessibilityId(username)` and keep keyboard open</code></pre>
 </div>
@@ -2437,7 +2543,7 @@ the element, you need to switch the context to this element.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Swipe to an element</div>
+<div class="title">Example 38. Swipe to an element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `accessibilityId(end-of-screen)` is equal to `0`
 When I swipe UP to element located by `accessibilityId(end-of-screen)` with duration PT1S
@@ -2445,7 +2551,7 @@ Then number of elements found by `accessibilityId(end-of-screen)` is equal to `1
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Swipe the context element</div>
+<div class="title">Example 39. Swipe the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Switch slides
 When I change context to element located by `accessibilityId(carousel)`
@@ -2534,7 +2640,7 @@ sequence of actions:`TAP_AND_HOLD` &#8594; <code>MOVE_BY_OFFSET</code> &#8594; <
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Execute touch actions</div>
+<div class="title">Example 40. Execute touch actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of touch actions:
 |type          |argument          |
@@ -2656,7 +2762,7 @@ the element, you need to switch the context to this element.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Property configuration</div>
+<div class="title">Example 41. Property configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">mobile-application.zoom.indent.top=30
 mobile-application.zoom.indent.bottom=30
@@ -2680,7 +2786,7 @@ mobile-application.zoom.indent.left=20</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Zoom in/out</div>
+<div class="title">Example 42. Zoom in/out</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I zoom in context
 When I wait until element located by `xpath(&lt;welcomeMessageXpath&gt;)` disappears
@@ -2724,7 +2830,7 @@ When I wait until element located by `xpath(&lt;welcomeMessageXpath&gt;)` appear
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Select next item in the picker wheel</div>
+<div class="title">Example 43. Select next item in the picker wheel</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select next value with `0.1` offset in picker wheel located `xpath(//XCUIElementTypePickerWheel)-&gt;filter.index(3)`</code></pre>
 </div>
@@ -2777,7 +2883,7 @@ When I stop recording `$instrument` metrics and save results to file `$path`</co
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Perform profiling during application usage</div>
+<div class="title">Example 44. Perform profiling during application usage</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start recording `Time Profiler` metrics
 !-- set of actions to measure performance
@@ -2821,19 +2927,19 @@ When I stop recording `Time Profiler` metrics and save results to file `${output
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Set value of iOS slider (with range 0:50) to 45</div>
+<div class="title">Example 45. Set value of iOS slider (with range 0:50) to 45</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `90` percents</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Set value of iOS slider (with range -50:50) to 20</div>
+<div class="title">Example 46. Set value of iOS slider (with range -50:50) to 20</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `70` percents</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Set value of iOS slider (with range 18:65) to 55</div>
+<div class="title">Example 47. Set value of iOS slider (with range 18:65) to 55</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `80` percents</code></pre>
 </div>
@@ -2876,19 +2982,19 @@ When I stop recording `Time Profiler` metrics and save results to file `${output
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Set value of Android slider (with range 0:50) to 13</div>
+<div class="title">Example 48. Set value of Android slider (with range 0:50) to 13</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `13`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Set value of Android slider (with range -50:50) to -25</div>
+<div class="title">Example 49. Set value of Android slider (with range -50:50) to -25</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `25`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Set value of Android slider (with range 18:65) to 20</div>
+<div class="title">Example 50. Set value of Android slider (with range 18:65) to 20</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `2`</code></pre>
 </div>
@@ -2956,7 +3062,7 @@ The full path to the file with the taken screenshot is posted to logs and report
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Take a screenshot and save it to the file</div>
+<div class="title">Example 51. Take a screenshot and save it to the file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to file at path `${screenshot-directory}/start-page.png`</code></pre>
 </div>
@@ -2993,7 +3099,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Wait for appearance of the element with the specified name</div>
+<div class="title">Example 52. Wait for appearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` appears</code></pre>
 </div>
@@ -3042,7 +3148,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Wait for disappearance of the element with the specified name</div>
+<div class="title">Example 53. Wait for disappearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` disappears</code></pre>
 </div>
@@ -3075,7 +3181,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Verify that the element become invisible up to 10 times</div>
+<div class="title">Example 54. Verify that the element become invisible up to 10 times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT10S` with `PT1S` polling until element located by `id(element-to-hide)` becomes not visible</code></pre>
 </div>
@@ -3117,13 +3223,13 @@ In order to wait for invisible elements one rely on <a href="#_visibility_types"
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Wait for the visible elements</div>
+<div class="title">Example 55. Wait for the visible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img)` is equal to `5`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Wait for the invisible elements</div>
+<div class="title">Example 56. Wait for the invisible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img):1` is equal to `5`</code></pre>
 </div>
@@ -3159,7 +3265,7 @@ An element is considered <em>moving</em> when its coordinates (position) are cha
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Wait for element with the specified id to stop moving</div>
+<div class="title">Example 57. Wait for element with the specified id to stop moving</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(submitForm)` stops moving</code></pre>
 </div>
@@ -3189,7 +3295,7 @@ An element is considered <em>moving</em> when its coordinates (position) are cha
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 55. Verify the number of elements</div>
+<div class="title">Example 58. Verify the number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `tagName(img)` is equal to `5`</code></pre>
 </div>
@@ -3249,7 +3355,7 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 56. Verify the number of elements in the state</div>
+<div class="title">Example 59. Verify the number of elements in the state</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
@@ -3279,7 +3385,7 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 57. Save the text of H1 element</div>
+<div class="title">Example 60. Save the text of H1 element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of element located by `tagName(h1)` to scenario variable `headingText`</code></pre>
 </div>
@@ -3318,7 +3424,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Save the text of the context element</div>
+<div class="title">Example 61. Save the text of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save text of context element to SCENARIO variable `username`</code></pre>
@@ -3361,7 +3467,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 59. Save the attribute value of the context element</div>
+<div class="title">Example 62. Save the attribute value of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
@@ -3443,99 +3549,10 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 60. Save number of elements</div>
+<div class="title">Example 63. Save number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `tagName(a)` to scenario variable `numberOfLinks`
 Then `${numberOfLinks}` is equal to `1`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_change_context"><a class="anchor" href="#_change_context"></a>Change context</h3>
-<div class="paragraph">
-<p>Changes the context to an element located by locator for limiting area of subsequent UI interactions.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator` in scope of current context</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator` in scope of current context</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 61. Change context</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
-When I change context to element located by `xpath(//body)` in scope of current context
-Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reset_and_change_context"><a class="anchor" href="#_reset_and_change_context"></a>Reset and change context</h3>
-<div class="paragraph">
-<p>Resets current context and changes the context to an element located by locator for limiting area of subsequent UI interactions.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `$locator`</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `$locator`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 62. Change context</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
-When I change context to element located by `xpath(//body)`
-Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reset_context"><a class="anchor" href="#_reset_context"></a>Reset context</h3>
-<div class="paragraph">
-<p>Resets the context.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset context</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 63. Reset context</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
-When I change context to element located by `xpath(//body)`
-Then number of elements found by `xpath(html)` is equal to `0`
-When I reset context
-Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>
