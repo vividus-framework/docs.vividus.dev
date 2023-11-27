@@ -1080,6 +1080,119 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_input_fields_interactions"><a class="anchor" href="#_input_fields_interactions"></a>Input Fields Interactions</h3>
+<div class="paragraph">
+<p>Fields are elements where users can enter data. The most typical fields are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.w3schools.com/tags/tag_input.asp"><code>&lt;input&gt;</code></a> elements,</p>
+</li>
+<li>
+<p><a href="https://www.w3schools.com/tags/tag_textarea.asp"><code>&lt;textarea&gt;</code></a> elements,</p>
+</li>
+<li>
+<p><code>[contenteditable]</code> elements (e.g CKE editors, they are usually located via <code>&lt;body&gt;</code> tag, that is placed in a frame as a separate HTML document).</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_enter_text_in_field"><a class="anchor" href="#_enter_text_in_field"></a>Enter text in field</h4>
+<div class="paragraph">
+<p>Enter the text in the field found by the given locator.</p>
+</div>
+<div class="paragraph">
+<p>The atomic actions performed are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>find the field by the locator;</p>
+</li>
+<li>
+<p>clear the field if it is found, otherwise the whole step is failed and its execution stops;</p>
+</li>
+<li>
+<p>type the text in the field.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I enter `$text` in field located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - The text to enter in the field.</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the field to enter the text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Type text <code>pa$$w0rd</code> in the field with attribute <code>id</code> having value <code>password</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I enter `pa$$w0rd` in field located by `id(password)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_text_to_field"><a class="anchor" href="#_add_text_to_field"></a>Add text to field</h4>
+<div class="paragraph">
+<p>Enters the text in the field, found by the given locator, without clearing the previous content.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `$text` to field located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - The text to add to the field.</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the field to add the text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Add text <code>name</code> to the field with attribute <code>id</code> having value <code>username</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add `name` to field located by `id(username)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clear_field"><a class="anchor" href="#_clear_field"></a>Clear field</h4>
+<div class="paragraph">
+<p>Finds the field by the given locator and clears it if it&#8217;s found.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the field to clear.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Clear the field with attribute <code>id</code> having value <code>email</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located by `id(email)`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
