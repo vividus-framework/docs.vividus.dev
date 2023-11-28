@@ -6875,6 +6875,53 @@ being treated as a literal replacement string. Dollar signs may be treated as re
 </div>
 </div>
 <div class="sect1">
+<h2 id="_decryption"><a class="anchor" href="#_decryption"></a>Decryption</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_decrypt"><a class="anchor" href="#_decrypt"></a><code>decrypt</code></h3>
+<div class="paragraph">
+<p>Decrypts an input string using the same algrotihm and password employed for
+the <a href="../secrets-management.html#_how_to_use_an_encrypted_string" class="xref page">decryption</a> of properties.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{decrypt(<strong>$encryptedInput</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$encryptedInput</code></strong> - any string to be decrypted.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 31. Examples of the expression doing decryption with encryption password equal to <code>12345</code></caption>
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>#{decrypt(7K9wRym/gaD8mFSqZ6KALLnrE6vPhsBaxKIcN9g4d9w=)}</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>The Show Must Go On</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
 <div class="sectionbody">
 <div class="sect2">
