@@ -1114,6 +1114,12 @@ No HTTP request header is set in the case of binary content.
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: $content</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Example 7. Alias syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:`$content`</code></pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1122,19 +1128,25 @@ No HTTP request header is set in the case of binary content.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Set textual HTTP request body</div>
+<div class="title">Example 8. Set textual HTTP request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: Hello!</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Set binary HTTP request body</div>
+<div class="title">Example 9. Set binary HTTP request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: #{loadBinaryResource(/data/image.png)}
 When I set request headers:
 |name        |value    |
 |Content-Type|image/png|
 When I execute HTTP POST request for resource with relative URL `/upload/png`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Set an ampty string as HTTP request body</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body:``</code></pre>
 </div>
 </div>
 </div>
@@ -1182,7 +1194,7 @@ parameter is not allowed for <code>STRING</code> part type, but it&#8217;s requi
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Init HTTP request consisting of 4 different parts</div>
+<div class="title">Example 11. Init HTTP request consisting of 4 different parts</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `temp-file-content` with value `Your first and last stop for No-Code Test Automation!`
 When I create temporary file with name `abc.txt` and content `${temp-file-content}` and put path to scenario variable `temp-file-path`
@@ -1215,7 +1227,7 @@ In case if <code>Content-Type</code> is <code>text/plain</code> <a href="#_set_h
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Set form data HTTP request body</div>
+<div class="title">Example 12. Set form data HTTP request body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given form data request:
 |name     |value  |
@@ -1255,7 +1267,7 @@ The added HTTP headers are scoped to the first performed HTTP request and not av
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Add request header with name <code>Accept-Language</code> and value <code>en-us</code></div>
+<div class="title">Example 13. Add request header with name <code>Accept-Language</code> and value <code>en-us</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add request headers:
 |name           |value |
@@ -1296,7 +1308,7 @@ The added HTTP headers are scoped to the first performed HTTP request and not av
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Set request header with name <code>Content-Type</code> and value <code>application/json</code></div>
+<div class="title">Example 14. Set request header with name <code>Content-Type</code> and value <code>application/json</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set request headers:
 |name        |value           |
@@ -1331,7 +1343,7 @@ dynamic variables.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Execute HTTP GET request</div>
+<div class="title">Example 15. Execute HTTP GET request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`</code></pre>
 </div>
@@ -1360,13 +1372,13 @@ accessed via the corresponding steps and dynamic variables.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Configuration</div>
+<div class="title">Example 16. Configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">rest-api.http.endpoint=https://httpbin.org</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Execute HTTP GET request</div>
+<div class="title">Example 17. Execute HTTP GET request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with relative URL `/image/jpeg`</code></pre>
 </div>
@@ -1393,7 +1405,7 @@ accessed via the corresponding steps and dynamic variables.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Compare images</div>
+<div class="title">Example 18. Compare images</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/image/png`
 Then response body is equal to resource at `/images/pig.png`</code></pre>
@@ -1421,7 +1433,7 @@ Then response body is equal to resource at `/images/pig.png`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Validate the resource is not found</div>
+<div class="title">Example 19. Validate the resource is not found</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cfa2fdbc`
 Then response code is equal to `404`</code></pre>
@@ -1449,7 +1461,7 @@ Then response code is equal to `404`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Check HTTP response time</div>
+<div class="title">Example 20. Check HTTP response time</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`
 Then response time is less than `1000` milliseconds</code></pre>
@@ -1480,7 +1492,7 @@ Then response time is less than `1000` milliseconds</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Check the browser is forced to use a secure web connection</div>
+<div class="title">Example 21. Check the browser is forced to use a secure web connection</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of response headers with name `Strict-Transport-Security` is equal to 1</code></pre>
 </div>
@@ -1510,7 +1522,7 @@ Then response time is less than `1000` milliseconds</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Check HTTP response content type</div>
+<div class="title">Example 22. Check HTTP response content type</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/robots.txt`
 Then value of response header `Content-Type` is equal to `text/plain`</code></pre>
@@ -1524,7 +1536,7 @@ Then value of response header `Content-Type` is equal to `text/plain`</code></pr
 headers as <code>Set-Cookie</code> that have values that can be decomposed into multiple elements.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. HTTP header with elements format</div>
+<div class="title">Example 23. HTTP header with elements format</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">header = [ element ] *( "," [ element ] )</code></pre>
 </div>
@@ -1545,7 +1557,7 @@ headers as <code>Set-Cookie</code> that have values that can be decomposed into 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Check attributes of Set-Cookie header</div>
+<div class="title">Example 24. Check attributes of Set-Cookie header</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/authenticate`
 Then response header `Set-Cookie` contains elements:
@@ -1579,7 +1591,7 @@ Then response header `Set-Cookie` contains elements:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Save Content-Length header value</div>
+<div class="title">Example 25. Save Content-Length header value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/brotli`
 When I save response header `Content-Length` value to scenario variable `length`</code></pre>
@@ -1604,7 +1616,7 @@ When I save response header `Content-Length` value to scenario variable `length`
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Check that the httpbin is secured</div>
+<div class="title">Example 26. Check that the httpbin is secured</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/`
 Then connection is secured using TLSv1.2 protocol</code></pre>
@@ -1654,7 +1666,7 @@ Then connection is secured using TLSv1.2 protocol</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Wait for presence of element 10 times with polling timeout between requests 5 seconds</div>
+<div class="title">Example 27. Wait for presence of element 10 times with polling timeout between requests 5 seconds</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.unstableElement` for `PT50S` duration retrying 10 times
 |step                                                                                    |
@@ -1702,7 +1714,7 @@ Then connection is secured using TLSv1.2 protocol</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Wait for presence of element by JSON path $.data.testData</div>
+<div class="title">Example 28. Wait for presence of element by JSON path $.data.testData</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for presence of element by `$.data.testData` with `PT5S` polling interval retrying 10 times
 |step                                  |
@@ -1738,7 +1750,7 @@ Then connection is secured using TLSv1.2 protocol</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
+<div class="title">Example 29. Validate the server supports TLSv1.2 and TLSv1.3 protocols</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then server `vividus-test-site-a92k.onrender.com` supports secure protocols that contain `TLSv1.2,TLSv1.3`</code></pre>
 </div>
@@ -1771,7 +1783,7 @@ Then connection is secured using TLSv1.2 protocol</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Wait until HTTP GET request returns status code 200</div>
+<div class="title">Example 30. Wait until HTTP GET request returns status code 200</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait for response code `200` for `PT10S` duration retrying 3 times
 |step                                                                               |
@@ -1800,7 +1812,7 @@ Then connection is secured using TLSv1.2 protocol</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Submit a GET request and check that response body type is <code>application/json</code></div>
+<div class="title">Example 31. Submit a GET request and check that response body type is <code>application/json</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Then content type of response body is equal to `application/json`</code></pre>
@@ -1818,7 +1830,7 @@ Then content type of response body is equal to `application/json`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Submit a POST request and check that response body is absent</div>
+<div class="title">Example 32. Submit a POST request and check that response body is absent</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP POST request for resource with URL `https://httpbin.org/json`
 Then response does not contain body</code></pre>
@@ -1846,7 +1858,7 @@ Then response does not contain body</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Submit a GET request and check that response body size is greater or equal to <code>1200</code> bytes</div>
+<div class="title">Example 33. Submit a GET request and check that response body size is greater or equal to <code>1200</code> bytes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com`
 Then size of decompressed response body is greater than or equal to `1200`</code></pre>
@@ -1929,7 +1941,7 @@ i.e. it&#8217;s not required to install any plugin to use this step - it&#8217;s
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Verify HTTP resources</div>
+<div class="title">Example 34. Verify HTTP resources</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then HTTP resources are valid:
 | url                                                         |
@@ -1967,7 +1979,7 @@ i.e. it&#8217;s not required to install any plugin to use this step - it&#8217;s
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
+<div class="title">Example 35. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
@@ -1996,7 +2008,7 @@ Then '${value}' is equal to 'cookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
+<div class="title">Example 36. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I change value of all HTTP cookies with name `cookieName` to `newCookieValue`
@@ -2113,7 +2125,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
+<div class="title">Example 37. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `header` with value `{"typ":"JWT","alg":"HS256"}`
 Given I initialize scenario variable `payload` with value `{"sub":"1234567890","name":"John Doe","admin":true,"jti":"c6859320-9fb3-4784-8c2f-1ab37044acfc","iat":#{toEpochSecond(#{generateDate(P, yyyy-MM-dd'T'HH:mm:ss)})},"exp":#{toEpochSecond(#{generateDate(P1D, yyyy-MM-dd'T'HH:mm:ss)})}}`
@@ -2133,7 +2145,7 @@ When I generate JWT with header `${header}` and payload `${payload}` signed with
 data in conjunction with any step responsible for data validation like data comparison, JSON, XML and other steps.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Validate response body</div>
+<div class="title">Example 38. Validate response body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Then JSON element from `${response}` by JSON path `$.slideshow` is equal to `
@@ -2168,7 +2180,7 @@ in conjunction with the <a href="#_http_response_as_text">response</a> dynamic v
 subsequent HTTP call rewrites previously received response data.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Save response body into variable</div>
+<div class="title">Example 39. Save response body into variable</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Given I initialize scenario variable `json` with value `${response}`</code></pre>
