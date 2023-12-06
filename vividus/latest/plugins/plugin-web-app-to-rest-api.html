@@ -923,7 +923,7 @@ URLs without extensions will always be crawled.</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p><code>web-application.main-page-url</code> - defines main application page URL</p>
+<p><code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> - defines main application page URL</p>
 </li>
 </ul>
 </div>
@@ -1052,45 +1052,12 @@ URLs without extensions will always be crawled.</p></td>
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_validate_resources"><a class="anchor" href="#_validate_resources"></a>Validate resources</h3>
+<h3 id="_resources_validations"><a class="anchor" href="#_resources_validations"></a>Resources validations</h3>
 <div class="paragraph">
-<p>Validates resources on web pages</p>
+<p>Steps to check resource availability using HTTP requests.</p>
 </div>
-<div class="paragraph">
-<p>Resource validation logic:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>If the <code>pages</code> row contains relative URL then it gets resolved against URL in <code>web-application.main-page-url</code> property, i.e. if the main page URL is <code><a href="https://elderscrolls.bethesda.net/" class="bare">https://elderscrolls.bethesda.net/</a></code> and relative URL is <code>/skyrim10</code> the resulting URL will be <code><a href="https://elderscrolls.bethesda.net/skyrim10" class="bare">https://elderscrolls.bethesda.net/skyrim10</a></code></p>
-</li>
-<li>
-<p>Collect elements by the CSS selector from each page</p>
-</li>
-<li>
-<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails</p>
-</li>
-<li>
-<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
-</li>
-<li>
-<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
-</li>
-<li>
-<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Resource validation statuses:</p>
-</div>
+<div class="sect3">
+<h4 id="_resource_validation_statuses"><a class="anchor" href="#_resource_validation_statuses"></a>Resource validation statuses</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -1121,7 +1088,7 @@ URLs without extensions will always be crawled.</p></td>
 <p>an HTTP request to the page under test results in unexpected error;</p>
 </li>
 <li>
-<p>the relative page URL can not be resolved because the <code>web-application.main-page-url</code> property is not set;</p>
+<p>the relative page URL can not be resolved because the <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property is not set;</p>
 </li>
 <li>
 <p>the resource has invalid URL format;</p>
@@ -1167,6 +1134,44 @@ URLs without extensions will always be crawled.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_validate_resources_on_web_pages"><a class="anchor" href="#_validate_resources_on_web_pages"></a>Validate resources on web pages</h4>
+<div class="paragraph">
+<p>Validates resources on web pages.</p>
+</div>
+<div class="paragraph">
+<p>Resource validation logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the <code>pages</code> row contains relative URL then it gets resolved against URL in <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property, i.e. if the main page URL is <code><a href="https://elderscrolls.bethesda.net/" class="bare">https://elderscrolls.bethesda.net/</a></code> and relative URL is <code>/skyrim10</code> the resulting URL will be <code><a href="https://elderscrolls.bethesda.net/skyrim10" class="bare">https://elderscrolls.bethesda.net/skyrim10</a></code></p>
+</li>
+<li>
+<p>Collect elements by the CSS selector from each page</p>
+</li>
+<li>
+<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails</p>
+</li>
+<li>
+<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
+</li>
+<li>
+<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
+</li>
+<li>
+<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` are valid on:$pages</code></pre>
@@ -1175,10 +1180,10 @@ URLs without extensions will always be crawled.</p></td>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>$cssSelector</code> - The <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a></p>
+<p><code>$cssSelector</code> - The <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a>.</p>
 </li>
 <li>
-<p><code>$pages</code> - The pages to validate resources on</p>
+<p><code>$pages</code> - The pages to validate resources on.</p>
 </li>
 </ol>
 </div>
@@ -1189,6 +1194,63 @@ URLs without extensions will always be crawled.</p></td>
 |pages                        |
 |https://vividus.org/         |
 |/test-automation-made-awesome|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_resources_from_html"><a class="anchor" href="#_validate_resources_from_html"></a>Validate resources from HTML</h4>
+<div class="paragraph">
+<p>Validates resources from HTML document.</p>
+</div>
+<div class="paragraph">
+<p>Resource validation logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Collects elements by the CSS selector from the specified HTML document</p>
+</li>
+<li>
+<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails. If the element value contains relative URL then it gets resolved against URL in <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property</p>
+</li>
+<li>
+<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
+</li>
+<li>
+<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
+</li>
+<li>
+<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` from $html are valid</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$cssSelector</code> - <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a>.</p>
+</li>
+<li>
+<p><code>$html</code> - HTML document to validate.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Validate resources from the current page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `a,img` from ${source-code} are valid</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1235,7 +1297,7 @@ The step throws the error in case if <a href="https://developer.mozilla.org/en-U
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate redirects</div>
+<div class="title">Example 9. Validate redirects</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I validate HTTP redirects:
 |startUrl                    |endUrl                          |redirectsNumber |
@@ -1292,7 +1354,7 @@ The step throws the error in case if <a href="https://developer.mozilla.org/en-U
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 9. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
+<div class="title">Example 10. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then SSL rating for URL `https://www.google.com` is equal to `B`</code></pre>
 </div>
