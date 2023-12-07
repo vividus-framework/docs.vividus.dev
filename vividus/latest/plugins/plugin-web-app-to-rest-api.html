@@ -750,14 +750,37 @@ the configuration files for the used IDE and then refresh the project in the use
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of relative URLs, a seed URL is a URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.exclude-extensions-regex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.exclude-urls-regex</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Regular expression
 a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(css|gif|gz|ico|jpeg|jpg|js|mp3|mp4|pdf|png|svg|zip|woff2
-|woff|ttf|doc|docx|xml|json|webmanifest)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.*(css|gif|gz|ico|jpeg|jpg|js|mp3|mp4|pdf|png|svg|zip|woff2
+|woff|ttf|doc|docx|xml|json|webmanifest)$</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression to match URLs.
+The crawler will not crawl all URLs that matching the given regular expression and they will not be added to the resulting table.
+<a href="https://en.wikipedia.org/wiki/URI_fragment">URI fragments</a> and <a href="https://en.wikipedia.org/wiki/Query_string">URL query</a> are ignored at filtering.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>transformer.from-headless-crawling.exclude-extensions-regex</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The property is deprecated in favor of <code>transformer.from-headless-crawling.exclude-urls-regex</code> and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regular expression</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no default value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression to match extensions in URLs.
-The crawler will ignore all URLs referring to files with extensions matching the given regular expression.
-URLs without extensions will always be crawled.</p></td>
+The crawler will ignore all URLs referring to files with extensions matching the given regular expression.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.filter-redirects</code></p></td>
