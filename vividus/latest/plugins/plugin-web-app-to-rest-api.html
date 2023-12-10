@@ -978,7 +978,53 @@ The crawler will ignore all URLs referring to files with extensions matching the
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageUrl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the page to build the table upon.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The URL of the page to build the table upon.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>pageUrl</code> parameter is deprecated and will be removed in VIVIDUS 0.7.0, please use <code>variableName</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>pageUrl</code> parameter can not be used together with the <code>variableName</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variableName</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the variable containing source HTML, only variables of scopes <code>global</code> and <code>next_batches</code> are allowed.
+Exceptions are cases when the transformer using in <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a>
+which initializes a variable with a table.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>variableName</code> parameter can not be used together with the <code>pageUrl</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
