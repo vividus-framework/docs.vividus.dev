@@ -6910,6 +6910,91 @@ When I wait until page title matches `.*Domain`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_mobile_emulation_2"><a class="anchor" href="#_mobile_emulation_2"></a>Mobile Emulation</h3>
+<div class="sect3">
+<h4 id="_emulate_mobile_device"><a class="anchor" href="#_emulate_mobile_device"></a>Emulate mobile device</h4>
+<div class="paragraph">
+<p>Emulates mobile device using the provided configuration.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step is only supported by Chrome browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate mobile device with configuration:`$jsonConfiguration`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsonConfiguration</code> - The JSON containing <a href="https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setDeviceMetricsOverride">device metrics</a> to override.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 135. Emulate iPhone 14 Pro Max</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate mobile device with configuration:`{
+    "width": 430,
+    "height": 932,
+    "deviceScaleFactor": 3,
+    "mobile": true
+}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reset_mobile_device_emulation"><a class="anchor" href="#_reset_mobile_device_emulation"></a>Reset mobile device emulation</h4>
+<div class="paragraph">
+<p>Resets the mobile device emulation returning the browser to its initial state.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step is only supported by Chrome browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step ignores the <code>web/desktop/chrome/mobile_emulation/phone</code> profile settings when returning the browser to its initial state.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset mobile device emulation</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 136. Resets device metrics to defaults</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset mobile device emulation</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -6921,7 +7006,7 @@ When I wait until page title matches `.*Domain`</code></pre>
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 135. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 137. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -6941,7 +7026,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 136. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 138. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -6961,7 +7046,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 137. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 139. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
