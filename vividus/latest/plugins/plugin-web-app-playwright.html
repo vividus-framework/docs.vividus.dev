@@ -1201,6 +1201,148 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_text_content_manupulations"><a class="anchor" href="#_text_content_manupulations"></a>Text content manupulations</h3>
+<div class="sect3">
+<h4 id="_save_the_text_of_an_element"><a class="anchor" href="#_save_the_text_of_an_element"></a>Save the text of an element</h4>
+<div class="paragraph">
+<p>Finds the element by the given locator and saves its text into a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of element located by `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find the element whose text content will be saved.</p>
+</li>
+<li>
+<p><code>$scopes</code> - The comma-separated set of the <a href="../commons/variables.html#_scopes" class="xref page">variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the text content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Save the text of the header element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of element located by `id(header)` to scenario variable `heading-text`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_save_the_text_of_the_context"><a class="anchor" href="#_save_the_text_of_the_context"></a>Save the text of the context</h4>
+<div class="paragraph">
+<p>Saves the text of the context into a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of context to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$scopes</code> - The comma-separated set of the <a href="../commons/variables.html#_scopes" class="xref page">variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the text content.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Save the text of the context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
+When I save text of context element to scneario variable `username`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_text_content_validation"><a class="anchor" href="#_text_content_validation"></a>Text content validation</h3>
+<div class="paragraph">
+<p>The context can be set by the <a href="#_change_context">corresponding steps</a>. If no context is set, the text will be searched across the whole page.</p>
+</div>
+<div class="sect3">
+<h4 id="_validate_the_text_exists"><a class="anchor" href="#_validate_the_text_exists"></a>Validate the text exists</h4>
+<div class="paragraph">
+<p>Validates the text is present in the current context. The expected text is <strong>case-sensitive</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then text `$text` exists</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - The expected text to be found in the context text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Check the text 'Contract Us' is present on the page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
+Then text `Contact Us` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_the_text_does_not_exists"><a class="anchor" href="#_validate_the_text_does_not_exists"></a>Validate the text does not exists</h4>
+<div class="paragraph">
+<p>Validates the text is not present in the current context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then text `$text` does not exist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$text</code> - The text that should not be present in the context.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Check the text 'Deprecated' is not present in the element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(code)`
+Then text `Deprecated` does not exist</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_the_text_matches_regular_expression"><a class="anchor" href="#_validate_the_text_matches_regular_expression"></a>Validate the text matches regular expression</h4>
+<div class="paragraph">
+<p>Validates the text from current context matches the specified regular expression.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then text matches `$regex`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$regex</code> - The <a href="https://www.regular-expressions.info">regular expression</a> used to validate the context text.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 19. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(message)`
+Then text matches `User ".*" successfully logged in`</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
