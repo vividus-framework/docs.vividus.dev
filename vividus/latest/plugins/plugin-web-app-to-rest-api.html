@@ -1247,23 +1247,38 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by $htmlLocatorType `$htmlLocator` are valid on:$pages</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` are valid on:$pages</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
+</li>
+<li>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p><code>$cssSelector</code> - The <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a>.</p>
-</li>
 <li>
 <p><code>$pages</code> - The pages to validate resources on.</p>
 </li>
 </ol>
 </div>
+</li>
+</ul>
+</div>
 <div class="listingblock">
-<div class="title">Example 7. Validate resources</div>
+<div class="title">Example 7. Validate resources located by XPath</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `a` are valid on:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by xpath `//a` are valid on:
 |pages                        |
 |https://vividus.org/         |
 |/test-automation-made-awesome|</code></pre>
@@ -1306,23 +1321,38 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by $htmlLocatorType `$htmlLocator` in $html are valid</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` from $html are valid</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
+</li>
+<li>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p><code>$cssSelector</code> - <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selector</a>.</p>
-</li>
 <li>
 <p><code>$html</code> - HTML document to validate.</p>
 </li>
 </ol>
 </div>
+</li>
+</ul>
+</div>
 <div class="listingblock">
 <div class="title">Example 8. Validate resources from the current page</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `a,img` from ${source-code} are valid</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by CSS selector `a,img` in ${source-code} are valid</code></pre>
 </div>
 </div>
 </div>
@@ -1440,7 +1470,7 @@ The step throws the error in case if <a href="https://developer.mozilla.org/en-U
 </main>
 </div>
 <footer class="footer" style="padding: 0.25rem">
-  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+  <p>Copyright (C) 2019-2024 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
   <script src="../../../_/js/vendor/lunr.js"></script>

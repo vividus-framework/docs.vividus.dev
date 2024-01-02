@@ -619,16 +619,6 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect1">
-<h2 id="_locators"><a class="anchor" href="#_locators"></a>Locators</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>HTML locators should be used in order to interact with HTML document elements. The following locators are supported:
-- <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a>
-- <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -638,16 +628,16 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by $locatorType `$locator` in HTML `$html` is $comparisonRule `$number`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by $htmlLocatorType `$htmlLocator` in HTML `$html` is $comparisonRule `$number`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
 </li>
 <li>
-<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 </li>
 <li>
 <p><code>$html</code> - The HTML document to validate.</p>
@@ -675,16 +665,16 @@ Then number of elements found by XPath `//h3[contains(., '111122')]` in HTML `${
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element found by $locatorType `$locator` in HTML `$html` contains text `$expectedText`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element found by $htmlLocatorType `$htmlLocator` in HTML `$html` contains text `$expectedText`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
 </li>
 <li>
-<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 </li>
 <li>
 <p><code>$html</code> - The HTML document to validate.</p>
@@ -709,7 +699,7 @@ Then element found by XPath `//h3` in HTML `${response}` contains text `111122`<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element found by $locatorType `$locator` in HTML `$html` to $scopes variable `$variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `$attributeName` attribute value of element found by $htmlLocatorType `$htmlLocator` in HTML `$html` to $scopes variable `$variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -718,10 +708,10 @@ Then element found by XPath `//h3` in HTML `${response}` contains text `111122`<
 <p><code>$attributeName</code> - The name of the attribute.</p>
 </li>
 <li>
-<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
 </li>
 <li>
-<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 </li>
 <li>
 <p><code>$html</code> - The HTML document to find element.</p>
@@ -762,7 +752,7 @@ Then `${title}` is = `paragraph`</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $dataType of element found by $locatorType `$locator` in HTML `$html` to $scopes variable `variableName`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $dataType of element found by $htmlLocatorType `$htmlLocator` in HTML `$html` to $scopes variable `variableName`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -774,10 +764,10 @@ Then `${title}` is = `paragraph`</code></pre>
 <p><code>$html</code> - The HTML document to find element.</p>
 </li>
 <li>
-<p><code>$locatorType</code> - `CSS selector` or `XPath`.</p>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
 </li>
 <li>
-<p><code>$locator</code> - See <a href="#_locators">Locators</a>.</p>
+<p><code>$htmlLocator</code> - The actual locator.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -825,7 +815,7 @@ Examples:
 </main>
 </div>
 <footer class="footer" style="padding: 0.25rem">
-  <p>Copyright (C) 2019-2023 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+  <p>Copyright (C) 2019-2024 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
   <script src="../../../_/js/vendor/lunr.js"></script>
