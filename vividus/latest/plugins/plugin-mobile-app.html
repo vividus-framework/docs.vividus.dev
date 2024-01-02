@@ -1605,8 +1605,8 @@ Given I start mobile application with capabilities:
 <div class="sect3">
 <h4 id="_terminate_mobile_application"><a class="anchor" href="#_terminate_mobile_application"></a>Terminate mobile application</h4>
 <div class="paragraph">
-<p>Terminates the running application on the device/emulator/simulator and
-navigates to the home device screen. The remote session will not be closed.</p>
+<p>Terminates the running application on the device/emulator/simulator and navigates to the home device screen
+(the remote session will not be closed). If the application is not running, new failed assertion is recorded.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1616,7 +1616,7 @@ navigates to the home device screen. The remote session will not be closed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$bundleId</code> - <code>Package name</code> for Android or <code>Bundle identifier</code> from <code>Plist.info</code> for iOS</p>
+<p><code>$bundleId</code> - <code>Package name</code> for Android or <code>Bundle identifier</code> from <code>Plist.info</code> for iOS  of the application to terminate.</p>
 </li>
 </ul>
 </div>
