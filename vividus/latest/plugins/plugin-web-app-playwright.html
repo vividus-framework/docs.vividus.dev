@@ -1202,6 +1202,39 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_elements_validation"><a class="anchor" href="#_elements_validation"></a>Elements validation</h3>
+<div class="sect3">
+<h4 id="_validate_elements_number"><a class="anchor" href="#_validate_elements_number"></a>Validate elements number</h4>
+<div class="paragraph">
+<p>Validates the context contains the number of elements matching the specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `$locator` is $comparisonRule `$quantity`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find elements.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - The <a href="../parameters/comparison-rule.html" class="xref page">comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$quantity</code> - The expected number of the elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Validate the number of elements</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(./a)` is equal to `5`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_text_content_manupulations"><a class="anchor" href="#_text_content_manupulations"></a>Text content manupulations</h3>
 <div class="sect3">
 <h4 id="_save_the_text_of_an_element"><a class="anchor" href="#_save_the_text_of_an_element"></a>Save the text of an element</h4>
@@ -1227,7 +1260,7 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Save the text of the header element</div>
+<div class="title">Example 16. Save the text of the header element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of element located by `id(header)` to scenario variable `heading-text`</code></pre>
 </div>
@@ -1254,7 +1287,7 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Save the text of the context</div>
+<div class="title">Example 17. Save the text of the context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save text of context element to scneario variable `username`</code></pre>
@@ -1285,7 +1318,7 @@ When I save text of context element to scneario variable `username`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Check the text 'Contract Us' is present on the page</div>
+<div class="title">Example 18. Check the text 'Contract Us' is present on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
 Then text `Contact Us` exists</code></pre>
@@ -1310,7 +1343,7 @@ Then text `Contact Us` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Check the text 'Deprecated' is not present in the element</div>
+<div class="title">Example 19. Check the text 'Deprecated' is not present in the element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(code)`
 Then text `Deprecated` does not exist</code></pre>
@@ -1335,7 +1368,7 @@ Then text `Deprecated` does not exist</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
+<div class="title">Example 20. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(message)`
 Then text matches `User ".*" successfully logged in`</code></pre>
