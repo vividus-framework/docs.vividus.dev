@@ -6703,6 +6703,144 @@ Then page is scrolled to element located by `id(footerElement)`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_script_steps"><a class="anchor" href="#_script_steps"></a>Script Steps</h3>
+<div class="paragraph">
+<p>The Script Steps verify the presence of JavaScript files in the HTML source code of an active page.</p>
+</div>
+<div class="sect3">
+<h4 id="_check_the_presence_of_script_resource"><a class="anchor" href="#_check_the_presence_of_script_resource"></a>Check the presence of script resource</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step is deprecated and will be removed in VIVIDUS 0.7.0.
+Please see the replacement pattern below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(.//script[contains(@src()='&lt;jsFileName&gt;']):a` is equal to `1`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Checks script (an element with the <code>&lt;script&gt;</code> tag) with the specified path (<code>@src</code> attribute) is included on the page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript file with the name '$jsFileName' is included in the source code</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsFileName</code> - The part of the script resource URL from the <code>@src</code> attribute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 127. Checks if the javascript with the 'script.js' filename exists in the page source code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript file with the name 'script.js' is included in the source code.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_check_the_presence_of_script_code"><a class="anchor" href="#_check_the_presence_of_script_code"></a>Check the presence of script code</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step is deprecated and will be removed in VIVIDUS 0.7.0.
+Please see the replacement pattern below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(.//script[text()='&lt;jsText&gt;']):a` is equal to `1`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Checks the page contains a script (an element with the <code>&lt;script&gt;</code> tag) whose content is equal to the specified text.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript with the text '$jsText' is included in the source code</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsText</code> - The expected text to be equal to the text of a <code>&lt;script&gt;</code> tag.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 128. Checks if the JavaScript code equals to the expected one</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript with the text 'document.getElementById("demo-for-script").innerHTML = "Hello JavaScript!";' is included in the source code</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_check_script_contains_code"><a class="anchor" href="#_check_script_contains_code"></a>Check script contains code</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step is deprecated and will be removed in VIVIDUS 0.7.0.
+Please see the replacement pattern below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(.//script[contains(text(),'&lt;jsTextPart&gt;')]):a` is equal to `1`</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Checks the page contains a script (an element with the <code>&lt;script&gt;</code> tag) whose content contains the specified text.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript with the textpart '$jsTextPart' is included in the source code</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsTextPart</code> - The expected text to be contained in the text of a <code>&lt;script&gt;</code> tag.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 129. Checks if the JavaScript code contains 'Hello JavaScript'</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then a javascript with the textpart 'Hello JavaScript' is included in the source code</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_set_variable_steps"><a class="anchor" href="#_set_variable_steps"></a>Set Variable Steps</h3>
 <div class="sect3">
 <h4 id="_save_html_table_to_the_variable"><a class="anchor" href="#_save_html_table_to_the_variable"></a>Save HTML table to the variable</h4>
@@ -6752,7 +6890,7 @@ Before using this step, ensure the context is set to the required table. See the
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 127. Save the first table on the page into a variable named 'table'</div>
+<div class="title">Example 130. Save the first table on the page into a variable named 'table'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located `xpath(//table[1])`
 When I save table to SCENARIO variable `table`</code></pre>
@@ -6780,7 +6918,7 @@ When I save table to SCENARIO variable `table`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 128. Save the number of currently opened browser tabs into a variable named 'count'</div>
+<div class="title">Example 131. Save the number of currently opened browser tabs into a variable named 'count'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of open tabs to SCENARIO variable `count`</code></pre>
 </div>
@@ -6826,7 +6964,7 @@ When I save table to SCENARIO variable `table`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 129. Accept popup alert with any text message</div>
+<div class="title">Example 132. Accept popup alert with any text message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I accept alert with message which matches `.*`</code></pre>
 </div>
@@ -6863,7 +7001,7 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 130. Type text 'VIVIDUS' into alert and close it by clicking OK button</div>
+<div class="title">Example 133. Type text 'VIVIDUS' into alert and close it by clicking OK button</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type text `VIVIDUS` in alert and accept it</code></pre>
 </div>
@@ -6880,7 +7018,7 @@ For example, <a href="https://user:pass@domain.com" class="bare">https://user:pa
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 131. Wait untill an alert appear after click on the button</div>
+<div class="title">Example 134. Wait untill an alert appear after click on the button</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
 When I wait until alert appears
@@ -6899,7 +7037,7 @@ Then an alert is present</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 132. Wait untill an alert disappear after it is accepted</div>
+<div class="title">Example 135. Wait untill an alert disappear after it is accepted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
 Then an alert is present
@@ -6920,7 +7058,7 @@ Then an alert is not present</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 133. Check that an alert appears after clicking on the button</div>
+<div class="title">Example 136. Check that an alert appears after clicking on the button</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `buttonName(Survey)`
 Then an alert is present</code></pre>
@@ -6938,7 +7076,7 @@ Then an alert is present</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 134. Check that an alert doesn&#8217;t appear on the page</div>
+<div class="title">Example 137. Check that an alert doesn&#8217;t appear on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 Then an alert is not present</code></pre>
@@ -6963,7 +7101,7 @@ Then an alert is not present</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 135. Check that an alert doesn&#8217;t appear within 7 seconds after page loaded</div>
+<div class="title">Example 138. Check that an alert doesn&#8217;t appear within 7 seconds after page loaded</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 Then alert does not appear in `PT7S`</code></pre>
@@ -6989,7 +7127,7 @@ Then alert does not appear in `PT7S`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 136. Wait for a frame with <code>cookieFrame</code> name and switch to it</div>
+<div class="title">Example 139. Wait for a frame with <code>cookieFrame</code> name and switch to it</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 When I wait until frame with name `cookieFrame` appears and I switch to it</code></pre>
@@ -7017,7 +7155,7 @@ When I wait until frame with name `cookieFrame` appears and I switch to it</code
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 137. Check that current title ends with "Domain"</div>
+<div class="title">Example 140. Check that current title ends with "Domain"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 When I wait until page title matches `.*Domain`</code></pre>
@@ -7050,7 +7188,7 @@ When I wait until page title matches `.*Domain`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 138. Set the value into the middle of the slider</div>
+<div class="title">Example 141. Set the value into the middle of the slider</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value `50` in slider located by `id(test_slider)`</code></pre>
 </div>
@@ -7077,7 +7215,7 @@ When I wait until page title matches `.*Domain`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 139. Check that the value is set in the middle of the slider</div>
+<div class="title">Example 142. Check that the value is set in the middle of the slider</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then value `50` is selected in slider located by `id(test_slider)`</code></pre>
 </div>
@@ -7116,7 +7254,7 @@ The step is only supported by Chrome browser.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 140. Emulate iPhone 14 Pro Max</div>
+<div class="title">Example 143. Emulate iPhone 14 Pro Max</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate mobile device with configuration:`{
     "width": 430,
@@ -7162,7 +7300,7 @@ The step ignores the <code>web/desktop/chrome/mobile_emulation/phone</code> prof
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 141. Resets device metrics to defaults</div>
+<div class="title">Example 144. Resets device metrics to defaults</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset mobile device emulation</code></pre>
 </div>
@@ -7180,7 +7318,7 @@ The step ignores the <code>web/desktop/chrome/mobile_emulation/phone</code> prof
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 142. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 145. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -7200,7 +7338,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 143. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 146. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -7220,7 +7358,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 144. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 147. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
