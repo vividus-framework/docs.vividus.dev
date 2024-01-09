@@ -1296,6 +1296,70 @@ When I save text of context element to scneario variable `username`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_save_size_and_coordinates_of_element"><a class="anchor" href="#_save_size_and_coordinates_of_element"></a>Save size and coordinates of element</h3>
+<div class="paragraph">
+<p>Saves the information about the size of an element and its coordinates relative to the viewport.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the coordinates and size of an element which can be accessed on the variable name using dot notation (please see examples section):</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>x</code> coordinate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>y</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>y</code> coordinate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>height</code> of the element</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>width</code> of the element</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Verify image size and coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `tagName(img)` to scenario variable `rect`
+Then `${rect.height}` is equal `400`
+Then `${rect.width}` is equal `400`
+Then `${rect.x}` is equal `200`
+Then `${rect.y}` is equal `8`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_text_content_validation"><a class="anchor" href="#_text_content_validation"></a>Text content validation</h3>
 <div class="paragraph">
 <p>The context can be set by the <a href="#_change_context">corresponding steps</a>. If no context is set, the text will be searched across the whole page.</p>
@@ -1318,7 +1382,7 @@ When I save text of context element to scneario variable `username`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Check the text 'Contract Us' is present on the page</div>
+<div class="title">Example 19. Check the text 'Contract Us' is present on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
 Then text `Contact Us` exists</code></pre>
@@ -1343,7 +1407,7 @@ Then text `Contact Us` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Check the text 'Deprecated' is not present in the element</div>
+<div class="title">Example 20. Check the text 'Deprecated' is not present in the element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(code)`
 Then text `Deprecated` does not exist</code></pre>
@@ -1368,7 +1432,7 @@ Then text `Deprecated` does not exist</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
+<div class="title">Example 21. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(message)`
 Then text matches `User ".*" successfully logged in`</code></pre>

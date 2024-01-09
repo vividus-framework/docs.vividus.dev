@@ -1397,6 +1397,18 @@ selenium.grid.automation-name=UIAutomator2</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_context_element_rectangle"><a class="anchor" href="#_context_element_rectangle"></a>Context element rectangle</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Context element rectangle dynamic variables are deprecated and will be removed in VIVIDUS 0.7.0, please use <a href="#_save_size_and_coordinates_of_element">Save size and coordinates of element</a> step.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The set of dynamic variables provides ability to access context element
 coordinates, width and height.</p>
@@ -3571,6 +3583,70 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_save_size_and_coordinates_of_element"><a class="anchor" href="#_save_size_and_coordinates_of_element"></a>Save size and coordinates of element</h3>
+<div class="paragraph">
+<p>Saves the information about the size of an element and its coordinates relative to the viewport.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the coordinates and size of an element which can be accessed on the variable name using dot notation (please see examples section):</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>x</code> coordinate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>y</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>y</code> coordinate</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>height</code> of the element</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the <code>width</code> of the element</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 64. Verify image size and coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `tagName(img)` to scenario variable `rect`
+Then `${rect.height}` is equal `400`
+Then `${rect.width}` is equal `400`
+Then `${rect.x}` is equal `200`
+Then `${rect.y}` is equal `8`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_element_existence_during_the_time_period"><a class="anchor" href="#_element_existence_during_the_time_period"></a>Element existence during the time period</h3>
 <div class="paragraph">
 <p>Validates the element located by the locator has existed for the period
@@ -3609,7 +3685,7 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 64. The element should have existed for 5 second</div>
+<div class="title">Example 65. The element should have existed for 5 second</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `id(banner)` exists for `PT5S` duration</code></pre>
 </div>
@@ -3636,7 +3712,7 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 65. The element should have text consisting of numbers only</div>
+<div class="title">Example 66. The element should have text consisting of numbers only</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(indicator)` has text matching `\d+`</code></pre>
 </div>
@@ -3701,7 +3777,7 @@ element with not empty text, otherwise the step fails.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 66. Check items are sorted</div>
+<div class="title">Example 67. Check items are sorted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://grocery.by`
 When I click on element located by `id(a-z)`
@@ -3827,7 +3903,7 @@ Then elements located by `xpath(//span[@id='item-to-purchase'])` are sorted by t
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 67. Scan a barcode</div>
+<div class="title">Example 68. Scan a barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to scenario variable `qrCodeLink`
 Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
@@ -3884,7 +3960,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 68. Disable menus</div>
+<div class="title">Example 69. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                            |
@@ -3923,13 +3999,13 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 69. Remove noisy assistant</div>
+<div class="title">Example 70. Remove noisy assistant</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `document.querySelector('#assistant').remove()` with arguments:</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 70. Inject image</div>
+<div class="title">Example 71. Inject image</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:inject-image` with arguments:
 |value                                                                                       |type  |
@@ -3937,7 +4013,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 71. Throttle CPU</div>
+<div class="title">Example 72. Throttle CPU</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:throttleCPU` with arguments:
 | value        | type   |
@@ -3968,7 +4044,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 72. Validate timings</div>
+<div class="title">Example 73. Validate timings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
@@ -4096,7 +4172,7 @@ If context not set - takes a screenshot of the current screen. Only the first fo
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 73. Scan the barcode</div>
+<div class="title">Example 74. Scan the barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `xpath(//android.view.ViewGroup[@resource-id='qrContainer'])`
 When I scan barcode from context and save result to scenario variable `qrCodeLink`
@@ -4155,7 +4231,7 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 74. Check the number of HTTP GET and POST requests matching URL regular expression is equal to 1</div>
+<div class="title">Example 75. Check the number of HTTP GET and POST requests matching URL regular expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -4264,7 +4340,7 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 75. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 76. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -4272,7 +4348,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 76. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 77. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -4282,7 +4358,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 77. Validate the request data from the matching HTTP message</div>
+<div class="title">Example 78. Validate the request data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -4293,7 +4369,7 @@ Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 78. Validate the response data from the matching HTTP message</div>
+<div class="title">Example 79. Validate the response data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -4325,7 +4401,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 79. Wait for the HTTP request</div>
+<div class="title">Example 80. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
@@ -4358,7 +4434,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 80. Add headers to the proxied HTTP request</div>
+<div class="title">Example 81. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
@@ -4386,7 +4462,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 81. Clear the data recorded by the proxy</div>
+<div class="title">Example 82. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I clear proxy log
@@ -4406,7 +4482,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 82. Clear the proxy mocks</div>
+<div class="title">Example 83. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -4463,7 +4539,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 83. Hijack a page</div>
+<div class="title">Example 84. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -4514,7 +4590,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 84. Hijack a page</div>
+<div class="title">Example 85. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -4562,7 +4638,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 85. 404 page</div>
+<div class="title">Example 86. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
@@ -4659,13 +4735,13 @@ To be able to use this step in the cloud testing platform, review the documentat
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 86. Turn OFF Wi-Fi for Android</div>
+<div class="title">Example 87. Turn OFF Wi-Fi for Android</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 87. Turn OFF Wi-Fi for iOS</div>
+<div class="title">Example 88. Turn OFF Wi-Fi for iOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection
 When I activate application with bundle identifier `my-application-bundle-id`</code></pre>
@@ -4690,7 +4766,7 @@ When I activate application with bundle identifier `my-application-bundle-id`</c
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 88. Change the device screen orientation</div>
+<div class="title">Example 89. Change the device screen orientation</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change device screen orientation to portrait</code></pre>
 </div>
