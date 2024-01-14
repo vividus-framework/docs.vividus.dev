@@ -625,6 +625,18 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="paragraph">
 <p><code>FROM_SITEMAP</code> transformer generates table based on the website sitemap.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The use of <code>web-application.main-page-url</code> property for setting of main page for crawling is deprecated and will be removed in VIVIDUS 0.7.0, pelase see either <code>mainPageUrl</code> transformer parameter or <code>transformer.from-sitemap.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -637,6 +649,24 @@ the configuration files for the used IDE and then refresh the project in the use
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-sitemap.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>siteMapRelativeUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">relative URL of <code>sitemap.xml</code></p></td>
@@ -668,6 +698,26 @@ the configuration files for the used IDE and then refresh the project in the use
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.main-page-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this property gets overriden by the value defined in <code>mainPageUrl</code> transformer parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.ignore-errors</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code>
@@ -687,15 +737,6 @@ the configuration files for the used IDE and then refresh the project in the use
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_required_properties"><a class="anchor" href="#_required_properties"></a>Required properties</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>web-application.main-page-url</code> - defines main application page URL</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Example 2. Usage example</div>
 <div class="content">
@@ -704,11 +745,22 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_from_headless_crawling"><a class="anchor" href="#_from_headless_crawling"></a>FROM_HEADLESS_CRAWLING</h3>
 <div class="paragraph">
 <p><code>FROM_HEADLESS_CRAWLING</code> transformer generates table based on the results of headless crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The use of <code>web-application.main-page-url</code> property for setting of main page for crawling is deprecated and will be removed in VIVIDUS 0.7.0, pelase see either <code>mainPageUrl</code> transformer parameter or <code>transformer.from-headless-crawling.main-page-url</code> property.
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -722,6 +774,24 @@ the configuration files for the used IDE and then refresh the project in the use
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-headless-crawling.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
@@ -746,6 +816,26 @@ the configuration files for the used IDE and then refresh the project in the use
 <tbody>
 <tr>
 <td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>General</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.main-page-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this property gets overriden by the value defined in <code>mainPageUrl</code> transformer parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.seed-relative-urls</code></p></td>
@@ -945,21 +1035,11 @@ The crawler will ignore all URLs referring to files with extensions matching the
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_required_properties_2"><a class="anchor" href="#_required_properties_2"></a>Required properties</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> - defines main application page URL</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Example 3. Usage example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
 {transformer=FROM_HEADLESS_CRAWLING, column=page-url}</code></pre>
-</div>
 </div>
 </div>
 </div>
