@@ -713,8 +713,8 @@ the downloaded binary should be configured using the following property:</p>
 <h4 id="_list_of_desktop_profiles"><a class="anchor" href="#_list_of_desktop_profiles"></a>List of desktop profiles</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col>
-<col>
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
@@ -737,7 +737,7 @@ web.driver.chrome.command-line-arguments=--disable-auto-reload</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/edge</code><br></p>
+<p><code>web/desktop/edge</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -858,6 +858,44 @@ headless mode are available:</p>
 <ul>
 <li>
 <p><code>web/headless/chrome</code></p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3335%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile-specific properties</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.headless.chrome.window-size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width,height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>800,600</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Sets the initial window size.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This property is ignored when custom CLI arguments are set using <code>web.driver.chrome.command-line-arguments</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
 <p><code>web/headless/firefox</code></p>
@@ -899,8 +937,8 @@ Default selenium grid URL is set to <code>selenium.grid.url=http://localhost:444
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col>
-<col>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -911,7 +949,7 @@ Default selenium grid URL is set to <code>selenium.grid.url=http://localhost:444
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/phone/android</p>
+<p><code>web/phone/android</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -924,7 +962,7 @@ selenium.grid.capabilities.appiumVersion=2.0.0</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/phone/ios</p>
+<p><code>web/phone/ios</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
@@ -945,8 +983,8 @@ selenium.grid.capabilities.appiumVersion=2.0.0</code></pre>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col>
-<col>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -957,7 +995,7 @@ selenium.grid.capabilities.appiumVersion=2.0.0</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p>web/tablet</p>
+<p><code>web/tablet</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
