@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JSON Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/0.6.8/plugins/plugin-json.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="0.6.8">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Configuration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../secrets-management.html">Secrets Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="aws.html">AWS</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-lighthouse.html">Lighthouse</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../developer-guides/deprecating-steps.html">Steps deprecation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">0.6.8</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">VIVIDUS</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">0.6.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.7/index.html">0.6.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.6/index.html">0.6.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.5/index.html">0.6.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.4/index.html">0.6.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.3/index.html">0.6.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.2/index.html">0.6.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.1/index.html">0.6.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.0/index.html">0.6.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.13/index.html">0.5.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.12/index.html">0.5.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.11/index.html">0.5.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.10/index.html">0.5.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.9/index.html">0.5.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.8/index.html">0.5.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.7/index.html">0.5.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.6/index.html">0.5.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.5/index.html">0.5.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.4/index.html">0.5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.3/index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>Plugins</li>
+    <li>Data Formats</li>
+    <li><a href="plugin-json.html">JSON</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">0.6.8</button>
+  <div class="version-menu">
+    <a class="version is-current" href="plugin-json.html">0.6.8</a>
+    <a class="version" href="../../0.6.7/plugins/plugin-json.html">0.6.7</a>
+    <a class="version" href="../../0.6.6/plugins/plugin-json.html">0.6.6</a>
+    <a class="version" href="../../0.6.5/plugins/plugin-json.html">0.6.5</a>
+    <a class="version" href="../../0.6.4/plugins/plugin-json.html">0.6.4</a>
+    <a class="version" href="../../0.6.3/plugins/plugin-json.html">0.6.3</a>
+    <a class="version" href="../../0.6.2/plugins/plugin-json.html">0.6.2</a>
+    <a class="version" href="../../0.6.1/plugins/plugin-json.html">0.6.1</a>
+    <a class="version" href="../../0.6.0/plugins/plugin-json.html">0.6.0</a>
+    <a class="version" href="../../0.5.13/plugins/plugin-json.html">0.5.13</a>
+    <a class="version" href="../../0.5.12/plugins/plugin-json.html">0.5.12</a>
+    <a class="version" href="../../0.5.11/plugins/plugin-json.html">0.5.11</a>
+    <a class="version" href="../../0.5.10/plugins/plugin-json.html">0.5.10</a>
+    <a class="version" href="../../0.5.9/plugins/plugin-json.html">0.5.9</a>
+    <a class="version" href="../../0.5.8/plugins/plugin-json.html">0.5.8</a>
+    <a class="version" href="../../0.5.7/plugins/plugin-json.html">0.5.7</a>
+    <a class="version" href="../../0.5.6/plugins/plugin-json.html">0.5.6</a>
+    <a class="version" href="../../0.5.5/plugins/plugin-json.html">0.5.5</a>
+    <a class="version" href="../../0.5.4/plugins/plugin-json.html">0.5.4</a>
+    <a class="version" href="../../0.5.3/plugins/plugin-json.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/plugins/plugin-json.html">0.5.2</a>
+    <a class="version" href="../../0.5.1/plugins/plugin-json.html">0.5.1</a>
+    <a class="version" href="../../0.5.0/plugins/plugin-json.html">0.5.0</a>
+    <a class="version" href="../../0.4.16/plugins/plugin-json.html">0.4.16</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-json.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">JSON Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides a set of actions for transformation and validation of JSON data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please make sure to use the same version for all VIVIDUS dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-json', version: '0.6.8')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new dependency,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_json_path"><a class="anchor" href="#_json_path"></a>JSON Path</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JSON path expressions always refer to a JSON structure in the same way as XPath expression are used in combination with
+an XML document. The "root member object" in JSON path is always referred to as <code>$</code> regardless if it is an object or array.</p>
+</div>
+<div class="paragraph">
+<p>JSON path expressions can use the dot–notation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$.store.book[0].title</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or the bracket–notation</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$['store']['book'][0]['title']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The official JSON path guide conatins <a href="https://github.com/json-path/JsonPath#path-examples">examples of JSON paths</a>.
+Also the number of <a href="https://github.com/json-path/JsonPath#operators">operators</a> and
+<a href="https://github.com/json-path/JsonPath#functions">functions</a> are available for use in JSON paths out of the box. At the
+same time additional functions provided by this plugin are listed below.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Use <a href="https://jsonpath-c48u.onrender.com/">JSON path online validator</a> to test your JSON path.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_json_path_functions"><a class="anchor" href="#_json_path_functions"></a>JSON Path Functions</h3>
+<div class="sect3">
+<h4 id="_distinct"><a class="anchor" href="#_distinct"></a><code>distinct()</code></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>distinct()</code> - removes duplicated items from the input array.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Examples of <code>distinct()</code> JSON path function</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">JSON</th>
+<th class="tableblock halign-left valign-top">JSON Path</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "type": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a"
+    ],
+    "name": [
+      "abc"
+    ]
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$.type.distinct()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">[
+    "b",
+    "a",
+    "c"
+]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">{
+    "data": [
+        {
+            "type": "a",
+            "val": "0"
+        },
+        {
+            "type": "b",
+            "val": "0"
+        },
+        {
+            "type": "c",
+            "val": "1"
+        },
+        {
+            "type": "b",
+            "val": "0"
+        }
+    ]
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>$.data.distinct()</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-JSON hljs" data-lang="JSON">[
+    {
+        "type": "a",
+        "val": "0"
+    },
+    {
+        "type": "b",
+        "val": "0"
+    },
+    {
+        "type": "c",
+        "val": "1"
+    }
+]</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a><a href="../commons/variables.html" class="xref page">Dynamic variables</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_json_context"><a class="anchor" href="#_json_context"></a>JSON context</h3>
+<div class="paragraph">
+<p>The variable provides the HTTP response body of the latest executed HTTP call
+by default or the current JSON element for steps iterating over JSON.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${json-context}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Validate the HTTP response matches the regular expression</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with relative URL `/get?productsPerPage=5`
+Then number of JSON elements from `${json-context}` by JSON path `$.product` is equal to 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a><a href="../glossary.html#_table_transformer" class="xref page">Table Transformers</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_json"><a class="anchor" href="#_from_json"></a>FROM_JSON</h3>
+<div class="paragraph">
+<p><code>FROM_JSON</code> transformer constructs a table by mapping table columns to values found by <a href="#_json_path">JSON Paths</a> in the source JSON.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variableName</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the variable containing source JSON, only variables of scopes <code>global</code> and <code>next_batches</code> are allowed.
+Exceptions are cases when the transformer using in <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a>
+which initializes a variable with a table.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">columns</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The semicolon-separated list of mappings between column names and <a href="#_json_path">JSON Paths</a> used to get column values.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Columns parameter format</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">columns=column_name_1=json_path_1;column_name_2=json_path_2;column_name_N=json_path_N</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>column_name</code> - The user-defined column name in the resulting table.</p>
+</li>
+<li>
+<p><code>json_path</code> - The json path used to retrieve a value from the source JSON for a particular column name.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The number of elements found by the <a href="#_json_path">JSON Paths</a> for each column must be the same.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 4. Source JSON from <a href="../commons/variables.html#_scopes" class="xref page"><code>next_batches</code> or <code>global</code> variable</a> <code>registrationDataJson</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "firstName": "Cheryl",
+        "lastName": "Wilkerson",
+        "age": 36,
+        "address": {
+            "streetAddress": "690 Selah Way",
+            "city": "Waitsfield",
+            "postalCode": "05673"
+        }
+    },
+    {
+        "firstName": "Zachary",
+        "lastName": "Harrington",
+        "age": 63,
+        "address": {
+            "streetAddress": "4803 Duncan Avenue",
+            "city": "New York",
+            "postalCode": "10014"
+        }
+    }
+]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Usage of FROM_JSON transformer</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given request body: {
+  "fullName": "&lt;fname&gt; &lt;lname&gt;"
+}
+When I execute HTTP POST request for resource with URL `https://service-under-test.com/register`
+Examples:
+{transformer=FROM_JSON, variableName=registrationDataJson, columns=fname=$..firstName;lname=$..lastName}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Usage of FROM_JSON transformer using <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a> which initializes a variable with a table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP POST request for resource with URL `https://httpbingo.org/anything/path-with-&amp;-ampersand`
+Given I initialize scenario variable `jsonData` with value `${json-context}`
+When I initialize scenario variable `jsonDataTable` with values:
+{transformer=FROM_JSON, variableName=jsonData, columns=host=$..Host}
+Then `${jsonDataTable[0].host}` is not equal to `[httpbingo.org]`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The steps syntax uses two internal (VIVIDUS-only) terms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"JSON element" - any part of JSON document including both complex data
+structures like <code>array</code>, <code>object</code> and scalar values like <code>string</code> in
+double quotes, <code>number</code>, <code>boolean</code> (<code>true</code> or <code>false</code>) and <code>null</code>.</p>
+</li>
+<li>
+<p>"JSON element value" or "value of JSON element" - scalar values like
+<code>string</code> <em>not wrapped</em> into double quotes, <code>number</code>, <code>boolean</code>
+(<code>true</code> or <code>false</code>) and <code>null</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_save_json_element_value"><a class="anchor" href="#_save_json_element_value"></a>Save JSON element value</h3>
+<div class="paragraph">
+<p>Saves a value of JSON element found in the given JSON into the variable with
+the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element value from `$json` by JSON path `$jsonPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$json</code> - The JSON used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
+When I save JSON element value from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
+Then `${title-of-second-book}` is equal to `Sword of Honour`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_json_element"><a class="anchor" href="#_save_json_element"></a>Save JSON element</h3>
+<div class="paragraph">
+<p>Saves a JSON element found in the given JSON into the variable with the
+specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save JSON element from `$json` by JSON path `$jsonPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find JSON element.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
+When I save JSON element from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
+Then `${title-of-second-book}` is equal to `"Sword of Honour"`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_number_of_json_elements"><a class="anchor" href="#_save_number_of_json_elements"></a>Save number of JSON elements</h3>
+<div class="paragraph">
+<p>Saves the number of elements found in the JSON by JSON path into the variable
+with the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `$json` found by JSON path `$jsonPath` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the number of elements found in the JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Save number of elements from the JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convert_json_to_variable"><a class="anchor" href="#_convert_json_to_variable"></a>Convert JSON to variable</h3>
+<div class="paragraph">
+<p>Converts JSON element into the variable with the specified name and scope.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `$json` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$json</code> - The JSON used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Validate the title of the second book</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `{
+    "store": {
+        "book": [
+            {
+                "category": "reference",
+                "author": "Nigel Rees",
+                "title": "Sayings of the Century",
+                "price": 8.95
+            },
+            {
+                "category": "fiction",
+                "author": "Evelyn Waugh",
+                "title": "Sword of Honour",
+                "price": 12.99
+            }
+        ],
+    }
+}` to scenario variable `jsonData`
+Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_patch_json"><a class="anchor" href="#_patch_json"></a>Patch JSON</h3>
+<div class="paragraph">
+<p>Modified an input JSON using a sequence of operations defined in JSON patch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `$sourceJson` using `$jsonPatch` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$sourceJson</code> - JSON data to be patched.</p>
+</li>
+<li>
+<p><code>$jsonPatch</code> - JSON data with required patch actions according to <a href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC-6902</a></p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the patched JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Patch JSON data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"b"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJson`
+Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_on_json_elements"><a class="anchor" href="#_execute_steps_on_json_elements"></a>Execute steps on JSON elements</h3>
+<div class="paragraph">
+<p>Executes steps against all elements found by JSON path in the JSON data.
+The actions performed by the step are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>searches for elements using JSON path;</p>
+</li>
+<li>
+<p>checks the elements number matches comparison rule;</p>
+</li>
+<li>
+<p>passes if the comparison rule matches and the elements number is 0;</p>
+</li>
+<li>
+<p>otherwise switches JSON context to each found element and executes all steps (no steps will be executed in case of comparison rule mismatch);</p>
+</li>
+<li>
+<p>restores previous JSON context.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements from `$json` by `$jsonPath` and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 12. Alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements from '$json' by '$jsonPath' and for each element do$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Validate each <code>accountId</code> consists of digits</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
+{
+  "accounts": [
+    {
+      "accountId": 00,
+      "status": "Active"
+    },
+    {
+      "accountId": 01,
+      "status": "Active"
+    },
+    {
+      "accountId": 10,
+      "status": "Active"
+    }
+  ]
+}
+` by `$.accounts.*` and for each element do
+|step                                                                                                         |
+|Then number of JSON elements from `${json-context}` by JSON path `$[?(@.accountId =~ /\d+/i)]` is equal to 1 |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_on_json_elements_and_exit_on_condition"><a class="anchor" href="#_execute_steps_on_json_elements_and_exit_on_condition"></a>Execute steps on JSON elements and exit on condition</h3>
+<div class="paragraph">
+<p>Executes steps against all elements found by JSON path in the JSON data until
+the variable is not set or its value corresponds to the expected one. The
+actions performed by the step are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>searches for elements using JSON path;</p>
+</li>
+<li>
+<p>checks the elements number matches comparison rule;</p>
+</li>
+<li>
+<p>passes if the comparison rule matches and the elements number is 0;</p>
+</li>
+<li>
+<p>otherwise switches JSON context to each found element and executes all steps until the variable is not set or mismatches the expected value (no steps will be executed in case of comparison rule mismatch);</p>
+</li>
+<li>
+<p>restores previous JSON context;</p>
+</li>
+<li>
+<p>fails if the variable has never been set during the iterations execution.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule `$elementsNumber` JSON elements in `$json` by `$jsonPath` and until variable `$variableName` $variableMatcher `$expectedValue` for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 14. Alias</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in '$json' by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of elements.</p>
+</li>
+<li>
+<p><code>json</code> - The JSON used to find JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>variableName</code> - The name of the variable to validate.</p>
+</li>
+<li>
+<p><code>variableMatcher</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The string comparison rule</a>.</p>
+</li>
+<li>
+<p><code>expectedValue</code> - The expected value of the variable.</p>
+</li>
+<li>
+<p><code>stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute for each found JSON element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 15. Find the title from JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
+When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
+|step|
+|When I save JSON element value from `${json-context}` by JSON path `$.title` to scenario variable `title`|
+Then `Moby Dick` is = `${title}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_json_element_value"><a class="anchor" href="#_validate_json_element_value"></a>Validate JSON element value</h3>
+<div class="paragraph">
+<p>Validates if the given JSON contains the expected JSON element value matching
+the comparison rule by the specified JSON path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element value from `$json` by JSON path `$jsonPath` $comparisonRule `$expectedValue`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$json</code> - The JSON used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON element value.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - The comparison rule to match JSON element value depending on the <a href="https://www.json.org/json-en.html">element type</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>for <code>string</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">string comparison rules</a> are applicable,</p>
+</li>
+<li>
+<p>for <code>number</code> - <a href="../parameters/comparison-rule.html" class="xref page">regular comparison rules</a> are applicable,</p>
+</li>
+<li>
+<p>for <code>boolean</code> - only single rule <code>IS_EQUAL_TO</code> (readable form: <code>is equal to</code>) is allowed,</p>
+</li>
+<li>
+<p>for <code>null</code> - only two rules <code>IS_EQUAL_TO</code> and <code>IS_NOT_EQUAL_TO</code> (readable forms: <code>is equal to</code> and <code>is not equal to</code>) are allowed</p>
+</li>
+<li>
+<p><code>array</code> and <code>object</code> are complex types and must be validated using another steps dedicated for JSON elements.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>$expectedValue</code> - The expected value of JSON element to match according to the comparison rule.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 16. Validate the price of the fourth book is greater than 22.50</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
+Then JSON element value from `${response}` by JSON path `$.store.book[3].price` is greater than `22.50`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_json_element"><a class="anchor" href="#_validate_json_element"></a>Validate JSON element</h3>
+<div class="paragraph">
+<p>Validates if the given JSON contains the expected JSON element matching the
+comparison rule by the specified JSON path.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `$json` by JSON path `$jsonPath` is equal to `$expectedData`$options</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find the actual JSON element.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find the actual JSON element.</p>
+</li>
+<li>
+<p><code>expectedData</code> - The expected JSON element to compare against.</p>
+</li>
+<li>
+<p><code>options</code> - The set of <a href="https://github.com/lukas-krecan/JsonUnit/blob/master/README.md#options">JSON comparison options</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 17. Validate JSON contains string value by JSON path</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
+{
+  "accountId": 12345,
+  "status": "Active"
+}
+` by JSON path `$.status` is equal to `"Active"`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_number_of_json_elements"><a class="anchor" href="#_validate_number_of_json_elements"></a>Validate number of JSON elements</h3>
+<div class="paragraph">
+<p>Validates the number of JSON elements found by the JSON path matches the
+expected number according to the specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `$json` by JSON path `$jsonPath` is $comparisonRule $elementsNumber</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>json</code> - The JSON used to find the actual JSON elements.</p>
+</li>
+<li>
+<p><code>jsonPath</code> - The <a href="#_json_path">JSON path</a> used to find JSON elements.</p>
+</li>
+<li>
+<p><code>comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>elementsNumber</code> - The expected number of JSON elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Validate the number of accounts in JSON is equal to 2</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
+[
+  {
+    "accountId": 843
+  },
+  {
+    "accountId": 233
+  }
+]
+` by JSON path `$..accountId` is equal to 2</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_json_against_schema"><a class="anchor" href="#_validate_json_against_schema"></a>Validate JSON against schema</h3>
+<div class="paragraph">
+<p>Validates JSON against <a href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON `$json` is valid against schema `$schema`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$json</code> - The JSON to validate.</p>
+</li>
+<li>
+<p><code>$schema</code> - The <a href="https://json-schema.org/understanding-json-schema/">JSON Schema</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step validates JSON according to <a href="https://json-schema.org/specification-links.html">schema specification</a> version provided in the schema itself, e.g.:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">"$schema": "https://json-schema.org/draft/2020-12/schema"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the version is not present in the schema then JSON is validated according to <a href="https://json-schema.org/specification-links.html#2020-12">2020-12</a> version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 19. Validate product for sale information</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON `
+{
+   "productId": 1,
+   "productName": "A desk lamp",
+   "price": 12.50,
+   "tags": [ "lamp", "desk" ]
+}
+` is valid against schema `
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "Product",
+  "description": "A product from catalog",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "description": "The unique identifier for a product",
+      "type": "integer"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "tags": {
+      "description": "Tags for the product",
+      "type": "array",
+      "prefixItems": [{
+        "type": "string",
+        "enum": ["lamp", "desk"]
+      }],
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [ "productId", "productName", "price", "tags" ]
+}
+`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_matchers"><a class="anchor" href="#_matchers"></a>Matchers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Matcher is an object which compares objects against a specific criteria and returns a boolean value indicating whether the match was successful or not.</p>
+</div>
+<div class="paragraph">
+<p>Embedded matchers, placeholders and expressions can be found on the json-unit library <a href="https://github.com/lukas-krecan/JsonUnit#readme">readme</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_array_contains_any_of_entries"><a class="anchor" href="#_array_contains_any_of_entries"></a>Array contains any of entries</h3>
+<div class="paragraph">
+<p>Validate if actual array contains any of entries from the expected one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{json-unit.matches:anyOf}(<strong>$input</strong>)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string which represents expected array entries</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 20. Validate entries</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize story variable `actual-json` with value `
+{
+  "store":{
+    "authors":[
+      {
+        "name":"Yakub Kolas",
+        "available":true
+      },
+      {
+        "name":"Uladzimir Karatkevich",
+        "available":true
+      }
+    ]
+  }
+}
+`
+Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `{"book":"#{json-unit.matches:anyOf}[{\"name\":\"Uladzimir Karatkevich\",\"available\":true},{\"author\":\"Yanka Kupala\",\"available\":true}])}"`</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+As JSON do not support multi line strings if you want to improve readability use <a href="../commons/expressions.html#_escapejson" class="xref page">escapeJson</a> expression inside matcher
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 21. Validate entries with <code>escapeJson</code> expression</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `
+{
+  "book":"#{json-unit.matches:anyOf}#{escapeJson([
+    {
+      "name":"Uladzimir Karatkevich",
+      "available":true
+    },
+    {
+      "author":"Yanka Kupala",
+      "available":true
+    }
+  ])}"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2024 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
