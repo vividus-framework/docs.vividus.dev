@@ -717,6 +717,47 @@ The table transformers properties marked with <strong>bold</strong> are mandator
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_save_csv_into_variable"><a class="anchor" href="#_save_csv_into_variable"></a>Save CSV into variable</h3>
+<div class="paragraph">
+<p>Saves CSV string to indexed zero-based variable with column name mappings, e.g. var[0].key2, var[1].key1 etc. Please see the <a href="../commons/variables.html#_complex_types_variables" class="xref page">documentation</a> for more information about complex variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save CSV `$csv` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$csv</code> - CSV string.</p>
+</li>
+<li>
+<p><code>$scopes</code> - The comma-separated set of the <a href="../commons/variables.html#_scopes" class="xref page">variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save CSV string.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Validate CSV data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `csv` with value `key1,key2,key3
+val1-1,val1-2,val1-3
+val2-1,val2-2,val2-3`
+When I save CSV `${csv}` to scenario variable `expected-csv`
+When I save CSV `#{loadResource(/data/simple-csv.csv)}` to scenario variable `actual-csv`
+Then `${expected-csv}` is equal to `${actual-csv}`
+Then `${csv-from-file[1].key2}` is equal to `val2-2`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
