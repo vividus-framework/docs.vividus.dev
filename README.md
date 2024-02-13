@@ -10,13 +10,13 @@ We use
 
 1. Install Node.js
 1. Install Antora and [Antora Lunr Extension](https://gitlab.com/antora/antora-lunr-extension)
-```shell
-npm i -g @antora/cli@3.1.7 @antora/site-generator@3.1.7 @antora/lunr-extension@1.0.0-alpha.8
-```
-3. Generate a site
-```shell
-antora antora-playbook-local.yml
-```
+    ```shell
+    npm i -g @antora/cli@3.1.7 @antora/site-generator@3.1.7 @antora/lunr-extension@1.0.0-alpha.8
+    ```
+1. Generate a site
+    ```shell
+    antora antora-playbook-local.yml
+    ```
 
 *IMPORTANT*: the cloned `docs.vividus.dev` repository should be placed by default in the same folder as `vividus` repository (this behavior could be changed in the playbook).
 
