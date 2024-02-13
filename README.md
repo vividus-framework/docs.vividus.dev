@@ -29,3 +29,17 @@ antora antora-playbook-local.yml
  antora antora-playbook-local.yml && \  
  open ./public/index.html
  ```
+
+### PDF Generation
+1. Install Asciidoctor PDF
+    ```shell
+    gem install asciidoctor-pdf
+    ```
+1. Install the [Antora PDF Extension](https://gitlab.com/antora/antora-assembler/)
+    ```shell
+    npm i -g @antora/pdf-extension
+    ```
+1. Generate a PDF document
+    ```shell
+    antora --extension @antora/pdf-extension antora-playbook-local.yml
+    ```
