@@ -734,6 +734,66 @@ When I enable data capturing for event hub `sample_event_hub` in namespace `NS-E
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_azure_event_hub_for_apache_kafka"><a class="anchor" href="#_azure_event_hub_for_apache_kafka"></a>Azure Event Hub for Apache Kafka</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Azure Event Hubs provides an Apache Kafka endpoint on an event hub, which allows users to connect to the event hub using the Kafka protocol. To achieve this, the following steps should be performed.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the Event Hub and Kafka plugins to the project <code>build.gradle</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-azure-event-hub')
+implementation(group: 'org.vividus', name: 'vividus-plugin-kafka')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure authentication for <a href="plugin-kafka.html" class="xref page">Kafka Consumer or/and Producer</a>.</p>
+<div class="paragraph">
+<p>During publishing or consuming the Kafka client is trying to access the Event Hubs resources. These resources can be accessed only using an authorized entity.
+Azure Event Hubs provides 2 options to authorize access to the secure resources:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OAuth 2.0</p>
+<div class="listingblock">
+<div class="title">Example 3. Configure consumer or producer to use OAuth 2.0</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.security.protocol=SASL_SSL
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.mechanism=OAUTHBEARER
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.login.callback.handler.class=org.apache.kafka.common.security.oauthbearer.secured.OAuthBearerLoginCallbackHandler
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.oauthbearer.token.endpoint.url=https://login.microsoftonline.com/&lt;azure-tenant-id&gt;/oauth2/v2.0/token
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.jaas.config= \
+  org.apache.kafka.common.security.oauthbearer.OAuthBearerLoginModule required \
+    clientId='&lt;azure-client-id&gt;' \
+    scope='https://&lt;azure-event-hub-namespace&gt;.servicebus.windows.net/.default' \
+    clientSecret='&lt;azure-client-secret&gt;';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Shared access signature (SAS)</p>
+<div class="listingblock">
+<div class="title">Example 4. Configure consumer or producer to use SAS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.security.protocol=SASL_SSL
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.mechanism=PLAIN
+kafka.&lt;consumer/producer&gt;.&lt;consumer-or-producer-key&gt;.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="Endpoint=sb://&lt;azure-event-hub-url&gt;/;SharedAccessKeyName=&lt;shared-access-key-name&gt;;SharedAccessKey=&lt;shared-access-key&gt;";</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
