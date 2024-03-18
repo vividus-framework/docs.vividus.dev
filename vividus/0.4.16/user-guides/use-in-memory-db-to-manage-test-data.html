@@ -620,9 +620,6 @@ The details on executing SQL statements on connection
 <ul>
 <li>
 <p>using <code>INIT</code> property data loaded into the database once and can no longer be change.</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Example 1. Configure connection and initialization of the database</div>
 <div class="content">
@@ -651,13 +648,9 @@ db.connection.testh2db.password=</code></pre>
 <div class="paragraph">
 <p>2.2 Configure using test step</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>if you use database initialization in the step, you only need to specify the connection parameters in the properties file and execute DDL script in the test.</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="title">Example 3. Configure connection to database</div>
 <div class="content">
@@ -700,6 +693,9 @@ If you are using database initialization in the step, do not forget to set the p
   RUNSCRIPT FROM 'classpath:/path/to/sql/file2.sql'
 ` against `testh2db`</code></pre>
 </div>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
