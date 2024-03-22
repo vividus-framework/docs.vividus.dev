@@ -679,6 +679,47 @@ could be optionally specified using the property <code>azure.environment</code>
 <p>Azure subscription must be configured via <code>AZURE_SUBSCRIPTION_ID</code> environment variable.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_azure_service_bus_configuration"><a class="anchor" href="#_azure_service_bus_configuration"></a>Azure Service Bus Configuration</h3>
+<div class="paragraph">
+<p>Azure Service Bus configurations are established via set of properties with the following format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">azure.service-bus.{service-bus-key}.{property-name}=property value</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>service-bus-key</code> - The key associated with the Azure Service Bus connection configuration, which will be used as a step parameter.</p>
+</li>
+<li>
+<p><code>property-name</code> - The name of Service Bus property. One of:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>channel-type</code> - The type of Service Bus messaging channel: either
+<a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#concepts">QUEUE or TOPIC</a>.</p>
+</li>
+<li>
+<p><code>namespace</code> - The name of the namespace Service Bus belongs to.</p>
+</li>
+<li>
+<p><code>name</code> - The queue or topic name.</p>
+</li>
+<li>
+<p><code>subscription-name</code> - The name of the topic subscription. Only for <code>TOPIC</code> channel type.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -687,24 +728,17 @@ could be optionally specified using the property <code>azure.environment</code>
 <div class="sect2">
 <h3 id="_send_message"><a class="anchor" href="#_send_message"></a>Send message</h3>
 <div class="paragraph">
-<p>Send messages in Azure Service Bus <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#concepts">Queue or Topic</a>
-under the specific namespace.</p>
+<p>Send message to the specified Azure Service Bus <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#concepts">Queue or Topic</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to service bus $type with name `$name` in namespace `$namespaceName` and payload:`$payload`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `$serviceBusKey` service bus with payload:`$payload`</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$type</code> - The type of service bus messaging components: either <code>QUEUE</code> or <code>TOPIC</code>.</p>
-</li>
-<li>
-<p><code>$name</code> - The queue or topic name.</p>
-</li>
-<li>
-<p><code>$namespaceName</code> - The name of the namespace the service bus belongs to.</p>
+<p><code>$serviceBusKey</code> - The key associated with the Azure Service Bus connection configuration, will be used to find required properties values.</p>
 </li>
 <li>
 <p><code>$payload</code> - Message to send to the service bus.</p>
@@ -714,8 +748,191 @@ under the specific namespace.</p>
 <div class="listingblock">
 <div class="title">Example 2. Send simple message to the Service Bus Queue</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to service bus QUEUE with name `testQueue` in namespace `myProjectNamespace` and payload:`Hello World!`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectQueue` service bus with payload:`Hello World!`</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_start_consuming_messages"><a class="anchor" href="#_start_consuming_messages"></a>Start consuming messages</h3>
+<div class="paragraph">
+<p>Starts Azure Service Bus consumer with the provided configuration to listen the specified
+<a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#concepts">Queue or Topic</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The consumer must be stopped when it&#8217;s not used.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `$serviceBusKey` service bus</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$serviceBusKey</code> - The key associated with the Azure Service Bus connection configuration, will be used to find required properties values.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Start consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stop_consuming_messages"><a class="anchor" href="#_stop_consuming_messages"></a>Stop consuming messages</h3>
+<div class="paragraph">
+<p>Stops Azure Service Bus consumer started by the <a href="#_start_consuming_messages">Start consuming messages</a> step before.</p>
+</div>
+<div class="paragraph">
+<p>All recorded messages are kept and can be drained into the variable using the step <a href="#_save_messages_to_the_variable">Save messages to the variable</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming messages from `$serviceBusKey` service bus</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$serviceBusKey</code> - The key associated with the Azure Service Bus connection configuration, will be used to find required properties values.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Stop consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming messages from `myProjectTopic` service bus</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_the_messages"><a class="anchor" href="#_wait_for_the_messages"></a>Wait for the messages</h3>
+<div class="paragraph">
+<p>Waits until the count of the consumed messages (from the consumer start or after the last draining operation) matches to the rule or until the timeout is exceeded.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `$timeout` timeout until count of consumed `$serviceBusKey` service bus messages is $comparisonRule `$expectedCount`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$timeout</code> - The maximum time to wait for the events in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+</li>
+<li>
+<p><code>$serviceBusKey</code> - The key associated with Azure Service Bus connection configuration, will be used to find required properties values.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$expectedCount</code> - The expected count of the events to be matched by the rule.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Wait for at least 5 messages from the queue for 30 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `PT30S` timeout until count of consumed `myProjectQueue` service bus messages is &gt;= `5`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_save_messages_to_the_variable"><a class="anchor" href="#_save_messages_to_the_variable"></a>Save messages to the variable</h3>
+<div class="paragraph">
+<p>Drains/Peeks the consumed messages to the specified variable. If the consumer is not stopped, the new events might arrive after the draining.
+If the consumer is stopped, all the events received from the consumer start or after the last draining operation are stored to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $operation consumed `$serviceBusKey` service bus messages to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$operation</code> - operation under the consumed messages, one of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DRAIN</code> - saves the messages consumed since the last drain or from the consumption start and moves the consumer cursor to the position after the last consumed message;</p>
+</li>
+<li>
+<p><code>PEEK</code> - saves the messages consumed since the last drain or from the consumption start and doesn&#8217;t change the consumer cursor position.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>$serviceBusKey</code> - The key associated with Azure Service Bus connection configuration, will be used to find required properties values.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store the messages. The messages are accessible via zero-based index, e.g. <code>${my-var[0]}</code> will return the first received message.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Peek and drain messages from the consumer, save them to variables, and compare each other</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus
+When I DRAIN consumed `myProjectTopic` service bus messages to STORY variable `drained-messages`
+!-- Perform any actions triggering the publishing of events to Kafka
+When I PEEK consumed `myProjectTopic` service bus messages to STORY variable `peeked-messages`
+When I stop consuming messages from `myProjectTopic` service bus
+Then `${drained-messages[0]}` is not equal to `${peeked-messages[0]}`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 7. Consume messages from the Service Bus topic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus
+When I wait with `PT30S` timeout until count of consumed `myProjectTopic` service bus messages is &gt;= `2`
+When I stop consuming messages from `myProjectTopic` service bus
+When I DRAIN consumed `myProjectTopic` service bus messages to STORY variable `drained-messages`
+Then `${drained-messages[0]}` is equal to `some-expected-event`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Drain messages while the Service Bus consumer is running</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectTopic` service bus with payload:`First message`
+When I start consuming messages from `myProjectTopic` service bus
+When I DRAIN consumed `myProjectTopic` service bus messages to SCENARIO variable `first-drain-messages`
+When I send message to `myProjectTopic` service bus with payload:`Second message`
+When I DRAIN consumed `myProjectTopic` service bus messages to SCENARIO variable `second-drain-messages`
+When I stop consuming messages from `myProjectTopic` service bus
+Then `${first-drain-messages[0]}` is not equal to `${second-drain-messages[0]}`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Peek messages while the Service Bus consumer is running</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectQueue` service bus with payload:`Hello World!`
+When I start consuming messages from `myProjectTopic` service bus
+When I PEEK consumed `myProjectQueue` service bus messages to SCENARIO variable `peeked-messages`
+When I stop consuming messages from `myProjectTopic` service bus
+Then `${peeked-messages[0]}` is equal to `Hello World!`</code></pre>
 </div>
 </div>
 </div>
