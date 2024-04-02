@@ -833,6 +833,134 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_properties_based_screenshot_configuration_for_web_applications"><a class="anchor" href="#_properties_based_screenshot_configuration_for_web_applications"></a>Properties-based screenshot configuration for web applications</h4>
+<div class="paragraph">
+<p>Properties-based screenshot configuration can be specified using <code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;=&lt;PROPERTY_VALUE&gt;</code> pattern,
+where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;</p>
+</li>
+<li>
+<p><code>PROPERTY_NAME</code> - name of the property you want to specify;</p>
+</li>
+<li>
+<p><code>PROPERTY_VALUE</code> - value of the property in the required format.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Keep in mind that properties-based configuration can be overridden by <a href="#_visual_check_with_custom_applitools_and_screenshot_configuration">the step</a> with custom step configuration.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web header to cut (could be useful if your site has sticky header)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web footer to cut (could be useful if your site has sticky footer)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-header-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native header to cut</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.native-footer-to-cut</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Native footer to cut</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.coords-provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WEB_DRIVER</code> <code>CEILING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds margins to coordinates, default one</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scroll-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The duration in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for scrolling during performing visual check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.scrollable-element</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locator of element for performing scroll action during visual check, steps fails if an element by the locator does not exist</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code> <code>VIEWPORT_PASTING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>VIEWPORT_PASTING</code> by default)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-top</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of top part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-bottom</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of bottom part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-left</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of left part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.cut-right</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of right part of the final screenshot to cut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy=YOUR_STRATEGY_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">After configuration necessary properties use this one to enable your custom strategy</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Mind that <code>cut-<strong>*</strong></code> modifications applied to the final screenshot, for example final stitched screenshot will be cut for the viewport-pasting strategy.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Modifiers to cut web header or web footer have the default value <code>100</code> px (cutting headers and footers up to 100 pixels high).
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_common_visual_testing_actions_use_cases"><a class="anchor" href="#_common_visual_testing_actions_use_cases"></a>Common visual testing actions use cases</h3>

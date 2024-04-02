@@ -824,13 +824,27 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="sect2">
 <h3 id="_web_applications"><a class="anchor" href="#_web_applications"></a>Web Applications</h3>
 <div class="paragraph">
-<p>Property based configuration could be specified using <code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;= pattern</code>,
-where:
-<code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;
-<code>PROPERTY_NAME</code> - name of the property you want to specify.</p>
+<p>Properties-based screenshot configuration can be specified using <code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.&lt;PROPERTY_NAME&gt;=&lt;PROPERTY_VALUE&gt;</code> pattern,
+where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>YOUR_STRATEGY_NAME</code> - name of the custom strategy;</p>
+</li>
+<li>
+<p><code>PROPERTY_NAME</code> - name of the property you want to specify;</p>
+</li>
+<li>
+<p><code>PROPERTY_VALUE</code> - value of the property in the required format.</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
-<h4 id="_properties_based_configuration"><a class="anchor" href="#_properties_based_configuration"></a>Properties based configuration:</h4>
+<h4 id="_properties_based_configuration"><a class="anchor" href="#_properties_based_configuration"></a>Properties-based configuration:</h4>
+<div class="paragraph">
+<p>Keep in mind that properties-based configuration can be overridden by the <a href="#_step_based_configuration">Step based configuration</a>.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -970,6 +984,18 @@ web.screenshot.strategy=custom</code></pre>
 <div class="content">
 <img src="_images/example.png" alt="Difference between native/web footer/header image">
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Modifiers to cut web header or web footer have the default value <code>100</code> px (cutting headers and footers up to 100 pixels high).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
