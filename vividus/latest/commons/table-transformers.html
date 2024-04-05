@@ -1091,24 +1091,34 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Default value</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>byColumnNames</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the names of the columns to keep separated by semicolon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>byColumnNames</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The names of the columns to keep (separated by semicolon).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>keepAllColumns</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>false</code>, only the columns specified in <code>byColumnNames</code> will appear in the resulting table. Otherwise, all columns
+ from the initial table will be included in the resulting table. If the initial table has rows with repeated values,
+the value from the first row will be retained in the resulting table.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>The following <code>DISTINCTING</code> transformer:</p>
+<p>This <code>DISTINCTING</code> transformer:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1129,6 +1139,30 @@ In case if <code>byColumnNames</code> contains nonexistent table columns the exc
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|column1|column2|
 |A      |C      |
 |B      |D      |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>DISTINCTING</code> transformer keeping all columns:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=DISTINCTING, byColumnNames=column1;column2, keepAllColumns=true}
+|column1|column2|column3|
+|A      |C      |0      |
+|B      |D      |1      |
+|A      |C      |1      |
+|A      |C      |0      |
+|B      |D      |0      |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|column1|column2|column3|
+|A      |C      |0      |
+|B      |D      |1      |</code></pre>
 </div>
 </div>
 </div>
