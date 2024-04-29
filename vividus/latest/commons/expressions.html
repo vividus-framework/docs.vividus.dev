@@ -7365,9 +7365,34 @@ the <a href="../secrets-management.html#_how_to_use_an_encrypted_string" class="
 <h2 id="_url_parsing"><a class="anchor" href="#_url_parsing"></a>URL parsing</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_extractschemefromurl"><a class="anchor" href="#_extractschemefromurl"></a><code>extractSchemeFromUrl</code></h3>
+<div class="paragraph">
+<p>Extracts the scheme component from the given URL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{extractSchemeFromUrl(<strong>$url</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$url</code></strong> - the URL to extract the component from.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Validate URL protocol</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractHostFromUrl(file://server/folder/data.xml?id=123)}` is equal to `file`
+Then `#{extractHostFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is equal to `https`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_extracthostfromurl"><a class="anchor" href="#_extracthostfromurl"></a><code>extractHostFromUrl</code></h3>
 <div class="paragraph">
-<p>Extracts host component from the given URL.</p>
+<p>Extracts the host component from the given URL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7377,22 +7402,22 @@ the <a href="../secrets-management.html#_how_to_use_an_encrypted_string" class="
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$url</code></strong> - the URL to extract component from.</p>
+<p><strong><code>$url</code></strong> - the URL to extract the component from.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Validate host component from URL</div>
+<div class="title">Example 7. Validate the host component from URL</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractHostFromUrl(file://server/folder/data.xml?id=123)}` is = `server`
-Then `#{extractHostFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is = `docs.vividus.dev`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractHostFromUrl(file://server/folder/data.xml?id=123)}` is equal to `server`
+Then `#{extractHostFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is equal to `docs.vividus.dev`</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_extractpathfromurl"><a class="anchor" href="#_extractpathfromurl"></a><code>extractPathFromUrl</code></h3>
 <div class="paragraph">
-<p>Extracts decoded path component from the given URL.</p>
+<p>Extracts the decoded path component from the given URL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7402,22 +7427,22 @@ Then `#{extractHostFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is 
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$url</code></strong> - the URL to extract component from.</p>
+<p><strong><code>$url</code></strong> - the URL to extract the component from.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Validate path component from URL</div>
+<div class="title">Example 8. Validate the path component from URL</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractPathFromUrl(file://server/folder/data.xml?id=123)}` is = `/folder/data.xml`
-Then `#{extractPathFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is = `/vividus/latest`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractPathFromUrl(file://server/folder/data.xml?id=123)}` is equal to `/folder/data.xml`
+Then `#{extractPathFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is equal to `/vividus/latest`</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_extractqueryfromurl"><a class="anchor" href="#_extractqueryfromurl"></a><code>extractQueryFromUrl</code></h3>
 <div class="paragraph">
-<p>Extracts decoded query component from the given URL.</p>
+<p>Extracts the decoded query component from the given URL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7427,15 +7452,15 @@ Then `#{extractPathFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is 
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>$url</code></strong> - the URL to extract component from.</p>
+<p><strong><code>$url</code></strong> - the URL to extract the component from.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate query component from URL</div>
+<div class="title">Example 9. Validate the query component from URL</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractQueryFromUrl(file://server/folder/data.xml?id=123)}` is = `id=123`
-Then `#{extractQueryFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is = `page=2`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `#{extractQueryFromUrl(file://server/folder/data.xml?id=123)}` is equal to `id=123`
+Then `#{extractQueryFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is equal to `page=2`</code></pre>
 </div>
 </div>
 </div>
@@ -7469,7 +7494,7 @@ Then `#{extractQueryFromUrl(https://docs.vividus.dev/vividus/latest?page=2)}` is
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Evaluate JEXL script</div>
+<div class="title">Example 10. Evaluate JEXL script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify eval expression
 Then `#{&lt;expression&gt;}` is = `&lt;expected&gt;`
@@ -7529,7 +7554,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Evaluate Groovy script</div>
+<div class="title">Example 11. Evaluate Groovy script</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize Scenario variable `listOfMaps` with values:
 |key|
@@ -7568,7 +7593,7 @@ Null expression can only be evaluated separately. Strings or other expressions w
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Validation of JSON element with <code>null</code> value</div>
+<div class="title">Example 12. Validation of JSON element with <code>null</code> value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `json` with value `
 {
