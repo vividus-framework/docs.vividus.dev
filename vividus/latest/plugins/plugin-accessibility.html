@@ -637,6 +637,52 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect1">
+<h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessibility.engine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HTML_CS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Engine to use, either <code>HTML_CS</code> or <code>AXE_CORE</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessibility.report-violations-as-assertions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>If <code>false</code> the step will report only the number of violations detected during accessibility check.</p>
+</div>
+<div class="paragraph">
+<p>If <code>true</code> the step will report each violation individually using the following format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[button-name] Ensures buttons have discernible text</code> - AxeCore</p>
+</li>
+<li>
+<p><code>[WCAG2AAA.Principle3.Guideline3_2.3_2_1.G107] Check that a change of context does not occur when this input field receives focus.</code> - HTML CS</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
