@@ -640,7 +640,7 @@ the configuration files for the used IDE and then refresh the project in the use
 <h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a><a href="../glossary.html#_table_transformer" class="xref page">Table Transformers</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_from_sitemap"><a class="anchor" href="#_from_sitemap"></a>FROM_SITEMAP</h3>
+<h3 id="_from_sitemap"><a class="anchor" href="#_from_sitemap"></a><code>FROM_SITEMAP</code></h3>
 <div class="paragraph">
 <p><code>FROM_SITEMAP</code> transformer generates table based on the website sitemap.</p>
 </div>
@@ -656,50 +656,10 @@ The use of <code>web-application.main-page-url</code> property for setting of ma
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+<div class="paragraph">
+<p>The properties outlined in the table below are applied to all FROM_SITEMAP transformers utilized in the tests, unless
+they override the values by specifiying the corresponding table parameters.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-sitemap.main-page-url</code> property.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>siteMapRelativeUrl</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">relative URL of <code>sitemap.xml</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignoreErrors</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ignore sitemap parsing errors (<em>true</em> or <em>false</em>)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the column name in the generated table</p></td>
-</tr>
-</tbody>
-</table>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 37.5%;">
@@ -718,37 +678,32 @@ The main page url value defined by this parameter overrides the value defined by
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.main-page-url</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The main page url value defined by this property gets overriden by the value defined in <code>mainPageUrl</code> transformer parameter.
-</td>
-</tr>
-</table>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.ignore-errors</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ignore sitemap parsing errors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore sitemap parsing errors.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.strict</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether invalid URLs will be rejected silently (where "invalid" means that the URL is not under the base URL, see <a href="https://www.sitemaps.org/protocol.html#location">sitemap file location explanation</a> for more details)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.filter-redirects</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code>
+<p><code>true</code><br>
 <code>false</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
@@ -756,11 +711,68 @@ The main page url value defined by this property gets overriden by the value def
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>The parameters outlined in the table below are exclusively applicable to the transformer in which they are declared.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.main-page-url</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>siteMapRelativeUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relative URL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The relative URL of <code>sitemap.xml</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The column name to store collected relative URLs in the generated table.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignoreErrors</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.ignore-errors</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore sitemap parsing errors.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>strict</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.strict</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether invalid URLs will be rejected silently (where "invalid" means that the URL is not under the base URL, see <a href="https://www.sitemaps.org/protocol.html#location">sitemap file location explanation</a> for more details)</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="title">Example 2. Usage example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
-{transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, column=page-url}</code></pre>
+{transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, strict=false, column=page-url}</code></pre>
 </div>
 </div>
 </div>
@@ -781,42 +793,6 @@ The use of <code>web-application.main-page-url</code> property for setting of ma
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-headless-crawling.main-page-url</code> property.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
-</tr>
-</tbody>
-</table>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 37.5%;">
@@ -1051,6 +1027,42 @@ The crawler will ignore all URLs referring to files with extensions matching the
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>no default value</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password to authenticate with proxy.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-headless-crawling.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
 </tr>
 </tbody>
 </table>
