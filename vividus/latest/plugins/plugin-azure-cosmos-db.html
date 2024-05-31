@@ -724,11 +724,15 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><code>endpoint</code> - The endoint of the account.</p>
+<p><code>endpoint</code> - The endpoint of the account.</p>
 </li>
 <li>
 <p><code>key</code> - Either a master or readonly key used to perform authentication for Cosmos database service.
 If <code>key</code> is not set, <a href="#_authentication">default authentication mechanism described below</a> will be used.</p>
+</li>
+<li>
+<p><code>connection-mode</code> - <a href="https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/sdk-connection-modes" class="bare">https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/sdk-connection-modes</a> [The mechanism],
+how the client connects to Azure Cosmos DB. Possible values: <code>DIRECT</code> or <code>GATEWAY</code>. If <code>connection-mode</code> is not set, <code>DIRECT</code> will be used.</p>
 </li>
 </ol>
 </div>
@@ -757,7 +761,8 @@ azure.cosmos-db.database.commecrial.account-key=vividus
 
 # Accounts configuration contains connection details
 azure.cosmos-db.account.vividus.endpoint=https://vividus-cosmos.documents.azure.com:443/
-azure.cosmos-db.account.vividus.key=some key</code></pre>
+azure.cosmos-db.account.vividus.key=some key
+azure.cosmos-db.account.vividus.connection-mode=GATEWAY</code></pre>
 </div>
 </div>
 </div>
