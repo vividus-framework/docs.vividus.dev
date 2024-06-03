@@ -681,12 +681,12 @@ the configuration files for the used IDE and then refresh the project in the use
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>range</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the range of cells from the specified excel sheet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the semicolon-separated collection of <a href="https://www.w3schools.com/excel/excel_ranges.php">Excel ranges</a> from the specified excel sheet. The table header is always taken from the first range and the number of columns in subsequent ranges must correspond to the header.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>addresses</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the comma-separated collection of the cell addresses from the specified excel sheet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the semicolon-separated collection of the cell addresses from the specified excel sheet</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>increment</code></p></td>
@@ -750,6 +750,13 @@ The following <a href="https://support.microsoft.com/en-us/office/data-types-in-
 {transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, range=A2:B4}</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Example 5. Usage FROM_EXCEL with a header not from the first line</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
+{transformer=FROM_EXCEL, path=/my-excel-file.xlsx, sheet=Data, range=A2:B2;A1:B1;A3:B4}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -780,7 +787,7 @@ The following <a href="https://support.microsoft.com/en-us/office/data-types-in-
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Create temporary excel file</div>
+<div class="title">Example 6. Create temporary excel file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary excel file with content:
 |key1  |key2  |
@@ -816,7 +823,7 @@ and put path to scenario variable `path`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Create temporary excel file</div>
+<div class="title">Example 7. Create temporary excel file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary excel file containing sheet with name `movies` and content:
 |name                           |year|
@@ -851,7 +858,7 @@ and put its path to scenario variable `movies-path`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Add sheet with pets</div>
+<div class="title">Example 8. Add sheet with pets</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add sheet with name `pets` and content:
 |type|name      |
@@ -898,7 +905,7 @@ to excel file at path `/home/collection.xslx`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate excel sheet by name</div>
+<div class="title">Example 9. Validate excel sheet by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
 Then response code is = `200`
@@ -945,7 +952,7 @@ Then `${response-as-bytes}` contains excel sheet with name `Mapping` and records
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Validate excel sheet by index</div>
+<div class="title">Example 10. Validate excel sheet by index</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
 Then response code is = `200`
