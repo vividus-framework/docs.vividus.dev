@@ -1319,6 +1319,45 @@ When I save text of context element to scneario variable `username`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_save_number_of_elements"><a class="anchor" href="#_save_number_of_elements"></a>Save number of elements</h3>
+<div class="paragraph">
+<p>Saves number of elements located by locator into a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located `$locator` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to save the number of elements.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 18. Save number of elements</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//a)` to scenario variable `numberOfLinks`
+Then `${numberOfLinks}` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_save_size_and_coordinates_of_element"><a class="anchor" href="#_save_size_and_coordinates_of_element"></a>Save size and coordinates of element</h3>
 <div class="paragraph">
 <p>Saves the information about the size of an element and its coordinates relative to the viewport.</p>
@@ -1372,7 +1411,7 @@ When I save text of context element to scneario variable `username`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Verify image size and coordinates</div>
+<div class="title">Example 19. Verify image size and coordinates</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `tagName(img)` to scenario variable `rect`
 Then `${rect.height}` is equal `400`
@@ -1405,7 +1444,7 @@ Then `${rect.y}` is equal `8`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Check the text 'Contract Us' is present on the page</div>
+<div class="title">Example 20. Check the text 'Contract Us' is present on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
 Then text `Contact Us` exists</code></pre>
@@ -1430,7 +1469,7 @@ Then text `Contact Us` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Check the text 'Deprecated' is not present in the element</div>
+<div class="title">Example 21. Check the text 'Deprecated' is not present in the element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(code)`
 Then text `Deprecated` does not exist</code></pre>
@@ -1455,7 +1494,7 @@ Then text `Deprecated` does not exist</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
+<div class="title">Example 22. Check the text with pattern 'User ".*" successfully logged in' is present in the current context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(message)`
 Then text matches `User ".*" successfully logged in`</code></pre>
