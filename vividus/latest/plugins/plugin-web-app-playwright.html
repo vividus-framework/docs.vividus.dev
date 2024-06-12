@@ -1668,6 +1668,66 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_javascript_steps"><a class="anchor" href="#_javascript_steps"></a>JavaScript steps</h3>
+<div class="sect3">
+<h4 id="_execute_javascript"><a class="anchor" href="#_execute_javascript"></a>Execute JavaScript</h4>
+<div class="paragraph">
+<p>Executes passed JavaScript code on the opened page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `$jsCode`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - The JavaScript code.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 27. Click on the link using JavaScript</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com`
+When I execute javascript `document.querySelector('a').click()`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_execute_javascript_and_save_result"><a class="anchor" href="#_execute_javascript_and_save_result"></a>Execute JavaScript and save result</h4>
+<div class="paragraph">
+<p>Executes passed JavaScript code on the opened page and saves result into variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `$jsCode` and save result to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsCode</code> - The JavaScript code with return value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to script execution result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 28. Validate timings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
+When I execute javascript `JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
+Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is = 1</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
