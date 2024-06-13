@@ -693,6 +693,45 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
+<h4 id="_set_headers_to_kafka_event"><a class="anchor" href="#_set_headers_to_kafka_event"></a><strong>Set headers to Kafka event</strong></h4>
+<div class="paragraph">
+<p>Sets headers to the event, which will be sent to Kafka topic.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The set headers are scoped to the first event, which will be sent, and not available afterwards.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set Kafka event headers:$headers</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>headers</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> representing the list of the headers with columns <code>name</code> and <code>value</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Set event header with name <code>aggregate-type</code> and value <code>tenant</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set Kafka event headers:
+|name          |value |
+|aggregate-type|tenant|
+When I send event with value `test-data` to `dev` Kafka topic `test-topic`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_send_event_with_value"><a class="anchor" href="#_send_event_with_value"></a><strong>Send event with value</strong></h4>
 <div class="paragraph">
 <p>Sends the event with the value to the provided topic with no key or partition.</p>
@@ -720,7 +759,7 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 2. Send the event to the Kafka topic</div>
+<div class="title">Example 3. Send the event to the Kafka topic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with value `my-data` to `dev` Kafka topic `my-topic`</code></pre>
 </div>
@@ -756,7 +795,7 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 3. Send the event to the Kafka topic</div>
+<div class="title">Example 4. Send the event to the Kafka topic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send event with key `passenger car` and value `BMW x7` to `dev` Kafka topic `cars`</code></pre>
 </div>
@@ -915,7 +954,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="sect2">
 <h3 id="_examples_3"><a class="anchor" href="#_examples_3"></a>Examples</h3>
 <div class="listingblock">
-<div class="title">Example 4. Consume events from the Kafka topic</div>
+<div class="title">Example 5. Consume events from the Kafka topic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `dev` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
@@ -926,7 +965,7 @@ Then `${consumed-events[0]}` is equal to `some-expected-event`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Drain events while listener is running</div>
+<div class="title">Example 6. Drain events while listener is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
@@ -937,7 +976,7 @@ When I stop consuming events from `prod` Kafka</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Peek events while listener is running</div>
+<div class="title">Example 7. Peek events while listener is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming events from `prod` Kafka topics `my-topic-1, my-topic-2`
 !-- Perform any actions triggering the publishing of events to Kafka
