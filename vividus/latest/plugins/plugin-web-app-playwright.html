@@ -720,6 +720,36 @@ Playwright captures a set of complete DOM snapshots for each action.</p></td>
 <div class="sect1">
 <h2 id="_locator"><a class="anchor" href="#_locator"></a>Locator</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">By.&lt;locatorType&gt;(&lt;locatorValue&gt;):&lt;visibility&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By. prefix is optional.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>locatorType</code> - <strong>[mandatory]</strong> type of the locator</p>
+</li>
+<li>
+<p><code>locatorValue</code> - <strong>[mandatory]</strong> value of the locator</p>
+</li>
+<li>
+<p><code>visibility</code> - <strong>[optional]</strong> visibility of element (visible by default)</p>
+</li>
+</ol>
+</div>
 <div class="sect2">
 <h3 id="_locator_types"><a class="anchor" href="#_locator_types"></a>Locator Types</h3>
 <table class="tableblock frame-all grid-all stretch">
@@ -750,6 +780,35 @@ Playwright captures a set of complete DOM snapshots for each action.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching an <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">xPath expression</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_visibility_types"><a class="anchor" href="#_visibility_types"></a>Visibility types</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Visibility type</th>
+<th class="tableblock halign-left valign-top">Usage example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VISIBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default visibility option. Only visible elements will be found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a):a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either visible and invisible elements will be found</p></td>
 </tr>
 </tbody>
 </table>
