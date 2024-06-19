@@ -1787,6 +1787,57 @@ Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is 
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_context_steps"><a class="anchor" href="#_context_steps"></a>Context steps</h3>
+<div class="sect3">
+<h4 id="_switch_to_the_default_context_of_page"><a class="anchor" href="#_switch_to_the_default_context_of_page"></a>Switch to the default context of page</h4>
+<div class="paragraph">
+<p>Switches context to the root <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html">&lt;html&gt;</a> element of the current page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch back to page</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 29. Switch to user context and back to the default context of page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/elementState.html`
+When I change context to element located by `id(button-hide)`
+Then text `Element to hide` does not exist
+When I switch back to page
+Then text `Element to hide` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_switch_context_to_a_frame"><a class="anchor" href="#_switch_context_to_a_frame"></a>Switch context to a frame</h4>
+<div class="paragraph">
+<p>Switches to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">&lt;iframe&gt;</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frame">&lt;frame&gt;</a> element using one of the supported locators.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to frame located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - <a href="#_locator">Locator</a> of frame element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Switch to frame</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/nestedFrames.html`
+Then text `Modal Frame Example` does not exist
+When I switch to frame located by `id(parent)`
+Then text `Modal Frame Example` exists</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
