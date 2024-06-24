@@ -1838,6 +1838,40 @@ Then text `Modal Frame Example` exists</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_check_an_element_css_property"><a class="anchor" href="#_check_an_element_css_property"></a>Check an element CSS property</h3>
+<div class="paragraph">
+<p>Checks the context element has the expected CSS property.</p>
+</div>
+<div class="paragraph">
+<p>The context can be set by the <a href="#_change_context">corresponding steps</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then context element has CSS property `$cssName` with value that $comparisonRule `$cssValue`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cssName</code> - A name of the CSS property.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - CSS property <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$cssValue</code> - The expected value of the CSS property.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Change context to element and verify it color CSS property value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(rainbow)`
+Then context element has CSS property `color` with value that is equal to `rgba(0, 0, 0, 1)`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
