@@ -1987,6 +1987,204 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_cookie_steps"><a class="anchor" href="#_cookie_steps"></a>Cookie Steps</h3>
+<div class="sect3">
+<h4 id="_validate_cookie_presence"><a class="anchor" href="#_validate_cookie_presence"></a>Validate cookie presence</h4>
+<div class="paragraph">
+<p>Validates whether the certain cookie is set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is set</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>$cookieName - The name of the cookie to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 34. Check the session cookie is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_cookie_absence"><a class="anchor" href="#_validate_cookie_absence"></a>Validate cookie absence</h4>
+<div class="paragraph">
+<p>Validates whether the certain cookie is not set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is not set</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>$cookieName - The name of the cookie to check absence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 35. Check the session cookie is not present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is not set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_cookies"><a class="anchor" href="#_set_cookies"></a>Set cookies</h4>
+<div class="paragraph">
+<p>Adds the cookies provided in the input <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> - The parameters of the cookies to set as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the name of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookieValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the value of the cookie to set</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the path of the cookie to set</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 36. Set the cookie for the current domain</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
+|cookieName   |cookieValue |path |
+|cookieAgreed |2           |/    |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie_value"><a class="anchor" href="#_get_cookie_value"></a>Get cookie value</h4>
+<div class="paragraph">
+<p>Finds the cookie by the name and saves its value to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `$cookieName` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save the value.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie value.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 37. Get the value of the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_get_cookie"><a class="anchor" href="#_get_cookie"></a>Get cookie</h4>
+<div class="paragraph">
+<p>Finds the cookie by the name and saves all its parameters as JSON to a variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `$cookieName` as JSON to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to save.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save the cookie.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 38. Get the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_cookie"><a class="anchor" href="#_remove_cookie"></a>Remove cookie</h4>
+<div class="paragraph">
+<p>Removes the certain cookie from the current domain.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `$cookieName` from current domain</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to remove.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 39. Remove the session cookie</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_all_cookies"><a class="anchor" href="#_remove_all_cookies"></a>Remove all cookies</h4>
+<div class="paragraph">
+<p>Removes all cookies from the current domain.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all cookies from current domain</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
