@@ -2244,6 +2244,33 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_upload_file"><a class="anchor" href="#_upload_file"></a>Upload file</h3>
+<div class="paragraph">
+<p>Uploads the <a href="../glossary.html#_resource" class="xref page">resource</a> or file via web interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select element located by `$locator` and upload `$resourceNameOrFilePath`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - the <a href="#_locator">locator</a> of the web element with <strong>input</strong> tag and attribute <strong>type=file</strong></p>
+</li>
+<li>
+<p><code>$resourceNameOrFilePath</code> - relative path to the file to be uploaded</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 42. Upload file_for_upload.png file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select element located by `id(uploadfile)` and upload file `/folder/file_for_upload.png`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
