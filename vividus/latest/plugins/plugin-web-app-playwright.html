@@ -2049,20 +2049,23 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is set</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that $stringComparisonRule `$cookieName` is set</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>$cookieName - The name of the cookie to check presence.</p>
+<p><code>$stringComparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check presence.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="title">Example 36. Check the session cookie is present</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is set</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that is equal to `JSESSIONID` is set</code></pre>
 </div>
 </div>
 </div>
@@ -2073,20 +2076,23 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `$cookieName` is not set</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that $stringComparisonRule `$cookieName` is not set</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>$cookieName - The name of the cookie to check absence.</p>
+<p><code>$stringComparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$cookieName</code> - The name of the cookie to check absence.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Check the session cookie is not present</div>
+<div class="title">Example 37. Check that Google Analytics cookies are not present</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name `JSESSIONID` is not set</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that matches `_ga.*` is not set</code></pre>
 </div>
 </div>
 </div>
