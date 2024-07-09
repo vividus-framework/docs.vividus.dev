@@ -1896,6 +1896,33 @@ Then text `Modal Frame Example` exists</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_select_an_option_in_dropdown"><a class="anchor" href="#_select_an_option_in_dropdown"></a>Select an option in dropdown</h3>
+<div class="paragraph">
+<p>Selects the first <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option">option</a> in dropdown whose <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value">value attribute</a> is equal to the provided value (case-insensitive).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `$option` in dropdown located by `$locator`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$option</code> - The option to select.</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find dropdown.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 33. Select option with the value <code>Red</code> in dropdown</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located by `id(colors)`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_check_an_element_css_property"><a class="anchor" href="#_check_an_element_css_property"></a>Check an element CSS property</h3>
 <div class="paragraph">
 <p>Checks the context element has the expected CSS property.</p>
@@ -1922,7 +1949,7 @@ Then text `Modal Frame Example` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Change context to element and verify it color CSS property value</div>
+<div class="title">Example 34. Change context to element and verify it color CSS property value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(rainbow)`
 Then context element has CSS property `color` with value that is equal to `rgba(0, 0, 0, 1)`</code></pre>
@@ -1979,7 +2006,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Disable menus</div>
+<div class="title">Example 35. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                            |
@@ -2035,7 +2062,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Script type check</div>
+<div class="title">Example 36. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `xpath(//script):a` and for each element do
 |step                                                                                      |
@@ -2067,7 +2094,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Check the session cookie is present</div>
+<div class="title">Example 37. Check the session cookie is present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that is equal to `JSESSIONID` is set</code></pre>
 </div>
@@ -2094,7 +2121,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Check that Google Analytics cookies are not present</div>
+<div class="title">Example 38. Check that Google Analytics cookies are not present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that matches `_ga.*` is not set</code></pre>
 </div>
@@ -2144,7 +2171,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Set the cookie for the current domain</div>
+<div class="title">Example 39. Set the cookie for the current domain</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
 |cookieName   |cookieValue |path |
@@ -2176,7 +2203,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Get the value of the session cookie</div>
+<div class="title">Example 40. Get the value of the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
 </div>
@@ -2206,7 +2233,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Get the session cookie</div>
+<div class="title">Example 41. Get the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
 </div>
@@ -2230,7 +2257,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Remove the session cookie</div>
+<div class="title">Example 42. Remove the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
 </div>
@@ -2269,7 +2296,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Upload file_for_upload.png file</div>
+<div class="title">Example 43. Upload file_for_upload.png file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select element located by `id(uploadfile)` and upload file `/folder/file_for_upload.png`</code></pre>
 </div>
