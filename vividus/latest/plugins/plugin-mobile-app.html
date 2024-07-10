@@ -2073,6 +2073,38 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_wait_for_tab_and_switch"><a class="anchor" href="#_wait_for_tab_and_switch"></a>Wait for tab and switch</h4>
+<div class="paragraph">
+<p>Waits for a tab with desired title and switches to it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$duration` until tab with title that $comparisonRule `$title` appears and switch to it</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$duration</code> - The timeout duration to wait for a tab in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - The tab title <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$title</code> - The expected tab title.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 26. Wait for tab and switch to it</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/windows.html`
+When I click on element located by `id(timeout)`
+When I wait `PT3S` until tab with title that is equal to `Vividus test site` appears and switch to it</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_elements_validation"><a class="anchor" href="#_elements_validation"></a>Elements validation</h3>
@@ -2100,7 +2132,7 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Validate the number of elements</div>
+<div class="title">Example 27. Validate the number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(./a)` is equal to `5`</code></pre>
 </div>
@@ -2133,7 +2165,7 @@ Then number of elements found by `id(header)` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Save the text of the header element</div>
+<div class="title">Example 28. Save the text of the header element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save text of element located by `id(header)` to scenario variable `heading-text`</code></pre>
 </div>
@@ -2172,7 +2204,7 @@ An error is thrown if the context is not set to the element.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Save the text of the context element</div>
+<div class="title">Example 29. Save the text of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save text of context element to scneario variable `username`</code></pre>
@@ -2212,7 +2244,7 @@ When I save text of context element to scneario variable `username`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Switch to web view by name</div>
+<div class="title">Example 30. Switch to web view by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `0`
 When I switch to web view with name that contains `vividustestapp`
@@ -2231,7 +2263,7 @@ Then number of elements found by `xpath(html)` is equal to `1`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Switch to native context</div>
+<div class="title">Example 31. Switch to native context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `xpath(html)` is equal to `1`
 When I switch to native context
@@ -2270,7 +2302,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Tap on element</div>
+<div class="title">Example 32. Tap on element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located by `accessibilityId(menu-toggler)`</code></pre>
 </div>
@@ -2313,7 +2345,7 @@ Then number of elements found by `xpath(html)` is equal to `0`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Tap on element with duration</div>
+<div class="title">Example 33. Tap on element with duration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I tap on element located by `accessibilityId(menu-toggler)` with duration `PT0.5S`</code></pre>
 </div>
@@ -2349,7 +2381,7 @@ The step is supported for Android and iOS platforms.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Double tap on element</div>
+<div class="title">Example 34. Double tap on element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I double tap on element located by `accessibilityId(increment)`</code></pre>
 </div>
@@ -2373,7 +2405,7 @@ The step is supported for Android and iOS platforms.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Go to Home screen</div>
+<div class="title">Example 35. Go to Home screen</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press Home key</code></pre>
 </div>
@@ -2409,7 +2441,7 @@ to modify long press duration for <code>iOS</code> and <code>tvOS</code> you cou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Go to Home screen</div>
+<div class="title">Example 36. Go to Home screen</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I long press Home key</code></pre>
 </div>
@@ -2433,7 +2465,7 @@ to modify long press duration for <code>iOS</code> and <code>tvOS</code> you cou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Enter password</div>
+<div class="title">Example 37. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I press keys:
 |key|
@@ -2475,7 +2507,7 @@ All the characters will be treated as is and passed sequentially. To send specia
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Enter password</div>
+<div class="title">Example 38. Enter password</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type text `pas1$`</code></pre>
 </div>
@@ -2542,7 +2574,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Type text</div>
+<div class="title">Example 39. Type text</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type `Bob` in field located `accessibilityId(username)`</code></pre>
 </div>
@@ -2569,7 +2601,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Type text and keep keyboard opened</div>
+<div class="title">Example 40. Type text and keep keyboard opened</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I type `Bob` in field located `accessibilityId(username)` and keep keyboard opened</code></pre>
 </div>
@@ -2621,7 +2653,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Clear the field</div>
+<div class="title">Example 41. Clear the field</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located `accessibilityId(username)`</code></pre>
 </div>
@@ -2645,7 +2677,7 @@ is performed to close the keyboard.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Clear text and keep keyboard open</div>
+<div class="title">Example 42. Clear text and keep keyboard open</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear field located `accessibilityId(username)` and keep keyboard open</code></pre>
 </div>
@@ -2707,7 +2739,7 @@ the element, you need to switch the context to this element.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Swipe to an element</div>
+<div class="title">Example 43. Swipe to an element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of elements found by `accessibilityId(end-of-screen)` is equal to `0`
 When I swipe UP to element located by `accessibilityId(end-of-screen)` with duration PT1S
@@ -2715,7 +2747,7 @@ Then number of elements found by `accessibilityId(end-of-screen)` is equal to `1
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Swipe the context element</div>
+<div class="title">Example 44. Swipe the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Switch slides
 When I change context to element located by `accessibilityId(carousel)`
@@ -2804,7 +2836,7 @@ sequence of actions:`TAP_AND_HOLD` &#8594; <code>MOVE_BY_OFFSET</code> &#8594; <
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Execute touch actions</div>
+<div class="title">Example 45. Execute touch actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of touch actions:
 |type          |argument          |
@@ -2926,7 +2958,7 @@ the element, you need to switch the context to this element.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Property configuration</div>
+<div class="title">Example 46. Property configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">mobile-application.zoom.indent.top=30
 mobile-application.zoom.indent.bottom=30
@@ -2950,7 +2982,7 @@ mobile-application.zoom.indent.left=20</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Zoom in/out</div>
+<div class="title">Example 47. Zoom in/out</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I zoom in context
 When I wait until element located by `xpath(&lt;welcomeMessageXpath&gt;)` disappears
@@ -2994,7 +3026,7 @@ When I wait until element located by `xpath(&lt;welcomeMessageXpath&gt;)` appear
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Select next item in the picker wheel</div>
+<div class="title">Example 48. Select next item in the picker wheel</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select next value with `0.1` offset in picker wheel located `xpath(//XCUIElementTypePickerWheel)-&gt;filter.index(3)`</code></pre>
 </div>
@@ -3047,7 +3079,7 @@ When I stop recording `$instrument` metrics and save results to file `$path`</co
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Perform profiling during application usage</div>
+<div class="title">Example 49. Perform profiling during application usage</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start recording `Time Profiler` metrics
 !-- set of actions to measure performance
@@ -3091,19 +3123,19 @@ When I stop recording `Time Profiler` metrics and save results to file `${output
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Set value of iOS slider (with range 0:50) to 45</div>
+<div class="title">Example 50. Set value of iOS slider (with range 0:50) to 45</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `90` percents</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Set value of iOS slider (with range -50:50) to 20</div>
+<div class="title">Example 51. Set value of iOS slider (with range -50:50) to 20</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `70` percents</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Set value of iOS slider (with range 18:65) to 55</div>
+<div class="title">Example 52. Set value of iOS slider (with range 18:65) to 55</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of iOS slider located `xpath(//XCUIElementTypeSlider)` to `80` percents</code></pre>
 </div>
@@ -3146,19 +3178,19 @@ When I stop recording `Time Profiler` metrics and save results to file `${output
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Set value of Android slider (with range 0:50) to 13</div>
+<div class="title">Example 53. Set value of Android slider (with range 0:50) to 13</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `13`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Set value of Android slider (with range -50:50) to -25</div>
+<div class="title">Example 54. Set value of Android slider (with range -50:50) to -25</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `25`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Set value of Android slider (with range 18:65) to 20</div>
+<div class="title">Example 55. Set value of Android slider (with range 18:65) to 20</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set value of Android slider located `xpath(//android.widget.SeekBar)` to `2`</code></pre>
 </div>
@@ -3226,7 +3258,7 @@ The full path to the file with the taken screenshot is posted to logs and report
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 55. Take a screenshot and save it to the file</div>
+<div class="title">Example 56. Take a screenshot and save it to the file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to file at path `${screenshot-directory}/start-page.png`</code></pre>
 </div>
@@ -3263,7 +3295,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 56. Wait for appearance of the element with the specified name</div>
+<div class="title">Example 57. Wait for appearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` appears</code></pre>
 </div>
@@ -3312,7 +3344,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 57. Wait for disappearance of the element with the specified name</div>
+<div class="title">Example 58. Wait for disappearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `name(welcome-image)` disappears</code></pre>
 </div>
@@ -3345,7 +3377,7 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Verify that the element become invisible up to 10 times</div>
+<div class="title">Example 59. Verify that the element become invisible up to 10 times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT10S` with `PT1S` polling until element located by `id(element-to-hide)` becomes not visible</code></pre>
 </div>
@@ -3387,13 +3419,13 @@ In order to wait for invisible elements one rely on <a href="#_visibility_types"
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 59. Wait for the visible elements</div>
+<div class="title">Example 60. Wait for the visible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img)` is equal to `5`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 60. Wait for the invisible elements</div>
+<div class="title">Example 61. Wait for the invisible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img):1` is equal to `5`</code></pre>
 </div>
@@ -3429,7 +3461,7 @@ An element is considered <em>moving</em> when its coordinates (position) are cha
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 61. Wait for element with the specified id to stop moving</div>
+<div class="title">Example 62. Wait for element with the specified id to stop moving</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(submitForm)` stops moving</code></pre>
 </div>
@@ -3489,7 +3521,7 @@ Contradictory visibility parameters (locator - ':i' and checked state - 'VISIBLE
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 62. Verify the number of elements in the state</div>
+<div class="title">Example 63. Verify the number of elements in the state</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of VISIBLE elements found by `tagName(img)` is = `1`</code></pre>
 </div>
@@ -3531,7 +3563,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 63. Save the attribute value of the context element</div>
+<div class="title">Example 64. Save the attribute value of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
@@ -3613,7 +3645,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 64. Save number of elements</div>
+<div class="title">Example 65. Save number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//a)` to scenario variable `numberOfLinks`
 Then `${numberOfLinks}` is equal to `1`</code></pre>
@@ -3674,7 +3706,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 65. Verify image size and coordinates</div>
+<div class="title">Example 66. Verify image size and coordinates</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `tagName(img)` to scenario variable `rect`
 Then `${rect.height}` is equal `400`
@@ -3723,7 +3755,7 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 66. The element should have existed for 5 second</div>
+<div class="title">Example 67. The element should have existed for 5 second</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `id(banner)` exists for `PT5S` duration</code></pre>
 </div>
@@ -3750,7 +3782,7 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 67. The element should have text consisting of numbers only</div>
+<div class="title">Example 68. The element should have text consisting of numbers only</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(indicator)` has text matching `\d+`</code></pre>
 </div>
@@ -3815,7 +3847,7 @@ element with not empty text, otherwise the step fails.</p>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 68. Check items are sorted</div>
+<div class="title">Example 69. Check items are sorted</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://grocery.by`
 When I click on element located by `id(a-z)`
@@ -3941,7 +3973,7 @@ Then elements located by `xpath(//span[@id='item-to-purchase'])` are sorted by t
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 69. Scan a barcode</div>
+<div class="title">Example 70. Scan a barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scan barcode from screen and save result to scenario variable `qrCodeLink`
 Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
@@ -3998,7 +4030,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 70. Disable menus</div>
+<div class="title">Example 71. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                            |
@@ -4024,7 +4056,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 71. Click on the link using JavaScript</div>
+<div class="title">Example 72. Click on the link using JavaScript</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com`
 When I execute javascript `document.querySelector('a').click()`</code></pre>
@@ -4062,13 +4094,13 @@ When I execute javascript `document.querySelector('a').click()`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 72. Remove noisy assistant</div>
+<div class="title">Example 73. Remove noisy assistant</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `document.querySelector('#assistant').remove()` with arguments:</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 73. Inject image</div>
+<div class="title">Example 74. Inject image</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:inject-image` with arguments:
 |value                                                                                       |type  |
@@ -4076,7 +4108,7 @@ When I execute javascript `document.querySelector('a').click()`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 74. Throttle CPU</div>
+<div class="title">Example 75. Throttle CPU</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `sauce:throttleCPU` with arguments:
 | value        | type   |
@@ -4108,7 +4140,7 @@ When I execute javascript `document.querySelector('a').click()`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 75. Validate timings</div>
+<div class="title">Example 76. Validate timings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I execute javascript `return JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
@@ -4235,7 +4267,7 @@ If context not set - takes a screenshot of the current screen. Only the first fo
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 76. Scan the barcode</div>
+<div class="title">Example 77. Scan the barcode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `xpath(//android.view.ViewGroup[@resource-id='qrContainer'])`
 When I scan barcode from context and save result to scenario variable `qrCodeLink`
@@ -4294,7 +4326,7 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 77. Check the number of HTTP GET and POST requests matching URL regular expression is equal to 1</div>
+<div class="title">Example 78. Check the number of HTTP GET and POST requests matching URL regular expression is equal to 1</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of HTTP GET, POST requests with URL pattern `http://httpbin\.org/get` is equal to `1`</code></pre>
 </div>
@@ -4403,7 +4435,7 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 78. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 79. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET or POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -4411,7 +4443,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 79. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 80. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -4421,7 +4453,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 80. Validate the request data from the matching HTTP message</div>
+<div class="title">Example 81. Validate the request data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -4432,7 +4464,7 @@ Then `${data.responseStatus}` is equal to `200`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 81. Validate the response data from the matching HTTP message</div>
+<div class="title">Example 82. Validate the response data from the matching HTTP message</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I capture HTTP GET request with URL pattern `https://www.google.com/search?q=vividus` and save request data to scenario variable `data`
@@ -4464,7 +4496,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 82. Wait for the HTTP request</div>
+<div class="title">Example 83. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
@@ -4497,7 +4529,7 @@ Add headers to the proxied HTTP request satisfying the desired condition</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 83. Add headers to the proxied HTTP request</div>
+<div class="title">Example 84. Add headers to the proxied HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I add headers to proxied requests with URL pattern which is equal to `https://www.google.com/search?q=vividus`:
 |name     |value     |
@@ -4525,7 +4557,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 84. Clear the data recorded by the proxy</div>
+<div class="title">Example 85. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I start mobile application
 When I clear proxy log
@@ -4545,7 +4577,7 @@ The step clears previously created mocks</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 85. Clear the proxy mocks</div>
+<div class="title">Example 86. Clear the proxy mocks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `vividus` using response code `200`, content `#{loadResource(page.html)}` and headers:
 |name        |value    |
@@ -4602,7 +4634,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 86. Hijack a page</div>
+<div class="title">Example 87. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP POST responses with request URL which CONTAINS `example` using response code `202`, content `#{loadResource(mocked-example.json)}` and headers:
 |name        |value           |
@@ -4653,7 +4685,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 87. Hijack a page</div>
+<div class="title">Example 88. Hijack a page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `200`, content `#{loadResourceAsByteArray(page.html)}` and headers:
 |name        |value    |
@@ -4701,7 +4733,7 @@ No actual request will be executed. Short-circuited response will be returned.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 88. 404 page</div>
+<div class="title">Example 89. 404 page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I mock HTTP responses with request URL which CONTAINS `example.com` using response code `404` and headers:
 |name          |value|
@@ -4798,13 +4830,13 @@ To be able to use this step in the cloud testing platform, review the documentat
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 89. Turn OFF Wi-Fi for Android</div>
+<div class="title">Example 90. Turn OFF Wi-Fi for Android</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 90. Turn OFF Wi-Fi for iOS</div>
+<div class="title">Example 91. Turn OFF Wi-Fi for iOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I turn OFF `WIFI` network connection
 When I activate application with bundle identifier `my-application-bundle-id`</code></pre>
@@ -4829,7 +4861,7 @@ When I activate application with bundle identifier `my-application-bundle-id`</c
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 91. Change the device screen orientation</div>
+<div class="title">Example 92. Change the device screen orientation</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change device screen orientation to portrait</code></pre>
 </div>
