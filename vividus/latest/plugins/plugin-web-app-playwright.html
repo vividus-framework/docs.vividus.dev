@@ -2554,6 +2554,202 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_request_validation_steps"><a class="anchor" href="#_request_validation_steps"></a>Request validation steps</h3>
+<div class="sect3">
+<h4 id="_capture_http_message"><a class="anchor" href="#_capture_http_message"></a>Capture HTTP message</h4>
+<div class="paragraph">
+<p>Save the HTTP message part from the HTTP request with given URL-pattern into the variable with specified name and the scopes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step requires network recording to be turned on. It can be done in properties via "proxy.recording.enabled" or by switching on "@proxy" meta tag at the story or scenario level.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The actions performed by the step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>extract HTTP messages from the network recording archive</p>
+</li>
+<li>
+<p>find HTTP requests matching the provided HTTP methods and the URL regular expression</p>
+</li>
+<li>
+<p>check that total number of the found HTTP messages is equal to <code>1</code></p>
+</li>
+<li>
+<p>save the HTTP message part to the specified variable</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I capture HTTP $httpMethods request with URL pattern `$urlPattern` and save $httpMessagePart to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The comma-separated set of HTTP methods to filter by, e.g. <code>GET, POST, PUT</code>.</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
+</li>
+<li>
+<p><code>$httpMessagePart</code> - The HTTP message part to save. One of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>URL</code> - The request URL.</p>
+</li>
+<li>
+<p><code>URL query</code> - The request URL query parameters.</p>
+</li>
+<li>
+<p><code>request data</code> - The request data includes the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>query</code> - The URL query is stored as a collection of key and value pairs, where key is the name of the query parameter and value is the list of query parameter values. The query parameter values are accessible via zero-based index.</p>
+</li>
+<li>
+<p><code>resourceType</code> - The request&#8217;s resource type as it was perceived by the rendering engine. <code>resourceType</code> will be one of the following: document, stylesheet, image, media, font, script, texttrack, xhr, fetch, eventsource, websocket, manifest, other.</p>
+</li>
+<li>
+<p><code>requestBody.contentType</code> - The MIME type of posted data.</p>
+</li>
+<li>
+<p><code>requestBody.text</code> - The posted data as plain text.</p>
+</li>
+<li>
+<p><code>responseStatus</code> - The response status.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>response data</code> - The response data includes the following keys:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>responsetBody.contentType</code> - The MIME type of received data.</p>
+</li>
+<li>
+<p><code>responsetBody.text</code> - The received data as plain text.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 50. Validate the URL of the matching HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
+When I capture HTTP GET,POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
+Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 51. Validate the URL query of the matching HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
+When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
+Then `${query.q[0]}` is equal to `vividus`
+Then `${query.q}` is equal to `[vividus]`
+Then `${query}` is equal to `{q=[vividus]}`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 52. Validate the request and response data from the matching HTTP messages</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://httpbingo.org/forms/post`
+When I click on element located by `xpath(//input[@value='cheese'])`
+When I click on element located by `xpath(//button)`
+When I capture HTTP POST request with URL pattern `http://httpbingo\.org/post` and save request data to SCENARIO variable `requestData`
+Then `${requestData.query}` is equal to `{}`
+Then `${requestData.resourceType}` is equal to `document`
+Then `${requestData.requestBody}` is not equal to `null`
+Then `${requestData.responseStatus}` is equal to `200`
+When I capture HTTP POST request with URL pattern `http://httpbingo\.org/post` and save response data to SCENARIO variable `responseData`
+Then `${responseData.responseBody}` matches `.*"topping":.*"cheese".*`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_the_http_request"><a class="anchor" href="#_wait_for_the_http_request"></a>Wait for the HTTP request</h4>
+<div class="paragraph">
+<p>Waits for the HTTP requests matching the provided HTTP methods and URL regular expression.
+If no HTTP request is sent and wait timeout is reached, then the step will fail.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step requires network recording to be turned on. It can be done in properties via "proxy.recording.enabled" or by switching on "@proxy" meta tag at the story or scenario level.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` is captured</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$httpMethods</code> - The comma-separated HTTP methods to filter by, e.g. <code>GET,POST,PUT</code>.</p>
+</li>
+<li>
+<p><code>$urlPattern</code> - The regular expression to match HTTP request URL.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 53. Wait for the HTTP request</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
+When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clear_the_network_recordings"><a class="anchor" href="#_clear_the_network_recordings"></a>Clear the network recordings</h4>
+<div class="paragraph">
+<p>The step clears recorded HTTP requests.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear network recordings</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 54. Clear the recorded data</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
+When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured
+When I clear network recordings</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>

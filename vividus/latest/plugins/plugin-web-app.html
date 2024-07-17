@@ -6342,6 +6342,14 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` is captured</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.8.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until HTTP $httpMethods request with URL pattern `$urlPattern` exists in proxy log</code></pre>
 </div>
 </div>
@@ -6359,7 +6367,7 @@ If no HTTP request is sent and wait timeout is reached, then the step will fail.
 <div class="title">Example 118. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
-When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` exists in proxy log
+When I wait until HTTP GET or POST request with URL pattern `https://www.google.com/search?q=vividus` is captured
 Then number of HTTP GET or POST requests with URL pattern `https://www.google.com/search?q=vividus` is equal to `1`</code></pre>
 </div>
 </div>
@@ -6413,6 +6421,14 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear network recordings</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.8.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear proxy log</code></pre>
 </div>
 </div>
@@ -6420,7 +6436,7 @@ The step clears the HTTP requests and responses recorded by the proxy</p>
 <div class="title">Example 120. Clear the data recorded by the proxy</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
-When I clear proxy log
+When I clear network recordings
 Then number of HTTP GET requests with URL pattern 'https://www.google.com/search?q=vividus' is equal to `0`</code></pre>
 </div>
 </div>
