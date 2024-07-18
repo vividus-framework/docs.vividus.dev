@@ -1792,6 +1792,18 @@ Then text matches `User ".*" successfully logged in`</code></pre>
 <div class="paragraph">
 <p>Waits for appearance of the element by the locator.</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in the locator.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `$locator` appears</code></pre>
@@ -1805,7 +1817,7 @@ Then text matches `User ".*" successfully logged in`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Wait for appearance of the element with the specified id</div>
+<div class="title">Example 28. Wait for appearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(welcome-image)` appears</code></pre>
 </div>
@@ -1824,6 +1836,19 @@ Then text matches `User ".*" successfully logged in`</code></pre>
 </td>
 <td class="content">
 If the element doesn&#8217;t exist on the page/context, the step will immediately complete successfully.
+Checking the element on the page (if needed) should be done in a separate step (e.g. <a href="#_wait_for_element_appearance">Wait for element appearance</a> or <a href="plugin-html.html#_validate_elements" class="xref page">Validate elements</a>).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in the locator.
 </td>
 </tr>
 </table>
@@ -1841,9 +1866,70 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Wait for disappearance of the element with the specified id</div>
+<div class="title">Example 29. Wait for disappearance of the element with the specified name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(welcome-image)` disappears</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_with_specified_state_using_polling_interval"><a class="anchor" href="#_wait_for_element_with_specified_state_using_polling_interval"></a>Wait for element with specified state using polling interval</h3>
+<div class="paragraph">
+<p>Waits for an element with the specified state to be found using the specified timeout with polling interval.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `$duration` with `$pollingDuration` polling until element located by `$locator` becomes $state</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$duration</code> - Total duration to wait in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$pollingDuration</code> - The duration to wait between search retries in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> format.</p>
+</li>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> of the element to wait for state change.</p>
+</li>
+<li>
+<p><code>$state</code> - The element <a href="../parameters/state.html" class="xref page">state</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Verify that the element become invisible up to 10 times</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT10S` with `PT1S` polling until element located by `id(element-to-hide)` becomes not visible</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_wait_for_element_state"><a class="anchor" href="#_wait_for_element_state"></a>Wait for element state</h3>
+<div class="paragraph">
+<p>Waits for an element, located by the specified locator in the given search context, to change to the specified state.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until state of element located by `$locator` is $state</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+<li>
+<p><code>$state</code> - The expected element <a href="../parameters/state.html" class="xref page">state</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Click on the button and wait until the element becomes invisible</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I click on element located by `id(signInButton)`
+When I wait until state of element located by `id(signInButton):a` is NOT VISIBLE</code></pre>
 </div>
 </div>
 </div>
@@ -1871,7 +1957,7 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Wait for the visible elements</div>
+<div class="title">Example 32. Wait for the visible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `xpath(//a)` is equal to `5`</code></pre>
 </div>
@@ -1898,7 +1984,7 @@ If the element doesn&#8217;t exist on the page/context, the step will immediatel
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Check that current title ends with "Domain"</div>
+<div class="title">Example 33. Check that current title ends with "Domain"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
 When I wait until page title matches `.*Domain`</code></pre>
@@ -1925,7 +2011,7 @@ When I wait until page title matches `.*Domain`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Click on the link using JavaScript</div>
+<div class="title">Example 34. Click on the link using JavaScript</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com`
 When I execute javascript `document.querySelector('a').click()`</code></pre>
@@ -1956,7 +2042,7 @@ When I execute javascript `document.querySelector('a').click()`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Validate timings</div>
+<div class="title">Example 35. Validate timings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I execute javascript `JSON.stringify(window.performance.timing)` and save result to scenario variable `timings`
@@ -1978,7 +2064,7 @@ Then number of JSON elements from `${timings}` by JSON path `$.connectStart` is 
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Switch to user context and back to the default context of page</div>
+<div class="title">Example 36. Switch to user context and back to the default context of page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/elementState.html`
 When I change context to element located by `id(button-hide)`
@@ -2006,7 +2092,7 @@ Then text `Element to hide` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Switch to frame</div>
+<div class="title">Example 37. Switch to frame</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/nestedFrames.html`
 Then text `Modal Frame Example` does not exist
@@ -2037,7 +2123,7 @@ Then text `Modal Frame Example` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Select option with the value <code>Red</code> in dropdown</div>
+<div class="title">Example 38. Select option with the value <code>Red</code> in dropdown</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select `Red` in dropdown located by `id(colors)`</code></pre>
 </div>
@@ -2070,7 +2156,7 @@ Then text `Modal Frame Example` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Change context to element and verify it color CSS property value</div>
+<div class="title">Example 39. Change context to element and verify it color CSS property value</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(rainbow)`
 Then context element has CSS property `color` with value that is equal to `rgba(0, 0, 0, 1)`</code></pre>
@@ -2127,7 +2213,7 @@ To avoid infinite loops the iterationLimit parameter is used. If iteration&#8217
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Disable menus</div>
+<div class="title">Example 40. Disable menus</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt;= `0` elements `xpath(//*[@class='menu enabled'])` and while they exist do up to 10 iteration of
 |step                                            |
@@ -2183,7 +2269,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Script type check</div>
+<div class="title">Example 41. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `xpath(//script):a` and for each element do
 |step                                                                                      |
@@ -2215,7 +2301,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Check the session cookie is present</div>
+<div class="title">Example 42. Check the session cookie is present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that is equal to `JSESSIONID` is set</code></pre>
 </div>
@@ -2242,7 +2328,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Check that Google Analytics cookies are not present</div>
+<div class="title">Example 43. Check that Google Analytics cookies are not present</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then cookie with name that matches `_ga.*` is not set</code></pre>
 </div>
@@ -2292,7 +2378,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Set the cookie for the current domain</div>
+<div class="title">Example 44. Set the cookie for the current domain</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set all cookies for current domain:
 |cookieName   |cookieValue |path |
@@ -2324,7 +2410,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Get the value of the session cookie</div>
+<div class="title">Example 45. Get the value of the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save value of cookie with name `JSESSIONID` to scenario variable `session-id`</code></pre>
 </div>
@@ -2354,7 +2440,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Get the session cookie</div>
+<div class="title">Example 46. Get the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save cookie with name `JSESSIONID` as JSON to scenario variable `session-id`</code></pre>
 </div>
@@ -2378,7 +2464,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Remove the session cookie</div>
+<div class="title">Example 47. Remove the session cookie</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove cookie with name `JSESSIONID` from current domain</code></pre>
 </div>
@@ -2417,7 +2503,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Upload file_for_upload.png file</div>
+<div class="title">Example 48. Upload file_for_upload.png file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select element located by `id(uploadfile)` and upload file `/folder/file_for_upload.png`</code></pre>
 </div>
@@ -2471,7 +2557,7 @@ If the context is not set, the whole page will be scrolled
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Scroll login to a bottom</div>
+<div class="title">Example 49. Scroll login to a bottom</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(login)`
 When I scroll context to BOTTOM edge</code></pre>
@@ -2523,7 +2609,7 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Scroll button into view</div>
+<div class="title">Example 50. Scroll button into view</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll element located by `id(way_down_button)` into view</code></pre>
 </div>
@@ -2547,7 +2633,7 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Validate Contact link is scrolled into view</div>
+<div class="title">Example 51. Validate Contact link is scrolled into view</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page is scrolled to element located by `xpath(//a[text()="Contact"])`</code></pre>
 </div>
@@ -2656,7 +2742,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 52. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET,POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2664,7 +2750,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 53. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2674,7 +2760,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Validate the request and response data from the matching HTTP messages</div>
+<div class="title">Example 54. Validate the request and response data from the matching HTTP messages</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://httpbingo.org/forms/post`
 When I click on element located by `xpath(//input[@value='cheese'])`
@@ -2723,7 +2809,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Wait for the HTTP request</div>
+<div class="title">Example 55. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured</code></pre>
@@ -2741,7 +2827,7 @@ When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is cap
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Clear the recorded data</div>
+<div class="title">Example 56. Clear the recorded data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured
