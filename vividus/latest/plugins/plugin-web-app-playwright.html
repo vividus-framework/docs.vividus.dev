@@ -2836,6 +2836,164 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_execute_sequence_of_actions"><a class="anchor" href="#_execute_sequence_of_actions"></a>Execute sequence of actions</h3>
+<div class="paragraph">
+<p>Executes the sequence of web actions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions: $actions</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$actions</code> - table of actions to execute</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Possible actions</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 55.5555%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>type</code></th>
+<th class="tableblock halign-left valign-top"><code>argument</code></th>
+<th class="tableblock halign-left valign-top">Argument example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.caseSensitiveText(Done)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE_CLICK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator. Empty value is not supported.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkUrl(<a href="http://httpbin.org" class="bare">http://httpbin.org</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLICK_AND_HOLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.linkText(Click me)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RELEASE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator or empty.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.tagName(div)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENTER_TEXT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text to type.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minsk City</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRESS_KEYS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values">keys</a> to press and release.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backspace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_DOWN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values">keys</a> to press one by one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control,Shift,Alt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">KEY_UP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated <a href="https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values">keys</a> to release one by one.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control,Shift,Alt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOVE_TO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By.id(username)</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use special Playwright <code>Control</code> key - <code>ControlOrMeta</code> to make tests fully platform independent.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 57. Execute various web-actions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type          |argument                                 |
+|CLICK         |By.placeholder(Enter your password)      |
+|CLICK         |                                         |
+|DOUBLE_CLICK  |By.fieldText(Hello World)                |
+|CLICK_AND_HOLD|By.xpath(//signature-pad-control/canvas) |
+|CLICK_AND_HOLD|                                         |
+|RELEASE       |By.xpath(//signature-pad-control/canvas) |
+|RELEASE       |                                         |
+|ENTER_TEXT    |Text                                     |
+|PRESS_KEYS    |Backspace                                |
+|KEY_DOWN      |Control,Shift                            |
+|KEY_UP        |Control,Shift                            |
+|MOVE_TO       |By.id(name)                              |</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step can be used to perform clipboard interactions.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 58. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument   |
+|KEY_DOWN  |Control, a |
+|KEY_UP    |a, Control |
+|KEY_DOWN  |Control, c |
+|KEY_UP    |c, Control |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 59. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument |
+|KEY_DOWN  |Meta, v  |
+|KEY_UP    |v, Meta  |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 60. Select all text in the focused field and copy it to the clipboard on any OS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
+|type      |argument         |
+|KEY_DOWN  |ControlOrMeta, a |
+|KEY_UP    |a, ControlOrMeta |
+|KEY_DOWN  |ControlOrMeta, c |
+|KEY_UP    |c, ControlOrMeta |</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 </article>
