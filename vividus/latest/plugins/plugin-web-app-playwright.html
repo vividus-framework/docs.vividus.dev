@@ -2483,6 +2483,178 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 </div>
 <div class="sect2">
+<h3 id="_web_storage_steps"><a class="anchor" href="#_web_storage_steps"></a><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage</a> steps</h3>
+<div class="sect3">
+<h4 id="_get_web_storage_item"><a class="anchor" href="#_get_web_storage_item"></a>Get web storage item</h4>
+<div class="paragraph">
+<p>Finds the web storage item by the key and saves its value to the variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save $storageType storage item with key `$key` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to retrieve the value of.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name of the variable to store the value of the web storage item.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 48. Get the value of the local storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save local storage item with key `token` to scenario variable `application-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_set_web_storage_item"><a class="anchor" href="#_set_web_storage_item"></a>Set web storage item</h4>
+<div class="paragraph">
+<p>Adds the item with the specified key-value pair to the web storage, or updates
+that key&#8217;s value if it already exists.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set $storageType storage item with key `$key` and value `$value`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to create/update.</p>
+</li>
+<li>
+<p><code>$value</code> - The value to give the key that is creating/updating.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 49. Set the session storage item</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I set session storage item with key `token` and value `session-token`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_presence"><a class="anchor" href="#_validate_web_storage_item_presence"></a>Validate web storage item presence</h4>
+<div class="paragraph">
+<p>Validates the web storage item with the specified key exists.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` exists</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The name of the key to check presence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 50. Check the session storage item is present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then session storage item with key `token` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_web_storage_item_absence"><a class="anchor" href="#_validate_web_storage_item_absence"></a>Validate web storage item absence</h4>
+<div class="paragraph">
+<p>Validates the web storage item with the specified key does not exist.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then $storageType storage item with key `$key` does not exist</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+<li>
+<p><code>$key</code> - The key of the local storage item to check absence.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 51. Check the local storage item is not present</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then local storage item with key `token` does not exist</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_web_storage_item"><a class="anchor" href="#_remove_web_storage_item"></a>Remove web storage item</h4>
+<div class="paragraph">
+<p>Removes an item with the key from web storage.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove item with key `$key` from $storageType storage</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$key</code> - The key of the item to remove.</p>
+</li>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 52. Remove item with 'token' key from web storage</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove item with key `token` from session storage</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clear_web_storage"><a class="anchor" href="#_clear_web_storage"></a>Clear web storage</h4>
+<div class="paragraph">
+<p>Removes all items from web storage.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear $storageType storage</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$storageType</code> - One of the web storage mechanisms: either <code>local</code> or <code>session</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 53. Clear session storage</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I clear session storage</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_upload_file"><a class="anchor" href="#_upload_file"></a>Upload file</h3>
 <div class="paragraph">
 <p>Uploads the <a href="../glossary.html#_resource" class="xref page">resource</a> or file via web interface.</p>
@@ -2503,7 +2675,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 48. Upload file_for_upload.png file</div>
+<div class="title">Example 54. Upload file_for_upload.png file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I select element located by `id(uploadfile)` and upload file `/folder/file_for_upload.png`</code></pre>
 </div>
@@ -2557,7 +2729,7 @@ If the context is not set, the whole page will be scrolled
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 49. Scroll login to a bottom</div>
+<div class="title">Example 55. Scroll login to a bottom</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(login)`
 When I scroll context to BOTTOM edge</code></pre>
@@ -2609,7 +2781,7 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 50. Scroll button into view</div>
+<div class="title">Example 56. Scroll button into view</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll element located by `id(way_down_button)` into view</code></pre>
 </div>
@@ -2633,7 +2805,7 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 51. Validate Contact link is scrolled into view</div>
+<div class="title">Example 57. Validate Contact link is scrolled into view</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page is scrolled to element located by `xpath(//a[text()="Contact"])`</code></pre>
 </div>
@@ -2742,7 +2914,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 52. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 58. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET,POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -2750,7 +2922,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 53. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 59. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -2760,7 +2932,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 54. Validate the request and response data from the matching HTTP messages</div>
+<div class="title">Example 60. Validate the request and response data from the matching HTTP messages</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://httpbingo.org/forms/post`
 When I click on element located by `xpath(//input[@value='cheese'])`
@@ -2809,7 +2981,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 55. Wait for the HTTP request</div>
+<div class="title">Example 61. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured</code></pre>
@@ -2827,7 +2999,7 @@ When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is cap
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 56. Clear the recorded data</div>
+<div class="title">Example 62. Clear the recorded data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured
@@ -2930,7 +3102,7 @@ When I clear network recordings</code></pre>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 57. Execute various web-actions</div>
+<div class="title">Example 63. Execute various web-actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type          |argument                                 |
@@ -2959,7 +3131,7 @@ When I clear network recordings</code></pre>
 <p>This step can be used to perform clipboard interactions.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="title">Example 64. Select all text in the focused field and copy it to the clipboard on Windows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument   |
@@ -2970,7 +3142,7 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 59. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="title">Example 65. Paste text from the clipboard to the focused field on MacOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument |
@@ -2979,7 +3151,7 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 60. Select all text in the focused field and copy it to the clipboard on any OS</div>
+<div class="title">Example 66. Select all text in the focused field and copy it to the clipboard on any OS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument         |
