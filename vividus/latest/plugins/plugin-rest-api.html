@@ -2028,6 +2028,57 @@ To attach the HTTP response body for HTTP calls with non-successful status codes
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_validate_redirects"><a class="anchor" href="#_validate_redirects"></a>Validate redirects</h3>
+<div class="paragraph">
+<p>Check that all URLs from <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> redirect to proper pages with correct redirects number. Validation fails if either actual final URL or number of redirects do not match the expected values.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The step throws the error in case if <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response status code</a> of checked URL out of range 200-207.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I validate HTTP redirects:$expectedRedirects</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$expectedRedirects</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with redirect parameters containing the following columns:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code class="subs=+quotes"><strong>startUrl</strong></code> - The URL from which redirection starts.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>endUrl</strong></code> - The expected final URL to redirect to.</p>
+</li>
+<li>
+<p><code class="subs=+quotes"><strong>redirectsNumber</strong></code> - The expected number of redirects between <code>startUrl</code> and <code>endUrl</code> (optional).</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Example 36. Validate redirects</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I validate HTTP redirects:
+|startUrl                    |endUrl                          |redirectsNumber |
+|http://example.com/redirect |http://example.com/get-response |1               |</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2057,7 +2108,7 @@ To attach the HTTP response body for HTTP calls with non-successful status codes
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
+<div class="title">Example 37. Get cookie with name <code>cookieName</code> and save its value to scenario variable <code>value</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
@@ -2086,7 +2137,7 @@ Then '${value}' is equal to 'cookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
+<div class="title">Example 38. Get cookie with name <code>cookieName</code> and set new value for it <code>newCookieValue</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
 When I change value of all HTTP cookies with name `cookieName` to `newCookieValue`
@@ -2203,7 +2254,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
+<div class="title">Example 39. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `header` with value `{"typ":"JWT","alg":"HS256"}`
 Given I initialize scenario variable `payload` with value `{"sub":"1234567890","name":"John Doe","admin":true,"jti":"c6859320-9fb3-4784-8c2f-1ab37044acfc","iat":#{toEpochSecond(#{generateDate(P, yyyy-MM-dd'T'HH:mm:ss)})},"exp":#{toEpochSecond(#{generateDate(P1D, yyyy-MM-dd'T'HH:mm:ss)})}}`
@@ -2223,7 +2274,7 @@ When I generate JWT with header `${header}` and payload `${payload}` signed with
 data in conjunction with any step responsible for data validation like data comparison, JSON, XML and other steps.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Validate response body</div>
+<div class="title">Example 40. Validate response body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Then JSON element from `${response}` by JSON path `$.slideshow` is equal to `
@@ -2258,7 +2309,7 @@ in conjunction with the <a href="#_http_response_as_text">response</a> dynamic v
 subsequent HTTP call rewrites previously received response data.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Save response body into variable</div>
+<div class="title">Example 41. Save response body into variable</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Given I initialize scenario variable `json` with value `${response}`</code></pre>

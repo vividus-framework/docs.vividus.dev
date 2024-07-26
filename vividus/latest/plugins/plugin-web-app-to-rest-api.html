@@ -1517,53 +1517,19 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </div>
 <div class="sect2">
 <h3 id="_validate_redirects"><a class="anchor" href="#_validate_redirects"></a>Validate redirects</h3>
-<div class="paragraph">
-<p>Check that all URLs from <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> redirect to proper pages with correct redirects number. Validation fails if either actual final URL or number of redirects do not match the expected values.</p>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-The step throws the error in case if <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response status code</a> of checked URL out of range 200-207.
+<div class="paragraph">
+<p>The step <a href="plugin-rest-api.html#_validate_redirects" class="xref page">has been moved</a> to <code>vividus-plugin-rest-api</code>.</p>
+</div>
 </td>
 </tr>
 </table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I validate HTTP redirects: $expectedRedirects</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>$expectedRedirects</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with redirect parameters containing the following columns:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code class="subs=+quotes"><strong>startUrl</strong></code> - The URL from which redirection starts.</p>
-</li>
-<li>
-<p><code class="subs=+quotes"><strong>endUrl</strong></code> - The expected final URL to redirect to.</p>
-</li>
-<li>
-<p><code class="subs=+quotes"><strong>redirectsNumber</strong></code> - The expected number of redirects between <code>startUrl</code> and <code>endUrl</code> (optional).</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="title">Example 9. Validate redirects</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then I validate HTTP redirects:
-|startUrl                    |endUrl                          |redirectsNumber |
-|http://example.com/redirect |http://example.com/get-response |1               |</code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1615,7 +1581,7 @@ The step throws the error in case if <a href="https://developer.mozilla.org/en-U
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 10. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
+<div class="title">Example 9. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then SSL rating for URL `https://www.google.com` is equal to `B`</code></pre>
 </div>
