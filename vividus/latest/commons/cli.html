@@ -130,20 +130,23 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
   </li>
-  <li class="nav-item" data-depth="1">
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Configuration</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/tests-configuration.html">Tests Configuration</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../secrets-management.html">Secrets Management</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/secrets-management.html">Secrets Management</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reporting.html">Reporting</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/reporting.html">Reporting</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/plugin-management.html">Plugin Management</a>
   </li>
 </ul>
   </li>
@@ -646,7 +649,7 @@ The tasks are available only through the <code>gradlew</code> command.
 <h2 id="_run_stories"><a class="anchor" href="#_run_stories"></a>Run stories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The task runs test stories based on current <a href="../tests-configuration.html" class="xref page">tests configuration</a> and tests state
+<p>The task runs test stories based on current <a href="../configuration/tests-configuration.html" class="xref page">tests configuration</a> and tests state
 on the file system.</p>
 </div>
 <div class="listingblock">
@@ -665,7 +668,7 @@ on the file system.</p>
 <h3 id="_treat_known_issues_only_as_a_positive_result"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
 <p>Any known issues detected during stories run fail the overall execution with the corresponding
-<a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
+<a href="../configuration/tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
 known issues as failures:</p>
 </div>
 <div class="listingblock">
@@ -746,7 +749,7 @@ runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 <h2 id="_debug_stories"><a class="anchor" href="#_debug_stories"></a>Debug stories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The task runs test stories omitting VIVIDUS initialization check based on current <a href="../tests-configuration.html" class="xref page">tests configuration</a>
+<p>The task runs test stories omitting VIVIDUS initialization check based on current <a href="../configuration/tests-configuration.html" class="xref page">tests configuration</a>
 and tests state on the file system.</p>
 </div>
 <div class="listingblock">
@@ -765,7 +768,7 @@ and tests state on the file system.</p>
 <h3 id="_treat_known_issues_only_as_a_positive_result_2"><a class="anchor" href="#_treat_known_issues_only_as_a_positive_result_2"></a>Treat known issues only as a positive result</h3>
 <div class="paragraph">
 <p>Any known issues detected during stories run fail the overall execution with the corresponding
-<a href="../tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
+<a href="../configuration/tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
 known issues as failures:</p>
 </div>
 <div class="listingblock">
@@ -846,7 +849,7 @@ runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 <h2 id="_print_available_steps"><a class="anchor" href="#_print_available_steps"></a>Print available steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The task prints all the steps that are available for the <a href="../tests-configuration.html" class="xref page">configured</a> profiles, environments and suites in the alphabetical order.</p>
+<p>The task prints all the steps that are available for the <a href="../configuration/tests-configuration.html" class="xref page">configured</a> profiles, environments and suites in the alphabetical order.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Options</caption>

@@ -130,20 +130,23 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
   </li>
-  <li class="nav-item" data-depth="1">
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Configuration</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/tests-configuration.html">Tests Configuration</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../secrets-management.html">Secrets Management</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/secrets-management.html">Secrets Management</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../reporting.html">Reporting</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/reporting.html">Reporting</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../configuration/plugin-management.html">Plugin Management</a>
   </li>
 </ul>
   </li>
@@ -641,7 +644,7 @@ Please make sure to use the same version for all VIVIDUS dependencies.
 <div class="listingblock">
 <div class="title">Example 1. build.gradle</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-azure-event-grid', version: '0.6.14-SNAPSHOT')</code></pre>
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-{dependency-short-name}')</code></pre>
 </div>
 </div>
 </li>
