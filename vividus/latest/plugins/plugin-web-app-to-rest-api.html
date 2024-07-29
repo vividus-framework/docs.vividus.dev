@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Web Application &amp; REST API Integration Plugin :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/plugins/plugin-web-app-to-rest-api.html">
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+<link rel="manifest" href="../../../site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<link rel="stylesheet" href="../../../_/css/additional.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4VK32J99H4"></script>
+    <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','G-4VK32J99H4')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+   <nav class="navbar">
+      <div class="navbar-brand">
+         <div class="navbar-item">
+            <a href="https://github.com/vividus-framework/vividus">VIVIDUS // Docs</a>
+         </div>
+           <div class="navbar-item search hide-for-print">
+             <div id="search-field" class="field">
+               <input id="search-input" type="text" placeholder="Search the docs">
+             </div>
+           </div>
+         <button class="navbar-burger" data-target="topbar-nav">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </div>
+      <div id="topbar-nav" class="navbar-menu">
+         <div class="navbar-end">
+            <div class="navbar-item">
+              <a class="github-button" href="https://github.com/vividus-framework/vividus" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star vividus-framework/vividus on GitHub">Star</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/sponsors/vividus-framework" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @vividus-framework on GitHub">Sponsor</a>
+            </div>
+            <div class="navbar-item">
+              <a class="github-button navbar-item" href="https://github.com/vividus-framework/vividus-starter/generate" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-repo-template" data-size="large" aria-label="Use this template vividus-framework/vividus-strater on GitHub">Start using</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+               <div class="navbar-link">Projects</div>
+               <div class="navbar-dropdown">
+                  <div class="navbar-item"><strong>VIVIDUS</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Build System</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-build-system/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <div class="navbar-item"><strong>VIVIDUS Starter</strong></div>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter">Repository</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus-starter/issues">Issue Tracker</a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CONTRIBUTING.md">Contributing</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a>
+                  <a class="navbar-item" href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">License</a>
+               </div>
+            </div>
+            <div class="navbar-item">
+              <a href="https://vividus-support.vercel.app/">
+                <span class="icon">
+                  <svg fill="#fff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                     <g stroke-width=".790123">
+                        <path d="m17.777788 40.309957c0-3.728276 2.81916-6.729717 6.320986-6.729717 3.501827 0 6.320986 3.001441 6.320986 6.729717v16.56525c0 3.728197-2.819159 6.729717-6.320986 6.729717-3.501826 0-6.320986-3.00152-6.320986-6.729717z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m40.309891 46.222212c-3.728196 0-6.729638-2.81916-6.729638-6.320986s3.001442-6.320986 6.729638-6.320986h16.565409c3.728197 0 6.729638 2.81916 6.729638 6.320986s-3.001441 6.320986-6.729638 6.320986z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m33.580253 7.1246997c0-3.7281963 2.81916-6.72963758 6.320987-6.72963758 3.501826 0 6.320986 3.00144128 6.320986 6.72963758v16.5653303c0 3.728275-2.81916 6.729717-6.320986 6.729717-3.501827 0-6.320987-3.001442-6.320987-6.729717z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m7.1247142 30.419747c-3.7281967 0-6.72963796-2.81916-6.72963796-6.320987 0-3.501826 3.00144126-6.320986 6.72963796-6.320986h16.5653288c3.728276 0 6.729717 2.81916 6.729717 6.320986 0 3.501827-3.001441 6.320987-6.729717 6.320987z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                     <g stroke-linejoin="miter" transform="matrix(.79012328 0 0 .79012328 -.395047 -.395061)">
+                        <path d="m43 73a7.983 7.983 0 0 0 8 8c4.432 0 8-3.568 8-8a7.983 7.983 0 0 0 -8-8h-8z" fill="#ecb22d" stroke="#ecb22d"/>
+                        <path d="m73 39h-8v-8c0-4.432 3.568-8 8-8s8 3.568 8 8-3.568 8-8 8z" fill="#2fb67c" stroke="#2fb67c"/>
+                        <path d="m9 43h8v8c0 4.432-3.568 8-8 8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8z" fill="#e01e5a" stroke="#e01e5a"/>
+                        <path d="m39 9v8h-8a7.983 7.983 0 0 1 -8-8c0-4.432 3.568-8 8-8a7.983 7.983 0 0 1 8 8z" fill="#36c5f1" stroke="#36c5f1"/>
+                     </g>
+                  </svg>
+               </span>
+              </a>
+            </div>
+            <div class="navbar-item">
+              <a href="https://stackoverflow.com/questions/tagged/vividus">
+               <span class="icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+                     <polygon fill="#BCBBBB" points="84.072,107.351 84.072,75.8 94.588,75.8 94.588,117.869 0,117.869 0,75.8 10.516,75.8 10.516,107.351 " />
+                     <path fill="#F48024" d="M22.089,72.898l51.458,10.815l2.163-10.292L24.252,62.606L22.089,72.898z M28.897,48.259l47.666,22.199	l4.44-9.533L33.337,38.726L28.897,48.259z M42.088,24.874l40.405,33.65l6.73-8.081l-40.405-33.65L42.088,24.874z M68.171,0l-8.438,6.276l31.381,42.191l8.438-6.276L68.171,0z M21.044,96.833l52.582,0V86.316l-52.582,0V96.833z" />
+                  </svg>
+               </span>
+            </a>
+            </div>
+            <div class="navbar-item" >
+              <a href="https://twitter.com/vividus_tool">
+               <span class="icon">
+                  <svg aria-hidden="true" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                  </svg>
+               </span>
+            </a>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="vividus" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">VIVIDUS</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">What is VIVIDUS</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Configuration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tests-configuration.html">Tests Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../secrets-management.html">Secrets Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reporting.html">Reporting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Commons</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/variables.html">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/expressions.html">Expressions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/vividus-steps.html">Steps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/table-transformers.html">Table Transformers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../commons/cli.html">CLI</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="aws.html">AWS</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-dynamodb.html">DynamoDB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-kinesis.html">Kinesis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-lambda.html">Lambda</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-aws-s3.html">S3</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="azure.html">Azure</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-resource-manager.html">Resource Manager</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-cosmos-db.html">Cosmos DB</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-data-factory.html">Data Factory</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-grid.html">Event Grid</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-event-hub.html">Event Hub</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-functions.html">Functions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-service-bus.html">Service Bus</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-account.html">Storage Account</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin-azure-storage-queue.html">Storage Queue</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Formats</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-avro.html">Avro</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-csv.html">CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-excel.html">Excel</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-html.html">HTML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-json.html">JSON</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-parquet.html">Parquet</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-xml.html">XML</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-yaml.html">YAML</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Remoting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-ssh.html">SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-winrm.html">WinRM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Testing Clouds</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-browserstack.html">BrowserStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-mobitru.html">Mobitru</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-lambda-test.html">LambdaTest</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="plugin-sauce-labs.html">Sauce Labs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-accessibility.html">Accessibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-applitools.html">Applitools</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-datetime.html">Date/Time</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-electron.html">Electron</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-email.html">Email</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-lighthouse.html">Lighthouse</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-kafka.html">Kafka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mobile-app.html">Mobile Application</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-mongodb.html">MongoDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-db.html">Relational Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-rest-api.html">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-shell.html">Shell</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-visual.html">Visual Testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-web-app.html">Web Application</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="plugin-websocket.html">WebSockets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Parameter types</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/comparison-rule.html">Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/collection-comparison-rule.html">Collection Comparison Rule</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../parameters/string-comparison-rule.html">String Comparison Rule</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrations</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/reportportal.html">ReportPortal Agent</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../integrations/docker.html">Docker</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Exporters</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/azure-devops-exporter.html">Azure DevOps Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/xray-exporter.html">Xray Exporter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrations/zephyr-exporter.html">Zephyr Exporter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">User Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Test Data Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">CI Integration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Mobile Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Developer Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../developer-guides/deprecating-steps.html">Steps deprecation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">VIVIDUS</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">VIVIDUS</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.13/index.html">0.6.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.12/index.html">0.6.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.11/index.html">0.6.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.10/index.html">0.6.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.9/index.html">0.6.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.8/index.html">0.6.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.7/index.html">0.6.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.6/index.html">0.6.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.5/index.html">0.6.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.4/index.html">0.6.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.3/index.html">0.6.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.2/index.html">0.6.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.1/index.html">0.6.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.6.0/index.html">0.6.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.13/index.html">0.5.13</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.12/index.html">0.5.12</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.11/index.html">0.5.11</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.10/index.html">0.5.10</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.9/index.html">0.5.9</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.8/index.html">0.5.8</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.7/index.html">0.5.7</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.6/index.html">0.5.6</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.5/index.html">0.5.5</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.4/index.html">0.5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.3/index.html">0.5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.2/index.html">0.5.2</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.1/index.html">0.5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../0.5.0/index.html">0.5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../0.4.16/index.html">0.4.16</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">VIVIDUS</a></li>
+    <li>Plugins</li>
+    <li><a href="plugin-web-app-to-rest-api.html">Web Application &amp; REST API Integration</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="plugin-web-app-to-rest-api.html">latest</a>
+    <a class="version" href="../../0.6.13/plugins/plugin-web-app-to-rest-api.html">0.6.13</a>
+    <a class="version" href="../../0.6.12/plugins/plugin-web-app-to-rest-api.html">0.6.12</a>
+    <a class="version" href="../../0.6.11/plugins/plugin-web-app-to-rest-api.html">0.6.11</a>
+    <a class="version" href="../../0.6.10/plugins/plugin-web-app-to-rest-api.html">0.6.10</a>
+    <a class="version" href="../../0.6.9/plugins/plugin-web-app-to-rest-api.html">0.6.9</a>
+    <a class="version" href="../../0.6.8/plugins/plugin-web-app-to-rest-api.html">0.6.8</a>
+    <a class="version" href="../../0.6.7/plugins/plugin-web-app-to-rest-api.html">0.6.7</a>
+    <a class="version" href="../../0.6.6/plugins/plugin-web-app-to-rest-api.html">0.6.6</a>
+    <a class="version" href="../../0.6.5/plugins/plugin-web-app-to-rest-api.html">0.6.5</a>
+    <a class="version" href="../../0.6.4/plugins/plugin-web-app-to-rest-api.html">0.6.4</a>
+    <a class="version" href="../../0.6.3/plugins/plugin-web-app-to-rest-api.html">0.6.3</a>
+    <a class="version" href="../../0.6.2/plugins/plugin-web-app-to-rest-api.html">0.6.2</a>
+    <a class="version" href="../../0.6.1/plugins/plugin-web-app-to-rest-api.html">0.6.1</a>
+    <a class="version" href="../../0.6.0/plugins/plugin-web-app-to-rest-api.html">0.6.0</a>
+    <a class="version" href="../../0.5.13/plugins/plugin-web-app-to-rest-api.html">0.5.13</a>
+    <a class="version" href="../../0.5.12/plugins/plugin-web-app-to-rest-api.html">0.5.12</a>
+    <a class="version" href="../../0.5.11/plugins/plugin-web-app-to-rest-api.html">0.5.11</a>
+    <a class="version" href="../../0.5.10/plugins/plugin-web-app-to-rest-api.html">0.5.10</a>
+    <a class="version" href="../../0.5.9/plugins/plugin-web-app-to-rest-api.html">0.5.9</a>
+    <a class="version" href="../../0.5.8/plugins/plugin-web-app-to-rest-api.html">0.5.8</a>
+    <a class="version" href="../../0.5.7/plugins/plugin-web-app-to-rest-api.html">0.5.7</a>
+    <a class="version" href="../../0.5.6/plugins/plugin-web-app-to-rest-api.html">0.5.6</a>
+    <a class="version" href="../../0.5.5/plugins/plugin-web-app-to-rest-api.html">0.5.5</a>
+    <a class="version" href="../../0.5.4/plugins/plugin-web-app-to-rest-api.html">0.5.4</a>
+    <a class="version" href="../../0.5.3/plugins/plugin-web-app-to-rest-api.html">0.5.3</a>
+    <a class="version" href="../../0.5.2/plugins/plugin-web-app-to-rest-api.html">0.5.2</a>
+    <a class="version" href="../../0.5.1/plugins/plugin-web-app-to-rest-api.html">0.5.1</a>
+    <a class="version" href="../../0.5.0/plugins/plugin-web-app-to-rest-api.html">0.5.0</a>
+    <a class="version" href="../../0.4.16/plugins/plugin-web-app-to-rest-api.html">0.4.16</a>
+  </div>
+</div>
+<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/plugins/pages/plugin-web-app-to-rest-api.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Web Application &amp; REST API Integration Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the integration between web application testing functionality and REST API features.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>Installation</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please make sure to use the same version for all VIVIDUS dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-plugin-web-app-to-rest-api', version: '0.6.14-SNAPSHOT')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the project was imported to the IDE before adding new dependency,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_table_transformers"><a class="anchor" href="#_table_transformers"></a><a href="../glossary.html#_table_transformer" class="xref page">Table Transformers</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_from_sitemap"><a class="anchor" href="#_from_sitemap"></a><code>FROM_SITEMAP</code></h3>
+<div class="paragraph">
+<p><code>FROM_SITEMAP</code> transformer generates table based on the website sitemap.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The use of <code>web-application.main-page-url</code> property for setting of main page for crawling is deprecated and will be removed in VIVIDUS 0.7.0, pelase see either <code>mainPageUrl</code> transformer parameter or <code>transformer.from-sitemap.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The properties outlined in the table below are applied to all FROM_SITEMAP transformers utilized in the tests, unless
+they override the values by specifiying the corresponding table parameters.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.main-page-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.ignore-errors</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore sitemap parsing errors.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.strict</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether invalid URLs will be rejected silently (where "invalid" means that the URL is not under the base URL, see <a href="https://www.sitemaps.org/protocol.html#location">sitemap file location explanation</a> for more details)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-sitemap.filter-redirects</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defines whether urls that has redirect to the one that has already been included in the table are excluded from the table</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The parameters outlined in the table below are exclusively applicable to the transformer in which they are declared.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.main-page-url</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>siteMapRelativeUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relative URL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The relative URL of <code>sitemap.xml</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The column name to store collected relative URLs in the generated table.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignoreErrors</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.ignore-errors</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignore sitemap parsing errors.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>strict</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not specified, the default value is taken from <code>transformer.from-sitemap.strict</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether invalid URLs will be rejected silently (where "invalid" means that the URL is not under the base URL, see <a href="https://www.sitemaps.org/protocol.html#location">sitemap file location explanation</a> for more details)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 2. Usage example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
+{transformer=FROM_SITEMAP, siteMapRelativeUrl=/sitemap.xml, ignoreErrors=true, strict=false, column=page-url}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_headless_crawling"><a class="anchor" href="#_from_headless_crawling"></a>FROM_HEADLESS_CRAWLING</h3>
+<div class="paragraph">
+<p><code>FROM_HEADLESS_CRAWLING</code> transformer generates table based on the results of headless crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The use of <code>web-application.main-page-url</code> property for setting of main page for crawling is deprecated and will be removed in VIVIDUS 0.7.0, pelase see either <code>mainPageUrl</code> transformer parameter or <code>transformer.from-headless-crawling.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>General</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.main-page-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this property gets overriden by the value defined in <code>mainPageUrl</code> transformer parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.seed-relative-urls</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of values</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of relative URLs, a seed URL is a URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.exclude-urls-regex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regular expression
+a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.*(css|gif|gz|ico|jpeg|jpg|js|mp3|mp4|pdf|png|svg|zip|woff2
+|woff|ttf|doc|docx|xml|json|webmanifest|webp)$</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression to match URLs.
+The crawler will not crawl all URLs that matching the given regular expression and they will not be added to the resulting table.
+<a href="https://en.wikipedia.org/wiki/URI_fragment">URI fragments</a> and <a href="https://en.wikipedia.org/wiki/Query_string">URL query</a> are ignored at filtering.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>transformer.from-headless-crawling.exclude-extensions-regex</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The property is deprecated in favor of <code>transformer.from-headless-crawling.exclude-urls-regex</code> and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regular expression</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no default value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The regular expression to match extensions in URLs.
+The crawler will ignore all URLs referring to files with extensions matching the given regular expression.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.filter-redirects</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether urls that has redirect to the one that has already been included in the table are excluded from the table.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.socket-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>40000</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Socket timeout in milliseconds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.connection-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>30000</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection timeout in milliseconds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-download-size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1048576</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Max allowed size of a page in bytes. Pages larger than this size will not be fetched.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-connections-per-host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum connections per host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-total-connections</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum total connections.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.follow-redirects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> / <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to follow redirects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-depth-of-crawling</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum depth of crawling, for unlimited depth this parameter should be set to -1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-pages-to-fetch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of pages to fetch, for unlimited number of pages this parameter should be set to -1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.politeness-delay</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Politeness delay in milliseconds between sending two requests to the same host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.max-outgoing-links-to-follow</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5000</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Max number of outgoing links which are processed from a page.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.respect-no-follow</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to honor links with <a href="https://en.wikipedia.org/wiki/Nofollow">nofollow flag</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.respect-no-index</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to honor links with <a href="https://en.wikipedia.org/wiki/Noindex">noindex flag</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.user-agent-string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>crawler4j (<a href="https://github.com/rzo1/crawler4j/" class="bare">https://github.com/rzo1/crawler4j/</a>)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent">User agent</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.cookie-policy</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ignore</code>, <code>standard</code>, <code>relaxed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no default value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cookie policy as defined per <a href="https://hc.apache.org/httpcomponents-client-4.5.x/current/tutorial/html/statemgmt.html#d5e515">cookie specification</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.allow-single-level-domain</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to consider single level domains valid (e.g. <a href="http://localhost" class="bare">http://localhost</a>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.include-https-pages</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to crawl https pages.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.http.headers.&lt;header name&gt;=&lt;header value&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Set of headers to set for every crawling request being sent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">transformer.from-headless-crawling.http.headers.x-vercel-protection-bypass=1fac2b25014d35e5103b</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>Proxy</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.proxy-host</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no default value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proxy host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.proxy-port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>80</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proxy port.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.proxy-username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no default value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username to authenticate with proxy.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-headless-crawling.proxy-password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no default value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to authenticate with proxy.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mainPageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>main application page URL, used as initial seed URL that is fetched by the crawler to extract new URLs in it and follow them for crawling.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The main page url value defined by this parameter overrides the value defined by the <code>transformer.from-headless-crawling.main-page-url</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 3. Usage example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
+{transformer=FROM_HEADLESS_CRAWLING, column=page-url}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_html"><a class="anchor" href="#_from_html"></a>FROM_HTML</h3>
+<div class="paragraph">
+<p><code>FROM_HTML</code> transformer generates a table based on the text content, HTML content or attributes of HTML elements found in the requested HTML page.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The URL of the page to build the table upon.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>pageUrl</code> parameter is deprecated and will be removed in VIVIDUS 0.7.0, please use <code>variableName</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>pageUrl</code> parameter can not be used together with the <code>variableName</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variableName</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the variable containing source HTML, only variables of scopes <code>global</code> and <code>next_batches</code> are allowed.
+Exceptions are cases when the transformer using in <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a>
+which initializes a variable with a table.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>variableName</code> parameter can not be used together with the <code>pageUrl</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xpathSelector</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The XPath selector to select HTML elements in the HTML page.</p>
+</div>
+<div class="paragraph">
+<p>By using XPath selector we can extract element&#8217;s HTML content, attributes and text content like its shown in the following example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>//a</code> - extract the link HTML content, e.g. <code>&lt;a href="/hello"&gt;Say Hello&lt;/a&gt;</code></p>
+</li>
+<li>
+<p><code>//a/text()</code> - extract the link text, e.g. <code>Say Hello</code></p>
+</li>
+<li>
+<p><code>//a/@href</code> - extract the link <code>href</code> attribute, e.g. <code>/hello</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-html.headers.&lt;header name&gt;=&lt;header value&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Set of headers to set when requesting the page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">transformer.from-html.headers.x-vercel-protection-bypass=1fac2b25014d35e5103b</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 4. Given the following HTML page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;body&gt;
+        &lt;a href="/r"&gt;R&lt;/a&gt;
+        &lt;a href="/g"&gt;G&lt;/a&gt;
+        &lt;a href="/b"&gt;B&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Applyng FROM_HTML to the page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
+{transformer=FROM_HTML, column=relative-url, pageUrl=https://mypage.com, xpathSelector=//a/@href}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Output table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|relative-url|
+|/r          |
+|/g          |
+|/b          |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_resources_validations"><a class="anchor" href="#_resources_validations"></a>Resources validations</h3>
+<div class="paragraph">
+<p>Steps to check resource availability using HTTP requests.</p>
+</div>
+<div class="sect3">
+<h4 id="_resource_validation_statuses"><a class="anchor" href="#_resource_validation_statuses"></a>Resource validation statuses</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FAILED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request to the resource returns a status code other than <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BROKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an HTTP request to the page under test returns an empty HTTP response body;</p>
+</li>
+<li>
+<p>an HTTP request to the page under test results in unexpected error;</p>
+</li>
+<li>
+<p>the relative page URL can not be resolved because the <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property is not set;</p>
+</li>
+<li>
+<p>the resource has invalid URL format;</p>
+</li>
+<li>
+<p>the resource is missing <code>href</code> or <code>src</code> attributes;</p>
+</li>
+<li>
+<p>the resource has <code>href</code> or <code>src</code> attribute but its value is not a valid URL;</p>
+</li>
+<li>
+<p>the resource is a jump link that points to non-existent jump target.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PASSED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An HTTP request to the resource returns <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> status code.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FILTERED</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the resource path matches the patterns specified by the <code>resource-checker.uri-to-ignore-regex</code> property;</p>
+</li>
+<li>
+<p>the resource path is equal to <code>#</code> (anchor);</p>
+</li>
+<li>
+<p>the resource is not a HTTP(S) resource;</p>
+</li>
+<li>
+<p>the resource is jump link which cannot be verified from the current context (if only part of the document is checked).</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SKIPPED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A resource validation has already been performed, i.e. if the same resource might be present on several pages so we do not need to validate it twice.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>resource-checker.publish-response-body</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether to attach the HTTP response body for HTTP calls with non-successful status codes (may reduce performance).</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_validate_resources_on_web_pages"><a class="anchor" href="#_validate_resources_on_web_pages"></a>Validate resources on web pages</h4>
+<div class="paragraph">
+<p>Validates resources on web pages.</p>
+</div>
+<div class="paragraph">
+<p>Resource validation logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the <code>pages</code> row contains relative URL then it gets resolved against URL in <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property, i.e. if the main page URL is <code><a href="https://elderscrolls.bethesda.net/" class="bare">https://elderscrolls.bethesda.net/</a></code> and relative URL is <code>/skyrim10</code> the resulting URL will be <code><a href="https://elderscrolls.bethesda.net/skyrim10" class="bare">https://elderscrolls.bethesda.net/skyrim10</a></code></p>
+</li>
+<li>
+<p>Collect elements by the CSS selector from each page</p>
+</li>
+<li>
+<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails</p>
+</li>
+<li>
+<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
+</li>
+<li>
+<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
+</li>
+<li>
+<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by $htmlLocatorType `$htmlLocator` are valid on:$pages</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` are valid on:$pages</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
+</li>
+<li>
+<p><code>$htmlLocator</code> - The actual locator.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$pages</code> - The pages to validate resources on.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 7. Validate resources located by XPath</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by xpath `//a` are valid on:
+|pages                        |
+|https://vividus.org/         |
+|/test-automation-made-awesome|</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_resources_from_html"><a class="anchor" href="#_validate_resources_from_html"></a>Validate resources from HTML</h4>
+<div class="paragraph">
+<p>Validates resources from HTML document.</p>
+</div>
+<div class="paragraph">
+<p>Resource validation logic:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Collects elements by the CSS selector from the specified HTML document</p>
+</li>
+<li>
+<p>Get either <code>href</code> or <code>src</code> attribute value from each element, if neither of the attributes exists the validation fails. If the element value contains relative URL then it gets resolved against URL in <code><a href="plugin-web-app.html#_properties" class="xref page">web-application.main-page-url</a></code> property</p>
+</li>
+<li>
+<p>For each received value execute <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD">HEAD</a> request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If the status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed</p>
+</li>
+<li>
+<p>If the status code is one of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404">404 Not Found</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405">405 Method Not Allowed</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/501">501 Not Implemented</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503">503 Service Unavailable</a> then GET request will be executed</p>
+</li>
+<li>
+<p>If the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> status code is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200">200 OK</a> then the resource validation is considered as passed, otherwise failed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by $htmlLocatorType `$htmlLocator` in $html are valid</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources by selector `$cssSelector` from $html are valid</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$htmlLocatorType</code> - The HTML locator type, either <a href="https://jsoup.org/cookbook/extracting-data/selector-syntax"><code>CSS selector</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/XPath"><code>XPath</code></a>.</p>
+</li>
+<li>
+<p><code>$htmlLocator</code> - The actual locator.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>$html</code> - HTML document to validate.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Validate resources from the current page</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by CSS selector `a,img` in ${source-code} are valid</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_redirects"><a class="anchor" href="#_validate_redirects"></a>Validate redirects</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The step <a href="plugin-rest-api.html#_validate_redirects" class="xref page">has been moved</a> to <code>vividus-plugin-rest-api</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_ssl_rating"><a class="anchor" href="#_validate_ssl_rating"></a>Validate SSL rating</h3>
+<div class="paragraph">
+<p>Performs SSL scanning using <a href="https://www.ssllabs.com/index.html">SSL Labs</a> and compares received <a href="https://github.com/ssllabs/research/wiki/SSL-Server-Rating-Guide">grade</a> value with expected one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then SSL rating for URL `$url` is $comparisonRule `$gradeName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$url</code> - The URL for SSL scanning and grading.</p>
+</li>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$gradeName</code> - The name of <a href="https://github.com/ssllabs/research/wiki/SSL-Server-Rating-Guide">grade</a>. The possible values: <code>A+</code>, <code>A</code>, <code>A-</code>, <code>B</code>, <code>C</code>, <code>D</code>, <code>E</code>, <code>F</code>, <code>T</code>, <code>M</code>.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Properties</caption>
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl-labs.api-endpoint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>URL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://api.ssllabs.com" class="bare">https://api.ssllabs.com</a></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSL Labs endpoint.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Example 9. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then SSL rating for URL `https://www.google.com` is equal to `B`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer" style="padding: 0.25rem">
+  <p>Copyright (C) 2019-2024 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+  <script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gherkin.min.js"></script>
+<script charset="UTF-8" src="../../../_/js/vendor/gradle.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
