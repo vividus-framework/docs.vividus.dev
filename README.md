@@ -11,7 +11,7 @@ We use
 1. Install Node.js
 1. Install Antora and [Antora Lunr Extension](https://gitlab.com/antora/antora-lunr-extension)
     ```shell
-    npm i -g @antora/cli@3.1.7 @antora/site-generator@3.1.7 @antora/lunr-extension@1.0.0-alpha.8
+    npm i -g @antora/cli@3.1.9 @antora/site-generator@3.1.9 @antora/lunr-extension@1.0.0-alpha.8
     ```
 1. Generate a site
     ```shell
@@ -22,7 +22,7 @@ We use
 
 ### One liner
 ```shell
- npm i -g @antora/cli@3.1.7 @antora/site-generator@3.1.7 @antora/lunr-extension@1.0.0-alpha.8 && \
+ npm i -g @antora/cli@3.1.9 @antora/site-generator@3.1.9 @antora/lunr-extension@1.0.0-alpha.8 && \
  git clone https://github.com/vividus-framework/vividus.git && \   
  git clone https://github.com/vividus-framework/docs.vividus.dev.git && \   
  cd docs.vividus.dev && \
