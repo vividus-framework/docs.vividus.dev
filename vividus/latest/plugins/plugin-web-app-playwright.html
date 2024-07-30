@@ -655,6 +655,55 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect1">
+<h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="../configuration/tests-configuration.html#_profiles" class="xref page">profiles</a> allow to choose and/or parameterize browser that tests run on.</p>
+</div>
+<div class="sect2">
+<h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
+<div class="paragraph">
+<p>The following profiles running desktop browsers are available out of the box:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web_pw/desktop/chromium</code> - for Google Chrome, Microsoft Edge and other Chromium-based browsers, by default, Playwright uses open source <a href="https://playwright.dev/java/docs/browsers#chromium">Chromium</a> builds.</p>
+</li>
+<li>
+<p><code>web_pw/desktop/firefox</code> - <a href="https://playwright.dev/java/docs/browsers#firefox">Playwright&#8217;s Firefox</a> version matches the recent Firefox Stable build.</p>
+</li>
+<li>
+<p><code>web_pw/desktop/webkit</code> - <a href="https://playwright.dev/java/docs/browsers#webkit">Playwright&#8217;s WebKit</a> version matches the recent WebKit trunk build, before it is used in Apple Safari and other WebKit-based browsers.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_headless"><a class="anchor" href="#_headless"></a>Headless</h3>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Headless_browser">Headless mode</a> is a functionality that allows the execution of a full
+version of the browser while controlling it programmatically. It can be used without dedicated graphics or display,
+meaning that it runs without its “head”, the Graphical User Interface (GUI). The following profiles running browsers in
+headless mode are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web_pw/headless/chromium</code> - for Google Chrome, Microsoft Edge and other Chromium-based browsers, by default, Playwright uses open source <a href="https://playwright.dev/java/docs/browsers#chromium">Chromium</a> builds.</p>
+</li>
+<li>
+<p><code>web_pw/headless/firefox</code> - <a href="https://playwright.dev/java/docs/browsers#firefox">Playwright&#8217;s Firefox</a> version matches the recent Firefox Stable build.</p>
+</li>
+<li>
+<p><code>web_pw/headless/webkit</code> - <a href="https://playwright.dev/java/docs/browsers#webkit">Playwright&#8217;s WebKit</a> version matches the recent WebKit trunk build, before it is used in Apple Safari and other WebKit-based browsers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
