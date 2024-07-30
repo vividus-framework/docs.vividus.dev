@@ -656,6 +656,206 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect1">
+<h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="../configuration/tests-configuration.html#_profiles" class="xref page">profiles</a> allow to choose and/or parameterize browser that tests run on.</p>
+</div>
+<div class="sect2">
+<h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
+<div class="paragraph">
+<p>The following profiles running desktop browsers are available out of the box:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web/desktop/chrome</code></p>
+</li>
+<li>
+<p><code>web/desktop/edge</code></p>
+</li>
+<li>
+<p><code>web/desktop/firefox</code></p>
+</li>
+<li>
+<p><code>web/desktop/iexplore</code></p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Since Internet Explorer 11 <a href="https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/">has retired and is officially out of support</a>,
+this profile is deprecated and will be removed in VIVIDUS 0.8.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>web/desktop/opera</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order to run tests in Opera browser locally, it is required
+to configure <a href="#_configure_browser_path">browser path</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>web/desktop/safari</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_headless"><a class="anchor" href="#_headless"></a>Headless</h3>
+<div class="paragraph">
+<p><a href="https://en.wikipedia.org/wiki/Headless_browser">Headless mode</a> is a functionality that allows the execution of a full
+version of the browser while controlling it programmatically. It can be used without dedicated graphics or display,
+meaning that it runs without its “head”, the Graphical User Interface (GUI). The following profiles running browsers in
+headless mode are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web/headless/chrome</code></p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 33.3335%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Profile-specific properties</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.headless.chrome.window-size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width,height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>800,600</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Sets the initial window size.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This property is ignored when custom CLI arguments are set using <code>web.driver.chrome.command-line-arguments</code> property.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>web/headless/firefox</code></p>
+</li>
+<li>
+<p><code>web/headless/edge</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_mobile_emulation"><a class="anchor" href="#_mobile_emulation"></a>Mobile emulation</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Built-in devices</p>
+<div class="paragraph">
+<p>Chrome allows to emulate view on mobile devices using <a href="https://developer.chrome.com/docs/devtools/device-mode/">Device mode</a>. Such feature is reflected in <code>mobile_emulation</code> subdirectory in Profiles. Use device-name property to mention target device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.mobile-emulation.device-name=DEVICE_NAME</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Available for emulation devices you can find in the <a href="https://developer.chrome.com/docs/devtools/device-mode/#device">Dimensions list</a> in chrome.</p>
+</div>
+</li>
+<li>
+<p>Custom devices</p>
+<div class="paragraph">
+<p>In case you need to use <a href="https://developer.chrome.com/docs/devtools/device-mode/#responsive">Responsive Viewport Mode</a> and set up your own device, update the screen resolution in the following properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.mobile-emulation.width=1440
+web.driver.chrome.mobile-emulation.height=900</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
+<div class="paragraph">
+<p>This profile should be used in conjuction with other browser profile.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Use Chrome browser running in a docker container</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuraiton.profiles=web/docker,web/desktop/chrome</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Default Selenium grid URL is set to <code>selenium.grid.url=http://localhost:4444/wd/hub</code>. Don&#8217;t forget to modify it if your grid is running in a different location.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mobile_web"><a class="anchor" href="#_mobile_web"></a>Mobile web</h3>
+<div class="paragraph">
+<p>The following profiles running mobile browsers are available out of the box:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web/phone/android</code></p>
+</li>
+<li>
+<p><code>web/phone/ios</code></p>
+</li>
+<li>
+<p><code>web/tablet/ipad</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
@@ -963,40 +1163,86 @@ in the current working directory</p></td>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_how_to_configure_user_preferences_for_chrome_browser"><a class="anchor" href="#_how_to_configure_user_preferences_for_chrome_browser"></a>How to configure user preferences for Chrome browser?</h3>
+<h3 id="_configure_driver_path"><a class="anchor" href="#_configure_driver_path"></a>Configure driver path</h3>
 <div class="paragraph">
-<p>In addition to the command line arguments, user preferences (see the <em>Preferences</em> file in Chrome&#8217;s user data directory or open <code>chrome://prefs-internals/</code> link in Chrome browser for examples) can be customised.</p>
-</div>
-<div class="paragraph">
-<p>Here is an example how to configure third-party cookies behaviour.</p>
+<p>While executing tests on the local machine it is allowed to use custom browser
+driver. This approach first requires manually downloading the driver (See
+<a href="https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference">Quick Reference Section</a>
+for download links). The path to the downloaded binary should be configured
+using the following property:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Add the following property to allow all cookies</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.experimental-options={"prefs": {"profile": {"cookie_controls_mode": 0}}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.driver-executable-path=/path/to/driver/executable</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The allowed values for the preference from the example are:</p>
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>0</code> - allow all cookies;</p>
+<p><code>chrome</code></p>
 </li>
 <li>
-<p><code>1</code> - block third-party cookies;</p>
+<p><code>firefox</code></p>
 </li>
 <li>
-<p><code>2</code> - block third-party cookies in Incognito mode only.</p>
+<p><code>safari</code></p>
+</li>
+<li>
+<p><code>iexplore</code></p>
+</li>
+<li>
+<p><code>edge</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_of_basic_authentication_for_chromium_browsers"><a class="anchor" href="#_configuring_of_basic_authentication_for_chromium_browsers"></a>Configuring of Basic authentication for Chromium browsers</h3>
+<h3 id="_configure_browser_path"><a class="anchor" href="#_configure_browser_path"></a>Configure browser path</h3>
 <div class="paragraph">
-<p>Vividus allows users to add predefined configurations for <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme">Basic authentication</a>. This setting is only available for desktop Chromium browsers (Chrome, Opera, Microsoft Edge) and allows to define multiple configurations for authorization on different sites.</p>
+<p>While executing tests on the local machine it is allowed to configure path to
+browser executable file. In general cases it&#8217;s not required, installed browsers
+are found automatically (except Opera browser). Also, for example, if browser is
+not installed, but only downloaded and unpacked into some folder, the path to
+the downloaded binary should be configured using the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.binary-path=/path/to/custom/browser/executable</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chrome</code></p>
+</li>
+<li>
+<p><code>firefox</code></p>
+</li>
+<li>
+<p><code>edge</code></p>
+</li>
+<li>
+<p><code>opera</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_basic_authentication_for_chromium_browsers"><a class="anchor" href="#_configure_basic_authentication_for_chromium_browsers"></a>Configure Basic authentication for Chromium browsers</h3>
+<div class="paragraph">
+<p>It is allowed to add predefined configurations for
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme">Basic authentication</a>.
+This setting is only available for desktop Chromium browsers (Chrome, Opera, Microsoft Edge) and allows to define
+multiple configurations for authentication on different websites.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1030,7 +1276,7 @@ in the current working directory</p></td>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 3. Setting up authorization for sites <a href="https://httpbingo.org" class="bare">https://httpbingo.org</a> and <a href="https://www.example.com" class="bare">https://www.example.com</a></div>
+<div class="title">Example 3. Set up authentication for websites <a href="https://httpbingo.org" class="bare">https://httpbingo.org</a> and <a href="https://www.example.com" class="bare">https://www.example.com</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web-application.basic-authentication.httpbingo.url-regex=https:\/\/httpbingo\.org
 web-application.basic-authentication.httpbingo.username=user
@@ -1040,6 +1286,37 @@ web-application.basic-authentication.example.url-regex=.*example\.org
 web-application.basic-authentication.example.username=admin
 web-application.basic-authentication.example.password=qwerty123</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure_user_preferences_for_chrome_browser"><a class="anchor" href="#_configure_user_preferences_for_chrome_browser"></a>Configure user preferences for Chrome browser</h3>
+<div class="paragraph">
+<p>In addition to the command line arguments, user preferences (see the <em>Preferences</em> file in Chrome&#8217;s user data directory or open <code>chrome://prefs-internals/</code> link in Chrome browser for examples) can be customised.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example how to configure third-party cookies behaviour.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Add the following property to allow all cookies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.experimental-options={"prefs": {"profile": {"cookie_controls_mode": 0}}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The allowed values for the preference from the example are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>0</code> - allow all cookies;</p>
+</li>
+<li>
+<p><code>1</code> - block third-party cookies;</p>
+</li>
+<li>
+<p><code>2</code> - block third-party cookies in Incognito mode only.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -1095,7 +1372,7 @@ If expression is applied to invalid Data URL the error will be thrown.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Decoding inlined image</div>
+<div class="title">Example 5. Decoding inlined image</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save `src` attribute value of element located by `id(image)` to scenario variable `image`
 When I compare against baseline with name `inlined-image` from image `#{decodeDataUrl(${image})}`</code></pre>
@@ -1157,7 +1434,7 @@ When I compare against baseline with name `inlined-image` from image `#{decodeDa
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Validate redirect in the browser</div>
+<div class="title">Example 6. Validate redirect in the browser</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://docs.vividus.dev/`
 Then `${current-page-url}` is equal to `https://docs.vividus.dev/vividus/latest/index.html`</code></pre>
@@ -1192,7 +1469,7 @@ Then `${current-page-url}` is equal to `https://docs.vividus.dev/vividus/latest/
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 6. Check the dimension of the browser window</div>
+<div class="title">Example 7. Check the dimension of the browser window</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change window size to `800x600`
 Then `${browser-window-width}` is = `800`
@@ -1275,7 +1552,7 @@ In case of missing search context the error will be logged and <code>-1</code> w
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 7. Check the size and the location of the image</div>
+<div class="title">Example 8. Check the size and the location of the image</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(userpic)`
 Then `${context-height}` is &gt; `0`
@@ -1297,7 +1574,7 @@ Then `${context-y-coordinate}` is &gt; `0`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Firstly check frames on the entire page, and then links in the specified context</div>
+<div class="title">Example 9. Firstly check frames on the entire page, and then links in the specified context</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on main application page
 Then all resources by selector `frame,iframe` from ${context-source-code} are valid
@@ -1333,426 +1610,12 @@ Then all resources by selector `a` from ${context-source-code} are valid</code><
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Check if element exists on UI</div>
+<div class="title">Example 10. Check if element exists on UI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${source-code}` matches `.+Home.+`</code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Profiles allow to choose or parameterize browser that tests run on. See more details on the profiles and nesting strategy on the <a href="../configuration/tests-configuration.html#_profiles" class="xref page">configuration page</a>.</p>
-</div>
-<div class="paragraph">
-<p>Web-application plugin contains significant number of built-in profiles. They can be found after plugin installation by the following path in Eclipse IDE:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-DIR hljs" data-lang="DIR">Referenced Libraries -&gt; vividus-plugin-web-app-X.Y.Z -&gt; properties -&gt; profile -&gt; web</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s go through the structure and review its content.</p>
-</div>
-<div class="sect2">
-<h3 id="_desktop"><a class="anchor" href="#_desktop"></a>Desktop</h3>
-<div class="paragraph">
-<p>General place for web profiles. Each of the directory contains browser related properties. This is a place for adjustments for your browser. Add there any properties you need: screen resolution, path to driver or to a custom browser.</p>
-</div>
-<div class="sect3">
-<h4 id="_configure_driver_path"><a class="anchor" href="#_configure_driver_path"></a>Configure driver path</h4>
-<div class="paragraph">
-<p>While executing tests on the local machine it is allowed to use custom browser
-driver. This approach first requires manually downloading the driver (See
-<a href="https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference">Quick Reference Section</a>
-for download links). The path to the downloaded binary should be configured
-using the following property:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.driver-executable-path=/path/to/driver/executable</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>chrome</code></p>
-</li>
-<li>
-<p><code>firefox</code></p>
-</li>
-<li>
-<p><code>safari</code></p>
-</li>
-<li>
-<p><code>iexplore</code></p>
-</li>
-<li>
-<p><code>edge</code></p>
-</li>
-<li>
-<p><code>opera</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configure_browser_path"><a class="anchor" href="#_configure_browser_path"></a>Configure browser path</h4>
-<div class="paragraph">
-<p>While executing tests on the local machine it is allowed to configure path to
-browser executable file. In general cases it&#8217;s not required, installed browsers
-are found automatically (except Opera browser). Also, for example, if browser is
-not installed, but only downloaded and unpacked into some folder, the path to
-the downloaded binary should be configured using the following property:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.&lt;browser&gt;.binary-path=/path/to/custom/browser/executable</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code>&lt;browser&gt;</code> is one of the following values:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>chrome</code></p>
-</li>
-<li>
-<p><code>firefox</code></p>
-</li>
-<li>
-<p><code>edge</code></p>
-</li>
-<li>
-<p><code>opera</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_list_of_desktop_profiles"><a class="anchor" href="#_list_of_desktop_profiles"></a>List of desktop profiles</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Profile</th>
-<th class="tableblock halign-left valign-top">Example of properties</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/chrome</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
-selenium.grid.platform-version=10
-web.driver.chrome.command-line-arguments=--disable-auto-reload</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/edge</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
-selenium.grid.platform-version=12.5
-selenium.grid.capabilities.browserName=MicrosoftEdge</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/firefox</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=Windows
-selenium.grid.platform-version=10
-web.driver.firefox.command-line-arguments=--turbo</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/iexplore</code></p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Since Internet Explorer 11 <a href="https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/">has retired and is officially out of support</a>,
-this profile is deprecated and will be removed in VIVIDUS 0.8.0.</p>
-</div>
-</td>
-</tr>
-</table>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.browserName=internet explorer
-web.driver.iexplore.command-line-arguments=-private
-selenium.grid.capabilities.iedriverVersion=3.141.0
-selenium.grid.platform-name=Windows
-selenium.grid.platform-version=7</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/opera</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.screen-resolution=1920x1080
-selenium.grid.platform-name=Windows
-selenium.grid.platform-version=10</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-In order to run tests in Opera browser locally, it is required
-to configure <a href="#_configure_browser_path">browser path</a>.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/desktop/safari</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.platform-name=macOS
-selenium.grid.platform-version=11.00</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_mobile_emulation"><a class="anchor" href="#_mobile_emulation"></a>Mobile emulation</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Built-in devices</p>
-<div class="paragraph">
-<p>Chrome allows to emulate view on mobile devices using <a href="https://developer.chrome.com/docs/devtools/device-mode/">Device mode</a>. Such feature is reflected in <code>mobile_emulation</code> subdirectory in Profiles. Use device-name property to mention target device:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.mobile-emulation.device-name=DEVICE_NAME</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Available for emulation devices you can find in the <a href="https://developer.chrome.com/docs/devtools/device-mode/#device">Dimensions list</a> in chrome.</p>
-</div>
-</li>
-<li>
-<p>Custom devices</p>
-<div class="paragraph">
-<p>In case you need to use <a href="https://developer.chrome.com/docs/devtools/device-mode/#responsive">Responsive Viewport Mode</a> and set up your own device, update the screen resolution in the following properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">web.driver.chrome.mobile-emulation.width=1440
-web.driver.chrome.mobile-emulation.height=900</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_headless"><a class="anchor" href="#_headless"></a>Headless</h3>
-<div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Headless_browser">Headless mode</a> is a functionality that allows the execution of a full
-version of the browser while controlling it programmatically. It can be used without dedicated graphics or display,
-meaning that it runs without its “head”, the Graphical User Interface (GUI). The following profiles running browsers in
-headless mode are available:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>web/headless/chrome</code></p>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 33.3335%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Profile-specific properties</th>
-<th class="tableblock halign-left valign-top">Format</th>
-<th class="tableblock halign-left valign-top">Default value</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.headless.chrome.window-size</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width,height</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>800,600</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Sets the initial window size.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This property is ignored when custom CLI arguments are set using <code>web.driver.chrome.command-line-arguments</code> property.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p><code>web/headless/firefox</code></p>
-</li>
-<li>
-<p><code>web/headless/edge</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
-<div class="paragraph">
-<p>The profile can be enabled by adding <code>web/docker</code> to <code>configuration.profiles</code> property. The profile should be used together with the browser profile.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Default selenium grid URL is set to <code>selenium.grid.url=http://localhost:4444/wd/hub</code>. Don&#8217;t forget to modify it if your grid is running in a different location.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Example 10. Run chrome in docker container</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuraiton.profiles=web/docker,web/desktop/chrome</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_phone"><a class="anchor" href="#_phone"></a>Phone</h3>
-<div class="paragraph">
-<p>Contains phone related properties, for android and iOS devices.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Profile</th>
-<th class="tableblock halign-left valign-top">Example of properties</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/phone/android</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformName=Android
-selenium.grid.capabilities.platformVersion=12.0
-selenium.grid.capabilities.deviceOrientation=portrait
-selenium.grid.capabilities.appiumVersion=2.0.0</code></pre>
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/phone/ios</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformName=iOS
-selenium.grid.capabilities.platformVersion=16.2
-selenium.grid.capabilities.deviceOrientation=portrait
-selenium.grid.capabilities.appiumVersion=2.0.0</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_tablet"><a class="anchor" href="#_tablet"></a>Tablet</h3>
-<div class="paragraph">
-<p>Similar to the <a href="#_phone">Phone</a> directory, but is designed for tablets properties.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Profile</th>
-<th class="tableblock halign-left valign-top">Example of properties</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><code>web/tablet</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformName=iOS
-selenium.grid.capabilities.platformVersion=14.0
-selenium.grid.capabilities.deviceName=iPad
-selenium.grid.capabilities.deviceOrientation=landscape
-selenium.grid.capabilities.appiumVersion=1.21.1</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
