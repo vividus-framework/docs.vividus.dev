@@ -779,18 +779,23 @@ By. prefix is optional.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose <code>id</code> attribute matches the search value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose <code>id</code> attribute matches the specified search value.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(submitBtn)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>css</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching a <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">CSS selector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching a <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">CSS selector</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">css(.menu-item)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>xPath</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching an <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">xPath expression</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements matching an <a href="https://playwright.dev/java/docs/locators#locate-by-css-or-xpath">xPath expression</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">xpath(//a)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tagName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose tag name matches the specified search value. This locator is translated to <code>css(&lt;tagName&gt;)</code> locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagName(div)</p></td>
 </tr>
 </tbody>
 </table>
