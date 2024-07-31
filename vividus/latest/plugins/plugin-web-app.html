@@ -1930,17 +1930,23 @@ The elements not matching the filter condition are sorted out without any notice
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>index</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>index</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Get an element by the specified index from a collection of elements found by a locator. Indexes start from 1.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(div)&#8594;filter.index(2)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>textPart</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>textPart</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their text parts.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tagName(h3)&#8594;filter.textPart(Welcome)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>attribute</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>attribute</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Filter elements by their attribute values</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>tagName(div)&#8594;filter.attribute(class=burger-menu)</code> - <code>div</code> element has the <code>class</code> attribute with <code>burger-menu</code> value
@@ -1949,62 +1955,142 @@ The elements not matching the filter condition are sorted out without any notice
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>state</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">element <a href="../parameters/state.html" class="xref page">State</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.state(VISIBLE)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>caseSensitiveText</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>caseSensitiveText</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">element text should match case sensitively</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.caseSensitiveText(text)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>classAttributePart</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>classAttributePart</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">class attribute should contain part</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.classAttributePart(clazz)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>linkUrl</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>href</strong> attribute of the link element</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrl(/url)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrlPart</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>linkUrlPart</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">part of <strong>href</strong> attribute of the link element</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.linkUrlPart(/url)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tooltip</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>tooltip</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This filter type is deprecated and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">title attribute value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.tooltip(title)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrcPart</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>imageSrcPart</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This filter type is deprecated and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">src attribute should contain value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.imageSrcPart(part)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>placeholder</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>placeholder</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This filter type is deprecated and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder attribute should be equal to a value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.placeholder(placeholder-value)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>validationIconSource</code></p></td>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
+<p><code>validationIconSource</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This filter type is deprecated and will be removed in VIVIDUS 0.7.0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CSS property background-image should match</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.validationIconSource(src)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldText</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>fieldText</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">field text should match expected value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldText(value)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldTextPart</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>fieldTextPart</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">field text should contain expected value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.fieldTextPart(value)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dropDownText</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>dropDownText</code></p>
+</div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">any of select options should be equal to a value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">id(v1)&#8594;filter.dropDownText(value)</p></td>
 </tr>
