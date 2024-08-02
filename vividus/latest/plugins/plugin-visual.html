@@ -883,6 +883,11 @@ where:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.max-height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum screenshot height. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Web header to cut (could be useful if your site has sticky header)</p></td>
@@ -982,7 +987,8 @@ Mind that <code>cut-<strong>*</strong></code> modifications applied to the final
 <h4 id="_examples_of_usage_property_based_web_configuration"><a class="anchor" href="#_examples_of_usage_property_based_web_configuration"></a><strong>Examples of usage property based web configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">web.screenshot.strategy.custom.web-header-to-cut=80
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">web.screenshot.strategy.custom.max-height=15000
+web.screenshot.strategy.custom.web-header-to-cut=80
 web.screenshot.strategy.custom.web-footer-to-cut=0
 web.screenshot.strategy.custom.scrollable-element=By.cssSelector(.page__inner)
 web.screenshot.strategy.custom.scroll-timeout=PT1S
@@ -1299,6 +1305,9 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
+<p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
+</li>
+<li>
 <p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
@@ -1382,6 +1391,9 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
 </li>
 <li>
 <p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
@@ -1635,6 +1647,9 @@ When I compare_against baseline with name `context-element-with-acceptable-diff-
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
 </li>
 <li>
+<p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
+</li>
+<li>
 <p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>
 </li>
 <li>
@@ -1724,6 +1739,9 @@ using screenshot configuration:
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
 </li>
 <li>
 <p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header. <strong>(Web only)</strong></p>

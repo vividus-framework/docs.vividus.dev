@@ -900,6 +900,11 @@ where:</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.max-height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum screenshot height. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.web-header-to-cut</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">size in pixels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Web header to cut (could be useful if your site has sticky header)</p></td>
@@ -986,6 +991,18 @@ Mind that <code>cut-<strong>*</strong></code> modifications applied to the final
 </td>
 <td class="content">
 Modifiers to cut web header or web footer have the default value <code>100</code> px (cutting headers and footers up to 100 pixels high).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All images with height greater than 15000px <a href="https://help.applitools.com/hc/en-us/articles/360006915092-Image-size-and-capacity-limitations">will be trimmed</a> on the server side.
 </td>
 </tr>
 </table>
@@ -1309,6 +1326,9 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <ul>
 <li>
 <p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+</li>
+<li>
+<p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages.</p>
 </li>
 <li>
 <p><code>webHeaderToCut</code> - The header to cut on each screenshot segment during scroll e.g. sticky header.</p>
