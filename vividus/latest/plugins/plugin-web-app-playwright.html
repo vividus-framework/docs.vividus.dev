@@ -851,6 +851,47 @@ By. prefix is optional.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose class name matches the specified search value. This locator is translated to <code>css(.&lt;className&gt;)</code> locator.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">className(bold)</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkText</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose text of the link matches the specified search value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkText(Google)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose <code>href</code> attribute matches the specified search value. This locator is translated to <code>css([href='&lt;tagName&gt;'])</code> locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrl(/faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>linkUrlPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose part of <code>href</code> attribute matches the specified search value. This locator is translated to <code>css([href*='&lt;tagName&gt;'])</code> locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linkUrlPart(faq)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose <code>src</code> attribute matches the specified search value. This locator is translated to <code>css(img[src='&lt;imageSrc&gt;'])</code> locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrc(/images/kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>imageSrcPart</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locates elements whose part of <code>src</code> attribute matches the specified search value. This locator is translated to <code>css(img[src*='&lt;imageSrc&gt;'])</code> locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imgSrcPart(kote.png)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fieldName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locate elements that are either input or textarea and their text or any attribute value matches the specified search value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fieldName(editor)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>radioButton</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locate elements that are input with @type="radio" and their label text value matches the specified searh value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">radioButton(One)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locate elements where any attribute or text value matches the specified search value. This locator is translated to <code>xpath(.//*[@*='&lt;elementName&gt;' or text()='&lt;elementName&gt;'])</code>
+locator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elementName(OK)</p></td>
+</tr>
 </tbody>
 </table>
 </div>
