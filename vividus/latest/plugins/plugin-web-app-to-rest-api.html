@@ -1095,26 +1095,6 @@ The main page url value defined by this parameter overrides the value defined by
 </div>
 <div class="sect2">
 <h3 id="_from_html"><a class="anchor" href="#_from_html"></a>FROM_HTML</h3>
-<div class="paragraph">
-<p><code>FROM_HTML</code> transformer generates a table based on the text content, HTML content or attributes of HTML elements found in the requested HTML page.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageUrl</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The URL of the page to build the table upon.</p>
-</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1122,131 +1102,14 @@ The main page url value defined by this parameter overrides the value defined by
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-The <code>pageUrl</code> parameter is deprecated and will be removed in VIVIDUS 0.7.0, please use <code>variableName</code> instead.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The <code>pageUrl</code> parameter can not be used together with the <code>variableName</code> parameter.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variableName</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The name of the variable containing source HTML, only variables of scopes <code>global</code> and <code>next_batches</code> are allowed.
-Exceptions are cases when the transformer using in <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a>
-which initializes a variable with a table.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The <code>variableName</code> parameter can not be used together with the <code>pageUrl</code> parameter.
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The column name in the generated table.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xpathSelector</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The XPath selector to select HTML elements in the HTML page.</p>
-</div>
 <div class="paragraph">
-<p>By using XPath selector we can extract element&#8217;s HTML content, attributes and text content like its shown in the following example:</p>
+<p>The transformer <a href="plugin-html.html#_from_html" class="xref page">has been moved</a> to <code>vividus-plugin-html</code>.
+The transformer is still available via <code>vividus-plugin-web-app-to-rest-api</code>, but it will be required
+to install <code>vividus-plugin-html</code> explicitly starting from VIVIDUS 0.7.0.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>//a</code> - extract the link HTML content, e.g. <code>&lt;a href="/hello"&gt;Say Hello&lt;/a&gt;</code></p>
-</li>
-<li>
-<p><code>//a/text()</code> - extract the link text, e.g. <code>Say Hello</code></p>
-</li>
-<li>
-<p><code>//a/@href</code> - extract the link <code>href</code> attribute, e.g. <code>/hello</code></p>
-</li>
-</ul>
-</div></div></td>
+</td>
 </tr>
-</tbody>
 </table>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Property Name</th>
-<th class="tableblock halign-left valign-top">Acceptable values</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformer.from-html.headers.&lt;header name&gt;=&lt;header value&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Set of headers to set when requesting the page.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">transformer.from-html.headers.x-vercel-protection-bypass=1fac2b25014d35e5103b</code></pre>
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">Example 4. Given the following HTML page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;body&gt;
-        &lt;a href="/r"&gt;R&lt;/a&gt;
-        &lt;a href="/g"&gt;G&lt;/a&gt;
-        &lt;a href="/b"&gt;B&lt;/a&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 5. Applyng FROM_HTML to the page</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Examples:
-{transformer=FROM_HTML, column=relative-url, pageUrl=https://mypage.com, xpathSelector=//a/@href}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example 6. Output table</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">|relative-url|
-|/r          |
-|/g          |
-|/b          |</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -1441,7 +1304,7 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Validate resources located by XPath</div>
+<div class="title">Example 4. Validate resources located by XPath</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by xpath `//a` are valid on:
 |pages                        |
@@ -1515,7 +1378,7 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate resources from the current page</div>
+<div class="title">Example 5. Validate resources from the current page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then all resources found by CSS selector `a,img` in ${source-code} are valid</code></pre>
 </div>
@@ -1588,7 +1451,7 @@ The <code>variableName</code> parameter can not be used together with the <code>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 9. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
+<div class="title">Example 6. Validate SSL rating for <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then SSL rating for URL `https://www.google.com` is equal to `B`</code></pre>
 </div>
