@@ -1494,58 +1494,89 @@ Examples:
 <h2 id="_indexing"><a class="anchor" href="#_indexing"></a>INDEXING</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>INDEXING</code> transformer adds a column with the rows indices in the specified order. Indices are zero-based</p>
+<p><code>INDEXING</code> transformer adds a column with the rows indices in the specified order.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 75%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Default value</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The mandatory indexing order: <code>ASCENDING</code> or <code>DESCENDING</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>order</strong></code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The indexing order: <code>ASCENDING</code> or <code>DESCENDING</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>startIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The start index. Negative integer numbers are allowed.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 29. ASCENDING order example</div>
+<div class="title">Example 29. Usage of <code>INDEXING</code> transformer with <code>ASCENDING</code> order. The following transformer:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=ASCENDING}
 |key   |
-|value |
+|value1|
 |value2|</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example 30. ASCENDING order resulting table</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
-|value |0    |
+|value1|0    |
 |value2|1    |</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. DESCENDING order example</div>
+<div class="title">Example 30. Usage of <code>INDEXING</code> transformer with <code>DESCENDING</code> order. The following transformer:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=DESCENDING}
 |key   |
-|value |
+|value1|
 |value2|</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example 32. DESCENDING order resulting table</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
-|value |1    |
+|value1|1    |
 |value2|0    |</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Usage of <code>INDEXING</code> transformer starting from <code>1</code> with <code>ASCENDING</code> order. The following transformer:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INDEXING, order=ASCENDING, startIndex=1}
+|key   |
+|value1|
+|value2|</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will result in the following <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|key   |index|
+|value1|1    |
+|value2|2    |</code></pre>
 </div>
 </div>
 </div>
@@ -1617,7 +1648,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Usage of LEFT_JOIN transformer with two tables</div>
+<div class="title">Example 32. Usage of LEFT_JOIN transformer with two tables</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=LEFT_JOIN, leftTableJoinColumn=ID, rightTableJoinColumn=ID, tables=/tables/customers.table;/tables/orders.table}</code></pre>
 </div>
@@ -1730,7 +1761,7 @@ Examples:
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Usage of INNER_JOIN transformer with table body</div>
+<div class="title">Example 33. Usage of INNER_JOIN transformer with table body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/some-table.table}
 |joinID|column2|
@@ -1762,19 +1793,19 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Usage of INNER_JOIN transformer with the same column names for matching</div>
+<div class="title">Example 34. Usage of INNER_JOIN transformer with the same column names for matching</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID, rightTableJoinColumn=joinID, tables=/tables/test1.table;/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Usage of INNER_JOIN transformer with the different column names for matching</div>
+<div class="title">Example 35. Usage of INNER_JOIN transformer with the different column names for matching</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=INNER_JOIN, leftTableJoinColumn=joinID1, rightTableJoinColumn=joinID2, tables=/tables/test1.table;/tables/test2.table}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Usage of INNER_JOIN transformer with nested tables</div>
+<div class="title">Example 36. Usage of INNER_JOIN transformer with nested tables</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{
  transformer=INNER_JOIN,
