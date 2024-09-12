@@ -776,6 +776,67 @@ could be optionally specified using the property <code>azure.environment</code>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_send_message_with_custom_properties"><a class="anchor" href="#_send_message_with_custom_properties"></a>Send message with custom properties</h3>
+<div class="paragraph">
+<p>Send message with custom properties to the specified Azure Service Bus <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#concepts">Queue
+ or Topic</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `$serviceBusKey` service bus with payload:`$payload` and custom properties:$customProperties</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$serviceBusKey</code> - The key associated with the Azure Service Bus connection configuration, will be used to find required properties values.</p>
+</li>
+<li>
+<p><code>$payload</code> - Message to send to the service bus.</p>
+</li>
+<li>
+<p><code>$customProperties</code> - The custom properties to set as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a>:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the property name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the data type of the property (case-insensitive). Options include 'string', 'boolean', 'number'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the property value</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Send message with custom properties to the Service Bus Queue</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectQueue` service bus with payload:`Hello World!` and custom properties:
+|key    |type   |value|
+|purpose|string |test |
+|flag   |boolean|true |
+|mode   |number |5    |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_start_consuming_messages"><a class="anchor" href="#_start_consuming_messages"></a>Start consuming messages</h3>
 <div class="paragraph">
 <p>Starts Azure Service Bus consumer with the provided configuration to listen the specified
@@ -806,7 +867,7 @@ The consumer must be stopped when it&#8217;s not used.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Start consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
+<div class="title">Example 4. Start consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus</code></pre>
 </div>
@@ -833,7 +894,7 @@ The consumer must be stopped when it&#8217;s not used.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Stop consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
+<div class="title">Example 5. Stop consuming messages from the topic configured by Service Bus key <code>myProjectTopic</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I stop consuming messages from `myProjectTopic` service bus</code></pre>
 </div>
@@ -866,7 +927,7 @@ The consumer must be stopped when it&#8217;s not used.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Wait for at least 5 messages from the queue for 30 seconds</div>
+<div class="title">Example 6. Wait for at least 5 messages from the queue for 30 seconds</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait with `PT30S` timeout until count of consumed `myProjectQueue` service bus messages is &gt;= `5`</code></pre>
 </div>
@@ -910,7 +971,7 @@ If the consumer is stopped, all the events received from the consumer start or a
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Peek and drain messages from the consumer, save them to variables, and compare each other</div>
+<div class="title">Example 7. Peek and drain messages from the consumer, save them to variables, and compare each other</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus
 When I DRAIN consumed `myProjectTopic` service bus messages to STORY variable `drained-messages`
@@ -927,7 +988,7 @@ Then `${drained-messages[0]}` is not equal to `${peeked-messages[0]}`</code></pr
 <h2 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Example 7. Consume messages from the Service Bus topic</div>
+<div class="title">Example 8. Consume messages from the Service Bus topic</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I start consuming messages from `myProjectTopic` service bus
 When I wait with `PT30S` timeout until count of consumed `myProjectTopic` service bus messages is &gt;= `2`
@@ -937,7 +998,7 @@ Then `${drained-messages[0]}` is equal to `some-expected-event`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Drain messages while the Service Bus consumer is running</div>
+<div class="title">Example 9. Drain messages while the Service Bus consumer is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectTopic` service bus with payload:`First message`
 When I start consuming messages from `myProjectTopic` service bus
@@ -949,7 +1010,7 @@ Then `${first-drain-messages[0]}` is not equal to `${second-drain-messages[0]}`<
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Peek messages while the Service Bus consumer is running</div>
+<div class="title">Example 10. Peek messages while the Service Bus consumer is running</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I send message to `myProjectQueue` service bus with payload:`Hello World!`
 When I start consuming messages from `myProjectTopic` service bus
