@@ -650,6 +650,27 @@ story-level <a href="../glossary.html#_examplestable" class="xref page">Examples
 contains numerous records, the Parameters section can become lengthy, thus increasing the difficulty of navigating to
 the actual Execution body. The property can be used to hide the Parameters section, making navigation easier.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>report.translations.&lt;lang&gt;.&lt;translation key&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alternative translation for the specified key.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>This family of properties allows overriding text values in report controls, such as labels, buttons, etc. These values
+represent translations for the chosen language. The list of languages and default translations can be found in the
+official report repository, for example, here is translation configuration for English:
+<a href="https://github.com/allure-framework/allure2/blob/main/allure-generator/src/main/javascript/translations/en.json">en.json</a>.</p>
+</div>
+<div class="paragraph">
+<p>To override a translation value it is necessary to provide translation key, which is essentially a path to the value in
+JSON file. For example, to specify custom English message for duration chart without data the following property should
+be used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">report.translations.en.chart.duration.empty=No data to display</code></pre>
+</div>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
