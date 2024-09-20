@@ -676,6 +676,113 @@ be used:</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_add_metadata"><a class="anchor" href="#_add_metadata"></a>Add metadata</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is allowed to add metadata to be displayed in the report and the output logs. There are 2 types of metadata
+configuration: static and dynamic.</p>
+</div>
+<div class="sect2">
+<h3 id="_static_metadata"><a class="anchor" href="#_static_metadata"></a>Static metadata</h3>
+<div class="paragraph">
+<p>To add custom metadata the following properties are needed to be set:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.static.&lt;data-identifier&gt;.name=&lt;name&gt;
+metadata.static.&lt;data-identifier&gt;.value=&lt;value&gt;
+metadata.static.&lt;data-identifier&gt;.category=&lt;category&gt;
+metadata.static.&lt;data-identifier&gt;.show-in-report=&lt;true or false&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>data-identifier</code> - The unique identifier of metadata configuration (It is to group information about single metadata
+entry and not used in the report or the output logs).</p>
+</li>
+<li>
+<p><code>name</code> - The short name of the metadata entry.</p>
+</li>
+<li>
+<p><code>value</code> - The actual metadata value to be shown.</p>
+</li>
+<li>
+<p><code>category</code> - The category under which the metadata will be published. Available values <code>ENVIRONMENT</code>, <code>SUITE</code>,
+<code>PROFILE</code>, <code>CONFIGURATION</code>.</p>
+</li>
+<li>
+<p><code>show-in-report</code> - Whether to show metadata in the report (optional value, default <code>true</code>). It can be useful if
+necessary to show metadata in the end of test execution log, but hide in the report.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. Enable reporting of global variable <code>visual-action</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.static.visual-action.name=Visual Action
+metadata.static.visual-action.value=${variables.visual-action}
+metadata.static.visual-action.category=ENVIRONMENT</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dynamic_metadata"><a class="anchor" href="#_dynamic_metadata"></a>Dynamic metadata</h3>
+<div class="paragraph">
+<p>Sometimes it might be needed to add custom metadata which should be mapped to dynamic properties (e.g. batches
+configuration), in this case the following properties are needed to be set:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.dynamic.&lt;data-identifier&gt;.name-pattern=&lt;name-pattern&gt;
+metadata.dynamic.&lt;data-identifier&gt;.property-regex=&lt;property-regex&gt;
+metadata.dynamic.&lt;data-identifier&gt;.category=&lt;category&gt;
+metadata.dynamic.&lt;data-identifier&gt;.show-in-report=&lt;true or false&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>data-identifier</code> - The unique identifier of metadata configuration (It is to group information about single metadata
+entry and not used in the report or the output logs).</p>
+</li>
+<li>
+<p><code>name-pattern</code> - The pattern according to which the metadata name will be generated. The pattern can use a special
+placeholder <code>%s</code> which will be replaced with a value of the first captured group from the property regular expression
+described below.</p>
+</li>
+<li>
+<p><code>property-regex</code> - The regular expression to find properties by key. The first captured group can be used in the name
+pattern.</p>
+</li>
+<li>
+<p><code>category</code> - The category under which the metadata will be published. Available values <code>ENVIRONMENT</code>, <code>SUITE</code>,
+<code>PROFILE</code>, <code>CONFIGURATION</code>.</p>
+</li>
+<li>
+<p><code>show-in-report</code> - Whether to show metadata in the report (optional value, default <code>true</code>). It can be useful if
+necessary to show metadata in the end of test execution log, but hide in the report.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. Enable reporting of locations for all batches</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.dynamic.batch-location.name-pattern=Batch %s Location
+metadata.dynamic.batch-location.property-regex=batch-(.+).resource-location
+metadata.dynamic.batch-location.category=SUITE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_add_external_links_to_report"><a class="anchor" href="#_add_external_links_to_report"></a>Add external links to report</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -689,7 +796,7 @@ be used:</p>
 <li>
 <p>Configure link pattern via properties.</p>
 <div class="listingblock">
-<div class="title">Example 1. Configure link to issue tracking system in <code>environment.properties</code></div>
+<div class="title">Example 3. Configure link to issue tracking system in <code>environment.properties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
@@ -698,7 +805,7 @@ be used:</p>
 <li>
 <p>Add meta tags to the story/scenario meta.</p>
 <div class="listingblock">
-<div class="title">Example 2. Story level meta-tag containing ID of the issue</div>
+<div class="title">Example 4. Story level meta-tag containing ID of the issue</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
@@ -764,7 +871,7 @@ Then `1` is = `1`</code></pre>
 To achieve this user should define <strong>a custom suffix</strong> for the properties and meta tags.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Configure links to several issue tracking systems in <code>environment.properties</code></div>
+<div class="title">Example 5. Configure links to several issue tracking systems in <code>environment.properties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
@@ -773,7 +880,7 @@ system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Story level meta-tags containing IDs of the issues belonging to different systems</div>
+<div class="title">Example 6. Story level meta-tags containing IDs of the issues belonging to different systems</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
