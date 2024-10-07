@@ -15310,7 +15310,7 @@ being treated as a literal replacement string. Dollar signs may be treated as re
 <div class="listingblock">
 <div class="title">Example 2. Verify the data</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${frontEndData}` matches `#{quorePattern(${backEndData})}.*`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${frontEndData}` matches `#{quoteRegExp(${backEndData})}.*`</code></pre>
 </div>
 </div>
 </div>
