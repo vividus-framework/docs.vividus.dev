@@ -770,6 +770,10 @@ The <code>path</code> parameter can not be used together with the <code>variable
 </ul>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>baseUri</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base URI  can be used to get an absolute URL from an attribute that may be a relative URL: make sure to add the prefix <code>abs:</code> before the attribute name to <a href="https://jsoup.org/cookbook/extracting-data/working-with-urls">xPath selector</a>, e.g. <code>//a/@abs:href</code>. If defined <code>pageUrl</code> parameter as the base URI implicitly using value of this parameter.</p></td>
+</tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
