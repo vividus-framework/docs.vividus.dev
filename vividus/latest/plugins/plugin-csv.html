@@ -724,8 +724,72 @@ The table transformers properties marked with <strong>bold</strong> are mandator
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>csvPath</strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The relative path of the CSV file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The <a href="../glossary.html#_resource" class="xref page">CSV resource name</a> or the CSV file path.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>path</code> parameter can not be used together with the <code>variableName</code> or <code>csvPath</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>variableName</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the variable containing source CSV, only variables of scopes <code>global</code> and <code>next_batches</code> are allowed.
+Exceptions are cases when the transformer using in <a href="../commons/vividus-steps.html#_initialize_variable_with_a_table" class="xref page">step</a>
+which initializes a variable with a table.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>variableName</code> parameter can not be used together with the <code>path</code> or <code>csvPath</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>csvPath</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The <a href="../glossary.html#_resource" class="xref page">CSV resource name</a> or the CSV file path.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>csvPath</code> parameter is deprecated and will be removed in VIVIDUS 0.7.0, please use <code>path</code> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>csvPath</code> parameter can not be used together with the <code>variableName</code> or <code>path</code> parameter.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delimiterChar</code></p></td>
@@ -739,13 +803,19 @@ The table transformers properties marked with <strong>bold</strong> are mandator
 <div class="listingblock">
 <div class="title">Example 2. The transformer based on the default configuration</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, csvPath=/data/example.csv}</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, path=/data/example.csv}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. The transformer with custom inlined configuration</div>
+<div class="title">Example 3. The transformer based on the default configuration with variable CSV source</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, csvPath=/data/another-example.csv, delimiterChar=;}</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, variableName=csvVariable}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. The transformer with custom inlined configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=FROM_CSV, path=/data/another-example.csv, delimiterChar=;}</code></pre>
 </div>
 </div>
 </div>
@@ -778,7 +848,7 @@ The table transformers properties marked with <strong>bold</strong> are mandator
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Validate CSV data</div>
+<div class="title">Example 5. Validate CSV data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `csv` with value `key1,key2,key3
 val1-1,val1-2,val1-3
