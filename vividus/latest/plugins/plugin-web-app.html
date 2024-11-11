@@ -7808,6 +7808,87 @@ The step ignores the <code>web/desktop/chrome/mobile_emulation/phone</code> prof
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_geolocation_emulation"><a class="anchor" href="#_geolocation_emulation"></a>Geolocation emulation</h3>
+<div class="sect3">
+<h4 id="_emulate_geolocation"><a class="anchor" href="#_emulate_geolocation"></a>Emulate Geolocation</h4>
+<div class="paragraph">
+<p>Set the current Geolocation to coordinates with the specified latitude and longitude.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step is only supported by Chrome browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate Geolocation using coordinates with latitude `$latitude` and longitude `$longitude`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$latitude</code> - The <a href="https://en.wikipedia.org/wiki/Latitude">latitude</a>.</p>
+</li>
+<li>
+<p><code>$longitude</code> - The <a href="https://en.wikipedia.org/wiki/Longitude">longitude</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 155. Set Geolocation to New York, USA</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://my-location.org`
+Then text `Brooklyn, NY` does not exist
+When I emulate Geolocation using coordinates with latitude `40.678207` and longitude `-73.944390`
+When I refresh page
+Then text `Brooklyn, NY` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reset_geolocation_emulation"><a class="anchor" href="#_reset_geolocation_emulation"></a>Reset Geolocation emulation</h4>
+<div class="paragraph">
+<p>Resets the emulated Geolocation position.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step is only supported by Chrome browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset Geolocation emulation</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 156. Set Geolocation emulation and reset it</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://my-location.org`
+When I emulate Geolocation using coordinates with latitude `40.678207` and longitude `-73.944390`
+When I refresh page
+Then text `Brooklyn, NY` exists
+When I reset Geolocation emulation
+When I refresh page
+Then text `Brooklyn, NY` does not exist</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -7819,7 +7900,7 @@ The step ignores the <code>web/desktop/chrome/mobile_emulation/phone</code> prof
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 155. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 157. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -7839,7 +7920,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 156. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 158. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -7859,7 +7940,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 157. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 159. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
