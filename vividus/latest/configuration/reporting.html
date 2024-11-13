@@ -881,6 +881,62 @@ be used:</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_configure_categories"><a class="anchor" href="#_configure_categories"></a>Configure categories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to customize the names of categories in the report, as well as the statuses of tests that will be categorized under these names.<br>
+Use the following properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">report.tabs.categories.&lt;category-identifier&gt;.name=&lt;name&gt;
+report.tabs.categories.&lt;category-identifier&gt;.statuses=&lt;statuses&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>category-identifier</code> - The unique identifier of category.</p>
+</li>
+<li>
+<p><code>name</code> - The desired category name to be displayed in the report.</p>
+</li>
+<li>
+<p><code>statuses</code> - The comma-separated list of test statuses included in this category. Possible values:
+<a href="https://allurereport.org/docs/test-statuses/#failed">failed</a>,
+<a href="https://allurereport.org/docs/test-statuses/#broken">broken</a>,
+unknown (in context of VIVIDUS - test cases with <a href="tests-configuration.html#_known_issues" class="xref page">Known issues</a>),
+<a href="https://allurereport.org/docs/test-statuses/#skipped">skipped</a>,
+<a href="https://allurereport.org/docs/test-statuses/#passed">passed</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>User categories take precedence over default categories. So if you create your own configuration for failed and broken tests,
+but ignore test cases from <code>Known issues</code> category (<code>unknown</code> status), these defects will not be displayed in the  <code>Categories</code> tab.
+This rule does not apply to <code>Test defects</code>(<code>broken</code> status) and <code>Product defects</code>(<code>failed</code> status) categories: if user configuration is not defined, the default categories will be shown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. Create test category with name <code>Defects of the tested application</code> which including all tests with <code>broken</code> and <code>failed</code> statuses.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">report.tabs.categories.defects.name=Defects of the tested application
+report.tabs.categories.defects.statuses=failed, broken</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_add_metadata"><a class="anchor" href="#_add_metadata"></a>Add metadata</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -926,7 +982,7 @@ necessary to show metadata in the end of test execution log, but hide in the rep
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Enable reporting of global variable <code>visual-action</code></div>
+<div class="title">Example 4. Enable reporting of global variable <code>visual-action</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.static.visual-action.name=Visual Action
 metadata.static.visual-action.value=${variables.visual-action}
@@ -977,7 +1033,7 @@ necessary to show metadata in the end of test execution log, but hide in the rep
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Enable reporting of locations for all batches</div>
+<div class="title">Example 5. Enable reporting of locations for all batches</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">metadata.dynamic.batch-location.name-pattern=Batch %s Location
 metadata.dynamic.batch-location.property-regex=batch-(.+).resource-location
@@ -1001,7 +1057,7 @@ metadata.dynamic.batch-location.category=SUITE</code></pre>
 <li>
 <p>Configure link pattern via properties.</p>
 <div class="listingblock">
-<div class="title">Example 5. Configure link to issue tracking system in <code>environment.properties</code></div>
+<div class="title">Example 6. Configure link to issue tracking system in <code>environment.properties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">system.allure.link.issue.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
@@ -1010,7 +1066,7 @@ metadata.dynamic.batch-location.category=SUITE</code></pre>
 <li>
 <p>Add meta tags to the story/scenario meta.</p>
 <div class="listingblock">
-<div class="title">Example 6. Story level meta-tag containing ID of the issue</div>
+<div class="title">Example 7. Story level meta-tag containing ID of the issue</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
@@ -1076,7 +1132,7 @@ Then `1` is = `1`</code></pre>
 To achieve this user should define <strong>a custom suffix</strong> for the properties and meta tags.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Configure links to several issue tracking systems in <code>environment.properties</code></div>
+<div class="title">Example 8. Configure links to several issue tracking systems in <code>environment.properties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Default property
 system.allure.link.issue.pattern=https://vividus.prod/issues/{}
@@ -1085,7 +1141,7 @@ system.allure.link.issue.dev.pattern=https://vividus.dev/issues/{}</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Story level meta-tags containing IDs of the issues belonging to different systems</div>
+<div class="title">Example 9. Story level meta-tags containing IDs of the issues belonging to different systems</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta:
     @issueId VVD-1
