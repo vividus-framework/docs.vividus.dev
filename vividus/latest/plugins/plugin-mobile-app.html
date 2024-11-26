@@ -4252,6 +4252,19 @@ Then `${qrCodeLink}` is equal to `https://www.example.com`</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_proxy_steps"><a class="anchor" href="#_proxy_steps"></a>Proxy Steps</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The maximum size the HAR file being published on failure is 40 MB, in case of exceeding the limit
+and getting an error please re-structure the scenarios to include <a href="#_clear_the_recordings">Clear the recordings</a> step.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="_check_the_number_of_http_requests"><a class="anchor" href="#_check_the_number_of_http_requests"></a>Check the number of HTTP requests</h4>
 <div class="paragraph">
