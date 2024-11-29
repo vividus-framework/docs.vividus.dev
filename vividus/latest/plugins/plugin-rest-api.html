@@ -2210,6 +2210,26 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_remove_all_http_cookies"><a class="anchor" href="#_remove_all_http_cookies"></a>Remove all HTTP cookies</h3>
+<div class="paragraph">
+<p>Removes all cookies from the HTTP context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I remove all HTTP cookies</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 40. Clear the cookies from the previous HTTP response and proceed with the next request without including any cookies</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/cookieName/cookieValue`
+When I save value of HTTP cookie with name `cookieName` to scenario variable `value`
+When I remove all HTTP cookies
+When I execute HTTP GET request for resource with URL `https://httpbin.org/cookies/set/newCookieName/newCookieValue`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2318,7 +2338,7 @@ Then '${value}' is equal to 'newCookieValue'</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
+<div class="title">Example 41. Generate JWT with specified payload and header signed with key <code>secretKey</code> using HS256 algorithm and save result to scenario variable <code>JWT</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `header` with value `{"typ":"JWT","alg":"HS256"}`
 Given I initialize scenario variable `payload` with value `{"sub":"1234567890","name":"John Doe","admin":true,"jti":"c6859320-9fb3-4784-8c2f-1ab37044acfc","iat":#{toEpochSecond(#{generateDate(P, yyyy-MM-dd'T'HH:mm:ss)})},"exp":#{toEpochSecond(#{generateDate(P1D, yyyy-MM-dd'T'HH:mm:ss)})}}`
@@ -2338,7 +2358,7 @@ When I generate JWT with header `${header}` and payload `${payload}` signed with
 data in conjunction with any step responsible for data validation like data comparison, JSON, XML and other steps.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Validate response body</div>
+<div class="title">Example 42. Validate response body</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Then JSON element from `${response}` by JSON path `$.slideshow` is equal to `
@@ -2373,7 +2393,7 @@ in conjunction with the <a href="#_http_response_as_text">response</a> dynamic v
 subsequent HTTP call rewrites previously received response data.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Save response body into variable</div>
+<div class="title">Example 43. Save response body into variable</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://httpbin.org/json`
 Given I initialize scenario variable `json` with value `${response}`</code></pre>
