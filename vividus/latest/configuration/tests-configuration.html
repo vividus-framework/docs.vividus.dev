@@ -1651,22 +1651,98 @@ automatically whenever tests are run on Windows.</p>
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>&lt;group id&gt;</code> is a placeholder used to group up authentication configs which means that authentication properties related to the same
+origin should have the same <code>&lt;group id&gt;</code> value, please see the following example demonstrating configs for <code><a href="https://securedomain.com" class="bare">https://securedomain.com</a></code> site:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">http.auth.myapp.origin=https://securedomain.com
+http.auth.myapp.username=whoisthis
+http.auth.myapp.password=3db8a57ba925a522c8bf
+http.auth.myapp.preemptive-auth-enabled=false</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.&lt;group id&gt;.origin</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The username, presence of this property requires the <code>http.auth.password</code> to be also set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The URL identifying the origin to which configured basic authentication credentials will apply e.g. <code><a href="https://securedomain.com" class="bare">https://securedomain.com</a></code>.
+All the URL components besides <code>scheme</code>, <code>domain</code> and <code>port</code> contained in the URL are ignored.</p>
+</div>
+<div class="paragraph">
+<p>To apply basic authentication credentials to all domains use <code><strong></code> (asterisk) symbol as an origin value. Please note that more
+specific origin values take presendence over <code></strong></code> value.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Presence of this property requires <code>http.auth.&lt;group id&gt;.username</code> and <code>http.auth.&lt;group id&gt;.password</code> properties to be set as well
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.&lt;group id&gt;.username</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password, presence of this property requires the <code>http.auth.username</code> to be also set</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The username</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Presence of this property requires <code>http.auth.&lt;group id&gt;.origin</code> and <code>http.auth.&lt;group id&gt;.password</code> properties to be set as well
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.preemptive-auth-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.&lt;group id&gt;.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character sequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The password</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Presence of this property requires <code>http.auth.&lt;group id&gt;.username</code> and <code>http.auth.&lt;group id&gt;.origin</code> properties to be set as well
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>http.auth.&lt;group id&gt;.preemptive-auth-enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If enabled the HTTP client will send the basic authentication data even before the service gives an unauthorized response (401), useful when the service doesn&#8217;t support unauthorized response (401) or to reduce the overhead of making the connection</p></td>
