@@ -2903,6 +2903,26 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 <div class="paragraph">
 <p>Checks if the page is scrolled to the specific element</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This step is deprecated and will be removed in VIVIDUS 0.8.0.
+Please see the replacement pattern below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `$locator` is visible in viewport</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page is scrolled to element located by `$locator`</code></pre>
@@ -2919,6 +2939,36 @@ If the element to scroll is located inside an <a href="https://developer.mozilla
 <div class="title">Example 57. Validate Contact link is scrolled into view</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then page is scrolled to element located by `xpath(//a[text()="Contact"])`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_validate_element_presence_in_viewport"><a class="anchor" href="#_validate_element_presence_in_viewport"></a>Validate element presence in viewport</h4>
+<div class="paragraph">
+<p>Checks if the element located by the specified locater is or is not presented in the browser viewport</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `$locator` $presence visible in viewport</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+<li>
+<p><code>$presence</code> - The presence state of the element, either <code>is</code> or <code>is not</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 58. Validate element presence in viewport</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on a page with the URL 'https://ui.com/long-page-with-image'
+Then element located by `tagName(img)` is not visible in viewport
+When I scroll element located `tagName(img)` into view
+Then element located by `tagName(img)` is visible in viewport</code></pre>
 </div>
 </div>
 </div>
@@ -3025,7 +3075,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 58. Validate the URL of the matching HTTP request</div>
+<div class="title">Example 59. Validate the URL of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET,POST request with URL pattern `.*/search.*=vividus` and save URL to scenario variable `URL`
@@ -3033,7 +3083,7 @@ Then `${URL}` is equal to `https://www.google.com/search?q=vividus`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 59. Validate the URL query of the matching HTTP request</div>
+<div class="title">Example 60. Validate the URL query of the matching HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I capture HTTP GET request with URL pattern `.*/search.*=vividus` and save URL query to scenario variable `query`
@@ -3043,7 +3093,7 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 60. Validate the request and response data from the matching HTTP messages</div>
+<div class="title">Example 61. Validate the request and response data from the matching HTTP messages</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://httpbingo.org/forms/post`
 When I click on element located by `xpath(//input[@value='cheese'])`
@@ -3092,7 +3142,7 @@ This step requires network recording to be turned on. It can be done in properti
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 61. Wait for the HTTP request</div>
+<div class="title">Example 62. Wait for the HTTP request</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured</code></pre>
@@ -3110,7 +3160,7 @@ When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is cap
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 62. Clear the recorded data</div>
+<div class="title">Example 63. Clear the recorded data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://www.google.com/search?q=vividus`
 When I wait until HTTP GET request with URL pattern `.*/search.*=vividus` is captured
@@ -3213,7 +3263,7 @@ When I clear network recordings</code></pre>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 63. Execute various web-actions</div>
+<div class="title">Example 64. Execute various web-actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type          |argument                                 |
@@ -3242,7 +3292,7 @@ When I clear network recordings</code></pre>
 <p>This step can be used to perform clipboard interactions.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 64. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="title">Example 65. Select all text in the focused field and copy it to the clipboard on Windows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument   |
@@ -3253,7 +3303,7 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 65. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="title">Example 66. Paste text from the clipboard to the focused field on MacOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument |
@@ -3262,7 +3312,7 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 66. Select all text in the focused field and copy it to the clipboard on any OS</div>
+<div class="title">Example 67. Select all text in the focused field and copy it to the clipboard on any OS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument         |
@@ -3288,7 +3338,7 @@ When I clear network recordings</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 67. Browser restart</div>
+<div class="title">Example 68. Browser restart</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com`
 Then number of elements found by `xpath(//img)` is = `1`
@@ -3353,7 +3403,7 @@ The full path to the file with the taken screenshot is posted to logs and report
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 68. Take a screenshot and save it to the file</div>
+<div class="title">Example 69. Take a screenshot and save it to the file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take screenshot and save it to file at path `${screenshot-directory}/start-page.png`</code></pre>
 </div>
