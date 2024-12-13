@@ -4297,6 +4297,33 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </div>
 </div>
 <div class="sect2">
+<h3 id="_wait_until_element_has_text_matching_regular_expression"><a class="anchor" href="#_wait_until_element_has_text_matching_regular_expression"></a>Wait until element has text matching regular expression</h3>
+<div class="paragraph">
+<p>Waits until an element with the specified locator has text that matches the provided <a href="https://www.regular-expressions.info/">regular expression</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `$locator` has text matching `$regex`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">Locator</a> of the element which text to check.</p>
+</li>
+<li>
+<p><code>$regex</code> - The <a href="https://www.regular-expressions.info/">regular expression</a> used to validate the text of the element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 68. The element should have text consisting of numbers only</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(indicator)` has text matching `\d+`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_wait_for_expected_elements_number"><a class="anchor" href="#_wait_for_expected_elements_number"></a>Wait for expected elements number</h3>
 <div class="paragraph">
 <p>Waits for the expected number of elements located by locator.</p>
@@ -4332,13 +4359,13 @@ In order to wait for invisible elements one rely on <a href="#_visibility_types"
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 68. Wait for the visible elements</div>
+<div class="title">Example 69. Wait for the visible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img)` is equal to `5`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 69. Wait for the invisible elements</div>
+<div class="title">Example 70. Wait for the invisible elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until number of elements located by `tagName(img):1` is equal to `5`</code></pre>
 </div>
@@ -4374,7 +4401,7 @@ An element is considered <em>moving</em> when its coordinates (position) are cha
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 70. Wait for element with the specified id to stop moving</div>
+<div class="title">Example 71. Wait for element with the specified id to stop moving</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(submitForm)` stops moving</code></pre>
 </div>
@@ -4416,7 +4443,7 @@ Step will throw an error if the context element is not set.
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 71. Save the attribute value of the context element</div>
+<div class="title">Example 72. Save the attribute value of the context element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(username)`
 When I save `innerText` attribute value of context element to SCENARIO variable `username`</code></pre>
@@ -4498,7 +4525,7 @@ When I save `innerText` attribute value of context element to SCENARIO variable 
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 72. Save number of elements</div>
+<div class="title">Example 73. Save number of elements</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//a)` to scenario variable `numberOfLinks`
 Then `${numberOfLinks}` is equal to `1`</code></pre>
@@ -4559,7 +4586,7 @@ Then `${numberOfLinks}` is equal to `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 73. Verify image size and coordinates</div>
+<div class="title">Example 74. Verify image size and coordinates</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save coordinates and size of element located by `tagName(img)` to scenario variable `rect`
 Then `${rect.height}` is equal `400`
@@ -4608,36 +4635,9 @@ element appearance if it&#8217;s configured),</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 74. The element should have existed for 5 second</div>
+<div class="title">Example 75. The element should have existed for 5 second</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then element located by `id(banner)` exists for `PT5S` duration</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_wait_until_element_has_text_matching_regular_expression"><a class="anchor" href="#_wait_until_element_has_text_matching_regular_expression"></a>Wait until element has text matching regular expression</h3>
-<div class="paragraph">
-<p>Waits until an element with the specified locator has text that matches the provided <a href="https://www.regular-expressions.info/">regular expression</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `$locator` has text matching `$regex`</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>$locator</code> - The <a href="#_locator">Locator</a> of the element which text to check.</p>
-</li>
-<li>
-<p><code>$regex</code> - The <a href="https://www.regular-expressions.info/">regular expression</a> used to validate the text of the element.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Example 75. The element should have text consisting of numbers only</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(indicator)` has text matching `\d+`</code></pre>
 </div>
 </div>
 </div>
