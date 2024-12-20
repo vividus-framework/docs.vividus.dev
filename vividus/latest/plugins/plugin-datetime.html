@@ -1083,7 +1083,7 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{diffDate(<strong>$inputDate1</strong>, <strong>$inputDate1Format</strong>, <strong>$inputDate2</strong>, <strong>$inputDate2Format</strong>)}</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{diffDate(<strong>$inputDate1</strong>, <strong>$inputDate1Format</strong>, <strong>$inputDate2</strong>, <strong>$inputDate2Format</strong>, <em>chronoUnit</em>)}</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1099,6 +1099,10 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </li>
 <li>
 <p><strong><code>$inputDate2Format</code></strong> - the second input date format based on <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/format/DateTimeFormatter.html#patterns">the date/time format</a></p>
+</li>
+<li>
+<p><strong><code>chronoUnit</code></strong> - <strong>[optional]</strong> the date period unit based on <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/temporal/ChronoUnit.html">date periods units</a>.
+Calculation of the amount of time between two dates will be done in terms of this unit.</p>
 </li>
 </ul>
 </div>
@@ -1130,6 +1134,18 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 3020-03-19 03:39:20, yyyy-MM-dd HH:mm:ss)}</code></p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock">PT8774591H59M20S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 2019-03-19 04:40:00, yyyy-MM-dd HH:mm:ss, minutes)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">60</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:40:00, yyyy-MM-dd HH:mm:ss, 2019-03-19 04:40:00, yyyy-MM-dd HH:mm:ss, hours)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{diffDate(2019-03-19 03:00:00, yyyy-MM-dd HH:mm:ss, 2019-03-19 03:50:00, yyyy-MM-dd HH:mm:ss, hours)}</code></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">0</p></td>
 </tr>
 </tbody>
 </table>
