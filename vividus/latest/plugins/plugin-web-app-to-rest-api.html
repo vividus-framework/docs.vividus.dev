@@ -1476,7 +1476,7 @@ to install <code>vividus-plugin-html</code> explicitly starting from VIVIDUS 0.7
 <div class="sect3">
 <h4 id="_set_browser_cookies_to_the_http_context"><a class="anchor" href="#_set_browser_cookies_to_the_http_context"></a>Set browser cookies to the HTTP context</h4>
 <div class="paragraph">
-<p>Set current browser cookies to the HTTP client for future executing HTTP requests.</p>
+<p>Sets the current browser cookies to the HTTP context to use them in further HTTP requests.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1495,19 +1495,21 @@ When I execute HTTP GET request for resource with relative URL `/get`</code></pr
 <div class="sect3">
 <h4 id="_set_http_cookies_to_the_browser"><a class="anchor" href="#_set_http_cookies_to_the_browser"></a>Set HTTP cookies to the browser</h4>
 <div class="paragraph">
-<p>Set current cookies from the previous HTTP calls to the browser.
-Make sure that expected cookies from HTTP calls matches with web browser opened page domain.
-The actions performed by the step:</p>
+<p>Sets the current cookies from the preceding HTTP calls to the current browser instance.
+After adding the cookies the opened page is refreshed (this is required to apply the new cookies).</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>add the cookies;</p>
-</li>
-<li>
-<p>refresh the current page (this action is required to apply the changes in cookies).</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If Selenium engine is used, ensure that the expected cookies from HTTP calls match the domain of the page opened
+in the web browser.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1526,9 +1528,21 @@ When I set HTTP context cookies to browser</code></pre>
 <div class="sect3">
 <h4 id="_set_http_cookies_to_the_browser_without_applying_changes"><a class="anchor" href="#_set_http_cookies_to_the_browser_without_applying_changes"></a>Set HTTP cookies to the browser without applying changes</h4>
 <div class="paragraph">
-<p>Set current cookies from the previous HTTP calls to the browser, but does not apply the changes in cookies instantly.
-The current page must be refreshed or the navigation must be performed to apply the cookie changes.
-Make sure that expected cookies from HTTP calls matches with web browser opened page domain.</p>
+<p>Sets the current cookies from the preceding HTTP calls to the current browser instance, but does not apply the changes
+in cookies instantly. The current page must be refreshed, or navigation must be performed to apply the cookie changes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If Selenium engine is used, ensure that the expected cookies from HTTP calls match the domain of the page opened
+in the web browser.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
