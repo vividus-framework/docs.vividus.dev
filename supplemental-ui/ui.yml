@@ -6,6 +6,6 @@ static_files:
 - android-chrome-192x192.png
 - android-chrome-384x384.png
 - browserconfig.xml
-- mslite-150-150.png
+- mstile-150x150.png
 - favicon.ico
 - index.php
