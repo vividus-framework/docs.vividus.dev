@@ -13,6 +13,12 @@ We use
     ```shell
     npm i -g @antora/cli@3.1.10 @antora/site-generator@3.1.10 @antora/lunr-extension@1.0.0-alpha.9
     ```
+1. Install and configure an Asciidoctor.js extension that adds a tabs block to the AsciiDoc syntax.
+    ```shell
+    npm i @asciidoctor/tabs@1.0.0-beta.6
+    ln -s "$(pwd)/node_modules/@asciidoctor/tabs/dist/js/tabs.js" supplemental-ui/js/vendor/tabs.js
+    ln -s "$(pwd)/node_modules/@asciidoctor/tabs/dist/css/tabs.css" supplemental-ui/css/vendor/tabs.css
+    ```
 1. Generate a site
     ```shell
     antora antora-playbook-local.yml
@@ -26,6 +32,9 @@ We use
  git clone https://github.com/vividus-framework/vividus.git && \   
  git clone https://github.com/vividus-framework/docs.vividus.dev.git && \   
  cd docs.vividus.dev && \
+ npm i @asciidoctor/tabs@1.0.0-beta.6 && \
+ ln -s "$(pwd)/node_modules/@asciidoctor/tabs/dist/js/tabs.js" supplemental-ui/js/vendor/tabs.js && \
+ ln -s "$(pwd)/node_modules/@asciidoctor/tabs/dist/css/tabs.css" supplemental-ui/css/vendor/tabs.css && \
  antora antora-playbook-local.yml && \  
  open ./public/index.html
  ```

@@ -12,6 +12,8 @@ site:
 asciidoc:
   attributes:
     experimental: true
+  extensions:
+  - '@asciidoctor/tabs'
 
 content:
   sources:
