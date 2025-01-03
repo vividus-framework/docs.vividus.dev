@@ -753,29 +753,28 @@ It&#8217;s advisible to use release versions of VIVIDUS in your project when bui
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 16.6666%;">
-<col style="width: 50.0001%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Environment variable</th>
 <th class="tableblock halign-left valign-top">Project property</th>
 <th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_URL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker.registry-url</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The URL of Docker registry to publish image to</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REPOSITORY_PATH</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REPOSITORY_PATH</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>docker.repository-path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -787,11 +786,13 @@ For private docker registries the repository path should follow <code>&lt;regist
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_USERNAME</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The docker registry username, if it&#8217;s set, the password must be specified as well</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The docker registry username, if it&#8217;s set, the password must be specified as well</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOCKER_REGISTRY_PASSWORD</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The docker registry password, if it&#8217;s set, the username must be specified as well</p></td>
 </tr>
 </tbody>
 </table>
@@ -833,7 +834,7 @@ For private docker registries the repository path should follow <code>&lt;regist
 </main>
 </div>
 <footer class="footer" style="padding: 0.25rem">
-  <p>Copyright (C) 2019-2024 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
+  <p>Copyright (C) 2019-2025 VIVIDUS team and individual contributors to <a href="https://docs.vividus.dev">VIVIDUS</a>. VIVIDUS is licensed under the <a href="https://github.com/vividus-framework/vividus/blob/master/LICENSE">Apache License 2.0</a></p>
 </footer>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
   <script src="../../../_/js/vendor/lunr.js"></script>
