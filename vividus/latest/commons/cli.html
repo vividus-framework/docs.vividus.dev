@@ -655,18 +655,34 @@ The tasks are available only through the <code>gradlew</code> command.
 <div class="sectionbody">
 <div class="paragraph">
 <p>The task runs test stories based on current <a href="../configuration/tests-configuration.html" class="xref page">tests configuration</a> and tests state
-on the file system.</p>
+on the file system:</p>
 </div>
+<div id="_tabs_1" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_1_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_1_macos_linux">
 <div class="listingblock">
-<div class="title">Example 3. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_1_windows--panel" class="tabpanel" aria-labelledby="_tabs_1_windows">
 <div class="listingblock">
-<div class="title">Example 4. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -676,10 +692,32 @@ on the file system.</p>
 <a href="../configuration/tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
 known issues as failures:</p>
 </div>
+<div id="_tabs_2" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_2_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_2_macos_linux">
 <div class="listingblock">
-<div class="title">Example 5. Enable treating of known issues as a positive result for current stories run</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories --treat-known-issues-only-as-passed</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_2_windows--panel" class="tabpanel" aria-labelledby="_tabs_2_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories --treat-known-issues-only-as-passed</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -687,7 +725,6 @@ known issues as failures:</p>
 line into the <code>build.gradle</code> file of the tests project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Enable treating of known issues as positive result for stories exeuctions at the project level</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
 </div>
@@ -716,18 +753,65 @@ line into the <code>build.gradle</code> file of the tests project:</p>
 <div class="sect2">
 <h3 id="_write_exit_code_to_a_file"><a class="anchor" href="#_write_exit_code_to_a_file"></a>Write exit code to a file</h3>
 <div class="paragraph">
-<p>Writing of the exit code can be enabled globally using project properties:</p>
+<p>The following command-line option can be used to write an exit code to a file:</p>
 </div>
+<div id="_tabs_3" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_3_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_3_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_3_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_3_macos_linux">
 <div class="listingblock">
-<div class="title">Example 7. Write exit code to a file by an absolute path via CLI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_3_windows--panel" class="tabpanel" aria-labelledby="_tabs_3_windows">
 <div class="listingblock">
-<div class="title">Example 8. Write an exit code to a file with a path related to the project build directory via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, it is possible to specify option to resolve a file path to write an exit code against the project build directory:</p>
+</div>
+<div id="_tabs_4" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_4_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_4_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_4_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_4_macos_linux">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_4_windows--panel" class="tabpanel" aria-labelledby="_tabs_4_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -735,13 +819,13 @@ line into the <code>build.gradle</code> file of the tests project:</p>
 <code>build.gradle</code> file of the test project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Write the exit code to a file by an absolute path via the project property</div>
+<div class="title">Example 3. Write the exit code to a file by an absolute path via the project property</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode ='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Write an exit code to file with a path related to the project build directory via project property</div>
+<div class="title">Example 4. Write an exit code to file with a path related to the project build directory via project property</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode = '/exitCode.txt'
 runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
@@ -757,16 +841,32 @@ runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 <p>The task runs test stories omitting VIVIDUS initialization check based on current <a href="../configuration/tests-configuration.html" class="xref page">tests configuration</a>
 and tests state on the file system.</p>
 </div>
+<div id="_tabs_5" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_5_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_5_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_5_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_5_macos_linux">
 <div class="listingblock">
-<div class="title">Example 11. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_5_windows--panel" class="tabpanel" aria-labelledby="_tabs_5_windows">
 <div class="listingblock">
-<div class="title">Example 12. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -776,10 +876,32 @@ and tests state on the file system.</p>
 <a href="../configuration/tests-configuration.html#_exit_codes" class="xref page">exit code</a>. The following command-line option can be used to not treat
 known issues as failures:</p>
 </div>
+<div id="_tabs_6" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_6_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_6_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_6_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_6_macos_linux">
 <div class="listingblock">
-<div class="title">Example 13. Enable treating of known issues as a positive result for current stories run</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories --treat-known-issues-only-as-passed</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_6_windows--panel" class="tabpanel" aria-labelledby="_tabs_6_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories --treat-known-issues-only-as-passed</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -787,7 +909,6 @@ known issues as failures:</p>
 line into the <code>build.gradle</code> file of the tests project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Enable treating of known issues as positive result for stories exeuctions at the project level</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.treatKnownIssuesOnlyAsPassed = true</code></pre>
 </div>
@@ -816,18 +937,65 @@ line into the <code>build.gradle</code> file of the tests project:</p>
 <div class="sect2">
 <h3 id="_write_exit_code_to_a_file_2"><a class="anchor" href="#_write_exit_code_to_a_file_2"></a>Write exit code to a file</h3>
 <div class="paragraph">
-<p>Writing of the exit code can be enabled globally using project properties:</p>
+<p>The following command-line option can be used to write an exit code to a file:</p>
 </div>
+<div id="_tabs_7" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_7_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_7_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_7_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_7_macos_linux">
 <div class="listingblock">
-<div class="title">Example 15. Write exit code to a file by an absolute path via CLI</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_7_windows--panel" class="tabpanel" aria-labelledby="_tabs_7_windows">
 <div class="listingblock">
-<div class="title">Example 16. Write an exit code to a file with a path related to the project build directory via CLI</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories -PfileToSaveExitCode='/user/dir/exitCode.txt'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Also, it is possible to specify option to resolve a file path to write an exit code against the project build directory:</p>
+</div>
+<div id="_tabs_8" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_8_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_8_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_8_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_8_macos_linux">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_8_windows--panel" class="tabpanel" aria-labelledby="_tabs_8_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew runStories -PfileToSaveExitCode='/exitCode.txt' -PresolvePathAgainstProjectBuildDir=true</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
@@ -835,13 +1003,13 @@ line into the <code>build.gradle</code> file of the tests project:</p>
 <code>build.gradle</code> file of the test project:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Write the exit code to a file by an absolute path via the project property</div>
+<div class="title">Example 5. Write the exit code to a file by an absolute path via the project property</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode ='/user/dir/exitCode.txt'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Write an exit code to file with a path related to the project build directory via project property</div>
+<div class="title">Example 6. Write an exit code to file with a path related to the project build directory via project property</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">runStories.fileToSaveExitCode = '/exitCode.txt'
 runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
@@ -881,20 +1049,36 @@ runStories.resolvePathAgainstProjectBuildDir = true</code></pre>
 </tr>
 </tbody>
 </table>
+<div id="_tabs_9" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_9_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_9_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_9_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_9_macos_linux">
 <div class="listingblock">
-<div class="title">Example 19. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew printSteps --args='-f my-steps.txt'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_9_windows--panel" class="tabpanel" aria-labelledby="_tabs_9_windows">
 <div class="listingblock">
-<div class="title">Example 20. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew printSteps --args='-f my-steps.txt'</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="listingblock">
-<div class="title">Example 21. Output</div>
+<div class="title">Example 7. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">vividus                                             Then `$value` matches `$regex`
 vividus-plugin-web-app                              When I switch back to page
@@ -942,20 +1126,36 @@ vividus-plugin-web-app                              When I press $keys on keyboa
 </tr>
 </tbody>
 </table>
+<div id="_tabs_10" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_10_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_10_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_10_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_10_macos_linux">
 <div class="listingblock">
-<div class="title">Example 22. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew countSteps --args='-t 5 -d story/uat'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_10_windows--panel" class="tabpanel" aria-labelledby="_tabs_10_windows">
 <div class="listingblock">
-<div class="title">Example 23. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew countSteps --args='-t 5 -d story/uat'</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="listingblock">
-<div class="title">Example 24. Output</div>
+<div class="title">Example 8. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Top of the most used steps:                                                                  occurrence(s)
 Then `$variable1` is $comparisonRule `$variable2`                                                      330
@@ -998,20 +1198,36 @@ When I change context to element located `$locator`                             
 </tr>
 </tbody>
 </table>
+<div id="_tabs_11" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_11_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_11_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_11_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_11_macos_linux">
 <div class="listingblock">
-<div class="title">Example 25. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew countScenarios --args='-d story/uat'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_11_windows--panel" class="tabpanel" aria-labelledby="_tabs_11_windows">
 <div class="listingblock">
-<div class="title">Example 26. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew countScenarios --args='-d story/uat'</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="listingblock">
-<div class="title">Example 27. Output</div>
+<div class="title">Example 9. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">5  | Stories
 13 | Scenarios
@@ -1026,20 +1242,36 @@ When I change context to element located `$locator`                             
 <div class="paragraph">
 <p>The task validates known issues format and prints the validated known issues into the console.</p>
 </div>
+<div id="_tabs_12" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_12_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_12_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_12_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_12_macos_linux">
 <div class="listingblock">
-<div class="title">Example 28. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_12_windows--panel" class="tabpanel" aria-labelledby="_tabs_12_windows">
 <div class="listingblock">
-<div class="title">Example 29. Windows:</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew validateKnownIssues</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Output</div>
+<div class="title">Example 10. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Known issues found:
 VVD-5
@@ -1094,25 +1326,41 @@ If you miss the file argument into the task it will behave as described per <a h
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. assertion-patterns.txt</div>
+<div class="title">Example 11. assertion-patterns.txt</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.*Doctor Who.*</code></pre>
 </div>
 </div>
+<div id="_tabs_13" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_13_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_13_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_13_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_13_macos_linux">
 <div class="listingblock">
-<div class="title">Example 32. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew validateKnownIssues --args='-f ./assertion-failures.txt'</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_13_windows--panel" class="tabpanel" aria-labelledby="_tabs_13_windows">
 <div class="listingblock">
-<div class="title">Example 33. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew validateKnownIssues --args='-f assertion-failures.txt'</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="listingblock">
-<div class="title">Example 34. Output</div>
+<div class="title">Example 12. Output</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Known Issue | Assertion Error
 VVD-6       | .*Doctor Who.*</code></pre>
@@ -1127,20 +1375,36 @@ VVD-6       | .*Doctor Who.*</code></pre>
 <p>The task replaces deprecated steps with actual ones in all stories(<code>*.story</code> files) and composite steps (<code>*.steps</code> files) along the path <code>&lt;project-name&gt;/src/main/resources</code>.
 Please note that some deprecated steps (for example which should be replaced with two steps) cannot be replaced automatically and must be refactored manually.</p>
 </div>
+<div id="_tabs_14" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_14_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_14_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_14_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_14_macos_linux">
 <div class="listingblock">
-<div class="title">Example 35. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew replaceDeprecatedSteps</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_14_windows--panel" class="tabpanel" aria-labelledby="_tabs_14_windows">
 <div class="listingblock">
-<div class="title">Example 36. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew replaceDeprecatedSteps</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="listingblock">
-<div class="title">Example 37. Output (for cases when found steps which cannot be replaced automatically)</div>
+<div class="title">Example 13. Output (for cases when found steps which cannot be replaced automatically)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">The step "When I check all checkboxes located by `xpath(.//input)`" from "CheckboxStepsTests.story - Scenario: Validation of step 'When I $checkboxState all checkboxes located by `$checkboxesLocator`'" is deprecated but cannot be replaced automatically, please replace it manually.
 The step "When I check all checkboxes located by `xpath(.//input)`" from "composite.steps - Composite: When I run composite step with table:$table" is deprecated but cannot be replaced automatically, please replace it manually.</code></pre>
@@ -1154,23 +1418,39 @@ The step "When I check all checkboxes located by `xpath(.//input)`" from "compos
 <div class="paragraph">
 <p>The task replaces deprecated properties with actual ones in all properties files along the path <code>&lt;project-name&gt;/src/main/resources/properties</code>.</p>
 </div>
+<div id="_tabs_15" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_15_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_15_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_15_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_15_macos_linux">
 <div class="listingblock">
-<div class="title">Example 38. macOS / Linux:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew replaceDeprecatedProperties</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_15_windows--panel" class="tabpanel" aria-labelledby="_tabs_15_windows">
 <div class="listingblock">
-<div class="title">Example 39. Windows:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew replaceDeprecatedProperties</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
 <p>The examples below demonstrate property file with deprecated properties before and after applying the <code>replaceDeprecatedProperties</code> task.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Property file with deprecated entries before running the task <code>replaceDeprecatedProperties</code></div>
+<div class="title">Example 14. Property file with deprecated entries before running the task <code>replaceDeprecatedProperties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ui.visual.applitools.server-uri=https://eyes.applitools.com/
 ui.visual.applitools.app-name=name
@@ -1179,7 +1459,7 @@ batch-6.story-execution-timeout=PT15M</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Property file with replaced entries after running the task <code>replaceDeprecatedProperties</code></div>
+<div class="title">Example 15. Property file with replaced entries after running the task <code>replaceDeprecatedProperties</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">applitools.server-uri=https://eyes.applitools.com/
 applitools.app-name=name
