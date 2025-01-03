@@ -2,3 +2,7 @@
 
 # macOS system files
 .DS_Store
+
+# Symlinks
+supplemental-ui/css/vendor/tabs.css
+supplemental-ui/js/vendor/tabs.js
