@@ -3149,15 +3149,15 @@ Then `${query}` is equal to `{q=[vividus]}`</code></pre>
 <div class="listingblock">
 <div class="title">Example 63. Validate the request and response data from the matching HTTP messages</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://httpbingo.org/forms/post`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://httpbingo.org/forms/post`
 When I click on element located by `xpath(//input[@value='cheese'])`
 When I click on element located by `xpath(//button)`
-When I capture HTTP POST request with URL pattern `http://httpbingo\.org/post` and save request data to SCENARIO variable `requestData`
+When I capture HTTP POST request with URL pattern `https://httpbingo\.org/post` and save request data to SCENARIO variable `requestData`
 Then `${requestData.query}` is equal to `{}`
 Then `${requestData.resourceType}` is equal to `document`
 Then `${requestData.requestBody}` is not equal to `null`
 Then `${requestData.responseStatus}` is equal to `200`
-When I capture HTTP POST request with URL pattern `http://httpbingo\.org/post` and save response data to SCENARIO variable `responseData`
+When I capture HTTP POST request with URL pattern `https://httpbingo\.org/post` and save response data to SCENARIO variable `responseData`
 Then `${responseData.responseBody}` matches `.*"topping":.*"cheese".*`</code></pre>
 </div>
 </div>
