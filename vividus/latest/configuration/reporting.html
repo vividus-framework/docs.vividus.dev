@@ -1230,6 +1230,76 @@ This meta tag is deprecated and will be removed in VIVIDUS 0.7.0. Please use <co
 </div>
 </div>
 <div class="sect1">
+<h2 id="_add_custom_tab_to_report"><a class="anchor" href="#_add_custom_tab_to_report"></a>Add custom tab to report</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>User can add a new tab to the report with custom content in <a href="https://www.markdownguide.org/getting-started/">Markdown format</a>, such as instructions, project information, or other relevant details.</p>
+</div>
+<div class="sect2">
+<h3 id="_to_add_custom_tab"><a class="anchor" href="#_to_add_custom_tab"></a>To add Custom Tab</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <strong>report-plugin/custom-tab</strong> folder in the test project resources directory.</p>
+</li>
+<li>
+<p>Create a <strong>custom-tab.md</strong> file inside this folder and add your content.</p>
+</li>
+<li>
+<p>Enable the custom tab by adding the following property <code>report.tabs.custom-tab.enabled=true</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_images"><a class="anchor" href="#_adding_images"></a>Adding images</h3>
+<div class="paragraph">
+<p>It is possible to include images in the custom-tab.md file.</p>
+</div>
+<div class="paragraph">
+<p>To do so:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>place the image inside the <strong>report-plugin/custom-tab</strong> folder (you can create subdirectories, e.g., report-plugin/custom-tab/images).</p>
+</li>
+<li>
+<p>Use <code>img</code> tag to insert the image to custom-tab.md document, e.g. <code>&lt;img src="./plugin/custom-tab/images/my-image.png"&gt;</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All images and resources must be stored inside the report-plugin/custom-tab folder, and the <em>src</em> attribute must start with <strong>./plugin/custom-tab</strong>. Otherwise, images will not be displayed in the Allure report.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_renaming_custom_tab"><a class="anchor" href="#_renaming_custom_tab"></a>Renaming Custom Tab</h3>
+<div class="paragraph">
+<p>Default tab name is 'Custom tab'. User can define name and translations for tab using the <code>report.translations.&lt;lang&gt;.tab.custom-tab.name</code> property.</p>
+</div>
+<div class="paragraph">
+<p>Multiple translations can be added:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">report.translations.en.tab.custom-tab.name=Instructions
+report.translations.es.tab.custom-tab.name=Instrucciones</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_notifications"><a class="anchor" href="#_notifications"></a>Notifications</h2>
 <div class="sectionbody">
 <div class="paragraph">
