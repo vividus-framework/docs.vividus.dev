@@ -721,8 +721,47 @@ For the device search plugin relies on the capabilities specified in the <a href
 </div>
 </div>
 <div class="paragraph">
+<p><strong>Takes device using Mobitru capabilities</strong></p>
+</div>
+<div class="paragraph">
 <p>For more fine-grained configuration of taking device additionally use
-Mobitru device search capabilities specified below.</p>
+Mobitru device search capabilities.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>selenium.grid.capabilities.platformName</code> and <code>selenium.grid.capabilities.udid</code> capabilities can not be specified along with Mobitru device search capabilities.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To select a device from the pool of known devices use comma-separated unique device IDs.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Capabilities to run tests on the one of specified device</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.mobitru-device-search\:udids=83f1493135524933, ad0c1603a8c1c4db04, LGM250KBIRD6MJEECA</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otherwise, use the capabilities specified below to search device by specific parameters, like model, type, etc.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Only one device selection method is allowed: by <strong>udids</strong> or by <strong>search parameters</strong>.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -767,20 +806,8 @@ The properties marked with <strong>bold</strong> are mandatory.
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<code>selenium.grid.capabilities.platformName</code> and <code>selenium.grid.capabilities.udid</code>  capabilities can not be specified along with Mobitru device search capabilities.
-</td>
-</tr>
-</table>
-</div>
 <div class="listingblock">
-<div class="title">Example 5. Capabilities to run tests on any SAMSUNG phone with a specific platform version</div>
+<div class="title">Example 6. Capabilities to run tests on any SAMSUNG phone with a specific platform version</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">selenium.grid.capabilities.platformVersion=12
 selenium.grid.capabilities.mobitru-device-search\:type=phone
