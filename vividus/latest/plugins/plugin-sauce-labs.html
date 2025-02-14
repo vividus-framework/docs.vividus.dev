@@ -846,6 +846,15 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://wiki.saucelabs.com/display/DOCS/Data+Center+Endpoints">Sauce Labs data center</a> to use</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.free-device-wait-timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PT0S</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When the <a href="https://docs.saucelabs.com/dev/error-messages/#youve-exceeded-your-sauce-labs-concurrency-limit">Sauce Labs concurrency limit is exceeded</a>,
+the error message will be "Could not start a new session. Response code 400. Message: CCYAbuse - too many jobs".
+This means all devices are busy. This property sets the maximum wait time for a free device before throwing an exception.
+If set to zero, waiting is disabled.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>saucelabs.sauce-connect.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>true</code><br>
