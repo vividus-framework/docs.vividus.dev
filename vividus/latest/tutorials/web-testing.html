@@ -2270,6 +2270,59 @@ Then text matches `User ".*" successfully logged in`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_wait_for_specific_title_of_the_current_page"><a class="anchor" href="#_wait_for_specific_title_of_the_current_page"></a>Wait for specific title of the current page</h3>
+<div class="paragraph">
+<p>Waits until the current page <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">title</a> matches the certain title using specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until page title $comparisonRule `$pattern`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">String comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$pattern</code> - The expected title pattern of the current page.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 30. Check that current title ends with "Domain"</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `http://example.com`
+When I wait until page title matches `.*Domain`</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wait_for_element_appearance_in_viewport"><a class="anchor" href="#_wait_for_element_appearance_in_viewport"></a>Wait for element appearance in viewport</h4>
+<div class="paragraph">
+<p>Waits for an element to appear in the browser viewport.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `$locator` appears in viewport</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$locator</code> - The <a href="#_locator">locator</a> used to find element.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 31. Wait for element appearance in viewport</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I scroll element located by `id(items-list)` into view
+When I wait until element located by `id(sticky-items-filter)` appears in viewport</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_tab_steps"><a class="anchor" href="#_tab_steps"></a>Tab steps</h3>
 <div class="sect3">
 <h4 id="_open_a_new_tab"><a class="anchor" href="#_open_a_new_tab"></a>Open a new tab</h4>
@@ -2282,7 +2335,7 @@ Then text matches `User ".*" successfully logged in`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Open page in a new tab</div>
+<div class="title">Example 32. Open page in a new tab</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open new tab
 Given I am on page with URL `https://docs.vividus.dev/`</code></pre>
@@ -2340,7 +2393,7 @@ is that this step <em>inherits</em> the state of the previous page, i.e.:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 31. Open docs in a new tab</div>
+<div class="title">Example 33. Open docs in a new tab</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I open URL `https://docs.vividus.dev` in new tab</code></pre>
 </div>
@@ -2389,7 +2442,7 @@ This step can only be applied to a session with multiple tabs open.
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 32. Open URL in new tab, close it and switch to the previous page</div>
+<div class="title">Example 34. Open URL in new tab, close it and switch to the previous page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I open URL `https://example.com/contact-us` in new tab
@@ -2450,7 +2503,7 @@ If you confirm window close in <a href="https://www.w3schools.com/js/js_popup.as
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 33. Checking for an alert when trying to close a window with form</div>
+<div class="title">Example 35. Checking for an alert when trying to close a window with form</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/`
 When I open URL `https://example.com/form` in new tab
@@ -2571,7 +2624,7 @@ platform independent.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 34. Execute various web-actions</div>
+<div class="title">Example 36. Execute various web-actions</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type          |argument                                |
@@ -2602,7 +2655,7 @@ platform independent.</p>
 <p>This step can be used to perform clipboard interactions.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 35. Select all text in the focused field and copy it to the clipboard on Windows</div>
+<div class="title">Example 37. Select all text in the focused field and copy it to the clipboard on Windows</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument  |
@@ -2613,7 +2666,7 @@ platform independent.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 36. Paste text from the clipboard to the focused field on MacOS</div>
+<div class="title">Example 38. Paste text from the clipboard to the focused field on MacOS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument  |
@@ -2622,7 +2675,7 @@ platform independent.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 37. Select all text in the focused field and copy it to the clipboard on any OS</div>
+<div class="title">Example 39. Select all text in the focused field and copy it to the clipboard on any OS</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute sequence of actions:
 |type      |argument                 |
@@ -2694,7 +2747,7 @@ platform independent.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 38. Validate absence of JS errors</div>
+<div class="title">Example 40. Validate absence of JS errors</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are no browser console ERRORS</code></pre>
@@ -2730,7 +2783,7 @@ Then there are no browser console ERRORS</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 39. Validate absence of JS error referencing user</div>
+<div class="title">Example 41. Validate absence of JS error referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are no browser console ERRORS by regex `.*user.*`</code></pre>
@@ -2758,7 +2811,7 @@ Then there are no browser console ERRORS by regex `.*user.*`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 40. Validate presence of JS errors referencing user</div>
+<div class="title">Example 42. Validate presence of JS errors referencing user</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 Then there are browser console ERRORS by regex `.*user.*`</code></pre>
@@ -2804,7 +2857,7 @@ Wait uses generic UI timeouts specified by the properties <code>ui.wait.timeout<
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 41. Wait for application readiness</div>
+<div class="title">Example 43. Wait for application readiness</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I wait until browser console infos by regex `.*Application ready.*` appear and save all entries into scenario variable `logs`
@@ -2835,7 +2888,7 @@ The <code>console.clear();</code> JS command doesn&#8217;t affect the logs fetch
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 42. Clear browser console logs</div>
+<div class="title">Example 44. Clear browser console logs</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/`
 When I clear browser console logs
@@ -2892,7 +2945,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 43. Script type check</div>
+<div class="title">Example 45. Script type check</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find = `5` elements by `xpath(//script):a` and for each element do
 |step                                                                                      |
@@ -2922,7 +2975,7 @@ If comparison rule mismatch steps will not be performed even if elements are fou
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 44. Switch to user context and back to the default context of page</div>
+<div class="title">Example 46. Switch to user context and back to the default context of page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/elementState.html`
 When I change context to element located by `id(button-hide)`
@@ -2958,7 +3011,7 @@ Then text `Element to hide` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 45. Switch to frame</div>
+<div class="title">Example 47. Switch to frame</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://vividus-test-site-a92k.onrender.com/nestedFrames.html`
 Then text `Modal Frame Example` does not exist
@@ -3001,7 +3054,7 @@ A new tab should already be open for this step to function. After executing this
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 46. Open the new tab by link and switch to it</div>
+<div class="title">Example 48. Open the new tab by link and switch to it</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://the-internet.herokuapp.com/windows`
 When I click on element located by `linkUrlPart(/windows/new)`
@@ -3040,7 +3093,7 @@ Then text `New Window` exists</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 47. Open the new tab by link and switch to it using regex title pattern</div>
+<div class="title">Example 49. Open the new tab by link and switch to it using regex title pattern</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://the-internet.herokuapp.com/windows`
 When I click on element located by `linkUrlPart(/windows/new)`
