@@ -984,6 +984,57 @@ Then `${jsonDataTable[0].host}` is not equal to `[httpbingo.org]`</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_expressions"><a class="anchor" href="#_expressions"></a>Expressions</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The expression parameters marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_formattoonelinejson"><a class="anchor" href="#_formattoonelinejson"></a><code>formatToOneLineJson</code></h3>
+<div class="paragraph">
+<p>Formats any JSON into a one line.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{formatToOneLineJson(<strong>$json</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$json</code></strong> - The input JSON.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. Format pretty JSON to one line JSON</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize scenario variable `oneLineJson` with value `#{formatToOneLineJson(
+{
+  "title": "Berserk",
+  "year": 1997,
+  "episodes": 25,
+  "genre": ["Action", "Adventure", "Dark Fantasy"],
+  "director": "Naohito Takahashi",
+  "studio": "OLM, Inc.",
+  "synopsis": "A mercenary named Guts joins the Band of the Hawk, leading to a tragic fate."
+}
+)}`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1031,7 +1082,7 @@ the specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Validate the title of the second book</div>
+<div class="title">Example 9. Validate the title of the second book</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I save JSON element value from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
@@ -1067,7 +1118,7 @@ specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Validate the title of the second book</div>
+<div class="title">Example 10. Validate the title of the second book</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I save JSON element from `${response}` by JSON path `$.store.book[1].title` to scenario variable `title-of-second-book`
@@ -1103,7 +1154,7 @@ with the specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Save number of elements from the JSON</div>
+<div class="title">Example 11. Save number of elements from the JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements from `[{"key" : "passed"}, {"key" : "failed"}]` found by JSON path `$..[?(@.key == "failed")]` to scenario variable `messageCount`</code></pre>
 </div>
@@ -1133,7 +1184,7 @@ with the specified name and scope.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Validate the title of the second book</div>
+<div class="title">Example 12. Validate the title of the second book</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I convert JSON `{
     "store": {
@@ -1184,7 +1235,7 @@ Then `${jsonData.store.book[1].title}` is equal to `Sword of Honour`</code></pre
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Patch JSON data</div>
+<div class="title">Example 13. Patch JSON data</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I patch JSON `{"a":"b"}` using `[{ "op": "replace", "path": "/a", "value": "c" }]` and save result to SCENARIO variable `patchedJson`
 Then `{"a":"c"}` is equal to `${patchedJson}`</code></pre>
@@ -1222,7 +1273,7 @@ The actions performed by the step are:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Alias</div>
+<div class="title">Example 14. Alias</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements from '$json' by '$jsonPath' and for each element do$stepsToExecute</code></pre>
 </div>
@@ -1247,7 +1298,7 @@ The actions performed by the step are:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Validate each <code>accountId</code> consists of digits</div>
+<div class="title">Example 15. Validate each <code>accountId</code> consists of digits</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find &gt; `0` JSON elements from `
 {
@@ -1307,7 +1358,7 @@ actions performed by the step are:</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Alias</div>
+<div class="title">Example 16. Alias</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I find $comparisonRule '$elementsNumber' JSON elements in '$json' by '$jsonPath' and until variable '$variableName' $variableMatcher '$expectedValue' for each element I do:$stepsToExecute</code></pre>
 </div>
@@ -1341,7 +1392,7 @@ actions performed by the step are:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Find the title from JSON</div>
+<div class="title">Example 17. Find the title from JSON</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 When I find &gt; `1` JSON elements in `${response}` by `$.store.book` and until variable `title` matches `M.+` for each element I do:
@@ -1398,7 +1449,7 @@ the comparison rule by the specified JSON path.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Validate the price of the fourth book is greater than 22.50</div>
+<div class="title">Example 18. Validate the price of the fourth book is greater than 22.50</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://raw.githubusercontent.com/vividus-framework/JsonPath/master/json-path-web-test/src/main/resources/webapp/json/goessner.json`
 Then JSON element value from `${response}` by JSON path `$.store.book[3].price` is greater than `22.50`</code></pre>
@@ -1433,7 +1484,7 @@ comparison rule by the specified JSON path.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Validate JSON contains string value by JSON path</div>
+<div class="title">Example 19. Validate JSON contains string value by JSON path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `
 {
@@ -1472,7 +1523,7 @@ expected number according to the specified comparison rule.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Validate the number of accounts in JSON is equal to 2</div>
+<div class="title">Example 20. Validate the number of accounts in JSON is equal to 2</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then number of JSON elements from `
 [
@@ -1530,7 +1581,7 @@ expected number according to the specified comparison rule.</p>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Validate product for sale information</div>
+<div class="title">Example 21. Validate product for sale information</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON `
 {
@@ -1604,7 +1655,7 @@ expected number according to the specified comparison rule.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Validate entries</div>
+<div class="title">Example 22. Validate entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize story variable `actual-json` with value `
 {
@@ -1638,7 +1689,7 @@ As JSON do not support multi line strings if you want to improve readability use
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Validate entries with <code>escapeJson</code> expression</div>
+<div class="title">Example 23. Validate entries with <code>escapeJson</code> expression</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `
 {
