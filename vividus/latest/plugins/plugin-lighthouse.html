@@ -1045,6 +1045,151 @@ Steps to install NodeJS in CI environment can be found <a href="https://nodejs.o
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_perform_local_lighthouse_scan_with_result_saving"><a class="anchor" href="#_perform_local_lighthouse_scan_with_result_saving"></a>Perform Local Lighthouse scan with result saving</h3>
+<div class="paragraph">
+<p>Performs local Lighthouse scan of the specified web page, validates performance metrics against expected thresholds and saves the path to the resulting JSON to a variable.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The step can be used only on unix-like operating systems.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pre-installed software requirements:
+* <a href="https://nodejs.org/en">NodeJS</a>: required to install <a href="https://www.npmjs.com/package/lighthouse">local Lighthouse</a> using <code>npm</code> package manager
+* <a href="https://www.google.com/chrome">Google Chrome</a>: required by Lighthouse</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I perform local Lighthouse scan of `$webPageUrl` page with options `$options` and save result path to $scopes variable `$variableName`:$metricsValidations</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$webPageUrl</code> - The page URL to perform scan on.</p>
+</li>
+<li>
+<p><code>$options</code> - The <a href="https://github.com/GoogleChrome/lighthouse/blob/main/readme.md#cli-options">Lighthouse CLI options</a>, please note that <strong>Output</strong> options are prohibited from use.</p>
+</li>
+<li>
+<p><code>$metricsValidations</code> - The metric validations:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$metric</code> - The Lighthouse metric name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Performance metrics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>First Contentful Paint</code></p>
+</li>
+<li>
+<p><code>Largest Contentful Paint</code></p>
+</li>
+<li>
+<p><code>Total Blocking Time</code></p>
+</li>
+<li>
+<p><code>Cumulative Layout Shift</code></p>
+</li>
+<li>
+<p><code>Speed Index</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Audit scores:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Accessibility Score</code></p>
+</li>
+<li>
+<p><code>Best Practices Score</code></p>
+</li>
+<li>
+<p><code>Performance Score</code></p>
+</li>
+<li>
+<p><code>SEO Score</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>$rule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$threshold</code> - The expected integer or floating (e.g. <code>0.35</code>) number.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to save resulting JSON.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title">Install Chrome in CI environment</div>
+<div class="paragraph">
+<p>wget <a href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" class="bare">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</a>
+apt install -y ./google-chrome-stable_current_amd64.deb</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Steps to install NodeJS in CI environment can be found <a href="https://nodejs.org/en/download">here</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Perform Lighthouse scan</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">When I perform local Lighthouse scan of `https://site.com/` page with options `--only-categories=performance` and save result path to scenario variable `resultPath`:
+|metric                  |rule        |threshold|
+|First Contentful Paint  |LESS_THAN   |500      |
+|Largest Contentful Paint|LESS_THAN   |500      |
+|Total Blocking Time     |LESS_THAN   |100      |
+|Cumulative Layout Shift |LESS_THAN   |100      |
+|Speed Index             |LESS_THAN   |1500     |</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
