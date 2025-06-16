@@ -772,9 +772,59 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 </div>
 </div>
 <div class="sect2">
+<h3 id="_save_number_of_elements"><a class="anchor" href="#_save_number_of_elements"></a>Save number of elements</h3>
+<div class="paragraph">
+<p>Save number of elements by XPath from XML to a variable</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements found by xpath `$xpath` in XML `$xml` to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$xpath</code> - The <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+</li>
+<li>
+<p><code>$xml</code> - The <a href="https://www.w3schools.com/xml/default.asp">XML document</a>.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="../commons/variables.html#_scopes" class="xref page">The comma-separated set of the variables scopes</a>.</p>
+</li>
+<li>
+<p><code>$variableName</code> - The variable name to store a result.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Check a message contains heading element</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements found by xpath `/message/heading` in XML `
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;message&gt;
+  &lt;to&gt;Bob&lt;/to&gt;
+  &lt;from&gt;Alice&lt;/from&gt;
+  &lt;heading&gt;Reminder&lt;/heading&gt;
+  &lt;body&gt;Don't forget to fill TJ gaps for this week&lt;/body&gt;
+&lt;/message&gt;` to scenario variable `headings`
+Then `${headings}` is equal to `1`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_check_element_existence"><a class="anchor" href="#_check_element_existence"></a>Check element existence</h3>
 <div class="paragraph">
 <p>Checks if XML document contains element by <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+</div>
+<div class="paragraph">
+<p><em>Step is deprecated and will be removed in VIVIDUS 0.8.0, please use the following sequence of steps as a replacement</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements found by xpath `$xpath` in XML `$xml` to $scopes variable `$variableName`
+Then `$variable1` is $comparisonRule `$variable2`</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -792,7 +842,7 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Check a message contains heading element</div>
+<div class="title">Example 5. Check a message contains heading element</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -827,7 +877,7 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Compare messages</div>
+<div class="title">Example 6. Compare messages</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -870,7 +920,7 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Validate shipping information</div>
+<div class="title">Example 7. Validate shipping information</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -916,7 +966,7 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Check a message is well formed XML document</div>
+<div class="title">Example 8. Check a message is well formed XML document</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then XML `
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
