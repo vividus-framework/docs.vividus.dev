@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Extension points :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/developer-guides/extension-points.html">
+    <title>How to use VIVIDUS MCP server to create automated scenarios :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/mcp.html">
     <meta name="generator" content="Antora 3.1.10">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/vendor/vividus.css">
@@ -395,7 +395,7 @@
     <span class="nav-text">Data Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-guides/execute-sql-against-csv.html">Execute SQL against CSV</a>
+    <a class="nav-link" href="execute-sql-against-csv.html">Execute SQL against CSV</a>
   </li>
 </ul>
   </li>
@@ -404,7 +404,7 @@
     <span class="nav-text">Test Data Management</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-guides/use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
+    <a class="nav-link" href="use-in-memory-db-to-manage-test-data.html">Use in-memory database</a>
   </li>
 </ul>
   </li>
@@ -413,7 +413,7 @@
     <span class="nav-text">CI Integration</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-guides/pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
+    <a class="nav-link" href="pipeline-with-proxy.html">Jenkins pipeline with browser proxy</a>
   </li>
 </ul>
   </li>
@@ -422,12 +422,12 @@
     <span class="nav-text">Mobile Testing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-guides/appium-setup.html">Appium Setup</a>
+    <a class="nav-link" href="appium-setup.html">Appium Setup</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../user-guides/mcp.html">MCP Server</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="mcp.html">MCP Server</a>
   </li>
 </ul>
   </li>
@@ -435,23 +435,23 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Developer Guides</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="extension-points.html">Extension points</a>
+    <a class="nav-link" href="../developer-guides/extension-points.html">Extension points</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="extensions.html">Extensions</a>
+    <a class="nav-link" href="../developer-guides/extensions.html">Extensions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="plugins.html">Plugins</a>
+    <a class="nav-link" href="../developer-guides/plugins.html">Plugins</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="custom-modules.html">Custom modules</a>
+    <a class="nav-link" href="../developer-guides/custom-modules.html">Custom modules</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="deprecating-steps.html">Steps deprecation</a>
+    <a class="nav-link" href="../developer-guides/deprecating-steps.html">Steps deprecation</a>
   </li>
 </ul>
   </li>
@@ -577,61 +577,170 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
-    <li>Developer Guides</li>
-    <li><a href="extension-points.html">Extension points</a></li>
+    <li>User Guides</li>
+    <li><a href="mcp.html">MCP Server</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="extension-points.html">latest</a>
-    <a class="version" href="../../0.6.15/developer-guides/extension-points.html">0.6.15</a>
-    <a class="version" href="../../0.6.14/developer-guides/extension-points.html">0.6.14</a>
-    <a class="version" href="../../0.6.13/developer-guides/extension-points.html">0.6.13</a>
-    <a class="version" href="../../0.6.12/developer-guides/extension-points.html">0.6.12</a>
-    <a class="version" href="../../0.6.11/developer-guides/extension-points.html">0.6.11</a>
-    <a class="version" href="../../0.6.10/developer-guides/extension-points.html">0.6.10</a>
-    <a class="version" href="../../0.6.9/developer-guides/extension-points.html">0.6.9</a>
-    <a class="version" href="../../0.6.8/developer-guides/extension-points.html">0.6.8</a>
-    <a class="version" href="../../0.6.7/developer-guides/extension-points.html">0.6.7</a>
-    <a class="version" href="../../0.6.6/developer-guides/extension-points.html">0.6.6</a>
-    <a class="version" href="../../0.6.5/developer-guides/extension-points.html">0.6.5</a>
-    <a class="version" href="../../0.6.4/developer-guides/extension-points.html">0.6.4</a>
-    <a class="version" href="../../0.6.3/developer-guides/extension-points.html">0.6.3</a>
-    <a class="version" href="../../0.6.2/developer-guides/extension-points.html">0.6.2</a>
-    <a class="version" href="../../0.6.1/developer-guides/extension-points.html">0.6.1</a>
-    <a class="version" href="../../0.6.0/developer-guides/extension-points.html">0.6.0</a>
-    <a class="version" href="../../0.5.13/developer-guides/extension-points.html">0.5.13</a>
-    <a class="version" href="../../0.5.12/developer-guides/extension-points.html">0.5.12</a>
-    <a class="version" href="../../0.5.11/developer-guides/extension-points.html">0.5.11</a>
-    <a class="version" href="../../0.5.10/developer-guides/extension-points.html">0.5.10</a>
-    <a class="version" href="../../0.5.9/developer-guides/extension-points.html">0.5.9</a>
-    <a class="version" href="../../0.5.8/developer-guides/extension-points.html">0.5.8</a>
-    <a class="version" href="../../0.5.7/developer-guides/extension-points.html">0.5.7</a>
-    <a class="version" href="../../0.5.6/developer-guides/extension-points.html">0.5.6</a>
-    <a class="version" href="../../0.5.5/developer-guides/extension-points.html">0.5.5</a>
-    <a class="version" href="../../0.5.4/developer-guides/extension-points.html">0.5.4</a>
-    <a class="version" href="../../0.5.3/developer-guides/extension-points.html">0.5.3</a>
-    <a class="version" href="../../0.5.2/developer-guides/extension-points.html">0.5.2</a>
-    <a class="version" href="../../0.5.1/developer-guides/extension-points.html">0.5.1</a>
-    <a class="version" href="../../0.5.0/developer-guides/extension-points.html">0.5.0</a>
-    <a class="version" href="../../0.4.16/developer-guides/extension-points.html">0.4.16</a>
+    <a class="version is-current" href="mcp.html">latest</a>
+    <a class="version is-missing" href="../../0.6.15/index.html">0.6.15</a>
+    <a class="version is-missing" href="../../0.6.14/index.html">0.6.14</a>
+    <a class="version is-missing" href="../../0.6.13/index.html">0.6.13</a>
+    <a class="version is-missing" href="../../0.6.12/index.html">0.6.12</a>
+    <a class="version is-missing" href="../../0.6.11/index.html">0.6.11</a>
+    <a class="version is-missing" href="../../0.6.10/index.html">0.6.10</a>
+    <a class="version is-missing" href="../../0.6.9/index.html">0.6.9</a>
+    <a class="version is-missing" href="../../0.6.8/index.html">0.6.8</a>
+    <a class="version is-missing" href="../../0.6.7/index.html">0.6.7</a>
+    <a class="version is-missing" href="../../0.6.6/index.html">0.6.6</a>
+    <a class="version is-missing" href="../../0.6.5/index.html">0.6.5</a>
+    <a class="version is-missing" href="../../0.6.4/index.html">0.6.4</a>
+    <a class="version is-missing" href="../../0.6.3/index.html">0.6.3</a>
+    <a class="version is-missing" href="../../0.6.2/index.html">0.6.2</a>
+    <a class="version is-missing" href="../../0.6.1/index.html">0.6.1</a>
+    <a class="version is-missing" href="../../0.6.0/index.html">0.6.0</a>
+    <a class="version is-missing" href="../../0.5.13/index.html">0.5.13</a>
+    <a class="version is-missing" href="../../0.5.12/index.html">0.5.12</a>
+    <a class="version is-missing" href="../../0.5.11/index.html">0.5.11</a>
+    <a class="version is-missing" href="../../0.5.10/index.html">0.5.10</a>
+    <a class="version is-missing" href="../../0.5.9/index.html">0.5.9</a>
+    <a class="version is-missing" href="../../0.5.8/index.html">0.5.8</a>
+    <a class="version is-missing" href="../../0.5.7/index.html">0.5.7</a>
+    <a class="version is-missing" href="../../0.5.6/index.html">0.5.6</a>
+    <a class="version is-missing" href="../../0.5.5/index.html">0.5.5</a>
+    <a class="version is-missing" href="../../0.5.4/index.html">0.5.4</a>
+    <a class="version is-missing" href="../../0.5.3/index.html">0.5.3</a>
+    <a class="version is-missing" href="../../0.5.2/index.html">0.5.2</a>
+    <a class="version is-missing" href="../../0.5.1/index.html">0.5.1</a>
+    <a class="version is-missing" href="../../0.5.0/index.html">0.5.0</a>
+    <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/developer-guides/pages/extension-points.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/user-guides/pages/mcp.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Extension points</h1>
+<h1 class="page">How to use VIVIDUS MCP server to create automated scenarios</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>VIVIDUS functionality can be extended with custom business logic. It could be
-done either in separate modules included then as dependencies, or in Gradle
-sub-projects belonging to the root test project, or in the test project directly.
-VIVIDUS defines API-s and conventions that must be followed while implementing
-custom extensions.</p>
+<p>The VIVIDUS MCP server exposes core VIVIDUS functionalities to LLMs via the MCP protocol, enabling generation of automated
+test scenarios leveraging those capabilities.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+LLM will access only those steps that are available from plugins included into your test project.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the below line to <code>dependencies</code> section of the project <code>build.gradle</code> file in your test project</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please make sure to use the same version for all VIVIDUS dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. build.gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-mcp-server')</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_providers"><a class="anchor" href="#_providers"></a>Providers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_claude_desktop"><a class="anchor" href="#_claude_desktop"></a>Claude Desktop</h3>
+<div class="paragraph">
+<p>Claude is a next generation AI assistant built by Anthropic and trained to be safe, accurate, and secure to help you do your best work.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://claude.ai/download">Claude Desktop</a></p>
+</li>
+<li>
+<p>Open <code>Claude Desktop</code> and navigate to <code>Developer</code> tab in application <code>Settings</code></p>
+</li>
+<li>
+<p>Click <code>Edit Config</code> which opens <code>claude_desktop_config.json</code> file that contains MCP server configs</p>
+</li>
+<li>
+<p>Add the following JSON into <code>claude_desktop_config.json</code> file and save it</p>
+<div class="listingblock">
+<div class="title">Example 2. claude_desktop_config.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "mcpServers": {
+        "vividus-mcp-server": {
+            "command": "/Users/Bob/Workspace/vividus-sample-tests/gradlew", <i class="conum" data-value="1"></i><b>(1)</b>
+            "args": [
+                "startMcpServer",
+                "-q",
+                "-p",
+                "/Users/Bob/Workspace/vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
+            ]
+        },
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "@playwright/mcp"
+            ]
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>[Mandatory] Absolute path to the <code>gradlew</code> execulable contained in the tests folder</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>[Mandatory] Absolute path to the tests folder</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Restart <code>Claude Desktop</code> application</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </article>
   </div>
