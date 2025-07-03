@@ -675,7 +675,7 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="sect2">
 <h3 id="_save_data_by_xpath"><a class="anchor" href="#_save_data_by_xpath"></a>Save data by XPath</h3>
 <div class="paragraph">
-<p>Saves XML data by XPath to a variable.</p>
+<p>Saves XML data by XPath to a variable. The step fails if input XML document is not well formed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -781,7 +781,7 @@ Then `${artists}` is equal to `* Joe Cocker * Bob Dylan * Bonnie Tyler`</code></
 <div class="sect2">
 <h3 id="_save_number_of_elements"><a class="anchor" href="#_save_number_of_elements"></a>Save number of elements</h3>
 <div class="paragraph">
-<p>Save number of elements by XPath from XML to a variable</p>
+<p>Save number of elements by XPath from XML to a variable. The step fails if input XML document is not well formed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -822,7 +822,7 @@ Then `${headings}` is equal to `1`</code></pre>
 <div class="sect2">
 <h3 id="_check_element_existence"><a class="anchor" href="#_check_element_existence"></a>Check element existence</h3>
 <div class="paragraph">
-<p>Checks if XML document contains element by <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>.</p>
+<p>Checks if XML document contains element by <a href="https://www.w3schools.com/xml/xml_xpath.asp">XPath</a>. The step fails if input XML document is not well formed.</p>
 </div>
 <div class="paragraph">
 <p><em>Step is deprecated and will be removed in VIVIDUS 0.8.0, please use the following sequence of steps as a replacement</em>:</p>
@@ -866,7 +866,7 @@ Then `$variable1` is $comparisonRule `$variable2`</code></pre>
 <div class="sect2">
 <h3 id="_compare_xml_documents"><a class="anchor" href="#_compare_xml_documents"></a>Compare XML documents</h3>
 <div class="paragraph">
-<p>Checks if XML document is equal to expected XML document.</p>
+<p>Checks if XML document is equal to expected XML document. The step fails if any of the input XML documents is not well formed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
