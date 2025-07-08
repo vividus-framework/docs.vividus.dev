@@ -5423,9 +5423,28 @@ replicating the behavior without actual mouse actions performed.</p>
 <div class="paragraph">
 <p>The context can be set by the <a href="#_change_context">corresponding steps</a>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the comparison rule is <code>IS_EQUAL_TO</code> and both the actual and expected CSS values are colors in RGB or RGBA format
+(with an <em>alpha channel of 1</em> in RGBA <code>rgba(r, g, b, 1)</code>), then both values are normalized to the RGB <code>rgb(r, g, b)</code>
+format before the comparison.</p>
+</div>
+<div class="paragraph">
+<p>The normalization is not performed for other comparison rules or color representations.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then context element has CSS property `$cssName` with value that $comparisonRule `$cssValue`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then context element has CSS property `$cssName` with value that $comparisonRule `$expectedCssValue`</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -5437,15 +5456,21 @@ replicating the behavior without actual mouse actions performed.</p>
 <p><code>$comparisonRule</code> - CSS property <a href="../parameters/string-comparison-rule.html" class="xref page">comparison rule</a>.</p>
 </li>
 <li>
-<p><code>$cssValue</code> - The expected value of the CSS property.</p>
+<p><code>$expectedCssValue</code> - The expected value of the CSS property.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 94. Change context to element and verify it color CSS property value</div>
+<div class="title">Example 94. Verify values of color CSS properties of the context element</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I change context to element located by `id(rainbow)`
-Then context element has CSS property `color` with value that is equal to `rgba(0, 0, 0, 1)`</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Validate styling
+Then context element has CSS property `&lt;name&gt;` with value that is equal to `&lt;value&gt;`
+Examples:
+| name                  | value                  |
+| color                 | rgba(0, 0, 0, 1)       |
+| border-color          | rgb(0, 0, 0)           |
+| background-color      | rgba(0, 0, 0, 0)       |
+| text-decoration-color | rgba(255, 255, 255, 1) |</code></pre>
 </div>
 </div>
 </div>
