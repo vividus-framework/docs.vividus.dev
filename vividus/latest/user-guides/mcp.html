@@ -677,8 +677,76 @@ Please make sure to use the same version for all VIVIDUS dependencies.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_providers"><a class="anchor" href="#_providers"></a>Providers</h2>
+<h2 id="_ai_assistants"><a class="anchor" href="#_ai_assistants"></a>AI Assistants</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_github_copilot_in_vs_code"><a class="anchor" href="#_github_copilot_in_vs_code"></a>GitHub Copilot in VS Code</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://code.visualstudio.com/download">Visual Studio Code</a></p>
+</li>
+<li>
+<p>Open the project with VIVIDUS tests in Visual Studio Code</p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/copilot/setup#_set-up-copilot-in-vs-code">Set up Copilot in VS Code</a> if it is not done yet</p>
+</li>
+<li>
+<p>Create a new file at path <code>/.vscode/mcp.json</code> in the root of the project</p>
+</li>
+<li>
+<p>Add the following configuration into <code>mcp.json</code> file and save it</p>
+<div class="listingblock">
+<div class="title">Example 2. mcp.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "servers": {
+    "vividus": {
+      "command": "/Users/Bob/Workspace/vividus-sample-tests/gradlew", <i class="conum" data-value="1"></i><b>(1)</b>
+      "args": [
+        "startMcpServer",
+        "-q",
+        "-p",
+        "/Users/Bob/Workspace/vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
+      ]
+    },
+    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The absolute path to the <code>gradlew</code> executable contained in the tests project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The absolute path to the tests project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Playwright MCP server is optional and can be used to control browser and generate tests for web-applications</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Start the MCP servers by clicking on the <code>▷ Start</code> buttons on the top of the servers names</p>
+</li>
+<li>
+<p>Use Copilot in <a href="https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode">agent mode</a> to generate automated scenarios</p>
+</li>
+</ol>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_claude_desktop"><a class="anchor" href="#_claude_desktop"></a>Claude Desktop</h3>
 <div class="paragraph">
@@ -696,28 +764,28 @@ Please make sure to use the same version for all VIVIDUS dependencies.
 <p>Click <code>Edit Config</code> which opens <code>claude_desktop_config.json</code> file that contains MCP server configs</p>
 </li>
 <li>
-<p>Add the following JSON into <code>claude_desktop_config.json</code> file and save it</p>
+<p>Add the following configuration into <code>claude_desktop_config.json</code> file and save it</p>
 <div class="listingblock">
-<div class="title">Example 2. claude_desktop_config.json</div>
+<div class="title">Example 3. claude_desktop_config.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "mcpServers": {
-        "vividus-mcp-server": {
-            "command": "/Users/Bob/Workspace/vividus-sample-tests/gradlew", <i class="conum" data-value="1"></i><b>(1)</b>
-            "args": [
-                "startMcpServer",
-                "-q",
-                "-p",
-                "/Users/Bob/Workspace/vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
-            ]
-        },
-        "playwright": {
-            "command": "npx",
-            "args": [
-                "@playwright/mcp"
-            ]
-        }
+  "mcpServers": {
+    "vividus": {
+      "command": "/Users/Bob/Workspace/vividus-sample-tests/gradlew", <i class="conum" data-value="1"></i><b>(1)</b>
+      "args": [
+          "startMcpServer",
+          "-q",
+          "-p",
+          "/Users/Bob/Workspace/vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
+      ]
+    },
+    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
+      "command": "npx",
+      "args": [
+          "@playwright/mcp"
+      ]
     }
+  }
 }</code></pre>
 </div>
 </div>
@@ -725,11 +793,15 @@ Please make sure to use the same version for all VIVIDUS dependencies.
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>[Mandatory] Absolute path to the <code>gradlew</code> execulable contained in the tests folder</td>
+<td>The absolute path to the <code>gradlew</code> executable contained in the tests project</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>[Mandatory] Absolute path to the tests folder</td>
+<td>The absolute path to the tests project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Playwright MCP server is optional and can be used to control browser and generate tests for web-applications</td>
 </tr>
 </table>
 </div>
