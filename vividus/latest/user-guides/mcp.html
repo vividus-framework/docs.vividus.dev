@@ -647,7 +647,7 @@ LLM will access only those steps that are available from plugins included into y
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -670,6 +670,25 @@ Please make sure to use the same version for all VIVIDUS dependencies.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">implementation(group: 'org.vividus', name: 'vividus-mcp-server')</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Make sure to use <a href="https://github.com/vividus-framework/vividus-build-system?tab=readme-ov-file#migrating-from-20-to-30">Build System 3.0</a></p>
+</li>
+<li>
+<p>Update <code>gradlew</code> script in the root of your test project to the latest version:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to <a href="https://github.com/vividus-framework/vividus-starter/blob/main/gradlew" class="bare">https://github.com/vividus-framework/vividus-starter/blob/main/gradlew</a></p>
+</li>
+<li>
+<p>Copy content of the <code>gradlew</code> script</p>
+</li>
+<li>
+<p>Replace the content of the <code>gradlew</code> script in the root of the test project with the copied content</p>
+</li>
+</ol>
 </div>
 </li>
 </ol>
