@@ -831,6 +831,13 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the viewport width and height are changed to the specified device&#8217;s values prior to capturing the page source for rendering in UFG.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>ui.visual.applitools.before-render-screenshot-hook</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;empty&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The JS script executed prior to capturing a screenshot.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1228,6 +1235,9 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 <li>
 <p><code>properties</code> - The list of key value pairs used as a metadata for visual test in Applitools. The required value format is <code>key1=value1, key2=value2, &#8230;&#8203;</code> where the key must not be empty e.g. <code>Component name=Menu Item, State=Open, Version=1</code>.</p>
 </li>
+<li>
+<p><code>beforeRenderScreenshotHook</code> - The JS script executed prior to capturing a screenshot.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -1335,6 +1345,9 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </li>
 <li>
 <p><code>properties</code> - The list of key value pairs used as a metadata for visual test in Applitools. The required value format is <code>key1=value1, key2=value2, &#8230;&#8203;</code> where the key must not be empty e.g. <code>Component name=Menu Item, State=Open, Version=1</code>.</p>
+</li>
+<li>
+<p><code>beforeRenderScreenshotHook</code> - The JS script executed prior to capturing a screenshot.</p>
 </li>
 </ul>
 </div>
@@ -1632,6 +1645,9 @@ The step parameters marked with <strong>bold</strong> are mandatory.
 </li>
 <li>
 <p><code>properties</code> - The list of key value pairs used as a metadata for visual test in Applitools. The required value format is <code>key1=value1, key2=value2, &#8230;&#8203;</code> where the key must not be empty e.g. <code>Component name=Menu Item, State=Open, Version=1</code>.</p>
+</li>
+<li>
+<p><code>beforeRenderScreenshotHook</code> - The JS script executed prior to capturing a screenshot.</p>
 </li>
 </ul>
 </div>
