@@ -1579,7 +1579,7 @@ files, enforce file encoding, etc.) that help keep test files clean, readable, a
 control and making collaboration easier.</p>
 </div>
 <div class="paragraph">
-<p>For files like <code><strong>.story</code>, <code></strong>.steps</code>, <code>*.table</code>, commonly used in VIVIDUS, the following Spotless rules are applied by default:</p>
+<p>For files like <code>*.story</code>, <code>*.steps</code>, <code>*.table</code>, commonly used in VIVIDUS, the following Spotless rules are applied by default:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 5. Spotless rules</caption>
@@ -1724,6 +1724,69 @@ Execution failed for task ':spotlessVividusCheck'.
 the changes and commit them to your repository. Following these steps will help keep your build stable and successful.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_git_hook"><a class="anchor" href="#_git_hook"></a>Git hook</h3>
+<div class="paragraph">
+<p>You can run</p>
+</div>
+<div id="_tabs_20" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_20_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_20_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_20_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_20_macos_linux">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew spotlessInstallGitPrePushHook</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_20_windows--panel" class="tabpanel" aria-labelledby="_tabs_20_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew spotlessInstallGitPrePushHook</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>and it will install a hook such that</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When you perform Git push, it runs <code>spotlessCheck</code></p>
+</li>
+<li>
+<p>If formatting issues are found:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It automatically runs <code>spotlessApply</code> to fix them</p>
+</li>
+<li>
+<p>Aborts the push with a message</p>
+</li>
+<li>
+<p>You can then commit the changes and push again</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This ensures your code is always clean before it leaves your machine.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1750,26 +1813,26 @@ Ensure all prerequisites are installed before running the build process.
 </tr>
 </table>
 </div>
-<div id="_tabs_20" class="openblock tabs is-sync is-loading">
+<div id="_tabs_21" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="_tabs_20_macos_linux" class="tab">
+<li id="_tabs_21_macos_linux" class="tab">
 <p>macOS / Linux</p>
 </li>
-<li id="_tabs_20_windows" class="tab">
+<li id="_tabs_21_windows" class="tab">
 <p>Windows</p>
 </li>
 </ul>
 </div>
-<div id="_tabs_20_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_20_macos_linux">
+<div id="_tabs_21_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_21_macos_linux">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew build</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_20_windows--panel" class="tabpanel" aria-labelledby="_tabs_20_windows">
+<div id="_tabs_21_windows--panel" class="tabpanel" aria-labelledby="_tabs_21_windows">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew build</code></pre>
@@ -1788,26 +1851,26 @@ Ensure all prerequisites are installed before running the build process.
 <p>Run the clean task to remove all files and folders generated during the build process.
 This helps ensure a fresh build environment by deleting any previous build artifacts.</p>
 </div>
-<div id="_tabs_21" class="openblock tabs is-sync is-loading">
+<div id="_tabs_22" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="_tabs_21_macos_linux" class="tab">
+<li id="_tabs_22_macos_linux" class="tab">
 <p>macOS / Linux</p>
 </li>
-<li id="_tabs_21_windows" class="tab">
+<li id="_tabs_22_windows" class="tab">
 <p>Windows</p>
 </li>
 </ul>
 </div>
-<div id="_tabs_21_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_21_macos_linux">
+<div id="_tabs_22_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_22_macos_linux">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew clean</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_21_windows--panel" class="tabpanel" aria-labelledby="_tabs_21_windows">
+<div id="_tabs_22_windows--panel" class="tabpanel" aria-labelledby="_tabs_22_windows">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew clean</code></pre>
@@ -1828,26 +1891,26 @@ Use this command before starting a new build to avoid issues caused by leftover 
 </tr>
 </table>
 </div>
-<div id="_tabs_22" class="openblock tabs is-sync is-loading">
+<div id="_tabs_23" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
 <ul>
-<li id="_tabs_22_macos_linux" class="tab">
+<li id="_tabs_23_macos_linux" class="tab">
 <p>macOS / Linux</p>
 </li>
-<li id="_tabs_22_windows" class="tab">
+<li id="_tabs_23_windows" class="tab">
 <p>Windows</p>
 </li>
 </ul>
 </div>
-<div id="_tabs_22_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_22_macos_linux">
+<div id="_tabs_23_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_23_macos_linux">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew clean build</code></pre>
 </div>
 </div>
 </div>
-<div id="_tabs_22_windows--panel" class="tabpanel" aria-labelledby="_tabs_22_windows">
+<div id="_tabs_23_windows--panel" class="tabpanel" aria-labelledby="_tabs_23_windows">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew clean build</code></pre>
@@ -1872,40 +1935,6 @@ Use this command before starting a new build to avoid issues caused by leftover 
 <div class="paragraph">
 <p>This task will generate the necessary configuration files for Eclipse IDE.</p>
 </div>
-<div id="_tabs_23" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_23_macos_linux" class="tab">
-<p>macOS / Linux</p>
-</li>
-<li id="_tabs_23_windows" class="tab">
-<p>Windows</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_23_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_23_macos_linux">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew eclipse</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_23_windows--panel" class="tabpanel" aria-labelledby="_tabs_23_windows">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew eclipse</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_clean_eclipse_configuration_files"><a class="anchor" href="#_clean_eclipse_configuration_files"></a>Clean Eclipse configuration files</h4>
-<div class="paragraph">
-<p>This task cleans (removes) all Eclipse IDE configuration files.</p>
-</div>
 <div id="_tabs_24" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
@@ -1921,11 +1950,45 @@ Use this command before starting a new build to avoid issues caused by leftover 
 <div id="_tabs_24_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_24_macos_linux">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew cleanEclipse</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew eclipse</code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_24_windows--panel" class="tabpanel" aria-labelledby="_tabs_24_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew eclipse</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clean_eclipse_configuration_files"><a class="anchor" href="#_clean_eclipse_configuration_files"></a>Clean Eclipse configuration files</h4>
+<div class="paragraph">
+<p>This task cleans (removes) all Eclipse IDE configuration files.</p>
+</div>
+<div id="_tabs_25" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_25_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_25_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_25_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_25_macos_linux">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew cleanEclipse</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_25_windows--panel" class="tabpanel" aria-labelledby="_tabs_25_windows">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew cleanEclipse</code></pre>
@@ -1943,40 +2006,6 @@ Use this command before starting a new build to avoid issues caused by leftover 
 <div class="paragraph">
 <p>This task will generate the necessary configuration files for IntelliJ IDEA.</p>
 </div>
-<div id="_tabs_25" class="openblock tabs is-sync is-loading">
-<div class="content">
-<div class="ulist tablist">
-<ul>
-<li id="_tabs_25_macos_linux" class="tab">
-<p>macOS / Linux</p>
-</li>
-<li id="_tabs_25_windows" class="tab">
-<p>Windows</p>
-</li>
-</ul>
-</div>
-<div id="_tabs_25_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_25_macos_linux">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew idea</code></pre>
-</div>
-</div>
-</div>
-<div id="_tabs_25_windows--panel" class="tabpanel" aria-labelledby="_tabs_25_windows">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew idea</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_clean_intellij_idea_configuration_files"><a class="anchor" href="#_clean_intellij_idea_configuration_files"></a>Clean IntelliJ IDEA configuration files</h4>
-<div class="paragraph">
-<p>This task cleans (removes) all IntelliJ IDEA configuration files.</p>
-</div>
 <div id="_tabs_26" class="openblock tabs is-sync is-loading">
 <div class="content">
 <div class="ulist tablist">
@@ -1992,14 +2021,14 @@ Use this command before starting a new build to avoid issues caused by leftover 
 <div id="_tabs_26_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_26_macos_linux">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew cleanIdea</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew idea</code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_26_windows--panel" class="tabpanel" aria-labelledby="_tabs_26_windows">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew cleanIdea</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew idea</code></pre>
 </div>
 </div>
 </div>
@@ -2007,9 +2036,9 @@ Use this command before starting a new build to avoid issues caused by leftover 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_open_in_intellij_idea"><a class="anchor" href="#_open_in_intellij_idea"></a>Open in IntelliJ IDEA</h4>
+<h4 id="_clean_intellij_idea_configuration_files"><a class="anchor" href="#_clean_intellij_idea_configuration_files"></a>Clean IntelliJ IDEA configuration files</h4>
 <div class="paragraph">
-<p>Opens the configured project with your tests in IntelliJ IDEA.</p>
+<p>This task cleans (removes) all IntelliJ IDEA configuration files.</p>
 </div>
 <div id="_tabs_27" class="openblock tabs is-sync is-loading">
 <div class="content">
@@ -2026,11 +2055,45 @@ Use this command before starting a new build to avoid issues caused by leftover 
 <div id="_tabs_27_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_27_macos_linux">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew openIdea</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew cleanIdea</code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_27_windows--panel" class="tabpanel" aria-labelledby="_tabs_27_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew cleanIdea</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_open_in_intellij_idea"><a class="anchor" href="#_open_in_intellij_idea"></a>Open in IntelliJ IDEA</h4>
+<div class="paragraph">
+<p>Opens the configured project with your tests in IntelliJ IDEA.</p>
+</div>
+<div id="_tabs_28" class="openblock tabs is-sync is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_28_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_28_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_28_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_28_macos_linux">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./gradlew openIdea</code></pre>
+</div>
+</div>
+</div>
+<div id="_tabs_28_windows--panel" class="tabpanel" aria-labelledby="_tabs_28_windows">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">gradlew openIdea</code></pre>
