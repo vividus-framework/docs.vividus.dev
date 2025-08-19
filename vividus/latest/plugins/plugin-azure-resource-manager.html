@@ -720,6 +720,97 @@ could be optionally specified using global property <code>azure.environment</cod
 </div>
 </div>
 <div class="sect2">
+<h3 id="_secrets_management_tools"><a class="anchor" href="#_secrets_management_tools"></a>Secrets Management Tools</h3>
+<div class="sect3">
+<h4 id="_azure_key_vault"><a class="anchor" href="#_azure_key_vault"></a><a href="https://learn.microsoft.com/en-us/azure/key-vault/">Azure Key Vault</a></h4>
+<div class="sect4">
+<h5 id="_configuration_2"><a class="anchor" href="#_configuration_2"></a>Configuration</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The properties marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property name</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top"><code class="subs=+quotes"><strong>secrets-manager.azure-key-vault.name</strong></code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Key Vault Name with secret values for properties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes">secrets-manager.azure-key-vault.api-version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7.6</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_how_to_get_azure_key_vault_name"><a class="anchor" href="#_how_to_get_azure_key_vault_name"></a>How to get Azure Key Vault name</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find the required Key Vault in the list.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/azure_key_vaults_list.png" alt="Azure Key Vaults List">
+</div>
+</div>
+</li>
+<li>
+<p>Put particular Azure Key Vault name as value for property <code>secrets-manager.azure-key-vault.name</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">secrets-manager.azure-key-vault.name=testautokveus01</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_how_to_refer_azure_key_vault_secrets"><a class="anchor" href="#_how_to_refer_azure_key_vault_secrets"></a>How to refer Azure Key Vault secrets</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find the required secret in Azure Key Vault.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/azure_key_vault.png" alt="Secrets in Azure Key Vault">
+</div>
+</div>
+</li>
+<li>
+<p>Put the name to properties using the case-sensitive wrapping <code>AZURE_KEY_VAULT(&#8230;&#8203;)</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">db.connection.test.username=AZURE_KEY_VAULT(dev-mysql-analytics-user)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
 <h4 id="_get_information_about_azure_resource"><a class="anchor" href="#_get_information_about_azure_resource"></a>Get information about Azure resource</h4>
