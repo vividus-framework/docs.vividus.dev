@@ -1023,6 +1023,40 @@ to excel file at path `/home/collection.xslx`</code></pre>
 <div class="sect2">
 <h3 id="_excel_validations"><a class="anchor" href="#_excel_validations"></a>Excel validations</h3>
 <div class="sect3">
+<h4 id="_by_sheet_name_and_index"><a class="anchor" href="#_by_sheet_name_and_index"></a>By sheet name and index</h4>
+<div class="literalblock">
+<div class="content">
+<pre>Checks that excel document has a sheet with the specified name at the provided index.</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$excelDocument` contains excel sheet with name `$name` at index `$index`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$excelDocument</code> - The excel document data to verify.</p>
+</li>
+<li>
+<p><code>$name</code> - The expected name of the sheet.</p>
+</li>
+<li>
+<p><code>$index</code> - The index of the sheet to verify (0-based).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Validate excel document sheet name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
+Then response code is = `200`
+Then `${response-as-bytes}` contains excel sheet with name `Mapping` at index `0`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_by_sheet_name"><a class="anchor" href="#_by_sheet_name"></a>By sheet name</h4>
 <div class="paragraph">
 <p>Checks that excel has a sheet with name <strong>name</strong> and specified <strong>records</strong>.</p>
@@ -1056,7 +1090,7 @@ to excel file at path `/home/collection.xslx`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Validate excel sheet by name</div>
+<div class="title">Example 11. Validate excel sheet by name</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
 Then response code is = `200`
@@ -1103,7 +1137,7 @@ Then `${response-as-bytes}` contains excel sheet with name `Mapping` and records
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Validate excel sheet by index</div>
+<div class="title">Example 12. Validate excel sheet by index</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
 Then response code is = `200`
