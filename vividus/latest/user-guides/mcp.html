@@ -716,8 +716,20 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 </li>
 <li>
 <p>Add the following configuration into <code>mcp.json</code> file and save it</p>
+<div id="_tabs_1" class="openblock tabs is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_1_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_1_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_1_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_1_macos_linux">
 <div class="listingblock">
-<div class="title">Example 2. mcp.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "servers": {
@@ -740,11 +752,39 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 }</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_1_windows--panel" class="tabpanel" aria-labelledby="_tabs_1_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "servers": {
+    "vividus": {
+      "command": "c:\\Users\\Bob\\Workspace\\vividus-sample-tests\\gradlew.bat", <i class="conum" data-value="1"></i><b>(1)</b>
+      "args": [
+        "startMcpServer",
+        "-q",
+        "-p",
+        "c:\\Users\\Bob\\Workspace\\vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
+      ]
+    },
+    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The absolute path to the <code>gradlew</code> executable contained in the tests project</td>
+<td>The absolute path to the <code>gradlew</code> or <code>gradlew.bat</code> executable contained in the tests project</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -784,8 +824,20 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 </li>
 <li>
 <p>Add the following configuration into <code>claude_desktop_config.json</code> file and save it</p>
+<div id="_tabs_2" class="openblock tabs is-loading">
+<div class="content">
+<div class="ulist tablist">
+<ul>
+<li id="_tabs_2_macos_linux" class="tab">
+<p>macOS / Linux</p>
+</li>
+<li id="_tabs_2_windows" class="tab">
+<p>Windows</p>
+</li>
+</ul>
+</div>
+<div id="_tabs_2_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_2_macos_linux">
 <div class="listingblock">
-<div class="title">Example 3. claude_desktop_config.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "mcpServers": {
@@ -808,11 +860,39 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 }</code></pre>
 </div>
 </div>
+</div>
+<div id="_tabs_2_windows--panel" class="tabpanel" aria-labelledby="_tabs_2_windows">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "mcpServers": {
+    "vividus": {
+      "command": "c:\\Users\\Bob\\Workspace\\vividus-sample-tests\\gradlew.bat", <i class="conum" data-value="1"></i><b>(1)</b>
+      "args": [
+          "startMcpServer",
+          "-q",
+          "-p",
+          "c:\\Users\\Bob\\Workspace\\vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
+      ]
+    },
+    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
+      "command": "npx",
+      "args": [
+          "@playwright/mcp"
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The absolute path to the <code>gradlew</code> executable contained in the tests project</td>
+<td>The absolute path to the <code>gradlew</code> or <code>gradlew.bat</code> executable contained in the tests project</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
