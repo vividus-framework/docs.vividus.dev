@@ -1131,6 +1131,34 @@ connect timeout. This flag may be useful when tests are executed via intermitten
 </table></div></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.ios.use-workaround-to-hide-keyboard</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+ <code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Controls whether an iOS-specific workaround to hide the on-screen keyboard is applied. When enabled (default), VIVIDUS
+attempts to dismiss the keyboard by tapping the last button on the iOS keyboard when it is shown.
+For <code>XCUIElementTypeTextView</code> on real devices the workaround is not applied; tap outside the text view to close the
+keyboard. Disable the workaround (<code>false</code>) to rely solely on the underlying Appium behavior.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This workaround may slow down test execution.</p>
+</div>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mobile-environment.device.folder-for-file-upload</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the set profile</p></td>
@@ -2609,7 +2637,9 @@ The existing text is re-written by the text passed into the step.
 For <code>iOS</code> real devices the hide keyboard action works only for
 <code>XCUIElementTypeTextField</code> elements and skipped for <code>XCUIElementTypeTextView</code>
 elements, in case of <code>XCUIElementTypeTextView</code> element tap outside the text view
-is performed to close the keyboard.
+is performed to close the keyboard. The behavior is controlled by
+<code>mobile-environment.ios.use-workaround-to-hide-keyboard</code> property;
+set it to <code>false</code> to rely solely on the underlying Appium behavior.
 </td>
 </tr>
 </table>
@@ -2691,7 +2721,9 @@ is performed to close the keyboard.
 For <code>iOS</code> real devices the hide keyboard action works only for
 <code>XCUIElementTypeTextField</code> elements and skipped for <code>XCUIElementTypeTextView</code>
 elements, in case of <code>XCUIElementTypeTextView</code> element tap outside the text view
-is performed to close the keyboard.
+is performed to close the keyboard. The behavior is controlled by
+<code>mobile-environment.ios.use-workaround-to-hide-keyboard</code> property;
+set it to <code>false</code> to rely solely on the underlying Appium behavior.
 </td>
 </tr>
 </table>
