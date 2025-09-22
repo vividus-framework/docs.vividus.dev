@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>How to use VIVIDUS MCP server to create automated scenarios :: VIVIDUS</title>
-    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/mcp.html">
+    <title>How to create VIVIDUS automated tests with the help of AI :: VIVIDUS</title>
+    <link rel="canonical" href="https://docs.vividus.dev/vividus/latest/user-guides/ai.html">
     <meta name="generator" content="Antora 3.1.12">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/vendor/vividus.css">
@@ -427,7 +427,7 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="mcp.html">MCP Server</a>
+    <a class="nav-link" href="ai.html">AI-assisted test automation</a>
   </li>
 </ul>
   </li>
@@ -578,13 +578,13 @@
   <ul>
     <li><a href="../index.html">VIVIDUS</a></li>
     <li>User Guides</li>
-    <li><a href="mcp.html">MCP Server</a></li>
+    <li><a href="ai.html">AI-assisted test automation</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="mcp.html">latest</a>
+    <a class="version is-current" href="ai.html">latest</a>
     <a class="version is-missing" href="../../0.6.15/index.html">0.6.15</a>
     <a class="version is-missing" href="../../0.6.14/index.html">0.6.14</a>
     <a class="version is-missing" href="../../0.6.13/index.html">0.6.13</a>
@@ -618,18 +618,19 @@
     <a class="version is-missing" href="../../0.4.16/index.html">0.4.16</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/user-guides/pages/mcp.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/vividus-framework/vividus/edit/master/docs/modules/user-guides/pages/ai.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">How to use VIVIDUS MCP server to create automated scenarios</h1>
+<h1 class="page">How to create VIVIDUS automated tests with the help of AI</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The VIVIDUS MCP server exposes core VIVIDUS functionalities to LLMs via the MCP protocol, enabling generation of automated
+<p>VIVIDUS offers MCP server that exposes core VIVIDUS functionalities to LLMs via the
+<a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP protocol</a>, enabling generation of automated
 test scenarios leveraging those capabilities.</p>
 </div>
 <div class="admonitionblock important">
@@ -647,7 +648,7 @@ LLM will access only those steps that are available from plugins included into y
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<h2 id="_install_mcp_server"><a class="anchor" href="#_install_mcp_server"></a>Install MCP server</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -691,15 +692,21 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 </ol>
 </div>
 </li>
+<li>
+<p>If the project was imported to the IDE before adding new dependency,
+<a href="../getting-started.html#_use_ide_for_the_tests_development" class="xref page">re-generate</a>
+the configuration files for the used IDE and then refresh the project in the used IDE.</p>
+</li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ai_assistants"><a class="anchor" href="#_ai_assistants"></a>AI Assistants</h2>
+<h2 id="_configure_ai_assistant"><a class="anchor" href="#_configure_ai_assistant"></a>Configure AI Assistant</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_github_copilot_in_vs_code"><a class="anchor" href="#_github_copilot_in_vs_code"></a>GitHub Copilot in VS Code</h3>
+<details id="configure-mcp-servers">
+<summary class="title">GitHub Copilot in VS Code</summary>
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -801,13 +808,15 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 <p>Start the MCP servers by clicking on the <code>▷ Start</code> buttons on the top of the servers names</p>
 </li>
 <li>
-<p>Use Copilot in <a href="https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode">agent mode</a> to generate automated scenarios</p>
+<p>Use Copilot in <a href="https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode#_use-agent-mode">agent mode</a> to generate automated scenarios</p>
 </li>
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_claude_desktop"><a class="anchor" href="#_claude_desktop"></a>Claude Desktop</h3>
+</details>
+<details>
+<summary class="title">Claude Desktop</summary>
+<div class="content">
 <div class="paragraph">
 <p>Claude is a next generation AI assistant built by Anthropic and trained to be safe, accurate, and secure to help you do your best work.</p>
 </div>
@@ -907,6 +916,368 @@ VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</cod
 </li>
 <li>
 <p>Restart <code>Claude Desktop</code> application</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_application_test_automation_with_github_copilot_in_vs_code"><a class="anchor" href="#_web_application_test_automation_with_github_copilot_in_vs_code"></a>Web-application test automation with GitHub Copilot in VS Code</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switch to chat <a href="https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode#_use-agent-mode">agent mode</a></p>
+</li>
+<li>
+<p>Choose the preferred Language Model (the list of the available models can differ depending on your license)</p>
+</li>
+<li>
+<p>Configure and start the <a href="#configure-mcp-servers">MCP servers</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_prompt_files"><a class="anchor" href="#_common_prompt_files"></a>Common Prompt Files</h3>
+<div class="paragraph">
+<p>A prompt file stores stable instructions and constraints for the AI agent. Use it to fix style, allowed steps,
+locator conventions, and validation rules so every generated test follows team standards.</p>
+</div>
+<div class="paragraph">
+<p>Benefits of prompt file usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Centralized rules for test generation.</p>
+</li>
+<li>
+<p>Reusable across test creation sessions.</p>
+</li>
+<li>
+<p>Easier auditing and refactoring when the rules change.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_setup_prompt_files"><a class="anchor" href="#_setup_prompt_files"></a>Setup prompt files</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>.github/prompts</code> folder (if it doesn&#8217;t exist)</p>
+</li>
+<li>
+<p>Place the ready-made prompt files into the created folder</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The prompt file must have the <code>.prompt.md</code> extension (e.g., <code>test-template.prompt.md</code>). This extension ensures proper
+recognition by VS Code and GitHub Copilot
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Specify the path to your tests folder in the prompt.</p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files#_use-a-prompt-file-in-chat">Use a prompt file in chat</a>.</p>
+<div class="listingblock">
+<div class="title">Example 2. Prompt example <code>test-template.prompt.md</code>:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Used steps should strictly follow the steps' structure, grammar, and syntax.
+Use the provided VIVIDUS steps from the input list exactly as they are given.
+Steps should begin with Given, When, or Then. DO NOT add additional words. Only parameters can be added.
+Use real locators for real elements that from provided URL. DO NOT create non-existent locators.
+Use Locator types id(idValue), xpath(xpathValue).</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_tests_with_ai_assistance"><a class="anchor" href="#_writing_tests_with_ai_assistance"></a>Writing Tests with AI Assistance</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Example 3. Prompt with specifically defined scope of testing scenario:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Open `https://example.com/` page.
+Close any opened pop-ups.
+Check Search functionality.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will generate a test with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Browser initialization.</p>
+</li>
+<li>
+<p>URL navigation.</p>
+</li>
+<li>
+<p>Pop-up handling.</p>
+</li>
+<li>
+<p>Search functionality verification.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 4. Prompt with general Web testing scenarios (scenarios list generated by AI):</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Open `https://example.com/` page and write test automation scenarios demonstrating Vividus tool capabilities for web application testing.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will generate multiple scenarios covering:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Page navigation.</p>
+</li>
+<li>
+<p>Basic element interactions.</p>
+</li>
+<li>
+<p>Key elements verification.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_best_practices_for_ai_test_generation"><a class="anchor" href="#_best_practices_for_ai_test_generation"></a>Best Practices for AI Test Generation</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Be Specific</strong>: Include exact URLs and scope details.</p>
+</li>
+<li>
+<p><strong>State Requirements</strong>: Mention specific validations needed.</p>
+</li>
+<li>
+<p><strong>Indicate Patterns or Approaches</strong>.</p>
+</li>
+<li>
+<p><strong>Store Common Prompt Logic</strong>: Save common prompt logic in a separate prompt file to avoid copy-pasting across
+different chats and minimize session context expiration effects.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faq"><a class="anchor" href="#_faq"></a>FAQ</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_q_how_to_execute_my_tests_automatically_after_creation"><a class="anchor" href="#_q_how_to_execute_my_tests_automatically_after_creation"></a>Q: How to execute my tests automatically after creation?</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please be aware of token limits. Set up auto-execution only if you are confident and polish your prompt file.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Extension of prompt <code>test-template.prompt.md</code> file to include auto-run of test cases after confirmation in chat:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">After generating the test script:
+1. Confirm test execution in agent chat by `"Yes, execute the tests"`.
+2. Execute test using сommand: ./gradlew runStories
+3. Automatically execute test with:
+   - Chrome desktop profile.
+   - Newly created story files.
+   - Real-time execution logs.
+4. Provide results in the chat showing:
+   - Execution status.
+   - Test results summary.
+   - Any failures or errors.
+   - Link to a detailed report.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Tests will only run after explicit confirmation to ensure the script is ready for execution.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_q_how_to_set_up_recursive_updates_of_steps_by_ai"><a class="anchor" href="#_q_how_to_set_up_recursive_updates_of_steps_by_ai"></a>Q: How to set up recursive updates of steps by AI?</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please be aware of token limits. Send only the relevant story (add context).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Due to token limitations, break down large test suites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Update scenarios in small batches (3-5 at a time).</p>
+</li>
+<li>
+<p>Use intermediate commits.</p>
+</li>
+<li>
+<p>Request focused updates.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 5. Prompt to add recursive test scenarios update:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Update test scenarios to include enhanced logging and error handling, focusing on the login flow</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_q_how_to_combine_several_cases_written_by_ai_in_different_files"><a class="anchor" href="#_q_how_to_combine_several_cases_written_by_ai_in_different_files"></a>Q: How to combine several cases written by AI in different files?</h3>
+<div class="paragraph">
+<p>Combining Strategies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extract common steps to separate scenario.</p>
+</li>
+<li>
+<p>Create composite steps.</p>
+</li>
+<li>
+<p>Use story includes.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 6. Prompt for file combination:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Combine these test scenarios into a single story file, extract common steps into separate scenario, and create composite steps for repeated actions.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_q_how_to_refactor_existing_code_with_ai_help"><a class="anchor" href="#_q_how_to_refactor_existing_code_with_ai_help"></a>Q: How to refactor existing code with AI help?</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please be aware of token limits. If you need a full refactor, split the work into multiple passes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Refactoring Approaches:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Share existing code with AI (add context).</p>
+</li>
+<li>
+<p>Request specific improvements.</p>
+</li>
+<li>
+<p>Apply design patterns.</p>
+</li>
+</ul>
+</div>
+<div class="openblock tabs">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example 7. BDD</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refactor these test scenarios to follow BDD approach and extract common steps into composite steps.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 8. DDD</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refactor these test scenarios to follow DDD approach and add examples tables to add variety of test data.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_q_what_to_do_when_ai_starts_hallucinating_after_previously_working_well"><a class="anchor" href="#_q_what_to_do_when_ai_starts_hallucinating_after_previously_working_well"></a>Q: What to do when AI starts hallucinating after previously working well?</h3>
+<div class="paragraph">
+<p><strong>Symptoms:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Generated steps don&#8217;t match Vividus step list.</p>
+</li>
+<li>
+<p>Incorrect locator formats (not using id/xpath as specified).</p>
+</li>
+<li>
+<p>Invalid syntax or made-up parameters.</p>
+</li>
+<li>
+<p>Attempts to execute non-existent commands.</p>
+</li>
+<li>
+<p>Creates invalid file structures.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Immediate Actions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Stop current generation.</p>
+</li>
+<li>
+<p>Clear the conversation.</p>
+</li>
+<li>
+<p>Start fresh with URL and requirements (use <code>test-template.prompt.md</code> or provide details in chat).</p>
 </li>
 </ol>
 </div>
