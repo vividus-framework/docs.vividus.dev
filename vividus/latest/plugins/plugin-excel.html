@@ -1151,6 +1151,36 @@ Then `${response-as-bytes}` contains excel sheet with index `0` and records:
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_validate_excel_sheet_row_count_by_index"><a class="anchor" href="#_validate_excel_sheet_row_count_by_index"></a>Validate Excel sheet row count by index</h3>
+<div class="paragraph">
+<p>Validates that an Excel sheet at the specified index contains exactly the expected number of rows. The row count includes all rows in the sheet, including headers and empty rows.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `$excelDocument` contains exactly `$expectedRowCount` rows in sheet with index `$sheetIndex`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$excelDocument</code> - The excel document data to verify.</p>
+</li>
+<li>
+<p><code>$expectedRowCount</code> - The expected number of rows in the sheet.</p>
+</li>
+<li>
+<p><code>$sheetIndex</code> - The index of the sheet (0-based).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 13. Validate Excel sheet row count by index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Then `${excel-data}` contains exactly `42` rows in sheet with index `0`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
