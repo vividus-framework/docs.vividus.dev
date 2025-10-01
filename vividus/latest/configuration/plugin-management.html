@@ -652,10 +652,10 @@ the <code>platform</code> function to ensure that the versions from the BOM are 
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">dependencies {
-    implementation platform(group: 'org.vividus', name: 'vividus-bom', version: '0.6.16-SNAPSHOT') <i class="conum" data-value="1"></i><b>(1)</b>
-    implementation(group: 'org.vividus', name: 'vividus') <i class="conum" data-value="2"></i><b>(2)</b>
-    implementation(group: 'org.vividus', name: 'vividus-plugin-web-app') <i class="conum" data-value="3"></i><b>(3)</b>
-    implementation(group: 'org.vividus', name: 'vividus-plugin-html') <i class="conum" data-value="3"></i><b>(3)</b>
+    implementation platform('org.vividus:vividus-bom:0.6.16-SNAPSHOT') <i class="conum" data-value="1"></i><b>(1)</b>
+    implementation('org.vividus:vividus') <i class="conum" data-value="2"></i><b>(2)</b>
+    implementation('org.vividus:vividus-plugin-web-app') <i class="conum" data-value="3"></i><b>(3)</b>
+    implementation('org.vividus:vividus-plugin-html') <i class="conum" data-value="3"></i><b>(3)</b>
 }</code></pre>
 </div>
 </div>
@@ -742,9 +742,9 @@ explicitly specified in the dependencies block.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gradle hljs" data-lang="gradle">dependencies {
-    implementation platform(group: 'org.vividus', name: 'vividus-bom', version: '0.6.16-SNAPSHOT')
-    implementation(group: 'org.vividus', name: 'vividus')
-    implementation(group: 'org.vividus', name: 'vividus-plugin-web-app', version: '0.6.13')
+    implementation platform('org.vividus:vividus-bom:0.6.16-SNAPSHOT')
+    implementation('org.vividus:vividus')
+    implementation('org.vividus:vividus-plugin-web-app:0.6.13')
 }</code></pre>
 </div>
 </div>
