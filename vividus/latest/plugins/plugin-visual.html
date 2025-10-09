@@ -994,12 +994,12 @@ Mind that <code>cut-<strong>*</strong></code> modifications applied to the final
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with `$baselineName` using screenshot configuration:$screenshotConfiguration</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with name `$baselineName` using screenshot configuration:$screenshotConfiguration</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with `$baselineName` ignoring:$ignoringElement using screenshot configuration:$screenshotConfiguration</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I $visualAction baseline with name `$baselineName` ignoring:$ignoringElement using screenshot configuration:$screenshotConfiguration</code></pre>
 </div>
 </div>
 </div>
@@ -1021,7 +1021,7 @@ web.screenshot.strategy=custom</code></pre>
 <h4 id="_examples_of_usage_step_based_configuration"><a class="anchor" href="#_examples_of_usage_step_based_configuration"></a><strong>Examples of usage step based configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with name `scrollable-element-context` using screenshot configuration:
 |scrollableElement                    |webHeaderToCut|webFooterToCut|scrollTimeout|shootingStrategy|
 |By.xpath(//div[@class="page__inner"])|80            |0             |PT1S         |SIMPLE          |</code></pre>
 </div>
@@ -1165,7 +1165,7 @@ mobile.screenshot.strategy=custom</code></pre>
 <h4 id="_examples_of_usage_step_based_configuration_2"><a class="anchor" href="#_examples_of_usage_step_based_configuration_2"></a><strong>Examples of usage step based configuration:</strong></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with `scrollable-element-context` using screenshot configuration:
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I &lt;action&gt; baseline with name `scrollable-element-context` using screenshot configuration:
 |cutTop           |shootingStrategy|
 |51               |VIEWPORT        |</code></pre>
 </div>
