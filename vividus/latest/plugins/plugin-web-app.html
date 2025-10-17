@@ -8331,6 +8331,35 @@ Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_typing_large_text_into_the_field"><a class="anchor" href="#_typing_large_text_into_the_field"></a>Typing large text into the field</h3>
+<div class="paragraph">
+<p>Sometimes, large amounts of text may be entered into the field very slowly, only partially,
+or not at all. This happens because the system types the text character by character.
+With large texts, this becomes inefficient, may cause performance issues, timeouts, or truncation.</p>
+</div>
+<div class="paragraph">
+<p>The following workarounds can be used:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 170. Add large text to the field in chunks</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to 10 with increment 1 starting from 1:
+|step|
+|When I add `#{generate(regexify '[a-z]{3000}')}` to field located by `id(description)`|</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 171. Use clipboard instead of typing large text</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `navigator.clipboard.writeText("#{generate(regexify '[a-z]{30000}')}");`
+When I execute sequence of actions:
+|type    |argument                |
+|CLICK   |id(description)         |
+|KEY_DOWN|OS_INDEPENDENT_CONTROL,V|</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
