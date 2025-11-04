@@ -749,25 +749,32 @@ The properties marked with <strong>bold</strong> are mandatory.
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 37.5%;">
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property name</th>
 <th class="tableblock halign-left valign-top">Default</th>
 <th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top"><code class="subs=+quotes"><strong>secrets-manager.azure-key-vault.name</strong></code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>secrets-manager.azure-key-vault.name</strong></code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Azure Key Vault Name with secret values for properties</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes">secrets-manager.azure-key-vault.api-version</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>7.6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client API version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes">secrets-manager.azure-key-vault.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether VIVIDUS retrieves secrets from Azure Key Vault. If set to <code>false</code>, values from Azure Key Vault will not be retrieved. Can be used when access to Azure Key Vault is restricted, e.g. for local debugging, to override only the required properties instead of all processed ones.</p></td>
 </tr>
 </tbody>
 </table>
