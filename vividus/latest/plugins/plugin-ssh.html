@@ -722,6 +722,15 @@ The properties marked with <strong>bold</strong> are mandatory.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.pseudo-terminal-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allocate a <a href="https://tools.ietf.org/html/rfc4254#section-6.2">Pseudo-Terminal</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ssh.server.&lt;key&gt;.username</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -749,15 +758,6 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable forwarding of the authentication agent connection</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.pseudo-terminal-enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code><br>
-<code>false</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allocate a <a href="https://tools.ietf.org/html/rfc4254#section-6.2">Pseudo-Terminal</a></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following properties are used only for the password-based authentication</em></p></td>
 </tr>
 <tr>
@@ -773,13 +773,25 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ssh.server.&lt;key&gt;.private-key</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The private key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The private key, must not be used along with <code>private-key-file</code> property</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ssh.server.&lt;key&gt;.public-key</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The public key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public key, must not be used along with <code>public-key-file</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ssh.server.&lt;key&gt;.private-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a private key file on the filesystem, must not be used along with <code>private-key</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>ssh.server.&lt;key&gt;.public-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a public key file on the filesystem, must not be used along with <code>public-key</code> property</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssh.server.&lt;key&gt;.passphrase</code></p></td>
@@ -870,6 +882,15 @@ The parameters marked with <strong>bold</strong> are mandatory.
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pseudo-terminal-enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allocate a <a href="https://tools.ietf.org/html/rfc4254#section-6.2">Pseudo-Terminal</a></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>username</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -897,15 +918,6 @@ The parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable forwarding of the authentication agent connection</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pseudo-terminal-enabled</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code><br>
-<code>false</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allocate a <a href="https://tools.ietf.org/html/rfc4254#section-6.2">Pseudo-Terminal</a></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are used only for the password-based authentication</em></p></td>
 </tr>
 <tr>
@@ -921,13 +933,25 @@ The parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>private-key</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The private key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The private key, must not be used along with <code>private-key-file</code> property</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>public-key</strong></code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The public key</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public key, must not be used along with <code>public-key-file</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>private-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a private key file on the filesystem, must not be used along with <code>private-key</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>public-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a public key file on the filesystem, must not be used along with <code>public-key</code> property</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>passphrase</code></p></td>
@@ -1174,6 +1198,143 @@ local file to the remote destination.</p>
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I copy local file located at `local-file.txt` to path `remote-file.txt` on my-host over SFTP</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_port_forwarding"><a class="anchor" href="#_port_forwarding"></a>Port forwarding</h3>
+<div class="paragraph">
+<p>Opens an SSH session and forwards a local port to a remote host and port using the provided parameters.
+All the opened SSH sessions will be closed after all the batches are executed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I forward port through SSH using parameters:$parameters</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$parameters</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with SSH port forwarding and connection parameters.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The parameters marked with <strong>bold</strong> are mandatory.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Acceptable values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>local-port</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0..65535</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local TCP port to bind on the client machine. Incoming connections to this port are sent through the SSH tunnel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>remote-port</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0..65535</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The TCP port on the <code>remote-host</code> that receives the forwarded traffic</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>remote-host</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hostname or IP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target host (reachable from the SSH server) to which the forwarded traffic should be delivered. This can be an internal host not directly accessible from the client</p>
+<p class="tableblock">:connection-parameters-prefix:</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>username</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the user logging in</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>host</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hostname or IP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The remote host</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>port</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0..65535</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The remote port (The standard TCP port for SSH is 22)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>agent-forwarding</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>true</code><br>
+<code>false</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable forwarding of the authentication agent connection</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are used only for the password-based authentication</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>password</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock"><em>The following parameters are used only for the public key authentication</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>private-key</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The private key, must not be used along with <code>private-key-file</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>public-key</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public key, must not be used along with <code>public-key-file</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>private-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a private key file on the filesystem, must not be used along with <code>private-key</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code class="subs=+quotes"><strong>public-key-file</strong></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to a public key file on the filesystem, must not be used along with <code>public-key</code> property</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>passphrase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;string&gt;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase for the private key</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
