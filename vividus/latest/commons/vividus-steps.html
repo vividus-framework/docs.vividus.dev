@@ -1225,7 +1225,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 <div class="sect2">
 <h3 id="_execute_steps_if_a_variable_is_not_set"><a class="anchor" href="#_execute_steps_if_a_variable_is_not_set"></a>Execute steps if a variable is not set</h3>
 <div class="paragraph">
-<p>Execute steps if the variable with specified name is not set into context.</p>
+<p>Execute steps if the variable with specified name is not set.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1268,6 +1268,43 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 !When variable 'api-key' is not set I do:                                                             !
 !|step                                                                                               |!
 !|Given I initialize story variable `api-key` with value `as38der4535fdERAnA443mIlb`                 |!</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_execute_steps_if_a_variable_is_set"><a class="anchor" href="#_execute_steps_if_a_variable_is_set"></a>Execute steps if a variable is set</h3>
+<div class="paragraph">
+<p>Execute steps if the variable with specified name is set.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `$name` is set I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable '$name' is set I do:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$name</code> - The variable name to check.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column <code>step</code> containing the steps to execute if variable <code>$name</code> is set.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 19. Execute steps if variable <code>user</code> is already set</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `user` is set I do:
+| step                                          |
+| When I perform some action for logged in user |</code></pre>
 </div>
 </div>
 </div>
@@ -1328,7 +1365,7 @@ The created file will be removed upon test run completion.</p>
 <p>If you want to use the created temporary file in further batches of the test suite as an input data, you should use <a href="https://datatracker.ietf.org/doc/html/rfc8089#appendix-A">URL with <code>file</code> protocol</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Batch 1 - Create a temporary local file</div>
+<div class="title">Example 20. Batch 1 - Create a temporary local file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name `.table` and content `
 |column|
@@ -1337,7 +1374,7 @@ The created file will be removed upon test run completion.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
+<div class="title">Example 21. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `&lt;column&gt;` is equal to `value`
 Examples:
@@ -1399,7 +1436,7 @@ The following example requires <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Save archive entries</div>
+<div class="title">Example 22. Save archive entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 When I save content of `${response-as-bytes}` archive entries to variables:
@@ -1468,7 +1505,7 @@ The following examples require <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 23. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1478,7 +1515,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 24. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1522,7 +1559,7 @@ The step is for debugging purpose only
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Wait 30 seconds for debug</div>
+<div class="title">Example 25. Wait 30 seconds for debug</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
