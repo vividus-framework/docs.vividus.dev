@@ -8263,6 +8263,65 @@ Given I am on page with URL `https://example.com`</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_mobile_web_steps"><a class="anchor" href="#_mobile_web_steps"></a>Mobile web steps</h3>
+<div class="paragraph">
+<p>When running web tests on real mobile devices or emulators/simulators, it may be necessary to interact with components
+from the native mobile context (e.g., permission pop-ups). The following steps can be used to achieve this.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_switch_to_native_context"><a class="anchor" href="#_switch_to_native_context"></a>Switch to native context</h3>
+<div class="paragraph">
+<p>Switches context to a mobile native context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to native context</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 167. Allow to use device location on Android</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://the-internet.herokuapp.com/geolocation`
+When I click on element located by `buttonName(Where am I?)`
+When I switch to native context
+When I click on element located by `xpath(.//android.widget.Button[@text='Allow while visiting the site'])`
+When I switch to web view with name that is equal to `CHROMIUM`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_switch_to_web_view_by_name"><a class="anchor" href="#_switch_to_web_view_by_name"></a>Switch to web view by name</h3>
+<div class="paragraph">
+<p>Switches context to a web view with name that matches the specified comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I switch to web view with name that $comparisonRule `$value`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/string-comparison-rule.html" class="xref page">The web view name comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$value</code> - The value to find the target web view.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 168. Allow to use device location on iOS</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://the-internet.herokuapp.com/geolocation`
+When I click on element located by `buttonName(Where am I?)`
+When I switch to native context
+When I click on element located by `id(Allow)`
+When I switch to web view with name that contains `WEBVIEW`</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -8274,7 +8333,7 @@ Given I am on page with URL `https://example.com`</code></pre>
 <p>To validate host component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 167. Validate host component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 169. Validate host component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</code></pre>
@@ -8294,7 +8353,7 @@ Then `#{extractHostFromUrl(${current-page-url})}` is equal to `example.com`</cod
 <p>To validate path component of the current page URL the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 168. Validate path component of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 170. Validate path component of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/example.html`</code></pre>
@@ -8314,7 +8373,7 @@ Then `#{extractPathFromUrl(${current-page-url})}` is equal to `/relative/url/exa
 <p>To validate whether current page URL contains some part the following statement can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 169. Validate part of "https://example.com/relative/url/example.html"</div>
+<div class="title">Example 171. Validate part of "https://example.com/relative/url/example.html"</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I am on page with URL `https://example.com/relative/url/example.html`
 Then `${current-page-url}` matches `.+\/relative\/url.+`</code></pre>
@@ -8342,7 +8401,7 @@ With large texts, this becomes inefficient, may cause performance issues, timeou
 <p>The following workarounds can be used:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 170. Add large text to the field in chunks</div>
+<div class="title">Example 172. Add large text to the field in chunks</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to 10 with increment 1 starting from 1:
 |step|
@@ -8350,7 +8409,7 @@ With large texts, this becomes inefficient, may cause performance issues, timeou
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 171. Use clipboard instead of typing large text</div>
+<div class="title">Example 173. Use clipboard instead of typing large text</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute javascript `navigator.clipboard.writeText("#{generate(regexify '[a-z]{30000}')}");`
 When I execute sequence of actions:
