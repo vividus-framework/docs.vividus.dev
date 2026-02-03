@@ -947,7 +947,7 @@ where:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web.screenshot.strategy.&lt;YOUR_STRATEGY_NAME&gt;.shooting-strategy</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SIMPLE</code> <code>VIEWPORT_PASTING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_shooting_strategies">Shooting Strategies</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Screenshot shooting strategy name (<code>VIEWPORT_PASTING</code> by default)</p></td>
 </tr>
 <tr>
@@ -1325,7 +1325,7 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <div class="ulist">
 <ul>
 <li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+<p><code>shootingStrategy</code> - The <a href="#_shooting_strategies">shooting strategy</a> to use.</p>
 </li>
 <li>
 <p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
@@ -1416,7 +1416,7 @@ When I compare_against baseline with name `context` from image `${response-as-by
 <div class="ulist">
 <ul>
 <li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+<p><code>shootingStrategy</code> - The <a href="#_shooting_strategies">shooting strategy</a> to use.</p>
 </li>
 <li>
 <p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
@@ -1673,7 +1673,7 @@ When I compare_against baseline with name `context-element-with-acceptable-diff-
 <div class="ulist">
 <ul>
 <li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+<p><code>shootingStrategy</code> - The <a href="#_shooting_strategies">shooting strategy</a> to use.</p>
 </li>
 <li>
 <p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
@@ -1770,7 +1770,7 @@ using screenshot configuration:
 <div class="ulist">
 <ul>
 <li>
-<p><code>shootingStrategy</code> - The shooting strategy to use.</p>
+<p><code>shootingStrategy</code> - The <a href="#_shooting_strategies">shooting strategy</a> to use.</p>
 </li>
 <li>
 <p><code>maxHeight</code> - The maximum screenshot height in pixels. The area outside this size won&#8217;t be captured. May be useful when having memory issues on large pages. <strong>(Web only)</strong></p>
@@ -1946,6 +1946,84 @@ In order to store new baselines in the source folder use absolute path to the ba
 </table>
 </li>
 </ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_shooting_strategies"><a class="anchor" href="#_shooting_strategies"></a>Shooting Strategies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_simple"><a class="anchor" href="#_simple"></a>SIMPLE</h3>
+<div class="paragraph">
+<p>The simplest screenshot strategy that captures a single screenshot of the visible viewport without
+any scrolling or stitching. This strategy is fast and reliable but only captures what&#8217;s currently
+visible on the screen.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use cases:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Testing specific visible elements or sections</p>
+</li>
+<li>
+<p>Quick visual checks where full page capture is not needed</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_viewport_pasting"><a class="anchor" href="#_viewport_pasting"></a>VIEWPORT_PASTING</h3>
+<div class="paragraph">
+<p>A strategy that captures the entire page by taking multiple viewport screenshots while scrolling
+through the page, then stitching them together. This creates a complete picture of the full page content.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use cases:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Full page visual testing</p>
+</li>
+<li>
+<p>Testing long scrollable pages</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cdp"><a class="anchor" href="#_cdp"></a>CDP</h3>
+<div class="paragraph">
+<p>Uses Chrome DevTools Protocol to capture screenshots. This strategy leverages browser-native capabilities
+for efficient and accurate screenshot capture.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Can be used only in Chrome/Chromium-based browsers.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Use cases:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>High-performance screenshot capture in Chrome/Chromium browsers</p>
+</li>
+<li>
+<p>Full page screenshots without scrolling</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
