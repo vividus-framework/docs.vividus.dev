@@ -884,6 +884,78 @@ e.g., <code>0</code>, <code>#</code>, specify the way indices are displayed.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="_parallel_story_execution"><a class="anchor" href="#_parallel_story_execution"></a>Parallel Story Execution</h4>
+<div class="paragraph">
+<p>Stories within a batch are executed in parallel using the number of threads specified by the <code>batch-&lt;batch-number&gt;.threads</code> property. By default, stories run sequentially (1 thread). Increasing the thread count can significantly reduce test execution time.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 2. suite.properties: Running stories in 2 batches with different parallelism levels</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">batch-1.resource-location=story/api
+batch-1.threads=5
+batch-1.name=API Tests
+
+batch-2.resource-location=story/ui
+batch-2.threads=2
+batch-2.name=UI Tests</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>batch-1</code> runs API test stories from the <code>story/api</code> folder using <code>5</code> parallel threads. Since API tests are generally stateless, a higher level of parallelism can be used.</p>
+</li>
+<li>
+<p><code>batch-2</code> runs UI test stories from the <code>story/ui</code> folder using <code>2</code> parallel threads. UI tests may require more resources per thread, so a lower parallelism level is configured.</p>
+</li>
+<li>
+<p><code>batch-1</code> runs first, and only after it completes, <code>batch-2</code> starts (batches always run sequentially).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When running stories in parallel, make sure:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Stories do not depend on each other&#8217;s state or execution order.</p>
+</li>
+<li>
+<p>Shared resources (e.g. database records, user sessions) are properly isolated across threads.</p>
+</li>
+<li>
+<p>The <code>story</code> <a href="../commons/variables.html" class="xref page">variable scope</a> is thread-safe, but the <code>next_batches</code> and <code>global</code> scopes are shared.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. suite.properties: Running all stories from a single folder with 3 threads</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">batch-1.resource-location=story/regression
+batch-1.threads=3
+batch-1.story.execution-timeout=PT30M</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>story.execution-timeout</code> property limits how long each individual story can run. This is useful in parallel execution to prevent a single slow story from blocking a thread indefinitely.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_profiles"><a class="anchor" href="#_profiles"></a>Profiles</h3>
@@ -894,7 +966,7 @@ e.g., <code>0</code>, <code>#</code>, specify the way indices are displayed.</p>
 <p>These specifics (properties) should be written in the <code>profile.properties</code> file. Path to this file is set in <code>configuration.properties</code> file:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. configuration.properties</div>
+<div class="title">Example 4. configuration.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=web</code></pre>
 </div>
@@ -986,7 +1058,7 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <p>By default, profile property is pointed to the <code>/src/main/resources/properties/profile</code> directory, so use the relative path starting from <code>profile</code> when you have nested directories:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. configuration.properties</div>
+<div class="title">Example 5. configuration.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.profiles=mobile_app/android</code></pre>
 </div>
@@ -1016,7 +1088,7 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <p>Environment configuration allows putting environment-related variables (e.g. host, API endpoint) into <code>environment.properties</code> file. The path to this file is set in <code>configuration.properties</code> file. Create as many property files as a number of environments you have and easily switch between them:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. configuration.properties</div>
+<div class="title">Example 6. configuration.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration.environments=dev
 #configuration.environments=test
@@ -1033,7 +1105,7 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <p>Configuration set simplifies reusage of pre-defined combinations of profiles/suites/environments. Users are allowed to define multiple configuration sets. Only one configuration set can be used during a test run.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Configuration sets definition</div>
+<div class="title">Example 7. Configuration sets definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration-set.api-preprod-uat.profiles=
 configuration-set.api-preprod-uat.suites=uat
@@ -1048,7 +1120,7 @@ configuration-set.api-test-regression.environments=test</code></pre>
 <p>Once configuration sets are defined, one can use an active configuration set for test execution.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Usage of configuration set</div>
+<div class="title">Example 8. Usage of configuration set</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">configuration-set.active=api-preprod-uat</code></pre>
 </div>
@@ -1133,7 +1205,7 @@ JSON file should contain a valid JSON. If JSON is not valid known issues will be
 <p>The file represents a collection of JSON elements describing known issues.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. known-issues.json</div>
+<div class="title">Example 9. known-issues.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> {
     "VVD-1": { <i class="conum" data-value="1"></i><b>(1)</b>
@@ -1252,7 +1324,7 @@ Use <strong>\\</strong> for escaping of special characters in regular expression
 <p>Meta tags may be used at both story and scenario level. Meta tags specified at the story level are propagated to every scenario, if the same meta tag is used at the scenario level, then the scenario level value takes precedence.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. Levels of meta tags</div>
+<div class="title">Example 10. Levels of meta tags</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">!-- Story level
 Meta:
@@ -1283,7 +1355,7 @@ Then page title is equal to `Google`</code></pre>
 relies on Groovy syntax.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Execute stoies and scenarios marked with '@group Login' tag and matching default filters</div>
+<div class="title">Example 11. Execute stoies and scenarios marked with '@group Login' tag and matching default filters</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.meta-filters=group == 'Login'</code></pre>
 </div>
@@ -1293,7 +1365,7 @@ relies on Groovy syntax.</p>
 meta filters based on the tags: <code>@skip</code>, <code>@layout</code> etc.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 10. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
+<div class="title">Example 12. Execute stoies and scenarios marked with '@group Login' tag and without '@skip' tag</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: (group == 'Login' &amp;&amp; !skip)</code></pre>
 </div>
@@ -1309,13 +1381,13 @@ by default. If it&#8217;s required to use arbitrary characters in meta tags name
 subscript operator must be used in the properties.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Execute stoies and scenarios not marked with '@test-stand' tag (quoted identifiers approach)</div>
+<div class="title">Example 13. Execute stoies and scenarios not marked with '@test-stand' tag (quoted identifiers approach)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this.'test-stand'</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Execute stoies and scenarios not marked with '@test-stand' tag (subscript operator approach)</div>
+<div class="title">Example 14. Execute stoies and scenarios not marked with '@test-stand' tag (subscript operator approach)</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">bdd.all-meta-filters=groovy: !this['test-stand']</code></pre>
 </div>
@@ -1485,7 +1557,7 @@ to make the filtering process more dynamic by using variables initialized during
 <p>To enable the feature create a file <code>spring.xml</code> in the <code>src/main/resources</code> directory and add the following XML data into that file.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Configuration</div>
+<div class="title">Example 15. Configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -1506,7 +1578,7 @@ to make the filtering process more dynamic by using variables initialized during
 <p>Taking <code>story_priority</code> as an example the priority meta should be placed at the story level as the following example shows:</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Prioritized.story</div>
+<div class="title">Example 16. Prioritized.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Meta: @story_priority 15
 
@@ -1935,7 +2007,7 @@ EOD</code></pre>
 <li>
 <p>Define composite step in <code>*.steps</code> file, e.g. <code>steps/ui/my-app.steps</code>:</p>
 <div class="listingblock">
-<div class="title">Example 15. Composite step definition</div>
+<div class="title">Example 17. Composite step definition</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Composite: When I login with username `$username` and password `$password`
 When I enter `&lt;username&gt;` in field located by `id(username)`
@@ -1947,7 +2019,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <li>
 <p>Configure paths to files with custom steps:</p>
 <div class="listingblock">
-<div class="title">Example 16. Composite steps paths configuration</div>
+<div class="title">Example 18. Composite steps paths configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">engine.composite-paths=steps/ui/*.steps</code></pre>
 </div>
@@ -1956,7 +2028,7 @@ When I click on element located by `id(signInButton)`</code></pre>
 <li>
 <p>Use your step in the story:</p>
 <div class="listingblock">
-<div class="title">Example 17. Composite step usage example</div>
+<div class="title">Example 19. Composite step usage example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify login
 Given I am on main application page
@@ -1994,7 +2066,7 @@ Users are allowed to use composite steps in composite step definition.
 <li>
 <p>Select a step you want to create alias for, as an example let&#8217;s take the following step:</p>
 <div class="listingblock">
-<div class="title">Example 18. VIVIDUS step</div>
+<div class="title">Example 20. VIVIDUS step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I hover mouse over element located `$locator`</code></pre>
 </div>
@@ -2003,7 +2075,7 @@ Users are allowed to use composite steps in composite step definition.
 <li>
 <p>Create a new JSON file (for example, <code>aliases/aliases.json</code>) and put the following content with one or more aliases:</p>
 <div class="listingblock">
-<div class="title">Example 19. aliases/aliases.json</div>
+<div class="title">Example 21. aliases/aliases.json</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
     {
