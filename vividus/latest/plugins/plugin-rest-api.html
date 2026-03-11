@@ -1082,7 +1082,7 @@ binary data.</p>
 <div class="listingblock">
 <div class="title">Example 6. Save the received Excel document into the temporary folder</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/blob/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx?raw=true`
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://github.com/vividus-framework/vividus/raw/refs/heads/master/vividus-plugin-excel/src/test/resources/TestTemplate.xlsx`
 When I create temporary file with name `excel` and content `${response-as-bytes}` and put path to scenario variable `excelPath`</code></pre>
 </div>
 </div>
