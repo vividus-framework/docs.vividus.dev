@@ -1033,6 +1033,45 @@ Tables should have a header and at least one row with values.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_dynamic_variables"><a class="anchor" href="#_dynamic_variables"></a>Dynamic variables</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_running_story_name"><a class="anchor" href="#_running_story_name"></a>Running story name</h3>
+<div class="paragraph">
+<p>The variable returns the name of the currently running story (the file name of the story without the <code>.story</code> extension).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${running-story}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 9. Validate the name of the currently running story</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${running-story}` is equal to `MyStory`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_scenario_name"><a class="anchor" href="#_running_scenario_name"></a>Running scenario name</h3>
+<div class="paragraph">
+<p>The variable returns the title of the currently running scenario.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">${running-scenario}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 10. Validate the name of the currently running scenario</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `${running-scenario}` is equal to `Verify search functionality`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
