@@ -1990,9 +1990,9 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wait_for_element_disappearance"><a class="anchor" href="#_wait_for_element_disappearance"></a>Wait for element disappearance</h3>
+<h3 id="_wait_for_elements_disappearance"><a class="anchor" href="#_wait_for_elements_disappearance"></a>Wait for elements disappearance</h3>
 <div class="paragraph">
-<p>Waits for disappearance of the element by the locator.</p>
+<p>Waits for disappearance of all elements by the locator.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2021,6 +2021,14 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </div>
 <div class="listingblock">
 <div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until all elements located by `$locator` disappear</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Deprecated syntax (will be removed in VIVIDUS 0.7.0)</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `$locator` disappears</code></pre>
 </div>
 </div>
@@ -2032,9 +2040,9 @@ It&#8217;s forbidden to use <a href="#_visibility_types">Visibility types</a> in
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Wait for disappearance of the element with the specified name</div>
+<div class="title">Example 30. Wait for disappearance of the elements with the specified name</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until element located by `id(welcome-image)` disappears</code></pre>
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait until all elements located by `id(welcome-image)` disappear</code></pre>
 </div>
 </div>
 </div>
