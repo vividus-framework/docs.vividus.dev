@@ -724,7 +724,7 @@ shell.ksh.option=-c</code></pre>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Property Name</th>
 <th class="tableblock halign-left valign-top">Acceptable values</th>
 <th class="tableblock halign-left valign-top">Default</th>
 <th class="tableblock halign-left valign-top">Description</th>
@@ -850,7 +850,7 @@ The saved stdout/stderr are limited to ~2 billion characters. But keep in mind d
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Execute PowerShel command</div>
+<div class="title">Example 4. Execute PowerShell command</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute command `echo 'Hello World!'` using PowerShell and save result to scenario variable `result`
 Then `${result.stdout}` is equal to `Hello World!`

@@ -738,7 +738,7 @@ Where <code>&lt;producer-key&gt;</code> is the key of the producer configuration
 <div class="sect2">
 <h3 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h3>
 <div class="sect3">
-<h4 id="_set_headers_to_kafka_event"><a class="anchor" href="#_set_headers_to_kafka_event"></a><strong>Set headers to Kafka event</strong></h4>
+<h4 id="_set_headers_to_kafka_event"><a class="anchor" href="#_set_headers_to_kafka_event"></a>Set headers to Kafka event</h4>
 <div class="paragraph">
 <p>Sets headers to the event, which will be sent to Kafka topic.</p>
 </div>
@@ -777,7 +777,7 @@ When I send event with value `test-data` to `dev` Kafka topic `test-topic`</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_send_event_with_value"><a class="anchor" href="#_send_event_with_value"></a><strong>Send event with value</strong></h4>
+<h4 id="_send_event_with_value"><a class="anchor" href="#_send_event_with_value"></a>Send event with value</h4>
 <div class="paragraph">
 <p>Sends the event with the value to the provided topic with no key or partition.</p>
 </div>
@@ -810,7 +810,7 @@ When I send event with value `test-data` to `dev` Kafka topic `test-topic`</code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_send_event_with_key_and_value"><a class="anchor" href="#_send_event_with_key_and_value"></a><strong>Send event with key and value</strong></h4>
+<h4 id="_send_event_with_key_and_value"><a class="anchor" href="#_send_event_with_key_and_value"></a>Send event with key and value</h4>
 <div class="paragraph">
 <p>Sends the event with the key and the value to the provided topic. Events with the same event key are written to the [same partition](<a href="https://kafka.apache.org/documentation/#intro_concepts_and_terms" class="bare">https://kafka.apache.org/documentation/#intro_concepts_and_terms</a>), and Kafka guarantees that any consumer of a given topic-partition will always read that partition&#8217;s events in exactly the same order as they were written.</p>
 </div>
@@ -903,7 +903,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 <div class="sect2">
 <h3 id="_steps_2"><a class="anchor" href="#_steps_2"></a>Steps</h3>
 <div class="sect3">
-<h4 id="_start_the_consumer"><a class="anchor" href="#_start_the_consumer"></a><strong>Start the consumer</strong></h4>
+<h4 id="_start_the_consumer"><a class="anchor" href="#_start_the_consumer"></a>Start the consumer</h4>
 <div class="paragraph">
 <p>Starts the Kafka consumer with the provided configuration to listen the specified topics. The consumer must be stopped when it&#8217;s not needed.</p>
 </div>
@@ -924,7 +924,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 </div>
 <div class="sect3">
-<h4 id="_drainpeek_the_consumed_events"><a class="anchor" href="#_drainpeek_the_consumed_events"></a><strong>Drain/Peek the consumed events</strong></h4>
+<h4 id="_drainpeek_the_consumed_events"><a class="anchor" href="#_drainpeek_the_consumed_events"></a>Drain/Peek the consumed events</h4>
 <div class="paragraph">
 <p>Drains/Peeks the consumed events to the specified variable. If the consumer is not stopped, the new events might arrive after the draining. If the consumer is stopped, all the events received from the consumer start or after the last draining operation are stored to the variable.</p>
 </div>
@@ -951,7 +951,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wait_for_the_events"><a class="anchor" href="#_wait_for_the_events"></a><strong>Wait for the events</strong></h4>
+<h4 id="_wait_for_the_events"><a class="anchor" href="#_wait_for_the_events"></a>Wait for the events</h4>
 <div class="paragraph">
 <p>Waits until the count of the consumed events (from the consumer start or after the last draining operation) matches to the rule or until the timeout is exceeded.</p>
 </div>
@@ -978,7 +978,7 @@ Where <code>&lt;consumer-key&gt;</code> is the key of the consumer configuration
 </div>
 </div>
 <div class="sect3">
-<h4 id="_stop_the_consumer"><a class="anchor" href="#_stop_the_consumer"></a><strong>Stop the consumer</strong></h4>
+<h4 id="_stop_the_consumer"><a class="anchor" href="#_stop_the_consumer"></a>Stop the consumer</h4>
 <div class="paragraph">
 <p>Stops the Kafka consumer started by the corresponding step before. All recorded events are kept and can be drained into the variable using the step described above.</p>
 </div>
