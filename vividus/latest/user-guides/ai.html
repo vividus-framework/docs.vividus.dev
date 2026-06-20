@@ -682,7 +682,7 @@ LLM will access only those steps that are available from plugins included into y
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-VIVIDUS MCP server is available starting from version <code>0.6.16-SNAPSHOT</code> and higher.
+VIVIDUS MCP server is available starting from version <code>0.6.16</code> and higher.
 </td>
 </tr>
 </table>
@@ -964,13 +964,26 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="sect2">
-<h3 id="_common_prompt_files"><a class="anchor" href="#_common_prompt_files"></a>Common Prompt Files</h3>
+<h3 id="_copilot_instructions_file"><a class="anchor" href="#_copilot_instructions_file"></a>Copilot Instructions File</h3>
 <div class="paragraph">
-<p>A prompt file stores stable instructions and constraints for the AI agent. Use it to fix style, allowed steps,
-locator conventions, and validation rules so every generated test follows team standards.</p>
+<p>A <a href="https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot">Copilot instructions file</a>
+(<code>.github/copilot-instructions.md</code>) provides global context about the project to GitHub Copilot — such as the project layout, build commands,
+running tests, and general conventions. This context is automatically picked up by Copilot in VS Code and on GitHub.</p>
 </div>
 <div class="paragraph">
-<p>Benefits of prompt file usage:</p>
+<p>The sample project already contains a <a href="https://github.com/vividus-framework/vividus-sample-tests/blob/main/.github/copilot-instructions.md">ready-made instructions file</a>.
+Copy it into your local project and adjust it to reflect the specifics of your project.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_copilot_skills"><a class="anchor" href="#_copilot_skills"></a>Copilot Skills</h3>
+<div class="paragraph">
+<p>A Copilot skill defines instructions, constraints, and step-by-step workflows for the
+<a href="https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent/about-copilot-coding-agent">GitHub Copilot coding agent</a>.
+Use it to enforce style, allowed steps, locator conventions, and validation rules so every generated test follows team standards.</p>
+</div>
+<div class="paragraph">
+<p>Benefits of using Copilot skills:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -986,14 +999,22 @@ locator conventions, and validation rules so every generated test follows team s
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_setup_prompt_files_for_github_copilot"><a class="anchor" href="#_setup_prompt_files_for_github_copilot"></a>Setup prompt files for GitHub Copilot</h4>
+<h4 id="_setup_copilot_skills_for_github_copilot"><a class="anchor" href="#_setup_copilot_skills_for_github_copilot"></a>Setup Copilot Skills for GitHub Copilot</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a <code>.github/prompts</code> folder (if it doesn&#8217;t exist)</p>
+<p>Create a <code>.github/skills</code> folder (if it doesn&#8217;t exist)</p>
 </li>
 <li>
-<p>Place the ready-made prompt files into the created folder. The sample prompt for generating VIVIDUS stories that test web-applications is available in the <a href="https://github.com/vividus-framework/vividus-sample-tests/blob/main/.github/prompts/generate-vividus-story-web.prompt.md">sample project</a>; copy this content into your local project and then modify it based on your needs and the specifics of your SUT.</p>
+<p>Create a subfolder for each skill and place a <code>SKILL.md</code> file inside it. Ready-made skills for generating VIVIDUS stories are available in the <a href="https://github.com/vividus-framework/vividus-sample-tests/tree/main/.github/skills">sample project</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/vividus-framework/vividus-sample-tests/blob/main/.github/skills/generate-vividus-web-tests/SKILL.md">Web application test generation skill</a> — generates <code>.story</code> files for web UI tests using the VIVIDUS web plugin; requires both the VIVIDUS MCP and Playwright MCP servers to be connected</p>
+</li>
+<li>
+<p><a href="https://github.com/vividus-framework/vividus-sample-tests/blob/main/.github/skills/generate-vividus-api-tests/SKILL.md">API test generation skill</a> — generates <code>.story</code> files for REST API tests from an OpenAPI/Swagger specification; requires the VIVIDUS MCP server to be connected
+Copy the content of the skill files into your local project and modify them based on your needs and the specifics of your SUT.</p>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1001,18 +1022,20 @@ locator conventions, and validation rules so every generated test follows team s
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-The prompt file must have the <code>.prompt.md</code> extension (e.g., <code>generate-vividus-story-web.prompt.md</code>). This extension ensures proper
-recognition by VS Code and GitHub Copilot
+Each skill must be placed in a dedicated subfolder inside <code>.github/skills/</code> as a <code>SKILL.md</code> file (e.g., <code>.github/skills/generate-vividus-web-tests/SKILL.md</code>). This structure ensures proper recognition by GitHub Copilot.
 </td>
 </tr>
 </table>
 </div>
 </li>
-<li>
-<p>Specify the path to your tests folder in the prompt.</p>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="https://code.visualstudio.com/docs/copilot/customization/prompt-files#_use-a-prompt-file-in-chat">Use a prompt file in chat</a>.</p>
+<p>Specify the path to your tests folder in the skill file.</p>
+</li>
+<li>
+<p><a href="https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent/about-copilot-coding-agent">Use the skill with the GitHub Copilot coding agent</a>.</p>
 </li>
 </ol>
 </div>
@@ -1024,7 +1047,7 @@ recognition by VS Code and GitHub Copilot
 <h2 id="_writing_tests_with_ai_assistance"><a class="anchor" href="#_writing_tests_with_ai_assistance"></a>Writing Tests with AI Assistance</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Example 2. Combine the prompt configured earlier with a detailed test case:</div>
+<div class="title">Example 2. Combine the skill configured earlier with a detailed test case:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Open `https://example.com/` page.
 Close any opened pop-ups.
@@ -1051,7 +1074,7 @@ Check Search functionality.</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Or combine the prompt configured earlier with general web testing scenarios (scenarios list generated by AI):</div>
+<div class="title">Example 3. Or combine the skill configured earlier with general web testing scenarios (scenarios list generated by AI):</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Open `https://example.com/` page and write test automation scenarios demonstrating Vividus tool capabilities for web application testing.</code></pre>
 </div>
@@ -1086,7 +1109,7 @@ Check Search functionality.</code></pre>
 <p><strong>Indicate Patterns or Approaches</strong>.</p>
 </li>
 <li>
-<p><strong>Store Common Prompt Logic</strong>: Save common prompt logic in a separate prompt file to avoid copy-pasting across
+<p><strong>Store Common Skill Logic</strong>: Save common instructions in a separate skill file to avoid copy-pasting across
 different chats and minimize session context expiration effects.</p>
 </li>
 </ol>
@@ -1112,7 +1135,7 @@ Please be aware of token limits. Set up auto-execution only if you are confident
 </table>
 </div>
 <div class="paragraph">
-<p>Extension of prompt <code>test-template.prompt.md</code> file to include auto-run of test cases after confirmation in chat:</p>
+<p>Extension of the skill file to include auto-run of test cases after confirmation in chat:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1300,7 +1323,7 @@ Please be aware of token limits. If you need a full refactor, split the work int
 <p>Clear the conversation.</p>
 </li>
 <li>
-<p>Start fresh with URL and requirements (use <code>test-template.prompt.md</code> or provide details in chat).</p>
+<p>Start fresh with URL and requirements (use the Copilot skill or provide details in chat).</p>
 </li>
 </ol>
 </div>
