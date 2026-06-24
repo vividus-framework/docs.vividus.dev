@@ -725,6 +725,18 @@ the configuration files for the used IDE and then refresh the project in the use
 <div class="sect1">
 <h2 id="_configure_ai_assistant"><a class="anchor" href="#_configure_ai_assistant"></a>Configure AI Assistant</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The examples below cover GitHub Copilot in VS Code and Claude Code, but any <a href="https://modelcontextprotocol.io/clients">MCP-compatible client</a> (such as Cursor, Windsurf, or Continue) can be configured in the same way using the VIVIDUS MCP server command shown here.
+</td>
+</tr>
+</table>
+</div>
 <details id="configure-mcp-servers">
 <summary class="title">GitHub Copilot in VS Code</summary>
 <div class="content">
@@ -836,24 +848,18 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </details>
 <details>
-<summary class="title">Claude Desktop</summary>
+<summary class="title">Claude Code</summary>
 <div class="content">
 <div class="paragraph">
-<p>Claude is a next generation AI assistant built by Anthropic and trained to be safe, accurate, and secure to help you do your best work.</p>
+<p><a href="https://claude.ai/code">Claude Code</a> is an agentic coding tool by Anthropic.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install <a href="https://claude.ai/download">Claude Desktop</a></p>
+<p>Install <a href="https://claude.ai/code">Claude Code</a></p>
 </li>
 <li>
-<p>Open <code>Claude Desktop</code> and navigate to <code>Developer</code> tab in application <code>Settings</code></p>
-</li>
-<li>
-<p>Click <code>Edit Config</code> which opens <code>claude_desktop_config.json</code> file that contains MCP server configs</p>
-</li>
-<li>
-<p>Add the following configuration into <code>claude_desktop_config.json</code> file and save it</p>
+<p>Add the VIVIDUS MCP server using the <code>claude mcp add</code> command:</p>
 <div id="_tabs_2" class="openblock tabs is-loading">
 <div class="content">
 <div class="ulist tablist">
@@ -869,50 +875,14 @@ the configuration files for the used IDE and then refresh the project in the use
 <div id="_tabs_2_macos_linux--panel" class="tabpanel" aria-labelledby="_tabs_2_macos_linux">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "mcpServers": {
-    "vividus": {
-      "command": "/Users/Bob/Workspace/vividus-sample-tests/gradlew", <i class="conum" data-value="1"></i><b>(1)</b>
-      "args": [
-          "startMcpServer",
-          "-q",
-          "-p",
-          "/Users/Bob/Workspace/vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
-      ]
-    },
-    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
-      "command": "npx",
-      "args": [
-          "@playwright/mcp"
-      ]
-    }
-  }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">claude mcp add vividus -s user -- /Users/Bob/Workspace/vividus-sample-tests/gradlew startMcpServer -q -p /Users/Bob/Workspace/vividus-sample-tests <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 </div>
 <div id="_tabs_2_windows--panel" class="tabpanel" aria-labelledby="_tabs_2_windows">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "mcpServers": {
-    "vividus": {
-      "command": "c:\\Users\\Bob\\Workspace\\vividus-sample-tests\\gradlew.bat", <i class="conum" data-value="1"></i><b>(1)</b>
-      "args": [
-          "startMcpServer",
-          "-q",
-          "-p",
-          "c:\\Users\\Bob\\Workspace\\vividus-sample-tests" <i class="conum" data-value="2"></i><b>(2)</b>
-      ]
-    },
-    "playwright": { <i class="conum" data-value="3"></i><b>(3)</b>
-      "command": "npx",
-      "args": [
-          "@playwright/mcp"
-      ]
-    }
-  }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">claude mcp add vividus -s user -- c:\Users\Bob\Workspace\vividus-sample-tests\gradlew.bat startMcpServer -q -p c:\Users\Bob\Workspace\vividus-sample-tests <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 </div>
@@ -922,21 +892,29 @@ the configuration files for the used IDE and then refresh the project in the use
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The absolute path to the <code>gradlew</code> or <code>gradlew.bat</code> executable contained in the tests project</td>
+<td>Replace with the absolute path to the <code>gradlew</code> or <code>gradlew.bat</code> executable and the absolute path to the tests project</td>
 </tr>
+</table>
+</div>
+</li>
+<li>
+<p>Optionally, add the Playwright MCP server to enable browser control and web-application test generation:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">claude mcp add playwright -s user -- npx @playwright/mcp@latest <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The absolute path to the tests project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>The Playwright MCP server is optional and can be used to control browser and generate tests for web-applications</td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Restart <code>Claude Desktop</code> application</p>
+<p>Start Claude Code and the configured MCP servers are loaded automatically</p>
 </li>
 </ol>
 </div>
@@ -975,8 +953,11 @@ running tests, and general conventions. This context is automatically picked up 
 Copy it into your local project and adjust it to reflect the specifics of your project.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_copilot_skills"><a class="anchor" href="#_copilot_skills"></a>Copilot Skills</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copilot_skills"><a class="anchor" href="#_copilot_skills"></a>Copilot Skills</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A Copilot skill defines instructions, constraints, and step-by-step workflows for the
 <a href="https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent/about-copilot-coding-agent">GitHub Copilot coding agent</a>.
@@ -998,8 +979,8 @@ Use it to enforce style, allowed steps, locator conventions, and validation rule
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="_setup_copilot_skills_for_github_copilot"><a class="anchor" href="#_setup_copilot_skills_for_github_copilot"></a>Setup Copilot Skills for GitHub Copilot</h4>
+<div class="sect2">
+<h3 id="_setup_copilot_skills_for_github_copilot"><a class="anchor" href="#_setup_copilot_skills_for_github_copilot"></a>Setup Copilot Skills for GitHub Copilot</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1038,7 +1019,6 @@ Each skill must be placed in a dedicated subfolder inside <code>.github/skills/<
 <p><a href="https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent/about-copilot-coding-agent">Use the skill with the GitHub Copilot coding agent</a>.</p>
 </li>
 </ol>
-</div>
 </div>
 </div>
 </div>
@@ -1106,13 +1086,28 @@ Check Search functionality.</code></pre>
 <p><strong>State Requirements</strong>: Mention specific validations needed.</p>
 </li>
 <li>
-<p><strong>Indicate Patterns or Approaches</strong>.</p>
+<p><strong>Indicate Patterns or Approaches</strong>: Mention whether to follow BDD naming conventions, use composite steps, or apply data tables.</p>
+</li>
+<li>
+<p><strong>Review Generated Tests</strong>: Always inspect AI-generated <code>.story</code> files before committing. LLMs can produce syntactically valid but logically incorrect tests. Verify step names, locators, and assertions against actual application behaviour.</p>
 </li>
 <li>
 <p><strong>Store Common Skill Logic</strong>: Save common instructions in a separate skill file to avoid copy-pasting across
 different chats and minimize session context expiration effects.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Never include sensitive data — credentials, API keys, PII, or confidential application details — in AI prompts. Treat every prompt as potentially logged or retained by the AI provider.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1214,10 +1209,10 @@ Please be aware of token limits. Send only the relevant story (add context).
 <p>Extract common steps to separate scenario.</p>
 </li>
 <li>
-<p>Create composite steps.</p>
+<p>Create <a href="https://jbehave.org/reference/stable/composite-steps.html">composite steps</a>.</p>
 </li>
 <li>
-<p>Use story includes.</p>
+<p>Use <a href="https://jbehave.org/reference/stable/given-stories.html">story includes</a> (GivenStories).</p>
 </li>
 </ul>
 </div>
@@ -1262,8 +1257,8 @@ Please be aware of token limits. If you need a full refactor, split the work int
 <li id="_tabs_3_bdd" class="tab">
 <p>BDD</p>
 </li>
-<li id="_tabs_3_ddd" class="tab">
-<p>DDD</p>
+<li id="_tabs_3_data_driven" class="tab">
+<p>Data-Driven</p>
 </li>
 </ul>
 </div>
@@ -1274,10 +1269,10 @@ Please be aware of token limits. If you need a full refactor, split the work int
 </div>
 </div>
 </div>
-<div id="_tabs_3_ddd--panel" class="tabpanel" aria-labelledby="_tabs_3_ddd">
+<div id="_tabs_3_data_driven--panel" class="tabpanel" aria-labelledby="_tabs_3_data_driven">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refactor these test scenarios to follow DDD approach and add examples tables to add variety of test data.</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Refactor these test scenarios to follow a data-driven approach and add an Examples table to provide a variety of test data.</code></pre>
 </div>
 </div>
 </div>
@@ -1320,10 +1315,13 @@ Please be aware of token limits. If you need a full refactor, split the work int
 <p>Stop current generation.</p>
 </li>
 <li>
+<p>Restart the MCP server (in VS Code click <code>⟳ Restart</code> next to the server name; in Claude Code run <code>/mcp</code> to check server status or restart the session).</p>
+</li>
+<li>
 <p>Clear the conversation.</p>
 </li>
 <li>
-<p>Start fresh with URL and requirements (use the Copilot skill or provide details in chat).</p>
+<p>Start fresh with the target application URL and requirements (use the Copilot skill or provide details in chat).</p>
 </li>
 </ol>
 </div>
