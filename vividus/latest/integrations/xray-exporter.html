@@ -862,6 +862,75 @@ xray-exporter.json-results-directory=/Users/happytester/Repositories/app-tests/o
 </div>
 </div>
 <div class="sect2">
+<h3 id="_xray_cloud_configuration"><a class="anchor" href="#_xray_cloud_configuration"></a>Xray Cloud Configuration</h3>
+<div class="paragraph">
+<p>By default, VIVIDUS exports results to an on-premise Xray Server (Jira plugin). To export to <a href="https://www.getxray.app/">Xray Cloud</a>, enable the cloud mode and provide API credentials.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.cloud.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set to <code>true</code> to enable Xray Cloud mode (default: <code>false</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>xray-exporter.cloud.client-id</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true (when cloud is enabled)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Xray Cloud API client ID (obtained from the Xray app settings in Jira)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>xray-exporter.cloud.client-secret</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true (when cloud is enabled)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Xray Cloud API client secret (obtained from the Xray app settings in Jira)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xray-exporter.cloud.api-base-url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Base URL for the Xray Cloud REST API (the <code>/api/v2</code> path is appended automatically). Default: <code><a href="https://xray.cloud.getxray.app/" class="bare">https://xray.cloud.getxray.app/</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>Override this value when using a regional Xray Cloud deployment, for example:
+* <code><a href="https://us.xray.cloud.getxray.app/" class="bare">https://us.xray.cloud.getxray.app/</a></code>
+* <code><a href="https://eu.xray.cloud.getxray.app/" class="bare">https://eu.xray.cloud.getxray.app/</a></code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When <code>xray-exporter.cloud.enabled=true</code>, the <code>xray-exporter.jira-instance-key</code> property is not used.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example 3. application.properties (Xray Cloud example)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">xray-exporter.cloud.enabled=true
+xray-exporter.cloud.client-id=&lt;YOUR_CLIENT_ID&gt;
+xray-exporter.cloud.client-secret=&lt;YOUR_CLIENT_SECRET&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_test_execution"><a class="anchor" href="#_test_execution"></a>Test Execution</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1024,7 +1093,7 @@ xray-exporter.json-results-directory=/Users/happytester/Repositories/app-tests/o
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 3. mapping.properties</div>
+<div class="title">Example 4. mapping.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">jira.&lt;jira instance key placeholder&gt;.fields-mapping.test-case-type=customfield_10001
 jira.&lt;jira instance key placeholder&gt;.fields-mapping.manual-steps=customfield_10002</code></pre>
@@ -1068,7 +1137,7 @@ jira.&lt;jira instance key placeholder&gt;.fields-mapping.manual-steps=customfie
 </tbody>
 </table>
 <div class="listingblock">
-<div class="title">Example 4. mapping.properties</div>
+<div class="title">Example 5. mapping.properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">jira.&lt;jira instance key placeholder&gt;.fields-mapping.test-case-type=customfield_10003
 jira.&lt;jira instance key placeholder&gt;.fields-mapping.cucumber-scenario-type=customfield_10004
@@ -1096,13 +1165,13 @@ jira.&lt;jira instance key placeholder&gt;.http.auth.preemptive-auth-enabled=tru
 <li>
 <p>In case of two-factor authentication, token authentication or any other complex authentication process it&#8217;s possible to use request headers like the following example shows:</p>
 <div class="listingblock">
-<div class="title">Example 5. Authenticate using Bearer token</div>
+<div class="title">Example 6. Authenticate using Bearer token</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Authorization=Bearer D5YY0qJDxFDOZjCEpINMTdcQQxNtATrMw/IAsyWI+CzE</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Authenticate using session cookies</div>
+<div class="title">Example 7. Authenticate using session cookies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">jira.&lt;jira instance key placeholder&gt;.http.headers.Cookie=SESSIONID=298zf09hf012fh2</code></pre>
 </div>
@@ -1182,7 +1251,7 @@ Both <code>jira.&lt;jira instance key placeholder&gt;.http.auth.username</code> 
 <p>Any scenario that doesn&#8217;t correspond to the <a href="#_manual_test_cases">manual test case rules</a> is considered as automated test case.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 7. Automated.story</div>
+<div class="title">Example 8. Automated.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-231
@@ -1198,7 +1267,7 @@ Examples:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 8. AutomatedWithManualPart.story</div>
+<div class="title">Example 9. AutomatedWithManualPart.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Verify link
 Meta: @testCaseId TEST-566
@@ -1241,7 +1310,7 @@ Examples:
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 9. Manual.story</div>
+<div class="title">Example 10. Manual.story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Buy an item
 Meta: @testCaseId TEST-435
