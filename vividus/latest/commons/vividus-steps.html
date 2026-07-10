@@ -1436,6 +1436,124 @@ expires, then saves the absolute path of that file to a variable.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_object_pool"><a class="anchor" href="#_object_pool"></a>Object pool</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Think of an object pool as a shared basket of items that your tests can borrow from. You fill the basket once with a
+list of items (for example, a set of test user accounts), and then, whenever a test needs one, it picks an item out of
+the basket at random. Each item can be held by only one test at a time, so tests running side by side never accidentally
+grab the same account and interfere with each other.</p>
+</div>
+<div class="paragraph">
+<p>This is handy whenever you have a limited number of shared resources - such as logins, licenses, or reservations - that
+must be shared fairly across many tests.</p>
+</div>
+<div class="sect2">
+<h3 id="_deciding_whether_items_go_back_into_the_basket"><a class="anchor" href="#_deciding_whether_items_go_back_into_the_basket"></a>Deciding whether items go back into the basket</h3>
+<div class="paragraph">
+<p>By default, once a test takes an item out of the basket, that item stays out and is considered used up. If you would
+rather put every borrowed item back into the basket at the end of each story - so that later stories can reuse the same
+items - turn on the setting below.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Setting</th>
+<th class="tableblock halign-left valign-top">Possible values</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>object-pool.return-objects-after-story-completion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code> / <code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code>, every item a story borrowed is returned to its basket once the story finishes, making it available again
+for the next stories. When <code>false</code>, borrowed items are not returned and are treated as used up.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_fill_the_basket_initialize_an_object_pool"><a class="anchor" href="#_fill_the_basket_initialize_an_object_pool"></a>Fill the basket (initialize an object pool)</h3>
+<div class="paragraph">
+<p>Fills a named basket with a list of items. Each basket can be filled only once - trying to fill a basket that already
+exists will stop the test with an error. Every row of the table becomes one item in the basket, and the column headers
+become the details of that item.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize object pool `$poolName` with data:$data</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$poolName</code> - The name you give to the basket so you can refer to it later.</p>
+</li>
+<li>
+<p><code>$data</code> - The <a href="../glossary.html#_examplestable" class="xref page">table</a> of items to put into the basket. Each row is one item.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 23. Fill a basket named "credentials" with three user accounts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize object pool `credentials` with data:
+|login |password|
+|user-1|pass-1  |
+|user-2|pass-2  |
+|user-3|pass-3  |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_take_an_item_from_the_basket"><a class="anchor" href="#_take_an_item_from_the_basket"></a>Take an item from the basket</h3>
+<div class="paragraph">
+<p>Picks a random item out of the basket and stores it, so you can use its details later in the test. The item is removed
+from the basket, so no other test can pick the same one until it is returned (see the setting above).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take object from pool `$poolName` and save it to $scopes variable `$variableName`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$poolName</code> - The name of the basket to pick an item from.</p>
+</li>
+<li>
+<p><code>$scopes</code> - <a href="variables.html#_scopes" class="xref page">How long the stored item should stay available</a> (for example, for the
+current scenario or the whole story).</p>
+</li>
+<li>
+<p><code>$variableName</code> - The name you give to the item so you can use its details later.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once stored, you can read the details of the picked item by its column names, for example <code>${credential.login}</code> and
+<code>${credential.password}</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 24. Take one user account from the "credentials" basket and use it</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take object from pool `credentials` and save it to scenario variable `credential`
+Then `${credential.login}` matches `user-[1-3]`</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_zip_archives"><a class="anchor" href="#_zip_archives"></a>ZIP archives</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -1487,7 +1605,7 @@ The following example requires <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Save archive entries</div>
+<div class="title">Example 25. Save archive entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 When I save content of `${response-as-bytes}` archive entries to variables:
@@ -1556,7 +1674,7 @@ The following examples require <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 26. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1566,7 +1684,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 27. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1610,7 +1728,7 @@ The step is for debugging purpose only
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Wait 30 seconds for debug</div>
+<div class="title">Example 28. Wait 30 seconds for debug</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
