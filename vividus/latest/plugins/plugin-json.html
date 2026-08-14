@@ -1180,6 +1180,84 @@ The expression parameters marked with <strong>bold</strong> are mandatory.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_escapejson"><a class="anchor" href="#_escapejson"></a><code>escapeJSON</code></h3>
+<div class="paragraph">
+<p>Escapes <a href="http://www.ietf.org/rfc/rfc8259.txt">reserved JSON characters</a>: converts any string into one that&#8217;s properly escaped for inclusion in JSON as a value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{escapeJSON(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be escaped</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Escape JSON string</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{escapeJSON("abc"+"xyz")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>\"abc\"+\"xyz\"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_unescapejson"><a class="anchor" href="#_unescapejson"></a><code>unescapeJSON</code></h3>
+<div class="paragraph">
+<p>Unescapes a string containing <a href="http://www.ietf.org/rfc/rfc8259.txt">JSON</a> escape sequences to a string containing the actual Unicode characters corresponding to the escapes. Each expression application performs a single unescape pass, so for nested escaping apply the expression multiple times.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#{unescapeJSON(<strong>$input</strong>)}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>$input</code></strong> - any string to be unescaped</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Unescape JSON string</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expression</th>
+<th class="tableblock halign-left valign-top">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>#{unescapeJSON(\"abc\"+\"xyz\")}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"abc"+"xyz"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><mark>{unescapeJSON(</mark>{unescapeJSON(\\\"abc\\\"+\\\"xyz\\\")})}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"abc"+"xyz"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1831,17 +1909,17 @@ Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `{"bo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-As JSON do not support multi line strings if you want to improve readability use <a href="../commons/expressions.html#_escapejson" class="xref page">escapeJson</a> expression inside matcher
+As JSON do not support multi line strings if you want to improve readability use <a href="#_escapejson">escapeJSON</a> expression inside matcher
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Validate entries with <code>escapeJson</code> expression</div>
+<div class="title">Example 24. Validate entries with <code>escapeJSON</code> expression</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then JSON element from `${actual-json}` by JSON path `$.store` is equal to `
 {
-  "book":"#{json-unit.matches:anyOf}#{escapeJson([
+  "book":"#{json-unit.matches:anyOf}#{escapeJSON([
     {
       "name":"Uladzimir Karatkevich",
       "available":true
