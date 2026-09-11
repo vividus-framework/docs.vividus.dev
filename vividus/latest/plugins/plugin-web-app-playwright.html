@@ -3674,6 +3674,269 @@ The step is only supported by Chrome browser.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_network_conditions_emulation"><a class="anchor" href="#_network_conditions_emulation"></a>Network Conditions Emulation</h3>
+<div class="paragraph">
+<p>There are two different steps for network emulation. They look similar, but they control different things:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">What you want to test</th>
+<th class="tableblock halign-left valign-top">Use this step</th>
+<th class="tableblock halign-left valign-top">What it changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Offline banner, disabled buttons, or any UI/logic that checks whether the browser is online</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_override_network_state">Override network state</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">What the page <strong>thinks</strong> about the network (browser online/offline status and connection info). Does <strong>not</strong> slow down or block real requests by itself.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Slow loading, spinners, timeouts, retries, or a degraded experience on a slow connection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_emulate_network_conditions">Emulate network conditions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How real network requests <strong>behave</strong> (latency, throughput, blocked requests). Can also target only specific URLs. Does <strong>not</strong> change browser online/offline status by itself.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both: the page should report a slow/offline network <strong>and</strong> requests should actually be affected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use both steps together</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Page state and real request behavior.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Both steps use similar fields (<code>offline</code>, <code>downloadThroughput</code>, <code>uploadThroughput</code>, <code>latency</code>) because they describe the same network quality values.
+The difference is <strong>where</strong> those values are applied:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In <a href="#_override_network_state">Override network state</a>, the values are only <strong>reported</strong> to the page (what the application can read from the browser).</p>
+</li>
+<li>
+<p>In <a href="#_emulate_network_conditions">Emulate network conditions</a>, the values actually <strong>control</strong> request behavior (slower/blocked traffic).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Setting <code>latency: 400</code> in override network state does not delay requests.
+Setting <code>latency: 400</code> in emulate network conditions does.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The steps are only supported by Chrome browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_override_network_state"><a class="anchor" href="#_override_network_state"></a>Override network state</h4>
+<div class="paragraph">
+<p>Makes the page believe that the network state has changed.</p>
+</div>
+<div class="paragraph">
+<p>Choose this step when the application reads browser online/offline status or connection information and changes UI or logic based on that.</p>
+</div>
+<div class="paragraph">
+<p>This step alone is <strong>not</strong> enough if you need requests to become slow or fail. For that, use <a href="#_emulate_network_conditions">Emulate network conditions</a> as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I override network state with configuration:`$jsonConfiguration`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsonConfiguration</code> - The JSON containing network state <strong>reported to the page</strong>.
+Expected JSON fields include:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>offline</code> - The boolean flag. <code>true</code> to report the browser as offline, <code>false</code> to report it as online.</p>
+</li>
+<li>
+<p><code>downloadThroughput</code> - The number specifying download throughput in bytes/sec <strong>reported</strong> to the page. Use <code>-1</code> for no limit. Does not throttle requests.</p>
+</li>
+<li>
+<p><code>uploadThroughput</code> - The number specifying upload throughput in bytes/sec <strong>reported</strong> to the page. Use <code>-1</code> for no limit. Does not throttle requests.</p>
+</li>
+<li>
+<p><code>latency</code> - The number specifying latency in milliseconds <strong>reported</strong> to the page. Does not delay requests.
+.Show offline UI when the application checks browser online status</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Given I am on page with URL `https://example.com`
+When I override network state with configuration:`{
+    "offline": true,
+    "downloadThroughput": 0,
+    "uploadThroughput": 0,
+    "latency": 0
+}`
+When I refresh page
+Then text `You are offline` exists</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_emulate_network_conditions"><a class="anchor" href="#_emulate_network_conditions"></a>Emulate network conditions</h4>
+<div class="paragraph">
+<p>Changes how network requests actually behave.</p>
+</div>
+<div class="paragraph">
+<p>Choose this step when you need requests to be slower, limited in speed, or blocked, for example to verify loading indicators, timeouts, retries, or behavior under Slow 3G-like conditions.</p>
+</div>
+<div class="paragraph">
+<p>This step alone is <strong>not</strong> enough if the application decides what to show based on browser online/offline status. For that, use <a href="#_override_network_state">Override network state</a> as well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate network conditions with configuration:`$jsonConfiguration`</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$jsonConfiguration</code> - The JSON containing network conditions rules <strong>applied to real requests</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>matchedNetworkConditions</code> - The array of rules. If several rules match a request, the first matching rule is used.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>urlPattern</code> - The string with a URL pattern that selects which requests the rule applies to. This is <strong>not</strong> file-path / Ant-style globbing: matching uses the <a href="https://urlpattern.spec.whatwg.org/">URLPattern</a> constructor string syntax, and the pattern must be absolute. Use an empty string (<code>""</code>) to match <strong>all</strong> requests. <code><strong></code> is a URLPattern wildcard (for example, <code><a href="https://api.example.com/" class="bare">https://api.example.com/</a></strong></code> matches paths under that origin).</p>
+</li>
+<li>
+<p><code>downloadThroughput</code> - The number specifying maximal download throughput in bytes/sec <strong>applied to matching requests</strong>. Use <code>-1</code> to disable download throttling.</p>
+</li>
+<li>
+<p><code>uploadThroughput</code> - The number specifying maximal upload throughput in bytes/sec <strong>applied to matching requests</strong>. Use <code>-1</code> to disable upload throttling.</p>
+</li>
+<li>
+<p><code>latency</code> - The number specifying extra delay in milliseconds <strong>applied to matching requests</strong>.</p>
+</li>
+<li>
+<p><code>offline</code> - The boolean flag. <code>true</code> to block matching requests.
+.Slow down all requests</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">When I emulate network conditions with configuration:`{
+    "matchedNetworkConditions": [
+        {
+            "urlPattern": "",
+            "downloadThroughput": 50000,
+            "uploadThroughput": 50000,
+            "latency": 400
+        }
+    ]
+}`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 76. Slow down only API requests</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I emulate network conditions with configuration:`{
+    "matchedNetworkConditions": [
+        {
+            "urlPattern": "https://api.example.com/*",
+            "downloadThroughput": 20000,
+            "uploadThroughput": 10000,
+            "latency": 500
+        }
+    ]
+}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_use_both_steps_together"><a class="anchor" href="#_use_both_steps_together"></a>Use both steps together</h4>
+<div class="paragraph">
+<p>Use both steps when the scenario must be realistic: the page should see the updated network state, and requests should actually be throttled or blocked.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example 77. Emulate a slow connection for both page state and requests</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I override network state with configuration:`{
+    "offline": false,
+    "downloadThroughput": 50000,
+    "uploadThroughput": 50000,
+    "latency": 400
+}`
+When I emulate network conditions with configuration:`{
+    "matchedNetworkConditions": [
+        {
+            "urlPattern": "",
+            "downloadThroughput": 50000,
+            "uploadThroughput": 50000,
+            "latency": 400
+        }
+    ]
+}`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reset_network_conditions_emulation"><a class="anchor" href="#_reset_network_conditions_emulation"></a>Reset network conditions emulation</h4>
+<div class="paragraph">
+<p>Resets both overridden network state and emulated network conditions back to defaults.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I reset network conditions emulation</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 78. Reset after overriding network state</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I override network state with configuration:`{
+    "offline": true,
+    "downloadThroughput": 0,
+    "uploadThroughput": 0,
+    "latency": 0
+}`
+When I reset network conditions emulation</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>
