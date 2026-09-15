@@ -925,6 +925,40 @@ Then `${var}` is = `1`</code></pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_execute_steps_and_assert_duration"><a class="anchor" href="#_execute_steps_and_assert_duration"></a>Execute steps and assert duration</h3>
+<div class="paragraph">
+<p>Executes the steps located in the table, measures their execution duration and asserts it against the expected duration
+using the comparison rule.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps and assert duration is $comparisonRule `$duration`:$stepsToExecute</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>$comparisonRule</code> - <a href="../parameters/comparison-rule.html" class="xref page">The comparison rule</a>.</p>
+</li>
+<li>
+<p><code>$duration</code> - The expected duration in <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO-8601 Durations</a> format.</p>
+</li>
+<li>
+<p><code>$stepsToExecute</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with a single column containing the steps to execute.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example 11. Execute steps and verify they complete in less than 5 seconds</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps and assert duration is less than `PT5S`:
+|step                                                                     |
+|Then `${var}` is = `0`                                                   |
+|Given I initialize story variable `var` with value `#{eval(${var} + 1)}` |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_execute_steps_n_times"><a class="anchor" href="#_execute_steps_n_times"></a>Execute steps N times</h3>
 <div class="paragraph">
 <p>Step is designed to execute specified steps while counter with a certain limit matches a comparison rule. On each iteration the counter is increased on specified value, which is allowed to be either positive or negative. The seed value is used as a starting point for iteration. Current iteration index is available within steps to execute as <code>${iterationVariable}</code>.</p>
@@ -962,7 +996,7 @@ Then `${var}` is = `1`</code></pre>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 11. Press the button four times</div>
+<div class="title">Example 12. Press the button four times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
 |step                                                                         |
@@ -970,7 +1004,7 @@ Then `${var}` is = `1`</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 12. Press one button four times and press the second button from the nested step eight times</div>
+<div class="title">Example 13. Press one button four times and press the second button from the nested step eight times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps while counter is less than or equal to `10` with increment `3` starting from `1`:
 {headerSeparator=!, valueSeparator=!}
@@ -1044,7 +1078,7 @@ Exactly variable name (e.g. <code>myVaraible</code>) is expected here, <strong>n
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 13. Click button 5 times</div>
+<div class="title">Example 14. Click button 5 times</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -1122,7 +1156,7 @@ Exactly variable name (e.g. <code>myVaraible</code>) is expected here, <strong>n
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 14. Click button 5 times with 1 second delay</div>
+<div class="title">Example 15. Click button 5 times with 1 second delay</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute steps with delay `PT1S` at most 5 times while variable `var` is less than `3`:
 |step                                                                                                                   |
@@ -1214,7 +1248,7 @@ The error will stop steps execution in case if unsupported condition value is pr
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 15. Click on the element if parent element is found</div>
+<div class="title">Example 16. Click on the element if parent element is found</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
@@ -1223,7 +1257,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 16. Click on the element if parent element is found and the element itself is presented on the page</div>
+<div class="title">Example 17. Click on the element if parent element is found and the element itself is presented on the page</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save number of elements located by `xpath(//*[@class='outerElement'])` to SCENARIO variable `numberOfOuterElements`
 When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
@@ -1265,7 +1299,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 17. Initialize variable <code>token</code> if it is not already initialized</div>
+<div class="title">Example 18. Initialize variable <code>token</code> if it is not already initialized</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
 |step                                                                                             |
@@ -1273,7 +1307,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 18. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
+<div class="title">Example 19. Initialize variable <code>token</code> if it is not already initialized and additionally <code>api-key</code> in the nested step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `token` is not set I do:
 {headerSeparator=!, valueSeparator=!}
@@ -1314,7 +1348,7 @@ When the condition `#{eval(${numberOfOuterElements} == 1)}` is true I do
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 19. Execute steps if variable <code>user</code> is already set</div>
+<div class="title">Example 20. Execute steps if variable <code>user</code> is already set</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When variable `user` is set I do:
 | step                                          |
@@ -1379,7 +1413,7 @@ The created file will be removed upon test run completion.</p>
 <p>If you want to use the created temporary file in further batches of the test suite as an input data, you should use <a href="https://datatracker.ietf.org/doc/html/rfc8089#appendix-A">URL with <code>file</code> protocol</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Example 20. Batch 1 - Create a temporary local file</div>
+<div class="title">Example 21. Batch 1 - Create a temporary local file</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I create temporary file with name `.table` and content `
 |column|
@@ -1388,7 +1422,7 @@ The created file will be removed upon test run completion.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 21. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
+<div class="title">Example 22. Batch 2 - Use the temporary file as <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Then `&lt;column&gt;` is equal to `value`
 Examples:
@@ -1430,7 +1464,7 @@ expires, then saves the absolute path of that file to a variable.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 22. Wait up to 30 seconds for a CSV report to arrive and store its path</div>
+<div class="title">Example 23. Wait up to 30 seconds for a CSV report to arrive and store its path</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` with `PT1S` polling until file matching `report-\d+\.csv` appears in directory `/tmp/reports` and save path to SCENARIO variable `report-path`</code></pre>
 </div>
@@ -1507,7 +1541,7 @@ become the details of that item.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 23. Fill a basket named "credentials" with three user accounts</div>
+<div class="title">Example 24. Fill a basket named "credentials" with three user accounts</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I initialize object pool `credentials` with data:
 |login |password|
@@ -1541,7 +1575,7 @@ and placed after the items that are already in the basket.</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 24. Add two more user accounts to the "credentials" basket</div>
+<div class="title">Example 25. Add two more user accounts to the "credentials" basket</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Given I add objects to object pool `credentials`:
 |login |password|
@@ -1581,7 +1615,7 @@ the current scenario or the whole story).</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 25. Take every remaining account from the "credentials" basket</div>
+<div class="title">Example 26. Take every remaining account from the "credentials" basket</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I save size of object pool `credentials` to scenario variable `credentialsCount`
 When I execute steps while counter is less than `${credentialsCount}` with increment `1` starting from `0`:
@@ -1625,7 +1659,7 @@ current scenario or the whole story).</p>
 <code>${credential.password}</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 26. Take one user account from the "credentials" basket and use it</div>
+<div class="title">Example 27. Take one user account from the "credentials" basket and use it</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I take object from pool `credentials` and save it to scenario variable `credential`
 Then `${credential.login}` matches `user-[1-3]`</code></pre>
@@ -1686,7 +1720,7 @@ The following example requires <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 27. Save archive entries</div>
+<div class="title">Example 28. Save archive entries</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 When I save content of `${response-as-bytes}` archive entries to variables:
@@ -1755,7 +1789,7 @@ The following examples require <a href="../plugins/plugin-rest-api.html" class="
 </table>
 </div>
 <div class="listingblock">
-<div class="title">Example 28. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
+<div class="title">Example 29. Submit a GET request and check the response archive has file with extension 'data' in 'data' folder, but don&#8217;t contain any data file with name 'restrictedData'</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1765,7 +1799,7 @@ Then `${response-as-bytes}` archive contains entries with names:
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Example 29. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
+<div class="title">Example 30. Submit a GET request and check that response archive has file with name <code>responseTextFromZipArchive.txt</code></div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I execute HTTP GET request for resource with URL `https://example.com/get-zip-archive`
 Then `${response-as-bytes}` archive contains entries with names:
@@ -1809,7 +1843,7 @@ The step is for debugging purpose only
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 30. Wait 30 seconds for debug</div>
+<div class="title">Example 31. Wait 30 seconds for debug</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I wait `PT30S` for debug</code></pre>
 </div>
