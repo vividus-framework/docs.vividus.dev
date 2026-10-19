@@ -767,7 +767,7 @@ The key can be stored with <a href="../configuration/secrets-management.html" cl
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>newrelic.event.attribute.&lt;name&gt;</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Any string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">empty</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Custom attribute added to every event. <code>&lt;name&gt;</code> must be at most 255 characters and may contain only letters, digits, underscores, colons, periods, and slashes. A name that breaks these rules, or <code>eventType</code>, <code>runId</code>, <code>storyName</code>, <code>phase</code>, or <code>status</code>, is skipped and a warning is logged</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom attribute added to every event. <code>&lt;name&gt;</code> must be at most 255 characters and may contain only letters, digits, underscores, colons, periods, and slashes. A name that breaks these rules, or <code>eventType</code>, <code>runId</code>, <code>storyName</code>, <code>batchIndex</code>, <code>phase</code>, or <code>status</code>, is skipped and a warning is logged</p></td>
 </tr>
 </tbody>
 </table>
@@ -777,7 +777,7 @@ The key can be stored with <a href="../configuration/secrets-management.html" cl
 <h2 id="_events"><a class="anchor" href="#_events"></a>Events</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before the stories of a run, VIVIDUS posts a <code>VividusRun</code> event with <code>phase</code> <code>started</code>. After the stories it posts a <code>VividusRun</code> event with <code>phase</code> <code>finished</code> and <code>status</code> <code>passed</code> or <code>failed</code>. After each completed story it posts a <code>VividusStory</code> event with <code>status</code> <code>passed</code> or <code>failed</code>. Each request body is a JSON array with that single event. Every event carries the same <code>runId</code>: the value of <code>newrelic.run-id</code>, or a generated UUID when that property is empty.</p>
+<p>Before the stories of a run, VIVIDUS posts a <code>VividusRun</code> event with <code>phase</code> <code>started</code>. After the stories it posts a <code>VividusRun</code> event with <code>phase</code> <code>finished</code> and <code>status</code> <code>passed</code> or <code>failed</code>. After each completed story it posts a <code>VividusStory</code> event with <code>status</code> <code>passed</code> or <code>failed</code> and <code>batchIndex</code>, the index of the batch the story belongs to (for example, <code>1</code> for <code>batch-1</code>). Each request body is a JSON array with that single event. Every event carries the same <code>runId</code>: the value of <code>newrelic.run-id</code>, or a generated UUID when that property is empty.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -839,6 +839,7 @@ newrelic.event.attribute.teamName=qa</code></pre>
     "eventType": "VividusStory",
     "runId": "5d8c1a2e-3b4f-4c6d-9e10-11a2b3c4d5e6",
     "storyName": "Login",
+    "batchIndex": 1,
     "status": "passed",
     "environment": "staging",
     "teamName": "qa"
