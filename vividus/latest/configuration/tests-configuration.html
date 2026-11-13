@@ -701,6 +701,38 @@
 <p>VIVIDUS suite consists of the unlimited number of batches. In its turn the batch consists of any number of stories represented by the files with <code>*.story</code> extension. The batches are run sequentially, while the stories in the batch are run in parallel.</p>
 </div>
 <div class="paragraph">
+<p>A suite address may be a nested path, e.g. <code>env/shop_name</code>. In this case all the <code>*.properties</code> files located in the <code>properties/suite/env</code> and <code>properties/suite/env/shop_name</code> directories are loaded and merged into a single suite. This allows to keep common properties in the parent directory and override particular ones in the nested directory. The error is thrown only if no <code>\*.properties</code> file is found in the deepest directory of the address, e.g. <code>properties/suite/env/shop_name</code>, while the absence of properties in the intermediate directories, e.g. <code>properties/suite/env</code>, is allowed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dir hljs" data-lang="dir">└─ src/main/resources/properties
+                            └─  suite <i class="conum" data-value="1"></i><b>(1)</b>
+                                    ├─ env <i class="conum" data-value="2"></i><b>(2)</b>
+                                        └─ shop_name <i class="conum" data-value="3"></i><b>(3)</b>
+                                                └─ suite.properties <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Suite directory which contains all the suites properties;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>General type of the suites;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A particular suite;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The deepest directory of the suite address, it must contain at least one <code>\*.properties</code> file;</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>The suites are loaded one by one starting from the last one in the sequence, in other words, the values of the properties defined in the first suite will take precedence over the values of the same properties defined in all subsequent suites. If any of the suites in the sequence is not found (i.e. no <code>*.properties</code> file is present at the given path), the error will be thrown and the execution will be stopped. However if suites property is empty (<code>configuration.suites=</code>) and no suite is configured in the root (i.e no files can be found by <code>/properties/suite/*.properties</code> pattern), no error will be thrown and the execution will be continued.</p>
 </div>
 <div class="paragraph">
