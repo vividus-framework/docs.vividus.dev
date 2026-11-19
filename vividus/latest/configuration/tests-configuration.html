@@ -1151,6 +1151,41 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <div class="paragraph">
 <p>Environment variables can also be declared in multiple files. Define common and specific properties for your environments and take the <a href="#_profiles_setup">same approach</a> of reusing and separating values.</p>
 </div>
+<div class="paragraph">
+<p>The environment address may be a nested path, e.g. <code>env/shop_name</code>. In this case all the <code>*.properties</code> files located in the <code>properties/environment/env</code> and <code>properties/environment/env/shop_name</code> directories are loaded and merged into a single environment. The deepest directory of the address must contain at least one <code>\*.properties</code> file, while the absence of properties in the intermediate directories is allowed. Files from the parent directory are loaded first, so the values defined in the nested directory override the ones inherited from the parent. The error is thrown only if no <code>\*.properties</code> file is found in the deepest directory of the address.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dir hljs" data-lang="dir">└─ src/main/resources/properties
+                            └─  environment <i class="conum" data-value="1"></i><b>(1)</b>
+                                    ├─ env <i class="conum" data-value="2"></i><b>(2)</b>
+                                        └─ shop_name <i class="conum" data-value="3"></i><b>(3)</b>
+                                                └─ environment.properties <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Environment directory which contains all the environments properties;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>General type of the environments;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A particular environment;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The deepest directory of the environment address, it must contain at least one <code>\*.properties</code> file;</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Multiple environments can be selected at once by separating their addresses with a comma, e.g. <code>configuration.environments=common,dev</code>. As well as the suites, environments are loaded one by one starting from the last one in the sequence, in other words, the values of the properties defined in the first environment take precedence over the values of the same properties defined in all subsequent environments. Every environment is loaded independently, i.e. the parent <code>\*.properties</code> files are re-read for each environment in the sequence, and the properties loaded later overwrite the keys already set, including keys set to an empty value.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuration_sets"><a class="anchor" href="#_configuration_sets"></a>Configuration sets</h3>

@@ -803,6 +803,45 @@ considered invalid and will lead to parsing error.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_examplestable_from_a_resource"><a class="anchor" href="#_examplestable_from_a_resource"></a>ExamplesTable from a resource</h3>
+<div class="paragraph">
+<p>Instead of an inline table, the path to a <a href="#_resource">resource</a> with the <code>*.table</code> extension
+can be used wherever an ExamplesTable is expected. The referenced file holds the table in the same format as an inline
+one and is loaded from the classpath:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">└─ src
+    └─ main
+        └─ resources
+            └─ data
+                └─ expected-results.table</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example 1. expected-results.table</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">|StringValue|NumericValue|BooleanValue|
+|City       |17.0        |false       |
+|Country    |4.0         |true        |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Such a table can be used as a step parameter, not only as an <code>Examples</code> section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">When I initialize scenario variable `expectedTable` with values:
+/data/expected-results.table
+Then `${expectedTable[1].BooleanValue}` is equal to `true`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Transformers defined in the referenced file are applied as well, and the table can be referenced by an absolute
+classpath path, e.g. <code>/data/expected-results.table</code>, or a relative one, e.g. <code>data/expected-results.table</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1168,7 +1207,7 @@ in this case the transformers are applied sequentially from top to bottom:</p>
 using character <code>\</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 1. Escaping special characters in transformer properties</div>
+<div class="title">Example 2. Escaping special characters in transformer properties</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=MY_TRANSFORMER, countries=\{Australia\,Canada\}}</code></pre>
 </div>
@@ -1183,7 +1222,7 @@ transformer properties (pay attention to escapes of the variables placeholders
 in the example below).</p>
 </div>
 <div class="listingblock">
-<div class="title">Example 2. Usage of global variable <code>${locale}</code> in transformer property</div>
+<div class="title">Example 3. Usage of global variable <code>${locale}</code> in transformer property</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">{transformer=ONE_MORE_MY_TRANSFORMER, tables=/$\{locale\}/table1.table;/$\{locale\}/table2.table}</code></pre>
 </div>
@@ -1208,7 +1247,7 @@ They are executed in the following order and follow syntax:</p>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 3. Syntax for Before and After each story</div>
+<div class="title">Example 4. Syntax for Before and After each story</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Lifecycle:
 Before:
@@ -1227,7 +1266,7 @@ Scope: STORY
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 4. Syntax for Before and After each scenario</div>
+<div class="title">Example 5. Syntax for Before and After each scenario</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Lifecycle:
 Before:
@@ -1246,7 +1285,7 @@ Scope: SCENARIO
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 5. Syntax for Before and After each step</div>
+<div class="title">Example 6. Syntax for Before and After each step</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Lifecycle:
 Before:
@@ -1265,7 +1304,7 @@ Scope: STEP
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Example 6. Syntax combining scopes in a Lifecycle</div>
+<div class="title">Example 7. Syntax combining scopes in a Lifecycle</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Lifecycle:
 Before:
