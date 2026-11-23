@@ -704,7 +704,7 @@ the configuration files for the used IDE and then refresh the project in the use
 <h2 id="_properties"><a class="anchor" href="#_properties"></a>Properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s allowed to configure unlimited number of WinRM connections via mechanism of the dynamic properties. The properties prefix example is:</p>
+<p>It is allowed to configure an unlimited number of WinRM connections via the dynamic properties mechanism. The properties prefix example is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -712,7 +712,7 @@ the configuration files for the used IDE and then refresh the project in the use
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>my-server</code> is a key used to refer WinRm connection in the steps. The key is defined by users, must be unique and can&#8217;t contain dots.</p>
+<p>where <code>my-server</code> is a key used to refer to a WinRM connection in the steps. The key is defined by users, must be unique and cannot contain dots.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -764,14 +764,11 @@ The properties marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>winrm.server.&lt;key&gt;.authentication-scheme</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>Basic</code><br>
-<code>Digest</code><br>
 <code>NTLM</code><br>
-<code>Negotiate</code><br>
-<code>Kerberos</code><br>
-<code>CredSSP</code></p>
+<code>Kerberos</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>NTLM</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme. <code>Kerberos</code> requires an HTTPS endpoint.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>winrm.server.&lt;key&gt;.disable-certificate-checks</code></p></td>
@@ -792,8 +789,7 @@ The properties marked with <strong>bold</strong> are mandatory.
 <div class="sect2">
 <h3 id="_configure_dynamic_winrm_connection"><a class="anchor" href="#_configure_dynamic_winrm_connection"></a>Configure dynamic WinRM connection</h3>
 <div class="paragraph">
-<p>Creates a new dynamic WinRM connection from the provided parameters, the
-connection is available only within the story creating the connection.</p>
+<p>Creates a new dynamic WinRM connection from the provided parameters. The connection is available only within the story that creates the connection.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -803,7 +799,7 @@ connection is available only within the story creating the connection.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>$connectionKey</code> - The key to assign to the creating WinRM connection. In case if the key conflicts with a global connection key, the dynamic connection will take precedence within the story.</p>
+<p><code>$connectionKey</code> - The key to assign to the created WinRM connection. If the key conflicts with a global connection key, the dynamic connection takes precedence within the story.</p>
 </li>
 <li>
 <p><code>$connectionParameters</code> - The <a href="../glossary.html#_examplestable" class="xref page">ExamplesTable</a> with WinRM connection parameters.</p>
@@ -860,14 +856,11 @@ The parameters marked with <strong>bold</strong> are mandatory.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authentication-scheme</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>Basic</code><br>
-<code>Digest</code><br>
 <code>NTLM</code><br>
-<code>Negotiate</code><br>
-<code>Kerberos</code><br>
-<code>CredSSP</code></p>
+<code>Kerberos</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>NTLM</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Authentication scheme. <code>Kerberos</code> requires an HTTPS endpoint.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>disable-certificate-checks</code></p></td>
