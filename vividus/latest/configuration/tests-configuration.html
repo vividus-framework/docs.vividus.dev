@@ -1186,6 +1186,9 @@ Please keep in mind that running multiple profiles (e.g. for Chrome and Firefox 
 <div class="paragraph">
 <p>Multiple environments can be selected at once by separating their addresses with a comma, e.g. <code>configuration.environments=common,dev</code>. As well as the suites, environments are loaded one by one starting from the last one in the sequence, in other words, the values of the properties defined in the first environment take precedence over the values of the same properties defined in all subsequent environments. Every environment is loaded independently, i.e. the parent <code>\*.properties</code> files are re-read for each environment in the sequence, and the properties loaded later overwrite the keys already set, including keys set to an empty value.</p>
 </div>
+<div class="paragraph">
+<p>An environment can be marked as optional by appending <code>?</code> to it, e.g. <code>configuration.environments=common,local?</code>. In this case VIVIDUS tries to load properties from the path without the trailing <code>?</code> and continues execution if no <code>\*.properties</code> files are found.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuration_sets"><a class="anchor" href="#_configuration_sets"></a>Configuration sets</h3>
